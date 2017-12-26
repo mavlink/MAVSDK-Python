@@ -4,16 +4,11 @@ WORK_DIR="${SCRIPT_DIR}/.."
 SRC_DIR="${WORK_DIR}/src"
 
 for PROTO_SUBDIR in `ls ${WORK_DIR}/proto`; do
-    if [ ${PROTO_SUBDIR} == "dronecore" ]; then
-        PACKAGE_NAME="${PROTO_SUBDIR}"
-    else
-        PACKAGE_NAME="dronecore_${PROTO_SUBDIR}"
-    fi
-
+    PACKAGE_NAME="dronecore_${PROTO_SUBDIR}"
     PACKAGE_DIR=${SRC_DIR}/${PACKAGE_NAME}/${PACKAGE_NAME}
     mkdir -p ${PACKAGE_DIR}
     
-    # For each plugin, copy the *.proto file into the package
+    # For each component, copy the *.proto file into the package
     cp ${WORK_DIR}/proto/${PROTO_SUBDIR}/*.proto ${PACKAGE_DIR}
 
     # Generate the corresponding protobuf and grpc files

@@ -1,7 +1,7 @@
 from setuptools import setup
 
-setup(name='dronecore',
-      version='0.1',
+setup(name='dronecore_core',
+      version='0.2',
       description='DroneCore gRPC client.',
       url='https://github.com/dronecore/dronecore-python',
-      packages=['dronecore'])
+      packages=['dronecore_core'])

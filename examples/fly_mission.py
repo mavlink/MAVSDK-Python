@@ -1,18 +1,19 @@
 #!/usr/bin/env python
 
-
 from __future__ import print_function
 import grpc
 import time
 import threading
-import dronecore_action.action_pb2_grpc as action_pb2_grpc
-import dronecore_mission.mission_pb2 as dc_mission
-import dronecore_mission.mission_pb2_grpc as mission_pb2_grpc
-from google.protobuf import empty_pb2
+import sys
 
+import dronecore_core.core_pb2 as dc_core
+import dronecore_core.core_pb2_grpc as dc_core_grpc
+import dronecore_action.action_pb2 as dc_action
+import dronecore_action.action_pb2_grpc as dc_action_grpc
+import dronecore_mission.mission_pb2 as dc_mission
+import dronecore_mission.mission_pb2_grpc as dc_mission_grpc
 
 thread_status = True
-
 
 def wait_func(future_status):
     global thread_status
@@ -20,13 +21,24 @@ def wait_func(future_status):
     print(ret.result_str)
     thread_status = False
 
-
 def run():
     global thread_status
     channel = grpc.insecure_channel('0.0.0.0:50051')
-    # stub = dronecore_pb2_grpc.DroneCoreRPCStub(channel)
-    action_stub = action_pb2_grpc.ActionRPCStub(channel)
-    mission_stub = mission_pb2_grpc.MissionRPCStub(channel)
+    core_stub = dc_core_grpc.CoreServiceStub(channel)
+    action_stub = dc_action_grpc.ActionServiceStub(channel)
+    mission_stub = dc_mission_grpc.MissionServiceStub(channel)
+
+    devices_stream = core_stub.SubscribeDevices(dc_core.SubscribeDevicesRequest())
+    devices = list(devices_stream)
+    for device in devices:
+        print("Connected device: {}".format(device.uuid.value))
+
+    device_uuid = dc_core.UUID()
+    if len(sys.argv) == 2:
+        device_uuid.value = int(sys.argv[1])
+    else:
+        device_uuid.value = devices[0].uuid.value
+    print("Using devices with UUID: {}".format(device_uuid.value))
 
     mission_items = []
 
@@ -90,20 +102,32 @@ def run():
         gimbal_yaw_deg=0,
         camera_action=dc_mission.MissionItem.STOP_PHOTO_INTERVAL))
 
-    mission_stub.SendMission(dc_mission.Mission(mission_items=mission_items))
+    device_mission = dc_mission.Mission()
+    device_mission.mission_items.extend(mission_items)
+
+    sendMissionRequest = dc_mission.SendMissionRequest()
+    sendMissionRequest.uuid.value = device_uuid.value
+    sendMissionRequest.mission.CopyFrom(device_mission)
+
+    mission_stub.SendMission(sendMissionRequest)
     time.sleep(1)
 
-    action_stub.Arm(empty_pb2.Empty())
+    armRequest = dc_action.ArmRequest()
+    armRequest.uuid.value = device_uuid.value
+    arm_result = action_stub.Arm(armRequest)
+
     time.sleep(1)
 
-    future_status = mission_stub.StartMission.future(empty_pb2.Empty())
+    startMissionRequest = dc_mission.StartMissionRequest()
+    startMissionRequest.uuid.value = device_uuid.value
+    future_status = mission_stub.StartMission.future(startMissionRequest)
+
     t = threading.Thread(target=wait_func, args=(future_status,))
     t.start()
 
     while(thread_status):
         print("Waiting for thread to exit")
         time.sleep(5)
-
 
 if __name__ == '__main__':
     run()

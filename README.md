@@ -6,7 +6,7 @@ DroneCore is made of plugins bringing different features (e.g. action, telemetry
 
 There are currently 4 packages:
 
-- dronecore
+- dronecore_core
 - dronecore_action
 - dronecore_mission
 - dronecore_telemetry
