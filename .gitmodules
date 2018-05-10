@@ -1,6 +1,3 @@
-[submodule "dronecore/proto"]
-	path = dronecore/proto
-	url = git@github.com:dronecore/DroneCore-Proto.git
 [submodule "proto"]
 	path = proto
-	url = git@github.com:dronecore/DroneCore-Proto.git
+	url = https://github.com/dronecore/DroneCore-Proto.git
