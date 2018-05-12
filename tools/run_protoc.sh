@@ -4,8 +4,14 @@ WORK_DIR="${SCRIPT_DIR}/.."
 SRC_DIR="${WORK_DIR}/src"
 
 for PROTO_SUBDIR in `ls ${WORK_DIR}/proto`; do
+    if [ ! -d ${WORK_DIR}/proto/${PROTO_SUBDIR} ]; then
+        continue
+    fi
+
     PACKAGE_NAME="dronecore_${PROTO_SUBDIR}"
     PACKAGE_DIR=${SRC_DIR}/${PACKAGE_NAME}/${PACKAGE_NAME}
+
+    echo "Creating package directory '${PACKAGE_DIR}'..."
     mkdir -p ${PACKAGE_DIR}
     
     # For each component, copy the *.proto file into the package
