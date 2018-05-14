@@ -3,10 +3,10 @@
 import grpc
 import time
 
-import dronecore_core.core_pb2 as dc_core
-import dronecore_core.core_pb2_grpc as dc_core_grpc
-import dronecore_action.action_pb2 as dc_action
-import dronecore_action.action_pb2_grpc as dc_action_grpc
+import dronecore.generated.core_pb2 as dc_core
+import dronecore.generated.core_pb2_grpc as dc_core_grpc
+import dronecore.generated.action_pb2 as dc_action
+import dronecore.generated.action_pb2_grpc as dc_action_grpc
 
 def run():
     channel = grpc.insecure_channel('0.0.0.0:50051')
