@@ -23,9 +23,13 @@ Run the following helper script. It will generate the `*_pb2.py` and `*_pb2_grpc
 Install the package locally
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-First of all, Python bindings for the gRPC interface have to be generated using `./other/tools/run_protoc.sh`.
+First of all, Python bindings for the gRPC interface have to be generated using
+
+.. code-block::
+    ./other/tools/run_protoc.sh
 
 After this step you can install a development (editable) version of the package using:
+
 .. code-block:: bash
     $ pip install -e .
 
