@@ -9,12 +9,14 @@ import dronecore.generated.core_pb2_grpc as dc_core_grpc
 import dronecore.generated.action_pb2 as dc_action
 import dronecore.generated.action_pb2_grpc as dc_action_grpc
 
+
 def run():
     channel = grpc.insecure_channel('0.0.0.0:50051')
     core_stub = dc_core_grpc.CoreServiceStub(channel)
     action_stub = dc_action_grpc.ActionServiceStub(channel)
 
-    devices_stream = core_stub.SubscribeDevices(dc_core.SubscribeDevicesRequest())
+    devices_stream = core_stub.SubscribeDevices(
+        dc_core.SubscribeDevicesRequest())
     devices = list(devices_stream)
     for device in devices:
         print("Connected device: {}".format(device.uuid.value))
@@ -53,6 +55,7 @@ def run():
         print("landing ok")
     else:
         print("landing failed: " + land_result.result_str)
+
 
 if __name__ == '__main__':
     run()
