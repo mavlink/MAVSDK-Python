@@ -1,7 +1,6 @@
-generated
 venv
 __pycache__
-
+*.pyc
 *.proto
 *_pb2.py
 *_pb2_grpc.py
