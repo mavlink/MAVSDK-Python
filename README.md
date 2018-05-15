@@ -2,6 +2,8 @@
 
 DroneCore is made of plugins bringing different features (e.g. action, telemetry, mission). Each plugin is defined by a corresponding `*.proto` file. The Python implementation creates one package for each plugin.
 
+
+
 ## Packages
 
 There are currently 4 packages:
@@ -11,9 +13,9 @@ There are currently 4 packages:
 - dronecore_mission
 - dronecore_telemetry
 
-## Build a package
+## Build Packages
 
-_(Note that you might want to do all of that in a virtual environment)._
+> **Note** You may want to do all of the following in a virtual environment.
 
 ### Prerequisites
 
@@ -21,6 +23,19 @@ Install `grpcio` and `grpcio-tools`:
 
 ```
 $ python -m pip install grpcio grpcio-tools
+```
+
+### Get Source/Clone Repo
+
+Clone the repo (or your fork) and recursively update submodules:
+```
+git clone https://github.com/dronecore/DroneCore-Python.git --recursive
+```
+
+This can be done as 2 steps, as shown below.
+```
+git clone https://github.com/<your fork>/DroneCore-Python.git
+git submodule update --init --recursive
 ```
 
 ### Generate Protobuf / gRPC files
