@@ -6,20 +6,22 @@ import time
 import threading
 import sys
 
-import dronecore_core.core_pb2 as dc_core
-import dronecore_core.core_pb2_grpc as dc_core_grpc
-import dronecore_action.action_pb2 as dc_action
-import dronecore_action.action_pb2_grpc as dc_action_grpc
-import dronecore_mission.mission_pb2 as dc_mission
-import dronecore_mission.mission_pb2_grpc as dc_mission_grpc
+import dronecore.generated.core_pb2 as dc_core
+import dronecore.generated.core_pb2_grpc as dc_core_grpc
+import dronecore.generated.action_pb2 as dc_action
+import dronecore.generated.action_pb2_grpc as dc_action_grpc
+import dronecore.generated.mission_pb2 as dc_mission
+import dronecore.generated.mission_pb2_grpc as dc_mission_grpc
 
 thread_status = True
+
 
 def wait_func(future_status):
     global thread_status
     ret = future_status.result()
     print(ret.result_str)
     thread_status = False
+
 
 def run():
     global thread_status
@@ -28,7 +30,8 @@ def run():
     action_stub = dc_action_grpc.ActionServiceStub(channel)
     mission_stub = dc_mission_grpc.MissionServiceStub(channel)
 
-    devices_stream = core_stub.SubscribeDevices(dc_core.SubscribeDevicesRequest())
+    devices_stream = core_stub.SubscribeDevices(
+        dc_core.SubscribeDevicesRequest())
     devices = list(devices_stream)
     for device in devices:
         print("Connected device: {}".format(device.uuid.value))
@@ -128,6 +131,7 @@ def run():
     while(thread_status):
         print("Waiting for thread to exit")
         time.sleep(5)
+
 
 if __name__ == '__main__':
     run()
