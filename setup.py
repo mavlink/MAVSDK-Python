@@ -1,5 +1,5 @@
 """ Setup for DroneCore-Python """
-from setuptools import setup, find_packages
+from setuptools import setup
 from codecs import open
 from os import path, getcwd
 
@@ -52,7 +52,7 @@ setup(
         "Programming Language :: Python :: 3",
     ],
 
-    packages=find_packages(exclude=["docs", "tests", "other", "proto"]),
+    packages=["dronecore"],
     install_requires=parse_requirements("requirements.txt"),
     setup_requires=parse_requirements("requirements-dev.txt"),
 
