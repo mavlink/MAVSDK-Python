@@ -75,45 +75,46 @@ class Action(Base):
 
         return Observable.create(takeoff_request)
 
-    def set_takeoff_height(self, height):
-        """
-        Takeoff
-
-        :returns: Observable
-        """
-
-        def set_takeoff_height_request(observable):
-
-            response = self._stub.SetTakeoffAltitude(
-                action_pb2.SetTakeoffAltitudeRequest(altitude_m=height)
-            )
-
-            if self._response_success(response):
-                observable.on_completed()
-            else:
-                observable.on_error(response)
-
-        return Observable.create(set_takeoff_height_request)
-
-    def get_takeoff_height(self):
-        """
-        Takeoff
-
-        :returns: Ovservable
-        """
-
-        def get_takeoff_height_request(observable):
-
-            response = self._stub.GetTakeoffAltitude(
-                action_pb2.GetTakeoffAltitudeRequest()
-            )
-
-            if self._response_success(response):
-                observable.on_completed(response.altitude_m)
-            else:
-                observable.on_error(response)
-
-        return Observable.create(get_takeoff_height_request)
+#   @TODO seems to not be working, action_result is not available
+#   def set_takeoff_altitude(self, altitude):
+#       """
+#       Takeoff
+#
+#       :returns: Observable
+#       """
+#
+#       def set_takeoff_altitude_request(observable):
+#
+#           response = self._stub.SetTakeoffAltitude(
+#               action_pb2.SetTakeoffAltitudeRequest(altitude_m=altitude)
+#           )
+#
+#           if self._response_success(response):
+#               observable.on_completed()
+#           else:
+#               observable.on_error(response)
+#
+#       return Observable.create(set_takeoff_altitude_request)
+#
+#   def get_takeoff_altitude(self):
+#       """
+#       Takeoff
+#
+#       :returns: Ovservable
+#       """
+#
+#       def get_takeoff_altitude_request(observable):
+#
+#           response = self._stub.GetTakeoffAltitude(
+#               action_pb2.GetTakeoffAltitudeRequest()
+#           )
+#
+#           if self._response_success(response):
+#               observable.on_completed(response.altitude_m)
+#           else:
+#               observable.on_error(response)
+#
+#       return Observable.create(get_takeoff_altitude_request)
 
     def land(self):
         """
