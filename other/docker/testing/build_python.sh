@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 #
 # Helper for building python versions
 #
-# Based on the official docker images for python
+# Based on https://github.com/xvzf/tox-docker/blob/master/build_python.sh
 #
 
 
@@ -46,20 +46,14 @@ for PYTHON_VERSION in $PYTHON_VERSIONS; do
         --enable-shared \
         --with-system-expat \
         --with-system-ffi \
-        --without-ensurepip
+        --without-ensurepip \
+        --enable-unicode=ucs4 \
+        --prefix=/usr/local \
+        LDFLAGS="-Wl,--rpath=/usr/local/lib"
 
     make -j "$(nproc)"
 
     EXTRA_CFLAGS="-DTHREAD_STACK_SIZE=0x100000" make install
-
-    runDeps="$( \
-        scanelf --needed --nobanner --format '%n#p' --recursive /usr/local \
-            | tr ',' '\n' \
-            | sort -u \
-            | awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
-    )"
-
-    apk add --virtual .python-rundeps $runDeps
 
     # Cleanup
     rm -Rf "/usr/src/python_${PYTHON_VERSION}"
