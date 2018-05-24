@@ -1,4 +1,4 @@
 """ Dronecore - magic happens here ;-) """
 
-from .backend import Backend
+from .core import Core
 from .action import Action
