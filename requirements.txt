@@ -1,2 +1,3 @@
 Rx>=1.6.1
 protobuf>=3.5.1
+grpcio>=1.11.0

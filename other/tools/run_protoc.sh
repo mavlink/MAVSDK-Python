@@ -25,6 +25,11 @@ function generate {
     done
 }
 
+echo "[+] Updating submodule"
+cd $WORK_DIR
+git submodule init
+git submodule update --recursive
+echo "[+] Done"
 echo "[+] Generating protobuf and gRPC bindings"
 generate
 echo "[+] Done"

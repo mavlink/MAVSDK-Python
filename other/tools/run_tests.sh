@@ -8,7 +8,7 @@ DOCKER_BUILD_LOG_PATH="/tmp/dronecore-python-docker-build.log"
 function build_docker_image {
     cd $DOCKER_DIR
     echo "-> [+] Building the docker image used for testing multiple python versions (this can take some time)"
-    docker build . -t $DOCKER_IMAGE_NAME &> $DOCKER_BUILD_LOG_PATH
+    docker build . -t $DOCKER_IMAGE_NAME # &> $DOCKER_BUILD_LOG_PATH
     if [ $? -eq 0 ]; then
         echo "-> [+] Done!"
     else
@@ -23,7 +23,6 @@ function run_tox {
     docker run --rm -v ${WORK_DIR}:/src $DOCKER_IMAGE_NAME
 }
 
-echo
 echo "[+] Building docker image"
 build_docker_image
 
