@@ -1,5 +1,7 @@
 """ Core """
+import multiprocessing
 import grpc
+from rx.concurrency import ThreadPoolScheduler
 
 
 class Core(object):
@@ -21,11 +23,11 @@ class Core(object):
     or
 
     >>> action = Action()
-        action.init_backend(core)
+        action.init_core(core)
 
     """
 
-    def __init__(self, host=None, port=50051, secure=False):
+    def __init__(self, host=None, port=50051, secure=False, num_threads=None):
 
         self.host, self.port, self.secure = host, port, secure
         self.plugins = {}
@@ -36,6 +38,9 @@ class Core(object):
         else:
             # Spinup a backend
             raise NotImplementedError()
+
+        # Setup the scheduler
+        self._setup_scheduler(num_threads)
 
     def _connect_backend(self):
         """
@@ -60,6 +65,26 @@ class Core(object):
         # self.port = "127.0.0.1"
         # Connect to the new backend
         # self._connect_backend()
+
+    def _setup_scheduler(self, num_threads):
+        """
+        Setup the scheduler for the reactivex framework
+        """
+
+        if not type(num_threads) is int:
+            # Set the number of threads to the number of available cpu
+            # cores when no value is submitted
+            num_threads = multiprocessing.cpu_count()
+
+        # ThreadPoolScheduler should be available in Python 2.7 and 3.x
+        self._scheduler = ThreadPoolScheduler(num_threads)
+
+    @property
+    def scheduler(self):
+        """
+        RxPy Scheduler
+        """
+        return self._scheduler
 
     @property
     def channel(self):

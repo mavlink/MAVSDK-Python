@@ -1,6 +1,5 @@
-from rx import Observable
-from .base import Base
-from .generated import action_pb2, action_pb2_grpc
+from .._base import Base
+from ..generated import action_pb2, action_pb2_grpc
 
 
 class Action(Base):
@@ -31,7 +30,7 @@ class Action(Base):
         :returns: Observable
         """
 
-        def arm_request(observable):
+        def f(observable):
             response = self._stub.Arm(action_pb2.ArmRequest())
 
             if self._response_success(response):
@@ -39,7 +38,7 @@ class Action(Base):
             else:
                 observable.on_error(response)
 
-        return Observable.create(arm_request)
+        return self._create_call_observable(f)
 
     def disarm(self):
         """
@@ -48,7 +47,7 @@ class Action(Base):
         :returns: Observable
         """
 
-        def disarm_request(observable):
+        def f(observable):
             response = self._stub.Disarm(action_pb2.DisarmRequest())
 
             if self._response_success(response):
@@ -56,7 +55,7 @@ class Action(Base):
             else:
                 observable.on_error(response)
 
-        return Observable.create(disarm_request)
+        return self._create_call_observable(f)
 
     def takeoff(self):
         """
@@ -65,7 +64,7 @@ class Action(Base):
         :returns Observable
         """
 
-        def takeoff_request(observable):
+        def f(observable):
             response = self._stub.Takeoff(action_pb2.TakeoffRequest())
 
             if self._response_success(response):
@@ -73,48 +72,50 @@ class Action(Base):
             else:
                 observable.on_error(response)
 
-        return Observable.create(takeoff_request)
+        return self._create_call_observable(f)
 
 #   @TODO seems to not be working, action_result is not available
-#   def set_takeoff_altitude(self, altitude):
-#       """
-#       Takeoff
-#
-#       :returns: Observable
-#       """
-#
-#       def set_takeoff_altitude_request(observable):
-#
-#           response = self._stub.SetTakeoffAltitude(
-#               action_pb2.SetTakeoffAltitudeRequest(altitude_m=altitude)
-#           )
-#
-#           if self._response_success(response):
-#               observable.on_completed()
-#           else:
-#               observable.on_error(response)
-#
-#       return Observable.create(set_takeoff_altitude_request)
-#
-#   def get_takeoff_altitude(self):
-#       """
-#       Takeoff
-#
-#       :returns: Ovservable
-#       """
-#
-#       def get_takeoff_altitude_request(observable):
-#
-#           response = self._stub.GetTakeoffAltitude(
-#               action_pb2.GetTakeoffAltitudeRequest()
-#           )
-#
-#           if self._response_success(response):
-#               observable.on_completed(response.altitude_m)
-#           else:
-#               observable.on_error(response)
-#
-#       return Observable.create(get_takeoff_altitude_request)
+    def set_takeoff_altitude(self, altitude):
+        """
+        Takeoff
+
+        :returns: Observable
+        """
+
+        def f(observable):
+
+            response = self._stub.SetTakeoffAltitude(
+                action_pb2.SetTakeoffAltitudeRequest(altitude_m=altitude)
+            )
+
+            if self._response_success(response):
+                observable.on_completed()
+            else:
+                observable.on_error(response)
+
+        return self._create_call_observable(f)
+
+#   @TODO seems to not be working, action_result is not available
+    def get_takeoff_altitude(self):
+        """
+        Takeoff
+
+        :returns: Ovservable
+        """
+
+        def f(observable):
+
+            response = self._stub.GetTakeoffAltitude(
+                action_pb2.GetTakeoffAltitudeRequest()
+            )
+
+            if self._response_success(response):
+                observable.on_next(response.altitude_m)
+                observable.on_completed()
+            else:
+                observable.on_error(response)
+
+        return self._create_call_observable(f)
 
     def land(self):
         """
@@ -122,7 +123,7 @@ class Action(Base):
 
         :returns: Observable
         """
-        def land_request(observable):
+        def f(observable):
 
             response = self._stub.Land(action_pb2.LandRequest())
 
@@ -131,4 +132,4 @@ class Action(Base):
             else:
                 observable.on_error(response)
 
-        return Observable.create(land_request)
+        return self._create_call_observable(f)
