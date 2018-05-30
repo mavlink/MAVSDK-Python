@@ -1,29 +1,28 @@
-""" Core """
-import multiprocessing
+from multiprocessing import cpu_count
 import grpc
 from rx.concurrency import ThreadPoolScheduler
 
 
-class Core(object):
+class PluginManager(object):
     """
-    Core which connects to a running dronecore backend or starts one
+    Connects to a running dronecore backend or starts one and manages plugins
 
     :param host: IP address of host running the backend
     :param port: Port number
     :param secure: Use an SSL Layer (currently not supported)
 
-    Initialize the backend:
+    Initialize the plugin manager:
 
-    >>> core = Core(host="127.0.0.1")
+    >>> manager = PluginManager(host="127.0.0.1")
 
     There are two (uniform) ways to register a plugin to the backend:
 
-    >>> action = Action(core)
+    >>> action = Action(manager)
 
     or
 
     >>> action = Action()
-        action.init_core(core)
+    >>> action.init_core(manager)
 
     """
 
@@ -51,7 +50,7 @@ class Core(object):
             # phase
             raise NotImplementedError()
 
-        # Initialize gRPC channel
+        #: gRPC channel
         self._channel = grpc.insecure_channel(
             "{}:{}".format(self.host, self.port)
         )
@@ -60,24 +59,19 @@ class Core(object):
         """
         Spinup a backend and connect to it
         """
+        #: backend is running on localhost
+        self.port = "127.0.0.1"
+        # Spinup the backend, not implemented yet
         raise NotImplementedError()
-        # Set host port to localhost
-        # self.port = "127.0.0.1"
-        # Connect to the new backend
-        # self._connect_backend()
+        # connect to the local running backend
+        self._connect_backend()
 
     def _setup_scheduler(self, num_threads):
         """
         Setup the scheduler for the reactivex framework
         """
-
-        if not type(num_threads) is int:
-            # Set the number of threads to the number of available cpu
-            # cores when no value is submitted
-            num_threads = multiprocessing.cpu_count()
-
         # ThreadPoolScheduler should be available in Python 2.7 and 3.x
-        self._scheduler = ThreadPoolScheduler(num_threads)
+        self._scheduler = ThreadPoolScheduler(num_threads or cpu_count())
 
     @property
     def scheduler(self):
@@ -105,11 +99,11 @@ class Core(object):
         Registers a plugin and adds it to the available plugin library
         """
         if plugin and plugin not in self.available_plugins:
-            self.plugins[plugin.name] = plugin
+            self.plugins[plugin.name.lower()] = plugin
 
-    def get_plugin(self, name):
-        """
-        :returns: the requested plugin or None if it is not registered
-        """
+    def __getattr__(self, name):
+        """ convenient way to access plugins """
         if name in self.plugins.keys():
             return self.plugins[name]
+        else:
+            return None

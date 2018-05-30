@@ -100,7 +100,7 @@ class Action(Base):
         """
         Takeoff
 
-        :returns: Ovservable
+        :returns: Observable
         """
 
         def f(observable):

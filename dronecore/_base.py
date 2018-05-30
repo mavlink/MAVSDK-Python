@@ -1,4 +1,12 @@
-""" Base class for the plugins """
+# -*- coding: utf-8 -*-
+"""
+    dronecore._base
+    ~~~~~~~~~
+
+    Base class for the plugins
+"""
+
+<`5`>
 from rx import Observable
 
 
@@ -7,17 +15,17 @@ class Base(object):
     Base implementation for the gRPC connection
     """
 
-    def __init__(self, core=None):
-        self.init_core(core)
+    def __init__(self, plugin_manager=None):
+        self.init_core(plugin_manager)
 
-    def init_core(self, core):
+    def init_plugin(self, plugin_manager):
         """
         Sort of "registers" the plugin to the backend
         """
-        if core:
-            self._setup_stub(core.channel)
-            self._scheduler = core.scheduler
-            core.register_plugin(self)
+        if plugin_manager:
+            self._setup_stub(plugin_manager.channel)
+            self._scheduler = plugin_manager.scheduler
+            plugin_manager.register_plugin(self)
 
     def _setup_stub(self, channel):
         """
