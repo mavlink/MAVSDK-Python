@@ -1,4 +1,4 @@
-from .core import Core
+from .plugin_manager import PluginManager
 from .plugins import *
 
 
@@ -10,9 +10,9 @@ def connect(*args, **kwargs):
     Generates a dronecore instance with all available Core plugins registered
     and ready to use
     """
-    core = Core(*args, **kwargs)
+    plugin_manager = PluginManager(*args, **kwargs)
 
     for plugin in CORE_PLUGINS:
-        globals()[plugin](core)
+        globals()[plugin](plugin_manager)
 
-    return core
+    return plugin_manager
