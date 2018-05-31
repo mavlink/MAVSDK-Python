@@ -75,7 +75,7 @@ class Action(Base):
 
         return self._create_call_observable(f)
 
-#   @TODO seems to not be working, action_result is not available
+    # @TODO seems to not be working, action_result is not available
     def set_takeoff_altitude(self, altitude):
         """
         Takeoff
@@ -86,8 +86,7 @@ class Action(Base):
         def f(observable):
 
             response = self._stub.SetTakeoffAltitude(
-                action_pb2.SetTakeoffAltitudeRequest(altitude_m=altitude)
-            )
+                action_pb2.SetTakeoffAltitudeRequest(altitude_m=altitude))
 
             if self._response_success(response):
                 observable.on_completed()
@@ -96,7 +95,7 @@ class Action(Base):
 
         return self._create_call_observable(f)
 
-#   @TODO seems to not be working, action_result is not available
+    # @TODO seems to not be working, action_result is not available
     def get_takeoff_altitude(self):
         """
         Takeoff
@@ -107,8 +106,7 @@ class Action(Base):
         def f(observable):
 
             response = self._stub.GetTakeoffAltitude(
-                action_pb2.GetTakeoffAltitudeRequest()
-            )
+                action_pb2.GetTakeoffAltitudeRequest())
 
             if self._response_success(response):
                 observable.on_next(response.altitude_m)
