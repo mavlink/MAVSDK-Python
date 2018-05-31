@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from multiprocessing import cpu_count
 import grpc
 from rx.concurrency import ThreadPoolScheduler

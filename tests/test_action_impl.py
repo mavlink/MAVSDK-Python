@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import unittest
 from dronecore import Action
 from dronecore.generated import action_pb2
