@@ -69,7 +69,7 @@ class Health(object):
     def __eq__(self, other):
         try:
             # Try to compare - this likely fails when it is compared to a non
-            # Position object
+            # Health object
             return (
                 (self.is_gyrometer_calibration_ok ==
                     other.is_gyrometer_calibration_ok) and
@@ -119,7 +119,7 @@ class Battery(object):
     def __eq__(self, other):
         try:
             # Try to compare - this likely fails when it is compared to a non
-            # Position object
+            # Battery object
             return (self.remaining_percent == other.remaining_percet and
                     self.voltage == other.voltage)
 
