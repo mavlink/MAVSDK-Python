@@ -8,7 +8,7 @@ class Base(object):
     """
 
     def __init__(self, plugin_manager=None):
-        self.init_core(plugin_manager)
+        self.init_plugin(plugin_manager)
 
     def init_plugin(self, plugin_manager):
         """
@@ -31,10 +31,14 @@ class Base(object):
         """
         return Observable.create(f).subscribe_on(self._scheduler.new_thread)
 
-    def _create_stream_observable(self, f):
+    def _create_stream_observable(self, iterable):
         """
         Helper for creating a published stream observable
         """
-        return Observable.create(f) \
-                         .subscribe_on(self._scheduler.new_thread) \
-                         .publish()
+        tmp_observable = Observable.from_iterable(iterable) \
+            .subscribe_on(self._scheduler.new_thread) \
+            .publish()
+
+        # Connect so that subscribers get only relevant/recent information!
+        tmp_observable.connect()
+        return tmp_observable
