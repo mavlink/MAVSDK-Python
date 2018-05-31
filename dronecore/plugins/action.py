@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from .._base import Base
 from ..generated import action_pb2, action_pb2_grpc
 

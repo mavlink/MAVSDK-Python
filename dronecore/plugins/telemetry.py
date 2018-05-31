@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from .._base import Base
 from ..generated import telemetry_pb2, telemetry_pb2_grpc
 

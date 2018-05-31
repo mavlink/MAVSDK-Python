@@ -1,12 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-    dronecore._base
-    ~~~~~~~~~
-
-    Base class for the plugins
-"""
-
-<`5`>
 from rx import Observable
 
 
