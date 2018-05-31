@@ -186,7 +186,7 @@ class Telemetry(Base):
 
     def _create_position_observable(self):
         """
-        Create the position ovservable
+        Create the position observable
         """
         stream = self._stub.SubscribePosition(
                 telemetry_pb2.SubscribePositionRequest())
@@ -196,7 +196,7 @@ class Telemetry(Base):
 
     def _create_health_observable(self):
         """
-        Create the health ovservable
+        Create the health observable
         """
         stream = self._stub.SubscribeHealth(
                 telemetry_pb2.SubscribeHealthRequest())
@@ -206,7 +206,7 @@ class Telemetry(Base):
 
     def _create_battery_observable(self):
         """
-        Create the battery ovservable
+        Create the battery observable
         """
         stream = self._stub.SubscribeBattery(
                 telemetry_pb2.SubscribeBatteryRequest())
