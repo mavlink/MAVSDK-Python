@@ -61,7 +61,9 @@ class PluginManager(object):
         Spinup a backend and connect to it
         """
         #: backend is running on localhost
-        self.port = "127.0.0.1"
+        self.host = "127.0.0.1"
+        # Standart port
+        self.port = 50051
         # Spinup the backend, not implemented yet
         raise NotImplementedError()
         # connect to the local running backend
