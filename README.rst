@@ -2,7 +2,7 @@
 DroneCore-Python
 ================
 
-DroneCore is made of plugins bringing different features (e.g. action, telemetry, mission). Each plugin is defined by a corresponding `*.proto` file. The Python implementation creates a module for each plugin and packages it into the `dronecore` package
+DroneCore is made of plugins bringing different features (e.g. action, telemetry, mission). Each plugin is defined by a corresponding `*.proto` file. The Python implementation creates a package containing the core plugins provided by DroneCore and a plugin manager to allow 3rd party plugins.
 
 Cloning the repository
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -33,7 +33,7 @@ Install `grpcio` and `grpcio-tools`:
 Generate Protobuf / gRPC files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Run the following helper script. It will generate the `*_pb2.py` and `*_pb2_grpc.py` files for each plugin.
+Run the following helper script. It will generate the `*_pb2.py` and `*_pb2_grpc.py` files for each plugin. If the submodules are not initialized already, the script will take care of it.
 
 .. code-block:: bash
 
@@ -59,4 +59,4 @@ After this step you can install a development (editable) version of the package 
 Running the examples
 ~~~~~~~~~~~~~~~~~~~~
 
-Once the packages have been installed, the examples can be run.
+Once the package has been installed, the examples can be run.
