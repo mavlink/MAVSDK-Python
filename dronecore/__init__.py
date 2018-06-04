@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from .plugin_manager import PluginManager
 from .plugins import *
 
@@ -17,3 +18,16 @@ def connect(*args, **kwargs):
         globals()[plugin](plugin_manager)
 
     return plugin_manager
+
+
+def exit(status):
+    """
+    Closes all threads including threads started by the scheduler
+
+    :param status: Exit status
+    """
+    # As RxPy does not expose started threads, the only way to shudown the
+    # program without throwing exceptions everywhere is to do it the "hard"
+    # way, this should be a temporary solution and propably be fixed in the
+    # RxPy framework
+    os._exit(status)
