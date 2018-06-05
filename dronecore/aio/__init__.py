@@ -29,7 +29,7 @@ from .async_plugin_manager import AsyncPluginManager
 from .plugins import *
 
 # List of the core plugins
-CORE_PLUGINS = ["Action"]  # , "Telemetry"]
+CORE_PLUGINS = ["Action", "Telemetry"]  # , "Telemetry"]
 
 
 def connect(*args, **kwargs):

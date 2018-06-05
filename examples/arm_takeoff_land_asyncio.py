@@ -40,8 +40,6 @@ async def main(takeoff_alt):
     await test.action.land()
 
 
-
-
 if __name__ == "__main__":
     get_event_loop().run_until_complete(main(10))
     # get_event_loop().run_forever()
