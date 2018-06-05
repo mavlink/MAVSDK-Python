@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
-try:
-    import asyncio
-except ImportError:
+
+# Check for compatibility
+import platform
+if float(".".join(platform.python_version_tuple()[0:-1])) < 3.6:
+    print("[!] dronecore.aio is only available on Python > 3.6")
     import sys
-    print("[!] dronecore.aio is only available on Python > 3.5.x")
     sys.exit(1)
 
+# Do asyncio specific initialization
+import asyncio
 try:
     # Try to import uvloop, provides _MUCH_ better performance compared to the
     # standart unix selector event loop
@@ -15,17 +18,13 @@ except ImportError:
     # No uvloop installed on the system; the default eventloop works as well!
     pass
 
-# Set eventloop
-_event_loop = asyncio.get_event_loop()
-
 
 def get_event_loop():
     """ Asyncio eventloop """
-    return _event_loop
+    return asyncio.get_event_loop()
 
 
-# Plugins rely on the eventloop, we have to update it to the eventloop so we
-# can use it!
+# Plugins rely on the eventloop
 from .async_plugin_manager import AsyncPluginManager
 from .plugins import *
 
