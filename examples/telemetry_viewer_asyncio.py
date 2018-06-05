@@ -2,7 +2,6 @@
 As basic as it can get - this script just dumps some telemetry streams to the
 command line! asyncio version
 """
-import asyncio
 from dronecore.aio import connect, get_event_loop
 
 
