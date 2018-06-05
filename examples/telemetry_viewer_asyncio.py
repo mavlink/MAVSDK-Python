@@ -10,35 +10,30 @@ async def armed(telemetry):
     """ Armed watcher """
     async for status in telemetry.armed_watcher():
         print("ARMED: ", status)
-        await asyncio.sleep(0)
 
 
 async def in_air(telemetry):
     """ INAIR watcher """
     async for status in telemetry.in_air_watcher():
         print("IN_AIR: ", status)
-        await asyncio.sleep(0)
 
 
 async def position(telemetry):
     """ Position watcher """
     async for position in telemetry.position_watcher():
         print(position)
-        await asyncio.sleep(0)
 
 
 async def health(telemetry):
     """ Health watcher """
     async for health in telemetry.health_watcher():
         print(health)
-        await asyncio.sleep(0)
 
 
 async def battery(telemetry):
     """ Battery watcher """
     async for status in telemetry.battery_watcher():
         print(status)
-        await asyncio.sleep(0)
 
 
 async def start_tasks(loop):
