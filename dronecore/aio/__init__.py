@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
-import asyncio
+try:
+    import asyncio
+except ImportError:
+    import sys
+    print("[!] dronecore.aio is only available on Python > 3.5.x")
+    sys.exit(1)
+
 try:
     # Try to import uvloop, provides _MUCH_ better performance compared to the
     # standart unix selector event loop
