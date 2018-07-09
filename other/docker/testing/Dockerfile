@@ -11,18 +11,18 @@ RUN apt update \
     && ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime \
     && apt install --yes python python-dev python-pip wget\
                          python3 python3-dev python3-pip \
-                         build-essential checkinstall \
-                         libreadline-gplv2-dev libncursesw5-dev \
-                         libssl-dev libsqlite3-dev tk-dev \
-                         libgdbm-dev libc6-dev libbz2-dev \
+                         build-essential checkinstall python3-setuptools\
+                         libreadline-gplv2-dev libncursesw5-dev zlib1g-dev\
+                         libssl-dev libsqlite3-dev tk-dev python-smbus\
+                         libgdbm-dev libc6-dev libbz2-dev libffi-dev\
     && rm -rf /var/lib/apt/lists/*
 
 # Copy build script
 COPY build_python.sh /build_python.sh
 
 # PYTHON VERSIONS
-ENV PYTHON_VERSIONS 3.5.5
-ENV PYTHON_PIP_VERSION 9.0.1
+ENV PYTHON_VERSIONS 3.5.5 3.7.0
+ENV PYTHON_PIP_VERSION 10.0.1
 
 # Build python versions using the script
  RUN bash -ex /build_python.sh
