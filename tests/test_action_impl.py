@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
-from dronecore import Action
-from dronecore.generated import action_pb2
+from dronecode_sdk import Action
+from dronecode_sdk.generated import action_pb2
 
 
 class TestActionPlugin(unittest.TestCase):
