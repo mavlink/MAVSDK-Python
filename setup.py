@@ -36,11 +36,11 @@ def parse_long_description():
 
 
 setup(
-    name="dronecore",
+    name="dronecode_sdk",
     version="0.1.0a",
-    description="Pythonwrapper for DroneCore",
+    description="Pythonwrapper for Dronecode SDK",
     long_description=parse_long_description(),
-    url="https://github.com/dronecore/DroneCore-Python",
+    url="https://github.com/dronecode/DronecodeSDK-Python",
     author="@TODO",
     author_email="@TODO",
 
@@ -58,8 +58,8 @@ setup(
     setup_requires=parse_requirements("requirements-dev.txt"),
 
     project_urls={
-        "Bug Reports": "https://github.com/dronecore/DroneCore-Python/issues",
-        "Source": "https://github.com/dronecore/DroneCore-Python/",
+        "Bug Reports": "https://github.com/dronecode/DronecodeSDK-Python/issues",
+        "Source": "https://github.com/dronecode/DronecodeSDK-Python/",
     },
 
 )
