@@ -36,7 +36,7 @@ def parse_long_description():
 
 
 setup(
-    name="dronecode_sdk",
+    name="dronecode-sdk",
     version="0.1.0a",
     description="Pythonwrapper for Dronecode SDK",
     long_description=parse_long_description(),

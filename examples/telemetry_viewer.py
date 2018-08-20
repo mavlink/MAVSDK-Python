@@ -3,7 +3,7 @@ As basic as it can get - this script just dumps some telemetry streams to the
 command line!
 """
 import sys
-from dronecore import connect, exit
+from dronecode_sdk import connect, exit
 
 
 if __name__ == "__main__":

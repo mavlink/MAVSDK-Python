@@ -2,7 +2,7 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WORK_DIR="${SCRIPT_DIR}/../.."
 PROTO_DIR="${WORK_DIR}/proto/"
-GENERATED_DIR="${WORK_DIR}/dronecore_sdk/generated"
+GENERATED_DIR="${WORK_DIR}/dronecode_sdk/generated"
 
 function generate {
     for PROTO_FILE in `find ${PROTO_DIR} -name "*.proto" -type f`; do
