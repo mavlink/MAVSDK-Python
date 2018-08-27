@@ -11,13 +11,13 @@ Clone the repo (or your fork) and recursively update submodules:
 
 .. code-block:: bash
 
-    git clone https://github.com/dronecore/DronecodeSDK-Python.git --recursive
+    git clone https://github.com/Dronecode/DronecodeSDK-Python --recursive
 
 This can be done as 2 steps, as shown below.
 
 .. code-block:: bash
 
-    git clone https://github.com/<your fork>/DronecodeSDK-Python.git
+    git clone https://github.com/Dronecode/DronecodeSDK-Python
     git submodule update --init --recursive
 
 
