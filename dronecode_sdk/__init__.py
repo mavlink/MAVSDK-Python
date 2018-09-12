@@ -3,7 +3,7 @@
 # Check for compatibility
 import platform
 if float(".".join(platform.python_version_tuple()[0:-1])) < 3.6:
-    print("[!] DronecodeSDK-Python is only available on Python > 3.6")
+    print("[!] DronecodeSDK-Python is only available on Python >= 3.6")
     import sys
     sys.exit(1)
 
