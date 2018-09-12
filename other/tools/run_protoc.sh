@@ -5,7 +5,7 @@ PROTO_DIR="${WORK_DIR}/proto/"
 GENERATED_DIR="${WORK_DIR}/dronecode_sdk/generated"
 PLUGIN_DIR="${WORK_DIR}/dronecode_sdk/plugins"
 PLUGIN_INIT="${PLUGIN_DIR}/__init__.py"
-TEMPLATE_PATH="${WORK_DIR}/other/templates/"
+export TEMPLATE_PATH="${WORK_DIR}/other/templates/"
 
 function generate {
     
