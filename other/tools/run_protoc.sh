@@ -4,9 +4,13 @@ WORK_DIR="${SCRIPT_DIR}/../../"
 PROTO_DIR="${WORK_DIR}/proto/"
 GENERATED_DIR="${WORK_DIR}/dronecode_sdk/generated"
 PLUGIN_DIR="${WORK_DIR}/dronecode_sdk/plugins"
+PLUGIN_INIT="${PLUGIN_DIR}/__init__.py"
 TEMPLATE_PATH="${WORK_DIR}/other/templates/"
 
 function generate {
+    
+    echo -e "# -*- coding: utf-8 -*-\n" > $PLUGIN_INIT
+
     for PROTO_FILE in `find ${PROTO_DIR} -name "*.proto" -type f`; do
 
         # Generate bindings for each file individually
@@ -31,8 +35,13 @@ function generate {
                                     --custom_out=${PLUGIN_DIR} \
                                     --custom_opt=py \
                                     ${PROTO_FILE}
+
         WANTED_PLUGIN_NAME="$(echo ${PROTO_FILE} | sed "s#.*/\(.*\).proto#\1#g").py"
+        # protoc generates java like filenames, we don't want that with python
         mv ${PLUGIN_DIR}/${WANTED_PLUGIN_NAME^} ${PLUGIN_DIR}/${WANTED_PLUGIN_NAME}
+
+        # Add to imports
+        echo "from .${WANTED_PLUGIN_NAME%.py} import *" >> $PLUGIN_INIT
         echo " -> [+] Generated plugin for ${PROTO_IMPORT_NAME%_*}"
 
     done
