@@ -9,11 +9,11 @@ function generate {
     for PROTO_FILE in `find ${PROTO_DIR} -name "*.proto" -type f`; do
 
         # Generate bindings for each file individually
-        protoc -I${GENERATED_DIR} \
-               --proto_path=$(dirname ${PROTO_FILE}) \
-               --python_out=${GENERATED_DIR} \
-               --grpc_python_out=${GENERATED_DIR} \
-               ${PROTO_FILE}
+        python -m grpc_tools.protoc -I${GENERATED_DIR} \
+                                    --proto_path=$(dirname ${PROTO_FILE}) \
+                                    --python_out=${GENERATED_DIR} \
+                                    --grpc_python_out=${GENERATED_DIR} \
+                                    ${PROTO_FILE}
 
         # For some reason the import is broken with Python3.5.x and works fine
         # with Python3.6.x, set an absolute path and everything is fine
@@ -25,19 +25,19 @@ function generate {
 
         
         # Generate plugin
-        protoc --plugin=protoc-gen-custom=$(which dcsdkgen) \                        
-            -I$(dirname ${PROTO_FILE}) \
-            --custom_out=${PLUGIN_DIR} \
-            --custom_opt=py \
-            ${PROTO_FILE}
-        echo " -> [+] Generated plugin for ${PROTO_IMPORT_NAME%_*}"
+        # python -m grpc_tools.protoc --plugin=protoc-gen-custom=$(which dcsdkgen) \                        
+        #                             -I$(dirname ${PROTO_FILE})/ \
+        #                             --custom_out=${PLUGIN_DIR} \
+        #                             --custom_opt=py \
+        #                             ${PROTO_FILE}
+        # echo " -> [+] Generated plugin for ${PROTO_IMPORT_NAME%_*}"
 
     done
 }
 
 function install_dcsdkgen {
     cd ${PROTO_DIR}/pb_plugins
-    pip install -e .
+    pip install -e . > /dev/null
 }
 
 echo "[+] Installing the DronecodeSDK autogenerator"
