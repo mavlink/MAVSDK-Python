@@ -1,9 +1,10 @@
 #!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-WORK_DIR="${SCRIPT_DIR}/../.."
+WORK_DIR="${SCRIPT_DIR}/../../"
 PROTO_DIR="${WORK_DIR}/proto/"
 GENERATED_DIR="${WORK_DIR}/dronecode_sdk/generated"
 PLUGIN_DIR="${WORK_DIR}/dronecode_sdk/plugins"
+TEMPLATE_PATH="${WORK_DIR}/other/templates/"
 
 function generate {
     for PROTO_FILE in `find ${PROTO_DIR} -name "*.proto" -type f`; do
@@ -25,12 +26,14 @@ function generate {
 
         
         # Generate plugin
-        # python -m grpc_tools.protoc --plugin=protoc-gen-custom=$(which dcsdkgen) \                        
-        #                             -I$(dirname ${PROTO_FILE})/ \
-        #                             --custom_out=${PLUGIN_DIR} \
-        #                             --custom_opt=py \
-        #                             ${PROTO_FILE}
-        # echo " -> [+] Generated plugin for ${PROTO_IMPORT_NAME%_*}"
+        python -m grpc_tools.protoc -I$(dirname ${PROTO_FILE}) \
+                                    --plugin=protoc-gen-custom=$(which dcsdkgen) \
+                                    --custom_out=${PLUGIN_DIR} \
+                                    --custom_opt=py \
+                                    ${PROTO_FILE}
+        WANTED_PLUGIN_NAME="$(echo ${PROTO_FILE} | sed "s#.*/\(.*\).proto#\1#g").py"
+        mv ${PLUGIN_DIR}/${WANTED_PLUGIN_NAME^} ${PLUGIN_DIR}/${WANTED_PLUGIN_NAME}
+        echo " -> [+] Generated plugin for ${PROTO_IMPORT_NAME%_*}"
 
     done
 }
