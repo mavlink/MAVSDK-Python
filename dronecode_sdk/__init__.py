@@ -1,5 +1,14 @@
 # -*- coding: utf-8 -*-
 
+# List of the core plugins
+CORE_PLUGINS = [
+    "Action",
+    "Camera",
+    "Gimbal",
+    "Mission",
+    "Telemetry"
+    ]
+
 # Check for compatibility
 import platform
 if float(".".join(platform.python_version_tuple()[0:-1])) < 3.6:
@@ -27,9 +36,6 @@ def get_event_loop():
 # Plugins rely on the eventloop
 from .async_plugin_manager import AsyncPluginManager
 from .plugins import *
-
-# List of the core plugins
-CORE_PLUGINS = ["Action", "Telemetry"]
 
 
 def connect(*args, **kwargs):
