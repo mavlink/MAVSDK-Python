@@ -40,11 +40,6 @@ function install_dcsdkgen {
     pip install -e .
 }
 
-echo "[+] Updating submodule"
-cd $WORK_DIR
-git submodule init
-git submodule update --recursive
-echo "[+] Done"
 echo "[+] Installing the DronecodeSDK autogenerator"
 install_dcsdkgen
 echo "[+] Done"
