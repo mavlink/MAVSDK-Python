@@ -3,7 +3,7 @@
 # Check for compatibility
 import platform
 if float(".".join(platform.python_version_tuple()[0:-1])) < 3.6:
-    print("[!] dronecore.aio is only available on Python > 3.6")
+    print("[!] DronecodeSDK-Python is only available on Python > 3.6")
     import sys
     sys.exit(1)
 
@@ -29,7 +29,7 @@ from .async_plugin_manager import AsyncPluginManager
 from .plugins import *
 
 # List of the core plugins
-CORE_PLUGINS = ["Action", "Telemetry"]  # , "Telemetry"]
+CORE_PLUGINS = ["Action", "Telemetry"]
 
 
 def connect(*args, **kwargs):
