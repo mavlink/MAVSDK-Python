@@ -23,9 +23,9 @@ class {{ plugin_name }}(AsyncBase):
     # Plugin name
     name = "{{ plugin_name }}"
 
-    def _setub_stub(self, channel):
+    def _setup_stub(self, channel):
         """ Setups the api stub """
-        self._stub = {{ plugin_name }}
+        self._stub = {{ plugin_name.lower() }}_pb2_grpc.{{ plugin_name }}ServiceStub(channel)
 
     def _response_success(self, response):
         """ Checks if the request was successfull """
