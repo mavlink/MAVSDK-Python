@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import aiogrpc
 from . import get_event_loop
-from .. import PluginManager
 
 
 class AsyncPluginManager:
@@ -71,7 +70,6 @@ class AsyncPluginManager:
         raise NotImplementedError()
         # connect to the local running backend
         self._connect_backend()
-
 
     @property
     def loop(self):
