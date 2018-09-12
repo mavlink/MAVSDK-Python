@@ -21,7 +21,7 @@ RUN apt update \
 COPY build_python.sh /build_python.sh
 
 # PYTHON VERSIONS
-ENV PYTHON_VERSIONS 3.5.5 3.7.0
+ENV PYTHON_VERSIONS 3.7.0
 ENV PYTHON_PIP_VERSION 10.0.1
 
 # Build python versions using the script

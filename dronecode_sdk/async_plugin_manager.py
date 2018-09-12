@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-from multiprocessing import cpu_count
-import grpc
-from rx.concurrency import ThreadPoolScheduler
+import aiogrpc
+from . import get_event_loop
 
 
-class PluginManager(object):
+class AsyncPluginManager:
     """
     Connects to a running dronecore backend or starts one and manages plugins
 
@@ -26,8 +25,12 @@ class PluginManager(object):
     >>> action.init_core(manager)
 
     """
-
-    def __init__(self, host=None, port=50051, secure=False, num_threads=None):
+    def __init__(
+            self,
+            host=None,
+            port=50051,
+            secure=False,
+            loop=None):
 
         self.host, self.port, self.secure = host, port, secure
         self.plugins = {}
@@ -39,8 +42,7 @@ class PluginManager(object):
             # Spinup a backend
             raise NotImplementedError()
 
-        # Setup the scheduler
-        self._setup_scheduler(num_threads)
+        self._loop = loop or get_event_loop()
 
     def _connect_backend(self):
         """
@@ -52,7 +54,7 @@ class PluginManager(object):
             raise NotImplementedError()
 
         #: gRPC channel
-        self._channel = grpc.insecure_channel(
+        self._channel = aiogrpc.insecure_channel(
             "{}:{}".format(self.host, self.port)
         )
 
@@ -69,19 +71,10 @@ class PluginManager(object):
         # connect to the local running backend
         self._connect_backend()
 
-    def _setup_scheduler(self, num_threads):
-        """
-        Setup the scheduler for the reactivex framework
-        """
-        # ThreadPoolScheduler should be available in Python 2.7 and 3.x
-        self._scheduler = ThreadPoolScheduler(num_threads or cpu_count())
-
     @property
-    def scheduler(self):
-        """
-        RxPy Scheduler
-        """
-        return self._scheduler
+    def loop(self):
+        """ Event loop """
+        return self._loop
 
     @property
     def channel(self):
