@@ -1,5 +1,5 @@
 ================
-DroneCore-Python
+DronecodeSDK-Python
 ================
 
 DroneCore is made of plugins bringing different features (e.g. action, telemetry, mission). Each plugin is defined by a corresponding `*.proto` file. The Python implementation creates a package containing the core plugins provided by DroneCore and a plugin manager to allow 3rd party plugins.
@@ -11,13 +11,13 @@ Clone the repo (or your fork) and recursively update submodules:
 
 .. code-block:: bash
 
-    git clone https://github.com/dronecore/DroneCore-Python.git --recursive
+    git clone https://github.com/Dronecode/DronecodeSDK-Python --recursive
 
 This can be done as 2 steps, as shown below.
 
 .. code-block:: bash
 
-    git clone https://github.com/<your fork>/DroneCore-Python.git
+    git clone https://github.com/Dronecode/DronecodeSDK-Python
     git submodule update --init --recursive
 
 
