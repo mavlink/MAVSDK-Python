@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-class AsyncBase(object):
+class AsyncBase:
     """
     Base implementation for the async gRPC connection
     """
