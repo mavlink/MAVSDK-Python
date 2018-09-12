@@ -10,10 +10,11 @@ class AsyncPluginManager:
     :param host: IP address of host running the backend
     :param port: Port number
     :param secure: Use an SSL Layer (currently not supported)
+    :param loop: Event loop DronecodeSDK is running on
 
     Initialize the plugin manager:
 
-    >>> manager = PluginManager(host="127.0.0.1")
+    >>> manager = AsyncPluginManager(host="127.0.0.1")
 
     There are two (uniform) ways to register a plugin to the backend:
 
