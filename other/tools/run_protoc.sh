@@ -1,14 +1,13 @@
 #!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WORK_DIR="${SCRIPT_DIR}/../../"
-PROTO_DIR="${WORK_DIR}/proto/"
+PROTO_DIR="${WORK_DIR}/proto"
 GENERATED_DIR="${WORK_DIR}/dronecode_sdk/generated"
 PLUGIN_DIR="${WORK_DIR}/dronecode_sdk/plugins"
 PLUGIN_INIT="${PLUGIN_DIR}/__init__.py"
 export TEMPLATE_PATH="${WORK_DIR}/other/templates/"
 
 function generate {
-    
     echo -e "# -*- coding: utf-8 -*-\n" > $PLUGIN_INIT
 
     for PROTO_FILE in `find ${PROTO_DIR} -name "*.proto" -type f`; do
@@ -28,7 +27,6 @@ function generate {
 
         echo " -> [+] Generated protobuf and gRPC bindings for ${PROTO_IMPORT_NAME%_*}"
 
-        
         # Generate plugin
         python -m grpc_tools.protoc -I$(dirname ${PROTO_FILE}) \
                                     --plugin=protoc-gen-custom=$(which dcsdkgen) \
@@ -38,7 +36,12 @@ function generate {
 
         WANTED_PLUGIN_NAME="$(echo ${PROTO_FILE} | sed "s#.*/\(.*\).proto#\1#g").py"
         # protoc generates java like filenames, we don't want that with python
-        mv ${PLUGIN_DIR}/${WANTED_PLUGIN_NAME^} ${PLUGIN_DIR}/${WANTED_PLUGIN_NAME}
+
+        # @TODO: cleanup this script and figure out a way to make it cross-os friendly perhaps rewrite in python
+        # capilalization as trivial as this needs a workaround for macos bash 3.2
+        # this solution avoids using bash ^ substitution (from bash >4.0) and is using python 3 instead
+        CAPITALIZED_PLUGIN_NAME=$(python -c "import sys;print(sys.argv[1].capitalize())" "$WANTED_PLUGIN_NAME")
+        mv ${PLUGIN_DIR}/${CAPITALIZED_PLUGIN_NAME} ${PLUGIN_DIR}/${WANTED_PLUGIN_NAME}
 
         # Add to imports
         echo "from .${WANTED_PLUGIN_NAME%.py} import *" >> $PLUGIN_INIT
