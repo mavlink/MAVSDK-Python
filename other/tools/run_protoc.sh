@@ -52,7 +52,12 @@ function generate {
 
 function install_dcsdkgen {
     cd ${PROTO_DIR}/pb_plugins
-    pip3 install -e . > /dev/null
+    if [[ "$VIRTUAL_ENV" != "" ]]
+    then
+        pip3 install .
+    else
+        pip3  install --user .
+    fi
 }
 
 echo "[+] Installing the DronecodeSDK autogenerator"
