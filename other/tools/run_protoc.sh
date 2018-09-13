@@ -13,11 +13,11 @@ function generate {
     for PROTO_FILE in `find ${PROTO_DIR} -name "*.proto" -type f`; do
 
         # Generate bindings for each file individually
-        python -m grpc_tools.protoc -I${GENERATED_DIR} \
-                                    --proto_path=$(dirname ${PROTO_FILE}) \
-                                    --python_out=${GENERATED_DIR} \
-                                    --grpc_python_out=${GENERATED_DIR} \
-                                    ${PROTO_FILE}
+        python3 -m grpc_tools.protoc -I${GENERATED_DIR} \
+                                     --proto_path=$(dirname ${PROTO_FILE}) \
+                                     --python_out=${GENERATED_DIR} \
+                                     --grpc_python_out=${GENERATED_DIR} \
+                                     ${PROTO_FILE}
 
         # For some reason the import is broken with Python3.5.x and works fine
         # with Python3.6.x, set an absolute path and everything is fine
@@ -28,11 +28,11 @@ function generate {
         echo " -> [+] Generated protobuf and gRPC bindings for ${PROTO_IMPORT_NAME%_*}"
 
         # Generate plugin
-        python -m grpc_tools.protoc -I$(dirname ${PROTO_FILE}) \
-                                    --plugin=protoc-gen-custom=$(which dcsdkgen) \
-                                    --custom_out=${PLUGIN_DIR} \
-                                    --custom_opt=py \
-                                    ${PROTO_FILE}
+        python3 -m grpc_tools.protoc -I$(dirname ${PROTO_FILE}) \
+                                     --plugin=protoc-gen-custom=$(which dcsdkgen) \
+                                     --custom_out=${PLUGIN_DIR} \
+                                     --custom_opt=py \
+                                     ${PROTO_FILE}
 
         WANTED_PLUGIN_NAME="$(echo ${PROTO_FILE} | sed "s#.*/\(.*\).proto#\1#g").py"
         # protoc generates java like filenames, we don't want that with python
@@ -40,7 +40,7 @@ function generate {
         # @TODO: cleanup this script and figure out a way to make it cross-os friendly perhaps rewrite in python
         # capilalization as trivial as this needs a workaround for macos bash 3.2
         # this solution avoids using bash ^ substitution (from bash >4.0) and is using python 3 instead
-        CAPITALIZED_PLUGIN_NAME=$(python -c "import sys;print(sys.argv[1].capitalize())" "$WANTED_PLUGIN_NAME")
+        CAPITALIZED_PLUGIN_NAME=$(python3 -c "import sys;print(sys.argv[1].capitalize())" "$WANTED_PLUGIN_NAME")
         mv ${PLUGIN_DIR}/${CAPITALIZED_PLUGIN_NAME} ${PLUGIN_DIR}/${WANTED_PLUGIN_NAME}
 
         # Add to imports
@@ -52,7 +52,7 @@ function generate {
 
 function install_dcsdkgen {
     cd ${PROTO_DIR}/pb_plugins
-    pip install -e . > /dev/null
+    pip3 install -e . > /dev/null
 }
 
 echo "[+] Installing the DronecodeSDK autogenerator"
