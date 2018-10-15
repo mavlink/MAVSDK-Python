@@ -8,4 +8,4 @@ class {{ name.upper_camel_case }}:
             {%- for value in values %}
                 {{ loop.index - 1 }}: "{{ value.uppercase }}",
             {%- endfor %}
-            }.get(response.{{ name.lower_snake_case }}, default=None)
+            }.get(response.{{ name.lower_snake_case }}, None)

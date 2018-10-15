@@ -4,6 +4,7 @@ from dronecode_sdk import connect as dronecode_sdk_connect
 
 drone = dronecode_sdk_connect(host="127.0.0.1")
 
+
 async def run():
 
     arm_result = await drone.action.arm()
