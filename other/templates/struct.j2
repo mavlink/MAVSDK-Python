@@ -49,8 +49,8 @@ class {{ name.upper_camel_case }}:
         return {{ name.upper_camel_case }}(
                 {%- for field in fields %}
                 {%- if field == fields|last %}
-                response.{{ field.name.lower_snake_case }}
+                response.{{ name.lower_snake_case }}.{{ field.name.lower_snake_case }}
                 {%- else %}
-                response.{{ field.name.lower_snake_case }},
+                response.{{ name.lower_snake_case }}.{{ field.name.lower_snake_case }},
                 {%- endif %}
                 {%- endfor %})

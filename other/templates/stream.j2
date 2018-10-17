@@ -4,7 +4,7 @@ async def {{ name.lower_snake_case }}(self):
     async for response in self._stub.Subscribe{{ name.upper_camel_case }}(
                 {{ plugin_name.lower_snake_case }}_pb2.Subscribe{{ name.upper_camel_case }}Request()):
         {%- if return_type.is_primitive %}
-            yield response.{{ return_name.lower_camel_case }}
+            yield response.{{ return_name.lower_snake_case }}
         {%- else %}
             yield {{ return_type.name }}.parse_response(response)
         {%- endif -%}
