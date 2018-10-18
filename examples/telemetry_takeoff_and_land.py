@@ -7,15 +7,20 @@ drone = dronecode_sdk_connect(host="127.0.0.1")
 
 async def run():
     """ Arms the system, initiates a takeof and finally lands the system """
-    arm_result = await drone.action.arm()
-    print("-- Arm result: " + arm_result[1].action_result.result_str)
-    takeoff_result = await drone.action.takeoff()
-    print("-- Takeoff result: " + takeoff_result[1].action_result.result_str)
+    arm_status, _ = await drone.action.arm()
+    print(f"-- Arm result: {arm_status}")
+
+    # We do not need to proceed if the copter did not take off
+    if not arm_status:
+        return
+
+    takeoff_result, _ = await drone.action.takeoff()
+    print(f"-- Takeoff result: {takeoff_result}")
 
     await asyncio.sleep(5)
 
-    land_result = await drone.action.land()
-    print("-- Land result: " + land_result[1].action_result.result_str)
+    land_result, _ = await drone.action.land()
+    print(f"-- Land result: {land_result}")
 
 
 async def print_position():
