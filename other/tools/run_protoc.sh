@@ -2,8 +2,8 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WORK_DIR="${SCRIPT_DIR}/../../"
 PROTO_DIR="${WORK_DIR}/proto"
-GENERATED_DIR="${WORK_DIR}/dronecode_sdk/generated"
-PLUGIN_DIR="${WORK_DIR}/dronecode_sdk/plugins"
+GENERATED_DIR="${WORK_DIR}/dronecode_sdk/aio/generated"
+PLUGIN_DIR="${WORK_DIR}/dronecode_sdk/aio/plugins"
 PLUGIN_INIT="${PLUGIN_DIR}/__init__.py"
 export TEMPLATE_PATH="${WORK_DIR}/other/templates/"
 

@@ -1,6 +1,6 @@
 import asyncio
 
-from dronecode_sdk import connect as dronecode_sdk_connect
+from dronecode_sdk.aio import connect as dronecode_sdk_connect
 
 drone = dronecode_sdk_connect(host="127.0.0.1")
 
