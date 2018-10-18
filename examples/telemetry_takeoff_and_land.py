@@ -26,8 +26,10 @@ async def print_position():
 
 def setup_tasks():
     # Create asyncio tasks with the default eventloop
-    asyncio.create_task(print_position())
-    asyncio.create_task(run())
+    # asyncio.create_task() is only callable when the event loop is already
+    # running!!!
+    asyncio.ensure_future(print_position())
+    asyncio.ensure_future(run())
 
 
 if __name__ == "__main__":
