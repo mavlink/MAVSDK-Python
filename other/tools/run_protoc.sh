@@ -25,8 +25,10 @@ function generate {
 
         # We need to create the .original backup files, otherwise we're not compatible with
         # BSD sed.
-        sed -i'.original' -e "s/import ${PROTO_IMPORT_NAME}/from . import ${PROTO_IMPORT_NAME}/" \
+        sed -i'.sedoriginal' -e "s/import ${PROTO_IMPORT_NAME}/from . import ${PROTO_IMPORT_NAME}/" \
             "${GENERATED_DIR}/${PROTO_IMPORT_NAME}_grpc.py"
+        # Clean up the backup files.
+        find ${GENERATED_DIR} -name '*.sedoriginal' -delete
 
         echo " -> [+] Generated protobuf and gRPC bindings for ${PROTO_IMPORT_NAME%_*}"
 
