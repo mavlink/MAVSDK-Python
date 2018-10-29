@@ -22,8 +22,11 @@ function generate {
         # For some reason the import is broken with Python3.5.x and works fine
         # with Python3.6.x, set an absolute path and everything is fine
         PROTO_IMPORT_NAME="$(basename -- ${PROTO_FILE%.*})_pb2"
-        sed "s/import ${PROTO_IMPORT_NAME}/from . import ${PROTO_IMPORT_NAME}/" \
-             -i "${GENERATED_DIR}/${PROTO_IMPORT_NAME}_grpc.py"
+
+        # We need to create the .original backup files, otherwise we're not compatible with
+        # BSD sed.
+        sed -i'.original' -e "s/import ${PROTO_IMPORT_NAME}/from . import ${PROTO_IMPORT_NAME}/" \
+            "${GENERATED_DIR}/${PROTO_IMPORT_NAME}_grpc.py"
 
         echo " -> [+] Generated protobuf and gRPC bindings for ${PROTO_IMPORT_NAME%_*}"
 
