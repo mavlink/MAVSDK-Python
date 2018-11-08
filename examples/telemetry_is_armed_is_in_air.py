@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import asyncio
 
 from dronecode_sdk import connect as dronecode_sdk_connect
