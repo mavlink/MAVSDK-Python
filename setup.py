@@ -31,7 +31,7 @@ def parse_long_description():
 
     :returns: Content of the Readme
     """
-    with open(path.join(getcwd(), "README.rst"), encoding="utf-8") as f:
+    with open(path.join(getcwd(), "README.md"), encoding="utf-8") as f:
         return f.read()
 
 
