@@ -18,5 +18,10 @@ async def {{ name.lower_camel_case }}(self{% for param in params %}, {{ param.na
         {% endif %}
     {% endfor -%}
     response = await self._stub.{{ name.upper_camel_case }}(request)
+    result = self._extract_result(response)
 
-    return response
+    {% if return_type.is_primitive -%}
+    return result, response.{{ return_name.lower_snake_case }}
+    {% else -%}
+    return result, {{ return_type.name }}.translate_from_rpc(response.{{ return_name.lower_snake_case }})
+    {% endif %}

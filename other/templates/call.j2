@@ -19,4 +19,4 @@ async def {{ name.lower_camel_case }}(self{% for param in params %}, {{ param.na
     {% endfor -%}
     response = await self._stub.{{ name.upper_camel_case }}(request)
 
-    return self._parse_response(response)
+    return self._extract_result(response)
