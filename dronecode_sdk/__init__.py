@@ -3,8 +3,10 @@
 # List of the core plugins
 CORE_PLUGINS = [
     "Action",
+    "Calibration",
     "Camera",
     "Gimbal",
+    "Info",
     "Mission",
     "Telemetry"
     ]

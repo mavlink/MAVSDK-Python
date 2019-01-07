@@ -13,10 +13,13 @@ class {{ name.upper_camel_case }}(Enum):
             }.get(self.value, None)
 
     @staticmethod
-    def translate_from_rpc(response):
+    def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
         return {
             {%- for value in values %}
-                {{ loop.index - 1 }}: "{{ value.uppercase }}",
+                {{ loop.index - 1 }}: {% if parent_struct is not none %}{{ parent_struct.upper_camel_case }}.{% endif %}{{ name.upper_camel_case }}.{{ value.uppercase }},
             {%- endfor %}
-            }.get(response.{{ name.lower_snake_case }}, None)
+            }.get(rpc_enum_value, None)
+
+    def __str__(self):
+        return self.name

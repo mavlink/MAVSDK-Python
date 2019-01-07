@@ -28,19 +28,26 @@ class {{ name.upper_camel_case }}:
         except AttributeError:
             return False
 
-    def __repr__(self):
+    def __str__(self):
         """ {{ name.upper_camel_case }} in string representation """
-        return "{{ name.upper_camel_case }}" + ", ".join(
+        struct_repr = ", ".join([
                 {%- for field in fields %}
-                self.{{ field.name.lower_snake_case }}{{ "," if not loop.last }}
-                {%- endfor %})
+                "{{ field.name.lower_snake_case }}: " + str(self.{{ field.name.lower_snake_case }}){{ "," if not loop.last }}
+                {%- endfor %}
+                ])
+
+        return f"{{ name.upper_camel_case }}: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpc{{ name.upper_camel_case }}):
         """ Translates a gRPC struct to the SDK equivalent """
         return {{ name.upper_camel_case }}(
                 {%- for field in fields %}
-                rpc{{ name.upper_camel_case }}.{{ name.lower_snake_case }}.{{ field.name.lower_snake_case }}{{ "," if not loop.last }}
+                {% if field.type_info.is_primitive %}
+                rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }}{{ "," if not loop.last }}
+                {% else %}
+                {{ name.upper_camel_case }}.{{ field.type_info.inner_name }}.translate_from_rpc(rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }}){{ "," if not loop.last }}
+                {% endif %}
                 {%- endfor %})
 
     def translate_to_rpc(self, rpc{{ name.upper_camel_case }}):

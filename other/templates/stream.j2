@@ -9,7 +9,7 @@ async def {{ name.lower_snake_case }}(self{% for param in params %}, {{ param.na
         {%- if return_type.is_primitive %}
             yield response.{{ return_name.lower_snake_case }}
         {%- else %}
-            yield {{ return_type.name }}.translate_from_rpc(response)
+            yield {{ return_type.name }}.translate_from_rpc(response.{{ return_name.lower_snake_case }})
         {%- endif %}
     finally:
         {{ name.lower_snake_case }}_stream.cancel()
