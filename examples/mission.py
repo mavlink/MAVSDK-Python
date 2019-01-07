@@ -16,15 +16,15 @@ async def run():
 
     await drone.mission.setReturnToLaunchAfterMission(True)
 
+    print("-- Uploading mission")
     mission_items = MissionItems(my_items)
-    upload_mission_status = await drone.mission.uploadMission(mission_items)
-    print(f"-- Upload mission: {upload_mission_status}")
+    await drone.mission.uploadMission(mission_items)
 
-    arm_status = await drone.action.arm()
-    print(f"-- Arm result: {arm_status}")
+    print("-- Arming")
+    await drone.action.arm()
 
-    start_mission_status = await drone.mission.startMission()
-    print(f"-- Start mission: {start_mission_status}")
+    print("-- Starting mission")
+    await drone.mission.startMission()
 
 
 async def print_mission_progress():
