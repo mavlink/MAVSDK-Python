@@ -6,6 +6,12 @@ async def {{ name.lower_snake_case }}(self{% for param in params %}, {{ param.na
 
     try:
         async for response in {{ name.lower_snake_case }}_stream:
+            {% if has_result %}
+            result = self._extract_result(response)
+            if result.result is not {{ plugin_name.upper_camel_case }}Result.Result.SUCCESS:
+                raise {{ plugin_name.upper_camel_case }}Error(result, "{{ name.lower_camel_case }}"{% for param in params %}, {{ param.name.lower_snake_case }}{% endfor %})
+            {% endif %}
+
         {%- if return_type.is_primitive %}
             yield response.{{ return_name.lower_snake_case }}
         {%- else %}

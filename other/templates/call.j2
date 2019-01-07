@@ -11,7 +11,7 @@ async def {{ name.lower_camel_case }}(self{% for param in params %}, {{ param.na
     request.{{ param.name.lower_snake_case }} = {{ param.name.lower_snake_case }}
         {%- else -%}
             {% if param.type_info.is_repeated %}
-    repeated
+    raise NotImplementedError
             {% else %}
     {{ param.name.lower_snake_case }}.translate_to_rpc(request.{{ param.name.lower_snake_case }})
             {% endif %}
@@ -19,4 +19,9 @@ async def {{ name.lower_camel_case }}(self{% for param in params %}, {{ param.na
     {% endfor -%}
     response = await self._stub.{{ name.upper_camel_case }}(request)
 
-    return self._extract_result(response)
+    {% if has_result %}
+    result = self._extract_result(response)
+
+    if result.result is not {{ plugin_name.upper_camel_case }}Result.Result.SUCCESS:
+        raise {{ plugin_name.upper_camel_case }}Error(result, "{{ name.lower_camel_case }}"{% for param in params %}, {{ param.name.lower_snake_case }}{% endfor %})
+    {% endif %}
