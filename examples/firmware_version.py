@@ -9,7 +9,7 @@ drone = dronecode_sdk_connect(host="127.0.0.1")
 
 async def run():
 
-    info = await drone.info.getVersion()
+    info = await drone.info.get_version()
     print(info)
 
 

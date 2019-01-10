@@ -14,17 +14,17 @@ async def run():
     my_items.append(MissionItem(47.398036222362471, 8.5450146439425509, 25, 10, True, 0, 0, MissionItem.CameraAction.NONE, 0))
     my_items.append(MissionItem(47.397825620791885, 8.5450092830163271, 25, 10, True, 0, 0, MissionItem.CameraAction.NONE, 0))
 
-    await drone.mission.setReturnToLaunchAfterMission(True)
+    await drone.mission.set_return_to_launch_after_mission(True)
 
     print("-- Uploading mission")
     mission_items = MissionItems(my_items)
-    await drone.mission.uploadMission(mission_items)
+    await drone.mission.upload_mission(mission_items)
 
     print("-- Arming")
     await drone.action.arm()
 
     print("-- Starting mission")
-    await drone.mission.startMission()
+    await drone.mission.start_mission()
 
 
 async def print_mission_progress():
