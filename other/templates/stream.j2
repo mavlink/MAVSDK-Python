@@ -8,8 +8,19 @@ async def {{ name.lower_snake_case }}(self{% for param in params %}, {{ param.na
         async for response in {{ name.lower_snake_case }}_stream:
             {% if has_result %}
             result = self._extract_result(response)
-            if result.result is not {{ plugin_name.upper_camel_case }}Result.Result.SUCCESS:
-                raise {{ plugin_name.upper_camel_case }}Error(result, "{{ name.lower_camel_case }}"{% for param in params %}, {{ param.name.lower_snake_case }}{% endfor %})
+
+            success_codes = [{{ plugin_name.upper_camel_case }}Result.Result.SUCCESS]
+            if 'IN_PROGRESS' in [return_code.name for return_code in {{ plugin_name.upper_camel_case }}Result.Result]:
+                success_codes.append({{ plugin_name.upper_camel_case }}Result.Result.IN_PROGRESS)
+            if 'INSTRUCTION' in [return_code.name for return_code in {{ plugin_name.upper_camel_case }}Result.Result]:
+                success_codes.append({{ plugin_name.upper_camel_case }}Result.Result.INSTRUCTION)
+
+            if result.result not in success_codes:
+                raise {{ plugin_name.upper_camel_case }}Error(result, "{{ name.lower_snake_case }}()"{% for param in params %}, {{ param.name.lower_snake_case }}{% endfor %})
+
+            if result.result is {{ plugin_name.upper_camel_case }}Result.Result.SUCCESS:
+                {{ name.lower_snake_case }}_stream.cancel();
+                return
             {% endif %}
 
         {%- if return_type.is_primitive %}
