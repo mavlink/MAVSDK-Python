@@ -23,7 +23,9 @@ async def {{ name.lower_snake_case }}(self{% for param in params %}, {{ param.na
                 return
             {% endif %}
 
-        {%- if return_type.is_primitive %}
+        {% if not return_type %}
+            yield None
+        {%- elif return_type.is_primitive %}
             yield response.{{ return_name.lower_snake_case }}
         {%- else %}
             yield {{ return_type.name }}.translate_from_rpc(response.{{ return_name.lower_snake_case }})
