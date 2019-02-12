@@ -3,21 +3,47 @@
 import asyncio
 
 from dronecode_sdk import connect as dronecode_sdk_connect
-from dronecode_sdk import (MissionItem, MissionItems)
+from dronecode_sdk import (MissionItem)
 
 drone = dronecode_sdk_connect(host="127.0.0.1")
 
 
 async def run():
-    my_items = []
-    my_items.append(MissionItem(47.398039859999997, 8.5455725400000002, 25, 10, True, 0, 0, MissionItem.CameraAction.NONE, 0))
-    my_items.append(MissionItem(47.398036222362471, 8.5450146439425509, 25, 10, True, 0, 0, MissionItem.CameraAction.NONE, 0))
-    my_items.append(MissionItem(47.397825620791885, 8.5450092830163271, 25, 10, True, 0, 0, MissionItem.CameraAction.NONE, 0))
+    mission_items = []
+    mission_items.append(MissionItem(47.398039859999997,
+                                     8.5455725400000002,
+                                     25,
+                                     10,
+                                     True,
+                                     float('nan'),
+                                     float('nan'),
+                                     MissionItem.CameraAction.NONE,
+                                     float('nan'),
+                                     float('nan')))
+    mission_items.append(MissionItem(47.398036222362471,
+                                     8.5450146439425509,
+                                     25,
+                                     10,
+                                     True,
+                                     float('nan'),
+                                     float('nan'),
+                                     MissionItem.CameraAction.NONE,
+                                     float('nan'),
+                                     float('nan')))
+    mission_items.append(MissionItem(47.397825620791885,
+                                     8.5450092830163271,
+                                     25,
+                                     10,
+                                     True,
+                                     float('nan'),
+                                     float('nan'),
+                                     MissionItem.CameraAction.NONE,
+                                     float('nan'),
+                                     float('nan')))
 
     await drone.mission.set_return_to_launch_after_mission(True)
 
     print("-- Uploading mission")
-    mission_items = MissionItems(my_items)
     await drone.mission.upload_mission(mission_items)
 
     print("-- Arming")
