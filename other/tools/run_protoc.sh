@@ -36,7 +36,7 @@ function generate {
         python3 -m grpc_tools.protoc -I$(dirname ${PROTO_FILE}) \
                                      --plugin=protoc-gen-custom=$(which dcsdkgen) \
                                      --custom_out=${PLUGIN_DIR} \
-                                     --custom_opt=py \
+                                     --custom_opt=file_ext=py \
                                      ${PROTO_FILE}
 
         WANTED_PLUGIN_NAME="$(echo ${PROTO_FILE} | sed "s#.*/\(.*\).proto#\1#g").py"

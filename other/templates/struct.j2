@@ -46,7 +46,7 @@ class {{ name.upper_camel_case }}:
                 {% if field.type_info.is_primitive %}
                 rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }}{{ "," if not loop.last }}
                 {% else %}
-                {{ name.upper_camel_case }}.{{ field.type_info.inner_name }}.translate_from_rpc(rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }}){{ "," if not loop.last }}
+                {% if field.type_info.parent_type is not none %}{{ field.type_info.parent_type }}.{% endif %}{{ field.type_info.inner_name }}.translate_from_rpc(rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }}){{ "," if not loop.last }}
                 {% endif %}
                 {%- endfor %})
 
