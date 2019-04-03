@@ -37,12 +37,13 @@ def parse_long_description():
 
 setup(
     name="dronecode-sdk",
-    version="0.1.0a",
-    description="Pythonwrapper for Dronecode SDK",
+    version="0.1.0",
+    description="Python wrapper for Dronecode SDK",
     long_description=parse_long_description(),
     url="https://github.com/dronecode/DronecodeSDK-Python",
-    author="@TODO",
-    author_email="@TODO",
+    maintainer="Jonas Vautherin, Julian Oes",
+    maintainer_email="jonas@auterion.com, julian.oes@auterion.com",
+    include_package_data=True,
 
     classifiers=[
         "Development Status :: 3 - Production/Alpha",
@@ -61,5 +62,4 @@ setup(
         "Bug Reports": "https://github.com/dronecode/DronecodeSDK-Python/issues",
         "Source": "https://github.com/dronecode/DronecodeSDK-Python/",
     },
-
 )

@@ -51,3 +51,33 @@ def connect(*args, **kwargs):
         globals()[plugin](plugin_manager)
 
     return plugin_manager
+
+
+import atexit
+import os
+import subprocess
+import sys
+
+from dronecode_sdk import bin
+from time import sleep
+
+if sys.version_info >= (3,7):
+    from importlib.resources import path
+else:
+    from importlib_resources import path
+
+def start_mavlink():
+    """
+    Starts the gRPC server in a subprocess, listening on localhost:50051
+    """
+    with path(bin, 'backend_bin') as backend:
+        p = subprocess.Popen(os.fspath(backend), shell=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+    # Wait to make sure the gRPC server is started.
+    # There are better, yet more complex ways to do that.
+    sleep(2)
+
+    def cleanup():
+        p.kill()
+
+    atexit.register(cleanup)

@@ -1,0 +1,2 @@
+include dronecode_sdk/bin
+include dronecode_sdk/bin/backend_bin
