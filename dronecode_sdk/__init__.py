@@ -1,5 +1,15 @@
 # -*- coding: utf-8 -*-
 
+import asyncio
+import atexit
+import os
+import platform
+import subprocess
+import sys
+import time
+
+from dronecode_sdk import bin
+
 # List of the core plugins
 CORE_PLUGINS = [
     "Action",
@@ -12,14 +22,11 @@ CORE_PLUGINS = [
     ]
 
 # Check for compatibility
-import platform
 if float(".".join(platform.python_version_tuple()[0:-1])) < 3.6:
     print("[!] DronecodeSDK-Python is only available on Python >= 3.6")
-    import sys
     sys.exit(1)
 
 # Do asyncio specific initialization
-import asyncio
 try:
     # Try to import uvloop, provides _MUCH_ better performance compared to the
     # standart unix selector event loop
@@ -36,8 +43,8 @@ def get_event_loop():
 
 
 # Plugins rely on the eventloop
-from .async_plugin_manager import AsyncPluginManager
-from .plugins import *
+from .async_plugin_manager import AsyncPluginManager # NOQA
+from .plugins import * # NOQA
 
 
 def connect(*args, **kwargs):
@@ -53,29 +60,25 @@ def connect(*args, **kwargs):
     return plugin_manager
 
 
-import atexit
-import os
-import subprocess
-import sys
-
-from dronecode_sdk import bin
-from time import sleep
-
-if sys.version_info >= (3,7):
+if sys.version_info >= (3, 7):
     from importlib.resources import path
 else:
     from importlib_resources import path
 
-def start_mavlink(connection_url = ""):
+
+def start_mavlink(connection_url=""):
     """
     Starts the gRPC server in a subprocess, listening on localhost:50051
     """
     with path(bin, 'backend_bin') as backend:
-        p = subprocess.Popen([os.fspath(backend), connection_url], shell=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        p = subprocess.Popen([os.fspath(backend), connection_url],
+                             shell=False,
+                             stdout=subprocess.DEVNULL,
+                             stderr=subprocess.DEVNULL)
 
     # Wait to make sure the gRPC server is started.
     # There are better, yet more complex ways to do that.
-    sleep(2)
+    time.sleep(2)
 
     def cleanup():
         p.kill()
