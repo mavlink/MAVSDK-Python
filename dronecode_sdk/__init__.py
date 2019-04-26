@@ -66,12 +66,15 @@ else:
     from importlib_resources import path
 
 
-def start_mavlink(connection_url=""):
+def start_mavlink(connection_url=None):
     """
     Starts the gRPC server in a subprocess, listening on localhost:50051
     """
     with path(bin, 'backend_bin') as backend:
-        p = subprocess.Popen([os.fspath(backend), connection_url],
+        bin_path_and_args = [os.fspath(backend)]
+        if connection_url:
+            bin_path_and_args.append(connection_url)
+        p = subprocess.Popen(bin_path_and_args,
                              shell=False,
                              stdout=subprocess.DEVNULL,
                              stderr=subprocess.DEVNULL)
