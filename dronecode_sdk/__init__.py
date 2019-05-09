@@ -18,7 +18,8 @@ CORE_PLUGINS = [
     "Gimbal",
     "Info",
     "Mission",
-    "Telemetry"
+    "Telemetry",
+    "Offboard"
     ]
 
 # Check for compatibility
