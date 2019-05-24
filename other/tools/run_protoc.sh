@@ -34,7 +34,7 @@ function generate {
 
         # Generate plugin
         python3 -m grpc_tools.protoc -I$(dirname ${PROTO_FILE}) \
-                                     --plugin=protoc-gen-custom=$(which dcsdkgen) \
+                                     --plugin=protoc-gen-custom=$(which protoc-gen-dcsdk) \
                                      --custom_out=${PLUGIN_DIR} \
                                      --custom_opt=file_ext=py \
                                      ${PROTO_FILE}
