@@ -8,7 +8,7 @@ PLUGIN_INIT="${PLUGIN_DIR}/__init__.py"
 export TEMPLATE_PATH="${WORK_DIR}/other/templates/"
 
 function generate {
-    echo -e "# -*- coding: utf-8 -*-\n" > $PLUGIN_INIT
+    printf "# -*- coding: utf-8 -*-\n\n" > $PLUGIN_INIT
 
     for PROTO_FILE in `find ${PROTO_DIR} -name "*.proto" -type f`; do
 
