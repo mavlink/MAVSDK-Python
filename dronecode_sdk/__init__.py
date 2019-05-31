@@ -15,6 +15,7 @@ CORE_PLUGINS = [
     "Action",
     "Calibration",
     "Camera",
+    "Core",
     "Gimbal",
     "Info",
     "Mission",
