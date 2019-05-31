@@ -46,11 +46,10 @@ setup(
     include_package_data=True,
 
     classifiers=[
-        "Development Status :: 3 - Production/Alpha",
+        "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: Apache Software License",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
     ],
 
     packages=find_packages(exclude=["other", "docs", "tests", "examples",
