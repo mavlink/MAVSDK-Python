@@ -11,4 +11,4 @@ build/
 *.ropeproject/
 .pytest_cache/
 .tox/
-dronecode_sdk/plugins/
+mavsdk/plugins/

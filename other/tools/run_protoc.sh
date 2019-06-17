@@ -2,8 +2,8 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WORK_DIR="${SCRIPT_DIR}/../../"
 PROTO_DIR="${WORK_DIR}/proto"
-GENERATED_DIR="${WORK_DIR}/dronecode_sdk/generated"
-PLUGIN_DIR="${WORK_DIR}/dronecode_sdk/plugins"
+GENERATED_DIR="${WORK_DIR}/mavsdk/generated"
+PLUGIN_DIR="${WORK_DIR}/mavsdk/plugins"
 PLUGIN_INIT="${PLUGIN_DIR}/__init__.py"
 export TEMPLATE_PATH="${WORK_DIR}/other/templates/"
 
@@ -61,11 +61,11 @@ function install_dcsdkgen {
     then
         pip3 install .
     else
-        pip3  install --user .
+        pip3 install --user .
     fi
 }
 
-echo "[+] Installing the DronecodeSDK autogenerator"
+echo "[+] Installing the MAVSDK autogenerator"
 install_dcsdkgen
 echo "[+] Done"
 echo "[+] Generating plugins from "

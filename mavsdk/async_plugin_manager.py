@@ -5,12 +5,12 @@ from . import get_event_loop
 
 class AsyncPluginManager:
     """
-    Connects to a running dronecore backend or starts one and manages plugins
+    Connects to a running mavsdk server or starts one and manages plugins
 
     :param host: IP address of host running the backend
     :param port: Port number
     :param secure: Use an SSL Layer (currently not supported)
-    :param loop: Event loop DronecodeSDK is running on
+    :param loop: Event loop MAVSDK is running on
 
     Initialize the plugin manager:
 
@@ -50,8 +50,7 @@ class AsyncPluginManager:
         Initializes the connection to the running backend
         """
         if self.secure:
-            # For now just allow insecure connections in the development
-            # phase
+            # For now just allow insecure connections
             raise NotImplementedError()
 
         #: gRPC channel

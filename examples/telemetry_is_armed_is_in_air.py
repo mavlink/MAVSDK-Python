@@ -2,9 +2,9 @@
 
 import asyncio
 
-from dronecode_sdk import connect as dronecode_sdk_connect
+from mavsdk import connect as mavsdk_connect
 
-drone = dronecode_sdk_connect(host="127.0.0.1")
+drone = mavsdk_connect(host="127.0.0.1")
 
 
 async def print_is_armed():

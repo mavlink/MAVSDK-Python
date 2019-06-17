@@ -1,2 +1,2 @@
-include dronecode_sdk/bin
-include dronecode_sdk/bin/backend_bin
+include mavsdk/bin
+include mavsdk/bin/mavsdk_server
