@@ -6,7 +6,7 @@ Some caveats when attempting to run the examples in non-gps environments:
 - `drone.action.arm()` will return a `COMMAND_DENIED` result because the action requires switching
   to LOITER mode first, something that is currently not supported in a non-gps environment. You will
   need to temporarily disable this part here:
-  `https://github.com/Dronecode/DronecodeSDK/blob/develop/plugins/action/action_impl.cpp#L61-L65`
+  `https://github.com/mavlink/MAVSDK/blob/develop/plugins/action/action_impl.cpp#L61-L65`
 
 - `drone.offboard.stop()` will also return a `COMMAND_DENIED` result because it requires a mode
   switch to HOLD, something that is currently not supported in a non-gps environment.
@@ -14,8 +14,8 @@ Some caveats when attempting to run the examples in non-gps environments:
 
 import asyncio
 
-from dronecode_sdk import connect as dronecode_sdk_connect
-from dronecode_sdk import (
+from mavsdk import connect as mavsdk_connect
+from mavsdk import (
     Attitude,
     OffboardError,
     PositionNEDYaw,
@@ -23,7 +23,7 @@ from dronecode_sdk import (
     VelocityNEDYaw,
 )
 
-drone = dronecode_sdk_connect(host="127.0.0.1")
+drone = mavsdk_connect(host="127.0.0.1")
 
 
 async def run_offb_ctrl_velocity_ned():

@@ -8,7 +8,7 @@ import subprocess
 import sys
 import time
 
-from dronecode_sdk import bin
+from mavsdk import bin
 
 # List of the core plugins
 CORE_PLUGINS = [
@@ -25,7 +25,7 @@ CORE_PLUGINS = [
 
 # Check for compatibility
 if float(".".join(platform.python_version_tuple()[0:-1])) < 3.6:
-    print("[!] DronecodeSDK-Python is only available on Python >= 3.6")
+    print("[!] MAVSDK-Python is only available on Python >= 3.6")
     sys.exit(1)
 
 # Do asyncio specific initialization
@@ -72,7 +72,7 @@ def start_mavlink(connection_url=None):
     """
     Starts the gRPC server in a subprocess, listening on localhost:50051
     """
-    with path(bin, 'backend_bin') as backend:
+    with path(bin, 'mavsdk_server') as backend:
         bin_path_and_args = [os.fspath(backend)]
         if connection_url:
             bin_path_and_args.append(connection_url)

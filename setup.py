@@ -36,11 +36,11 @@ def parse_long_description():
 
 
 setup(
-    name="dronecode-sdk",
+    name="mavsdk",
     version="0.1.0",
-    description="Python wrapper for Dronecode SDK",
+    description="Python wrapper for MAVSDK",
     long_description=parse_long_description(),
-    url="https://github.com/dronecode/DronecodeSDK-Python",
+    url="https://github.com/mavlink/MAVSDK-Python",
     maintainer="Jonas Vautherin, Julian Oes",
     maintainer_email="jonas@auterion.com, julian.oes@auterion.com",
     include_package_data=True,
@@ -58,7 +58,7 @@ setup(
     setup_requires=parse_requirements("requirements-dev.txt"),
 
     project_urls={
-        "Bug Reports": "https://github.com/dronecode/DronecodeSDK-Python/issues",
-        "Source": "https://github.com/dronecode/DronecodeSDK-Python/",
+        "Bug Reports": "https://github.com/mavlink/MAVSDK-Python/issues",
+        "Source": "https://github.com/mavlink/MAVSDK-Python/",
     },
 )

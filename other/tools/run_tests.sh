@@ -2,8 +2,8 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WORK_DIR="${SCRIPT_DIR}/../.."
 DOCKER_DIR="${WORK_DIR}/other/docker/testing/"
-DOCKER_IMAGE_NAME="tox-dronecode-sdk-python"
-DOCKER_BUILD_LOG_PATH="/tmp/dronecode-sdk-python-docker-build.log"
+DOCKER_IMAGE_NAME="tox-mavsdk-python"
+DOCKER_BUILD_LOG_PATH="/tmp/mavsdk-python-docker-build.log"
 
 function build_docker_image {
     cd $DOCKER_DIR

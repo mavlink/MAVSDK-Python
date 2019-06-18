@@ -1,8 +1,8 @@
-# DronecodeSDK-Python
+# MAVSDK-Python
 
-This is the Python wrapper for the Dronecode SDK.
+This is the Python wrapper for MAVSDK.
 
-The Python wrapper is based on a gRPC client communicating with the gRPC server written in C++. To use the Python wrapper the gRPC server called "backend" needs to be running on the same system. The wrapper is essentially auto-generated from the message definitions ([proto files](https://github.com/Dronecode/DronecodeSDK-Proto)).
+The Python wrapper is based on a gRPC client communicating with the gRPC server written in C++. To use the Python wrapper the gRPC server called "backend" needs to be running on the same system. The wrapper is essentially auto-generated from the message definitions ([proto files](https://github.com/mavlink/MAVSDK-Proto)).
 
 ## Important Notes
 
@@ -16,8 +16,8 @@ First, we need to build and run the backend which is the gRPC server that the Py
 **Note: it is planned to automate this step using package managers like brew, apt-get, etc. .**
 
 ```
-git clone https://github.com/Dronecode/DronecodeSDK --recursive
-cd DronecodeSDK
+git clone https://github.com/mavlink/MAVSDK --recursive
+cd MAVSDK
 mkdir -p build/default
 cd build/default
 cmake -DBUILD_BACKEND=ON ../..
@@ -39,8 +39,8 @@ By default, the backend will connect using MAVLink on UDP port 14540 which is ru
 Clone this repo and recursively update submodules:
 
 ```
-git clone https://github.com/Dronecode/DronecodeSDK-Python --recursive
-cd DronecodeSDK-Python
+git clone https://github.com/mavlink/MAVSDK-Python --recursive
+cd MAVSDK-Python
 ```
 
 ### Install prerequisites
