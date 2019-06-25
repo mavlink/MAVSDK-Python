@@ -9,32 +9,29 @@ The Python wrapper is based on a gRPC client communicating with the gRPC server 
 - Python 3.6+ is required (because the wrapper is based on [asyncio](https://docs.python.org/3.7/library/asyncio.html)).
 - You may need to run `pip3` instead of `pip` and `python3` instead of `python`, depending of your system defaults.
 
-## Build and run backend
+## Install from pip
 
-First, we need to build and run the backend which is the gRPC server that the Python wrapper will connect to.
+To install mavsdk-python, simply run:
 
-**Note: it is planned to automate this step using package managers like brew, apt-get, etc. .**
-
-```
-git clone https://github.com/mavlink/MAVSDK --recursive
-cd MAVSDK
-mkdir -p build/default
-cd build/default
-cmake -DBUILD_BACKEND=ON ../..
-cmake --build .
+```sh
+pip3 install mavsdk
 ```
 
-For more help on this step, check the [docs on how to build from source](https://sdk.dronecode.org/en/contributing/build.html).
+The package contains `mavsdk_server` already (previously called "backend"). It needs to be run manually with `start_mavlink()`. Have a look at the examples to see it used in practice.
 
-Once this is built, start PX4 SITL and run the backend:
+## Run the examples
+
+Once the package has been installed, the examples can be run:
 
 ```
-./src/backend/src/backend_bin
+examples/takeoff_and_land.py
 ```
 
-By default, the backend will connect using MAVLink on UDP port 14540 which is running by default when PX4 is run in SITL (software in the loop simulation). Run `$ ./src/backend/src/backend_bin --help` for more information.
+## Build and run from sources
 
-## Get the Python wrapper
+Note: this is more involved and targetted to contributors.
+
+### Get the Python wrapper
 
 Clone this repo and recursively update submodules:
 
@@ -78,11 +75,8 @@ After generating the wrapper you can install a development (editable) version of
 pip install -e .
 ```
 
+### Build mavsdk_server
 
-### Running the examples
+MAVDSK-Python runs the `mavsdk_server` when `start_mavlink()` is called. Under the hood, this will run `mavsdk/bin/mavsdk_server`, which has to be built separately from [MAVSDK](https://github.com/mavlink/MAVSDK) and copied there.
 
-Once the package has been installed, the examples can be run:
-
-```
-examples/takeoff_and_land.py
-```
+For more help on this step, check the [docs on how to build from source](https://sdk.dronecode.org/en/contributing/build.html).
