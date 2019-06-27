@@ -14,6 +14,7 @@ Some caveats when attempting to run the examples in non-gps environments:
 
 import asyncio
 
+from mavsdk import start_mavlink
 from mavsdk import connect as mavsdk_connect
 from mavsdk import (
     Attitude,
@@ -23,6 +24,7 @@ from mavsdk import (
     VelocityNEDYaw,
 )
 
+start_mavlink()
 drone = mavsdk_connect(host="127.0.0.1")
 
 

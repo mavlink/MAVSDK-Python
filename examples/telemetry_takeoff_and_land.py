@@ -2,8 +2,10 @@
 
 import asyncio
 
+from mavsdk import start_mavlink
 from mavsdk import connect as mavsdk_connect
 
+start_mavlink()
 drone = mavsdk_connect(host="127.0.0.1")
 
 async def run():
