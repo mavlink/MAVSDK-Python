@@ -46,7 +46,7 @@ def get_event_loop():
 
 # Plugins rely on the eventloop
 from .async_plugin_manager import AsyncPluginManager # NOQA
-from .plugins import * # NOQA
+from .generated import * # NOQA
 
 
 def connect(*args, **kwargs):
