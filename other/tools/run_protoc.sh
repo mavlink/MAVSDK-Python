@@ -3,8 +3,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WORK_DIR="${SCRIPT_DIR}/../../"
 PROTO_DIR="${WORK_DIR}/proto"
 GENERATED_DIR="${WORK_DIR}/mavsdk/generated"
-PLUGIN_DIR="${WORK_DIR}/mavsdk/plugins"
-PLUGIN_INIT="${PLUGIN_DIR}/__init__.py"
+PLUGIN_INIT="${GENERATED_DIR}/__init__.py"
 export TEMPLATE_PATH="${WORK_DIR}/other/templates/"
 
 function generate {
@@ -35,7 +34,7 @@ function generate {
         # Generate plugin
         python3 -m grpc_tools.protoc -I$(dirname ${PROTO_FILE}) \
                                      --plugin=protoc-gen-custom=$(which protoc-gen-dcsdk) \
-                                     --custom_out=${PLUGIN_DIR} \
+                                     --custom_out=${GENERATED_DIR} \
                                      --custom_opt=file_ext=py \
                                      ${PROTO_FILE}
 
@@ -46,7 +45,7 @@ function generate {
         # capilalization as trivial as this needs a workaround for macos bash 3.2
         # this solution avoids using bash ^ substitution (from bash >4.0) and is using python 3 instead
         CAPITALIZED_PLUGIN_NAME=$(python3 -c "import sys;print(sys.argv[1].capitalize())" "$WANTED_PLUGIN_NAME")
-        mv ${PLUGIN_DIR}/${CAPITALIZED_PLUGIN_NAME} ${PLUGIN_DIR}/${WANTED_PLUGIN_NAME}
+        mv ${GENERATED_DIR}/${CAPITALIZED_PLUGIN_NAME} ${GENERATED_DIR}/${WANTED_PLUGIN_NAME}
 
         # Add to imports
         echo "from .${WANTED_PLUGIN_NAME%.py} import *" >> $PLUGIN_INIT

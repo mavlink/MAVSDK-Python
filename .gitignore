@@ -5,10 +5,7 @@ __pycache__
 dist/
 build/
 *.proto
-*_pb2.py
-*_pb2_grpc.py
 .idea/
 *.ropeproject/
 .pytest_cache/
 .tox/
-mavsdk/plugins/
