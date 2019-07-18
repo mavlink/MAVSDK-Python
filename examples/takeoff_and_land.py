@@ -14,7 +14,7 @@ async def run():
     print("Waiting for drone...")
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print(f"Drone discovered with UUID: {state.uuid}")
+            print("Drone discovered with UUID: {state.uuid}")
             break
 
     print("-- Arming")
