@@ -19,6 +19,7 @@ CORE_PLUGINS = [
     "Gimbal",
     "Info",
     "Mission",
+    "Param",
     "Offboard",
     "Telemetry"
     ]
