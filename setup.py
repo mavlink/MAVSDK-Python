@@ -53,6 +53,8 @@ class custom_build(build):
         """
         if sys.platform.startswith('linux'):
             return 'manylinux1-x64'
+        elif sys.platform.startswith('darwin'):
+            return 'macos'
         else:
             raise NotImplementedError(
                 f"Platform {sys.platform} is not (yet) supported by this setup.py!")
