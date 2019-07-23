@@ -9,7 +9,7 @@ The Python wrapper is based on a gRPC client communicating with the gRPC server 
 - Python 3.6+ is required (because the wrapper is based on [asyncio](https://docs.python.org/3.7/library/asyncio.html)).
 - You may need to run `pip3` instead of `pip` and `python3` instead of `python`, depending of your system defaults.
 
-## Install from pip
+## Install using pip from PyPy
 
 To install mavsdk-python, simply run:
 
@@ -46,8 +46,8 @@ First install the protoc plugin (`protoc-gen-dcsdk`):
 
 ```
 cd proto/pb_plugins
-pip install -r requirements.txt
-pip install -e .
+pip3 install -r requirements.txt
+pip3 install -e .
 ```
 
 You can check that the plugin was installed with `$ which protoc-gen-dcsdk`, as it should now be in the PATH.
@@ -56,7 +56,7 @@ Then go back to the root of the repo and install the dependencies of the SDK:
 
 ```
 cd ../..
-pip install -r requirements.txt -r requirements-dev.txt
+pip3 install -r requirements.txt -r requirements-dev.txt
 ```
 
 ### Generate wrapper
@@ -72,7 +72,7 @@ Run the following helper script. It will generate the Python wrappers for each p
 After generating the wrapper you can install a development (editable) version of the package using:
 
 ```
-pip install -e .
+pip3 install -e .
 ```
 
 ### Build mavsdk_server
