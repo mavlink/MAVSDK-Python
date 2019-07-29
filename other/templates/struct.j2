@@ -56,9 +56,8 @@ class {{ name.upper_camel_case }}:
         {% for field in fields %}
         {% if field.type_info.is_repeated %}
             {% if field.type_info.is_primitive %}
-        rpc_elems_list = []
         for elem in self.{{ field.name.lower_snake_case}}:
-          rpc_elems_list.append(elem)
+          rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }}.append(elem)
             {% else %}
         rpc_elems_list = []
         for elem in self.{{ field.name.lower_snake_case }}:
