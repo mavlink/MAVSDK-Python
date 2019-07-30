@@ -24,7 +24,7 @@ from mavsdk import (
     VelocityNEDYaw,
 )
 
-start_mavlink()
+start_mavlink(connection_url="udp://:14540")
 drone = mavsdk_connect(host="127.0.0.1")
 
 
