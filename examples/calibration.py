@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
 
 import asyncio
-
-from mavsdk import start_mavlink
-from mavsdk import connect as mavsdk_connect
-
-start_mavlink(connection_url="udp://:14540")
-drone = mavsdk_connect(host="127.0.0.1")
+from mavsdk import Drone
 
 
 async def run():
+
+    drone = Drone()
+    await drone.connect(drone_address="udp://:14540")
 
     print("-- Starting gyro calibration")
     async for progress_data in drone.calibration.calibrate_gyro():
@@ -19,5 +17,7 @@ async def run():
     async for progress_data in drone.calibration.calibrate_magnetometer():
         print(progress_data)
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(run())
+
+if __name__ == "__main__":
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(run())
