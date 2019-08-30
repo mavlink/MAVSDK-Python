@@ -5,8 +5,8 @@ from . import info_pb2 as info__pb2
 
 
 class InfoServiceStub(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """Provide infomation about the hardware and/or software of a system.
+  """
 
   def __init__(self, channel):
     """Constructor.
@@ -22,12 +22,12 @@ class InfoServiceStub(object):
 
 
 class InfoServiceServicer(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """Provide infomation about the hardware and/or software of a system.
+  """
 
   def GetVersion(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """Get the system version information.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')

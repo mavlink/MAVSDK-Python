@@ -5,8 +5,8 @@ from . import core_pb2 as core__pb2
 
 
 class CoreServiceStub(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """Access to the connection state and running plugins.
+  """
 
   def __init__(self, channel):
     """Constructor.
@@ -27,19 +27,19 @@ class CoreServiceStub(object):
 
 
 class CoreServiceServicer(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """Access to the connection state and running plugins.
+  """
 
   def SubscribeConnectionState(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """Subscribe to 'connection state' updates.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def ListRunningPlugins(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """Get a list of currently running plugins.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')

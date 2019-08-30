@@ -5,8 +5,8 @@ from . import mission_pb2 as mission__pb2
 
 
 class MissionServiceStub(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """Enable waypoint missions.
+  """
 
   def __init__(self, channel):
     """Constructor.
@@ -44,6 +44,11 @@ class MissionServiceStub(object):
         request_serializer=mission__pb2.PauseMissionRequest.SerializeToString,
         response_deserializer=mission__pb2.PauseMissionResponse.FromString,
         )
+    self.ClearMission = channel.unary_unary(
+        '/mavsdk.rpc.mission.MissionService/ClearMission',
+        request_serializer=mission__pb2.ClearMissionRequest.SerializeToString,
+        response_deserializer=mission__pb2.ClearMissionResponse.FromString,
+        )
     self.SetCurrentMissionItemIndex = channel.unary_unary(
         '/mavsdk.rpc.mission.MissionService/SetCurrentMissionItemIndex',
         request_serializer=mission__pb2.SetCurrentMissionItemIndexRequest.SerializeToString,
@@ -72,82 +77,126 @@ class MissionServiceStub(object):
 
 
 class MissionServiceServicer(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """Enable waypoint missions.
+  """
 
   def UploadMission(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Upload a list of mission items to the system.
+
+    The mission items are uploaded to a drone. Once uploaded the mission can be started and
+    executed even if the connection is lost.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def CancelMissionUpload(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Cancel an ongoing mission upload.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def DownloadMission(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Download a list of mission items from the system (asynchronous).
+
+    Will fail if any of the downloaded mission items are not supported
+    by the MAVSDK API.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def CancelMissionDownload(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Cancel an ongoing mission download.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def StartMission(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Start the mission.
+
+    A mission must be uploaded to the vehicle before this can be called.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def PauseMission(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Pause the mission.
+
+    Pausing the mission puts the vehicle into
+    [HOLD mode](https://docs.px4.io/en/flight_modes/hold.html).
+    A multicopter should just hover at the spot while a fixedwing vehicle should loiter
+    around the location where it paused.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ClearMission(self, request, context):
+    """
+    Clear the mission saved on the vehicle.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SetCurrentMissionItemIndex(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Sets the mission item index to go to.
+
+    By setting the current index to 0, the mission is restarted from the beginning. If it is set
+    to a specific index of a mission item, the mission will be set to this item.
+
+    Note that this is not necessarily true for general missions using MAVLink if loop counters
+    are used.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def IsMissionFinished(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Check if the mission has been finished.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SubscribeMissionProgress(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Subscribe to mission progress updates.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def GetReturnToLaunchAfterMission(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Get whether to trigger Return-to-Launch (RTL) after mission is complete.
+
+    Before getting this option, it needs to be set, or a mission
+    needs to be downloaded.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SetReturnToLaunchAfterMission(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Set whether to trigger Return-to-Launch (RTL) after the mission is complete.
+
+    This will only take effect for the next mission upload, meaning that
+    the mission may have to be uploaded again.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -184,6 +233,11 @@ def add_MissionServiceServicer_to_server(servicer, server):
           servicer.PauseMission,
           request_deserializer=mission__pb2.PauseMissionRequest.FromString,
           response_serializer=mission__pb2.PauseMissionResponse.SerializeToString,
+      ),
+      'ClearMission': grpc.unary_unary_rpc_method_handler(
+          servicer.ClearMission,
+          request_deserializer=mission__pb2.ClearMissionRequest.FromString,
+          response_serializer=mission__pb2.ClearMissionResponse.SerializeToString,
       ),
       'SetCurrentMissionItemIndex': grpc.unary_unary_rpc_method_handler(
           servicer.SetCurrentMissionItemIndex,

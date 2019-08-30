@@ -5,8 +5,16 @@ from . import offboard_pb2 as offboard__pb2
 
 
 class OffboardServiceStub(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """*
+  Control a drone with position, velocity, attitude or motor commands.
+
+  The module is called offboard because the commands can be sent from external sources
+  as opposed to onboard control right inside the autopilot "board".
+
+  Client code must specify a setpoint before starting offboard mode.
+  Mavsdk automatically sends setpoints at 20Hz (PX4 Offboard mode requires that setpoints
+  are minimally sent at 2Hz).
+  """
 
   def __init__(self, channel):
     """Constructor.
@@ -34,6 +42,11 @@ class OffboardServiceStub(object):
         request_serializer=offboard__pb2.SetAttitudeRequest.SerializeToString,
         response_deserializer=offboard__pb2.SetAttitudeResponse.FromString,
         )
+    self.SetActuatorControl = channel.unary_unary(
+        '/mavsdk.rpc.offboard.OffboardService/SetActuatorControl',
+        request_serializer=offboard__pb2.SetActuatorControlRequest.SerializeToString,
+        response_deserializer=offboard__pb2.SetActuatorControlResponse.FromString,
+        )
     self.SetAttitudeRate = channel.unary_unary(
         '/mavsdk.rpc.offboard.OffboardService/SetAttitudeRate',
         request_serializer=offboard__pb2.SetAttitudeRateRequest.SerializeToString,
@@ -57,61 +70,93 @@ class OffboardServiceStub(object):
 
 
 class OffboardServiceServicer(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """*
+  Control a drone with position, velocity, attitude or motor commands.
+
+  The module is called offboard because the commands can be sent from external sources
+  as opposed to onboard control right inside the autopilot "board".
+
+  Client code must specify a setpoint before starting offboard mode.
+  Mavsdk automatically sends setpoints at 20Hz (PX4 Offboard mode requires that setpoints
+  are minimally sent at 2Hz).
+  """
 
   def Start(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Start offboard control.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def Stop(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Stop offboard control.
+
+    The vehicle will be put into Hold mode: https://docs.px4.io/en/flight_modes/hold.html
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def IsActive(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Check if offboard control is active.
+
+    True means that the vehicle is in offboard mode and we are actively sending
+    setpoints.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SetAttitude(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Set the attitude in terms of roll, pitch and yaw in degrees with thrust.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetActuatorControl(self, request, context):
+    """
+    Set direct actuator control values to groups #0 and #1.
+
+    First 8 controls will go to control group 0, the following 8 controls to control group 1 (if
+    actuator_control.num_controls more than 8).
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SetAttitudeRate(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Set the attitude rate in terms of pitch, roll and yaw angular rate along with thrust.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SetPositionNed(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Set the position in NED coordinates and yaw.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SetVelocityBody(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Set the velocity in body coordinates and yaw angular rate.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SetVelocityNed(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Set the velocity in NED coordinates and yaw.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -138,6 +183,11 @@ def add_OffboardServiceServicer_to_server(servicer, server):
           servicer.SetAttitude,
           request_deserializer=offboard__pb2.SetAttitudeRequest.FromString,
           response_serializer=offboard__pb2.SetAttitudeResponse.SerializeToString,
+      ),
+      'SetActuatorControl': grpc.unary_unary_rpc_method_handler(
+          servicer.SetActuatorControl,
+          request_deserializer=offboard__pb2.SetActuatorControlRequest.FromString,
+          response_serializer=offboard__pb2.SetActuatorControlResponse.SerializeToString,
       ),
       'SetAttitudeRate': grpc.unary_unary_rpc_method_handler(
           servicer.SetAttitudeRate,

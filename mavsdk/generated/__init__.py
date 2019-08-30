@@ -3,6 +3,7 @@
 from .offboard import *
 from .calibration import *
 from .gimbal import *
+from .geofence import *
 from .core import *
 from .action import *
 from .param import *

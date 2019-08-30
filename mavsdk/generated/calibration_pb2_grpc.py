@@ -5,8 +5,8 @@ from . import calibration_pb2 as calibration__pb2
 
 
 class CalibrationServiceStub(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """Enable to calibrate sensors of a drone such as gyro, accelerometer, and magnetometer.
+  """
 
   def __init__(self, channel):
     """Constructor.
@@ -42,40 +42,40 @@ class CalibrationServiceStub(object):
 
 
 class CalibrationServiceServicer(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """Enable to calibrate sensors of a drone such as gyro, accelerometer, and magnetometer.
+  """
 
   def SubscribeCalibrateGyro(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """Perform gyro calibration.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SubscribeCalibrateAccelerometer(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """Perform accelerometer calibration.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SubscribeCalibrateMagnetometer(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """Perform magnetometer caliration.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SubscribeCalibrateGimbalAccelerometer(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """Perform gimbal accelerometer calibration.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def Cancel(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """Cancel ongoing calibration process.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')

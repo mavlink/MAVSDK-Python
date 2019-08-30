@@ -5,8 +5,8 @@ from . import action_pb2 as action__pb2
 
 
 class ActionServiceStub(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """Enable simple actions such as arming, taking off, and landing.
+  """
 
   def __init__(self, channel):
     """Constructor.
@@ -92,110 +92,155 @@ class ActionServiceStub(object):
 
 
 class ActionServiceServicer(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """Enable simple actions such as arming, taking off, and landing.
+  """
 
   def Arm(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Send command to arm the drone.
+
+    Arming a drone normally causes motors to spin at idle.
+    Before arming take all safety precautions and stand clear of the drone!
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def Disarm(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Send command to disarm the drone.
+
+    This will disarm a drone that considers itself landed. If flying, the drone should
+    reject the disarm command. Disarming means that all motors will stop.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def Takeoff(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Send command to take off and hover.
+
+    This switches the drone into position control mode and commands 
+    it to take off and hover at the takeoff altitude.
+
+    Note that the vehicle must be armed before it can take off.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def Land(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Send command to land at the current position.
+
+    This switches the drone to 'Land' flight mode.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def Reboot(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Send command to reboot the drone components.
+
+    This will reboot the autopilot, companion computer, camera and gimbal.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def Kill(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Send command to kill the drone. 
+
+    This will disarm a drone irrespective of whether it is landed or flying.
+    Note that the drone will fall out of the sky if this command is used while flying.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def ReturnToLaunch(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Send command to return to the launch (takeoff) position and land.
+
+    This switches the drone into [RTL mode](https://docs.px4.io/en/flight_modes/rtl.html) which
+    generally means it will rise up to a certain altitude to clear any obstacles before heading
+    back to the launch (takeoff) position and land there.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def TransitionToFixedWing(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Send command to transition the drone to fixedwing.
+
+    The associated action will only be executed for VTOL vehicles (on other vehicle types the
+    command will fail). The command will succeed if called when the vehicle
+    is already in fixedwing mode.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def TransitionToMulticopter(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Send command to transition the drone to multicopter.
+
+    The associated action will only be executed for VTOL vehicles (on other vehicle types the
+    command will fail). The command will succeed if called when the vehicle
+    is already in multicopter mode.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def GetTakeoffAltitude(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Get the takeoff altitude (in meters above ground).
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SetTakeoffAltitude(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Set takeoff altitude (in meters above ground).
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def GetMaximumSpeed(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Get the vehicle maximum speed (in metres/second).
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SetMaximumSpeed(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Set vehicle maximum speed (in metres/second).
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def GetReturnToLaunchAltitude(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Get the return to launch minimum return altitude (in meters).
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SetReturnToLaunchAltitude(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Set the return to launch minimum return altitude (in meters).
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
