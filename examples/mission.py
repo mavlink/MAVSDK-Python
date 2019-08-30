@@ -2,15 +2,17 @@
 
 import asyncio
 
-from mavsdk import start_mavlink
-from mavsdk import connect as mavsdk_connect
+from mavsdk import Drone
 from mavsdk import (MissionItem)
-
-start_mavlink(connection_url="udp://:14540")
-drone = mavsdk_connect(host="127.0.0.1")
 
 
 async def run():
+    drone = Drone()
+    await drone.connect(drone_address="udp://:14540")
+
+    asyncio.ensure_future(print_mission_progress(drone))
+    termination_task = asyncio.ensure_future(observe_is_in_air(drone))
+
     mission_items = []
     mission_items.append(MissionItem(47.398039859999997,
                                      8.5455725400000002,
@@ -54,13 +56,15 @@ async def run():
     print("-- Starting mission")
     await drone.mission.start_mission()
 
+    await termination_task
 
-async def print_mission_progress():
+
+async def print_mission_progress(drone):
     async for mission_progress in drone.mission.mission_progress():
         print(f"Mission progress: {mission_progress.current_item_index}/{mission_progress.mission_count}")
 
 
-async def observe_is_in_air():
+async def observe_is_in_air(drone):
     """ Monitors whether the drone is flying or not and
     returns after landing """
 
@@ -75,11 +79,6 @@ async def observe_is_in_air():
             return
 
 
-def setup_tasks():
-    asyncio.ensure_future(run())
-    asyncio.ensure_future(print_mission_progress())
-
-
 if __name__ == "__main__":
-    setup_tasks()
-    asyncio.get_event_loop().run_until_complete(observe_is_in_air())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(run())

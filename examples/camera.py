@@ -2,15 +2,17 @@
 
 import asyncio
 
-from mavsdk import start_mavlink
-from mavsdk import connect as mavsdk_connect
 from mavsdk import (CameraError, CameraMode)
-
-start_mavlink()
-drone = mavsdk_connect(host="127.0.0.1")
+from mavsdk import Drone
 
 
 async def run():
+    drone = Drone()
+    await drone.connect(drone_address="udp://:14540")
+
+    asyncio.ensure_future(print_camera_mode(drone))
+    asyncio.ensure_future(print_camera_status(drone))
+
     print("Setting mode to 'PHOTO'")
     try:
         await drone.camera.set_mode(CameraMode.PHOTO)
@@ -28,17 +30,15 @@ async def run():
     # Shut down the running coroutines (here 'print_camera_mode()' and 'print_camera_status()')
     await asyncio.get_event_loop().shutdown_asyncgens()
 
-async def print_camera_mode():
+async def print_camera_mode(drone):
     async for camera_mode in drone.camera.mode():
         print(f"Camera mode: {camera_mode}")
 
-async def print_camera_status():
+async def print_camera_status(drone):
     async for camera_status in drone.camera.camera_status():
         print(camera_status)
 
 
 if __name__ == "__main__":
-    asyncio.ensure_future(print_camera_mode())
-    asyncio.ensure_future(print_camera_status())
-
-    asyncio.get_event_loop().run_until_complete(run())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(run())

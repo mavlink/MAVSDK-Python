@@ -1,15 +1,38 @@
 #!/usr/bin/env python3
 
 import asyncio
+from mavsdk import Drone
 
-from mavsdk import start_mavlink
-from mavsdk import connect as mavsdk_connect
-
-start_mavlink(connection_url="udp://:14540")
-drone = mavsdk_connect(host="127.0.0.1")
 
 async def run():
-    """ Arms the system, initiates a takeof and finally lands the system """
+    """
+    This is the "main" function.
+    It first creates the drone object and initializes it.
+
+    Then it registers tasks to be run in parallel (one can think of them as threads):
+        - print_altitude: print the altitude
+        - print_flight_mode: print the flight mode
+        - observe_is_in_air: this monitors the flight mode and returns when the
+                             drone has been in air and is back on the ground.
+
+    Finally, it goes to the actual works: arm the drone, initiate a takeoff
+    and finally land.
+
+    Note that "observe_is_in_air" is not necessary, but it ensures that the
+    script waits until the drone is actually landed, so that we receive feedback
+    during the landing as well.
+    """
+
+    # Init the drone
+    drone = Drone()
+    await drone.connect(drone_address="udp://:14540")
+
+    # Start parallel tasks
+    asyncio.ensure_future(print_altitude(drone))
+    asyncio.ensure_future(print_flight_mode(drone))
+    termination_task = asyncio.ensure_future(observe_is_in_air(drone))
+
+    # Execute the maneuvers
     print("-- Arming")
     await drone.action.arm()
 
@@ -21,9 +44,12 @@ async def run():
     print("-- Landing")
     await drone.action.land()
 
+    # Wait until the drone is landed (instead of returning after 'land' is sent)
+    await termination_task
 
-async def print_altitude():
-    """ Prints the altitude """
+
+async def print_altitude(drone):
+    """ Prints the altitude when it changes """
 
     previous_altitude = None
 
@@ -34,8 +60,8 @@ async def print_altitude():
             print(f"Altitude: {altitude}")
 
 
-async def observe_flight_mode():
-    """ Monitors the flight mode """
+async def print_flight_mode(drone):
+    """ Prints the flight mode when it changes """
 
     previous_flight_mode = None
 
@@ -45,7 +71,7 @@ async def observe_flight_mode():
             print(f"Flight mode: {flight_mode}")
 
 
-async def observe_is_in_air():
+async def observe_is_in_air(drone):
     """ Monitors whether the drone is flying or not and
     returns after landing """
 
@@ -60,12 +86,5 @@ async def observe_is_in_air():
             return
 
 
-def setup_tasks():
-    asyncio.ensure_future(print_altitude())
-    asyncio.ensure_future(observe_flight_mode())
-    asyncio.ensure_future(run())
-
-
 if __name__ == "__main__":
-    setup_tasks()
-    asyncio.get_event_loop().run_until_complete(observe_is_in_air())
+    asyncio.get_event_loop().run_until_complete(run())
