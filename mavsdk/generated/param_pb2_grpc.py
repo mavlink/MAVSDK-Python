@@ -5,8 +5,8 @@ from . import param_pb2 as param__pb2
 
 
 class ParamServiceStub(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """Provide raw access to get and set parameters.
+  """
 
   def __init__(self, channel):
     """Constructor.
@@ -37,33 +37,45 @@ class ParamServiceStub(object):
 
 
 class ParamServiceServicer(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """Provide raw access to get and set parameters.
+  """
 
   def GetIntParam(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Get an int parameter.
+
+    If the type is wrong, the result will be `WRONG_TYPE`.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SetIntParam(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Set an int parameter.
+
+    If the type is wrong, the result will be `WRONG_TYPE`.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def GetFloatParam(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Get a float parameter.
+
+    If the type is wrong, the result will be `WRONG_TYPE`.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SetFloatParam(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Set a float parameter.
+
+    If the type is wrong, the result will be `WRONG_TYPE`.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')

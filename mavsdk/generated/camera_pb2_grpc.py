@@ -5,8 +5,15 @@ from . import camera_pb2 as camera__pb2
 
 
 class CameraServiceStub(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """
+  Can be used to manage cameras that implement the MAVLink
+  Camera Protocol: https://mavlink.io/en/protocol/camera.html.
+
+  Currently only a single camera is supported.
+  When multiple cameras are supported the plugin will need to be
+  instantiated separately for every camera and the camera selected using
+  `select_camera`.
+  """
 
   def __init__(self, channel):
     """Constructor.
@@ -92,110 +99,132 @@ class CameraServiceStub(object):
 
 
 class CameraServiceServicer(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """
+  Can be used to manage cameras that implement the MAVLink
+  Camera Protocol: https://mavlink.io/en/protocol/camera.html.
+
+  Currently only a single camera is supported.
+  When multiple cameras are supported the plugin will need to be
+  instantiated separately for every camera and the camera selected using
+  `select_camera`.
+  """
 
   def TakePhoto(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Take one photo.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def StartPhotoInterval(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Start photo timelapse with a given interval.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def StopPhotoInterval(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Stop a running photo timelapse.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def StartVideo(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Start a video recording.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def StopVideo(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Stop a running video recording.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def StartVideoStreaming(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Start video streaming.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def StopVideoStreaming(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Stop current video streaming.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SetMode(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Set camera mode.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SubscribeMode(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Subscribe to camera mode updates.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SubscribeVideoStreamInfo(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Subscribe to video stream info updates.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SubscribeCaptureInfo(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Subscribe to capture info updates.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SubscribeCameraStatus(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Subscribe to camera status updates.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SubscribeCurrentSettings(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Get the list of current camera settings.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SubscribePossibleSettingOptions(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Get the list of settings that can be changed.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SetSetting(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Set a setting to some value.
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')

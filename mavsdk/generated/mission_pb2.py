@@ -19,8 +19,8 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='mission.proto',
   package='mavsdk.rpc.mission',
   syntax='proto3',
-  serialized_options=_b('\n\031io.mavlink.mavsdk.missionB\014MissionProto'),
-  serialized_pb=_b('\n\rmission.proto\x12\x12mavsdk.rpc.mission\"N\n\x14UploadMissionRequest\x12\x36\n\rmission_items\x18\x01 \x03(\x0b\x32\x1f.mavsdk.rpc.mission.MissionItem\"R\n\x15UploadMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x1c\n\x1a\x43\x61ncelMissionUploadRequest\"\x1d\n\x1b\x43\x61ncelMissionUploadResponse\"\x18\n\x16\x44ownloadMissionRequest\"\x8c\x01\n\x17\x44ownloadMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\x12\x36\n\rmission_items\x18\x02 \x03(\x0b\x32\x1f.mavsdk.rpc.mission.MissionItem\"\x1e\n\x1c\x43\x61ncelMissionDownloadRequest\"\x1f\n\x1d\x43\x61ncelMissionDownloadResponse\"\x15\n\x13StartMissionRequest\"Q\n\x14StartMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x15\n\x13PauseMissionRequest\"Q\n\x14PauseMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"2\n!SetCurrentMissionItemIndexRequest\x12\r\n\x05index\x18\x01 \x01(\x05\"_\n\"SetCurrentMissionItemIndexResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x1a\n\x18IsMissionFinishedRequest\"0\n\x19IsMissionFinishedResponse\x12\x13\n\x0bis_finished\x18\x01 \x01(\x08\"!\n\x1fSubscribeMissionProgressRequest\"X\n\x17MissionProgressResponse\x12=\n\x10mission_progress\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.mission.MissionProgress\"&\n$GetReturnToLaunchAfterMissionRequest\"7\n%GetReturnToLaunchAfterMissionResponse\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\"6\n$SetReturnToLaunchAfterMissionRequest\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\"\'\n%SetReturnToLaunchAfterMissionResponse\"\xaf\x03\n\x0bMissionItem\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13relative_altitude_m\x18\x03 \x01(\x02\x12\x11\n\tspeed_m_s\x18\x04 \x01(\x02\x12\x16\n\x0eis_fly_through\x18\x05 \x01(\x08\x12\x18\n\x10gimbal_pitch_deg\x18\x06 \x01(\x02\x12\x16\n\x0egimbal_yaw_deg\x18\x07 \x01(\x02\x12\x43\n\rcamera_action\x18\x08 \x01(\x0e\x32,.mavsdk.rpc.mission.MissionItem.CameraAction\x12\x15\n\rloiter_time_s\x18\t \x01(\x02\x12\x1f\n\x17\x63\x61mera_photo_interval_s\x18\n \x01(\x01\"|\n\x0c\x43\x61meraAction\x12\x08\n\x04NONE\x10\x00\x12\x0e\n\nTAKE_PHOTO\x10\x01\x12\x18\n\x14START_PHOTO_INTERVAL\x10\x02\x12\x17\n\x13STOP_PHOTO_INTERVAL\x10\x03\x12\x0f\n\x0bSTART_VIDEO\x10\x04\x12\x0e\n\nSTOP_VIDEO\x10\x05\"D\n\x0fMissionProgress\x12\x1a\n\x12\x63urrent_item_index\x18\x01 \x01(\x05\x12\x15\n\rmission_count\x18\x02 \x01(\x05\"\xf1\x02\n\rMissionResult\x12\x38\n\x06result\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.mission.MissionResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\x91\x02\n\x06Result\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x0b\n\x07SUCCESS\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x12\x1a\n\x16TOO_MANY_MISSION_ITEMS\x10\x03\x12\x08\n\x04\x42USY\x10\x04\x12\x0b\n\x07TIMEOUT\x10\x05\x12\x14\n\x10INVALID_ARGUMENT\x10\x06\x12\x0f\n\x0bUNSUPPORTED\x10\x07\x12\x18\n\x14NO_MISSION_AVAILABLE\x10\x08\x12\x1b\n\x17\x46\x41ILED_TO_OPEN_QGC_PLAN\x10\t\x12\x1c\n\x18\x46\x41ILED_TO_PARSE_QGC_PLAN\x10\n\x12\x1b\n\x17UNSUPPORTED_MISSION_CMD\x10\x0b\x12\x16\n\x12TRANSFER_CANCELLED\x10\x0c\x32\xe3\n\n\x0eMissionService\x12\x66\n\rUploadMission\x12(.mavsdk.rpc.mission.UploadMissionRequest\x1a).mavsdk.rpc.mission.UploadMissionResponse\"\x00\x12x\n\x13\x43\x61ncelMissionUpload\x12..mavsdk.rpc.mission.CancelMissionUploadRequest\x1a/.mavsdk.rpc.mission.CancelMissionUploadResponse\"\x00\x12l\n\x0f\x44ownloadMission\x12*.mavsdk.rpc.mission.DownloadMissionRequest\x1a+.mavsdk.rpc.mission.DownloadMissionResponse\"\x00\x12~\n\x15\x43\x61ncelMissionDownload\x12\x30.mavsdk.rpc.mission.CancelMissionDownloadRequest\x1a\x31.mavsdk.rpc.mission.CancelMissionDownloadResponse\"\x00\x12\x63\n\x0cStartMission\x12\'.mavsdk.rpc.mission.StartMissionRequest\x1a(.mavsdk.rpc.mission.StartMissionResponse\"\x00\x12\x63\n\x0cPauseMission\x12\'.mavsdk.rpc.mission.PauseMissionRequest\x1a(.mavsdk.rpc.mission.PauseMissionResponse\"\x00\x12\x8d\x01\n\x1aSetCurrentMissionItemIndex\x12\x35.mavsdk.rpc.mission.SetCurrentMissionItemIndexRequest\x1a\x36.mavsdk.rpc.mission.SetCurrentMissionItemIndexResponse\"\x00\x12r\n\x11IsMissionFinished\x12,.mavsdk.rpc.mission.IsMissionFinishedRequest\x1a-.mavsdk.rpc.mission.IsMissionFinishedResponse\"\x00\x12\x80\x01\n\x18SubscribeMissionProgress\x12\x33.mavsdk.rpc.mission.SubscribeMissionProgressRequest\x1a+.mavsdk.rpc.mission.MissionProgressResponse\"\x00\x30\x01\x12\x96\x01\n\x1dGetReturnToLaunchAfterMission\x12\x38.mavsdk.rpc.mission.GetReturnToLaunchAfterMissionRequest\x1a\x39.mavsdk.rpc.mission.GetReturnToLaunchAfterMissionResponse\"\x00\x12\x96\x01\n\x1dSetReturnToLaunchAfterMission\x12\x38.mavsdk.rpc.mission.SetReturnToLaunchAfterMissionRequest\x1a\x39.mavsdk.rpc.mission.SetReturnToLaunchAfterMissionResponse\"\x00\x42)\n\x19io.mavlink.mavsdk.missionB\x0cMissionProtob\x06proto3')
+  serialized_options=_b('\n\021io.mavsdk.missionB\014MissionProto'),
+  serialized_pb=_b('\n\rmission.proto\x12\x12mavsdk.rpc.mission\"N\n\x14UploadMissionRequest\x12\x36\n\rmission_items\x18\x01 \x03(\x0b\x32\x1f.mavsdk.rpc.mission.MissionItem\"R\n\x15UploadMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x1c\n\x1a\x43\x61ncelMissionUploadRequest\"\x1d\n\x1b\x43\x61ncelMissionUploadResponse\"\x18\n\x16\x44ownloadMissionRequest\"\x8c\x01\n\x17\x44ownloadMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\x12\x36\n\rmission_items\x18\x02 \x03(\x0b\x32\x1f.mavsdk.rpc.mission.MissionItem\"\x1e\n\x1c\x43\x61ncelMissionDownloadRequest\"\x1f\n\x1d\x43\x61ncelMissionDownloadResponse\"\x15\n\x13StartMissionRequest\"Q\n\x14StartMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x15\n\x13PauseMissionRequest\"Q\n\x14PauseMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x15\n\x13\x43learMissionRequest\"Q\n\x14\x43learMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"2\n!SetCurrentMissionItemIndexRequest\x12\r\n\x05index\x18\x01 \x01(\x05\"_\n\"SetCurrentMissionItemIndexResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x1a\n\x18IsMissionFinishedRequest\"0\n\x19IsMissionFinishedResponse\x12\x13\n\x0bis_finished\x18\x01 \x01(\x08\"!\n\x1fSubscribeMissionProgressRequest\"X\n\x17MissionProgressResponse\x12=\n\x10mission_progress\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.mission.MissionProgress\"&\n$GetReturnToLaunchAfterMissionRequest\"7\n%GetReturnToLaunchAfterMissionResponse\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\"6\n$SetReturnToLaunchAfterMissionRequest\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\"\'\n%SetReturnToLaunchAfterMissionResponse\"\xaf\x03\n\x0bMissionItem\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13relative_altitude_m\x18\x03 \x01(\x02\x12\x11\n\tspeed_m_s\x18\x04 \x01(\x02\x12\x16\n\x0eis_fly_through\x18\x05 \x01(\x08\x12\x18\n\x10gimbal_pitch_deg\x18\x06 \x01(\x02\x12\x16\n\x0egimbal_yaw_deg\x18\x07 \x01(\x02\x12\x43\n\rcamera_action\x18\x08 \x01(\x0e\x32,.mavsdk.rpc.mission.MissionItem.CameraAction\x12\x15\n\rloiter_time_s\x18\t \x01(\x02\x12\x1f\n\x17\x63\x61mera_photo_interval_s\x18\n \x01(\x01\"|\n\x0c\x43\x61meraAction\x12\x08\n\x04NONE\x10\x00\x12\x0e\n\nTAKE_PHOTO\x10\x01\x12\x18\n\x14START_PHOTO_INTERVAL\x10\x02\x12\x17\n\x13STOP_PHOTO_INTERVAL\x10\x03\x12\x0f\n\x0bSTART_VIDEO\x10\x04\x12\x0e\n\nSTOP_VIDEO\x10\x05\"D\n\x0fMissionProgress\x12\x1a\n\x12\x63urrent_item_index\x18\x01 \x01(\x05\x12\x15\n\rmission_count\x18\x02 \x01(\x05\"\xf1\x02\n\rMissionResult\x12\x38\n\x06result\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.mission.MissionResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\x91\x02\n\x06Result\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x0b\n\x07SUCCESS\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x12\x1a\n\x16TOO_MANY_MISSION_ITEMS\x10\x03\x12\x08\n\x04\x42USY\x10\x04\x12\x0b\n\x07TIMEOUT\x10\x05\x12\x14\n\x10INVALID_ARGUMENT\x10\x06\x12\x0f\n\x0bUNSUPPORTED\x10\x07\x12\x18\n\x14NO_MISSION_AVAILABLE\x10\x08\x12\x1b\n\x17\x46\x41ILED_TO_OPEN_QGC_PLAN\x10\t\x12\x1c\n\x18\x46\x41ILED_TO_PARSE_QGC_PLAN\x10\n\x12\x1b\n\x17UNSUPPORTED_MISSION_CMD\x10\x0b\x12\x16\n\x12TRANSFER_CANCELLED\x10\x0c\x32\xc8\x0b\n\x0eMissionService\x12\x66\n\rUploadMission\x12(.mavsdk.rpc.mission.UploadMissionRequest\x1a).mavsdk.rpc.mission.UploadMissionResponse\"\x00\x12x\n\x13\x43\x61ncelMissionUpload\x12..mavsdk.rpc.mission.CancelMissionUploadRequest\x1a/.mavsdk.rpc.mission.CancelMissionUploadResponse\"\x00\x12l\n\x0f\x44ownloadMission\x12*.mavsdk.rpc.mission.DownloadMissionRequest\x1a+.mavsdk.rpc.mission.DownloadMissionResponse\"\x00\x12~\n\x15\x43\x61ncelMissionDownload\x12\x30.mavsdk.rpc.mission.CancelMissionDownloadRequest\x1a\x31.mavsdk.rpc.mission.CancelMissionDownloadResponse\"\x00\x12\x63\n\x0cStartMission\x12\'.mavsdk.rpc.mission.StartMissionRequest\x1a(.mavsdk.rpc.mission.StartMissionResponse\"\x00\x12\x63\n\x0cPauseMission\x12\'.mavsdk.rpc.mission.PauseMissionRequest\x1a(.mavsdk.rpc.mission.PauseMissionResponse\"\x00\x12\x63\n\x0c\x43learMission\x12\'.mavsdk.rpc.mission.ClearMissionRequest\x1a(.mavsdk.rpc.mission.ClearMissionResponse\"\x00\x12\x8d\x01\n\x1aSetCurrentMissionItemIndex\x12\x35.mavsdk.rpc.mission.SetCurrentMissionItemIndexRequest\x1a\x36.mavsdk.rpc.mission.SetCurrentMissionItemIndexResponse\"\x00\x12r\n\x11IsMissionFinished\x12,.mavsdk.rpc.mission.IsMissionFinishedRequest\x1a-.mavsdk.rpc.mission.IsMissionFinishedResponse\"\x00\x12\x80\x01\n\x18SubscribeMissionProgress\x12\x33.mavsdk.rpc.mission.SubscribeMissionProgressRequest\x1a+.mavsdk.rpc.mission.MissionProgressResponse\"\x00\x30\x01\x12\x96\x01\n\x1dGetReturnToLaunchAfterMission\x12\x38.mavsdk.rpc.mission.GetReturnToLaunchAfterMissionRequest\x1a\x39.mavsdk.rpc.mission.GetReturnToLaunchAfterMissionResponse\"\x00\x12\x96\x01\n\x1dSetReturnToLaunchAfterMission\x12\x38.mavsdk.rpc.mission.SetReturnToLaunchAfterMissionRequest\x1a\x39.mavsdk.rpc.mission.SetReturnToLaunchAfterMissionResponse\"\x00\x42!\n\x11io.mavsdk.missionB\x0cMissionProtob\x06proto3')
 )
 
 
@@ -58,8 +58,8 @@ _MISSIONITEM_CAMERAACTION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1562,
-  serialized_end=1686,
+  serialized_start=1668,
+  serialized_end=1792,
 )
 _sym_db.RegisterEnumDescriptor(_MISSIONITEM_CAMERAACTION)
 
@@ -124,8 +124,8 @@ _MISSIONRESULT_RESULT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1855,
-  serialized_end=2128,
+  serialized_start=1961,
+  serialized_end=2234,
 )
 _sym_db.RegisterEnumDescriptor(_MISSIONRESULT_RESULT)
 
@@ -460,6 +460,61 @@ _PAUSEMISSIONRESPONSE = _descriptor.Descriptor(
 )
 
 
+_CLEARMISSIONREQUEST = _descriptor.Descriptor(
+  name='ClearMissionRequest',
+  full_name='mavsdk.rpc.mission.ClearMissionRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=708,
+  serialized_end=729,
+)
+
+
+_CLEARMISSIONRESPONSE = _descriptor.Descriptor(
+  name='ClearMissionResponse',
+  full_name='mavsdk.rpc.mission.ClearMissionResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='mission_result', full_name='mavsdk.rpc.mission.ClearMissionResponse.mission_result', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=731,
+  serialized_end=812,
+)
+
+
 _SETCURRENTMISSIONITEMINDEXREQUEST = _descriptor.Descriptor(
   name='SetCurrentMissionItemIndexRequest',
   full_name='mavsdk.rpc.mission.SetCurrentMissionItemIndexRequest',
@@ -486,8 +541,8 @@ _SETCURRENTMISSIONITEMINDEXREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=708,
-  serialized_end=758,
+  serialized_start=814,
+  serialized_end=864,
 )
 
 
@@ -517,8 +572,8 @@ _SETCURRENTMISSIONITEMINDEXRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=760,
-  serialized_end=855,
+  serialized_start=866,
+  serialized_end=961,
 )
 
 
@@ -541,8 +596,8 @@ _ISMISSIONFINISHEDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=857,
-  serialized_end=883,
+  serialized_start=963,
+  serialized_end=989,
 )
 
 
@@ -572,8 +627,8 @@ _ISMISSIONFINISHEDRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=885,
-  serialized_end=933,
+  serialized_start=991,
+  serialized_end=1039,
 )
 
 
@@ -596,8 +651,8 @@ _SUBSCRIBEMISSIONPROGRESSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=935,
-  serialized_end=968,
+  serialized_start=1041,
+  serialized_end=1074,
 )
 
 
@@ -627,8 +682,8 @@ _MISSIONPROGRESSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=970,
-  serialized_end=1058,
+  serialized_start=1076,
+  serialized_end=1164,
 )
 
 
@@ -651,8 +706,8 @@ _GETRETURNTOLAUNCHAFTERMISSIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1060,
-  serialized_end=1098,
+  serialized_start=1166,
+  serialized_end=1204,
 )
 
 
@@ -682,8 +737,8 @@ _GETRETURNTOLAUNCHAFTERMISSIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1100,
-  serialized_end=1155,
+  serialized_start=1206,
+  serialized_end=1261,
 )
 
 
@@ -713,8 +768,8 @@ _SETRETURNTOLAUNCHAFTERMISSIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1157,
-  serialized_end=1211,
+  serialized_start=1263,
+  serialized_end=1317,
 )
 
 
@@ -737,8 +792,8 @@ _SETRETURNTOLAUNCHAFTERMISSIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1213,
-  serialized_end=1252,
+  serialized_start=1319,
+  serialized_end=1358,
 )
 
 
@@ -832,8 +887,8 @@ _MISSIONITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1255,
-  serialized_end=1686,
+  serialized_start=1361,
+  serialized_end=1792,
 )
 
 
@@ -870,8 +925,8 @@ _MISSIONPROGRESS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1688,
-  serialized_end=1756,
+  serialized_start=1794,
+  serialized_end=1862,
 )
 
 
@@ -909,8 +964,8 @@ _MISSIONRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1759,
-  serialized_end=2128,
+  serialized_start=1865,
+  serialized_end=2234,
 )
 
 _UPLOADMISSIONREQUEST.fields_by_name['mission_items'].message_type = _MISSIONITEM
@@ -919,6 +974,7 @@ _DOWNLOADMISSIONRESPONSE.fields_by_name['mission_result'].message_type = _MISSIO
 _DOWNLOADMISSIONRESPONSE.fields_by_name['mission_items'].message_type = _MISSIONITEM
 _STARTMISSIONRESPONSE.fields_by_name['mission_result'].message_type = _MISSIONRESULT
 _PAUSEMISSIONRESPONSE.fields_by_name['mission_result'].message_type = _MISSIONRESULT
+_CLEARMISSIONRESPONSE.fields_by_name['mission_result'].message_type = _MISSIONRESULT
 _SETCURRENTMISSIONITEMINDEXRESPONSE.fields_by_name['mission_result'].message_type = _MISSIONRESULT
 _MISSIONPROGRESSRESPONSE.fields_by_name['mission_progress'].message_type = _MISSIONPROGRESS
 _MISSIONITEM.fields_by_name['camera_action'].enum_type = _MISSIONITEM_CAMERAACTION
@@ -937,6 +993,8 @@ DESCRIPTOR.message_types_by_name['StartMissionRequest'] = _STARTMISSIONREQUEST
 DESCRIPTOR.message_types_by_name['StartMissionResponse'] = _STARTMISSIONRESPONSE
 DESCRIPTOR.message_types_by_name['PauseMissionRequest'] = _PAUSEMISSIONREQUEST
 DESCRIPTOR.message_types_by_name['PauseMissionResponse'] = _PAUSEMISSIONRESPONSE
+DESCRIPTOR.message_types_by_name['ClearMissionRequest'] = _CLEARMISSIONREQUEST
+DESCRIPTOR.message_types_by_name['ClearMissionResponse'] = _CLEARMISSIONRESPONSE
 DESCRIPTOR.message_types_by_name['SetCurrentMissionItemIndexRequest'] = _SETCURRENTMISSIONITEMINDEXREQUEST
 DESCRIPTOR.message_types_by_name['SetCurrentMissionItemIndexResponse'] = _SETCURRENTMISSIONITEMINDEXRESPONSE
 DESCRIPTOR.message_types_by_name['IsMissionFinishedRequest'] = _ISMISSIONFINISHEDREQUEST
@@ -1035,6 +1093,20 @@ PauseMissionResponse = _reflection.GeneratedProtocolMessageType('PauseMissionRes
   # @@protoc_insertion_point(class_scope:mavsdk.rpc.mission.PauseMissionResponse)
   })
 _sym_db.RegisterMessage(PauseMissionResponse)
+
+ClearMissionRequest = _reflection.GeneratedProtocolMessageType('ClearMissionRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CLEARMISSIONREQUEST,
+  '__module__' : 'mission_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.mission.ClearMissionRequest)
+  })
+_sym_db.RegisterMessage(ClearMissionRequest)
+
+ClearMissionResponse = _reflection.GeneratedProtocolMessageType('ClearMissionResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CLEARMISSIONRESPONSE,
+  '__module__' : 'mission_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.mission.ClearMissionResponse)
+  })
+_sym_db.RegisterMessage(ClearMissionResponse)
 
 SetCurrentMissionItemIndexRequest = _reflection.GeneratedProtocolMessageType('SetCurrentMissionItemIndexRequest', (_message.Message,), {
   'DESCRIPTOR' : _SETCURRENTMISSIONITEMINDEXREQUEST,
@@ -1136,8 +1208,8 @@ _MISSIONSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=2131,
-  serialized_end=3510,
+  serialized_start=2237,
+  serialized_end=3717,
   methods=[
   _descriptor.MethodDescriptor(
     name='UploadMission',
@@ -1194,9 +1266,18 @@ _MISSIONSERVICE = _descriptor.ServiceDescriptor(
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
+    name='ClearMission',
+    full_name='mavsdk.rpc.mission.MissionService.ClearMission',
+    index=6,
+    containing_service=None,
+    input_type=_CLEARMISSIONREQUEST,
+    output_type=_CLEARMISSIONRESPONSE,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
     name='SetCurrentMissionItemIndex',
     full_name='mavsdk.rpc.mission.MissionService.SetCurrentMissionItemIndex',
-    index=6,
+    index=7,
     containing_service=None,
     input_type=_SETCURRENTMISSIONITEMINDEXREQUEST,
     output_type=_SETCURRENTMISSIONITEMINDEXRESPONSE,
@@ -1205,7 +1286,7 @@ _MISSIONSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='IsMissionFinished',
     full_name='mavsdk.rpc.mission.MissionService.IsMissionFinished',
-    index=7,
+    index=8,
     containing_service=None,
     input_type=_ISMISSIONFINISHEDREQUEST,
     output_type=_ISMISSIONFINISHEDRESPONSE,
@@ -1214,7 +1295,7 @@ _MISSIONSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeMissionProgress',
     full_name='mavsdk.rpc.mission.MissionService.SubscribeMissionProgress',
-    index=8,
+    index=9,
     containing_service=None,
     input_type=_SUBSCRIBEMISSIONPROGRESSREQUEST,
     output_type=_MISSIONPROGRESSRESPONSE,
@@ -1223,7 +1304,7 @@ _MISSIONSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetReturnToLaunchAfterMission',
     full_name='mavsdk.rpc.mission.MissionService.GetReturnToLaunchAfterMission',
-    index=9,
+    index=10,
     containing_service=None,
     input_type=_GETRETURNTOLAUNCHAFTERMISSIONREQUEST,
     output_type=_GETRETURNTOLAUNCHAFTERMISSIONRESPONSE,
@@ -1232,7 +1313,7 @@ _MISSIONSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetReturnToLaunchAfterMission',
     full_name='mavsdk.rpc.mission.MissionService.SetReturnToLaunchAfterMission',
-    index=10,
+    index=11,
     containing_service=None,
     input_type=_SETRETURNTOLAUNCHAFTERMISSIONREQUEST,
     output_type=_SETRETURNTOLAUNCHAFTERMISSIONRESPONSE,
