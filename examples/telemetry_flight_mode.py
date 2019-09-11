@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
 import asyncio
-from mavsdk import Drone
+from mavsdk import System
 
 
 async def print_flight_mode():
-    drone = Drone()
-    await drone.connect(drone_address="udp://:14540")
+    drone = System()
+    await drone.connect(system_address="udp://:14540")
 
     async for flight_mode in drone.telemetry.flight_mode():
         print("FlightMode:", flight_mode)

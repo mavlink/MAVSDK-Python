@@ -14,21 +14,21 @@ Some caveats when attempting to run the examples in non-gps environments:
 
 import asyncio
 
-from mavsdk import Drone
-from mavsdk import (OffboardError, PositionNEDYaw)
+from mavsdk import System
+from mavsdk import (OffboardError, PositionNedYaw)
 
 
 async def run():
     """ Does Offboard control using position NED coordinates. """
 
-    drone = Drone()
-    await drone.connect(drone_address="udp://:14540")
+    drone = System()
+    await drone.connect(system_address="udp://:14540")
 
     print("-- Arming")
     await drone.action.arm()
 
     print("-- Setting initial setpoint")
-    await drone.offboard.set_position_ned(PositionNEDYaw(0.0, 0.0, 0.0, 0.0))
+    await drone.offboard.set_position_ned(PositionNedYaw(0.0, 0.0, 0.0, 0.0))
 
     print("-- Starting offboard")
     try:
@@ -40,19 +40,19 @@ async def run():
         return
 
     print("-- Go 0m North, 0m East, -5m Down within local coordinate system")
-    await drone.offboard.set_position_ned(PositionNEDYaw(0.0, 0.0, -5.0, 0.0))
+    await drone.offboard.set_position_ned(PositionNedYaw(0.0, 0.0, -5.0, 0.0))
     await asyncio.sleep(10)
 
     print("-- Go 5m North, 0m East, -5m Down within local coordinate system, turn to face East")
-    await drone.offboard.set_position_ned(PositionNEDYaw(5.0, 0.0, -5.0, 90.0))
+    await drone.offboard.set_position_ned(PositionNedYaw(5.0, 0.0, -5.0, 90.0))
     await asyncio.sleep(10)
 
     print("-- Go 5m North, 10m East, -5m Down within local coordinate system")
-    await drone.offboard.set_position_ned(PositionNEDYaw(5.0, 10.0, -5.0, 90.0))
+    await drone.offboard.set_position_ned(PositionNedYaw(5.0, 10.0, -5.0, 90.0))
     await asyncio.sleep(15)
 
     print("-- Go 0m North, 10m East, 0m Down within local coordinate system, turn to face South")
-    await drone.offboard.set_position_ned(PositionNEDYaw(0.0, 10.0, 0.0, 180.0))
+    await drone.offboard.set_position_ned(PositionNedYaw(0.0, 10.0, 0.0, 180.0))
     await asyncio.sleep(10)
 
     print("-- Stopping offboard")

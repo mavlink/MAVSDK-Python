@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import asyncio
-from mavsdk import Drone
+from mavsdk import System
 
 
 async def run():
@@ -24,8 +24,8 @@ async def run():
     """
 
     # Init the drone
-    drone = Drone()
-    await drone.connect(drone_address="udp://:14540")
+    drone = System()
+    await drone.connect(system_address="udp://:14540")
 
     # Start parallel tasks
     asyncio.ensure_future(print_altitude(drone))

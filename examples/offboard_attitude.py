@@ -14,15 +14,15 @@ Some caveats when attempting to run the examples in non-gps environments:
 
 import asyncio
 
-from mavsdk import Drone
+from mavsdk import System
 from mavsdk import (Attitude, OffboardError)
 
 
 async def run():
     """ Does Offboard control using attitude commands. """
 
-    drone = Drone()
-    await drone.connect(drone_address="udp://:14540")
+    drone = System()
+    await drone.connect(system_address="udp://:14540")
 
     print("-- Arming")
     await drone.action.arm()

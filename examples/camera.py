@@ -3,12 +3,12 @@
 import asyncio
 
 from mavsdk import (CameraError, CameraMode)
-from mavsdk import Drone
+from mavsdk import System
 
 
 async def run():
-    drone = Drone()
-    await drone.connect(drone_address="udp://:14540")
+    drone = System()
+    await drone.connect(system_address="udp://:14540")
 
     asyncio.ensure_future(print_camera_mode(drone))
     asyncio.ensure_future(print_camera_status(drone))

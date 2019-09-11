@@ -4,7 +4,7 @@ import asyncio
 import platform
 import sys
 
-from .drone import Drone
+from .system import System
 from .generated import * # NOQA
 
 # Check for compatibility
