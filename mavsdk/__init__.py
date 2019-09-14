@@ -6,6 +6,22 @@ import sys
 
 from .system import System
 from .generated import * # NOQA
+from mavsdk import bin
+
+# List of the core plugins
+CORE_PLUGINS = [
+    "Action",
+    "Calibration",
+    "Camera",
+    "Core",
+    "Gimbal",
+    "Info",
+    "Mission",
+    "Param",
+    "Offboard",
+    "Telemetry",
+    "Geofence"
+    ]
 
 # Check for compatibility
 if float(".".join(platform.python_version_tuple()[0:-1])) < 3.6:
