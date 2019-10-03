@@ -6,15 +6,6 @@ mavsdk.start_mavlink(connection_url="udp//:14540")
 drone = mavsdk.connect(host="127.0.0.1")
 
 async def run():
-    # pos = ()
-    # async for npos in drone.telemetry.position():
-        # pos = (npos.latitude_deg, npos.longitude_deg)
-        # return
-    # print(pos)
-    # lat = pos.latitude_deg
-    # lon = pos.longitude_deg
-    # print(lat, lon)
-    # 47.3977508, 8.5456074
     lat = 47.3977508
     lon = 8.5456074
     p1 = mavsdk.Point(lat - 0.0001, lon - 0.0001)
