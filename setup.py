@@ -100,7 +100,7 @@ class custom_build(build):
 
 setup(
     name="mavsdk",
-    version="0.2.0",
+    version="0.3.0",
     description="Python wrapper for MAVSDK",
     long_description=parse_long_description(),
     url="https://github.com/mavlink/MAVSDK-Python",
