@@ -6,7 +6,7 @@ from mavsdk import Point, Polygon, System
 
 async def run():
 
-    drone = System(mavsdk_server_address="127.0.0.1")
+    drone = System()
     await drone.connect(system_address="udp://:14540")
 
     print("Waiting for drone...")
