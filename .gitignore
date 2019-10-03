@@ -9,3 +9,4 @@ build/
 *.ropeproject/
 .pytest_cache/
 .tox/
+mavsdk/bin/mavsdk_server
