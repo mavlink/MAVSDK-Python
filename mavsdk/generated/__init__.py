@@ -7,6 +7,7 @@ from .action import *
 from .info import *
 from .gimbal import *
 from .geofence import *
+from .mocap import *
 from .calibration import *
 from .core import *
 from .mission import *
