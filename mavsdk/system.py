@@ -16,6 +16,7 @@ class System:
         "Gimbal",
         "Info",
         "Mission",
+        "Mocap",
         "Param",
         "Offboard",
         "Telemetry"
@@ -132,6 +133,12 @@ class System:
         if "telemetry" not in self._plugins:
             raise RuntimeError("Telemetry plugin has not been initialized! Did you run `System.connect()`?")
         return self._plugins["telemetry"]
+
+    @property
+    def mocap(self) -> Mocap:
+        if "mocap" not in self._plugins:
+            raise RuntimeError("Mocap plugin has not been initialized! Did you run `System.connect()`?")
+        return self._plugins["mocap"]
 
     @staticmethod
     def _start_mavsdk_server(system_address=None):
