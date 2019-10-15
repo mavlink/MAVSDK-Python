@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='mavsdk.rpc.telemetry',
   syntax='proto3',
   serialized_options=_b('\n\023io.mavsdk.telemetryB\016TelemetryProto'),
-  serialized_pb=_b('\n\x0ftelemetry.proto\x12\x14mavsdk.rpc.telemetry\"\x1a\n\x18SubscribePositionRequest\"D\n\x10PositionResponse\x12\x30\n\x08position\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.telemetry.Position\"\x16\n\x14SubscribeHomeRequest\"<\n\x0cHomeResponse\x12,\n\x04home\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.telemetry.Position\"\x17\n\x15SubscribeInAirRequest\"\"\n\rInAirResponse\x12\x11\n\tis_in_air\x18\x01 \x01(\x08\"\x17\n\x15SubscribeArmedRequest\"!\n\rArmedResponse\x12\x10\n\x08is_armed\x18\x01 \x01(\x08\"$\n\"SubscribeAttitudeQuaternionRequest\"[\n\x1a\x41ttitudeQuaternionResponse\x12=\n\x13\x61ttitude_quaternion\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry.Quaternion\"\x1f\n\x1dSubscribeAttitudeEulerRequest\"Q\n\x15\x41ttitudeEulerResponse\x12\x38\n\x0e\x61ttitude_euler\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry.EulerAngle\"-\n+SubscribeAttitudeAngularVelocityBodyRequest\"x\n#AttitudeAngularVelocityBodyResponse\x12Q\n\x1e\x61ttitude_angular_velocity_body\x18\x01 \x01(\x0b\x32).mavsdk.rpc.telemetry.AngularVelocityBody\"*\n(SubscribeCameraAttitudeQuaternionRequest\"a\n CameraAttitudeQuaternionResponse\x12=\n\x13\x61ttitude_quaternion\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry.Quaternion\"%\n#SubscribeCameraAttitudeEulerRequest\"W\n\x1b\x43\x61meraAttitudeEulerResponse\x12\x38\n\x0e\x61ttitude_euler\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry.EulerAngle\" \n\x1eSubscribeGroundSpeedNedRequest\"R\n\x16GroundSpeedNedResponse\x12\x38\n\x10ground_speed_ned\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.telemetry.SpeedNed\"\x19\n\x17SubscribeGpsInfoRequest\"B\n\x0fGpsInfoResponse\x12/\n\x08gps_info\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.telemetry.GpsInfo\"\x19\n\x17SubscribeBatteryRequest\"A\n\x0f\x42\x61tteryResponse\x12.\n\x07\x62\x61ttery\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.telemetry.Battery\"\x1c\n\x1aSubscribeFlightModeRequest\"K\n\x12\x46lightModeResponse\x12\x35\n\x0b\x66light_mode\x18\x01 \x01(\x0e\x32 .mavsdk.rpc.telemetry.FlightMode\"\x18\n\x16SubscribeHealthRequest\">\n\x0eHealthResponse\x12,\n\x06health\x18\x01 \x01(\x0b\x32\x1c.mavsdk.rpc.telemetry.Health\"\x1a\n\x18SubscribeRcStatusRequest\"E\n\x10RcStatusResponse\x12\x31\n\trc_status\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.telemetry.RcStatus\"\x1c\n\x1aSubscribeStatusTextRequest\"K\n\x12StatusTextResponse\x12\x35\n\x0bstatus_text\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry.StatusText\"\'\n%SubscribeActuatorControlTargetRequest\"m\n\x1d\x41\x63tuatorControlTargetResponse\x12L\n\x17\x61\x63tuator_control_target\x18\x01 \x01(\x0b\x32+.mavsdk.rpc.telemetry.ActuatorControlTarget\"&\n$SubscribeActuatorOutputStatusRequest\"j\n\x1c\x41\x63tuatorOutputStatusResponse\x12J\n\x16\x61\x63tuator_output_status\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.telemetry.ActuatorOutputStatus\"q\n\x08Position\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x12\x1b\n\x13relative_altitude_m\x18\x04 \x01(\x02\"8\n\nQuaternion\x12\t\n\x01w\x18\x01 \x01(\x02\x12\t\n\x01x\x18\x02 \x01(\x02\x12\t\n\x01y\x18\x03 \x01(\x02\x12\t\n\x01z\x18\x04 \x01(\x02\"B\n\nEulerAngle\x12\x10\n\x08roll_deg\x18\x01 \x01(\x02\x12\x11\n\tpitch_deg\x18\x02 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x03 \x01(\x02\"Q\n\x13\x41ngularVelocityBody\x12\x12\n\nroll_rad_s\x18\x01 \x01(\x02\x12\x13\n\x0bpitch_rad_s\x18\x02 \x01(\x02\x12\x11\n\tyaw_rad_s\x18\x03 \x01(\x02\"\\\n\x08SpeedNed\x12\x1a\n\x12velocity_north_m_s\x18\x01 \x01(\x02\x12\x19\n\x11velocity_east_m_s\x18\x02 \x01(\x02\x12\x19\n\x11velocity_down_m_s\x18\x03 \x01(\x02\"R\n\x07GpsInfo\x12\x16\n\x0enum_satellites\x18\x01 \x01(\x05\x12/\n\x08\x66ix_type\x18\x02 \x01(\x0e\x32\x1d.mavsdk.rpc.telemetry.FixType\"7\n\x07\x42\x61ttery\x12\x11\n\tvoltage_v\x18\x01 \x01(\x02\x12\x19\n\x11remaining_percent\x18\x02 \x01(\x02\"\xf9\x01\n\x06Health\x12#\n\x1bis_gyrometer_calibration_ok\x18\x01 \x01(\x08\x12\'\n\x1fis_accelerometer_calibration_ok\x18\x02 \x01(\x08\x12&\n\x1eis_magnetometer_calibration_ok\x18\x03 \x01(\x08\x12\x1f\n\x17is_level_calibration_ok\x18\x04 \x01(\x08\x12\x1c\n\x14is_local_position_ok\x18\x05 \x01(\x08\x12\x1d\n\x15is_global_position_ok\x18\x06 \x01(\x08\x12\x1b\n\x13is_home_position_ok\x18\x07 \x01(\x08\"]\n\x08RcStatus\x12\x1a\n\x12was_available_once\x18\x01 \x01(\x08\x12\x14\n\x0cis_available\x18\x02 \x01(\x08\x12\x1f\n\x17signal_strength_percent\x18\x03 \x01(\x02\"\x88\x01\n\nStatusText\x12\x39\n\x04type\x18\x01 \x01(\x0e\x32+.mavsdk.rpc.telemetry.StatusText.StatusType\x12\x0c\n\x04text\x18\x02 \x01(\t\"1\n\nStatusType\x12\x08\n\x04INFO\x10\x00\x12\x0b\n\x07WARNING\x10\x01\x12\x0c\n\x08\x43RITICAL\x10\x02\"8\n\x15\x41\x63tuatorControlTarget\x12\r\n\x05group\x18\x01 \x01(\x05\x12\x10\n\x08\x63ontrols\x18\x02 \x03(\x02\"8\n\x14\x41\x63tuatorOutputStatus\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\r\x12\x10\n\x08\x61\x63tuator\x18\x02 \x03(\x02*e\n\x07\x46ixType\x12\n\n\x06NO_GPS\x10\x00\x12\n\n\x06NO_FIX\x10\x01\x12\n\n\x06\x46IX_2D\x10\x02\x12\n\n\x06\x46IX_3D\x10\x03\x12\x0c\n\x08\x46IX_DGPS\x10\x04\x12\r\n\tRTK_FLOAT\x10\x05\x12\r\n\tRTK_FIXED\x10\x06*\x85\x01\n\nFlightMode\x12\x0b\n\x07UNKNOWN\x10\x00\x12\t\n\x05READY\x10\x01\x12\x0b\n\x07TAKEOFF\x10\x02\x12\x08\n\x04HOLD\x10\x03\x12\x0b\n\x07MISSION\x10\x04\x12\x14\n\x10RETURN_TO_LAUNCH\x10\x05\x12\x08\n\x04LAND\x10\x06\x12\x0c\n\x08OFFBOARD\x10\x07\x12\r\n\tFOLLOW_ME\x10\x08\x32\x81\x12\n\x10TelemetryService\x12o\n\x11SubscribePosition\x12..mavsdk.rpc.telemetry.SubscribePositionRequest\x1a&.mavsdk.rpc.telemetry.PositionResponse\"\x00\x30\x01\x12\x63\n\rSubscribeHome\x12*.mavsdk.rpc.telemetry.SubscribeHomeRequest\x1a\".mavsdk.rpc.telemetry.HomeResponse\"\x00\x30\x01\x12\x66\n\x0eSubscribeInAir\x12+.mavsdk.rpc.telemetry.SubscribeInAirRequest\x1a#.mavsdk.rpc.telemetry.InAirResponse\"\x00\x30\x01\x12\x66\n\x0eSubscribeArmed\x12+.mavsdk.rpc.telemetry.SubscribeArmedRequest\x1a#.mavsdk.rpc.telemetry.ArmedResponse\"\x00\x30\x01\x12\x8d\x01\n\x1bSubscribeAttitudeQuaternion\x12\x38.mavsdk.rpc.telemetry.SubscribeAttitudeQuaternionRequest\x1a\x30.mavsdk.rpc.telemetry.AttitudeQuaternionResponse\"\x00\x30\x01\x12~\n\x16SubscribeAttitudeEuler\x12\x33.mavsdk.rpc.telemetry.SubscribeAttitudeEulerRequest\x1a+.mavsdk.rpc.telemetry.AttitudeEulerResponse\"\x00\x30\x01\x12\xa8\x01\n$SubscribeAttitudeAngularVelocityBody\x12\x41.mavsdk.rpc.telemetry.SubscribeAttitudeAngularVelocityBodyRequest\x1a\x39.mavsdk.rpc.telemetry.AttitudeAngularVelocityBodyResponse\"\x00\x30\x01\x12\x9f\x01\n!SubscribeCameraAttitudeQuaternion\x12>.mavsdk.rpc.telemetry.SubscribeCameraAttitudeQuaternionRequest\x1a\x36.mavsdk.rpc.telemetry.CameraAttitudeQuaternionResponse\"\x00\x30\x01\x12\x90\x01\n\x1cSubscribeCameraAttitudeEuler\x12\x39.mavsdk.rpc.telemetry.SubscribeCameraAttitudeEulerRequest\x1a\x31.mavsdk.rpc.telemetry.CameraAttitudeEulerResponse\"\x00\x30\x01\x12\x81\x01\n\x17SubscribeGroundSpeedNed\x12\x34.mavsdk.rpc.telemetry.SubscribeGroundSpeedNedRequest\x1a,.mavsdk.rpc.telemetry.GroundSpeedNedResponse\"\x00\x30\x01\x12l\n\x10SubscribeGpsInfo\x12-.mavsdk.rpc.telemetry.SubscribeGpsInfoRequest\x1a%.mavsdk.rpc.telemetry.GpsInfoResponse\"\x00\x30\x01\x12l\n\x10SubscribeBattery\x12-.mavsdk.rpc.telemetry.SubscribeBatteryRequest\x1a%.mavsdk.rpc.telemetry.BatteryResponse\"\x00\x30\x01\x12u\n\x13SubscribeFlightMode\x12\x30.mavsdk.rpc.telemetry.SubscribeFlightModeRequest\x1a(.mavsdk.rpc.telemetry.FlightModeResponse\"\x00\x30\x01\x12i\n\x0fSubscribeHealth\x12,.mavsdk.rpc.telemetry.SubscribeHealthRequest\x1a$.mavsdk.rpc.telemetry.HealthResponse\"\x00\x30\x01\x12o\n\x11SubscribeRcStatus\x12..mavsdk.rpc.telemetry.SubscribeRcStatusRequest\x1a&.mavsdk.rpc.telemetry.RcStatusResponse\"\x00\x30\x01\x12u\n\x13SubscribeStatusText\x12\x30.mavsdk.rpc.telemetry.SubscribeStatusTextRequest\x1a(.mavsdk.rpc.telemetry.StatusTextResponse\"\x00\x30\x01\x12\x96\x01\n\x1eSubscribeActuatorControlTarget\x12;.mavsdk.rpc.telemetry.SubscribeActuatorControlTargetRequest\x1a\x33.mavsdk.rpc.telemetry.ActuatorControlTargetResponse\"\x00\x30\x01\x12\x93\x01\n\x1dSubscribeActuatorOutputStatus\x12:.mavsdk.rpc.telemetry.SubscribeActuatorOutputStatusRequest\x1a\x32.mavsdk.rpc.telemetry.ActuatorOutputStatusResponse\"\x00\x30\x01\x42%\n\x13io.mavsdk.telemetryB\x0eTelemetryProtob\x06proto3')
+  serialized_pb=_b('\n\x0ftelemetry.proto\x12\x14mavsdk.rpc.telemetry\"\x1a\n\x18SubscribePositionRequest\"D\n\x10PositionResponse\x12\x30\n\x08position\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.telemetry.Position\"\x16\n\x14SubscribeHomeRequest\"<\n\x0cHomeResponse\x12,\n\x04home\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.telemetry.Position\"\x17\n\x15SubscribeInAirRequest\"\"\n\rInAirResponse\x12\x11\n\tis_in_air\x18\x01 \x01(\x08\"\x1d\n\x1bSubscribeLandedStateRequest\"N\n\x13LandedStateResponse\x12\x37\n\x0clanded_state\x18\x01 \x01(\x0e\x32!.mavsdk.rpc.telemetry.LandedState\"\x17\n\x15SubscribeArmedRequest\"!\n\rArmedResponse\x12\x10\n\x08is_armed\x18\x01 \x01(\x08\"$\n\"SubscribeAttitudeQuaternionRequest\"[\n\x1a\x41ttitudeQuaternionResponse\x12=\n\x13\x61ttitude_quaternion\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry.Quaternion\"\x1f\n\x1dSubscribeAttitudeEulerRequest\"Q\n\x15\x41ttitudeEulerResponse\x12\x38\n\x0e\x61ttitude_euler\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry.EulerAngle\"-\n+SubscribeAttitudeAngularVelocityBodyRequest\"x\n#AttitudeAngularVelocityBodyResponse\x12Q\n\x1e\x61ttitude_angular_velocity_body\x18\x01 \x01(\x0b\x32).mavsdk.rpc.telemetry.AngularVelocityBody\"*\n(SubscribeCameraAttitudeQuaternionRequest\"a\n CameraAttitudeQuaternionResponse\x12=\n\x13\x61ttitude_quaternion\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry.Quaternion\"%\n#SubscribeCameraAttitudeEulerRequest\"W\n\x1b\x43\x61meraAttitudeEulerResponse\x12\x38\n\x0e\x61ttitude_euler\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry.EulerAngle\" \n\x1eSubscribeGroundSpeedNedRequest\"R\n\x16GroundSpeedNedResponse\x12\x38\n\x10ground_speed_ned\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.telemetry.SpeedNed\"\x19\n\x17SubscribeGpsInfoRequest\"B\n\x0fGpsInfoResponse\x12/\n\x08gps_info\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.telemetry.GpsInfo\"\x19\n\x17SubscribeBatteryRequest\"A\n\x0f\x42\x61tteryResponse\x12.\n\x07\x62\x61ttery\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.telemetry.Battery\"\x1c\n\x1aSubscribeFlightModeRequest\"K\n\x12\x46lightModeResponse\x12\x35\n\x0b\x66light_mode\x18\x01 \x01(\x0e\x32 .mavsdk.rpc.telemetry.FlightMode\"\x18\n\x16SubscribeHealthRequest\">\n\x0eHealthResponse\x12,\n\x06health\x18\x01 \x01(\x0b\x32\x1c.mavsdk.rpc.telemetry.Health\"\x1a\n\x18SubscribeRcStatusRequest\"E\n\x10RcStatusResponse\x12\x31\n\trc_status\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.telemetry.RcStatus\"\x1c\n\x1aSubscribeStatusTextRequest\"K\n\x12StatusTextResponse\x12\x35\n\x0bstatus_text\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry.StatusText\"\'\n%SubscribeActuatorControlTargetRequest\"m\n\x1d\x41\x63tuatorControlTargetResponse\x12L\n\x17\x61\x63tuator_control_target\x18\x01 \x01(\x0b\x32+.mavsdk.rpc.telemetry.ActuatorControlTarget\"&\n$SubscribeActuatorOutputStatusRequest\"j\n\x1c\x41\x63tuatorOutputStatusResponse\x12J\n\x16\x61\x63tuator_output_status\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.telemetry.ActuatorOutputStatus\"\x1a\n\x18SubscribeOdometryRequest\"D\n\x10OdometryResponse\x12\x30\n\x08odometry\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.telemetry.Odometry\"q\n\x08Position\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x12\x1b\n\x13relative_altitude_m\x18\x04 \x01(\x02\"8\n\nQuaternion\x12\t\n\x01w\x18\x01 \x01(\x02\x12\t\n\x01x\x18\x02 \x01(\x02\x12\t\n\x01y\x18\x03 \x01(\x02\x12\t\n\x01z\x18\x04 \x01(\x02\"B\n\nEulerAngle\x12\x10\n\x08roll_deg\x18\x01 \x01(\x02\x12\x11\n\tpitch_deg\x18\x02 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x03 \x01(\x02\"Q\n\x13\x41ngularVelocityBody\x12\x12\n\nroll_rad_s\x18\x01 \x01(\x02\x12\x13\n\x0bpitch_rad_s\x18\x02 \x01(\x02\x12\x11\n\tyaw_rad_s\x18\x03 \x01(\x02\"\\\n\x08SpeedNed\x12\x1a\n\x12velocity_north_m_s\x18\x01 \x01(\x02\x12\x19\n\x11velocity_east_m_s\x18\x02 \x01(\x02\x12\x19\n\x11velocity_down_m_s\x18\x03 \x01(\x02\"R\n\x07GpsInfo\x12\x16\n\x0enum_satellites\x18\x01 \x01(\x05\x12/\n\x08\x66ix_type\x18\x02 \x01(\x0e\x32\x1d.mavsdk.rpc.telemetry.FixType\"7\n\x07\x42\x61ttery\x12\x11\n\tvoltage_v\x18\x01 \x01(\x02\x12\x19\n\x11remaining_percent\x18\x02 \x01(\x02\"\xf9\x01\n\x06Health\x12#\n\x1bis_gyrometer_calibration_ok\x18\x01 \x01(\x08\x12\'\n\x1fis_accelerometer_calibration_ok\x18\x02 \x01(\x08\x12&\n\x1eis_magnetometer_calibration_ok\x18\x03 \x01(\x08\x12\x1f\n\x17is_level_calibration_ok\x18\x04 \x01(\x08\x12\x1c\n\x14is_local_position_ok\x18\x05 \x01(\x08\x12\x1d\n\x15is_global_position_ok\x18\x06 \x01(\x08\x12\x1b\n\x13is_home_position_ok\x18\x07 \x01(\x08\"]\n\x08RcStatus\x12\x1a\n\x12was_available_once\x18\x01 \x01(\x08\x12\x14\n\x0cis_available\x18\x02 \x01(\x08\x12\x1f\n\x17signal_strength_percent\x18\x03 \x01(\x02\"\x88\x01\n\nStatusText\x12\x39\n\x04type\x18\x01 \x01(\x0e\x32+.mavsdk.rpc.telemetry.StatusText.StatusType\x12\x0c\n\x04text\x18\x02 \x01(\t\"1\n\nStatusType\x12\x08\n\x04INFO\x10\x00\x12\x0b\n\x07WARNING\x10\x01\x12\x0c\n\x08\x43RITICAL\x10\x02\"8\n\x15\x41\x63tuatorControlTarget\x12\r\n\x05group\x18\x01 \x01(\x05\x12\x10\n\x08\x63ontrols\x18\x02 \x03(\x02\"8\n\x14\x41\x63tuatorOutputStatus\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\r\x12\x10\n\x08\x61\x63tuator\x18\x02 \x03(\x02\"\xbe\x04\n\x08Odometry\x12\x11\n\ttime_usec\x18\x01 \x01(\x04\x12\x39\n\x08\x66rame_id\x18\x02 \x01(\x0e\x32\'.mavsdk.rpc.telemetry.Odometry.MavFrame\x12?\n\x0e\x63hild_frame_id\x18\x03 \x01(\x0e\x32\'.mavsdk.rpc.telemetry.Odometry.MavFrame\x12\x39\n\rposition_body\x18\x04 \x01(\x0b\x32\".mavsdk.rpc.telemetry.PositionBody\x12+\n\x01q\x18\x05 \x01(\x0b\x32 .mavsdk.rpc.telemetry.Quaternion\x12\x33\n\nspeed_body\x18\x06 \x01(\x0b\x32\x1f.mavsdk.rpc.telemetry.SpeedBody\x12H\n\x15\x61ngular_velocity_body\x18\x07 \x01(\x0b\x32).mavsdk.rpc.telemetry.AngularVelocityBody\x12\x39\n\x0fpose_covariance\x18\x08 \x01(\x0b\x32 .mavsdk.rpc.telemetry.Covariance\x12=\n\x13velocity_covariance\x18\t \x01(\x0b\x32 .mavsdk.rpc.telemetry.Covariance\"B\n\x08MavFrame\x12\t\n\x05UNDEF\x10\x00\x12\x0c\n\x08\x42ODY_NED\x10\x08\x12\x0e\n\nVISION_NED\x10\x10\x12\r\n\tESTIM_NED\x10\x12\"\'\n\nCovariance\x12\x19\n\x11\x63ovariance_matrix\x18\x01 \x03(\x02\"S\n\tSpeedBody\x12\x16\n\x0evelocity_x_m_s\x18\x01 \x01(\x02\x12\x16\n\x0evelocity_y_m_s\x18\x02 \x01(\x02\x12\x16\n\x0evelocity_z_m_s\x18\x03 \x01(\x02\"5\n\x0cPositionBody\x12\x0b\n\x03x_m\x18\x01 \x01(\x02\x12\x0b\n\x03y_m\x18\x02 \x01(\x02\x12\x0b\n\x03z_m\x18\x03 \x01(\x02*e\n\x07\x46ixType\x12\n\n\x06NO_GPS\x10\x00\x12\n\n\x06NO_FIX\x10\x01\x12\n\n\x06\x46IX_2D\x10\x02\x12\n\n\x06\x46IX_3D\x10\x03\x12\x0c\n\x08\x46IX_DGPS\x10\x04\x12\r\n\tRTK_FLOAT\x10\x05\x12\r\n\tRTK_FIXED\x10\x06*\x85\x01\n\nFlightMode\x12\x0b\n\x07UNKNOWN\x10\x00\x12\t\n\x05READY\x10\x01\x12\x0b\n\x07TAKEOFF\x10\x02\x12\x08\n\x04HOLD\x10\x03\x12\x0b\n\x07MISSION\x10\x04\x12\x14\n\x10RETURN_TO_LAUNCH\x10\x05\x12\x08\n\x04LAND\x10\x06\x12\x0c\n\x08OFFBOARD\x10\x07\x12\r\n\tFOLLOW_ME\x10\x08*\x93\x01\n\x0bLandedState\x12\x18\n\x14LANDED_STATE_UNKNOWN\x10\x00\x12\x1a\n\x16LANDED_STATE_ON_GROUND\x10\x01\x12\x17\n\x13LANDED_STATE_IN_AIR\x10\x02\x12\x1b\n\x17LANDED_STATE_TAKING_OFF\x10\x03\x12\x18\n\x14LANDED_STATE_LANDING\x10\x04\x32\xec\x13\n\x10TelemetryService\x12o\n\x11SubscribePosition\x12..mavsdk.rpc.telemetry.SubscribePositionRequest\x1a&.mavsdk.rpc.telemetry.PositionResponse\"\x00\x30\x01\x12\x63\n\rSubscribeHome\x12*.mavsdk.rpc.telemetry.SubscribeHomeRequest\x1a\".mavsdk.rpc.telemetry.HomeResponse\"\x00\x30\x01\x12\x66\n\x0eSubscribeInAir\x12+.mavsdk.rpc.telemetry.SubscribeInAirRequest\x1a#.mavsdk.rpc.telemetry.InAirResponse\"\x00\x30\x01\x12x\n\x14SubscribeLandedState\x12\x31.mavsdk.rpc.telemetry.SubscribeLandedStateRequest\x1a).mavsdk.rpc.telemetry.LandedStateResponse\"\x00\x30\x01\x12\x66\n\x0eSubscribeArmed\x12+.mavsdk.rpc.telemetry.SubscribeArmedRequest\x1a#.mavsdk.rpc.telemetry.ArmedResponse\"\x00\x30\x01\x12\x8d\x01\n\x1bSubscribeAttitudeQuaternion\x12\x38.mavsdk.rpc.telemetry.SubscribeAttitudeQuaternionRequest\x1a\x30.mavsdk.rpc.telemetry.AttitudeQuaternionResponse\"\x00\x30\x01\x12~\n\x16SubscribeAttitudeEuler\x12\x33.mavsdk.rpc.telemetry.SubscribeAttitudeEulerRequest\x1a+.mavsdk.rpc.telemetry.AttitudeEulerResponse\"\x00\x30\x01\x12\xa8\x01\n$SubscribeAttitudeAngularVelocityBody\x12\x41.mavsdk.rpc.telemetry.SubscribeAttitudeAngularVelocityBodyRequest\x1a\x39.mavsdk.rpc.telemetry.AttitudeAngularVelocityBodyResponse\"\x00\x30\x01\x12\x9f\x01\n!SubscribeCameraAttitudeQuaternion\x12>.mavsdk.rpc.telemetry.SubscribeCameraAttitudeQuaternionRequest\x1a\x36.mavsdk.rpc.telemetry.CameraAttitudeQuaternionResponse\"\x00\x30\x01\x12\x90\x01\n\x1cSubscribeCameraAttitudeEuler\x12\x39.mavsdk.rpc.telemetry.SubscribeCameraAttitudeEulerRequest\x1a\x31.mavsdk.rpc.telemetry.CameraAttitudeEulerResponse\"\x00\x30\x01\x12\x81\x01\n\x17SubscribeGroundSpeedNed\x12\x34.mavsdk.rpc.telemetry.SubscribeGroundSpeedNedRequest\x1a,.mavsdk.rpc.telemetry.GroundSpeedNedResponse\"\x00\x30\x01\x12l\n\x10SubscribeGpsInfo\x12-.mavsdk.rpc.telemetry.SubscribeGpsInfoRequest\x1a%.mavsdk.rpc.telemetry.GpsInfoResponse\"\x00\x30\x01\x12l\n\x10SubscribeBattery\x12-.mavsdk.rpc.telemetry.SubscribeBatteryRequest\x1a%.mavsdk.rpc.telemetry.BatteryResponse\"\x00\x30\x01\x12u\n\x13SubscribeFlightMode\x12\x30.mavsdk.rpc.telemetry.SubscribeFlightModeRequest\x1a(.mavsdk.rpc.telemetry.FlightModeResponse\"\x00\x30\x01\x12i\n\x0fSubscribeHealth\x12,.mavsdk.rpc.telemetry.SubscribeHealthRequest\x1a$.mavsdk.rpc.telemetry.HealthResponse\"\x00\x30\x01\x12o\n\x11SubscribeRcStatus\x12..mavsdk.rpc.telemetry.SubscribeRcStatusRequest\x1a&.mavsdk.rpc.telemetry.RcStatusResponse\"\x00\x30\x01\x12u\n\x13SubscribeStatusText\x12\x30.mavsdk.rpc.telemetry.SubscribeStatusTextRequest\x1a(.mavsdk.rpc.telemetry.StatusTextResponse\"\x00\x30\x01\x12\x96\x01\n\x1eSubscribeActuatorControlTarget\x12;.mavsdk.rpc.telemetry.SubscribeActuatorControlTargetRequest\x1a\x33.mavsdk.rpc.telemetry.ActuatorControlTargetResponse\"\x00\x30\x01\x12\x93\x01\n\x1dSubscribeActuatorOutputStatus\x12:.mavsdk.rpc.telemetry.SubscribeActuatorOutputStatusRequest\x1a\x32.mavsdk.rpc.telemetry.ActuatorOutputStatusResponse\"\x00\x30\x01\x12o\n\x11SubscribeOdometry\x12..mavsdk.rpc.telemetry.SubscribeOdometryRequest\x1a&.mavsdk.rpc.telemetry.OdometryResponse\"\x00\x30\x01\x42%\n\x13io.mavsdk.telemetryB\x0eTelemetryProtob\x06proto3')
 )
 
 _FIXTYPE = _descriptor.EnumDescriptor(
@@ -61,8 +61,8 @@ _FIXTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3204,
-  serialized_end=3305,
+  serialized_start=4171,
+  serialized_end=4272,
 )
 _sym_db.RegisterEnumDescriptor(_FIXTYPE)
 
@@ -112,12 +112,47 @@ _FLIGHTMODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3308,
-  serialized_end=3441,
+  serialized_start=4275,
+  serialized_end=4408,
 )
 _sym_db.RegisterEnumDescriptor(_FLIGHTMODE)
 
 FlightMode = enum_type_wrapper.EnumTypeWrapper(_FLIGHTMODE)
+_LANDEDSTATE = _descriptor.EnumDescriptor(
+  name='LandedState',
+  full_name='mavsdk.rpc.telemetry.LandedState',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='LANDED_STATE_UNKNOWN', index=0, number=0,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='LANDED_STATE_ON_GROUND', index=1, number=1,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='LANDED_STATE_IN_AIR', index=2, number=2,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='LANDED_STATE_TAKING_OFF', index=3, number=3,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='LANDED_STATE_LANDING', index=4, number=4,
+      serialized_options=None,
+      type=None),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=4411,
+  serialized_end=4558,
+)
+_sym_db.RegisterEnumDescriptor(_LANDEDSTATE)
+
+LandedState = enum_type_wrapper.EnumTypeWrapper(_LANDEDSTATE)
 NO_GPS = 0
 NO_FIX = 1
 FIX_2D = 2
@@ -134,6 +169,11 @@ RETURN_TO_LAUNCH = 5
 LAND = 6
 OFFBOARD = 7
 FOLLOW_ME = 8
+LANDED_STATE_UNKNOWN = 0
+LANDED_STATE_ON_GROUND = 1
+LANDED_STATE_IN_AIR = 2
+LANDED_STATE_TAKING_OFF = 3
+LANDED_STATE_LANDING = 4
 
 
 _STATUSTEXT_STATUSTYPE = _descriptor.EnumDescriptor(
@@ -157,10 +197,40 @@ _STATUSTEXT_STATUSTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3037,
-  serialized_end=3086,
+  serialized_start=3246,
+  serialized_end=3295,
 )
 _sym_db.RegisterEnumDescriptor(_STATUSTEXT_STATUSTYPE)
+
+_ODOMETRY_MAVFRAME = _descriptor.EnumDescriptor(
+  name='MavFrame',
+  full_name='mavsdk.rpc.telemetry.Odometry.MavFrame',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='UNDEF', index=0, number=0,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BODY_NED', index=1, number=8,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='VISION_NED', index=2, number=16,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ESTIM_NED', index=3, number=18,
+      serialized_options=None,
+      type=None),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=3922,
+  serialized_end=3988,
+)
+_sym_db.RegisterEnumDescriptor(_ODOMETRY_MAVFRAME)
 
 
 _SUBSCRIBEPOSITIONREQUEST = _descriptor.Descriptor(
@@ -328,6 +398,61 @@ _INAIRRESPONSE = _descriptor.Descriptor(
 )
 
 
+_SUBSCRIBELANDEDSTATEREQUEST = _descriptor.Descriptor(
+  name='SubscribeLandedStateRequest',
+  full_name='mavsdk.rpc.telemetry.SubscribeLandedStateRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=286,
+  serialized_end=315,
+)
+
+
+_LANDEDSTATERESPONSE = _descriptor.Descriptor(
+  name='LandedStateResponse',
+  full_name='mavsdk.rpc.telemetry.LandedStateResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='landed_state', full_name='mavsdk.rpc.telemetry.LandedStateResponse.landed_state', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=317,
+  serialized_end=395,
+)
+
+
 _SUBSCRIBEARMEDREQUEST = _descriptor.Descriptor(
   name='SubscribeArmedRequest',
   full_name='mavsdk.rpc.telemetry.SubscribeArmedRequest',
@@ -347,8 +472,8 @@ _SUBSCRIBEARMEDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=286,
-  serialized_end=309,
+  serialized_start=397,
+  serialized_end=420,
 )
 
 
@@ -378,8 +503,8 @@ _ARMEDRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=311,
-  serialized_end=344,
+  serialized_start=422,
+  serialized_end=455,
 )
 
 
@@ -402,8 +527,8 @@ _SUBSCRIBEATTITUDEQUATERNIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=346,
-  serialized_end=382,
+  serialized_start=457,
+  serialized_end=493,
 )
 
 
@@ -433,8 +558,8 @@ _ATTITUDEQUATERNIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=384,
-  serialized_end=475,
+  serialized_start=495,
+  serialized_end=586,
 )
 
 
@@ -457,8 +582,8 @@ _SUBSCRIBEATTITUDEEULERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=477,
-  serialized_end=508,
+  serialized_start=588,
+  serialized_end=619,
 )
 
 
@@ -488,8 +613,8 @@ _ATTITUDEEULERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=510,
-  serialized_end=591,
+  serialized_start=621,
+  serialized_end=702,
 )
 
 
@@ -512,8 +637,8 @@ _SUBSCRIBEATTITUDEANGULARVELOCITYBODYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=593,
-  serialized_end=638,
+  serialized_start=704,
+  serialized_end=749,
 )
 
 
@@ -543,8 +668,8 @@ _ATTITUDEANGULARVELOCITYBODYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=640,
-  serialized_end=760,
+  serialized_start=751,
+  serialized_end=871,
 )
 
 
@@ -567,8 +692,8 @@ _SUBSCRIBECAMERAATTITUDEQUATERNIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=762,
-  serialized_end=804,
+  serialized_start=873,
+  serialized_end=915,
 )
 
 
@@ -598,8 +723,8 @@ _CAMERAATTITUDEQUATERNIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=806,
-  serialized_end=903,
+  serialized_start=917,
+  serialized_end=1014,
 )
 
 
@@ -622,8 +747,8 @@ _SUBSCRIBECAMERAATTITUDEEULERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=905,
-  serialized_end=942,
+  serialized_start=1016,
+  serialized_end=1053,
 )
 
 
@@ -653,8 +778,8 @@ _CAMERAATTITUDEEULERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=944,
-  serialized_end=1031,
+  serialized_start=1055,
+  serialized_end=1142,
 )
 
 
@@ -677,8 +802,8 @@ _SUBSCRIBEGROUNDSPEEDNEDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1033,
-  serialized_end=1065,
+  serialized_start=1144,
+  serialized_end=1176,
 )
 
 
@@ -708,8 +833,8 @@ _GROUNDSPEEDNEDRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1067,
-  serialized_end=1149,
+  serialized_start=1178,
+  serialized_end=1260,
 )
 
 
@@ -732,8 +857,8 @@ _SUBSCRIBEGPSINFOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1151,
-  serialized_end=1176,
+  serialized_start=1262,
+  serialized_end=1287,
 )
 
 
@@ -763,8 +888,8 @@ _GPSINFORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1178,
-  serialized_end=1244,
+  serialized_start=1289,
+  serialized_end=1355,
 )
 
 
@@ -787,8 +912,8 @@ _SUBSCRIBEBATTERYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1246,
-  serialized_end=1271,
+  serialized_start=1357,
+  serialized_end=1382,
 )
 
 
@@ -818,8 +943,8 @@ _BATTERYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1273,
-  serialized_end=1338,
+  serialized_start=1384,
+  serialized_end=1449,
 )
 
 
@@ -842,8 +967,8 @@ _SUBSCRIBEFLIGHTMODEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1340,
-  serialized_end=1368,
+  serialized_start=1451,
+  serialized_end=1479,
 )
 
 
@@ -873,8 +998,8 @@ _FLIGHTMODERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1370,
-  serialized_end=1445,
+  serialized_start=1481,
+  serialized_end=1556,
 )
 
 
@@ -897,8 +1022,8 @@ _SUBSCRIBEHEALTHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1447,
-  serialized_end=1471,
+  serialized_start=1558,
+  serialized_end=1582,
 )
 
 
@@ -928,8 +1053,8 @@ _HEALTHRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1473,
-  serialized_end=1535,
+  serialized_start=1584,
+  serialized_end=1646,
 )
 
 
@@ -952,8 +1077,8 @@ _SUBSCRIBERCSTATUSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1537,
-  serialized_end=1563,
+  serialized_start=1648,
+  serialized_end=1674,
 )
 
 
@@ -983,8 +1108,8 @@ _RCSTATUSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1565,
-  serialized_end=1634,
+  serialized_start=1676,
+  serialized_end=1745,
 )
 
 
@@ -1007,8 +1132,8 @@ _SUBSCRIBESTATUSTEXTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1636,
-  serialized_end=1664,
+  serialized_start=1747,
+  serialized_end=1775,
 )
 
 
@@ -1038,8 +1163,8 @@ _STATUSTEXTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1666,
-  serialized_end=1741,
+  serialized_start=1777,
+  serialized_end=1852,
 )
 
 
@@ -1062,8 +1187,8 @@ _SUBSCRIBEACTUATORCONTROLTARGETREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1743,
-  serialized_end=1782,
+  serialized_start=1854,
+  serialized_end=1893,
 )
 
 
@@ -1093,8 +1218,8 @@ _ACTUATORCONTROLTARGETRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1784,
-  serialized_end=1893,
+  serialized_start=1895,
+  serialized_end=2004,
 )
 
 
@@ -1117,8 +1242,8 @@ _SUBSCRIBEACTUATOROUTPUTSTATUSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1895,
-  serialized_end=1933,
+  serialized_start=2006,
+  serialized_end=2044,
 )
 
 
@@ -1148,8 +1273,63 @@ _ACTUATOROUTPUTSTATUSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1935,
-  serialized_end=2041,
+  serialized_start=2046,
+  serialized_end=2152,
+)
+
+
+_SUBSCRIBEODOMETRYREQUEST = _descriptor.Descriptor(
+  name='SubscribeOdometryRequest',
+  full_name='mavsdk.rpc.telemetry.SubscribeOdometryRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2154,
+  serialized_end=2180,
+)
+
+
+_ODOMETRYRESPONSE = _descriptor.Descriptor(
+  name='OdometryResponse',
+  full_name='mavsdk.rpc.telemetry.OdometryResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='odometry', full_name='mavsdk.rpc.telemetry.OdometryResponse.odometry', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2182,
+  serialized_end=2250,
 )
 
 
@@ -1200,8 +1380,8 @@ _POSITION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2043,
-  serialized_end=2156,
+  serialized_start=2252,
+  serialized_end=2365,
 )
 
 
@@ -1252,8 +1432,8 @@ _QUATERNION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2158,
-  serialized_end=2214,
+  serialized_start=2367,
+  serialized_end=2423,
 )
 
 
@@ -1297,8 +1477,8 @@ _EULERANGLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2216,
-  serialized_end=2282,
+  serialized_start=2425,
+  serialized_end=2491,
 )
 
 
@@ -1342,8 +1522,8 @@ _ANGULARVELOCITYBODY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2284,
-  serialized_end=2365,
+  serialized_start=2493,
+  serialized_end=2574,
 )
 
 
@@ -1387,8 +1567,8 @@ _SPEEDNED = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2367,
-  serialized_end=2459,
+  serialized_start=2576,
+  serialized_end=2668,
 )
 
 
@@ -1425,8 +1605,8 @@ _GPSINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2461,
-  serialized_end=2543,
+  serialized_start=2670,
+  serialized_end=2752,
 )
 
 
@@ -1463,8 +1643,8 @@ _BATTERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2545,
-  serialized_end=2600,
+  serialized_start=2754,
+  serialized_end=2809,
 )
 
 
@@ -1536,8 +1716,8 @@ _HEALTH = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2603,
-  serialized_end=2852,
+  serialized_start=2812,
+  serialized_end=3061,
 )
 
 
@@ -1581,8 +1761,8 @@ _RCSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2854,
-  serialized_end=2947,
+  serialized_start=3063,
+  serialized_end=3156,
 )
 
 
@@ -1620,8 +1800,8 @@ _STATUSTEXT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2950,
-  serialized_end=3086,
+  serialized_start=3159,
+  serialized_end=3295,
 )
 
 
@@ -1658,8 +1838,8 @@ _ACTUATORCONTROLTARGET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3088,
-  serialized_end=3144,
+  serialized_start=3297,
+  serialized_end=3353,
 )
 
 
@@ -1696,12 +1876,222 @@ _ACTUATOROUTPUTSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3146,
-  serialized_end=3202,
+  serialized_start=3355,
+  serialized_end=3411,
+)
+
+
+_ODOMETRY = _descriptor.Descriptor(
+  name='Odometry',
+  full_name='mavsdk.rpc.telemetry.Odometry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='time_usec', full_name='mavsdk.rpc.telemetry.Odometry.time_usec', index=0,
+      number=1, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='frame_id', full_name='mavsdk.rpc.telemetry.Odometry.frame_id', index=1,
+      number=2, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='child_frame_id', full_name='mavsdk.rpc.telemetry.Odometry.child_frame_id', index=2,
+      number=3, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='position_body', full_name='mavsdk.rpc.telemetry.Odometry.position_body', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='q', full_name='mavsdk.rpc.telemetry.Odometry.q', index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='speed_body', full_name='mavsdk.rpc.telemetry.Odometry.speed_body', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='angular_velocity_body', full_name='mavsdk.rpc.telemetry.Odometry.angular_velocity_body', index=6,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='pose_covariance', full_name='mavsdk.rpc.telemetry.Odometry.pose_covariance', index=7,
+      number=8, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='velocity_covariance', full_name='mavsdk.rpc.telemetry.Odometry.velocity_covariance', index=8,
+      number=9, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _ODOMETRY_MAVFRAME,
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3414,
+  serialized_end=3988,
+)
+
+
+_COVARIANCE = _descriptor.Descriptor(
+  name='Covariance',
+  full_name='mavsdk.rpc.telemetry.Covariance',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='covariance_matrix', full_name='mavsdk.rpc.telemetry.Covariance.covariance_matrix', index=0,
+      number=1, type=2, cpp_type=6, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3990,
+  serialized_end=4029,
+)
+
+
+_SPEEDBODY = _descriptor.Descriptor(
+  name='SpeedBody',
+  full_name='mavsdk.rpc.telemetry.SpeedBody',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='velocity_x_m_s', full_name='mavsdk.rpc.telemetry.SpeedBody.velocity_x_m_s', index=0,
+      number=1, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='velocity_y_m_s', full_name='mavsdk.rpc.telemetry.SpeedBody.velocity_y_m_s', index=1,
+      number=2, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='velocity_z_m_s', full_name='mavsdk.rpc.telemetry.SpeedBody.velocity_z_m_s', index=2,
+      number=3, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4031,
+  serialized_end=4114,
+)
+
+
+_POSITIONBODY = _descriptor.Descriptor(
+  name='PositionBody',
+  full_name='mavsdk.rpc.telemetry.PositionBody',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='x_m', full_name='mavsdk.rpc.telemetry.PositionBody.x_m', index=0,
+      number=1, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='y_m', full_name='mavsdk.rpc.telemetry.PositionBody.y_m', index=1,
+      number=2, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='z_m', full_name='mavsdk.rpc.telemetry.PositionBody.z_m', index=2,
+      number=3, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4116,
+  serialized_end=4169,
 )
 
 _POSITIONRESPONSE.fields_by_name['position'].message_type = _POSITION
 _HOMERESPONSE.fields_by_name['home'].message_type = _POSITION
+_LANDEDSTATERESPONSE.fields_by_name['landed_state'].enum_type = _LANDEDSTATE
 _ATTITUDEQUATERNIONRESPONSE.fields_by_name['attitude_quaternion'].message_type = _QUATERNION
 _ATTITUDEEULERRESPONSE.fields_by_name['attitude_euler'].message_type = _EULERANGLE
 _ATTITUDEANGULARVELOCITYBODYRESPONSE.fields_by_name['attitude_angular_velocity_body'].message_type = _ANGULARVELOCITYBODY
@@ -1716,15 +2106,27 @@ _RCSTATUSRESPONSE.fields_by_name['rc_status'].message_type = _RCSTATUS
 _STATUSTEXTRESPONSE.fields_by_name['status_text'].message_type = _STATUSTEXT
 _ACTUATORCONTROLTARGETRESPONSE.fields_by_name['actuator_control_target'].message_type = _ACTUATORCONTROLTARGET
 _ACTUATOROUTPUTSTATUSRESPONSE.fields_by_name['actuator_output_status'].message_type = _ACTUATOROUTPUTSTATUS
+_ODOMETRYRESPONSE.fields_by_name['odometry'].message_type = _ODOMETRY
 _GPSINFO.fields_by_name['fix_type'].enum_type = _FIXTYPE
 _STATUSTEXT.fields_by_name['type'].enum_type = _STATUSTEXT_STATUSTYPE
 _STATUSTEXT_STATUSTYPE.containing_type = _STATUSTEXT
+_ODOMETRY.fields_by_name['frame_id'].enum_type = _ODOMETRY_MAVFRAME
+_ODOMETRY.fields_by_name['child_frame_id'].enum_type = _ODOMETRY_MAVFRAME
+_ODOMETRY.fields_by_name['position_body'].message_type = _POSITIONBODY
+_ODOMETRY.fields_by_name['q'].message_type = _QUATERNION
+_ODOMETRY.fields_by_name['speed_body'].message_type = _SPEEDBODY
+_ODOMETRY.fields_by_name['angular_velocity_body'].message_type = _ANGULARVELOCITYBODY
+_ODOMETRY.fields_by_name['pose_covariance'].message_type = _COVARIANCE
+_ODOMETRY.fields_by_name['velocity_covariance'].message_type = _COVARIANCE
+_ODOMETRY_MAVFRAME.containing_type = _ODOMETRY
 DESCRIPTOR.message_types_by_name['SubscribePositionRequest'] = _SUBSCRIBEPOSITIONREQUEST
 DESCRIPTOR.message_types_by_name['PositionResponse'] = _POSITIONRESPONSE
 DESCRIPTOR.message_types_by_name['SubscribeHomeRequest'] = _SUBSCRIBEHOMEREQUEST
 DESCRIPTOR.message_types_by_name['HomeResponse'] = _HOMERESPONSE
 DESCRIPTOR.message_types_by_name['SubscribeInAirRequest'] = _SUBSCRIBEINAIRREQUEST
 DESCRIPTOR.message_types_by_name['InAirResponse'] = _INAIRRESPONSE
+DESCRIPTOR.message_types_by_name['SubscribeLandedStateRequest'] = _SUBSCRIBELANDEDSTATEREQUEST
+DESCRIPTOR.message_types_by_name['LandedStateResponse'] = _LANDEDSTATERESPONSE
 DESCRIPTOR.message_types_by_name['SubscribeArmedRequest'] = _SUBSCRIBEARMEDREQUEST
 DESCRIPTOR.message_types_by_name['ArmedResponse'] = _ARMEDRESPONSE
 DESCRIPTOR.message_types_by_name['SubscribeAttitudeQuaternionRequest'] = _SUBSCRIBEATTITUDEQUATERNIONREQUEST
@@ -1755,6 +2157,8 @@ DESCRIPTOR.message_types_by_name['SubscribeActuatorControlTargetRequest'] = _SUB
 DESCRIPTOR.message_types_by_name['ActuatorControlTargetResponse'] = _ACTUATORCONTROLTARGETRESPONSE
 DESCRIPTOR.message_types_by_name['SubscribeActuatorOutputStatusRequest'] = _SUBSCRIBEACTUATOROUTPUTSTATUSREQUEST
 DESCRIPTOR.message_types_by_name['ActuatorOutputStatusResponse'] = _ACTUATOROUTPUTSTATUSRESPONSE
+DESCRIPTOR.message_types_by_name['SubscribeOdometryRequest'] = _SUBSCRIBEODOMETRYREQUEST
+DESCRIPTOR.message_types_by_name['OdometryResponse'] = _ODOMETRYRESPONSE
 DESCRIPTOR.message_types_by_name['Position'] = _POSITION
 DESCRIPTOR.message_types_by_name['Quaternion'] = _QUATERNION
 DESCRIPTOR.message_types_by_name['EulerAngle'] = _EULERANGLE
@@ -1767,8 +2171,13 @@ DESCRIPTOR.message_types_by_name['RcStatus'] = _RCSTATUS
 DESCRIPTOR.message_types_by_name['StatusText'] = _STATUSTEXT
 DESCRIPTOR.message_types_by_name['ActuatorControlTarget'] = _ACTUATORCONTROLTARGET
 DESCRIPTOR.message_types_by_name['ActuatorOutputStatus'] = _ACTUATOROUTPUTSTATUS
+DESCRIPTOR.message_types_by_name['Odometry'] = _ODOMETRY
+DESCRIPTOR.message_types_by_name['Covariance'] = _COVARIANCE
+DESCRIPTOR.message_types_by_name['SpeedBody'] = _SPEEDBODY
+DESCRIPTOR.message_types_by_name['PositionBody'] = _POSITIONBODY
 DESCRIPTOR.enum_types_by_name['FixType'] = _FIXTYPE
 DESCRIPTOR.enum_types_by_name['FlightMode'] = _FLIGHTMODE
+DESCRIPTOR.enum_types_by_name['LandedState'] = _LANDEDSTATE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 SubscribePositionRequest = _reflection.GeneratedProtocolMessageType('SubscribePositionRequest', (_message.Message,), {
@@ -1812,6 +2221,20 @@ InAirResponse = _reflection.GeneratedProtocolMessageType('InAirResponse', (_mess
   # @@protoc_insertion_point(class_scope:mavsdk.rpc.telemetry.InAirResponse)
   })
 _sym_db.RegisterMessage(InAirResponse)
+
+SubscribeLandedStateRequest = _reflection.GeneratedProtocolMessageType('SubscribeLandedStateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBELANDEDSTATEREQUEST,
+  '__module__' : 'telemetry_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.telemetry.SubscribeLandedStateRequest)
+  })
+_sym_db.RegisterMessage(SubscribeLandedStateRequest)
+
+LandedStateResponse = _reflection.GeneratedProtocolMessageType('LandedStateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _LANDEDSTATERESPONSE,
+  '__module__' : 'telemetry_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.telemetry.LandedStateResponse)
+  })
+_sym_db.RegisterMessage(LandedStateResponse)
 
 SubscribeArmedRequest = _reflection.GeneratedProtocolMessageType('SubscribeArmedRequest', (_message.Message,), {
   'DESCRIPTOR' : _SUBSCRIBEARMEDREQUEST,
@@ -2023,6 +2446,20 @@ ActuatorOutputStatusResponse = _reflection.GeneratedProtocolMessageType('Actuato
   })
 _sym_db.RegisterMessage(ActuatorOutputStatusResponse)
 
+SubscribeOdometryRequest = _reflection.GeneratedProtocolMessageType('SubscribeOdometryRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBEODOMETRYREQUEST,
+  '__module__' : 'telemetry_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.telemetry.SubscribeOdometryRequest)
+  })
+_sym_db.RegisterMessage(SubscribeOdometryRequest)
+
+OdometryResponse = _reflection.GeneratedProtocolMessageType('OdometryResponse', (_message.Message,), {
+  'DESCRIPTOR' : _ODOMETRYRESPONSE,
+  '__module__' : 'telemetry_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.telemetry.OdometryResponse)
+  })
+_sym_db.RegisterMessage(OdometryResponse)
+
 Position = _reflection.GeneratedProtocolMessageType('Position', (_message.Message,), {
   'DESCRIPTOR' : _POSITION,
   '__module__' : 'telemetry_pb2'
@@ -2107,6 +2544,34 @@ ActuatorOutputStatus = _reflection.GeneratedProtocolMessageType('ActuatorOutputS
   })
 _sym_db.RegisterMessage(ActuatorOutputStatus)
 
+Odometry = _reflection.GeneratedProtocolMessageType('Odometry', (_message.Message,), {
+  'DESCRIPTOR' : _ODOMETRY,
+  '__module__' : 'telemetry_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.telemetry.Odometry)
+  })
+_sym_db.RegisterMessage(Odometry)
+
+Covariance = _reflection.GeneratedProtocolMessageType('Covariance', (_message.Message,), {
+  'DESCRIPTOR' : _COVARIANCE,
+  '__module__' : 'telemetry_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.telemetry.Covariance)
+  })
+_sym_db.RegisterMessage(Covariance)
+
+SpeedBody = _reflection.GeneratedProtocolMessageType('SpeedBody', (_message.Message,), {
+  'DESCRIPTOR' : _SPEEDBODY,
+  '__module__' : 'telemetry_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.telemetry.SpeedBody)
+  })
+_sym_db.RegisterMessage(SpeedBody)
+
+PositionBody = _reflection.GeneratedProtocolMessageType('PositionBody', (_message.Message,), {
+  'DESCRIPTOR' : _POSITIONBODY,
+  '__module__' : 'telemetry_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.telemetry.PositionBody)
+  })
+_sym_db.RegisterMessage(PositionBody)
+
 
 DESCRIPTOR._options = None
 
@@ -2116,8 +2581,8 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=3444,
-  serialized_end=5749,
+  serialized_start=4561,
+  serialized_end=7101,
   methods=[
   _descriptor.MethodDescriptor(
     name='SubscribePosition',
@@ -2147,9 +2612,18 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
+    name='SubscribeLandedState',
+    full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeLandedState',
+    index=3,
+    containing_service=None,
+    input_type=_SUBSCRIBELANDEDSTATEREQUEST,
+    output_type=_LANDEDSTATERESPONSE,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
     name='SubscribeArmed',
     full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeArmed',
-    index=3,
+    index=4,
     containing_service=None,
     input_type=_SUBSCRIBEARMEDREQUEST,
     output_type=_ARMEDRESPONSE,
@@ -2158,7 +2632,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeAttitudeQuaternion',
     full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeAttitudeQuaternion',
-    index=4,
+    index=5,
     containing_service=None,
     input_type=_SUBSCRIBEATTITUDEQUATERNIONREQUEST,
     output_type=_ATTITUDEQUATERNIONRESPONSE,
@@ -2167,7 +2641,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeAttitudeEuler',
     full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeAttitudeEuler',
-    index=5,
+    index=6,
     containing_service=None,
     input_type=_SUBSCRIBEATTITUDEEULERREQUEST,
     output_type=_ATTITUDEEULERRESPONSE,
@@ -2176,7 +2650,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeAttitudeAngularVelocityBody',
     full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeAttitudeAngularVelocityBody',
-    index=6,
+    index=7,
     containing_service=None,
     input_type=_SUBSCRIBEATTITUDEANGULARVELOCITYBODYREQUEST,
     output_type=_ATTITUDEANGULARVELOCITYBODYRESPONSE,
@@ -2185,7 +2659,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeCameraAttitudeQuaternion',
     full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeCameraAttitudeQuaternion',
-    index=7,
+    index=8,
     containing_service=None,
     input_type=_SUBSCRIBECAMERAATTITUDEQUATERNIONREQUEST,
     output_type=_CAMERAATTITUDEQUATERNIONRESPONSE,
@@ -2194,7 +2668,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeCameraAttitudeEuler',
     full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeCameraAttitudeEuler',
-    index=8,
+    index=9,
     containing_service=None,
     input_type=_SUBSCRIBECAMERAATTITUDEEULERREQUEST,
     output_type=_CAMERAATTITUDEEULERRESPONSE,
@@ -2203,7 +2677,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeGroundSpeedNed',
     full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeGroundSpeedNed',
-    index=9,
+    index=10,
     containing_service=None,
     input_type=_SUBSCRIBEGROUNDSPEEDNEDREQUEST,
     output_type=_GROUNDSPEEDNEDRESPONSE,
@@ -2212,7 +2686,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeGpsInfo',
     full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeGpsInfo',
-    index=10,
+    index=11,
     containing_service=None,
     input_type=_SUBSCRIBEGPSINFOREQUEST,
     output_type=_GPSINFORESPONSE,
@@ -2221,7 +2695,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeBattery',
     full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeBattery',
-    index=11,
+    index=12,
     containing_service=None,
     input_type=_SUBSCRIBEBATTERYREQUEST,
     output_type=_BATTERYRESPONSE,
@@ -2230,7 +2704,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeFlightMode',
     full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeFlightMode',
-    index=12,
+    index=13,
     containing_service=None,
     input_type=_SUBSCRIBEFLIGHTMODEREQUEST,
     output_type=_FLIGHTMODERESPONSE,
@@ -2239,7 +2713,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeHealth',
     full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeHealth',
-    index=13,
+    index=14,
     containing_service=None,
     input_type=_SUBSCRIBEHEALTHREQUEST,
     output_type=_HEALTHRESPONSE,
@@ -2248,7 +2722,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeRcStatus',
     full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeRcStatus',
-    index=14,
+    index=15,
     containing_service=None,
     input_type=_SUBSCRIBERCSTATUSREQUEST,
     output_type=_RCSTATUSRESPONSE,
@@ -2257,7 +2731,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeStatusText',
     full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeStatusText',
-    index=15,
+    index=16,
     containing_service=None,
     input_type=_SUBSCRIBESTATUSTEXTREQUEST,
     output_type=_STATUSTEXTRESPONSE,
@@ -2266,7 +2740,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeActuatorControlTarget',
     full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeActuatorControlTarget',
-    index=16,
+    index=17,
     containing_service=None,
     input_type=_SUBSCRIBEACTUATORCONTROLTARGETREQUEST,
     output_type=_ACTUATORCONTROLTARGETRESPONSE,
@@ -2275,10 +2749,19 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeActuatorOutputStatus',
     full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeActuatorOutputStatus',
-    index=17,
+    index=18,
     containing_service=None,
     input_type=_SUBSCRIBEACTUATOROUTPUTSTATUSREQUEST,
     output_type=_ACTUATOROUTPUTSTATUSRESPONSE,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SubscribeOdometry',
+    full_name='mavsdk.rpc.telemetry.TelemetryService.SubscribeOdometry',
+    index=19,
+    containing_service=None,
+    input_type=_SUBSCRIBEODOMETRYREQUEST,
+    output_type=_ODOMETRYRESPONSE,
     serialized_options=None,
   ),
 ])

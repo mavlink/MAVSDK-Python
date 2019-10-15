@@ -12,6 +12,7 @@ class System:
         "Calibration",
         "Camera",
         "Core",
+        "Geofence",
         "Gimbal",
         "Info",
         "Mission",
@@ -90,6 +91,12 @@ class System:
         if "core" not in self._plugins:
             raise RuntimeError("Core plugin has not been initialized! Did you run `System.connect()`?")
         return self._plugins["core"]
+
+    @property
+    def geofence(self) -> Geofence:
+        if "geofence" not in self._plugins:
+            raise RuntimeError("Geofence plugin has not been initialized! Did you run `System.connect()`?")
+        return self._plugins["geofence"]
 
     @property
     def gimbal(self) -> Gimbal:
