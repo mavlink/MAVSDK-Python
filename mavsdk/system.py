@@ -17,6 +17,7 @@ class System:
         "Mission",
         "Param",
         "Offboard",
+        "Shell",
         "Telemetry"
     ]
 
@@ -125,6 +126,12 @@ class System:
         if "telemetry" not in self._plugins:
             raise RuntimeError("Telemetry plugin has not been initialized! Did you run `System.connect()`?")
         return self._plugins["telemetry"]
+
+    @property
+    def shell(self) -> Shell:
+        if "mocap" not in self._plugins:
+            raise RuntimeError("Shell plugin has not been initialized! Did you run `System.connect()`?")
+        return self._plugins["shell"]
 
     @staticmethod
     def _start_mavsdk_server(system_address=None):

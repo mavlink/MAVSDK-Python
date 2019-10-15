@@ -11,3 +11,4 @@ from .camera import *
 from .info import *
 from .mission import *
 from .telemetry import *
+from .shell import *
