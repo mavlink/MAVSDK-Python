@@ -13,7 +13,7 @@ class ShellMessage:
      need_response : bool
           Set if the sender wants the receiver to send a response.
 
-     timeout : uint32_t
+     timeout_ms : uint32_t
           Timeout (ms).
 
      data : std::string
@@ -26,11 +26,11 @@ class ShellMessage:
     def __init__(
             self,
             need_response,
-            timeout,
+            timeout_ms,
             data):
         """ Initializes the ShellMessage object """
         self.need_response = need_response
-        self.timeout = timeout
+        self.timeout_ms = timeout_ms
         self.data = data
 
     def __equals__(self, to_compare):
@@ -40,7 +40,7 @@ class ShellMessage:
             # ShellMessage object
             return \
                 (self.need_response == to_compare.need_response) and \
-                (self.timeout == to_compare.timeout) and \
+                (self.timeout_ms == to_compare.timeout_ms) and \
                 (self.data == to_compare.data)
 
         except AttributeError:
@@ -50,7 +50,7 @@ class ShellMessage:
         """ ShellMessage in string representation """
         struct_repr = ", ".join([
                 "need_response: " + str(self.need_response),
-                "timeout: " + str(self.timeout),
+                "timeout_ms: " + str(self.timeout_ms),
                 "data: " + str(self.data)
                 ])
 
@@ -64,7 +64,7 @@ class ShellMessage:
                 rpcShellMessage.need_response,
                 
                 
-                rpcShellMessage.timeout,
+                rpcShellMessage.timeout_ms,
                 
                 
                 rpcShellMessage.data
@@ -82,7 +82,7 @@ class ShellMessage:
         
         
             
-        rpcShellMessage.timeout = self.timeout
+        rpcShellMessage.timeout_ms = self.timeout_ms
             
         
         
@@ -106,8 +106,8 @@ class ShellResult:
      result_str : std::string
           Human-readable English string describing the result
 
-     response_shell_message : ShellMessage
-          Response string (if available)
+     response_data : std::string
+          Response message (if available)
 
      """
 
@@ -177,11 +177,11 @@ class ShellResult:
             self,
             result,
             result_str,
-            response_shell_message):
+            response_data):
         """ Initializes the ShellResult object """
         self.result = result
         self.result_str = result_str
-        self.response_shell_message = response_shell_message
+        self.response_data = response_data
 
     def __equals__(self, to_compare):
         """ Checks if two ShellResult are the same """
@@ -191,7 +191,7 @@ class ShellResult:
             return \
                 (self.result == to_compare.result) and \
                 (self.result_str == to_compare.result_str) and \
-                (self.response_shell_message == to_compare.response_shell_message)
+                (self.response_data == to_compare.response_data)
 
         except AttributeError:
             return False
@@ -201,7 +201,7 @@ class ShellResult:
         struct_repr = ", ".join([
                 "result: " + str(self.result),
                 "result_str: " + str(self.result_str),
-                "response_shell_message: " + str(self.response_shell_message)
+                "response_data: " + str(self.response_data)
                 ])
 
         return f"ShellResult: [{struct_repr}]"
@@ -217,7 +217,7 @@ class ShellResult:
                 rpcShellResult.result_str,
                 
                 
-                ShellMessage.translate_from_rpc(rpcShellResult.response_shell_message)
+                rpcShellResult.response_data
                 )
 
     def translate_to_rpc(self, rpcShellResult):
@@ -238,7 +238,7 @@ class ShellResult:
         
         
             
-        self.response_shell_message.translate_to_rpc(rpcShellResult.response_shell_message)
+        rpcShellResult.response_data = self.response_data
             
         
         
@@ -304,5 +304,5 @@ class Shell(AsyncBase):
 
         if result.result is not ShellResult.Result.SUCCESS:
             raise ShellError(result, "set_shell_message()", shell_message)
-        return result.response_shell_message
+        return result.response_data
         
