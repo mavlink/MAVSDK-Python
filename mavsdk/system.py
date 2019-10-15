@@ -136,7 +136,7 @@ class System:
 
     @property
     def shell(self) -> Shell:
-        if "mocap" not in self._plugins:
+        if "shell" not in self._plugins:
             raise RuntimeError("Shell plugin has not been initialized! Did you run `System.connect()`?")
         return self._plugins["shell"]
 
