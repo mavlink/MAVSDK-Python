@@ -37,7 +37,7 @@ async def {{ name.lower_snake_case }}(self{% for param in params %}, {{ param.na
         rpc_elems_list.append(rpc_elem)
     request.{{ param.name.lower_snake_case }}.extend(rpc_elems_list)
             {% else %}
-    request.{{ param_name.lower_snake_case }} = param.name.rpc()
+    {{ param.name.lower_snake_case }}.translate_to_rpc(request.{{ param.name.lower_snake_case }})
             {% endif %}
         {% endif %}
     {% endfor -%}
