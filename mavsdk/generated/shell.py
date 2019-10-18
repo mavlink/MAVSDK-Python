@@ -17,7 +17,7 @@ class ShellMessage:
           Timeout (ms).
 
      data : std::string
-          Serial data (70 symbols max).
+          Serial data.
 
      """
 
@@ -106,9 +106,6 @@ class ShellResult:
      result_str : std::string
           Human-readable English string describing the result
 
-     response_data : std::string
-          Response message (if available)
-
      """
 
     
@@ -131,11 +128,11 @@ class ShellResult:
          CONNECTION_ERROR
               Connection error
 
-         DATA_TOO_LONG
-              Request Data too long
-
          NO_RESPONSE
               Response does not received
+
+         BUSY
+              Shell busy (transfer in progress)
 
          """
 
@@ -144,8 +141,8 @@ class ShellResult:
         SUCCESS = 1
         NO_SYSTEM = 2
         CONNECTION_ERROR = 3
-        DATA_TOO_LONG = 4
-        NO_RESPONSE = 5
+        NO_RESPONSE = 4
+        BUSY = 5
 
         def translate_to_rpc(self, rpcResult):
             return {
@@ -153,8 +150,8 @@ class ShellResult:
                     1: shell_pb2.ShellResult.SUCCESS,
                     2: shell_pb2.ShellResult.NO_SYSTEM,
                     3: shell_pb2.ShellResult.CONNECTION_ERROR,
-                    4: shell_pb2.ShellResult.DATA_TOO_LONG,
-                    5: shell_pb2.ShellResult.NO_RESPONSE
+                    4: shell_pb2.ShellResult.NO_RESPONSE,
+                    5: shell_pb2.ShellResult.BUSY
                 }.get(self.value, None)
 
         @staticmethod
@@ -165,8 +162,8 @@ class ShellResult:
                     1: ShellResult.Result.SUCCESS,
                     2: ShellResult.Result.NO_SYSTEM,
                     3: ShellResult.Result.CONNECTION_ERROR,
-                    4: ShellResult.Result.DATA_TOO_LONG,
-                    5: ShellResult.Result.NO_RESPONSE,
+                    4: ShellResult.Result.NO_RESPONSE,
+                    5: ShellResult.Result.BUSY,
                 }.get(rpc_enum_value, None)
 
         def __str__(self):
@@ -176,12 +173,10 @@ class ShellResult:
     def __init__(
             self,
             result,
-            result_str,
-            response_data):
+            result_str):
         """ Initializes the ShellResult object """
         self.result = result
         self.result_str = result_str
-        self.response_data = response_data
 
     def __equals__(self, to_compare):
         """ Checks if two ShellResult are the same """
@@ -190,8 +185,7 @@ class ShellResult:
             # ShellResult object
             return \
                 (self.result == to_compare.result) and \
-                (self.result_str == to_compare.result_str) and \
-                (self.response_data == to_compare.response_data)
+                (self.result_str == to_compare.result_str)
 
         except AttributeError:
             return False
@@ -200,8 +194,7 @@ class ShellResult:
         """ ShellResult in string representation """
         struct_repr = ", ".join([
                 "result: " + str(self.result),
-                "result_str: " + str(self.result_str),
-                "response_data: " + str(self.response_data)
+                "result_str: " + str(self.result_str)
                 ])
 
         return f"ShellResult: [{struct_repr}]"
@@ -214,10 +207,7 @@ class ShellResult:
                 ShellResult.Result.translate_from_rpc(rpcShellResult.result),
                 
                 
-                rpcShellResult.result_str,
-                
-                
-                rpcShellResult.response_data
+                rpcShellResult.result_str
                 )
 
     def translate_to_rpc(self, rpcShellResult):
@@ -233,12 +223,6 @@ class ShellResult:
         
             
         rpcShellResult.result_str = self.result_str
-            
-        
-        
-        
-            
-        rpcShellResult.response_data = self.response_data
             
         
         
@@ -286,6 +270,11 @@ class Shell(AsyncBase):
          ----------
          shell_message : ShellMessage
              
+         Returns
+         -------
+         response_data : std::string
+              Response message data (if available)
+
          Raises
          ------
          ShellError
@@ -294,6 +283,8 @@ class Shell(AsyncBase):
 
         request = shell_pb2.SetShellMessageRequest()
         
+            
+                
         shell_message.translate_to_rpc(request.shell_message)
                 
             
@@ -304,5 +295,7 @@ class Shell(AsyncBase):
 
         if result.result is not ShellResult.Result.SUCCESS:
             raise ShellError(result, "set_shell_message()", shell_message)
-        return result.response_data
+        
+
+        return response.response_data
         
