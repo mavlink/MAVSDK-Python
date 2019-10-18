@@ -6,7 +6,7 @@ from . import shell_pb2 as shell__pb2
 
 class ShellServiceStub(object):
   """*
-  Shell Service allow to communicate with vehicle's system shell.
+  Allow to communicate with the vehicle's system shell.
   """
 
   def __init__(self, channel):
@@ -15,19 +15,19 @@ class ShellServiceStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.SetShellMessage = channel.unary_unary(
-        '/mavsdk.rpc.shell.ShellService/SetShellMessage',
-        request_serializer=shell__pb2.SetShellMessageRequest.SerializeToString,
-        response_deserializer=shell__pb2.SetShellMessageResponse.FromString,
+    self.Send = channel.unary_unary(
+        '/mavsdk.rpc.shell.ShellService/Send',
+        request_serializer=shell__pb2.SendRequest.SerializeToString,
+        response_deserializer=shell__pb2.SendResponse.FromString,
         )
 
 
 class ShellServiceServicer(object):
   """*
-  Shell Service allow to communicate with vehicle's system shell.
+  Allow to communicate with the vehicle's system shell.
   """
 
-  def SetShellMessage(self, request, context):
+  def Send(self, request, context):
     """Communicate with a vehicle's Shell.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -37,10 +37,10 @@ class ShellServiceServicer(object):
 
 def add_ShellServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'SetShellMessage': grpc.unary_unary_rpc_method_handler(
-          servicer.SetShellMessage,
-          request_deserializer=shell__pb2.SetShellMessageRequest.FromString,
-          response_serializer=shell__pb2.SetShellMessageResponse.SerializeToString,
+      'Send': grpc.unary_unary_rpc_method_handler(
+          servicer.Send,
+          request_deserializer=shell__pb2.SendRequest.FromString,
+          response_serializer=shell__pb2.SendResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

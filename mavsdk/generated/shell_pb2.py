@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='mavsdk.rpc.shell',
   syntax='proto3',
   serialized_options=_b('\n\017io.mavsdk.shellB\nShellProto'),
-  serialized_pb=_b('\n\x0bshell.proto\x12\x10mavsdk.rpc.shell\"O\n\x16SetShellMessageRequest\x12\x35\n\rshell_message\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.shell.ShellMessage\"e\n\x17SetShellMessageResponse\x12\x33\n\x0cshell_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.shell.ShellResult\x12\x15\n\rresponse_data\x18\x02 \x01(\t\"G\n\x0cShellMessage\x12\x15\n\rneed_response\x18\x01 \x01(\x08\x12\x12\n\ntimeout_ms\x18\x02 \x01(\r\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\t\"\xbb\x01\n\x0bShellResult\x12\x34\n\x06result\x18\x01 \x01(\x0e\x32$.mavsdk.rpc.shell.ShellResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"b\n\x06Result\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x0b\n\x07SUCCESS\x10\x01\x12\r\n\tNO_SYSTEM\x10\x02\x12\x14\n\x10\x43ONNECTION_ERROR\x10\x03\x12\x0f\n\x0bNO_RESPONSE\x10\x04\x12\x08\n\x04\x42USY\x10\x05\x32x\n\x0cShellService\x12h\n\x0fSetShellMessage\x12(.mavsdk.rpc.shell.SetShellMessageRequest\x1a).mavsdk.rpc.shell.SetShellMessageResponse\"\x00\x42\x1d\n\x0fio.mavsdk.shellB\nShellProtob\x06proto3')
+  serialized_pb=_b('\n\x0bshell.proto\x12\x10mavsdk.rpc.shell\"D\n\x0bSendRequest\x12\x35\n\rshell_message\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.shell.ShellMessage\"b\n\x0cSendResponse\x12\x33\n\x0cshell_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.shell.ShellResult\x12\x1d\n\x15response_message_data\x18\x02 \x01(\t\"G\n\x0cShellMessage\x12\x15\n\rneed_response\x18\x01 \x01(\x08\x12\x12\n\ntimeout_ms\x18\x02 \x01(\r\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\t\"\xbb\x01\n\x0bShellResult\x12\x34\n\x06result\x18\x01 \x01(\x0e\x32$.mavsdk.rpc.shell.ShellResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"b\n\x06Result\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x0b\n\x07SUCCESS\x10\x01\x12\r\n\tNO_SYSTEM\x10\x02\x12\x14\n\x10\x43ONNECTION_ERROR\x10\x03\x12\x0f\n\x0bNO_RESPONSE\x10\x04\x12\x08\n\x04\x42USY\x10\x05\x32W\n\x0cShellService\x12G\n\x04Send\x12\x1d.mavsdk.rpc.shell.SendRequest\x1a\x1e.mavsdk.rpc.shell.SendResponse\"\x00\x42\x1d\n\x0fio.mavsdk.shellB\nShellProtob\x06proto3')
 )
 
 
@@ -58,21 +58,21 @@ _SHELLRESULT_RESULT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=380,
-  serialized_end=478,
+  serialized_start=366,
+  serialized_end=464,
 )
 _sym_db.RegisterEnumDescriptor(_SHELLRESULT_RESULT)
 
 
-_SETSHELLMESSAGEREQUEST = _descriptor.Descriptor(
-  name='SetShellMessageRequest',
-  full_name='mavsdk.rpc.shell.SetShellMessageRequest',
+_SENDREQUEST = _descriptor.Descriptor(
+  name='SendRequest',
+  full_name='mavsdk.rpc.shell.SendRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='shell_message', full_name='mavsdk.rpc.shell.SetShellMessageRequest.shell_message', index=0,
+      name='shell_message', full_name='mavsdk.rpc.shell.SendRequest.shell_message', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -91,26 +91,26 @@ _SETSHELLMESSAGEREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=33,
-  serialized_end=112,
+  serialized_end=101,
 )
 
 
-_SETSHELLMESSAGERESPONSE = _descriptor.Descriptor(
-  name='SetShellMessageResponse',
-  full_name='mavsdk.rpc.shell.SetShellMessageResponse',
+_SENDRESPONSE = _descriptor.Descriptor(
+  name='SendResponse',
+  full_name='mavsdk.rpc.shell.SendResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='shell_result', full_name='mavsdk.rpc.shell.SetShellMessageResponse.shell_result', index=0,
+      name='shell_result', full_name='mavsdk.rpc.shell.SendResponse.shell_result', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='response_data', full_name='mavsdk.rpc.shell.SetShellMessageResponse.response_data', index=1,
+      name='response_message_data', full_name='mavsdk.rpc.shell.SendResponse.response_message_data', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -128,8 +128,8 @@ _SETSHELLMESSAGERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=114,
-  serialized_end=215,
+  serialized_start=103,
+  serialized_end=201,
 )
 
 
@@ -173,8 +173,8 @@ _SHELLMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=217,
-  serialized_end=288,
+  serialized_start=203,
+  serialized_end=274,
 )
 
 
@@ -212,33 +212,33 @@ _SHELLRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=291,
-  serialized_end=478,
+  serialized_start=277,
+  serialized_end=464,
 )
 
-_SETSHELLMESSAGEREQUEST.fields_by_name['shell_message'].message_type = _SHELLMESSAGE
-_SETSHELLMESSAGERESPONSE.fields_by_name['shell_result'].message_type = _SHELLRESULT
+_SENDREQUEST.fields_by_name['shell_message'].message_type = _SHELLMESSAGE
+_SENDRESPONSE.fields_by_name['shell_result'].message_type = _SHELLRESULT
 _SHELLRESULT.fields_by_name['result'].enum_type = _SHELLRESULT_RESULT
 _SHELLRESULT_RESULT.containing_type = _SHELLRESULT
-DESCRIPTOR.message_types_by_name['SetShellMessageRequest'] = _SETSHELLMESSAGEREQUEST
-DESCRIPTOR.message_types_by_name['SetShellMessageResponse'] = _SETSHELLMESSAGERESPONSE
+DESCRIPTOR.message_types_by_name['SendRequest'] = _SENDREQUEST
+DESCRIPTOR.message_types_by_name['SendResponse'] = _SENDRESPONSE
 DESCRIPTOR.message_types_by_name['ShellMessage'] = _SHELLMESSAGE
 DESCRIPTOR.message_types_by_name['ShellResult'] = _SHELLRESULT
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-SetShellMessageRequest = _reflection.GeneratedProtocolMessageType('SetShellMessageRequest', (_message.Message,), {
-  'DESCRIPTOR' : _SETSHELLMESSAGEREQUEST,
+SendRequest = _reflection.GeneratedProtocolMessageType('SendRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SENDREQUEST,
   '__module__' : 'shell_pb2'
-  # @@protoc_insertion_point(class_scope:mavsdk.rpc.shell.SetShellMessageRequest)
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.shell.SendRequest)
   })
-_sym_db.RegisterMessage(SetShellMessageRequest)
+_sym_db.RegisterMessage(SendRequest)
 
-SetShellMessageResponse = _reflection.GeneratedProtocolMessageType('SetShellMessageResponse', (_message.Message,), {
-  'DESCRIPTOR' : _SETSHELLMESSAGERESPONSE,
+SendResponse = _reflection.GeneratedProtocolMessageType('SendResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SENDRESPONSE,
   '__module__' : 'shell_pb2'
-  # @@protoc_insertion_point(class_scope:mavsdk.rpc.shell.SetShellMessageResponse)
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.shell.SendResponse)
   })
-_sym_db.RegisterMessage(SetShellMessageResponse)
+_sym_db.RegisterMessage(SendResponse)
 
 ShellMessage = _reflection.GeneratedProtocolMessageType('ShellMessage', (_message.Message,), {
   'DESCRIPTOR' : _SHELLMESSAGE,
@@ -263,16 +263,16 @@ _SHELLSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=480,
-  serialized_end=600,
+  serialized_start=466,
+  serialized_end=553,
   methods=[
   _descriptor.MethodDescriptor(
-    name='SetShellMessage',
-    full_name='mavsdk.rpc.shell.ShellService.SetShellMessage',
+    name='Send',
+    full_name='mavsdk.rpc.shell.ShellService.Send',
     index=0,
     containing_service=None,
-    input_type=_SETSHELLMESSAGEREQUEST,
-    output_type=_SETSHELLMESSAGERESPONSE,
+    input_type=_SENDREQUEST,
+    output_type=_SENDRESPONSE,
     serialized_options=None,
   ),
 ])
