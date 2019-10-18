@@ -19,6 +19,7 @@ class System:
         "Mocap",
         "Param",
         "Offboard",
+        "Shell",
         "Telemetry"
     ]
 
@@ -134,6 +135,12 @@ class System:
             raise RuntimeError("Telemetry plugin has not been initialized! Did you run `System.connect()`?")
         return self._plugins["telemetry"]
 
+    @property
+    def shell(self) -> Shell:
+        if "shell" not in self._plugins:
+            raise RuntimeError("Shell plugin has not been initialized! Did you run `System.connect()`?")
+        return self._plugins["shell"]
+    
     @property
     def mocap(self) -> Mocap:
         if "mocap" not in self._plugins:

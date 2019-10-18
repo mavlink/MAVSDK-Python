@@ -9,7 +9,7 @@ export TEMPLATE_PATH="${WORK_DIR}/other/templates/"
 function generate {
     printf "# -*- coding: utf-8 -*-\n\n" > $PLUGIN_INIT
 
-    for PROTO_FILE in `find ${PROTO_DIR} -name "*.proto" -type f`; do
+    for PROTO_FILE in `find ${PROTO_DIR}/protos -name "*.proto" -type f`; do
 
         # Generate bindings for each file individually
         python3 -m grpc_tools.protoc -I${GENERATED_DIR} \

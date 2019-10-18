@@ -11,4 +11,5 @@ from .mocap import *
 from .calibration import *
 from .core import *
 from .mission import *
+from .shell import *
 from .offboard import *
