@@ -56,7 +56,7 @@ class custom_build(build):
         elif sys.platform.startswith('darwin'):
             return 'macos'
         elif sys.platform.startswith('win'):
-            return 'win64.exe'
+            return 'win32.exe'
         else:
             raise NotImplementedError(
                 f"Platform {sys.platform} is not (yet) supported by this setup.py!")
