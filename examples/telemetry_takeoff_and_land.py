@@ -9,7 +9,8 @@ async def run():
     This is the "main" function.
     It first creates the drone object and initializes it.
 
-    Then it registers tasks to be run in parallel (one can think of them as threads):
+    Then it registers tasks to be run in parallel (one can think of them as
+    threads):
         - print_altitude: print the altitude
         - print_flight_mode: print the flight mode
         - observe_is_in_air: this monitors the flight mode and returns when the
@@ -50,7 +51,7 @@ async def run():
     print("-- Landing")
     await drone.action.land()
 
-    # Wait until the drone is landed (instead of returning after 'land' is sent)
+    # Wait until the drone is landed (instead of exiting after 'land' is sent)
     await termination_task
 
 
