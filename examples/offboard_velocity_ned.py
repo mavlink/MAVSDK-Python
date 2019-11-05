@@ -24,6 +24,12 @@ async def run():
     drone = System()
     await drone.connect(system_address="udp://:14540")
 
+    print("Waiting for drone to connect...")
+    async for state in drone.core.connection_state():
+        if state.is_connected:
+            print(f"Drone discovered with UUID: {state.uuid}")
+            break
+
     print("-- Arming")
     await drone.action.arm()
 

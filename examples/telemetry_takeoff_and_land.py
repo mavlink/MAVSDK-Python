@@ -19,13 +19,19 @@ async def run():
     and finally land.
 
     Note that "observe_is_in_air" is not necessary, but it ensures that the
-    script waits until the drone is actually landed, so that we receive feedback
-    during the landing as well.
+    script waits until the drone is actually landed, so that we receive
+    feedback during the landing as well.
     """
 
     # Init the drone
     drone = System()
     await drone.connect(system_address="udp://:14540")
+
+    print("Waiting for drone to connect...")
+    async for state in drone.core.connection_state():
+        if state.is_connected:
+            print(f"Drone discovered with UUID: {state.uuid}")
+            break
 
     # Start parallel tasks
     asyncio.ensure_future(print_altitude(drone))
