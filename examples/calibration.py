@@ -13,10 +13,6 @@ async def run():
     async for progress_data in drone.calibration.calibrate_gyro():
         print(progress_data)
 
-    print("-- Starting magneto calibration")
-    async for progress_data in drone.calibration.calibrate_magnetometer():
-        print(progress_data)
-
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
