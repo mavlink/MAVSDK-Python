@@ -29,7 +29,8 @@ async def run():
     try:
         await drone.offboard.start()
     except OffboardError as error:
-        print(f"Starting offboard mode failed with error code: {error._result.result}")
+        print(f"Starting offboard mode failed with error code: \
+              {error._result.result}")
         print("-- Disarming")
         await drone.action.disarm()
         return
@@ -42,7 +43,6 @@ async def run():
     await drone.offboard.set_attitude(Attitude(-30.0, 0.0, 0.0, 0.6))
     await asyncio.sleep(2)
 
-
     print("-- Roll 0 at 60% thrust")
     await drone.offboard.set_attitude(Attitude(0.0, 0.0, 0.0, 0.6))
     await asyncio.sleep(2)
@@ -51,7 +51,8 @@ async def run():
     try:
         await drone.offboard.stop()
     except OffboardError as error:
-        print(f"Stopping offboard mode failed with error code: {error._result.result}")
+        print(f"Stopping offboard mode failed with error code: \
+              {error._result.result}")
 
 
 if __name__ == "__main__":
