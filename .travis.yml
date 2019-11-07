@@ -1,0 +1,37 @@
+language: python
+
+matrix:
+  fast_finish: true
+  include:
+    - os: linux
+      name: "ubuntu 18.04 (superbuild)"
+      dist: bionic
+      python:
+        - 3.6
+        - 3.7
+      env:
+      - MATRIX_EVAL="BUILD_TARGET=linux"
+    - os: osx
+      name: "macOS"
+      osx_image: xcode11.2
+      python:
+        - 3.6
+        - 3.7
+      env:
+      - MATRIX_EVAL="BUILD_TARGET=macos"
+    - os: windows
+      name: "windows"
+      python:
+        - 3.6
+        - 3.7
+      env:
+      - MATRIX_EVAL="BUILD_TARGET=windows"
+
+install:
+  - set -e
+  - pip install --user -r requirements.txt -r requirements-dev.txt
+
+script:
+  - set -e
+  - python --version
+  - pip --version
