@@ -29,7 +29,7 @@ matrix:
 
 install:
   - set -e
-  - pip install --user -r requirements.txt -r requirements-dev.txt
+  - pip install -r requirements.txt -r requirements-dev.txt
 
 script:
   - set -e
