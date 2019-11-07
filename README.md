@@ -1,5 +1,7 @@
 # MAVSDK-Python
 
+[![Build Status](https://travis-ci.org/mavlink/MAVSDK-Python.svg?branch=master)](https://travis-ci.org/mavlink/MAVSDK-Python)
+
 This is the Python wrapper for MAVSDK.
 
 The Python wrapper is based on a gRPC client communicating with the gRPC server written in C++. To use the Python wrapper the gRPC server called "backend" needs to be running on the same system. The wrapper is essentially auto-generated from the message definitions ([proto files](https://github.com/mavlink/MAVSDK-Proto)).
