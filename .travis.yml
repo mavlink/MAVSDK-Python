@@ -4,7 +4,7 @@ matrix:
   fast_finish: true
   include:
     - os: linux
-      name: "ubuntu 18.04 (superbuild)"
+      name: "Linux"
       dist: bionic
       python:
         - 3.6
