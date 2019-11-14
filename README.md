@@ -8,6 +8,7 @@ The Python wrapper is based on a gRPC client communicating with the gRPC server 
 
 - Python 3.6+ is required (because the wrapper is based on [asyncio](https://docs.python.org/3.7/library/asyncio.html)).
 - You may need to run `pip3` instead of `pip` and `python3` instead of `python`, depending of your system defaults.
+- Auterion has a [Getting started with MAVSDK-Python] (https://auterion.com/getting-started-with-mavsdk-python/) guide if you're a beginner and not sure where to start.
 
 ## Install using pip from PyPy
 
