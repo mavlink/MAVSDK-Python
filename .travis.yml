@@ -22,7 +22,6 @@ matrix:
     name: macOS
     osx_image: xcode11.2
     python:
-    - 3.6
     - 3.7
     env:
     - BUILD_TARGET=macos
