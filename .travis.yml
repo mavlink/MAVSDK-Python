@@ -47,9 +47,7 @@ matrix:
 install:
 - set -e
 - pip3 install -r requirements.txt -r requirements-dev.txt
-- if [[ "${BUILD_TARGET}" = "linux" ]]; then
-    pip3 install auditwheel;
-  fi
+- pip3 install auditwheel
 - if [[ "${BUILD_TARGET}" = "macos" ]]; then
     pip3 install delocate;
   fi
