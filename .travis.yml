@@ -31,7 +31,7 @@ matrix:
     before_install:
     - set -e
     - if [[ "${BUILD_TARGET}" = "windows" ]]; then
-      choco install python;
+      choco install python3 --version=3.7;
       python -m pip install --upgrade pip;
       fi
     env:
