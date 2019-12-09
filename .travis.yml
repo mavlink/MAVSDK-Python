@@ -26,20 +26,17 @@ matrix:
     env:
     - BUILD_TARGET=macos
   - os: windows
-    language: sh # python not supported yet
+    language: shell # python not supported yet
     name: windows
+    before_install:
+    - set -e
+    - if [[ "${BUILD_TARGET}" = "windows" ]]; then
+      - choco install python;
+      - python -m pip install --upgrade pip;
+      fi
     env:
     - BUILD_TARGET=windows
-before_install:
-- set -e
-- if [[ "${BUILD_TARGET}" = "windows" ]]; then
-    git clone https://github.com/pyenv-win/pyenv-win.git $HOME/.pyenv;
-    export PATH="$HOME/.pyenv/pyenv-win/bin:$HOME/.pyenv/pyenv-win/shims:$PATH";
-    pyenv install -q 3.7.5;
-    pyenv rehash;
-    pyenv global 3.7.5;
-    python --version;
-  fi
+    - PATH=/c/Python37:/c/Python37/Scripts:$PATH
 install:
 - set -e
 - pip install -r requirements.txt -r requirements-dev.txt
