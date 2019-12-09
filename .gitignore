@@ -3,6 +3,7 @@ __pycache__
 *.pyc
 *.egg*
 dist/
+wheelhouse/
 build/
 *.proto
 .idea/
