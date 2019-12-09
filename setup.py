@@ -71,7 +71,7 @@ class custom_build(build):
     @property
     def mavsdk_server_tag(self):
         """
-        The release tag of the `mavsdk_server` binary is defined in the file 
+        The release tag of the `mavsdk_server` binary is defined in the file
         "MAVSDK_SERVER_VERSION", and used to download the corresponding release
         """
         with open("MAVSDK_SERVER_VERSION") as mavsdk_server_version_file:
@@ -102,7 +102,7 @@ class custom_build(build):
 
 setup(
     name="mavsdk",
-    version="0.4.0",
+    version="0.5.0",
     description="Python wrapper for MAVSDK",
     long_description=parse_long_description(),
     url="https://github.com/mavlink/MAVSDK-Python",
