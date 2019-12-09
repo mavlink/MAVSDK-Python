@@ -40,9 +40,7 @@ matrix:
 install:
 - set -e
 - pip install -r requirements.txt -r requirements-dev.txt
-- if [[ "${BUILD_TARGET}" = "linux" ]]; then
-    pip install auditwheel;
-  fi
+- pip install auditwheel
 script:
 - set -e
 - python --version
