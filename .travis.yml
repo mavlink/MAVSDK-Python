@@ -53,7 +53,7 @@ script:
     mkdir wheelhouse;
     ls dist/*any.whl | sed -e 'p;s/any/win32/' | xargs -n2 cp;
     ls dist/*any.whl | sed -e 'p;s/any/win_amd64/' | xargs -n2 cp;
-    mv dist/*win32.whl dist/*win_amd64.whl wheelhouse/
+    mv dist/*win32.whl dist/*win_amd64.whl wheelhouse/;
   fi
 deploy:
 - provider: pypi
