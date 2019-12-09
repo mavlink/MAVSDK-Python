@@ -17,6 +17,7 @@ matrix:
       pip3 --version;
     env:
     - BUILD_TARGET=linux
+    - PYTHON_BIN=python3
     addons:
       apt:
         packages:
@@ -30,6 +31,7 @@ matrix:
       pip3 --version;
     env:
     - BUILD_TARGET=macos
+    - PYTHON_BIN=python3
   - os: windows
     language: shell # python not supported yet
     name: windows
@@ -37,17 +39,18 @@ matrix:
       choco install python3 --version=3.7.5;
       python -m pip install --upgrade pip;
       python --version;
-      pip --version;
+      pip3 --version;
     env:
     - BUILD_TARGET=windows
     - PATH=/c/Python37:/c/Python37/Scripts:$PATH
+    - PYTHON_BIN=python
 install:
 - set -e
-- python -m pip install -r requirements.txt -r requirements-dev.txt
-- python -m pip install auditwheel
+- pip3 install -r requirements.txt -r requirements-dev.txt
+- pip3 install auditwheel
 script:
 - set -e
-- python setup.py bdist_wheel
+- $PYTHON_BIN setup.py bdist_wheel
 - if [[ "${BUILD_TARGET}" = "linux" ]]; then
     auditwheel repair dist/*.whl;
   fi
