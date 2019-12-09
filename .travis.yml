@@ -21,8 +21,8 @@ matrix:
   - os: osx
     name: macOS
     osx_image: xcode11.2
-    python:
-    - 3.7
+    language: shell
+    before_install: python3 --version ; pip3 --version ; sw_vers
     env:
     - BUILD_TARGET=macos
   - os: windows
