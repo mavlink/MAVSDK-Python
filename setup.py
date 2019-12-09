@@ -8,6 +8,7 @@ import urllib.request
 import os
 import stat
 import sys
+import subprocess
 
 
 def parse_requirements(filename):
@@ -100,9 +101,19 @@ class custom_build(build):
         os.chmod(self.mavsdk_server_filepath, st.st_mode | stat.S_IEXEC)
 
 
+def version():
+    process = subprocess.Popen(["git", "describe", "--tags"],
+                               stdout=subprocess.PIPE)
+    (output, err) = process.communicate()
+    exit_code = process.wait()
+    if exit_code != 0:
+        raise RuntimeError(f"git describe command exited with: {exit_code}")
+    return output.decode("utf-8").strip()
+
+
 setup(
     name="mavsdk",
-    version="0.5.0",
+    version=version(),
     description="Python wrapper for MAVSDK",
     long_description=parse_long_description(),
     url="https://github.com/mavlink/MAVSDK-Python",
