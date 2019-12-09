@@ -12,6 +12,9 @@ matrix:
     python:
     - 3.6
     - 3.7
+    before_install:
+      python3 --version;
+      pip3 --version;
     env:
     - BUILD_TARGET=linux
     addons:
@@ -21,30 +24,29 @@ matrix:
   - os: osx
     name: macOS
     osx_image: xcode11.2
-    language: shell
-    before_install: python3 --version ; pip3 --version ; sw_vers
+    language: shell # python not working
+    before_install:
+      python3 --version;
+      pip3 --version;
     env:
     - BUILD_TARGET=macos
   - os: windows
     language: shell # python not supported yet
     name: windows
     before_install:
-    - set -e
-    - if [[ "${BUILD_TARGET}" = "windows" ]]; then
       choco install python3 --version=3.7.5;
       python -m pip install --upgrade pip;
-      fi
+      python --version;
+      pip --version;
     env:
     - BUILD_TARGET=windows
     - PATH=/c/Python37:/c/Python37/Scripts:$PATH
 install:
 - set -e
-- pip install -r requirements.txt -r requirements-dev.txt
-- pip install auditwheel
+- python -m pip install -r requirements.txt -r requirements-dev.txt
+- python -m pip install auditwheel
 script:
 - set -e
-- python --version
-- pip --version
 - python setup.py bdist_wheel
 - if [[ "${BUILD_TARGET}" = "linux" ]]; then
     auditwheel repair dist/*.whl;
