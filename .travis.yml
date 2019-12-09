@@ -26,25 +26,39 @@ matrix:
     env:
     - BUILD_TARGET=macos
   - os: windows
+    language: sh # python not supported yet
     name: windows
-    python:
-    - 3.6
-    - 3.7
     env:
     - BUILD_TARGET=windows
+before_install:
+- set -e
+- if [[ "${BUILD_TARGET}" = "windows" ]]; then
+    git clone https://github.com/pyenv-win/pyenv-win.git $HOME/.pyenv;
+    export PATH="$HOME/.pyenv/pyenv-win/bin:$HOME/.pyenv/pyenv-win/shims:$PATH";
+    pyenv install -q 3.7;
+    pyenv rehash;
+    pyenv local 3.7;
+    python --version;
+  fi
 install:
 - set -e
 - pip install -r requirements.txt -r requirements-dev.txt
 - if [[ "${BUILD_TARGET}" = "linux" ]]; then
-    pip install auditwheel; fi
+    pip install auditwheel;
+  fi
 script:
 - set -e
 - python --version
 - pip --version
+- python setup.py bdist_wheel
 - if [[ "${BUILD_TARGET}" = "linux" ]]; then
-    python setup.py bdist_wheel;
-    auditwheel
-    repair dist/*.whl;
+    auditwheel repair dist/*.whl;
+  fi
+- if [[ "${BUILD_TARGET}" = "windows" ]]; then
+    mkdir wheelhouse;
+    ls dist/*any.whl | sed -e 'p;s/any/win32/' | xargs -n2 cp;
+    ls dist/*any.whl | sed -e 'p;s/any/win_amd64/' | xargs -n2 cp;
+    mv dist/*win32.whl dist/*win_amd64.whl wheelhouse/
   fi
 deploy:
 - provider: pypi
