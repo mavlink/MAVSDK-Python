@@ -47,12 +47,20 @@ matrix:
 install:
 - set -e
 - pip3 install -r requirements.txt -r requirements-dev.txt
-- pip3 install auditwheel
+- if [[ "${BUILD_TARGET}" = "linux" ]]; then
+    pip3 install auditwheel;
+  fi
+- if [[ "${BUILD_TARGET}" = "macos" ]]; then
+    pip3 install delocate;
+  fi
 script:
 - set -e
 - $PYTHON_BIN setup.py bdist_wheel
 - if [[ "${BUILD_TARGET}" = "linux" ]]; then
     auditwheel repair dist/*.whl;
+  fi
+- if [[ "${BUILD_TARGET}" = "macos" ]]; then
+    delocate-wheel -w wheelhouse -v dist/*.whl;
   fi
 - if [[ "${BUILD_TARGET}" = "windows" ]]; then
     mkdir wheelhouse;
