@@ -76,12 +76,12 @@ script:
 - if [[ "${BUILD_TARGET}" = "windows64" ]]; then
     mkdir wheelhouse;
     ls dist/*any.whl | sed -e 'p;s/any/win_amd64/' | xargs -n2 cp;
-    mv dist/*.whl wheelhouse/;
+    mv dist/*win_amd64.whl wheelhouse/;
   fi
 - if [[ "${BUILD_TARGET}" = "windows32" ]]; then
     mkdir wheelhouse;
     ls dist/*any.whl | sed -e 'p;s/any/win32/' | xargs -n2 cp;
-    mv dist/*.whl wheelhouse/;
+    mv dist/*win32.whl wheelhouse/;
   fi
 - if [[ ! -z "${TRAVIS_TAG}" ]]; then
     echo "Deploying to PyPi";
