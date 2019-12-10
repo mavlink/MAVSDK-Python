@@ -59,6 +59,7 @@ script:
   fi
 - if [[ "${BUILD_TARGET}" = "macos" ]]; then
     delocate-wheel -w wheelhouse -v dist/*.whl;
+    ls wheelhouse/*any.whl | sed -e 'p;s/any/macosx_10_9_x86_64/' | xargs -n2 mv;
   fi
 - if [[ "${BUILD_TARGET}" = "windows" ]]; then
     mkdir wheelhouse;
