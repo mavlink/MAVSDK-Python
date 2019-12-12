@@ -631,8 +631,12 @@ class Mission(AsyncBase):
             raise MissionError(result, "download_mission()")
         
 
-        return [MissionItem].translate_from_rpc(response.mission_items)
-        
+        mission_items = []
+        for mission_items_rpc in response.mission_items:
+            mission_items.append(MissionItem.translate_from_rpc(mission_items_rpc))
+
+        return mission_items
+            
 
     async def cancel_mission_download(self):
         """

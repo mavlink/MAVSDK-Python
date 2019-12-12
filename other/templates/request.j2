@@ -53,5 +53,13 @@ async def {{ name.lower_snake_case }}(self{% for param in params %}, {{ param.na
     {% if return_type.is_primitive -%}
     return response.{{ return_name.lower_snake_case }}
     {% else -%}
-    return {{ return_type.name }}.translate_from_rpc(response.{{ return_name.lower_snake_case }})
+        {% if return_type.is_repeated -%}
+    {{ return_name.lower_snake_case }} = []
+    for {{ return_name.lower_snake_case }}_rpc in response.{{ return_name.lower_snake_case }}:
+        {{ return_name.lower_snake_case }}.append({{ return_type.inner_name }}.translate_from_rpc({{ return_name.lower_snake_case }}_rpc))
+
+    return {{ return_name.lower_snake_case }}
+        {% else -%}
+    return {{ return_type.inner_name }}.translate_from_rpc(response.{{ return_name.lower_snake_case }})
+        {% endif -%}
     {% endif %}

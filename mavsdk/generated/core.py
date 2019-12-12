@@ -227,5 +227,9 @@ class Core(AsyncBase):
 
         
 
-        return [PluginInfo].translate_from_rpc(response.plugin_info)
-        
+        plugin_info = []
+        for plugin_info_rpc in response.plugin_info:
+            plugin_info.append(PluginInfo.translate_from_rpc(plugin_info_rpc))
+
+        return plugin_info
+            
