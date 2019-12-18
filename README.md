@@ -12,7 +12,7 @@ The Python wrapper is based on a gRPC client communicating with the gRPC server 
 - You may need to run `pip3` instead of `pip` and `python3` instead of `python`, depending of your system defaults.
 - Auterion has a [Getting started with MAVSDK-Python] (https://auterion.com/getting-started-with-mavsdk-python/) guide if you're a beginner and not sure where to start.
 
-## Install using pip from PyPy
+## Install using pip from PyPi
 
 To install mavsdk-python, simply run:
 
@@ -20,7 +20,16 @@ To install mavsdk-python, simply run:
 pip3 install mavsdk
 ```
 
-The package contains `mavsdk_server` already (previously called "backend"). It needs to be run manually with `start_mavlink()`. Have a look at the examples to see it used in practice.
+The package contains `mavsdk_server` already (previously called "backend"), which is started automatically when connecting (e.g. `await drone.connect()`). Have a look at the examples to see it used in practice. It will be something like:
+
+```python
+from mavsdk import System
+
+...
+
+drone = System()
+await drone.connect(system_address="udp://:14540")
+```
 
 ## Run the examples
 
@@ -80,6 +89,6 @@ pip3 install -e .
 
 ### Build mavsdk_server
 
-MAVDSK-Python runs the `mavsdk_server` when `start_mavlink()` is called. Under the hood, this will run `mavsdk/bin/mavsdk_server`, which has to be built separately from [MAVSDK](https://github.com/mavlink/MAVSDK) and copied there.
+MAVDSK-Python runs the `mavsdk_server` when `await drone.connect()` is called. Under the hood, this will run `mavsdk/bin/mavsdk_server`, which has to be built separately from [MAVSDK](https://github.com/mavlink/MAVSDK) and copied there.
 
 For more help on this step, check the [docs on how to build from source](https://mavsdk.mavlink.io/develop/en/contributing/build.html).
