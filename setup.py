@@ -116,6 +116,7 @@ setup(
     version=version(),
     description="Python wrapper for MAVSDK",
     long_description=parse_long_description(),
+    long_description_content_type="text/markdown",
     url="https://github.com/mavlink/MAVSDK-Python",
     maintainer="Jonas Vautherin, Julian Oes",
     maintainer_email="jonas@auterion.com, julian.oes@auterion.com",
