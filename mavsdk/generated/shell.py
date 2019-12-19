@@ -131,6 +131,9 @@ class ShellResult:
          NO_RESPONSE
               Response was not received
 
+         NOT_COMPLETED
+              Response transfer potentially not completed (termination symbol not received)
+
          BUSY
               Shell busy (transfer in progress)
 
@@ -142,7 +145,8 @@ class ShellResult:
         NO_SYSTEM = 2
         CONNECTION_ERROR = 3
         NO_RESPONSE = 4
-        BUSY = 5
+        NOT_COMPLETED = 5
+        BUSY = 6
 
         def translate_to_rpc(self, rpcResult):
             return {
@@ -151,7 +155,8 @@ class ShellResult:
                     2: shell_pb2.ShellResult.NO_SYSTEM,
                     3: shell_pb2.ShellResult.CONNECTION_ERROR,
                     4: shell_pb2.ShellResult.NO_RESPONSE,
-                    5: shell_pb2.ShellResult.BUSY
+                    5: shell_pb2.ShellResult.NOT_COMPLETED,
+                    6: shell_pb2.ShellResult.BUSY
                 }.get(self.value, None)
 
         @staticmethod
@@ -163,7 +168,8 @@ class ShellResult:
                     2: ShellResult.Result.NO_SYSTEM,
                     3: ShellResult.Result.CONNECTION_ERROR,
                     4: ShellResult.Result.NO_RESPONSE,
-                    5: ShellResult.Result.BUSY,
+                    5: ShellResult.Result.NOT_COMPLETED,
+                    6: ShellResult.Result.BUSY,
                 }.get(rpc_enum_value, None)
 
         def __str__(self):
