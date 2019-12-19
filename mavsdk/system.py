@@ -140,7 +140,7 @@ class System:
         if "shell" not in self._plugins:
             raise RuntimeError("Shell plugin has not been initialized! Did you run `System.connect()`?")
         return self._plugins["shell"]
-    
+
     @property
     def mocap(self) -> Mocap:
         if "mocap" not in self._plugins:
@@ -163,7 +163,7 @@ class System:
             from importlib_resources import path
 
         with path(bin, 'mavsdk_server') as backend:
-            bin_path_and_args = [os.fspath(backend)]
+            bin_path_and_args = [os.fspath(backend), "-p", "50051"]
             if system_address:
                 bin_path_and_args.append(system_address)
             p = subprocess.Popen(bin_path_and_args,
