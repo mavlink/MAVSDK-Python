@@ -1,15 +1,11 @@
 #!/usr/bin/env python3
 
 """
-Some caveats when attempting to run the examples in non-gps environments:
+Caveat when attempting to run the examples in non-gps environments:
 
-- `drone.action.arm()` will return a `COMMAND_DENIED` result because the action requires switching
-  to LOITER mode first, something that is currently not supported in a non-gps environment. You will
-  need to temporarily disable this part here:
-  `https://github.com/mavlink/MAVSDK/blob/develop/plugins/action/action_impl.cpp#L61-L65`
-
-- `drone.offboard.stop()` will also return a `COMMAND_DENIED` result because it requires a mode
-  switch to HOLD, something that is currently not supported in a non-gps environment.
+`drone.offboard.stop()` will return a `COMMAND_DENIED` result because it
+requires a mode switch to HOLD, something that is currently not supported in a
+non-gps environment.
 """
 
 import asyncio
