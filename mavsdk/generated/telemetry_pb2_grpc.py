@@ -116,6 +116,126 @@ class TelemetryServiceStub(object):
         request_serializer=telemetry__pb2.SubscribeOdometryRequest.SerializeToString,
         response_deserializer=telemetry__pb2.OdometryResponse.FromString,
         )
+    self.SubscribePositionVelocityNed = channel.unary_stream(
+        '/mavsdk.rpc.telemetry.TelemetryService/SubscribePositionVelocityNed',
+        request_serializer=telemetry__pb2.SubscribePositionVelocityNedRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.PositionVelocityNedResponse.FromString,
+        )
+    self.SubscribeGroundTruth = channel.unary_stream(
+        '/mavsdk.rpc.telemetry.TelemetryService/SubscribeGroundTruth',
+        request_serializer=telemetry__pb2.SubscribeGroundTruthRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.GroundTruthResponse.FromString,
+        )
+    self.SubscribeFixedwingMetrics = channel.unary_stream(
+        '/mavsdk.rpc.telemetry.TelemetryService/SubscribeFixedwingMetrics',
+        request_serializer=telemetry__pb2.SubscribeFixedwingMetricsRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.FixedwingMetricsResponse.FromString,
+        )
+    self.SubscribeImu = channel.unary_stream(
+        '/mavsdk.rpc.telemetry.TelemetryService/SubscribeImu',
+        request_serializer=telemetry__pb2.SubscribeImuRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.ImuResponse.FromString,
+        )
+    self.SubscribeHealthAllOk = channel.unary_stream(
+        '/mavsdk.rpc.telemetry.TelemetryService/SubscribeHealthAllOk',
+        request_serializer=telemetry__pb2.SubscribeHealthAllOkRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.HealthAllOkResponse.FromString,
+        )
+    self.SubscribeUnixEpochTime = channel.unary_stream(
+        '/mavsdk.rpc.telemetry.TelemetryService/SubscribeUnixEpochTime',
+        request_serializer=telemetry__pb2.SubscribeUnixEpochTimeRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.UnixEpochTimeResponse.FromString,
+        )
+    self.SetRatePosition = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRatePosition',
+        request_serializer=telemetry__pb2.SetRatePositionRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRatePositionResponse.FromString,
+        )
+    self.SetRateHome = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateHome',
+        request_serializer=telemetry__pb2.SetRateHomeRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateHomeResponse.FromString,
+        )
+    self.SetRateInAir = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateInAir',
+        request_serializer=telemetry__pb2.SetRateInAirRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateInAirResponse.FromString,
+        )
+    self.SetRateLandedState = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateLandedState',
+        request_serializer=telemetry__pb2.SetRateLandedStateRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateLandedStateResponse.FromString,
+        )
+    self.SetRateAttitude = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateAttitude',
+        request_serializer=telemetry__pb2.SetRateAttitudeRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateAttitudeResponse.FromString,
+        )
+    self.SetRateCameraAttitude = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateCameraAttitude',
+        request_serializer=telemetry__pb2.SetRateCameraAttitudeRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateCameraAttitudeResponse.FromString,
+        )
+    self.SetRateGroundSpeedNed = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateGroundSpeedNed',
+        request_serializer=telemetry__pb2.SetRateGroundSpeedNedRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateGroundSpeedNedResponse.FromString,
+        )
+    self.SetRateGpsInfo = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateGpsInfo',
+        request_serializer=telemetry__pb2.SetRateGpsInfoRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateGpsInfoResponse.FromString,
+        )
+    self.SetRateBattery = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateBattery',
+        request_serializer=telemetry__pb2.SetRateBatteryRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateBatteryResponse.FromString,
+        )
+    self.SetRateRcStatus = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateRcStatus',
+        request_serializer=telemetry__pb2.SetRateRcStatusRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateRcStatusResponse.FromString,
+        )
+    self.SetRateActuatorControlTarget = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateActuatorControlTarget',
+        request_serializer=telemetry__pb2.SetRateActuatorControlTargetRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateActuatorControlTargetResponse.FromString,
+        )
+    self.SetRateActuatorOutputStatus = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateActuatorOutputStatus',
+        request_serializer=telemetry__pb2.SetRateActuatorOutputStatusRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateActuatorOutputStatusResponse.FromString,
+        )
+    self.SetRateOdometry = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateOdometry',
+        request_serializer=telemetry__pb2.SetRateOdometryRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateOdometryResponse.FromString,
+        )
+    self.SetRatePositionVelocityNed = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRatePositionVelocityNed',
+        request_serializer=telemetry__pb2.SetRatePositionVelocityNedRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRatePositionVelocityNedResponse.FromString,
+        )
+    self.SetRateGroundTruth = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateGroundTruth',
+        request_serializer=telemetry__pb2.SetRateGroundTruthRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateGroundTruthResponse.FromString,
+        )
+    self.SetRateFixedwingMetrics = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateFixedwingMetrics',
+        request_serializer=telemetry__pb2.SetRateFixedwingMetricsRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateFixedwingMetricsResponse.FromString,
+        )
+    self.SetRateImu = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateImu',
+        request_serializer=telemetry__pb2.SetRateImuRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateImuResponse.FromString,
+        )
+    self.SetRateUnixEpochTime = channel.unary_unary(
+        '/mavsdk.rpc.telemetry.TelemetryService/SetRateUnixEpochTime',
+        request_serializer=telemetry__pb2.SetRateUnixEpochTimeRequest.SerializeToString,
+        response_deserializer=telemetry__pb2.SetRateUnixEpochTimeResponse.FromString,
+        )
 
 
 class TelemetryServiceServicer(object):
@@ -167,7 +287,7 @@ class TelemetryServiceServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def SubscribeAttitudeEuler(self, request, context):
-    """Subscribe to 'attitude' updates (euler).
+    """Subscribe to 'attitude' updates (Euler).
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -188,7 +308,7 @@ class TelemetryServiceServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def SubscribeCameraAttitudeEuler(self, request, context):
-    """Subscribe to 'camera attitude' updates (euler).
+    """Subscribe to 'camera attitude' updates (Euler).
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -259,6 +379,174 @@ class TelemetryServiceServicer(object):
 
   def SubscribeOdometry(self, request, context):
     """Subscribe to 'odometry' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SubscribePositionVelocityNed(self, request, context):
+    """Subscribe to 'position velocity' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SubscribeGroundTruth(self, request, context):
+    """Subscribe to 'ground truth' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SubscribeFixedwingMetrics(self, request, context):
+    """Subscribe to 'fixedwing metrics' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SubscribeImu(self, request, context):
+    """Subscribe to 'IMU' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SubscribeHealthAllOk(self, request, context):
+    """Subscribe to 'HealthAllOk' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SubscribeUnixEpochTime(self, request, context):
+    """Subscribe to 'unix epoch time' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRatePosition(self, request, context):
+    """Set rate to 'position' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateHome(self, request, context):
+    """Set rate to 'home position' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateInAir(self, request, context):
+    """Set rate to in-air updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateLandedState(self, request, context):
+    """Set rate to landed state updates
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateAttitude(self, request, context):
+    """Set rate to 'attitude' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateCameraAttitude(self, request, context):
+    """Set rate of camera attitude updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateGroundSpeedNed(self, request, context):
+    """Set rate to 'ground speed' updates (NED).
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateGpsInfo(self, request, context):
+    """Set rate to 'GPS info' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateBattery(self, request, context):
+    """Set rate to 'battery' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateRcStatus(self, request, context):
+    """Set rate to 'RC status' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateActuatorControlTarget(self, request, context):
+    """Set rate to 'actuator control target' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateActuatorOutputStatus(self, request, context):
+    """Set rate to 'actuator output status' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateOdometry(self, request, context):
+    """Set rate to 'odometry' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRatePositionVelocityNed(self, request, context):
+    """Set rate to 'position velocity' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateGroundTruth(self, request, context):
+    """Set rate to 'ground truth' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateFixedwingMetrics(self, request, context):
+    """Set rate to 'fixedwing metrics' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateImu(self, request, context):
+    """Set rate to 'IMU' updates.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetRateUnixEpochTime(self, request, context):
+    """Set rate to 'unix epoch time' updates.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -366,6 +654,126 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
           servicer.SubscribeOdometry,
           request_deserializer=telemetry__pb2.SubscribeOdometryRequest.FromString,
           response_serializer=telemetry__pb2.OdometryResponse.SerializeToString,
+      ),
+      'SubscribePositionVelocityNed': grpc.unary_stream_rpc_method_handler(
+          servicer.SubscribePositionVelocityNed,
+          request_deserializer=telemetry__pb2.SubscribePositionVelocityNedRequest.FromString,
+          response_serializer=telemetry__pb2.PositionVelocityNedResponse.SerializeToString,
+      ),
+      'SubscribeGroundTruth': grpc.unary_stream_rpc_method_handler(
+          servicer.SubscribeGroundTruth,
+          request_deserializer=telemetry__pb2.SubscribeGroundTruthRequest.FromString,
+          response_serializer=telemetry__pb2.GroundTruthResponse.SerializeToString,
+      ),
+      'SubscribeFixedwingMetrics': grpc.unary_stream_rpc_method_handler(
+          servicer.SubscribeFixedwingMetrics,
+          request_deserializer=telemetry__pb2.SubscribeFixedwingMetricsRequest.FromString,
+          response_serializer=telemetry__pb2.FixedwingMetricsResponse.SerializeToString,
+      ),
+      'SubscribeImu': grpc.unary_stream_rpc_method_handler(
+          servicer.SubscribeImu,
+          request_deserializer=telemetry__pb2.SubscribeImuRequest.FromString,
+          response_serializer=telemetry__pb2.ImuResponse.SerializeToString,
+      ),
+      'SubscribeHealthAllOk': grpc.unary_stream_rpc_method_handler(
+          servicer.SubscribeHealthAllOk,
+          request_deserializer=telemetry__pb2.SubscribeHealthAllOkRequest.FromString,
+          response_serializer=telemetry__pb2.HealthAllOkResponse.SerializeToString,
+      ),
+      'SubscribeUnixEpochTime': grpc.unary_stream_rpc_method_handler(
+          servicer.SubscribeUnixEpochTime,
+          request_deserializer=telemetry__pb2.SubscribeUnixEpochTimeRequest.FromString,
+          response_serializer=telemetry__pb2.UnixEpochTimeResponse.SerializeToString,
+      ),
+      'SetRatePosition': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRatePosition,
+          request_deserializer=telemetry__pb2.SetRatePositionRequest.FromString,
+          response_serializer=telemetry__pb2.SetRatePositionResponse.SerializeToString,
+      ),
+      'SetRateHome': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateHome,
+          request_deserializer=telemetry__pb2.SetRateHomeRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateHomeResponse.SerializeToString,
+      ),
+      'SetRateInAir': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateInAir,
+          request_deserializer=telemetry__pb2.SetRateInAirRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateInAirResponse.SerializeToString,
+      ),
+      'SetRateLandedState': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateLandedState,
+          request_deserializer=telemetry__pb2.SetRateLandedStateRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateLandedStateResponse.SerializeToString,
+      ),
+      'SetRateAttitude': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateAttitude,
+          request_deserializer=telemetry__pb2.SetRateAttitudeRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateAttitudeResponse.SerializeToString,
+      ),
+      'SetRateCameraAttitude': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateCameraAttitude,
+          request_deserializer=telemetry__pb2.SetRateCameraAttitudeRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateCameraAttitudeResponse.SerializeToString,
+      ),
+      'SetRateGroundSpeedNed': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateGroundSpeedNed,
+          request_deserializer=telemetry__pb2.SetRateGroundSpeedNedRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateGroundSpeedNedResponse.SerializeToString,
+      ),
+      'SetRateGpsInfo': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateGpsInfo,
+          request_deserializer=telemetry__pb2.SetRateGpsInfoRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateGpsInfoResponse.SerializeToString,
+      ),
+      'SetRateBattery': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateBattery,
+          request_deserializer=telemetry__pb2.SetRateBatteryRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateBatteryResponse.SerializeToString,
+      ),
+      'SetRateRcStatus': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateRcStatus,
+          request_deserializer=telemetry__pb2.SetRateRcStatusRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateRcStatusResponse.SerializeToString,
+      ),
+      'SetRateActuatorControlTarget': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateActuatorControlTarget,
+          request_deserializer=telemetry__pb2.SetRateActuatorControlTargetRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateActuatorControlTargetResponse.SerializeToString,
+      ),
+      'SetRateActuatorOutputStatus': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateActuatorOutputStatus,
+          request_deserializer=telemetry__pb2.SetRateActuatorOutputStatusRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateActuatorOutputStatusResponse.SerializeToString,
+      ),
+      'SetRateOdometry': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateOdometry,
+          request_deserializer=telemetry__pb2.SetRateOdometryRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateOdometryResponse.SerializeToString,
+      ),
+      'SetRatePositionVelocityNed': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRatePositionVelocityNed,
+          request_deserializer=telemetry__pb2.SetRatePositionVelocityNedRequest.FromString,
+          response_serializer=telemetry__pb2.SetRatePositionVelocityNedResponse.SerializeToString,
+      ),
+      'SetRateGroundTruth': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateGroundTruth,
+          request_deserializer=telemetry__pb2.SetRateGroundTruthRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateGroundTruthResponse.SerializeToString,
+      ),
+      'SetRateFixedwingMetrics': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateFixedwingMetrics,
+          request_deserializer=telemetry__pb2.SetRateFixedwingMetricsRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateFixedwingMetricsResponse.SerializeToString,
+      ),
+      'SetRateImu': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateImu,
+          request_deserializer=telemetry__pb2.SetRateImuRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateImuResponse.SerializeToString,
+      ),
+      'SetRateUnixEpochTime': grpc.unary_unary_rpc_method_handler(
+          servicer.SetRateUnixEpochTime,
+          request_deserializer=telemetry__pb2.SetRateUnixEpochTimeRequest.FromString,
+          response_serializer=telemetry__pb2.SetRateUnixEpochTimeResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

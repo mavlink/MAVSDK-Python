@@ -39,6 +39,11 @@ class ActionServiceStub(object):
         request_serializer=action__pb2.RebootRequest.SerializeToString,
         response_deserializer=action__pb2.RebootResponse.FromString,
         )
+    self.Shutdown = channel.unary_unary(
+        '/mavsdk.rpc.action.ActionService/Shutdown',
+        request_serializer=action__pb2.ShutdownRequest.SerializeToString,
+        response_deserializer=action__pb2.ShutdownResponse.FromString,
+        )
     self.Kill = channel.unary_unary(
         '/mavsdk.rpc.action.ActionService/Kill',
         request_serializer=action__pb2.KillRequest.SerializeToString,
@@ -49,10 +54,15 @@ class ActionServiceStub(object):
         request_serializer=action__pb2.ReturnToLaunchRequest.SerializeToString,
         response_deserializer=action__pb2.ReturnToLaunchResponse.FromString,
         )
-    self.TransitionToFixedWing = channel.unary_unary(
-        '/mavsdk.rpc.action.ActionService/TransitionToFixedWing',
-        request_serializer=action__pb2.TransitionToFixedWingRequest.SerializeToString,
-        response_deserializer=action__pb2.TransitionToFixedWingResponse.FromString,
+    self.GotoLocation = channel.unary_unary(
+        '/mavsdk.rpc.action.ActionService/GotoLocation',
+        request_serializer=action__pb2.GotoLocationRequest.SerializeToString,
+        response_deserializer=action__pb2.GotoLocationResponse.FromString,
+        )
+    self.TransitionToFixedwing = channel.unary_unary(
+        '/mavsdk.rpc.action.ActionService/TransitionToFixedwing',
+        request_serializer=action__pb2.TransitionToFixedwingRequest.SerializeToString,
+        response_deserializer=action__pb2.TransitionToFixedwingResponse.FromString,
         )
     self.TransitionToMulticopter = channel.unary_unary(
         '/mavsdk.rpc.action.ActionService/TransitionToMulticopter',
@@ -121,7 +131,7 @@ class ActionServiceServicer(object):
     """
     Send command to take off and hover.
 
-    This switches the drone into position control mode and commands 
+    This switches the drone into position control mode and commands
     it to take off and hover at the takeoff altitude.
 
     Note that the vehicle must be armed before it can take off.
@@ -150,9 +160,21 @@ class ActionServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def Shutdown(self, request, context):
+    """*
+    Send command to shut down the drone components.
+
+    This will shut down the autopilot, onboard computer, camera and gimbal.
+    This command should only be used when the autopilot is disarmed and autopilots commonly
+    reject it if they are not already ready to shut down.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def Kill(self, request, context):
     """
-    Send command to kill the drone. 
+    Send command to kill the drone.
 
     This will disarm a drone irrespective of whether it is landed or flying.
     Note that the drone will fall out of the sky if this command is used while flying.
@@ -165,7 +187,7 @@ class ActionServiceServicer(object):
     """
     Send command to return to the launch (takeoff) position and land.
 
-    This switches the drone into [RTL mode](https://docs.px4.io/en/flight_modes/rtl.html) which
+    This switches the drone into [Return mode](https://docs.px4.io/master/en/flight_modes/return.html) which
     generally means it will rise up to a certain altitude to clear any obstacles before heading
     back to the launch (takeoff) position and land there.
     """
@@ -173,7 +195,20 @@ class ActionServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def TransitionToFixedWing(self, request, context):
+  def GotoLocation(self, request, context):
+    """*
+    Send command to move the vehicle to a specific global position.
+
+    The latitude and longitude are given in degrees (WGS84 frame) and the altitude
+    in meters AMSL (above mean sea level).
+
+    The yaw angle is in degrees (frame is NED, 0 is North, positive is clockwise).
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def TransitionToFixedwing(self, request, context):
     """
     Send command to transition the drone to fixedwing.
 
@@ -273,6 +308,11 @@ def add_ActionServiceServicer_to_server(servicer, server):
           request_deserializer=action__pb2.RebootRequest.FromString,
           response_serializer=action__pb2.RebootResponse.SerializeToString,
       ),
+      'Shutdown': grpc.unary_unary_rpc_method_handler(
+          servicer.Shutdown,
+          request_deserializer=action__pb2.ShutdownRequest.FromString,
+          response_serializer=action__pb2.ShutdownResponse.SerializeToString,
+      ),
       'Kill': grpc.unary_unary_rpc_method_handler(
           servicer.Kill,
           request_deserializer=action__pb2.KillRequest.FromString,
@@ -283,10 +323,15 @@ def add_ActionServiceServicer_to_server(servicer, server):
           request_deserializer=action__pb2.ReturnToLaunchRequest.FromString,
           response_serializer=action__pb2.ReturnToLaunchResponse.SerializeToString,
       ),
-      'TransitionToFixedWing': grpc.unary_unary_rpc_method_handler(
-          servicer.TransitionToFixedWing,
-          request_deserializer=action__pb2.TransitionToFixedWingRequest.FromString,
-          response_serializer=action__pb2.TransitionToFixedWingResponse.SerializeToString,
+      'GotoLocation': grpc.unary_unary_rpc_method_handler(
+          servicer.GotoLocation,
+          request_deserializer=action__pb2.GotoLocationRequest.FromString,
+          response_serializer=action__pb2.GotoLocationResponse.SerializeToString,
+      ),
+      'TransitionToFixedwing': grpc.unary_unary_rpc_method_handler(
+          servicer.TransitionToFixedwing,
+          request_deserializer=action__pb2.TransitionToFixedwingRequest.FromString,
+          response_serializer=action__pb2.TransitionToFixedwingResponse.SerializeToString,
       ),
       'TransitionToMulticopter': grpc.unary_unary_rpc_method_handler(
           servicer.TransitionToMulticopter,

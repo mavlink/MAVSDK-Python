@@ -6,7 +6,7 @@ from enum import Enum
 
 class FixType(Enum):
     """
-     Fix type.
+     GPS fix type.
 
      Values
      ------
@@ -33,7 +33,7 @@ class FixType(Enum):
 
      """
 
-
+    
     NO_GPS = 0
     NO_FIX = 1
     FIX_2D = 2
@@ -44,13 +44,13 @@ class FixType(Enum):
 
     def translate_to_rpc(self, rpcFixType):
         return {
-                0: telemetry_pb2.NO_GPS,
-                1: telemetry_pb2.NO_FIX,
-                2: telemetry_pb2.FIX_2D,
-                3: telemetry_pb2.FIX_3D,
-                4: telemetry_pb2.FIX_DGPS,
-                5: telemetry_pb2.RTK_FLOAT,
-                6: telemetry_pb2.RTK_FIXED
+                0: telemetry_pb2.FIX_TYPE_NO_GPS,
+                1: telemetry_pb2.FIX_TYPE_NO_FIX,
+                2: telemetry_pb2.FIX_TYPE_FIX_2D,
+                3: telemetry_pb2.FIX_TYPE_FIX_3D,
+                4: telemetry_pb2.FIX_TYPE_FIX_DGPS,
+                5: telemetry_pb2.FIX_TYPE_RTK_FLOAT,
+                6: telemetry_pb2.FIX_TYPE_RTK_FIXED
             }.get(self.value, None)
 
     @staticmethod
@@ -75,7 +75,7 @@ class FlightMode(Enum):
      Flight modes.
 
      For more information about flight modes, check out
-     https://docs.px4.io/en/config/flight_mode.html.
+     https://docs.px4.io/master/en/config/flight_mode.html.
 
      Values
      ------
@@ -106,9 +106,27 @@ class FlightMode(Enum):
      FOLLOW_ME
           In 'follow-me' mode
 
+     MANUAL
+          In 'Manual' mode
+
+     ALTCTL
+          In 'Altitude Control' mode
+
+     POSCTL
+          In 'Position Control' mode
+
+     ACRO
+          In 'Acro' mode
+
+     STABILIZED
+          In 'Stabilize' mode
+
+     RATTITUDE
+          In 'Rattitude' mode
+
      """
 
-
+    
     UNKNOWN = 0
     READY = 1
     TAKEOFF = 2
@@ -118,18 +136,30 @@ class FlightMode(Enum):
     LAND = 6
     OFFBOARD = 7
     FOLLOW_ME = 8
+    MANUAL = 9
+    ALTCTL = 10
+    POSCTL = 11
+    ACRO = 12
+    STABILIZED = 13
+    RATTITUDE = 14
 
     def translate_to_rpc(self, rpcFlightMode):
         return {
-                0: telemetry_pb2.UNKNOWN,
-                1: telemetry_pb2.READY,
-                2: telemetry_pb2.TAKEOFF,
-                3: telemetry_pb2.HOLD,
-                4: telemetry_pb2.MISSION,
-                5: telemetry_pb2.RETURN_TO_LAUNCH,
-                6: telemetry_pb2.LAND,
-                7: telemetry_pb2.OFFBOARD,
-                8: telemetry_pb2.FOLLOW_ME
+                0: telemetry_pb2.FLIGHT_MODE_UNKNOWN,
+                1: telemetry_pb2.FLIGHT_MODE_READY,
+                2: telemetry_pb2.FLIGHT_MODE_TAKEOFF,
+                3: telemetry_pb2.FLIGHT_MODE_HOLD,
+                4: telemetry_pb2.FLIGHT_MODE_MISSION,
+                5: telemetry_pb2.FLIGHT_MODE_RETURN_TO_LAUNCH,
+                6: telemetry_pb2.FLIGHT_MODE_LAND,
+                7: telemetry_pb2.FLIGHT_MODE_OFFBOARD,
+                8: telemetry_pb2.FLIGHT_MODE_FOLLOW_ME,
+                9: telemetry_pb2.FLIGHT_MODE_MANUAL,
+                10: telemetry_pb2.FLIGHT_MODE_ALTCTL,
+                11: telemetry_pb2.FLIGHT_MODE_POSCTL,
+                12: telemetry_pb2.FLIGHT_MODE_ACRO,
+                13: telemetry_pb2.FLIGHT_MODE_STABILIZED,
+                14: telemetry_pb2.FLIGHT_MODE_RATTITUDE
             }.get(self.value, None)
 
     @staticmethod
@@ -145,6 +175,54 @@ class FlightMode(Enum):
                 6: FlightMode.LAND,
                 7: FlightMode.OFFBOARD,
                 8: FlightMode.FOLLOW_ME,
+                9: FlightMode.MANUAL,
+                10: FlightMode.ALTCTL,
+                11: FlightMode.POSCTL,
+                12: FlightMode.ACRO,
+                13: FlightMode.STABILIZED,
+                14: FlightMode.RATTITUDE,
+            }.get(rpc_enum_value, None)
+
+    def __str__(self):
+        return self.name
+
+
+class StatusTextType(Enum):
+    """
+     Status types.
+
+     Values
+     ------
+     INFO
+          Information or other
+
+     WARNING
+          Warning
+
+     CRITICAL
+          Critical
+
+     """
+
+    
+    INFO = 0
+    WARNING = 1
+    CRITICAL = 2
+
+    def translate_to_rpc(self, rpcStatusTextType):
+        return {
+                0: telemetry_pb2.STATUS_TEXT_TYPE_INFO,
+                1: telemetry_pb2.STATUS_TEXT_TYPE_WARNING,
+                2: telemetry_pb2.STATUS_TEXT_TYPE_CRITICAL
+            }.get(self.value, None)
+
+    @staticmethod
+    def translate_from_rpc(rpc_enum_value):
+        """ Parses a gRPC response """
+        return {
+                0: StatusTextType.INFO,
+                1: StatusTextType.WARNING,
+                2: StatusTextType.CRITICAL,
             }.get(rpc_enum_value, None)
 
     def __str__(self):
@@ -153,28 +231,33 @@ class FlightMode(Enum):
 
 class LandedState(Enum):
     """
-     Landed State enumeration
+     Landed State enumeration.
 
      Values
      ------
-     LANDED_STATE_UNKNOWN
+     UNKNOWN
+          Landed state is unknown
 
-     LANDED_STATE_ON_GROUND
+     ON_GROUND
+          The vehicle is on the ground
 
-     LANDED_STATE_IN_AIR
+     IN_AIR
+          The vehicle is in the air
 
-     LANDED_STATE_TAKING_OFF
+     TAKING_OFF
+          The vehicle is taking off
 
-     LANDED_STATE_LANDING
+     LANDING
+          The vehicle is landing
 
      """
 
-
-    LANDED_STATE_UNKNOWN = 0
-    LANDED_STATE_ON_GROUND = 1
-    LANDED_STATE_IN_AIR = 2
-    LANDED_STATE_TAKING_OFF = 3
-    LANDED_STATE_LANDING = 4
+    
+    UNKNOWN = 0
+    ON_GROUND = 1
+    IN_AIR = 2
+    TAKING_OFF = 3
+    LANDING = 4
 
     def translate_to_rpc(self, rpcLandedState):
         return {
@@ -189,11 +272,11 @@ class LandedState(Enum):
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
         return {
-                0: LandedState.LANDED_STATE_UNKNOWN,
-                1: LandedState.LANDED_STATE_ON_GROUND,
-                2: LandedState.LANDED_STATE_IN_AIR,
-                3: LandedState.LANDED_STATE_TAKING_OFF,
-                4: LandedState.LANDED_STATE_LANDING,
+                0: LandedState.UNKNOWN,
+                1: LandedState.ON_GROUND,
+                2: LandedState.IN_AIR,
+                3: LandedState.TAKING_OFF,
+                4: LandedState.LANDING,
             }.get(rpc_enum_value, None)
 
     def __str__(self):
@@ -220,7 +303,7 @@ class Position:
 
      """
 
-
+    
 
     def __init__(
             self,
@@ -263,47 +346,47 @@ class Position:
     def translate_from_rpc(rpcPosition):
         """ Translates a gRPC struct to the SDK equivalent """
         return Position(
-
+                
                 rpcPosition.latitude_deg,
-
-
+                
+                
                 rpcPosition.longitude_deg,
-
-
+                
+                
                 rpcPosition.absolute_altitude_m,
-
-
+                
+                
                 rpcPosition.relative_altitude_m
                 )
 
     def translate_to_rpc(self, rpcPosition):
         """ Translates this SDK object into its gRPC equivalent """
 
-
-
-
+        
+        
+            
         rpcPosition.latitude_deg = self.latitude_deg
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcPosition.longitude_deg = self.longitude_deg
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcPosition.absolute_altitude_m = self.absolute_altitude_m
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcPosition.relative_altitude_m = self.relative_altitude_m
-
-
-
+            
+        
+        
 
 
 class Quaternion:
@@ -333,7 +416,7 @@ class Quaternion:
 
      """
 
-
+    
 
     def __init__(
             self,
@@ -376,47 +459,47 @@ class Quaternion:
     def translate_from_rpc(rpcQuaternion):
         """ Translates a gRPC struct to the SDK equivalent """
         return Quaternion(
-
+                
                 rpcQuaternion.w,
-
-
+                
+                
                 rpcQuaternion.x,
-
-
+                
+                
                 rpcQuaternion.y,
-
-
+                
+                
                 rpcQuaternion.z
                 )
 
     def translate_to_rpc(self, rpcQuaternion):
         """ Translates this SDK object into its gRPC equivalent """
 
-
-
-
+        
+        
+            
         rpcQuaternion.w = self.w
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcQuaternion.x = self.x
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcQuaternion.y = self.y
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcQuaternion.z = self.z
-
-
-
+            
+        
+        
 
 
 class EulerAngle:
@@ -441,7 +524,7 @@ class EulerAngle:
 
      """
 
-
+    
 
     def __init__(
             self,
@@ -480,43 +563,43 @@ class EulerAngle:
     def translate_from_rpc(rpcEulerAngle):
         """ Translates a gRPC struct to the SDK equivalent """
         return EulerAngle(
-
+                
                 rpcEulerAngle.roll_deg,
-
-
+                
+                
                 rpcEulerAngle.pitch_deg,
-
-
+                
+                
                 rpcEulerAngle.yaw_deg
                 )
 
     def translate_to_rpc(self, rpcEulerAngle):
         """ Translates this SDK object into its gRPC equivalent """
 
-
-
-
+        
+        
+            
         rpcEulerAngle.roll_deg = self.roll_deg
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcEulerAngle.pitch_deg = self.pitch_deg
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcEulerAngle.yaw_deg = self.yaw_deg
-
-
-
+            
+        
+        
 
 
 class AngularVelocityBody:
     """
-     Angular velocity type
+     Angular velocity type.
 
      Parameters
      ----------
@@ -531,7 +614,7 @@ class AngularVelocityBody:
 
      """
 
-
+    
 
     def __init__(
             self,
@@ -570,38 +653,38 @@ class AngularVelocityBody:
     def translate_from_rpc(rpcAngularVelocityBody):
         """ Translates a gRPC struct to the SDK equivalent """
         return AngularVelocityBody(
-
+                
                 rpcAngularVelocityBody.roll_rad_s,
-
-
+                
+                
                 rpcAngularVelocityBody.pitch_rad_s,
-
-
+                
+                
                 rpcAngularVelocityBody.yaw_rad_s
                 )
 
     def translate_to_rpc(self, rpcAngularVelocityBody):
         """ Translates this SDK object into its gRPC equivalent """
 
-
-
-
+        
+        
+            
         rpcAngularVelocityBody.roll_rad_s = self.roll_rad_s
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcAngularVelocityBody.pitch_rad_s = self.pitch_rad_s
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcAngularVelocityBody.yaw_rad_s = self.yaw_rad_s
-
-
-
+            
+        
+        
 
 
 class SpeedNed:
@@ -621,7 +704,7 @@ class SpeedNed:
 
      """
 
-
+    
 
     def __init__(
             self,
@@ -660,38 +743,38 @@ class SpeedNed:
     def translate_from_rpc(rpcSpeedNed):
         """ Translates a gRPC struct to the SDK equivalent """
         return SpeedNed(
-
+                
                 rpcSpeedNed.velocity_north_m_s,
-
-
+                
+                
                 rpcSpeedNed.velocity_east_m_s,
-
-
+                
+                
                 rpcSpeedNed.velocity_down_m_s
                 )
 
     def translate_to_rpc(self, rpcSpeedNed):
         """ Translates this SDK object into its gRPC equivalent """
 
-
-
-
+        
+        
+            
         rpcSpeedNed.velocity_north_m_s = self.velocity_north_m_s
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcSpeedNed.velocity_east_m_s = self.velocity_east_m_s
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcSpeedNed.velocity_down_m_s = self.velocity_down_m_s
-
-
-
+            
+        
+        
 
 
 class GpsInfo:
@@ -708,7 +791,7 @@ class GpsInfo:
 
      """
 
-
+    
 
     def __init__(
             self,
@@ -743,29 +826,29 @@ class GpsInfo:
     def translate_from_rpc(rpcGpsInfo):
         """ Translates a gRPC struct to the SDK equivalent """
         return GpsInfo(
-
+                
                 rpcGpsInfo.num_satellites,
-
-
+                
+                
                 FixType.translate_from_rpc(rpcGpsInfo.fix_type)
                 )
 
     def translate_to_rpc(self, rpcGpsInfo):
         """ Translates this SDK object into its gRPC equivalent """
 
-
-
-
+        
+        
+            
         rpcGpsInfo.num_satellites = self.num_satellites
-
-
-
-
-
+            
+        
+        
+        
+            
         self.fix_type.translate_to_rpc(rpcGpsInfo.fix_type)
-
-
-
+            
+        
+        
 
 
 class Battery:
@@ -782,7 +865,7 @@ class Battery:
 
      """
 
-
+    
 
     def __init__(
             self,
@@ -817,29 +900,29 @@ class Battery:
     def translate_from_rpc(rpcBattery):
         """ Translates a gRPC struct to the SDK equivalent """
         return Battery(
-
+                
                 rpcBattery.voltage_v,
-
-
+                
+                
                 rpcBattery.remaining_percent
                 )
 
     def translate_to_rpc(self, rpcBattery):
         """ Translates this SDK object into its gRPC equivalent """
 
-
-
-
+        
+        
+            
         rpcBattery.voltage_v = self.voltage_v
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcBattery.remaining_percent = self.remaining_percent
-
-
-
+            
+        
+        
 
 
 class Health:
@@ -871,7 +954,7 @@ class Health:
 
      """
 
-
+    
 
     def __init__(
             self,
@@ -926,74 +1009,74 @@ class Health:
     def translate_from_rpc(rpcHealth):
         """ Translates a gRPC struct to the SDK equivalent """
         return Health(
-
+                
                 rpcHealth.is_gyrometer_calibration_ok,
-
-
+                
+                
                 rpcHealth.is_accelerometer_calibration_ok,
-
-
+                
+                
                 rpcHealth.is_magnetometer_calibration_ok,
-
-
+                
+                
                 rpcHealth.is_level_calibration_ok,
-
-
+                
+                
                 rpcHealth.is_local_position_ok,
-
-
+                
+                
                 rpcHealth.is_global_position_ok,
-
-
+                
+                
                 rpcHealth.is_home_position_ok
                 )
 
     def translate_to_rpc(self, rpcHealth):
         """ Translates this SDK object into its gRPC equivalent """
 
-
-
-
+        
+        
+            
         rpcHealth.is_gyrometer_calibration_ok = self.is_gyrometer_calibration_ok
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcHealth.is_accelerometer_calibration_ok = self.is_accelerometer_calibration_ok
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcHealth.is_magnetometer_calibration_ok = self.is_magnetometer_calibration_ok
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcHealth.is_level_calibration_ok = self.is_level_calibration_ok
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcHealth.is_local_position_ok = self.is_local_position_ok
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcHealth.is_global_position_ok = self.is_global_position_ok
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcHealth.is_home_position_ok = self.is_home_position_ok
-
-
-
+            
+        
+        
 
 
 class RcStatus:
@@ -1013,7 +1096,7 @@ class RcStatus:
 
      """
 
-
+    
 
     def __init__(
             self,
@@ -1052,38 +1135,38 @@ class RcStatus:
     def translate_from_rpc(rpcRcStatus):
         """ Translates a gRPC struct to the SDK equivalent """
         return RcStatus(
-
+                
                 rpcRcStatus.was_available_once,
-
-
+                
+                
                 rpcRcStatus.is_available,
-
-
+                
+                
                 rpcRcStatus.signal_strength_percent
                 )
 
     def translate_to_rpc(self, rpcRcStatus):
         """ Translates this SDK object into its gRPC equivalent """
 
-
-
-
+        
+        
+            
         rpcRcStatus.was_available_once = self.was_available_once
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcRcStatus.is_available = self.is_available
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcRcStatus.signal_strength_percent = self.signal_strength_percent
-
-
-
+            
+        
+        
 
 
 class StatusText:
@@ -1092,7 +1175,7 @@ class StatusText:
 
      Parameters
      ----------
-     type : StatusType
+     type : StatusTextType
           Message type
 
      text : std::string
@@ -1100,49 +1183,7 @@ class StatusText:
 
      """
 
-
-
-    class StatusType(Enum):
-        """
-         Status types.
-
-         Values
-         ------
-         INFO
-              Information or other
-
-         WARNING
-              Warning
-
-         CRITICAL
-              Critical
-
-         """
-
-
-        INFO = 0
-        WARNING = 1
-        CRITICAL = 2
-
-        def translate_to_rpc(self, rpcStatusType):
-            return {
-                    0: telemetry_pb2.StatusText.INFO,
-                    1: telemetry_pb2.StatusText.WARNING,
-                    2: telemetry_pb2.StatusText.CRITICAL
-                }.get(self.value, None)
-
-        @staticmethod
-        def translate_from_rpc(rpc_enum_value):
-            """ Parses a gRPC response """
-            return {
-                    0: StatusText.StatusType.INFO,
-                    1: StatusText.StatusType.WARNING,
-                    2: StatusText.StatusType.CRITICAL,
-                }.get(rpc_enum_value, None)
-
-        def __str__(self):
-            return self.name
-
+    
 
     def __init__(
             self,
@@ -1177,44 +1218,46 @@ class StatusText:
     def translate_from_rpc(rpcStatusText):
         """ Translates a gRPC struct to the SDK equivalent """
         return StatusText(
-
-                StatusText.StatusType.translate_from_rpc(rpcStatusText.type),
-
-
+                
+                StatusTextType.translate_from_rpc(rpcStatusText.type),
+                
+                
                 rpcStatusText.text
                 )
 
     def translate_to_rpc(self, rpcStatusText):
         """ Translates this SDK object into its gRPC equivalent """
 
-
-
-
+        
+        
+            
         self.type.translate_to_rpc(rpcStatusText.type)
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcStatusText.text = self.text
-
-
-
+            
+        
+        
 
 
 class ActuatorControlTarget:
     """
-
+     Actuator control target type.
 
      Parameters
      ----------
      group : int32_t
+          TODO
 
      controls : [float]
+          TODO
 
      """
 
-
+    
 
     def __init__(
             self,
@@ -1249,45 +1292,47 @@ class ActuatorControlTarget:
     def translate_from_rpc(rpcActuatorControlTarget):
         """ Translates a gRPC struct to the SDK equivalent """
         return ActuatorControlTarget(
-
+                
                 rpcActuatorControlTarget.group,
-
-
+                
+                
                 rpcActuatorControlTarget.controls
                 )
 
     def translate_to_rpc(self, rpcActuatorControlTarget):
         """ Translates this SDK object into its gRPC equivalent """
 
-
-
-
+        
+        
+            
         rpcActuatorControlTarget.group = self.group
-
-
-
-
-
+            
+        
+        
+        
+            
         for elem in self.controls:
           rpcActuatorControlTarget.controls.append(elem)
-
-
-
+            
+        
+        
 
 
 class ActuatorOutputStatus:
     """
-
+ 
 
      Parameters
      ----------
      active : uint32_t
+          TODO
 
      actuator : [float]
+          TODO
 
      """
 
-
+    
 
     def __init__(
             self,
@@ -1322,268 +1367,36 @@ class ActuatorOutputStatus:
     def translate_from_rpc(rpcActuatorOutputStatus):
         """ Translates a gRPC struct to the SDK equivalent """
         return ActuatorOutputStatus(
-
+                
                 rpcActuatorOutputStatus.active,
-
-
+                
+                
                 rpcActuatorOutputStatus.actuator
                 )
 
     def translate_to_rpc(self, rpcActuatorOutputStatus):
         """ Translates this SDK object into its gRPC equivalent """
 
-
-
-
+        
+        
+            
         rpcActuatorOutputStatus.active = self.active
-
-
-
-
-
+            
+        
+        
+        
+            
         for elem in self.actuator:
           rpcActuatorOutputStatus.actuator.append(elem)
-
-
-
-
-
-class Odometry:
-    """
-     Odometry message type.
-
-     Parameters
-     ----------
-     time_usec : uint64_t
-          Timestamp (0 to use Backend timestamp).
-
-     frame_id : MavFrame
-          Coordinate frame of reference for the pose data.
-
-     child_frame_id : MavFrame
-          Coordinate frame of reference for the velocity in free space (twist) data.
-
-     position_body : PositionBody
-          Position.
-
-     q : Quaternion
-          Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation).
-
-     speed_body : SpeedBody
-          Linear speed (m/s).
-
-     angular_velocity_body : AngularVelocityBody
-          Angular speed (rad/s).
-
-     pose_covariance : Covariance
-          Pose cross-covariance matrix.
-
-     velocity_covariance : Covariance
-          Velocity cross-covariance matrix.
-
-     """
-
-
-
-    class MavFrame(Enum):
-        """
-         Mavlink frame id
-
-         Values
-         ------
-         UNDEF
-
-         BODY_NED
-              Setpoint in body NED frame. This makes sense if all position control is externalized - e.g. useful to command 2 m/s^2 acceleration to the right.
-
-         VISION_NED
-              Odometry local coordinate frame of data given by a vision estimation system, Z-down (x: north, y: east, z: down).
-
-         ESTIM_NED
-              Odometry local coordinate frame of data given by an estimator running onboard the vehicle, Z-down (x: north, y: east, z: down).
-
-         """
-
-
-        UNDEF = 0
-        BODY_NED = 8
-        VISION_NED = 16
-        ESTIM_NED = 18
-
-        def translate_to_rpc(self, rpcMavFrame):
-            return {
-                    0: telemetry_pb2.Odometry.UNDEF,
-                    8: telemetry_pb2.Odometry.BODY_NED,
-                    16: telemetry_pb2.Odometry.VISION_NED,
-                    18: telemetry_pb2.Odometry.ESTIM_NED
-                }.get(self.value, None)
-
-        @staticmethod
-        def translate_from_rpc(rpc_enum_value):
-            """ Parses a gRPC response """
-            return {
-                    0: Odometry.MavFrame.UNDEF,
-                    8: Odometry.MavFrame.BODY_NED,
-                    16: Odometry.MavFrame.VISION_NED,
-                    18: Odometry.MavFrame.ESTIM_NED,
-                }.get(rpc_enum_value, None)
-
-        def __str__(self):
-            return self.name
-
-
-    def __init__(
-            self,
-            time_usec,
-            frame_id,
-            child_frame_id,
-            position_body,
-            q,
-            speed_body,
-            angular_velocity_body,
-            pose_covariance,
-            velocity_covariance):
-        """ Initializes the Odometry object """
-        self.time_usec = time_usec
-        self.frame_id = frame_id
-        self.child_frame_id = child_frame_id
-        self.position_body = position_body
-        self.q = q
-        self.speed_body = speed_body
-        self.angular_velocity_body = angular_velocity_body
-        self.pose_covariance = pose_covariance
-        self.velocity_covariance = velocity_covariance
-
-    def __equals__(self, to_compare):
-        """ Checks if two Odometry are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # Odometry object
-            return \
-                (self.time_usec == to_compare.time_usec) and \
-                (self.frame_id == to_compare.frame_id) and \
-                (self.child_frame_id == to_compare.child_frame_id) and \
-                (self.position_body == to_compare.position_body) and \
-                (self.q == to_compare.q) and \
-                (self.speed_body == to_compare.speed_body) and \
-                (self.angular_velocity_body == to_compare.angular_velocity_body) and \
-                (self.pose_covariance == to_compare.pose_covariance) and \
-                (self.velocity_covariance == to_compare.velocity_covariance)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ Odometry in string representation """
-        struct_repr = ", ".join([
-                "time_usec: " + str(self.time_usec),
-                "frame_id: " + str(self.frame_id),
-                "child_frame_id: " + str(self.child_frame_id),
-                "position_body: " + str(self.position_body),
-                "q: " + str(self.q),
-                "speed_body: " + str(self.speed_body),
-                "angular_velocity_body: " + str(self.angular_velocity_body),
-                "pose_covariance: " + str(self.pose_covariance),
-                "velocity_covariance: " + str(self.velocity_covariance)
-                ])
-
-        return f"Odometry: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcOdometry):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return Odometry(
-
-                rpcOdometry.time_usec,
-
-
-                Odometry.MavFrame.translate_from_rpc(rpcOdometry.frame_id),
-
-
-                Odometry.MavFrame.translate_from_rpc(rpcOdometry.child_frame_id),
-
-
-                PositionBody.translate_from_rpc(rpcOdometry.position_body),
-
-
-                Quaternion.translate_from_rpc(rpcOdometry.q),
-
-
-                SpeedBody.translate_from_rpc(rpcOdometry.speed_body),
-
-
-                AngularVelocityBody.translate_from_rpc(rpcOdometry.angular_velocity_body),
-
-
-                Covariance.translate_from_rpc(rpcOdometry.pose_covariance),
-
-
-                Covariance.translate_from_rpc(rpcOdometry.velocity_covariance)
-                )
-
-    def translate_to_rpc(self, rpcOdometry):
-        """ Translates this SDK object into its gRPC equivalent """
-
-
-
-
-        rpcOdometry.time_usec = self.time_usec
-
-
-
-
-
-        self.frame_id.translate_to_rpc(rpcOdometry.frame_id)
-
-
-
-
-
-        self.child_frame_id.translate_to_rpc(rpcOdometry.child_frame_id)
-
-
-
-
-
-        self.position_body.translate_to_rpc(rpcOdometry.position_body)
-
-
-
-
-
-        self.q.translate_to_rpc(rpcOdometry.q)
-
-
-
-
-
-        self.speed_body.translate_to_rpc(rpcOdometry.speed_body)
-
-
-
-
-
-        self.angular_velocity_body.translate_to_rpc(rpcOdometry.angular_velocity_body)
-
-
-
-
-
-        self.pose_covariance.translate_to_rpc(rpcOdometry.pose_covariance)
-
-
-
-
-
-        self.velocity_covariance.translate_to_rpc(rpcOdometry.velocity_covariance)
-
-
-
+            
+        
+        
 
 
 class Covariance:
     """
      Covariance type.
+
      Row-major representation of a 6x6 cross-covariance matrix
      upper right triangle.
      Set first to NaN if unknown.
@@ -1591,10 +1404,11 @@ class Covariance:
      Parameters
      ----------
      covariance_matrix : [float]
+          Representation of a covariance matrix.
 
      """
 
-
+    
 
     def __init__(
             self,
@@ -1625,111 +1439,111 @@ class Covariance:
     def translate_from_rpc(rpcCovariance):
         """ Translates a gRPC struct to the SDK equivalent """
         return Covariance(
-
+                
                 rpcCovariance.covariance_matrix
                 )
 
     def translate_to_rpc(self, rpcCovariance):
         """ Translates this SDK object into its gRPC equivalent """
 
-
-
-
+        
+        
+            
         for elem in self.covariance_matrix:
           rpcCovariance.covariance_matrix.append(elem)
+            
+        
+        
 
 
-
-
-
-class SpeedBody:
+class VelocityBody:
     """
-     Speed type, represented in the Body (X Y Z) frame and in metres/second.
+     Velocity type, represented in the Body (X Y Z) frame and in metres/second.
 
      Parameters
      ----------
-     velocity_x_m_s : float
+     x_m_s : float
           Velocity in X in metres/second
 
-     velocity_y_m_s : float
+     y_m_s : float
           Velocity in Y in metres/second
 
-     velocity_z_m_s : float
+     z_m_s : float
           Velocity in Z in metres/second
 
      """
 
-
+    
 
     def __init__(
             self,
-            velocity_x_m_s,
-            velocity_y_m_s,
-            velocity_z_m_s):
-        """ Initializes the SpeedBody object """
-        self.velocity_x_m_s = velocity_x_m_s
-        self.velocity_y_m_s = velocity_y_m_s
-        self.velocity_z_m_s = velocity_z_m_s
+            x_m_s,
+            y_m_s,
+            z_m_s):
+        """ Initializes the VelocityBody object """
+        self.x_m_s = x_m_s
+        self.y_m_s = y_m_s
+        self.z_m_s = z_m_s
 
     def __equals__(self, to_compare):
-        """ Checks if two SpeedBody are the same """
+        """ Checks if two VelocityBody are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
-            # SpeedBody object
+            # VelocityBody object
             return \
-                (self.velocity_x_m_s == to_compare.velocity_x_m_s) and \
-                (self.velocity_y_m_s == to_compare.velocity_y_m_s) and \
-                (self.velocity_z_m_s == to_compare.velocity_z_m_s)
+                (self.x_m_s == to_compare.x_m_s) and \
+                (self.y_m_s == to_compare.y_m_s) and \
+                (self.z_m_s == to_compare.z_m_s)
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ SpeedBody in string representation """
+        """ VelocityBody in string representation """
         struct_repr = ", ".join([
-                "velocity_x_m_s: " + str(self.velocity_x_m_s),
-                "velocity_y_m_s: " + str(self.velocity_y_m_s),
-                "velocity_z_m_s: " + str(self.velocity_z_m_s)
+                "x_m_s: " + str(self.x_m_s),
+                "y_m_s: " + str(self.y_m_s),
+                "z_m_s: " + str(self.z_m_s)
                 ])
 
-        return f"SpeedBody: [{struct_repr}]"
+        return f"VelocityBody: [{struct_repr}]"
 
     @staticmethod
-    def translate_from_rpc(rpcSpeedBody):
+    def translate_from_rpc(rpcVelocityBody):
         """ Translates a gRPC struct to the SDK equivalent """
-        return SpeedBody(
-
-                rpcSpeedBody.velocity_x_m_s,
-
-
-                rpcSpeedBody.velocity_y_m_s,
-
-
-                rpcSpeedBody.velocity_z_m_s
+        return VelocityBody(
+                
+                rpcVelocityBody.x_m_s,
+                
+                
+                rpcVelocityBody.y_m_s,
+                
+                
+                rpcVelocityBody.z_m_s
                 )
 
-    def translate_to_rpc(self, rpcSpeedBody):
+    def translate_to_rpc(self, rpcVelocityBody):
         """ Translates this SDK object into its gRPC equivalent """
 
-
-
-
-        rpcSpeedBody.velocity_x_m_s = self.velocity_x_m_s
-
-
-
-
-
-        rpcSpeedBody.velocity_y_m_s = self.velocity_y_m_s
-
-
-
-
-
-        rpcSpeedBody.velocity_z_m_s = self.velocity_z_m_s
-
-
-
+        
+        
+            
+        rpcVelocityBody.x_m_s = self.x_m_s
+            
+        
+        
+        
+            
+        rpcVelocityBody.y_m_s = self.y_m_s
+            
+        
+        
+        
+            
+        rpcVelocityBody.z_m_s = self.z_m_s
+            
+        
+        
 
 
 class PositionBody:
@@ -1749,7 +1563,7 @@ class PositionBody:
 
      """
 
-
+    
 
     def __init__(
             self,
@@ -1788,40 +1602,1235 @@ class PositionBody:
     def translate_from_rpc(rpcPositionBody):
         """ Translates a gRPC struct to the SDK equivalent """
         return PositionBody(
-
+                
                 rpcPositionBody.x_m,
-
-
+                
+                
                 rpcPositionBody.y_m,
-
-
+                
+                
                 rpcPositionBody.z_m
                 )
 
     def translate_to_rpc(self, rpcPositionBody):
         """ Translates this SDK object into its gRPC equivalent """
 
-
-
-
+        
+        
+            
         rpcPositionBody.x_m = self.x_m
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcPositionBody.y_m = self.y_m
-
-
-
-
-
+            
+        
+        
+        
+            
         rpcPositionBody.z_m = self.z_m
+            
+        
+        
+
+
+class Odometry:
+    """
+     Odometry message type.
+
+     Parameters
+     ----------
+     time_usec : uint64_t
+          Timestamp (0 to use Backend timestamp).
+
+     frame_id : MavFrame
+          Coordinate frame of reference for the pose data.
+
+     child_frame_id : MavFrame
+          Coordinate frame of reference for the velocity in free space (twist) data.
+
+     position_body : PositionBody
+          Position.
+
+     q : Quaternion
+          Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation).
+
+     velocity_body : VelocityBody
+          Linear velocity (m/s).
+
+     angular_velocity_body : AngularVelocityBody
+          Angular velocity (rad/s).
+
+     pose_covariance : Covariance
+          Pose cross-covariance matrix.
+
+     velocity_covariance : Covariance
+          Velocity cross-covariance matrix.
+
+     """
+
+    
+    
+    class MavFrame(Enum):
+        """
+         Mavlink frame id
+
+         Values
+         ------
+         UNDEF
+              Frame is undefined.
+
+         BODY_NED
+              Setpoint in body NED frame. This makes sense if all position control is externalized - e.g. useful to command 2 m/s^2 acceleration to the right.
+
+         VISION_NED
+              Odometry local coordinate frame of data given by a vision estimation system, Z-down (x: north, y: east, z: down).
+
+         ESTIM_NED
+              Odometry local coordinate frame of data given by an estimator running onboard the vehicle, Z-down (x: north, y: east, z: down).
+
+         """
+
+        
+        UNDEF = 0
+        BODY_NED = 1
+        VISION_NED = 2
+        ESTIM_NED = 3
+
+        def translate_to_rpc(self, rpcMavFrame):
+            return {
+                    0: telemetry_pb2.Odometry.MAV_FRAME_UNDEF,
+                    1: telemetry_pb2.Odometry.MAV_FRAME_BODY_NED,
+                    2: telemetry_pb2.Odometry.MAV_FRAME_VISION_NED,
+                    3: telemetry_pb2.Odometry.MAV_FRAME_ESTIM_NED
+                }.get(self.value, None)
+
+        @staticmethod
+        def translate_from_rpc(rpc_enum_value):
+            """ Parses a gRPC response """
+            return {
+                    0: Odometry.MavFrame.UNDEF,
+                    1: Odometry.MavFrame.BODY_NED,
+                    2: Odometry.MavFrame.VISION_NED,
+                    3: Odometry.MavFrame.ESTIM_NED,
+                }.get(rpc_enum_value, None)
+
+        def __str__(self):
+            return self.name
+    
+
+    def __init__(
+            self,
+            time_usec,
+            frame_id,
+            child_frame_id,
+            position_body,
+            q,
+            velocity_body,
+            angular_velocity_body,
+            pose_covariance,
+            velocity_covariance):
+        """ Initializes the Odometry object """
+        self.time_usec = time_usec
+        self.frame_id = frame_id
+        self.child_frame_id = child_frame_id
+        self.position_body = position_body
+        self.q = q
+        self.velocity_body = velocity_body
+        self.angular_velocity_body = angular_velocity_body
+        self.pose_covariance = pose_covariance
+        self.velocity_covariance = velocity_covariance
+
+    def __equals__(self, to_compare):
+        """ Checks if two Odometry are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Odometry object
+            return \
+                (self.time_usec == to_compare.time_usec) and \
+                (self.frame_id == to_compare.frame_id) and \
+                (self.child_frame_id == to_compare.child_frame_id) and \
+                (self.position_body == to_compare.position_body) and \
+                (self.q == to_compare.q) and \
+                (self.velocity_body == to_compare.velocity_body) and \
+                (self.angular_velocity_body == to_compare.angular_velocity_body) and \
+                (self.pose_covariance == to_compare.pose_covariance) and \
+                (self.velocity_covariance == to_compare.velocity_covariance)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Odometry in string representation """
+        struct_repr = ", ".join([
+                "time_usec: " + str(self.time_usec),
+                "frame_id: " + str(self.frame_id),
+                "child_frame_id: " + str(self.child_frame_id),
+                "position_body: " + str(self.position_body),
+                "q: " + str(self.q),
+                "velocity_body: " + str(self.velocity_body),
+                "angular_velocity_body: " + str(self.angular_velocity_body),
+                "pose_covariance: " + str(self.pose_covariance),
+                "velocity_covariance: " + str(self.velocity_covariance)
+                ])
+
+        return f"Odometry: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcOdometry):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Odometry(
+                
+                rpcOdometry.time_usec,
+                
+                
+                Odometry.MavFrame.translate_from_rpc(rpcOdometry.frame_id),
+                
+                
+                Odometry.MavFrame.translate_from_rpc(rpcOdometry.child_frame_id),
+                
+                
+                PositionBody.translate_from_rpc(rpcOdometry.position_body),
+                
+                
+                Quaternion.translate_from_rpc(rpcOdometry.q),
+                
+                
+                VelocityBody.translate_from_rpc(rpcOdometry.velocity_body),
+                
+                
+                AngularVelocityBody.translate_from_rpc(rpcOdometry.angular_velocity_body),
+                
+                
+                Covariance.translate_from_rpc(rpcOdometry.pose_covariance),
+                
+                
+                Covariance.translate_from_rpc(rpcOdometry.velocity_covariance)
+                )
+
+    def translate_to_rpc(self, rpcOdometry):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcOdometry.time_usec = self.time_usec
+            
+        
+        
+        
+            
+        self.frame_id.translate_to_rpc(rpcOdometry.frame_id)
+            
+        
+        
+        
+            
+        self.child_frame_id.translate_to_rpc(rpcOdometry.child_frame_id)
+            
+        
+        
+        
+            
+        self.position_body.translate_to_rpc(rpcOdometry.position_body)
+            
+        
+        
+        
+            
+        self.q.translate_to_rpc(rpcOdometry.q)
+            
+        
+        
+        
+            
+        self.velocity_body.translate_to_rpc(rpcOdometry.velocity_body)
+            
+        
+        
+        
+            
+        self.angular_velocity_body.translate_to_rpc(rpcOdometry.angular_velocity_body)
+            
+        
+        
+        
+            
+        self.pose_covariance.translate_to_rpc(rpcOdometry.pose_covariance)
+            
+        
+        
+        
+            
+        self.velocity_covariance.translate_to_rpc(rpcOdometry.velocity_covariance)
+            
+        
+        
+
+
+class PositionNed:
+    """
+     PositionNed message type.
+
+     Parameters
+     ----------
+     north_m : float
+          Position along north direction in metres
+
+     east_m : float
+          Position along east direction in metres
+
+     down_m : float
+          Position along down direction in metres
+
+     """
+
+    
+
+    def __init__(
+            self,
+            north_m,
+            east_m,
+            down_m):
+        """ Initializes the PositionNed object """
+        self.north_m = north_m
+        self.east_m = east_m
+        self.down_m = down_m
+
+    def __equals__(self, to_compare):
+        """ Checks if two PositionNed are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # PositionNed object
+            return \
+                (self.north_m == to_compare.north_m) and \
+                (self.east_m == to_compare.east_m) and \
+                (self.down_m == to_compare.down_m)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ PositionNed in string representation """
+        struct_repr = ", ".join([
+                "north_m: " + str(self.north_m),
+                "east_m: " + str(self.east_m),
+                "down_m: " + str(self.down_m)
+                ])
+
+        return f"PositionNed: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcPositionNed):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return PositionNed(
+                
+                rpcPositionNed.north_m,
+                
+                
+                rpcPositionNed.east_m,
+                
+                
+                rpcPositionNed.down_m
+                )
+
+    def translate_to_rpc(self, rpcPositionNed):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcPositionNed.north_m = self.north_m
+            
+        
+        
+        
+            
+        rpcPositionNed.east_m = self.east_m
+            
+        
+        
+        
+            
+        rpcPositionNed.down_m = self.down_m
+            
+        
+        
+
+
+class VelocityNed:
+    """
+     VelocityNed message type.
+
+     Parameters
+     ----------
+     north_m_s : float
+          Velocity along north direction in metres per second
+
+     east_m_s : float
+          Velocity along east direction in metres per second
+
+     down_m_s : float
+          Velocity along down direction in metres per second
+
+     """
+
+    
+
+    def __init__(
+            self,
+            north_m_s,
+            east_m_s,
+            down_m_s):
+        """ Initializes the VelocityNed object """
+        self.north_m_s = north_m_s
+        self.east_m_s = east_m_s
+        self.down_m_s = down_m_s
+
+    def __equals__(self, to_compare):
+        """ Checks if two VelocityNed are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # VelocityNed object
+            return \
+                (self.north_m_s == to_compare.north_m_s) and \
+                (self.east_m_s == to_compare.east_m_s) and \
+                (self.down_m_s == to_compare.down_m_s)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ VelocityNed in string representation """
+        struct_repr = ", ".join([
+                "north_m_s: " + str(self.north_m_s),
+                "east_m_s: " + str(self.east_m_s),
+                "down_m_s: " + str(self.down_m_s)
+                ])
+
+        return f"VelocityNed: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcVelocityNed):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return VelocityNed(
+                
+                rpcVelocityNed.north_m_s,
+                
+                
+                rpcVelocityNed.east_m_s,
+                
+                
+                rpcVelocityNed.down_m_s
+                )
+
+    def translate_to_rpc(self, rpcVelocityNed):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcVelocityNed.north_m_s = self.north_m_s
+            
+        
+        
+        
+            
+        rpcVelocityNed.east_m_s = self.east_m_s
+            
+        
+        
+        
+            
+        rpcVelocityNed.down_m_s = self.down_m_s
+            
+        
+        
+
+
+class PositionVelocityNed:
+    """
+     PositionVelocityNed message type.
+
+     Parameters
+     ----------
+     position : PositionNed
+          Position (NED)
+
+     velocity : VelocityNed
+          Velocity (NED)
+
+     """
+
+    
+
+    def __init__(
+            self,
+            position,
+            velocity):
+        """ Initializes the PositionVelocityNed object """
+        self.position = position
+        self.velocity = velocity
+
+    def __equals__(self, to_compare):
+        """ Checks if two PositionVelocityNed are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # PositionVelocityNed object
+            return \
+                (self.position == to_compare.position) and \
+                (self.velocity == to_compare.velocity)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ PositionVelocityNed in string representation """
+        struct_repr = ", ".join([
+                "position: " + str(self.position),
+                "velocity: " + str(self.velocity)
+                ])
+
+        return f"PositionVelocityNed: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcPositionVelocityNed):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return PositionVelocityNed(
+                
+                PositionNed.translate_from_rpc(rpcPositionVelocityNed.position),
+                
+                
+                VelocityNed.translate_from_rpc(rpcPositionVelocityNed.velocity)
+                )
+
+    def translate_to_rpc(self, rpcPositionVelocityNed):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        self.position.translate_to_rpc(rpcPositionVelocityNed.position)
+            
+        
+        
+        
+            
+        self.velocity.translate_to_rpc(rpcPositionVelocityNed.velocity)
+            
+        
+        
+
+
+class GroundTruth:
+    """
+     GroundTruth message type.
+
+     Parameters
+     ----------
+     latitude_deg : double
+          Latitude in degrees (range: -90 to +90)
+
+     longitude_deg : double
+          Longitude in degrees (range: -180 to 180)
+
+     absolute_altitude_m : float
+          Altitude AMSL (above mean sea level) in metres
+
+     """
+
+    
+
+    def __init__(
+            self,
+            latitude_deg,
+            longitude_deg,
+            absolute_altitude_m):
+        """ Initializes the GroundTruth object """
+        self.latitude_deg = latitude_deg
+        self.longitude_deg = longitude_deg
+        self.absolute_altitude_m = absolute_altitude_m
+
+    def __equals__(self, to_compare):
+        """ Checks if two GroundTruth are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # GroundTruth object
+            return \
+                (self.latitude_deg == to_compare.latitude_deg) and \
+                (self.longitude_deg == to_compare.longitude_deg) and \
+                (self.absolute_altitude_m == to_compare.absolute_altitude_m)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ GroundTruth in string representation """
+        struct_repr = ", ".join([
+                "latitude_deg: " + str(self.latitude_deg),
+                "longitude_deg: " + str(self.longitude_deg),
+                "absolute_altitude_m: " + str(self.absolute_altitude_m)
+                ])
+
+        return f"GroundTruth: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcGroundTruth):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return GroundTruth(
+                
+                rpcGroundTruth.latitude_deg,
+                
+                
+                rpcGroundTruth.longitude_deg,
+                
+                
+                rpcGroundTruth.absolute_altitude_m
+                )
+
+    def translate_to_rpc(self, rpcGroundTruth):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcGroundTruth.latitude_deg = self.latitude_deg
+            
+        
+        
+        
+            
+        rpcGroundTruth.longitude_deg = self.longitude_deg
+            
+        
+        
+        
+            
+        rpcGroundTruth.absolute_altitude_m = self.absolute_altitude_m
+            
+        
+        
+
+
+class FixedwingMetrics:
+    """
+     FixedwingMetrics message type.
+
+     Parameters
+     ----------
+     airspeed_m_s : float
+          Current indicated airspeed (IAS) in metres per second
+
+     throttle_percentage : float
+          Current throttle setting (0 to 100)
+
+     climb_rate_m_s : float
+          Current climb rate in metres per second
+
+     """
+
+    
+
+    def __init__(
+            self,
+            airspeed_m_s,
+            throttle_percentage,
+            climb_rate_m_s):
+        """ Initializes the FixedwingMetrics object """
+        self.airspeed_m_s = airspeed_m_s
+        self.throttle_percentage = throttle_percentage
+        self.climb_rate_m_s = climb_rate_m_s
+
+    def __equals__(self, to_compare):
+        """ Checks if two FixedwingMetrics are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # FixedwingMetrics object
+            return \
+                (self.airspeed_m_s == to_compare.airspeed_m_s) and \
+                (self.throttle_percentage == to_compare.throttle_percentage) and \
+                (self.climb_rate_m_s == to_compare.climb_rate_m_s)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ FixedwingMetrics in string representation """
+        struct_repr = ", ".join([
+                "airspeed_m_s: " + str(self.airspeed_m_s),
+                "throttle_percentage: " + str(self.throttle_percentage),
+                "climb_rate_m_s: " + str(self.climb_rate_m_s)
+                ])
+
+        return f"FixedwingMetrics: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcFixedwingMetrics):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return FixedwingMetrics(
+                
+                rpcFixedwingMetrics.airspeed_m_s,
+                
+                
+                rpcFixedwingMetrics.throttle_percentage,
+                
+                
+                rpcFixedwingMetrics.climb_rate_m_s
+                )
+
+    def translate_to_rpc(self, rpcFixedwingMetrics):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcFixedwingMetrics.airspeed_m_s = self.airspeed_m_s
+            
+        
+        
+        
+            
+        rpcFixedwingMetrics.throttle_percentage = self.throttle_percentage
+            
+        
+        
+        
+            
+        rpcFixedwingMetrics.climb_rate_m_s = self.climb_rate_m_s
+            
+        
+        
+
+
+class AccelerationFrd:
+    """
+     AccelerationFrd message type.
+
+     Parameters
+     ----------
+     forward_m_s2 : float
+          Acceleration in forward direction in metres per second^2
+
+     right_m_s2 : float
+          Acceleration in right direction in metres per second^2
+
+     down_m_s2 : float
+          Acceleration in down direction in metres per second^2
+
+     """
+
+    
+
+    def __init__(
+            self,
+            forward_m_s2,
+            right_m_s2,
+            down_m_s2):
+        """ Initializes the AccelerationFrd object """
+        self.forward_m_s2 = forward_m_s2
+        self.right_m_s2 = right_m_s2
+        self.down_m_s2 = down_m_s2
+
+    def __equals__(self, to_compare):
+        """ Checks if two AccelerationFrd are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # AccelerationFrd object
+            return \
+                (self.forward_m_s2 == to_compare.forward_m_s2) and \
+                (self.right_m_s2 == to_compare.right_m_s2) and \
+                (self.down_m_s2 == to_compare.down_m_s2)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ AccelerationFrd in string representation """
+        struct_repr = ", ".join([
+                "forward_m_s2: " + str(self.forward_m_s2),
+                "right_m_s2: " + str(self.right_m_s2),
+                "down_m_s2: " + str(self.down_m_s2)
+                ])
+
+        return f"AccelerationFrd: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcAccelerationFrd):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return AccelerationFrd(
+                
+                rpcAccelerationFrd.forward_m_s2,
+                
+                
+                rpcAccelerationFrd.right_m_s2,
+                
+                
+                rpcAccelerationFrd.down_m_s2
+                )
+
+    def translate_to_rpc(self, rpcAccelerationFrd):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcAccelerationFrd.forward_m_s2 = self.forward_m_s2
+            
+        
+        
+        
+            
+        rpcAccelerationFrd.right_m_s2 = self.right_m_s2
+            
+        
+        
+        
+            
+        rpcAccelerationFrd.down_m_s2 = self.down_m_s2
+            
+        
+        
+
+
+class AngularVelocityFrd:
+    """
+     AngularVelocityFrd message type.
+
+     Parameters
+     ----------
+     forward_rad_s : float
+          Angular velocity in forward direction in radians per second
+
+     right_rad_s : float
+          Angular velocity in right direction in radians per second
+
+     down_rad_s : float
+          Angular velocity in Down direction in radians per second
+
+     """
+
+    
+
+    def __init__(
+            self,
+            forward_rad_s,
+            right_rad_s,
+            down_rad_s):
+        """ Initializes the AngularVelocityFrd object """
+        self.forward_rad_s = forward_rad_s
+        self.right_rad_s = right_rad_s
+        self.down_rad_s = down_rad_s
+
+    def __equals__(self, to_compare):
+        """ Checks if two AngularVelocityFrd are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # AngularVelocityFrd object
+            return \
+                (self.forward_rad_s == to_compare.forward_rad_s) and \
+                (self.right_rad_s == to_compare.right_rad_s) and \
+                (self.down_rad_s == to_compare.down_rad_s)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ AngularVelocityFrd in string representation """
+        struct_repr = ", ".join([
+                "forward_rad_s: " + str(self.forward_rad_s),
+                "right_rad_s: " + str(self.right_rad_s),
+                "down_rad_s: " + str(self.down_rad_s)
+                ])
+
+        return f"AngularVelocityFrd: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcAngularVelocityFrd):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return AngularVelocityFrd(
+                
+                rpcAngularVelocityFrd.forward_rad_s,
+                
+                
+                rpcAngularVelocityFrd.right_rad_s,
+                
+                
+                rpcAngularVelocityFrd.down_rad_s
+                )
+
+    def translate_to_rpc(self, rpcAngularVelocityFrd):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcAngularVelocityFrd.forward_rad_s = self.forward_rad_s
+            
+        
+        
+        
+            
+        rpcAngularVelocityFrd.right_rad_s = self.right_rad_s
+            
+        
+        
+        
+            
+        rpcAngularVelocityFrd.down_rad_s = self.down_rad_s
+            
+        
+        
+
+
+class MagneticFieldFrd:
+    """
+     MagneticFieldFrd message type.
+
+     Parameters
+     ----------
+     forward_gauss : float
+          Magnetic field in forward direction measured in Gauss
+
+     right_gauss : float
+          Magnetic field in East direction measured in Gauss
+
+     down_gauss : float
+          Magnetic field in Down direction measured in Gauss
+
+     """
+
+    
+
+    def __init__(
+            self,
+            forward_gauss,
+            right_gauss,
+            down_gauss):
+        """ Initializes the MagneticFieldFrd object """
+        self.forward_gauss = forward_gauss
+        self.right_gauss = right_gauss
+        self.down_gauss = down_gauss
+
+    def __equals__(self, to_compare):
+        """ Checks if two MagneticFieldFrd are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # MagneticFieldFrd object
+            return \
+                (self.forward_gauss == to_compare.forward_gauss) and \
+                (self.right_gauss == to_compare.right_gauss) and \
+                (self.down_gauss == to_compare.down_gauss)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ MagneticFieldFrd in string representation """
+        struct_repr = ", ".join([
+                "forward_gauss: " + str(self.forward_gauss),
+                "right_gauss: " + str(self.right_gauss),
+                "down_gauss: " + str(self.down_gauss)
+                ])
+
+        return f"MagneticFieldFrd: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcMagneticFieldFrd):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return MagneticFieldFrd(
+                
+                rpcMagneticFieldFrd.forward_gauss,
+                
+                
+                rpcMagneticFieldFrd.right_gauss,
+                
+                
+                rpcMagneticFieldFrd.down_gauss
+                )
+
+    def translate_to_rpc(self, rpcMagneticFieldFrd):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcMagneticFieldFrd.forward_gauss = self.forward_gauss
+            
+        
+        
+        
+            
+        rpcMagneticFieldFrd.right_gauss = self.right_gauss
+            
+        
+        
+        
+            
+        rpcMagneticFieldFrd.down_gauss = self.down_gauss
+            
+        
+        
+
+
+class Imu:
+    """
+     Imu message type.
+
+     Parameters
+     ----------
+     acceleration_frd : AccelerationFrd
+          Acceleration
+
+     angular_velocity_frd : AngularVelocityFrd
+          Angular velocity
+
+     magnetic_field_frd : MagneticFieldFrd
+          Magnetic field
+
+     temperature_degc : float
+          Temperature
+
+     """
+
+    
+
+    def __init__(
+            self,
+            acceleration_frd,
+            angular_velocity_frd,
+            magnetic_field_frd,
+            temperature_degc):
+        """ Initializes the Imu object """
+        self.acceleration_frd = acceleration_frd
+        self.angular_velocity_frd = angular_velocity_frd
+        self.magnetic_field_frd = magnetic_field_frd
+        self.temperature_degc = temperature_degc
+
+    def __equals__(self, to_compare):
+        """ Checks if two Imu are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Imu object
+            return \
+                (self.acceleration_frd == to_compare.acceleration_frd) and \
+                (self.angular_velocity_frd == to_compare.angular_velocity_frd) and \
+                (self.magnetic_field_frd == to_compare.magnetic_field_frd) and \
+                (self.temperature_degc == to_compare.temperature_degc)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Imu in string representation """
+        struct_repr = ", ".join([
+                "acceleration_frd: " + str(self.acceleration_frd),
+                "angular_velocity_frd: " + str(self.angular_velocity_frd),
+                "magnetic_field_frd: " + str(self.magnetic_field_frd),
+                "temperature_degc: " + str(self.temperature_degc)
+                ])
+
+        return f"Imu: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcImu):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Imu(
+                
+                AccelerationFrd.translate_from_rpc(rpcImu.acceleration_frd),
+                
+                
+                AngularVelocityFrd.translate_from_rpc(rpcImu.angular_velocity_frd),
+                
+                
+                MagneticFieldFrd.translate_from_rpc(rpcImu.magnetic_field_frd),
+                
+                
+                rpcImu.temperature_degc
+                )
+
+    def translate_to_rpc(self, rpcImu):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        self.acceleration_frd.translate_to_rpc(rpcImu.acceleration_frd)
+            
+        
+        
+        
+            
+        self.angular_velocity_frd.translate_to_rpc(rpcImu.angular_velocity_frd)
+            
+        
+        
+        
+            
+        self.magnetic_field_frd.translate_to_rpc(rpcImu.magnetic_field_frd)
+            
+        
+        
+        
+            
+        rpcImu.temperature_degc = self.temperature_degc
+            
+        
+        
+
+
+class TelemetryResult:
+    """
+     Result type.
+
+     Parameters
+     ----------
+     result : Result
+          Result enum value
+
+     result_str : std::string
+          Human-readable English string describing the result
+
+     """
+
+    
+    
+    class Result(Enum):
+        """
+         Possible results returned for telemetry requests.
+
+         Values
+         ------
+         UNKNOWN
+              Unknown error
+
+         SUCCESS
+              Success: the telemetry command was accepted by the vehicle
+
+         NO_SYSTEM
+              No system connected
+
+         CONNECTION_ERROR
+              Connection error
+
+         BUSY
+              Vehicle is busy
+
+         COMMAND_DENIED
+              Command refused by vehicle
+
+         TIMEOUT
+              Request timed out
+
+         """
+
+        
+        UNKNOWN = 0
+        SUCCESS = 1
+        NO_SYSTEM = 2
+        CONNECTION_ERROR = 3
+        BUSY = 4
+        COMMAND_DENIED = 5
+        TIMEOUT = 6
+
+        def translate_to_rpc(self, rpcResult):
+            return {
+                    0: telemetry_pb2.TelemetryResult.RESULT_UNKNOWN,
+                    1: telemetry_pb2.TelemetryResult.RESULT_SUCCESS,
+                    2: telemetry_pb2.TelemetryResult.RESULT_NO_SYSTEM,
+                    3: telemetry_pb2.TelemetryResult.RESULT_CONNECTION_ERROR,
+                    4: telemetry_pb2.TelemetryResult.RESULT_BUSY,
+                    5: telemetry_pb2.TelemetryResult.RESULT_COMMAND_DENIED,
+                    6: telemetry_pb2.TelemetryResult.RESULT_TIMEOUT
+                }.get(self.value, None)
+
+        @staticmethod
+        def translate_from_rpc(rpc_enum_value):
+            """ Parses a gRPC response """
+            return {
+                    0: TelemetryResult.Result.UNKNOWN,
+                    1: TelemetryResult.Result.SUCCESS,
+                    2: TelemetryResult.Result.NO_SYSTEM,
+                    3: TelemetryResult.Result.CONNECTION_ERROR,
+                    4: TelemetryResult.Result.BUSY,
+                    5: TelemetryResult.Result.COMMAND_DENIED,
+                    6: TelemetryResult.Result.TIMEOUT,
+                }.get(rpc_enum_value, None)
+
+        def __str__(self):
+            return self.name
+    
+
+    def __init__(
+            self,
+            result,
+            result_str):
+        """ Initializes the TelemetryResult object """
+        self.result = result
+        self.result_str = result_str
+
+    def __equals__(self, to_compare):
+        """ Checks if two TelemetryResult are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # TelemetryResult object
+            return \
+                (self.result == to_compare.result) and \
+                (self.result_str == to_compare.result_str)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ TelemetryResult in string representation """
+        struct_repr = ", ".join([
+                "result: " + str(self.result),
+                "result_str: " + str(self.result_str)
+                ])
+
+        return f"TelemetryResult: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcTelemetryResult):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return TelemetryResult(
+                
+                TelemetryResult.Result.translate_from_rpc(rpcTelemetryResult.result),
+                
+                
+                rpcTelemetryResult.result_str
+                )
+
+    def translate_to_rpc(self, rpcTelemetryResult):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        self.result.translate_to_rpc(rpcTelemetryResult.result)
+            
+        
+        
+        
+            
+        rpcTelemetryResult.result_str = self.result_str
+            
+        
+        
 
 
 
+class TelemetryError(Exception):
+    """ Raised when a TelemetryResult is a fail code """
 
+    def __init__(self, result, origin, *params):
+        self._result = result
+        self._origin = origin
+        self._params = params
 
+    def __str__(self):
+        return f"{self._result.result}: '{self._result.result_str}'; origin: {self._origin}; params: {self._params}"
 
 
 class Telemetry(AsyncBase):
@@ -1839,7 +2848,11 @@ class Telemetry(AsyncBase):
         """ Setups the api stub """
         self._stub = telemetry_pb2_grpc.TelemetryServiceStub(channel)
 
-
+    
+    def _extract_result(self, response):
+        """ Returns the response status and description """
+        return TelemetryResult.translate_from_rpc(response.telemetry_result)
+    
 
     async def position(self):
         """
@@ -1850,7 +2863,7 @@ class Telemetry(AsyncBase):
          position : Position
               The next position
 
-
+         
         """
 
         request = telemetry_pb2.SubscribePositionRequest()
@@ -1858,9 +2871,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in position_stream:
+                
 
-
-
+            
                 yield Position.translate_from_rpc(response.position)
         finally:
             position_stream.cancel()
@@ -1874,7 +2887,7 @@ class Telemetry(AsyncBase):
          home : Position
               The next home position
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeHomeRequest()
@@ -1882,9 +2895,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in home_stream:
+                
 
-
-
+            
                 yield Position.translate_from_rpc(response.home)
         finally:
             home_stream.cancel()
@@ -1898,7 +2911,7 @@ class Telemetry(AsyncBase):
          is_in_air : bool
               The next 'in-air' state
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeInAirRequest()
@@ -1906,9 +2919,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in in_air_stream:
+                
 
-
-
+            
                 yield response.is_in_air
         finally:
             in_air_stream.cancel()
@@ -1920,8 +2933,9 @@ class Telemetry(AsyncBase):
          Yields
          -------
          landed_state : LandedState
+              The next 'landed' state
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeLandedStateRequest()
@@ -1929,9 +2943,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in landed_state_stream:
+                
 
-
-
+            
                 yield LandedState.translate_from_rpc(response.landed_state)
         finally:
             landed_state_stream.cancel()
@@ -1945,7 +2959,7 @@ class Telemetry(AsyncBase):
          is_armed : bool
               The next 'armed' state
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeArmedRequest()
@@ -1953,9 +2967,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in armed_stream:
+                
 
-
-
+            
                 yield response.is_armed
         finally:
             armed_stream.cancel()
@@ -1969,7 +2983,7 @@ class Telemetry(AsyncBase):
          attitude_quaternion : Quaternion
               The next attitude (quaternion)
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeAttitudeQuaternionRequest()
@@ -1977,23 +2991,23 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in attitude_quaternion_stream:
+                
 
-
-
+            
                 yield Quaternion.translate_from_rpc(response.attitude_quaternion)
         finally:
             attitude_quaternion_stream.cancel()
 
     async def attitude_euler(self):
         """
-         Subscribe to 'attitude' updates (euler).
+         Subscribe to 'attitude' updates (Euler).
 
          Yields
          -------
          attitude_euler : EulerAngle
-              The next attitude (euler)
+              The next attitude (Euler)
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeAttitudeEulerRequest()
@@ -2001,9 +3015,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in attitude_euler_stream:
+                
 
-
-
+            
                 yield EulerAngle.translate_from_rpc(response.attitude_euler)
         finally:
             attitude_euler_stream.cancel()
@@ -2017,7 +3031,7 @@ class Telemetry(AsyncBase):
          attitude_angular_velocity_body : AngularVelocityBody
               The next angular velocity (rad/s)
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeAttitudeAngularVelocityBodyRequest()
@@ -2025,9 +3039,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in attitude_angular_velocity_body_stream:
+                
 
-
-
+            
                 yield AngularVelocityBody.translate_from_rpc(response.attitude_angular_velocity_body)
         finally:
             attitude_angular_velocity_body_stream.cancel()
@@ -2041,7 +3055,7 @@ class Telemetry(AsyncBase):
          attitude_quaternion : Quaternion
               The next camera attitude (quaternion)
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeCameraAttitudeQuaternionRequest()
@@ -2049,23 +3063,23 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in camera_attitude_quaternion_stream:
+                
 
-
-
+            
                 yield Quaternion.translate_from_rpc(response.attitude_quaternion)
         finally:
             camera_attitude_quaternion_stream.cancel()
 
     async def camera_attitude_euler(self):
         """
-         Subscribe to 'camera attitude' updates (euler).
+         Subscribe to 'camera attitude' updates (Euler).
 
          Yields
          -------
          attitude_euler : EulerAngle
-              The next camera attitude (euler)
+              The next camera attitude (Euler)
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeCameraAttitudeEulerRequest()
@@ -2073,9 +3087,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in camera_attitude_euler_stream:
+                
 
-
-
+            
                 yield EulerAngle.translate_from_rpc(response.attitude_euler)
         finally:
             camera_attitude_euler_stream.cancel()
@@ -2089,7 +3103,7 @@ class Telemetry(AsyncBase):
          ground_speed_ned : SpeedNed
               The next ground speed (NED)
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeGroundSpeedNedRequest()
@@ -2097,9 +3111,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in ground_speed_ned_stream:
+                
 
-
-
+            
                 yield SpeedNed.translate_from_rpc(response.ground_speed_ned)
         finally:
             ground_speed_ned_stream.cancel()
@@ -2113,7 +3127,7 @@ class Telemetry(AsyncBase):
          gps_info : GpsInfo
               The next 'GPS info' state
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeGpsInfoRequest()
@@ -2121,9 +3135,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in gps_info_stream:
+                
 
-
-
+            
                 yield GpsInfo.translate_from_rpc(response.gps_info)
         finally:
             gps_info_stream.cancel()
@@ -2137,7 +3151,7 @@ class Telemetry(AsyncBase):
          battery : Battery
               The next 'battery' state
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeBatteryRequest()
@@ -2145,9 +3159,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in battery_stream:
+                
 
-
-
+            
                 yield Battery.translate_from_rpc(response.battery)
         finally:
             battery_stream.cancel()
@@ -2161,7 +3175,7 @@ class Telemetry(AsyncBase):
          flight_mode : FlightMode
               The next flight mode
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeFlightModeRequest()
@@ -2169,9 +3183,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in flight_mode_stream:
+                
 
-
-
+            
                 yield FlightMode.translate_from_rpc(response.flight_mode)
         finally:
             flight_mode_stream.cancel()
@@ -2185,7 +3199,7 @@ class Telemetry(AsyncBase):
          health : Health
               The next 'health' state
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeHealthRequest()
@@ -2193,9 +3207,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in health_stream:
+                
 
-
-
+            
                 yield Health.translate_from_rpc(response.health)
         finally:
             health_stream.cancel()
@@ -2209,7 +3223,7 @@ class Telemetry(AsyncBase):
          rc_status : RcStatus
               The next RC status
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeRcStatusRequest()
@@ -2217,9 +3231,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in rc_status_stream:
+                
 
-
-
+            
                 yield RcStatus.translate_from_rpc(response.rc_status)
         finally:
             rc_status_stream.cancel()
@@ -2233,7 +3247,7 @@ class Telemetry(AsyncBase):
          status_text : StatusText
               The next 'status text'
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeStatusTextRequest()
@@ -2241,9 +3255,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in status_text_stream:
+                
 
-
-
+            
                 yield StatusText.translate_from_rpc(response.status_text)
         finally:
             status_text_stream.cancel()
@@ -2255,9 +3269,9 @@ class Telemetry(AsyncBase):
          Yields
          -------
          actuator_control_target : ActuatorControlTarget
-              Actuator control target
+              The next actuator control target
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeActuatorControlTargetRequest()
@@ -2265,9 +3279,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in actuator_control_target_stream:
+                
 
-
-
+            
                 yield ActuatorControlTarget.translate_from_rpc(response.actuator_control_target)
         finally:
             actuator_control_target_stream.cancel()
@@ -2279,9 +3293,9 @@ class Telemetry(AsyncBase):
          Yields
          -------
          actuator_output_status : ActuatorOutputStatus
-              Actuator output status
+              The next actuator output status
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeActuatorOutputStatusRequest()
@@ -2289,9 +3303,9 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in actuator_output_status_stream:
+                
 
-
-
+            
                 yield ActuatorOutputStatus.translate_from_rpc(response.actuator_output_status)
         finally:
             actuator_output_status_stream.cancel()
@@ -2303,9 +3317,9 @@ class Telemetry(AsyncBase):
          Yields
          -------
          odometry : Odometry
-              Odometry
+              The next odometry status
 
-
+         
         """
 
         request = telemetry_pb2.SubscribeOdometryRequest()
@@ -2313,9 +3327,621 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in odometry_stream:
+                
 
-
-
+            
                 yield Odometry.translate_from_rpc(response.odometry)
         finally:
             odometry_stream.cancel()
+
+    async def position_velocity_ned(self):
+        """
+         Subscribe to 'position velocity' updates.
+
+         Yields
+         -------
+         position_velocity_ned : PositionVelocityNed
+              The next position and velocity status
+
+         
+        """
+
+        request = telemetry_pb2.SubscribePositionVelocityNedRequest()
+        position_velocity_ned_stream = self._stub.SubscribePositionVelocityNed(request)
+
+        try:
+            async for response in position_velocity_ned_stream:
+                
+
+            
+                yield PositionVelocityNed.translate_from_rpc(response.position_velocity_ned)
+        finally:
+            position_velocity_ned_stream.cancel()
+
+    async def ground_truth(self):
+        """
+         Subscribe to 'ground truth' updates.
+
+         Yields
+         -------
+         ground_truth : GroundTruth
+              Ground truth position information available in simulation
+
+         
+        """
+
+        request = telemetry_pb2.SubscribeGroundTruthRequest()
+        ground_truth_stream = self._stub.SubscribeGroundTruth(request)
+
+        try:
+            async for response in ground_truth_stream:
+                
+
+            
+                yield GroundTruth.translate_from_rpc(response.ground_truth)
+        finally:
+            ground_truth_stream.cancel()
+
+    async def fixedwing_metrics(self):
+        """
+         Subscribe to 'fixedwing metrics' updates.
+
+         Yields
+         -------
+         fixedwing_metrics : FixedwingMetrics
+              The next fixedwing metrics
+
+         
+        """
+
+        request = telemetry_pb2.SubscribeFixedwingMetricsRequest()
+        fixedwing_metrics_stream = self._stub.SubscribeFixedwingMetrics(request)
+
+        try:
+            async for response in fixedwing_metrics_stream:
+                
+
+            
+                yield FixedwingMetrics.translate_from_rpc(response.fixedwing_metrics)
+        finally:
+            fixedwing_metrics_stream.cancel()
+
+    async def imu(self):
+        """
+         Subscribe to 'IMU' updates.
+
+         Yields
+         -------
+         imu : Imu
+              The next IMU status
+
+         
+        """
+
+        request = telemetry_pb2.SubscribeImuRequest()
+        imu_stream = self._stub.SubscribeImu(request)
+
+        try:
+            async for response in imu_stream:
+                
+
+            
+                yield Imu.translate_from_rpc(response.imu)
+        finally:
+            imu_stream.cancel()
+
+    async def health_all_ok(self):
+        """
+         Subscribe to 'HealthAllOk' updates.
+
+         Yields
+         -------
+         is_health_all_ok : bool
+              The next 'health all ok' status
+
+         
+        """
+
+        request = telemetry_pb2.SubscribeHealthAllOkRequest()
+        health_all_ok_stream = self._stub.SubscribeHealthAllOk(request)
+
+        try:
+            async for response in health_all_ok_stream:
+                
+
+            
+                yield response.is_health_all_ok
+        finally:
+            health_all_ok_stream.cancel()
+
+    async def unix_epoch_time(self):
+        """
+         Subscribe to 'unix epoch time' updates.
+
+         Yields
+         -------
+         time_us : uint64_t
+              The next 'unix epoch time' status
+
+         
+        """
+
+        request = telemetry_pb2.SubscribeUnixEpochTimeRequest()
+        unix_epoch_time_stream = self._stub.SubscribeUnixEpochTime(request)
+
+        try:
+            async for response in unix_epoch_time_stream:
+                
+
+            
+                yield response.time_us
+        finally:
+            unix_epoch_time_stream.cancel()
+
+    async def set_rate_position(self, rate_hz):
+        """
+         Set rate to 'position' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRatePositionRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRatePosition(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_position()", rate_hz)
+        
+
+    async def set_rate_home(self, rate_hz):
+        """
+         Set rate to 'home position' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateHomeRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateHome(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_home()", rate_hz)
+        
+
+    async def set_rate_in_air(self, rate_hz):
+        """
+         Set rate to in-air updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateInAirRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateInAir(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_in_air()", rate_hz)
+        
+
+    async def set_rate_landed_state(self, rate_hz):
+        """
+         Set rate to landed state updates
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateLandedStateRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateLandedState(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_landed_state()", rate_hz)
+        
+
+    async def set_rate_attitude(self, rate_hz):
+        """
+         Set rate to 'attitude' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateAttitudeRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateAttitude(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_attitude()", rate_hz)
+        
+
+    async def set_rate_camera_attitude(self, rate_hz):
+        """
+         Set rate of camera attitude updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateCameraAttitudeRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateCameraAttitude(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_camera_attitude()", rate_hz)
+        
+
+    async def set_rate_ground_speed_ned(self, rate_hz):
+        """
+         Set rate to 'ground speed' updates (NED).
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateGroundSpeedNedRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateGroundSpeedNed(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_ground_speed_ned()", rate_hz)
+        
+
+    async def set_rate_gps_info(self, rate_hz):
+        """
+         Set rate to 'GPS info' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateGpsInfoRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateGpsInfo(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_gps_info()", rate_hz)
+        
+
+    async def set_rate_battery(self, rate_hz):
+        """
+         Set rate to 'battery' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateBatteryRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateBattery(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_battery()", rate_hz)
+        
+
+    async def set_rate_rc_status(self, rate_hz):
+        """
+         Set rate to 'RC status' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateRcStatusRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateRcStatus(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_rc_status()", rate_hz)
+        
+
+    async def set_rate_actuator_control_target(self, rate_hz):
+        """
+         Set rate to 'actuator control target' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateActuatorControlTargetRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateActuatorControlTarget(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_actuator_control_target()", rate_hz)
+        
+
+    async def set_rate_actuator_output_status(self, rate_hz):
+        """
+         Set rate to 'actuator output status' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateActuatorOutputStatusRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateActuatorOutputStatus(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_actuator_output_status()", rate_hz)
+        
+
+    async def set_rate_odometry(self, rate_hz):
+        """
+         Set rate to 'odometry' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateOdometryRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateOdometry(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_odometry()", rate_hz)
+        
+
+    async def set_rate_position_velocity_ned(self, rate_hz):
+        """
+         Set rate to 'position velocity' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRatePositionVelocityNedRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRatePositionVelocityNed(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_position_velocity_ned()", rate_hz)
+        
+
+    async def set_rate_ground_truth(self, rate_hz):
+        """
+         Set rate to 'ground truth' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateGroundTruthRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateGroundTruth(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_ground_truth()", rate_hz)
+        
+
+    async def set_rate_fixedwing_metrics(self, rate_hz):
+        """
+         Set rate to 'fixedwing metrics' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateFixedwingMetricsRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateFixedwingMetrics(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_fixedwing_metrics()", rate_hz)
+        
+
+    async def set_rate_imu(self, rate_hz):
+        """
+         Set rate to 'IMU' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateImuRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateImu(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_imu()", rate_hz)
+        
+
+    async def set_rate_unix_epoch_time(self, rate_hz):
+        """
+         Set rate to 'unix epoch time' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateUnixEpochTimeRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateUnixEpochTime(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_unix_epoch_time()", rate_hz)
+        
