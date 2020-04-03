@@ -11,16 +11,31 @@ function generate {
 
     for PROTO_FILE in `find ${PROTO_DIR}/protos -name "*.proto" -type f`; do
 
+        # For some reason the import is broken with Python3.5.x and works fine
+        # with Python3.6.x, set an absolute path and everything is fine
+        PROTO_IMPORT_NAME="$(basename -- ${PROTO_FILE%.*})_pb2"
+
+        WANTED_PLUGIN_NAME="$(echo ${PROTO_FILE} | sed "s#.*/\(.*\).proto#\1#g").py"
+        # protoc generates java like filenames, we don't want that with python
+
+        PLUGIN_NAME=${PROTO_IMPORT_NAME%_*}
+        if [ $PLUGIN_NAME = "followme" ] || [ $PLUGIN_NAME = "tune" ] ; then
+            continue
+        fi
+
+        # Add to imports
+        echo "from .${WANTED_PLUGIN_NAME%.py} import *" >> $PLUGIN_INIT
+
+        if [ ! $PLUGIN_NAME = "action" ] && [ ! $PLUGIN_NAME = "telemetry" ] ; then
+            continue
+        fi
+
         # Generate bindings for each file individually
         python3 -m grpc_tools.protoc -I${GENERATED_DIR} \
                                      --proto_path=$(dirname ${PROTO_FILE}) \
                                      --python_out=${GENERATED_DIR} \
                                      --grpc_python_out=${GENERATED_DIR} \
                                      ${PROTO_FILE}
-
-        # For some reason the import is broken with Python3.5.x and works fine
-        # with Python3.6.x, set an absolute path and everything is fine
-        PROTO_IMPORT_NAME="$(basename -- ${PROTO_FILE%.*})_pb2"
 
         # We need to create the .original backup files, otherwise we're not compatible with
         # BSD sed.
@@ -38,17 +53,12 @@ function generate {
                                      --custom_opt=file_ext=py \
                                      ${PROTO_FILE}
 
-        WANTED_PLUGIN_NAME="$(echo ${PROTO_FILE} | sed "s#.*/\(.*\).proto#\1#g").py"
-        # protoc generates java like filenames, we don't want that with python
-
         # @TODO: cleanup this script and figure out a way to make it cross-os friendly perhaps rewrite in python
         # capilalization as trivial as this needs a workaround for macos bash 3.2
         # this solution avoids using bash ^ substitution (from bash >4.0) and is using python 3 instead
         CAPITALIZED_PLUGIN_NAME=$(python3 -c "import sys;print(sys.argv[1].capitalize())" "$WANTED_PLUGIN_NAME")
         mv ${GENERATED_DIR}/${CAPITALIZED_PLUGIN_NAME} ${GENERATED_DIR}/${WANTED_PLUGIN_NAME}
 
-        # Add to imports
-        echo "from .${WANTED_PLUGIN_NAME%.py} import *" >> $PLUGIN_INIT
         echo " -> [+] Generated plugin for ${PROTO_IMPORT_NAME%_*}"
 
     done
