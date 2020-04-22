@@ -55,26 +55,34 @@ class ParamResult:
         PARAM_NAME_TOO_LONG = 5
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: param_pb2.ParamResult.UNKNOWN,
-                    1: param_pb2.ParamResult.SUCCESS,
-                    2: param_pb2.ParamResult.TIMEOUT,
-                    3: param_pb2.ParamResult.CONNECTION_ERROR,
-                    4: param_pb2.ParamResult.WRONG_TYPE,
-                    5: param_pb2.ParamResult.PARAM_NAME_TOO_LONG
-                }.get(self.value, None)
+            if self is ParamResult.Result.UNKNOWN:
+                return param_pb2.ParamResult.RESULT_UNKNOWN
+            if self is ParamResult.Result.SUCCESS:
+                return param_pb2.ParamResult.RESULT_SUCCESS
+            if self is ParamResult.Result.TIMEOUT:
+                return param_pb2.ParamResult.RESULT_TIMEOUT
+            if self is ParamResult.Result.CONNECTION_ERROR:
+                return param_pb2.ParamResult.RESULT_CONNECTION_ERROR
+            if self is ParamResult.Result.WRONG_TYPE:
+                return param_pb2.ParamResult.RESULT_WRONG_TYPE
+            if self is ParamResult.Result.PARAM_NAME_TOO_LONG:
+                return param_pb2.ParamResult.RESULT_PARAM_NAME_TOO_LONG
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: ParamResult.Result.UNKNOWN,
-                    1: ParamResult.Result.SUCCESS,
-                    2: ParamResult.Result.TIMEOUT,
-                    3: ParamResult.Result.CONNECTION_ERROR,
-                    4: ParamResult.Result.WRONG_TYPE,
-                    5: ParamResult.Result.PARAM_NAME_TOO_LONG,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is param_pb2.ParamResult.RESULT_UNKNOWN:
+                return ParamResult.Result.UNKNOWN
+            if rpc_enum_value is param_pb2.ParamResult.RESULT_SUCCESS:
+                return ParamResult.Result.SUCCESS
+            if rpc_enum_value is param_pb2.ParamResult.RESULT_TIMEOUT:
+                return ParamResult.Result.TIMEOUT
+            if rpc_enum_value is param_pb2.ParamResult.RESULT_CONNECTION_ERROR:
+                return ParamResult.Result.CONNECTION_ERROR
+            if rpc_enum_value is param_pb2.ParamResult.RESULT_WRONG_TYPE:
+                return ParamResult.Result.WRONG_TYPE
+            if rpc_enum_value is param_pb2.ParamResult.RESULT_PARAM_NAME_TOO_LONG:
+                return ParamResult.Result.PARAM_NAME_TOO_LONG
 
         def __str__(self):
             return self.name
@@ -171,7 +179,7 @@ class Param(AsyncBase):
         return ParamResult.translate_from_rpc(response.param_result)
     
 
-    async def get_int_param(self, name):
+    async def get_param_int(self, name):
         """
          Get an int parameter.
 
@@ -193,24 +201,24 @@ class Param(AsyncBase):
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = param_pb2.GetIntParamRequest()
+        request = param_pb2.GetParamIntRequest()
         
             
         request.name = name
             
-        response = await self._stub.GetIntParam(request)
+        response = await self._stub.GetParamInt(request)
 
         
         result = self._extract_result(response)
 
         if result.result is not ParamResult.Result.SUCCESS:
-            raise ParamError(result, "get_int_param()", name)
+            raise ParamError(result, "get_param_int()", name)
         
 
         return response.value
         
 
-    async def set_int_param(self, name, value):
+    async def set_param_int(self, name, value):
         """
          Set an int parameter.
 
@@ -230,19 +238,19 @@ class Param(AsyncBase):
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = param_pb2.SetIntParamRequest()
+        request = param_pb2.SetParamIntRequest()
         request.name = name
         request.value = value
-        response = await self._stub.SetIntParam(request)
+        response = await self._stub.SetParamInt(request)
 
         
         result = self._extract_result(response)
 
         if result.result is not ParamResult.Result.SUCCESS:
-            raise ParamError(result, "set_int_param()", name, value)
+            raise ParamError(result, "set_param_int()", name, value)
         
 
-    async def get_float_param(self, name):
+    async def get_param_float(self, name):
         """
          Get a float parameter.
 
@@ -264,24 +272,24 @@ class Param(AsyncBase):
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = param_pb2.GetFloatParamRequest()
+        request = param_pb2.GetParamFloatRequest()
         
             
         request.name = name
             
-        response = await self._stub.GetFloatParam(request)
+        response = await self._stub.GetParamFloat(request)
 
         
         result = self._extract_result(response)
 
         if result.result is not ParamResult.Result.SUCCESS:
-            raise ParamError(result, "get_float_param()", name)
+            raise ParamError(result, "get_param_float()", name)
         
 
         return response.value
         
 
-    async def set_float_param(self, name, value):
+    async def set_param_float(self, name, value):
         """
          Set a float parameter.
 
@@ -301,14 +309,14 @@ class Param(AsyncBase):
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = param_pb2.SetFloatParamRequest()
+        request = param_pb2.SetParamFloatRequest()
         request.name = name
         request.value = value
-        response = await self._stub.SetFloatParam(request)
+        response = await self._stub.SetParamFloat(request)
 
         
         result = self._extract_result(response)
 
         if result.result is not ParamResult.Result.SUCCESS:
-            raise ParamError(result, "set_float_param()", name, value)
+            raise ParamError(result, "set_param_float()", name, value)
         

@@ -2,10 +2,10 @@
 
 from .action import *
 from .calibration import *
-from .camera import *
-from .core import *
 from .geofence import *
 from .gimbal import *
+from .camera import *
+from .core import *
 from .info import *
 from .mission import *
 from .mocap import *

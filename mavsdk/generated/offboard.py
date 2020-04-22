@@ -730,30 +730,42 @@ class OffboardResult:
         NO_SETPOINT_SET = 7
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: offboard_pb2.OffboardResult.UNKNOWN,
-                    1: offboard_pb2.OffboardResult.SUCCESS,
-                    2: offboard_pb2.OffboardResult.NO_SYSTEM,
-                    3: offboard_pb2.OffboardResult.CONNECTION_ERROR,
-                    4: offboard_pb2.OffboardResult.BUSY,
-                    5: offboard_pb2.OffboardResult.COMMAND_DENIED,
-                    6: offboard_pb2.OffboardResult.TIMEOUT,
-                    7: offboard_pb2.OffboardResult.NO_SETPOINT_SET
-                }.get(self.value, None)
+            if self is OffboardResult.Result.UNKNOWN:
+                return offboard_pb2.OffboardResult.RESULT_UNKNOWN
+            if self is OffboardResult.Result.SUCCESS:
+                return offboard_pb2.OffboardResult.RESULT_SUCCESS
+            if self is OffboardResult.Result.NO_SYSTEM:
+                return offboard_pb2.OffboardResult.RESULT_NO_SYSTEM
+            if self is OffboardResult.Result.CONNECTION_ERROR:
+                return offboard_pb2.OffboardResult.RESULT_CONNECTION_ERROR
+            if self is OffboardResult.Result.BUSY:
+                return offboard_pb2.OffboardResult.RESULT_BUSY
+            if self is OffboardResult.Result.COMMAND_DENIED:
+                return offboard_pb2.OffboardResult.RESULT_COMMAND_DENIED
+            if self is OffboardResult.Result.TIMEOUT:
+                return offboard_pb2.OffboardResult.RESULT_TIMEOUT
+            if self is OffboardResult.Result.NO_SETPOINT_SET:
+                return offboard_pb2.OffboardResult.RESULT_NO_SETPOINT_SET
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: OffboardResult.Result.UNKNOWN,
-                    1: OffboardResult.Result.SUCCESS,
-                    2: OffboardResult.Result.NO_SYSTEM,
-                    3: OffboardResult.Result.CONNECTION_ERROR,
-                    4: OffboardResult.Result.BUSY,
-                    5: OffboardResult.Result.COMMAND_DENIED,
-                    6: OffboardResult.Result.TIMEOUT,
-                    7: OffboardResult.Result.NO_SETPOINT_SET,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_UNKNOWN:
+                return OffboardResult.Result.UNKNOWN
+            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_SUCCESS:
+                return OffboardResult.Result.SUCCESS
+            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_NO_SYSTEM:
+                return OffboardResult.Result.NO_SYSTEM
+            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_CONNECTION_ERROR:
+                return OffboardResult.Result.CONNECTION_ERROR
+            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_BUSY:
+                return OffboardResult.Result.BUSY
+            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_COMMAND_DENIED:
+                return OffboardResult.Result.COMMAND_DENIED
+            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_TIMEOUT:
+                return OffboardResult.Result.TIMEOUT
+            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_NO_SETPOINT_SET:
+                return OffboardResult.Result.NO_SETPOINT_SET
 
         def __str__(self):
             return self.name

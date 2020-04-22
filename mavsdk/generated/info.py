@@ -229,20 +229,22 @@ class InfoResult:
         INFORMATION_NOT_RECEIVED_YET = 2
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: info_pb2.InfoResult.UNKNOWN,
-                    1: info_pb2.InfoResult.SUCCESS,
-                    2: info_pb2.InfoResult.INFORMATION_NOT_RECEIVED_YET
-                }.get(self.value, None)
+            if self is InfoResult.Result.UNKNOWN:
+                return info_pb2.InfoResult.RESULT_UNKNOWN
+            if self is InfoResult.Result.SUCCESS:
+                return info_pb2.InfoResult.RESULT_SUCCESS
+            if self is InfoResult.Result.INFORMATION_NOT_RECEIVED_YET:
+                return info_pb2.InfoResult.RESULT_INFORMATION_NOT_RECEIVED_YET
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: InfoResult.Result.UNKNOWN,
-                    1: InfoResult.Result.SUCCESS,
-                    2: InfoResult.Result.INFORMATION_NOT_RECEIVED_YET,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is info_pb2.InfoResult.RESULT_UNKNOWN:
+                return InfoResult.Result.UNKNOWN
+            if rpc_enum_value is info_pb2.InfoResult.RESULT_SUCCESS:
+                return InfoResult.Result.SUCCESS
+            if rpc_enum_value is info_pb2.InfoResult.RESULT_INFORMATION_NOT_RECEIVED_YET:
+                return InfoResult.Result.INFORMATION_NOT_RECEIVED_YET
 
         def __str__(self):
             return self.name
@@ -365,4 +367,4 @@ class Info(AsyncBase):
         
 
         return Version.translate_from_rpc(response.version)
-        
+            

@@ -5,44 +5,67 @@ from . import shell_pb2 as shell__pb2
 
 
 class ShellServiceStub(object):
-  """*
-  Allow to communicate with the vehicle's system shell.
-  """
-
-  def __init__(self, channel):
-    """Constructor.
-
-    Args:
-      channel: A grpc.Channel.
+    """*
+    Allow to communicate with the vehicle's system shell.
     """
-    self.Send = channel.unary_unary(
-        '/mavsdk.rpc.shell.ShellService/Send',
-        request_serializer=shell__pb2.SendRequest.SerializeToString,
-        response_deserializer=shell__pb2.SendResponse.FromString,
-        )
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.Send = channel.unary_unary(
+                '/mavsdk.rpc.shell.ShellService/Send',
+                request_serializer=shell__pb2.SendRequest.SerializeToString,
+                response_deserializer=shell__pb2.SendResponse.FromString,
+                )
 
 
 class ShellServiceServicer(object):
-  """*
-  Allow to communicate with the vehicle's system shell.
-  """
-
-  def Send(self, request, context):
-    """Communicate with a vehicle's Shell.
+    """*
+    Allow to communicate with the vehicle's system shell.
     """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
+
+    def Send(self, request, context):
+        """Communicate with a vehicle's Shell.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
 
 def add_ShellServiceServicer_to_server(servicer, server):
-  rpc_method_handlers = {
-      'Send': grpc.unary_unary_rpc_method_handler(
-          servicer.Send,
-          request_deserializer=shell__pb2.SendRequest.FromString,
-          response_serializer=shell__pb2.SendResponse.SerializeToString,
-      ),
-  }
-  generic_handler = grpc.method_handlers_generic_handler(
-      'mavsdk.rpc.shell.ShellService', rpc_method_handlers)
-  server.add_generic_rpc_handlers((generic_handler,))
+    rpc_method_handlers = {
+            'Send': grpc.unary_unary_rpc_method_handler(
+                    servicer.Send,
+                    request_deserializer=shell__pb2.SendRequest.FromString,
+                    response_serializer=shell__pb2.SendResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'mavsdk.rpc.shell.ShellService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class ShellService(object):
+    """*
+    Allow to communicate with the vehicle's system shell.
+    """
+
+    @staticmethod
+    def Send(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.shell.ShellService/Send',
+            shell__pb2.SendRequest.SerializeToString,
+            shell__pb2.SendResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)

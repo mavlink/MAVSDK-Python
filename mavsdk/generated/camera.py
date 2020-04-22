@@ -4,7 +4,7 @@ from ..generated import camera_pb2, camera_pb2_grpc
 from enum import Enum
 
 
-class CameraMode(Enum):
+class Mode(Enum):
     """
      Camera mode type.
 
@@ -26,21 +26,23 @@ class CameraMode(Enum):
     PHOTO = 1
     VIDEO = 2
 
-    def translate_to_rpc(self, rpcCameraMode):
-        return {
-                0: camera_pb2.UNKNOWN,
-                1: camera_pb2.PHOTO,
-                2: camera_pb2.VIDEO
-            }.get(self.value, None)
+    def translate_to_rpc(self, rpcMode):
+        if self is Mode.UNKNOWN:
+            return camera_pb2.MODE_UNKNOWN
+        if self is Mode.PHOTO:
+            return camera_pb2.MODE_PHOTO
+        if self is Mode.VIDEO:
+            return camera_pb2.MODE_VIDEO
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        return {
-                0: CameraMode.UNKNOWN,
-                1: CameraMode.PHOTO,
-                2: CameraMode.VIDEO,
-            }.get(rpc_enum_value, None)
+        if rpc_enum_value is camera_pb2.MODE_UNKNOWN:
+            return Mode.UNKNOWN
+        if rpc_enum_value is camera_pb2.MODE_PHOTO:
+            return Mode.PHOTO
+        if rpc_enum_value is camera_pb2.MODE_VIDEO:
+            return Mode.VIDEO
 
     def __str__(self):
         return self.name
@@ -105,30 +107,42 @@ class CameraResult:
         WRONG_ARGUMENT = 7
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: camera_pb2.CameraResult.UNKNOWN,
-                    1: camera_pb2.CameraResult.SUCCESS,
-                    2: camera_pb2.CameraResult.IN_PROGRESS,
-                    3: camera_pb2.CameraResult.BUSY,
-                    4: camera_pb2.CameraResult.DENIED,
-                    5: camera_pb2.CameraResult.ERROR,
-                    6: camera_pb2.CameraResult.TIMEOUT,
-                    7: camera_pb2.CameraResult.WRONG_ARGUMENT
-                }.get(self.value, None)
+            if self is CameraResult.Result.UNKNOWN:
+                return camera_pb2.CameraResult.RESULT_UNKNOWN
+            if self is CameraResult.Result.SUCCESS:
+                return camera_pb2.CameraResult.RESULT_SUCCESS
+            if self is CameraResult.Result.IN_PROGRESS:
+                return camera_pb2.CameraResult.RESULT_IN_PROGRESS
+            if self is CameraResult.Result.BUSY:
+                return camera_pb2.CameraResult.RESULT_BUSY
+            if self is CameraResult.Result.DENIED:
+                return camera_pb2.CameraResult.RESULT_DENIED
+            if self is CameraResult.Result.ERROR:
+                return camera_pb2.CameraResult.RESULT_ERROR
+            if self is CameraResult.Result.TIMEOUT:
+                return camera_pb2.CameraResult.RESULT_TIMEOUT
+            if self is CameraResult.Result.WRONG_ARGUMENT:
+                return camera_pb2.CameraResult.RESULT_WRONG_ARGUMENT
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: CameraResult.Result.UNKNOWN,
-                    1: CameraResult.Result.SUCCESS,
-                    2: CameraResult.Result.IN_PROGRESS,
-                    3: CameraResult.Result.BUSY,
-                    4: CameraResult.Result.DENIED,
-                    5: CameraResult.Result.ERROR,
-                    6: CameraResult.Result.TIMEOUT,
-                    7: CameraResult.Result.WRONG_ARGUMENT,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is camera_pb2.CameraResult.RESULT_UNKNOWN:
+                return CameraResult.Result.UNKNOWN
+            if rpc_enum_value is camera_pb2.CameraResult.RESULT_SUCCESS:
+                return CameraResult.Result.SUCCESS
+            if rpc_enum_value is camera_pb2.CameraResult.RESULT_IN_PROGRESS:
+                return CameraResult.Result.IN_PROGRESS
+            if rpc_enum_value is camera_pb2.CameraResult.RESULT_BUSY:
+                return CameraResult.Result.BUSY
+            if rpc_enum_value is camera_pb2.CameraResult.RESULT_DENIED:
+                return CameraResult.Result.DENIED
+            if rpc_enum_value is camera_pb2.CameraResult.RESULT_ERROR:
+                return CameraResult.Result.ERROR
+            if rpc_enum_value is camera_pb2.CameraResult.RESULT_TIMEOUT:
+                return CameraResult.Result.TIMEOUT
+            if rpc_enum_value is camera_pb2.CameraResult.RESULT_WRONG_ARGUMENT:
+                return CameraResult.Result.WRONG_ARGUMENT
 
         def __str__(self):
             return self.name
@@ -187,160 +201,6 @@ class CameraResult:
         
             
         rpcCameraResult.result_str = self.result_str
-            
-        
-        
-
-
-class CaptureInfo:
-    """
-     Information about a picture just captured.
-
-     Parameters
-     ----------
-     position : Position
-          Location where the picture was taken
-
-     attitude_quaternion : Quaternion
-          Attitude of the camera when the picture was taken (quaternion)
-
-     attitude_euler_angle : EulerAngle
-          Attitude of the camera when the picture was taken (euler angle)
-
-     time_utc_us : uint64_t
-          Timestamp in UTC (since UNIX epoch) in microseconds
-
-     is_success : bool
-          True if the capture was successful
-
-     index : int32_t
-          Zero-based index of this image since vehicle was armed
-
-     file_url : std::string
-          Download URL of this image
-
-     """
-
-    
-
-    def __init__(
-            self,
-            position,
-            attitude_quaternion,
-            attitude_euler_angle,
-            time_utc_us,
-            is_success,
-            index,
-            file_url):
-        """ Initializes the CaptureInfo object """
-        self.position = position
-        self.attitude_quaternion = attitude_quaternion
-        self.attitude_euler_angle = attitude_euler_angle
-        self.time_utc_us = time_utc_us
-        self.is_success = is_success
-        self.index = index
-        self.file_url = file_url
-
-    def __equals__(self, to_compare):
-        """ Checks if two CaptureInfo are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # CaptureInfo object
-            return \
-                (self.position == to_compare.position) and \
-                (self.attitude_quaternion == to_compare.attitude_quaternion) and \
-                (self.attitude_euler_angle == to_compare.attitude_euler_angle) and \
-                (self.time_utc_us == to_compare.time_utc_us) and \
-                (self.is_success == to_compare.is_success) and \
-                (self.index == to_compare.index) and \
-                (self.file_url == to_compare.file_url)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ CaptureInfo in string representation """
-        struct_repr = ", ".join([
-                "position: " + str(self.position),
-                "attitude_quaternion: " + str(self.attitude_quaternion),
-                "attitude_euler_angle: " + str(self.attitude_euler_angle),
-                "time_utc_us: " + str(self.time_utc_us),
-                "is_success: " + str(self.is_success),
-                "index: " + str(self.index),
-                "file_url: " + str(self.file_url)
-                ])
-
-        return f"CaptureInfo: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcCaptureInfo):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return CaptureInfo(
-                
-                Position.translate_from_rpc(rpcCaptureInfo.position),
-                
-                
-                Quaternion.translate_from_rpc(rpcCaptureInfo.attitude_quaternion),
-                
-                
-                EulerAngle.translate_from_rpc(rpcCaptureInfo.attitude_euler_angle),
-                
-                
-                rpcCaptureInfo.time_utc_us,
-                
-                
-                rpcCaptureInfo.is_success,
-                
-                
-                rpcCaptureInfo.index,
-                
-                
-                rpcCaptureInfo.file_url
-                )
-
-    def translate_to_rpc(self, rpcCaptureInfo):
-        """ Translates this SDK object into its gRPC equivalent """
-
-        
-        
-            
-        self.position.translate_to_rpc(rpcCaptureInfo.position)
-            
-        
-        
-        
-            
-        self.attitude_quaternion.translate_to_rpc(rpcCaptureInfo.attitude_quaternion)
-            
-        
-        
-        
-            
-        self.attitude_euler_angle.translate_to_rpc(rpcCaptureInfo.attitude_euler_angle)
-            
-        
-        
-        
-            
-        rpcCaptureInfo.time_utc_us = self.time_utc_us
-            
-        
-        
-        
-            
-        rpcCaptureInfo.is_success = self.is_success
-            
-        
-        
-        
-            
-        rpcCaptureInfo.index = self.index
-            
-        
-        
-        
-            
-        rpcCaptureInfo.file_url = self.file_url
             
         
         
@@ -660,6 +520,160 @@ class EulerAngle:
         
 
 
+class CaptureInfo:
+    """
+     Information about a picture just captured.
+
+     Parameters
+     ----------
+     position : Position
+          Location where the picture was taken
+
+     attitude_quaternion : Quaternion
+          Attitude of the camera when the picture was taken (quaternion)
+
+     attitude_euler_angle : EulerAngle
+          Attitude of the camera when the picture was taken (euler angle)
+
+     time_utc_us : uint64_t
+          Timestamp in UTC (since UNIX epoch) in microseconds
+
+     is_success : bool
+          True if the capture was successful
+
+     index : int32_t
+          Zero-based index of this image since vehicle was armed
+
+     file_url : std::string
+          Download URL of this image
+
+     """
+
+    
+
+    def __init__(
+            self,
+            position,
+            attitude_quaternion,
+            attitude_euler_angle,
+            time_utc_us,
+            is_success,
+            index,
+            file_url):
+        """ Initializes the CaptureInfo object """
+        self.position = position
+        self.attitude_quaternion = attitude_quaternion
+        self.attitude_euler_angle = attitude_euler_angle
+        self.time_utc_us = time_utc_us
+        self.is_success = is_success
+        self.index = index
+        self.file_url = file_url
+
+    def __equals__(self, to_compare):
+        """ Checks if two CaptureInfo are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # CaptureInfo object
+            return \
+                (self.position == to_compare.position) and \
+                (self.attitude_quaternion == to_compare.attitude_quaternion) and \
+                (self.attitude_euler_angle == to_compare.attitude_euler_angle) and \
+                (self.time_utc_us == to_compare.time_utc_us) and \
+                (self.is_success == to_compare.is_success) and \
+                (self.index == to_compare.index) and \
+                (self.file_url == to_compare.file_url)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ CaptureInfo in string representation """
+        struct_repr = ", ".join([
+                "position: " + str(self.position),
+                "attitude_quaternion: " + str(self.attitude_quaternion),
+                "attitude_euler_angle: " + str(self.attitude_euler_angle),
+                "time_utc_us: " + str(self.time_utc_us),
+                "is_success: " + str(self.is_success),
+                "index: " + str(self.index),
+                "file_url: " + str(self.file_url)
+                ])
+
+        return f"CaptureInfo: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcCaptureInfo):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return CaptureInfo(
+                
+                Position.translate_from_rpc(rpcCaptureInfo.position),
+                
+                
+                Quaternion.translate_from_rpc(rpcCaptureInfo.attitude_quaternion),
+                
+                
+                EulerAngle.translate_from_rpc(rpcCaptureInfo.attitude_euler_angle),
+                
+                
+                rpcCaptureInfo.time_utc_us,
+                
+                
+                rpcCaptureInfo.is_success,
+                
+                
+                rpcCaptureInfo.index,
+                
+                
+                rpcCaptureInfo.file_url
+                )
+
+    def translate_to_rpc(self, rpcCaptureInfo):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        self.position.translate_to_rpc(rpcCaptureInfo.position)
+            
+        
+        
+        
+            
+        self.attitude_quaternion.translate_to_rpc(rpcCaptureInfo.attitude_quaternion)
+            
+        
+        
+        
+            
+        self.attitude_euler_angle.translate_to_rpc(rpcCaptureInfo.attitude_euler_angle)
+            
+        
+        
+        
+            
+        rpcCaptureInfo.time_utc_us = self.time_utc_us
+            
+        
+        
+        
+            
+        rpcCaptureInfo.is_success = self.is_success
+            
+        
+        
+        
+            
+        rpcCaptureInfo.index = self.index
+            
+        
+        
+        
+            
+        rpcCaptureInfo.file_url = self.file_url
+            
+        
+        
+
+
 class VideoStreamSettings:
     """
      Type for video stream settings.
@@ -804,27 +818,27 @@ class VideoStreamInfo:
 
      Parameters
      ----------
-     video_stream_settings : VideoStreamSettings
+     settings : VideoStreamSettings
           Video stream settings
 
-     video_stream_status : VideoStreamStatus
+     status : Status
           Current status of video streaming
 
      """
 
     
     
-    class VideoStreamStatus(Enum):
+    class Status(Enum):
         """
-     
+         Video stream status type.
 
          Values
          ------
          NOT_RUNNING
-              Video stream is not running.
+              Video stream is not running
 
          IN_PROGRESS
-              Video stream is running.
+              Video stream is running
 
          """
 
@@ -832,19 +846,19 @@ class VideoStreamInfo:
         NOT_RUNNING = 0
         IN_PROGRESS = 1
 
-        def translate_to_rpc(self, rpcVideoStreamStatus):
-            return {
-                    0: camera_pb2.VideoStreamInfo.NOT_RUNNING,
-                    1: camera_pb2.VideoStreamInfo.IN_PROGRESS
-                }.get(self.value, None)
+        def translate_to_rpc(self, rpcStatus):
+            if self is VideoStreamInfo.Status.NOT_RUNNING:
+                return camera_pb2.VideoStreamInfo.STATUS_NOT_RUNNING
+            if self is VideoStreamInfo.Status.IN_PROGRESS:
+                return camera_pb2.VideoStreamInfo.STATUS_IN_PROGRESS
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: VideoStreamInfo.VideoStreamStatus.NOT_RUNNING,
-                    1: VideoStreamInfo.VideoStreamStatus.IN_PROGRESS,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is camera_pb2.VideoStreamInfo.STATUS_NOT_RUNNING:
+                return VideoStreamInfo.Status.NOT_RUNNING
+            if rpc_enum_value is camera_pb2.VideoStreamInfo.STATUS_IN_PROGRESS:
+                return VideoStreamInfo.Status.IN_PROGRESS
 
         def __str__(self):
             return self.name
@@ -852,11 +866,11 @@ class VideoStreamInfo:
 
     def __init__(
             self,
-            video_stream_settings,
-            video_stream_status):
+            settings,
+            status):
         """ Initializes the VideoStreamInfo object """
-        self.video_stream_settings = video_stream_settings
-        self.video_stream_status = video_stream_status
+        self.settings = settings
+        self.status = status
 
     def __equals__(self, to_compare):
         """ Checks if two VideoStreamInfo are the same """
@@ -864,8 +878,8 @@ class VideoStreamInfo:
             # Try to compare - this likely fails when it is compared to a non
             # VideoStreamInfo object
             return \
-                (self.video_stream_settings == to_compare.video_stream_settings) and \
-                (self.video_stream_status == to_compare.video_stream_status)
+                (self.settings == to_compare.settings) and \
+                (self.status == to_compare.status)
 
         except AttributeError:
             return False
@@ -873,8 +887,8 @@ class VideoStreamInfo:
     def __str__(self):
         """ VideoStreamInfo in string representation """
         struct_repr = ", ".join([
-                "video_stream_settings: " + str(self.video_stream_settings),
-                "video_stream_status: " + str(self.video_stream_status)
+                "settings: " + str(self.settings),
+                "status: " + str(self.status)
                 ])
 
         return f"VideoStreamInfo: [{struct_repr}]"
@@ -884,10 +898,10 @@ class VideoStreamInfo:
         """ Translates a gRPC struct to the SDK equivalent """
         return VideoStreamInfo(
                 
-                VideoStreamSettings.translate_from_rpc(rpcVideoStreamInfo.video_stream_settings),
+                VideoStreamSettings.translate_from_rpc(rpcVideoStreamInfo.settings),
                 
                 
-                VideoStreamInfo.VideoStreamStatus.translate_from_rpc(rpcVideoStreamInfo.video_stream_status)
+                VideoStreamInfo.Status.translate_from_rpc(rpcVideoStreamInfo.status)
                 )
 
     def translate_to_rpc(self, rpcVideoStreamInfo):
@@ -896,28 +910,30 @@ class VideoStreamInfo:
         
         
             
-        self.video_stream_settings.translate_to_rpc(rpcVideoStreamInfo.video_stream_settings)
+        self.settings.translate_to_rpc(rpcVideoStreamInfo.settings)
             
         
         
         
             
-        self.video_stream_status.translate_to_rpc(rpcVideoStreamInfo.video_stream_status)
+        self.status.translate_to_rpc(rpcVideoStreamInfo.status)
             
         
         
 
 
-class CameraStatus:
+class Status:
     """
      Information about the camera status.
 
      Parameters
      ----------
      video_on : bool
-         
+          Whether video recording is currently in process
+
      photo_interval_on : bool
-         
+          Whether a photo interval is currently in process
+
      used_storage_mib : float
           Used storage (in MiB)
 
@@ -963,20 +979,22 @@ class CameraStatus:
         FORMATTED = 2
 
         def translate_to_rpc(self, rpcStorageStatus):
-            return {
-                    0: camera_pb2.CameraStatus.NOT_AVAILABLE,
-                    1: camera_pb2.CameraStatus.UNFORMATTED,
-                    2: camera_pb2.CameraStatus.FORMATTED
-                }.get(self.value, None)
+            if self is Status.StorageStatus.NOT_AVAILABLE:
+                return camera_pb2.Status.STORAGE_STATUS_NOT_AVAILABLE
+            if self is Status.StorageStatus.UNFORMATTED:
+                return camera_pb2.Status.STORAGE_STATUS_UNFORMATTED
+            if self is Status.StorageStatus.FORMATTED:
+                return camera_pb2.Status.STORAGE_STATUS_FORMATTED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: CameraStatus.StorageStatus.NOT_AVAILABLE,
-                    1: CameraStatus.StorageStatus.UNFORMATTED,
-                    2: CameraStatus.StorageStatus.FORMATTED,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is camera_pb2.Status.STORAGE_STATUS_NOT_AVAILABLE:
+                return Status.StorageStatus.NOT_AVAILABLE
+            if rpc_enum_value is camera_pb2.Status.STORAGE_STATUS_UNFORMATTED:
+                return Status.StorageStatus.UNFORMATTED
+            if rpc_enum_value is camera_pb2.Status.STORAGE_STATUS_FORMATTED:
+                return Status.StorageStatus.FORMATTED
 
         def __str__(self):
             return self.name
@@ -992,7 +1010,7 @@ class CameraStatus:
             recording_time_s,
             media_folder_name,
             storage_status):
-        """ Initializes the CameraStatus object """
+        """ Initializes the Status object """
         self.video_on = video_on
         self.photo_interval_on = photo_interval_on
         self.used_storage_mib = used_storage_mib
@@ -1003,10 +1021,10 @@ class CameraStatus:
         self.storage_status = storage_status
 
     def __equals__(self, to_compare):
-        """ Checks if two CameraStatus are the same """
+        """ Checks if two Status are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
-            # CameraStatus object
+            # Status object
             return \
                 (self.video_on == to_compare.video_on) and \
                 (self.photo_interval_on == to_compare.photo_interval_on) and \
@@ -1021,7 +1039,7 @@ class CameraStatus:
             return False
 
     def __str__(self):
-        """ CameraStatus in string representation """
+        """ Status in string representation """
         struct_repr = ", ".join([
                 "video_on: " + str(self.video_on),
                 "photo_interval_on: " + str(self.photo_interval_on),
@@ -1033,176 +1051,86 @@ class CameraStatus:
                 "storage_status: " + str(self.storage_status)
                 ])
 
-        return f"CameraStatus: [{struct_repr}]"
+        return f"Status: [{struct_repr}]"
 
     @staticmethod
-    def translate_from_rpc(rpcCameraStatus):
+    def translate_from_rpc(rpcStatus):
         """ Translates a gRPC struct to the SDK equivalent """
-        return CameraStatus(
+        return Status(
                 
-                rpcCameraStatus.video_on,
-                
-                
-                rpcCameraStatus.photo_interval_on,
+                rpcStatus.video_on,
                 
                 
-                rpcCameraStatus.used_storage_mib,
+                rpcStatus.photo_interval_on,
                 
                 
-                rpcCameraStatus.available_storage_mib,
+                rpcStatus.used_storage_mib,
                 
                 
-                rpcCameraStatus.total_storage_mib,
+                rpcStatus.available_storage_mib,
                 
                 
-                rpcCameraStatus.recording_time_s,
+                rpcStatus.total_storage_mib,
                 
                 
-                rpcCameraStatus.media_folder_name,
+                rpcStatus.recording_time_s,
                 
                 
-                CameraStatus.StorageStatus.translate_from_rpc(rpcCameraStatus.storage_status)
+                rpcStatus.media_folder_name,
+                
+                
+                Status.StorageStatus.translate_from_rpc(rpcStatus.storage_status)
                 )
 
-    def translate_to_rpc(self, rpcCameraStatus):
+    def translate_to_rpc(self, rpcStatus):
         """ Translates this SDK object into its gRPC equivalent """
 
         
         
             
-        rpcCameraStatus.video_on = self.video_on
+        rpcStatus.video_on = self.video_on
             
         
         
         
             
-        rpcCameraStatus.photo_interval_on = self.photo_interval_on
+        rpcStatus.photo_interval_on = self.photo_interval_on
             
         
         
         
             
-        rpcCameraStatus.used_storage_mib = self.used_storage_mib
+        rpcStatus.used_storage_mib = self.used_storage_mib
             
         
         
         
             
-        rpcCameraStatus.available_storage_mib = self.available_storage_mib
+        rpcStatus.available_storage_mib = self.available_storage_mib
             
         
         
         
             
-        rpcCameraStatus.total_storage_mib = self.total_storage_mib
+        rpcStatus.total_storage_mib = self.total_storage_mib
             
         
         
         
             
-        rpcCameraStatus.recording_time_s = self.recording_time_s
+        rpcStatus.recording_time_s = self.recording_time_s
             
         
         
         
             
-        rpcCameraStatus.media_folder_name = self.media_folder_name
+        rpcStatus.media_folder_name = self.media_folder_name
             
         
         
         
             
-        self.storage_status.translate_to_rpc(rpcCameraStatus.storage_status)
-            
-        
-        
-
-
-class Setting:
-    """
-     Type to represent a setting with a selected option.
-
-     Parameters
-     ----------
-     setting_id : std::string
-          Name of a setting (machine readable)
-
-     setting_description : std::string
-          Description of the setting (human readable)
-
-     option : Option
-          Selected option
-
-     """
-
-    
-
-    def __init__(
-            self,
-            setting_id,
-            setting_description,
-            option):
-        """ Initializes the Setting object """
-        self.setting_id = setting_id
-        self.setting_description = setting_description
-        self.option = option
-
-    def __equals__(self, to_compare):
-        """ Checks if two Setting are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # Setting object
-            return \
-                (self.setting_id == to_compare.setting_id) and \
-                (self.setting_description == to_compare.setting_description) and \
-                (self.option == to_compare.option)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ Setting in string representation """
-        struct_repr = ", ".join([
-                "setting_id: " + str(self.setting_id),
-                "setting_description: " + str(self.setting_description),
-                "option: " + str(self.option)
-                ])
-
-        return f"Setting: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcSetting):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return Setting(
-                
-                rpcSetting.setting_id,
-                
-                
-                rpcSetting.setting_description,
-                
-                
-                Option.translate_from_rpc(rpcSetting.option)
-                )
-
-    def translate_to_rpc(self, rpcSetting):
-        """ Translates this SDK object into its gRPC equivalent """
-
-        
-        
-            
-        rpcSetting.setting_id = self.setting_id
-            
-        
-        
-        
-            
-        rpcSetting.setting_description = self.setting_description
-            
-        
-        
-        
-            
-        self.option.translate_to_rpc(rpcSetting.option)
+        self.storage_status.translate_to_rpc(rpcStatus.storage_status)
             
         
         
@@ -1282,6 +1210,112 @@ class Option:
         
 
 
+class Setting:
+    """
+     Type to represent a setting with a selected option.
+
+     Parameters
+     ----------
+     setting_id : std::string
+          Name of a setting (machine readable)
+
+     setting_description : std::string
+          Description of the setting (human readable). This field is meant to be read from the drone, ignore it when setting.
+
+     option : Option
+          Selected option
+
+     is_range : bool
+          If option is given as a range. This field is meant to be read from the drone, ignore it when setting.
+
+     """
+
+    
+
+    def __init__(
+            self,
+            setting_id,
+            setting_description,
+            option,
+            is_range):
+        """ Initializes the Setting object """
+        self.setting_id = setting_id
+        self.setting_description = setting_description
+        self.option = option
+        self.is_range = is_range
+
+    def __equals__(self, to_compare):
+        """ Checks if two Setting are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Setting object
+            return \
+                (self.setting_id == to_compare.setting_id) and \
+                (self.setting_description == to_compare.setting_description) and \
+                (self.option == to_compare.option) and \
+                (self.is_range == to_compare.is_range)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Setting in string representation """
+        struct_repr = ", ".join([
+                "setting_id: " + str(self.setting_id),
+                "setting_description: " + str(self.setting_description),
+                "option: " + str(self.option),
+                "is_range: " + str(self.is_range)
+                ])
+
+        return f"Setting: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcSetting):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Setting(
+                
+                rpcSetting.setting_id,
+                
+                
+                rpcSetting.setting_description,
+                
+                
+                Option.translate_from_rpc(rpcSetting.option),
+                
+                
+                rpcSetting.is_range
+                )
+
+    def translate_to_rpc(self, rpcSetting):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcSetting.setting_id = self.setting_id
+            
+        
+        
+        
+            
+        rpcSetting.setting_description = self.setting_description
+            
+        
+        
+        
+            
+        self.option.translate_to_rpc(rpcSetting.option)
+            
+        
+        
+        
+            
+        rpcSetting.is_range = self.is_range
+            
+        
+        
+
+
 class SettingOptions:
     """
      Type to represent a setting with a list of options to choose from.
@@ -1295,7 +1329,10 @@ class SettingOptions:
           Description of the setting (human readable)
 
      options : [Option]
-          List of options
+          List of options or if range [min, max] or [min, max, interval]
+
+     is_range : bool
+          If option is given as a range
 
      """
 
@@ -1305,11 +1342,13 @@ class SettingOptions:
             self,
             setting_id,
             setting_description,
-            options):
+            options,
+            is_range):
         """ Initializes the SettingOptions object """
         self.setting_id = setting_id
         self.setting_description = setting_description
         self.options = options
+        self.is_range = is_range
 
     def __equals__(self, to_compare):
         """ Checks if two SettingOptions are the same """
@@ -1319,7 +1358,8 @@ class SettingOptions:
             return \
                 (self.setting_id == to_compare.setting_id) and \
                 (self.setting_description == to_compare.setting_description) and \
-                (self.options == to_compare.options)
+                (self.options == to_compare.options) and \
+                (self.is_range == to_compare.is_range)
 
         except AttributeError:
             return False
@@ -1329,7 +1369,8 @@ class SettingOptions:
         struct_repr = ", ".join([
                 "setting_id: " + str(self.setting_id),
                 "setting_description: " + str(self.setting_description),
-                "options: " + str(self.options)
+                "options: " + str(self.options),
+                "is_range: " + str(self.is_range)
                 ])
 
         return f"SettingOptions: [{struct_repr}]"
@@ -1345,7 +1386,10 @@ class SettingOptions:
                 rpcSettingOptions.setting_description,
                 
                 
-                Option.translate_from_rpc(rpcSettingOptions.options)
+                Option.translate_from_rpc(rpcSettingOptions.options),
+                
+                
+                rpcSettingOptions.is_range
                 )
 
     def translate_to_rpc(self, rpcSettingOptions):
@@ -1372,6 +1416,86 @@ class SettingOptions:
             elem.translate_to_rpc(rpc_elem)
             rpc_elems_list.append(rpc_elem)
         rpcSettingOptions.options.extend(rpc_elems_list)
+            
+        
+        
+        
+            
+        rpcSettingOptions.is_range = self.is_range
+            
+        
+        
+
+
+class Information:
+    """
+     Type to represent a camera information.
+
+     Parameters
+     ----------
+     vendor_name : std::string
+          Name of the camera vendor
+
+     model_name : std::string
+          Name of the camera model
+
+     """
+
+    
+
+    def __init__(
+            self,
+            vendor_name,
+            model_name):
+        """ Initializes the Information object """
+        self.vendor_name = vendor_name
+        self.model_name = model_name
+
+    def __equals__(self, to_compare):
+        """ Checks if two Information are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Information object
+            return \
+                (self.vendor_name == to_compare.vendor_name) and \
+                (self.model_name == to_compare.model_name)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Information in string representation """
+        struct_repr = ", ".join([
+                "vendor_name: " + str(self.vendor_name),
+                "model_name: " + str(self.model_name)
+                ])
+
+        return f"Information: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcInformation):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Information(
+                
+                rpcInformation.vendor_name,
+                
+                
+                rpcInformation.model_name
+                )
+
+    def translate_to_rpc(self, rpcInformation):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcInformation.vendor_name = self.vendor_name
+            
+        
+        
+        
+            
+        rpcInformation.model_name = self.model_name
             
         
         
@@ -1562,13 +1686,13 @@ class Camera(AsyncBase):
             raise CameraError(result, "stop_video_streaming()")
         
 
-    async def set_mode(self, camera_mode):
+    async def set_mode(self, mode):
         """
          Set camera mode.
 
          Parameters
          ----------
-         camera_mode : CameraMode
+         mode : Mode
               Camera mode to set
 
          Raises
@@ -1579,7 +1703,7 @@ class Camera(AsyncBase):
 
         request = camera_pb2.SetModeRequest()
         
-        camera_mode.translate_to_rpc(request.camera_mode)
+        mode.translate_to_rpc(request.mode)
                 
             
         response = await self._stub.SetMode(request)
@@ -1588,7 +1712,7 @@ class Camera(AsyncBase):
         result = self._extract_result(response)
 
         if result.result is not CameraResult.Result.SUCCESS:
-            raise CameraError(result, "set_mode()", camera_mode)
+            raise CameraError(result, "set_mode()", mode)
         
 
     async def mode(self):
@@ -1597,7 +1721,7 @@ class Camera(AsyncBase):
 
          Yields
          -------
-         camera_mode : CameraMode
+         mode : Mode
               Camera mode
 
          
@@ -1611,9 +1735,33 @@ class Camera(AsyncBase):
                 
 
             
-                yield CameraMode.translate_from_rpc(response.camera_mode)
+                yield Mode.translate_from_rpc(response.mode)
         finally:
             mode_stream.cancel()
+
+    async def information(self):
+        """
+         Subscribe to camera information updates.
+
+         Yields
+         -------
+         information : Information
+              Camera information
+
+         
+        """
+
+        request = camera_pb2.SubscribeInformationRequest()
+        information_stream = self._stub.SubscribeInformation(request)
+
+        try:
+            async for response in information_stream:
+                
+
+            
+                yield Information.translate_from_rpc(response.information)
+        finally:
+            information_stream.cancel()
 
     async def video_stream_info(self):
         """
@@ -1663,29 +1811,29 @@ class Camera(AsyncBase):
         finally:
             capture_info_stream.cancel()
 
-    async def camera_status(self):
+    async def status(self):
         """
          Subscribe to camera status updates.
 
          Yields
          -------
-         camera_status : CameraStatus
+         camera_status : Status
               Camera status
 
          
         """
 
-        request = camera_pb2.SubscribeCameraStatusRequest()
-        camera_status_stream = self._stub.SubscribeCameraStatus(request)
+        request = camera_pb2.SubscribeStatusRequest()
+        status_stream = self._stub.SubscribeStatus(request)
 
         try:
-            async for response in camera_status_stream:
+            async for response in status_stream:
                 
 
             
-                yield CameraStatus.translate_from_rpc(response.camera_status)
+                yield Status.translate_from_rpc(response.camera_status)
         finally:
-            camera_status_stream.cancel()
+            status_stream.cancel()
 
     async def current_settings(self):
         """
@@ -1739,6 +1887,8 @@ class Camera(AsyncBase):
         """
          Set a setting to some value.
 
+         Only setting_id of setting and option_id of option needs to be set.
+
          Parameters
          ----------
          setting : Setting
@@ -1762,4 +1912,67 @@ class Camera(AsyncBase):
 
         if result.result is not CameraResult.Result.SUCCESS:
             raise CameraError(result, "set_setting()", setting)
+        
+
+    async def get_setting(self, setting):
+        """
+         Get a setting.
+
+         Only setting_id of setting needs to be set.
+
+         Parameters
+         ----------
+         setting : Setting
+              Requested setting
+
+         Returns
+         -------
+         setting : Setting
+              Setting
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.GetSettingRequest()
+        
+            
+                
+        setting.translate_to_rpc(request.setting)
+                
+            
+        response = await self._stub.GetSetting(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not CameraResult.Result.SUCCESS:
+            raise CameraError(result, "get_setting()", setting)
+        
+
+        return Setting.translate_from_rpc(response.setting)
+            
+
+    async def format_storage(self):
+        """
+         Format storage (e.g. SD card) in camera.
+
+         This will delete all content of the camera storage!
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.FormatStorageRequest()
+        response = await self._stub.FormatStorage(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not CameraResult.Result.SUCCESS:
+            raise CameraError(result, "format_storage()")
         

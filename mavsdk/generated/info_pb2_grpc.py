@@ -5,42 +5,64 @@ from . import info_pb2 as info__pb2
 
 
 class InfoServiceStub(object):
-  """Provide infomation about the hardware and/or software of a system.
-  """
-
-  def __init__(self, channel):
-    """Constructor.
-
-    Args:
-      channel: A grpc.Channel.
+    """Provide infomation about the hardware and/or software of a system.
     """
-    self.GetVersion = channel.unary_unary(
-        '/mavsdk.rpc.info.InfoService/GetVersion',
-        request_serializer=info__pb2.GetVersionRequest.SerializeToString,
-        response_deserializer=info__pb2.GetVersionResponse.FromString,
-        )
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.GetVersion = channel.unary_unary(
+                '/mavsdk.rpc.info.InfoService/GetVersion',
+                request_serializer=info__pb2.GetVersionRequest.SerializeToString,
+                response_deserializer=info__pb2.GetVersionResponse.FromString,
+                )
 
 
 class InfoServiceServicer(object):
-  """Provide infomation about the hardware and/or software of a system.
-  """
-
-  def GetVersion(self, request, context):
-    """Get the system version information.
+    """Provide infomation about the hardware and/or software of a system.
     """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
+
+    def GetVersion(self, request, context):
+        """Get the system version information.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
 
 def add_InfoServiceServicer_to_server(servicer, server):
-  rpc_method_handlers = {
-      'GetVersion': grpc.unary_unary_rpc_method_handler(
-          servicer.GetVersion,
-          request_deserializer=info__pb2.GetVersionRequest.FromString,
-          response_serializer=info__pb2.GetVersionResponse.SerializeToString,
-      ),
-  }
-  generic_handler = grpc.method_handlers_generic_handler(
-      'mavsdk.rpc.info.InfoService', rpc_method_handlers)
-  server.add_generic_rpc_handlers((generic_handler,))
+    rpc_method_handlers = {
+            'GetVersion': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetVersion,
+                    request_deserializer=info__pb2.GetVersionRequest.FromString,
+                    response_serializer=info__pb2.GetVersionResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'mavsdk.rpc.info.InfoService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class InfoService(object):
+    """Provide infomation about the hardware and/or software of a system.
+    """
+
+    @staticmethod
+    def GetVersion(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.info.InfoService/GetVersion',
+            info__pb2.GetVersionRequest.SerializeToString,
+            info__pb2.GetVersionResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)

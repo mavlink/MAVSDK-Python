@@ -145,26 +145,34 @@ class ShellResult:
         BUSY = 5
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: shell_pb2.ShellResult.UNKNOWN,
-                    1: shell_pb2.ShellResult.SUCCESS,
-                    2: shell_pb2.ShellResult.NO_SYSTEM,
-                    3: shell_pb2.ShellResult.CONNECTION_ERROR,
-                    4: shell_pb2.ShellResult.NO_RESPONSE,
-                    5: shell_pb2.ShellResult.BUSY
-                }.get(self.value, None)
+            if self is ShellResult.Result.UNKNOWN:
+                return shell_pb2.ShellResult.RESULT_UNKNOWN
+            if self is ShellResult.Result.SUCCESS:
+                return shell_pb2.ShellResult.RESULT_SUCCESS
+            if self is ShellResult.Result.NO_SYSTEM:
+                return shell_pb2.ShellResult.RESULT_NO_SYSTEM
+            if self is ShellResult.Result.CONNECTION_ERROR:
+                return shell_pb2.ShellResult.RESULT_CONNECTION_ERROR
+            if self is ShellResult.Result.NO_RESPONSE:
+                return shell_pb2.ShellResult.RESULT_NO_RESPONSE
+            if self is ShellResult.Result.BUSY:
+                return shell_pb2.ShellResult.RESULT_BUSY
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: ShellResult.Result.UNKNOWN,
-                    1: ShellResult.Result.SUCCESS,
-                    2: ShellResult.Result.NO_SYSTEM,
-                    3: ShellResult.Result.CONNECTION_ERROR,
-                    4: ShellResult.Result.NO_RESPONSE,
-                    5: ShellResult.Result.BUSY,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is shell_pb2.ShellResult.RESULT_UNKNOWN:
+                return ShellResult.Result.UNKNOWN
+            if rpc_enum_value is shell_pb2.ShellResult.RESULT_SUCCESS:
+                return ShellResult.Result.SUCCESS
+            if rpc_enum_value is shell_pb2.ShellResult.RESULT_NO_SYSTEM:
+                return ShellResult.Result.NO_SYSTEM
+            if rpc_enum_value is shell_pb2.ShellResult.RESULT_CONNECTION_ERROR:
+                return ShellResult.Result.CONNECTION_ERROR
+            if rpc_enum_value is shell_pb2.ShellResult.RESULT_NO_RESPONSE:
+                return ShellResult.Result.NO_RESPONSE
+            if rpc_enum_value is shell_pb2.ShellResult.RESULT_BUSY:
+                return ShellResult.Result.BUSY
 
         def __str__(self):
             return self.name

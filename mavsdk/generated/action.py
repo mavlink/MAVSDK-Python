@@ -79,38 +79,58 @@ class ActionResult:
         PARAMETER_ERROR = 11
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: action_pb2.ActionResult.RESULT_UNKNOWN,
-                    1: action_pb2.ActionResult.RESULT_SUCCESS,
-                    2: action_pb2.ActionResult.RESULT_NO_SYSTEM,
-                    3: action_pb2.ActionResult.RESULT_CONNECTION_ERROR,
-                    4: action_pb2.ActionResult.RESULT_BUSY,
-                    5: action_pb2.ActionResult.RESULT_COMMAND_DENIED,
-                    6: action_pb2.ActionResult.RESULT_COMMAND_DENIED_LANDED_STATE_UNKNOWN,
-                    7: action_pb2.ActionResult.RESULT_COMMAND_DENIED_NOT_LANDED,
-                    8: action_pb2.ActionResult.RESULT_TIMEOUT,
-                    9: action_pb2.ActionResult.RESULT_VTOL_TRANSITION_SUPPORT_UNKNOWN,
-                    10: action_pb2.ActionResult.RESULT_NO_VTOL_TRANSITION_SUPPORT,
-                    11: action_pb2.ActionResult.RESULT_PARAMETER_ERROR
-                }.get(self.value, None)
+            if self is ActionResult.Result.UNKNOWN:
+                return action_pb2.ActionResult.RESULT_UNKNOWN
+            if self is ActionResult.Result.SUCCESS:
+                return action_pb2.ActionResult.RESULT_SUCCESS
+            if self is ActionResult.Result.NO_SYSTEM:
+                return action_pb2.ActionResult.RESULT_NO_SYSTEM
+            if self is ActionResult.Result.CONNECTION_ERROR:
+                return action_pb2.ActionResult.RESULT_CONNECTION_ERROR
+            if self is ActionResult.Result.BUSY:
+                return action_pb2.ActionResult.RESULT_BUSY
+            if self is ActionResult.Result.COMMAND_DENIED:
+                return action_pb2.ActionResult.RESULT_COMMAND_DENIED
+            if self is ActionResult.Result.COMMAND_DENIED_LANDED_STATE_UNKNOWN:
+                return action_pb2.ActionResult.RESULT_COMMAND_DENIED_LANDED_STATE_UNKNOWN
+            if self is ActionResult.Result.COMMAND_DENIED_NOT_LANDED:
+                return action_pb2.ActionResult.RESULT_COMMAND_DENIED_NOT_LANDED
+            if self is ActionResult.Result.TIMEOUT:
+                return action_pb2.ActionResult.RESULT_TIMEOUT
+            if self is ActionResult.Result.VTOL_TRANSITION_SUPPORT_UNKNOWN:
+                return action_pb2.ActionResult.RESULT_VTOL_TRANSITION_SUPPORT_UNKNOWN
+            if self is ActionResult.Result.NO_VTOL_TRANSITION_SUPPORT:
+                return action_pb2.ActionResult.RESULT_NO_VTOL_TRANSITION_SUPPORT
+            if self is ActionResult.Result.PARAMETER_ERROR:
+                return action_pb2.ActionResult.RESULT_PARAMETER_ERROR
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: ActionResult.Result.UNKNOWN,
-                    1: ActionResult.Result.SUCCESS,
-                    2: ActionResult.Result.NO_SYSTEM,
-                    3: ActionResult.Result.CONNECTION_ERROR,
-                    4: ActionResult.Result.BUSY,
-                    5: ActionResult.Result.COMMAND_DENIED,
-                    6: ActionResult.Result.COMMAND_DENIED_LANDED_STATE_UNKNOWN,
-                    7: ActionResult.Result.COMMAND_DENIED_NOT_LANDED,
-                    8: ActionResult.Result.TIMEOUT,
-                    9: ActionResult.Result.VTOL_TRANSITION_SUPPORT_UNKNOWN,
-                    10: ActionResult.Result.NO_VTOL_TRANSITION_SUPPORT,
-                    11: ActionResult.Result.PARAMETER_ERROR,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is action_pb2.ActionResult.RESULT_UNKNOWN:
+                return ActionResult.Result.UNKNOWN
+            if rpc_enum_value is action_pb2.ActionResult.RESULT_SUCCESS:
+                return ActionResult.Result.SUCCESS
+            if rpc_enum_value is action_pb2.ActionResult.RESULT_NO_SYSTEM:
+                return ActionResult.Result.NO_SYSTEM
+            if rpc_enum_value is action_pb2.ActionResult.RESULT_CONNECTION_ERROR:
+                return ActionResult.Result.CONNECTION_ERROR
+            if rpc_enum_value is action_pb2.ActionResult.RESULT_BUSY:
+                return ActionResult.Result.BUSY
+            if rpc_enum_value is action_pb2.ActionResult.RESULT_COMMAND_DENIED:
+                return ActionResult.Result.COMMAND_DENIED
+            if rpc_enum_value is action_pb2.ActionResult.RESULT_COMMAND_DENIED_LANDED_STATE_UNKNOWN:
+                return ActionResult.Result.COMMAND_DENIED_LANDED_STATE_UNKNOWN
+            if rpc_enum_value is action_pb2.ActionResult.RESULT_COMMAND_DENIED_NOT_LANDED:
+                return ActionResult.Result.COMMAND_DENIED_NOT_LANDED
+            if rpc_enum_value is action_pb2.ActionResult.RESULT_TIMEOUT:
+                return ActionResult.Result.TIMEOUT
+            if rpc_enum_value is action_pb2.ActionResult.RESULT_VTOL_TRANSITION_SUPPORT_UNKNOWN:
+                return ActionResult.Result.VTOL_TRANSITION_SUPPORT_UNKNOWN
+            if rpc_enum_value is action_pb2.ActionResult.RESULT_NO_VTOL_TRANSITION_SUPPORT:
+                return ActionResult.Result.NO_VTOL_TRANSITION_SUPPORT
+            if rpc_enum_value is action_pb2.ActionResult.RESULT_PARAMETER_ERROR:
+                return ActionResult.Result.PARAMETER_ERROR
 
         def __str__(self):
             return self.name
@@ -324,7 +344,6 @@ class Action(AsyncBase):
 
     async def shutdown(self):
         """
-         *
          Send command to shut down the drone components.
 
          This will shut down the autopilot, onboard computer, camera and gimbal.
@@ -396,7 +415,6 @@ class Action(AsyncBase):
 
     async def goto_location(self, latitude_deg, longitude_deg, absolute_altitude_m, yaw_deg):
         """
-         *
          Send command to move the vehicle to a specific global position.
 
          The latitude and longitude are given in degrees (WGS84 frame) and the altitude

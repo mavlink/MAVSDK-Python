@@ -269,18 +269,18 @@ class Odometry:
         LOCAL_FRD = 1
 
         def translate_to_rpc(self, rpcMavFrame):
-            return {
-                    0: mocap_pb2.Odometry.MOCAP_NED,
-                    1: mocap_pb2.Odometry.LOCAL_FRD
-                }.get(self.value, None)
+            if self is Odometry.MavFrame.MOCAP_NED:
+                return mocap_pb2.Odometry.MAV_FRAME_MOCAP_NED
+            if self is Odometry.MavFrame.LOCAL_FRD:
+                return mocap_pb2.Odometry.MAV_FRAME_LOCAL_FRD
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: Odometry.MavFrame.MOCAP_NED,
-                    1: Odometry.MavFrame.LOCAL_FRD,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is mocap_pb2.Odometry.MAV_FRAME_MOCAP_NED:
+                return Odometry.MavFrame.MOCAP_NED
+            if rpc_enum_value is mocap_pb2.Odometry.MAV_FRAME_LOCAL_FRD:
+                return Odometry.MavFrame.LOCAL_FRD
 
         def __str__(self):
             return self.name
@@ -1003,24 +1003,30 @@ class MocapResult:
         INVALID_REQUEST_DATA = 4
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: mocap_pb2.MocapResult.UNKNOWN,
-                    1: mocap_pb2.MocapResult.SUCCESS,
-                    2: mocap_pb2.MocapResult.NO_SYSTEM,
-                    3: mocap_pb2.MocapResult.CONNECTION_ERROR,
-                    4: mocap_pb2.MocapResult.INVALID_REQUEST_DATA
-                }.get(self.value, None)
+            if self is MocapResult.Result.UNKNOWN:
+                return mocap_pb2.MocapResult.RESULT_UNKNOWN
+            if self is MocapResult.Result.SUCCESS:
+                return mocap_pb2.MocapResult.RESULT_SUCCESS
+            if self is MocapResult.Result.NO_SYSTEM:
+                return mocap_pb2.MocapResult.RESULT_NO_SYSTEM
+            if self is MocapResult.Result.CONNECTION_ERROR:
+                return mocap_pb2.MocapResult.RESULT_CONNECTION_ERROR
+            if self is MocapResult.Result.INVALID_REQUEST_DATA:
+                return mocap_pb2.MocapResult.RESULT_INVALID_REQUEST_DATA
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: MocapResult.Result.UNKNOWN,
-                    1: MocapResult.Result.SUCCESS,
-                    2: MocapResult.Result.NO_SYSTEM,
-                    3: MocapResult.Result.CONNECTION_ERROR,
-                    4: MocapResult.Result.INVALID_REQUEST_DATA,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is mocap_pb2.MocapResult.RESULT_UNKNOWN:
+                return MocapResult.Result.UNKNOWN
+            if rpc_enum_value is mocap_pb2.MocapResult.RESULT_SUCCESS:
+                return MocapResult.Result.SUCCESS
+            if rpc_enum_value is mocap_pb2.MocapResult.RESULT_NO_SYSTEM:
+                return MocapResult.Result.NO_SYSTEM
+            if rpc_enum_value is mocap_pb2.MocapResult.RESULT_CONNECTION_ERROR:
+                return MocapResult.Result.CONNECTION_ERROR
+            if rpc_enum_value is mocap_pb2.MocapResult.RESULT_INVALID_REQUEST_DATA:
+                return MocapResult.Result.INVALID_REQUEST_DATA
 
         def __str__(self):
             return self.name

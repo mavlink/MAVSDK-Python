@@ -43,28 +43,38 @@ class FixType(Enum):
     RTK_FIXED = 6
 
     def translate_to_rpc(self, rpcFixType):
-        return {
-                0: telemetry_pb2.FIX_TYPE_NO_GPS,
-                1: telemetry_pb2.FIX_TYPE_NO_FIX,
-                2: telemetry_pb2.FIX_TYPE_FIX_2D,
-                3: telemetry_pb2.FIX_TYPE_FIX_3D,
-                4: telemetry_pb2.FIX_TYPE_FIX_DGPS,
-                5: telemetry_pb2.FIX_TYPE_RTK_FLOAT,
-                6: telemetry_pb2.FIX_TYPE_RTK_FIXED
-            }.get(self.value, None)
+        if self is FixType.NO_GPS:
+            return telemetry_pb2.FIX_TYPE_NO_GPS
+        if self is FixType.NO_FIX:
+            return telemetry_pb2.FIX_TYPE_NO_FIX
+        if self is FixType.FIX_2D:
+            return telemetry_pb2.FIX_TYPE_FIX_2D
+        if self is FixType.FIX_3D:
+            return telemetry_pb2.FIX_TYPE_FIX_3D
+        if self is FixType.FIX_DGPS:
+            return telemetry_pb2.FIX_TYPE_FIX_DGPS
+        if self is FixType.RTK_FLOAT:
+            return telemetry_pb2.FIX_TYPE_RTK_FLOAT
+        if self is FixType.RTK_FIXED:
+            return telemetry_pb2.FIX_TYPE_RTK_FIXED
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        return {
-                0: FixType.NO_GPS,
-                1: FixType.NO_FIX,
-                2: FixType.FIX_2D,
-                3: FixType.FIX_3D,
-                4: FixType.FIX_DGPS,
-                5: FixType.RTK_FLOAT,
-                6: FixType.RTK_FIXED,
-            }.get(rpc_enum_value, None)
+        if rpc_enum_value is telemetry_pb2.FIX_TYPE_NO_GPS:
+            return FixType.NO_GPS
+        if rpc_enum_value is telemetry_pb2.FIX_TYPE_NO_FIX:
+            return FixType.NO_FIX
+        if rpc_enum_value is telemetry_pb2.FIX_TYPE_FIX_2D:
+            return FixType.FIX_2D
+        if rpc_enum_value is telemetry_pb2.FIX_TYPE_FIX_3D:
+            return FixType.FIX_3D
+        if rpc_enum_value is telemetry_pb2.FIX_TYPE_FIX_DGPS:
+            return FixType.FIX_DGPS
+        if rpc_enum_value is telemetry_pb2.FIX_TYPE_RTK_FLOAT:
+            return FixType.RTK_FLOAT
+        if rpc_enum_value is telemetry_pb2.FIX_TYPE_RTK_FIXED:
+            return FixType.RTK_FIXED
 
     def __str__(self):
         return self.name
@@ -144,44 +154,70 @@ class FlightMode(Enum):
     RATTITUDE = 14
 
     def translate_to_rpc(self, rpcFlightMode):
-        return {
-                0: telemetry_pb2.FLIGHT_MODE_UNKNOWN,
-                1: telemetry_pb2.FLIGHT_MODE_READY,
-                2: telemetry_pb2.FLIGHT_MODE_TAKEOFF,
-                3: telemetry_pb2.FLIGHT_MODE_HOLD,
-                4: telemetry_pb2.FLIGHT_MODE_MISSION,
-                5: telemetry_pb2.FLIGHT_MODE_RETURN_TO_LAUNCH,
-                6: telemetry_pb2.FLIGHT_MODE_LAND,
-                7: telemetry_pb2.FLIGHT_MODE_OFFBOARD,
-                8: telemetry_pb2.FLIGHT_MODE_FOLLOW_ME,
-                9: telemetry_pb2.FLIGHT_MODE_MANUAL,
-                10: telemetry_pb2.FLIGHT_MODE_ALTCTL,
-                11: telemetry_pb2.FLIGHT_MODE_POSCTL,
-                12: telemetry_pb2.FLIGHT_MODE_ACRO,
-                13: telemetry_pb2.FLIGHT_MODE_STABILIZED,
-                14: telemetry_pb2.FLIGHT_MODE_RATTITUDE
-            }.get(self.value, None)
+        if self is FlightMode.UNKNOWN:
+            return telemetry_pb2.FLIGHT_MODE_UNKNOWN
+        if self is FlightMode.READY:
+            return telemetry_pb2.FLIGHT_MODE_READY
+        if self is FlightMode.TAKEOFF:
+            return telemetry_pb2.FLIGHT_MODE_TAKEOFF
+        if self is FlightMode.HOLD:
+            return telemetry_pb2.FLIGHT_MODE_HOLD
+        if self is FlightMode.MISSION:
+            return telemetry_pb2.FLIGHT_MODE_MISSION
+        if self is FlightMode.RETURN_TO_LAUNCH:
+            return telemetry_pb2.FLIGHT_MODE_RETURN_TO_LAUNCH
+        if self is FlightMode.LAND:
+            return telemetry_pb2.FLIGHT_MODE_LAND
+        if self is FlightMode.OFFBOARD:
+            return telemetry_pb2.FLIGHT_MODE_OFFBOARD
+        if self is FlightMode.FOLLOW_ME:
+            return telemetry_pb2.FLIGHT_MODE_FOLLOW_ME
+        if self is FlightMode.MANUAL:
+            return telemetry_pb2.FLIGHT_MODE_MANUAL
+        if self is FlightMode.ALTCTL:
+            return telemetry_pb2.FLIGHT_MODE_ALTCTL
+        if self is FlightMode.POSCTL:
+            return telemetry_pb2.FLIGHT_MODE_POSCTL
+        if self is FlightMode.ACRO:
+            return telemetry_pb2.FLIGHT_MODE_ACRO
+        if self is FlightMode.STABILIZED:
+            return telemetry_pb2.FLIGHT_MODE_STABILIZED
+        if self is FlightMode.RATTITUDE:
+            return telemetry_pb2.FLIGHT_MODE_RATTITUDE
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        return {
-                0: FlightMode.UNKNOWN,
-                1: FlightMode.READY,
-                2: FlightMode.TAKEOFF,
-                3: FlightMode.HOLD,
-                4: FlightMode.MISSION,
-                5: FlightMode.RETURN_TO_LAUNCH,
-                6: FlightMode.LAND,
-                7: FlightMode.OFFBOARD,
-                8: FlightMode.FOLLOW_ME,
-                9: FlightMode.MANUAL,
-                10: FlightMode.ALTCTL,
-                11: FlightMode.POSCTL,
-                12: FlightMode.ACRO,
-                13: FlightMode.STABILIZED,
-                14: FlightMode.RATTITUDE,
-            }.get(rpc_enum_value, None)
+        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_UNKNOWN:
+            return FlightMode.UNKNOWN
+        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_READY:
+            return FlightMode.READY
+        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_TAKEOFF:
+            return FlightMode.TAKEOFF
+        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_HOLD:
+            return FlightMode.HOLD
+        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_MISSION:
+            return FlightMode.MISSION
+        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_RETURN_TO_LAUNCH:
+            return FlightMode.RETURN_TO_LAUNCH
+        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_LAND:
+            return FlightMode.LAND
+        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_OFFBOARD:
+            return FlightMode.OFFBOARD
+        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_FOLLOW_ME:
+            return FlightMode.FOLLOW_ME
+        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_MANUAL:
+            return FlightMode.MANUAL
+        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_ALTCTL:
+            return FlightMode.ALTCTL
+        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_POSCTL:
+            return FlightMode.POSCTL
+        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_ACRO:
+            return FlightMode.ACRO
+        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_STABILIZED:
+            return FlightMode.STABILIZED
+        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_RATTITUDE:
+            return FlightMode.RATTITUDE
 
     def __str__(self):
         return self.name
@@ -210,20 +246,22 @@ class StatusTextType(Enum):
     CRITICAL = 2
 
     def translate_to_rpc(self, rpcStatusTextType):
-        return {
-                0: telemetry_pb2.STATUS_TEXT_TYPE_INFO,
-                1: telemetry_pb2.STATUS_TEXT_TYPE_WARNING,
-                2: telemetry_pb2.STATUS_TEXT_TYPE_CRITICAL
-            }.get(self.value, None)
+        if self is StatusTextType.INFO:
+            return telemetry_pb2.STATUS_TEXT_TYPE_INFO
+        if self is StatusTextType.WARNING:
+            return telemetry_pb2.STATUS_TEXT_TYPE_WARNING
+        if self is StatusTextType.CRITICAL:
+            return telemetry_pb2.STATUS_TEXT_TYPE_CRITICAL
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        return {
-                0: StatusTextType.INFO,
-                1: StatusTextType.WARNING,
-                2: StatusTextType.CRITICAL,
-            }.get(rpc_enum_value, None)
+        if rpc_enum_value is telemetry_pb2.STATUS_TEXT_TYPE_INFO:
+            return StatusTextType.INFO
+        if rpc_enum_value is telemetry_pb2.STATUS_TEXT_TYPE_WARNING:
+            return StatusTextType.WARNING
+        if rpc_enum_value is telemetry_pb2.STATUS_TEXT_TYPE_CRITICAL:
+            return StatusTextType.CRITICAL
 
     def __str__(self):
         return self.name
@@ -260,24 +298,30 @@ class LandedState(Enum):
     LANDING = 4
 
     def translate_to_rpc(self, rpcLandedState):
-        return {
-                0: telemetry_pb2.LANDED_STATE_UNKNOWN,
-                1: telemetry_pb2.LANDED_STATE_ON_GROUND,
-                2: telemetry_pb2.LANDED_STATE_IN_AIR,
-                3: telemetry_pb2.LANDED_STATE_TAKING_OFF,
-                4: telemetry_pb2.LANDED_STATE_LANDING
-            }.get(self.value, None)
+        if self is LandedState.UNKNOWN:
+            return telemetry_pb2.LANDED_STATE_UNKNOWN
+        if self is LandedState.ON_GROUND:
+            return telemetry_pb2.LANDED_STATE_ON_GROUND
+        if self is LandedState.IN_AIR:
+            return telemetry_pb2.LANDED_STATE_IN_AIR
+        if self is LandedState.TAKING_OFF:
+            return telemetry_pb2.LANDED_STATE_TAKING_OFF
+        if self is LandedState.LANDING:
+            return telemetry_pb2.LANDED_STATE_LANDING
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        return {
-                0: LandedState.UNKNOWN,
-                1: LandedState.ON_GROUND,
-                2: LandedState.IN_AIR,
-                3: LandedState.TAKING_OFF,
-                4: LandedState.LANDING,
-            }.get(rpc_enum_value, None)
+        if rpc_enum_value is telemetry_pb2.LANDED_STATE_UNKNOWN:
+            return LandedState.UNKNOWN
+        if rpc_enum_value is telemetry_pb2.LANDED_STATE_ON_GROUND:
+            return LandedState.ON_GROUND
+        if rpc_enum_value is telemetry_pb2.LANDED_STATE_IN_AIR:
+            return LandedState.IN_AIR
+        if rpc_enum_value is telemetry_pb2.LANDED_STATE_TAKING_OFF:
+            return LandedState.TAKING_OFF
+        if rpc_enum_value is telemetry_pb2.LANDED_STATE_LANDING:
+            return LandedState.LANDING
 
     def __str__(self):
         return self.name
@@ -1250,10 +1294,10 @@ class ActuatorControlTarget:
      Parameters
      ----------
      group : int32_t
-          TODO
+          An actuator control group is e.g. 'attitude' for the core flight controls, or 'gimbal' for a payload.
 
      controls : [float]
-          TODO
+          Controls normed from -1 to 1, where 0 is neutral position.
 
      """
 
@@ -1320,15 +1364,15 @@ class ActuatorControlTarget:
 
 class ActuatorOutputStatus:
     """
- 
+     Actuator output status type.
 
      Parameters
      ----------
      active : uint32_t
-          TODO
+          Active outputs
 
      actuator : [float]
-          TODO
+          Servo/motor output values
 
      """
 
@@ -1700,22 +1744,26 @@ class Odometry:
         ESTIM_NED = 3
 
         def translate_to_rpc(self, rpcMavFrame):
-            return {
-                    0: telemetry_pb2.Odometry.MAV_FRAME_UNDEF,
-                    1: telemetry_pb2.Odometry.MAV_FRAME_BODY_NED,
-                    2: telemetry_pb2.Odometry.MAV_FRAME_VISION_NED,
-                    3: telemetry_pb2.Odometry.MAV_FRAME_ESTIM_NED
-                }.get(self.value, None)
+            if self is Odometry.MavFrame.UNDEF:
+                return telemetry_pb2.Odometry.MAV_FRAME_UNDEF
+            if self is Odometry.MavFrame.BODY_NED:
+                return telemetry_pb2.Odometry.MAV_FRAME_BODY_NED
+            if self is Odometry.MavFrame.VISION_NED:
+                return telemetry_pb2.Odometry.MAV_FRAME_VISION_NED
+            if self is Odometry.MavFrame.ESTIM_NED:
+                return telemetry_pb2.Odometry.MAV_FRAME_ESTIM_NED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: Odometry.MavFrame.UNDEF,
-                    1: Odometry.MavFrame.BODY_NED,
-                    2: Odometry.MavFrame.VISION_NED,
-                    3: Odometry.MavFrame.ESTIM_NED,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is telemetry_pb2.Odometry.MAV_FRAME_UNDEF:
+                return Odometry.MavFrame.UNDEF
+            if rpc_enum_value is telemetry_pb2.Odometry.MAV_FRAME_BODY_NED:
+                return Odometry.MavFrame.BODY_NED
+            if rpc_enum_value is telemetry_pb2.Odometry.MAV_FRAME_VISION_NED:
+                return Odometry.MavFrame.VISION_NED
+            if rpc_enum_value is telemetry_pb2.Odometry.MAV_FRAME_ESTIM_NED:
+                return Odometry.MavFrame.ESTIM_NED
 
         def __str__(self):
             return self.name
@@ -2735,28 +2783,38 @@ class TelemetryResult:
         TIMEOUT = 6
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: telemetry_pb2.TelemetryResult.RESULT_UNKNOWN,
-                    1: telemetry_pb2.TelemetryResult.RESULT_SUCCESS,
-                    2: telemetry_pb2.TelemetryResult.RESULT_NO_SYSTEM,
-                    3: telemetry_pb2.TelemetryResult.RESULT_CONNECTION_ERROR,
-                    4: telemetry_pb2.TelemetryResult.RESULT_BUSY,
-                    5: telemetry_pb2.TelemetryResult.RESULT_COMMAND_DENIED,
-                    6: telemetry_pb2.TelemetryResult.RESULT_TIMEOUT
-                }.get(self.value, None)
+            if self is TelemetryResult.Result.UNKNOWN:
+                return telemetry_pb2.TelemetryResult.RESULT_UNKNOWN
+            if self is TelemetryResult.Result.SUCCESS:
+                return telemetry_pb2.TelemetryResult.RESULT_SUCCESS
+            if self is TelemetryResult.Result.NO_SYSTEM:
+                return telemetry_pb2.TelemetryResult.RESULT_NO_SYSTEM
+            if self is TelemetryResult.Result.CONNECTION_ERROR:
+                return telemetry_pb2.TelemetryResult.RESULT_CONNECTION_ERROR
+            if self is TelemetryResult.Result.BUSY:
+                return telemetry_pb2.TelemetryResult.RESULT_BUSY
+            if self is TelemetryResult.Result.COMMAND_DENIED:
+                return telemetry_pb2.TelemetryResult.RESULT_COMMAND_DENIED
+            if self is TelemetryResult.Result.TIMEOUT:
+                return telemetry_pb2.TelemetryResult.RESULT_TIMEOUT
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: TelemetryResult.Result.UNKNOWN,
-                    1: TelemetryResult.Result.SUCCESS,
-                    2: TelemetryResult.Result.NO_SYSTEM,
-                    3: TelemetryResult.Result.CONNECTION_ERROR,
-                    4: TelemetryResult.Result.BUSY,
-                    5: TelemetryResult.Result.COMMAND_DENIED,
-                    6: TelemetryResult.Result.TIMEOUT,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is telemetry_pb2.TelemetryResult.RESULT_UNKNOWN:
+                return TelemetryResult.Result.UNKNOWN
+            if rpc_enum_value is telemetry_pb2.TelemetryResult.RESULT_SUCCESS:
+                return TelemetryResult.Result.SUCCESS
+            if rpc_enum_value is telemetry_pb2.TelemetryResult.RESULT_NO_SYSTEM:
+                return TelemetryResult.Result.NO_SYSTEM
+            if rpc_enum_value is telemetry_pb2.TelemetryResult.RESULT_CONNECTION_ERROR:
+                return TelemetryResult.Result.CONNECTION_ERROR
+            if rpc_enum_value is telemetry_pb2.TelemetryResult.RESULT_BUSY:
+                return TelemetryResult.Result.BUSY
+            if rpc_enum_value is telemetry_pb2.TelemetryResult.RESULT_COMMAND_DENIED:
+                return TelemetryResult.Result.COMMAND_DENIED
+            if rpc_enum_value is telemetry_pb2.TelemetryResult.RESULT_TIMEOUT:
+                return TelemetryResult.Result.TIMEOUT
 
         def __str__(self):
             return self.name

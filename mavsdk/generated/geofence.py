@@ -96,7 +96,7 @@ class Polygon:
     
     class Type(Enum):
         """
-     
+         Geofence polygon types.
 
          Values
          ------
@@ -113,18 +113,18 @@ class Polygon:
         EXCLUSION = 1
 
         def translate_to_rpc(self, rpcType):
-            return {
-                    0: geofence_pb2.Polygon.INCLUSION,
-                    1: geofence_pb2.Polygon.EXCLUSION
-                }.get(self.value, None)
+            if self is Polygon.Type.INCLUSION:
+                return geofence_pb2.Polygon.TYPE_INCLUSION
+            if self is Polygon.Type.EXCLUSION:
+                return geofence_pb2.Polygon.TYPE_EXCLUSION
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: Polygon.Type.INCLUSION,
-                    1: Polygon.Type.EXCLUSION,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is geofence_pb2.Polygon.TYPE_INCLUSION:
+                return Polygon.Type.INCLUSION
+            if rpc_enum_value is geofence_pb2.Polygon.TYPE_EXCLUSION:
+                return Polygon.Type.EXCLUSION
 
         def __str__(self):
             return self.name
@@ -248,28 +248,38 @@ class GeofenceResult:
         INVALID_ARGUMENT = 6
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: geofence_pb2.GeofenceResult.UNKNOWN,
-                    1: geofence_pb2.GeofenceResult.SUCCESS,
-                    2: geofence_pb2.GeofenceResult.ERROR,
-                    3: geofence_pb2.GeofenceResult.TOO_MANY_GEOFENCE_ITEMS,
-                    4: geofence_pb2.GeofenceResult.BUSY,
-                    5: geofence_pb2.GeofenceResult.TIMEOUT,
-                    6: geofence_pb2.GeofenceResult.INVALID_ARGUMENT
-                }.get(self.value, None)
+            if self is GeofenceResult.Result.UNKNOWN:
+                return geofence_pb2.GeofenceResult.RESULT_UNKNOWN
+            if self is GeofenceResult.Result.SUCCESS:
+                return geofence_pb2.GeofenceResult.RESULT_SUCCESS
+            if self is GeofenceResult.Result.ERROR:
+                return geofence_pb2.GeofenceResult.RESULT_ERROR
+            if self is GeofenceResult.Result.TOO_MANY_GEOFENCE_ITEMS:
+                return geofence_pb2.GeofenceResult.RESULT_TOO_MANY_GEOFENCE_ITEMS
+            if self is GeofenceResult.Result.BUSY:
+                return geofence_pb2.GeofenceResult.RESULT_BUSY
+            if self is GeofenceResult.Result.TIMEOUT:
+                return geofence_pb2.GeofenceResult.RESULT_TIMEOUT
+            if self is GeofenceResult.Result.INVALID_ARGUMENT:
+                return geofence_pb2.GeofenceResult.RESULT_INVALID_ARGUMENT
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: GeofenceResult.Result.UNKNOWN,
-                    1: GeofenceResult.Result.SUCCESS,
-                    2: GeofenceResult.Result.ERROR,
-                    3: GeofenceResult.Result.TOO_MANY_GEOFENCE_ITEMS,
-                    4: GeofenceResult.Result.BUSY,
-                    5: GeofenceResult.Result.TIMEOUT,
-                    6: GeofenceResult.Result.INVALID_ARGUMENT,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is geofence_pb2.GeofenceResult.RESULT_UNKNOWN:
+                return GeofenceResult.Result.UNKNOWN
+            if rpc_enum_value is geofence_pb2.GeofenceResult.RESULT_SUCCESS:
+                return GeofenceResult.Result.SUCCESS
+            if rpc_enum_value is geofence_pb2.GeofenceResult.RESULT_ERROR:
+                return GeofenceResult.Result.ERROR
+            if rpc_enum_value is geofence_pb2.GeofenceResult.RESULT_TOO_MANY_GEOFENCE_ITEMS:
+                return GeofenceResult.Result.TOO_MANY_GEOFENCE_ITEMS
+            if rpc_enum_value is geofence_pb2.GeofenceResult.RESULT_BUSY:
+                return GeofenceResult.Result.BUSY
+            if rpc_enum_value is geofence_pb2.GeofenceResult.RESULT_TIMEOUT:
+                return GeofenceResult.Result.TIMEOUT
+            if rpc_enum_value is geofence_pb2.GeofenceResult.RESULT_INVALID_ARGUMENT:
+                return GeofenceResult.Result.INVALID_ARGUMENT
 
         def __str__(self):
             return self.name

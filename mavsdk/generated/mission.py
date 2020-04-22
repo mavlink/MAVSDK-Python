@@ -84,26 +84,34 @@ class MissionItem:
         STOP_VIDEO = 5
 
         def translate_to_rpc(self, rpcCameraAction):
-            return {
-                    0: mission_pb2.MissionItem.NONE,
-                    1: mission_pb2.MissionItem.TAKE_PHOTO,
-                    2: mission_pb2.MissionItem.START_PHOTO_INTERVAL,
-                    3: mission_pb2.MissionItem.STOP_PHOTO_INTERVAL,
-                    4: mission_pb2.MissionItem.START_VIDEO,
-                    5: mission_pb2.MissionItem.STOP_VIDEO
-                }.get(self.value, None)
+            if self is MissionItem.CameraAction.NONE:
+                return mission_pb2.MissionItem.CAMERA_ACTION_NONE
+            if self is MissionItem.CameraAction.TAKE_PHOTO:
+                return mission_pb2.MissionItem.CAMERA_ACTION_TAKE_PHOTO
+            if self is MissionItem.CameraAction.START_PHOTO_INTERVAL:
+                return mission_pb2.MissionItem.CAMERA_ACTION_START_PHOTO_INTERVAL
+            if self is MissionItem.CameraAction.STOP_PHOTO_INTERVAL:
+                return mission_pb2.MissionItem.CAMERA_ACTION_STOP_PHOTO_INTERVAL
+            if self is MissionItem.CameraAction.START_VIDEO:
+                return mission_pb2.MissionItem.CAMERA_ACTION_START_VIDEO
+            if self is MissionItem.CameraAction.STOP_VIDEO:
+                return mission_pb2.MissionItem.CAMERA_ACTION_STOP_VIDEO
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: MissionItem.CameraAction.NONE,
-                    1: MissionItem.CameraAction.TAKE_PHOTO,
-                    2: MissionItem.CameraAction.START_PHOTO_INTERVAL,
-                    3: MissionItem.CameraAction.STOP_PHOTO_INTERVAL,
-                    4: MissionItem.CameraAction.START_VIDEO,
-                    5: MissionItem.CameraAction.STOP_VIDEO,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is mission_pb2.MissionItem.CAMERA_ACTION_NONE:
+                return MissionItem.CameraAction.NONE
+            if rpc_enum_value is mission_pb2.MissionItem.CAMERA_ACTION_TAKE_PHOTO:
+                return MissionItem.CameraAction.TAKE_PHOTO
+            if rpc_enum_value is mission_pb2.MissionItem.CAMERA_ACTION_START_PHOTO_INTERVAL:
+                return MissionItem.CameraAction.START_PHOTO_INTERVAL
+            if rpc_enum_value is mission_pb2.MissionItem.CAMERA_ACTION_STOP_PHOTO_INTERVAL:
+                return MissionItem.CameraAction.STOP_PHOTO_INTERVAL
+            if rpc_enum_value is mission_pb2.MissionItem.CAMERA_ACTION_START_VIDEO:
+                return MissionItem.CameraAction.START_VIDEO
+            if rpc_enum_value is mission_pb2.MissionItem.CAMERA_ACTION_STOP_VIDEO:
+                return MissionItem.CameraAction.STOP_VIDEO
 
         def __str__(self):
             return self.name
@@ -271,16 +279,79 @@ class MissionItem:
         
 
 
+class MissionPlan:
+    """
+     Mission plan type
+
+     Parameters
+     ----------
+     mission_items : [MissionItem]
+          The mission items
+
+     """
+
+    
+
+    def __init__(
+            self,
+            mission_items):
+        """ Initializes the MissionPlan object """
+        self.mission_items = mission_items
+
+    def __equals__(self, to_compare):
+        """ Checks if two MissionPlan are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # MissionPlan object
+            return \
+                (self.mission_items == to_compare.mission_items)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ MissionPlan in string representation """
+        struct_repr = ", ".join([
+                "mission_items: " + str(self.mission_items)
+                ])
+
+        return f"MissionPlan: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcMissionPlan):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return MissionPlan(
+                
+                MissionItem.translate_from_rpc(rpcMissionPlan.mission_items)
+                )
+
+    def translate_to_rpc(self, rpcMissionPlan):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpc_elems_list = []
+        for elem in self.mission_items:
+            rpc_elem = mission_pb2.MissionItem()
+            elem.translate_to_rpc(rpc_elem)
+            rpc_elems_list.append(rpc_elem)
+        rpcMissionPlan.mission_items.extend(rpc_elems_list)
+            
+        
+        
+
+
 class MissionProgress:
     """
      Mission progress type.
 
      Parameters
      ----------
-     current_item_index : int32_t
+     current : int32_t
           Current mission item index (0-based)
 
-     mission_count : int32_t
+     total : int32_t
           Total number of mission items
 
      """
@@ -289,11 +360,11 @@ class MissionProgress:
 
     def __init__(
             self,
-            current_item_index,
-            mission_count):
+            current,
+            total):
         """ Initializes the MissionProgress object """
-        self.current_item_index = current_item_index
-        self.mission_count = mission_count
+        self.current = current
+        self.total = total
 
     def __equals__(self, to_compare):
         """ Checks if two MissionProgress are the same """
@@ -301,8 +372,8 @@ class MissionProgress:
             # Try to compare - this likely fails when it is compared to a non
             # MissionProgress object
             return \
-                (self.current_item_index == to_compare.current_item_index) and \
-                (self.mission_count == to_compare.mission_count)
+                (self.current == to_compare.current) and \
+                (self.total == to_compare.total)
 
         except AttributeError:
             return False
@@ -310,8 +381,8 @@ class MissionProgress:
     def __str__(self):
         """ MissionProgress in string representation """
         struct_repr = ", ".join([
-                "current_item_index: " + str(self.current_item_index),
-                "mission_count: " + str(self.mission_count)
+                "current: " + str(self.current),
+                "total: " + str(self.total)
                 ])
 
         return f"MissionProgress: [{struct_repr}]"
@@ -321,10 +392,10 @@ class MissionProgress:
         """ Translates a gRPC struct to the SDK equivalent """
         return MissionProgress(
                 
-                rpcMissionProgress.current_item_index,
+                rpcMissionProgress.current,
                 
                 
-                rpcMissionProgress.mission_count
+                rpcMissionProgress.total
                 )
 
     def translate_to_rpc(self, rpcMissionProgress):
@@ -333,13 +404,13 @@ class MissionProgress:
         
         
             
-        rpcMissionProgress.current_item_index = self.current_item_index
+        rpcMissionProgress.current = self.current
             
         
         
         
             
-        rpcMissionProgress.mission_count = self.mission_count
+        rpcMissionProgress.total = self.total
             
         
         
@@ -424,40 +495,62 @@ class MissionResult:
         TRANSFER_CANCELLED = 12
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: mission_pb2.MissionResult.UNKNOWN,
-                    1: mission_pb2.MissionResult.SUCCESS,
-                    2: mission_pb2.MissionResult.ERROR,
-                    3: mission_pb2.MissionResult.TOO_MANY_MISSION_ITEMS,
-                    4: mission_pb2.MissionResult.BUSY,
-                    5: mission_pb2.MissionResult.TIMEOUT,
-                    6: mission_pb2.MissionResult.INVALID_ARGUMENT,
-                    7: mission_pb2.MissionResult.UNSUPPORTED,
-                    8: mission_pb2.MissionResult.NO_MISSION_AVAILABLE,
-                    9: mission_pb2.MissionResult.FAILED_TO_OPEN_QGC_PLAN,
-                    10: mission_pb2.MissionResult.FAILED_TO_PARSE_QGC_PLAN,
-                    11: mission_pb2.MissionResult.UNSUPPORTED_MISSION_CMD,
-                    12: mission_pb2.MissionResult.TRANSFER_CANCELLED
-                }.get(self.value, None)
+            if self is MissionResult.Result.UNKNOWN:
+                return mission_pb2.MissionResult.RESULT_UNKNOWN
+            if self is MissionResult.Result.SUCCESS:
+                return mission_pb2.MissionResult.RESULT_SUCCESS
+            if self is MissionResult.Result.ERROR:
+                return mission_pb2.MissionResult.RESULT_ERROR
+            if self is MissionResult.Result.TOO_MANY_MISSION_ITEMS:
+                return mission_pb2.MissionResult.RESULT_TOO_MANY_MISSION_ITEMS
+            if self is MissionResult.Result.BUSY:
+                return mission_pb2.MissionResult.RESULT_BUSY
+            if self is MissionResult.Result.TIMEOUT:
+                return mission_pb2.MissionResult.RESULT_TIMEOUT
+            if self is MissionResult.Result.INVALID_ARGUMENT:
+                return mission_pb2.MissionResult.RESULT_INVALID_ARGUMENT
+            if self is MissionResult.Result.UNSUPPORTED:
+                return mission_pb2.MissionResult.RESULT_UNSUPPORTED
+            if self is MissionResult.Result.NO_MISSION_AVAILABLE:
+                return mission_pb2.MissionResult.RESULT_NO_MISSION_AVAILABLE
+            if self is MissionResult.Result.FAILED_TO_OPEN_QGC_PLAN:
+                return mission_pb2.MissionResult.RESULT_FAILED_TO_OPEN_QGC_PLAN
+            if self is MissionResult.Result.FAILED_TO_PARSE_QGC_PLAN:
+                return mission_pb2.MissionResult.RESULT_FAILED_TO_PARSE_QGC_PLAN
+            if self is MissionResult.Result.UNSUPPORTED_MISSION_CMD:
+                return mission_pb2.MissionResult.RESULT_UNSUPPORTED_MISSION_CMD
+            if self is MissionResult.Result.TRANSFER_CANCELLED:
+                return mission_pb2.MissionResult.RESULT_TRANSFER_CANCELLED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: MissionResult.Result.UNKNOWN,
-                    1: MissionResult.Result.SUCCESS,
-                    2: MissionResult.Result.ERROR,
-                    3: MissionResult.Result.TOO_MANY_MISSION_ITEMS,
-                    4: MissionResult.Result.BUSY,
-                    5: MissionResult.Result.TIMEOUT,
-                    6: MissionResult.Result.INVALID_ARGUMENT,
-                    7: MissionResult.Result.UNSUPPORTED,
-                    8: MissionResult.Result.NO_MISSION_AVAILABLE,
-                    9: MissionResult.Result.FAILED_TO_OPEN_QGC_PLAN,
-                    10: MissionResult.Result.FAILED_TO_PARSE_QGC_PLAN,
-                    11: MissionResult.Result.UNSUPPORTED_MISSION_CMD,
-                    12: MissionResult.Result.TRANSFER_CANCELLED,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is mission_pb2.MissionResult.RESULT_UNKNOWN:
+                return MissionResult.Result.UNKNOWN
+            if rpc_enum_value is mission_pb2.MissionResult.RESULT_SUCCESS:
+                return MissionResult.Result.SUCCESS
+            if rpc_enum_value is mission_pb2.MissionResult.RESULT_ERROR:
+                return MissionResult.Result.ERROR
+            if rpc_enum_value is mission_pb2.MissionResult.RESULT_TOO_MANY_MISSION_ITEMS:
+                return MissionResult.Result.TOO_MANY_MISSION_ITEMS
+            if rpc_enum_value is mission_pb2.MissionResult.RESULT_BUSY:
+                return MissionResult.Result.BUSY
+            if rpc_enum_value is mission_pb2.MissionResult.RESULT_TIMEOUT:
+                return MissionResult.Result.TIMEOUT
+            if rpc_enum_value is mission_pb2.MissionResult.RESULT_INVALID_ARGUMENT:
+                return MissionResult.Result.INVALID_ARGUMENT
+            if rpc_enum_value is mission_pb2.MissionResult.RESULT_UNSUPPORTED:
+                return MissionResult.Result.UNSUPPORTED
+            if rpc_enum_value is mission_pb2.MissionResult.RESULT_NO_MISSION_AVAILABLE:
+                return MissionResult.Result.NO_MISSION_AVAILABLE
+            if rpc_enum_value is mission_pb2.MissionResult.RESULT_FAILED_TO_OPEN_QGC_PLAN:
+                return MissionResult.Result.FAILED_TO_OPEN_QGC_PLAN
+            if rpc_enum_value is mission_pb2.MissionResult.RESULT_FAILED_TO_PARSE_QGC_PLAN:
+                return MissionResult.Result.FAILED_TO_PARSE_QGC_PLAN
+            if rpc_enum_value is mission_pb2.MissionResult.RESULT_UNSUPPORTED_MISSION_CMD:
+                return MissionResult.Result.UNSUPPORTED_MISSION_CMD
+            if rpc_enum_value is mission_pb2.MissionResult.RESULT_TRANSFER_CANCELLED:
+                return MissionResult.Result.TRANSFER_CANCELLED
 
         def __str__(self):
             return self.name
@@ -554,7 +647,7 @@ class Mission(AsyncBase):
         return MissionResult.translate_from_rpc(response.mission_result)
     
 
-    async def upload_mission(self, mission_items):
+    async def upload_mission(self, mission_plan):
         """
          Upload a list of mission items to the system.
 
@@ -563,8 +656,8 @@ class Mission(AsyncBase):
 
          Parameters
          ----------
-         mission_items : [MissionItem]
-              List of mission items
+         mission_plan : MissionPlan
+              The mission plan
 
          Raises
          ------
@@ -574,12 +667,7 @@ class Mission(AsyncBase):
 
         request = mission_pb2.UploadMissionRequest()
         
-        rpc_elems_list = []
-        for elem in mission_items:
-            rpc_elem = mission_pb2.MissionItem()
-            elem.translate_to_rpc(rpc_elem)
-            rpc_elems_list.append(rpc_elem)
-        request.mission_items.extend(rpc_elems_list)
+        mission_plan.translate_to_rpc(request.mission_plan)
                 
             
         response = await self._stub.UploadMission(request)
@@ -588,19 +676,27 @@ class Mission(AsyncBase):
         result = self._extract_result(response)
 
         if result.result is not MissionResult.Result.SUCCESS:
-            raise MissionError(result, "upload_mission()", mission_items)
+            raise MissionError(result, "upload_mission()", mission_plan)
         
 
     async def cancel_mission_upload(self):
         """
          Cancel an ongoing mission upload.
 
-         
+         Raises
+         ------
+         MissionError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = mission_pb2.CancelMissionUploadRequest()
         response = await self._stub.CancelMissionUpload(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not MissionResult.Result.SUCCESS:
+            raise MissionError(result, "cancel_mission_upload()")
         
 
     async def download_mission(self):
@@ -612,8 +708,8 @@ class Mission(AsyncBase):
 
          Returns
          -------
-         mission_items : [MissionItem]
-              List of downloaded mission items
+         mission_plan : MissionPlan
+              The mission plan
 
          Raises
          ------
@@ -631,23 +727,27 @@ class Mission(AsyncBase):
             raise MissionError(result, "download_mission()")
         
 
-        mission_items = []
-        for mission_items_rpc in response.mission_items:
-            mission_items.append(MissionItem.translate_from_rpc(mission_items_rpc))
-
-        return mission_items
+        return MissionPlan.translate_from_rpc(response.mission_plan)
             
 
     async def cancel_mission_download(self):
         """
          Cancel an ongoing mission download.
 
-         
+         Raises
+         ------
+         MissionError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = mission_pb2.CancelMissionDownloadRequest()
         response = await self._stub.CancelMissionDownload(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not MissionResult.Result.SUCCESS:
+            raise MissionError(result, "cancel_mission_download()")
         
 
     async def start_mission(self):
@@ -717,7 +817,7 @@ class Mission(AsyncBase):
             raise MissionError(result, "clear_mission()")
         
 
-    async def set_current_mission_item_index(self, index):
+    async def set_current_mission_item(self, index):
         """
          Sets the mission item index to go to.
 
@@ -738,15 +838,15 @@ class Mission(AsyncBase):
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = mission_pb2.SetCurrentMissionItemIndexRequest()
+        request = mission_pb2.SetCurrentMissionItemRequest()
         request.index = index
-        response = await self._stub.SetCurrentMissionItemIndex(request)
+        response = await self._stub.SetCurrentMissionItem(request)
 
         
         result = self._extract_result(response)
 
         if result.result is not MissionResult.Result.SUCCESS:
-            raise MissionError(result, "set_current_mission_item_index()", index)
+            raise MissionError(result, "set_current_mission_item()", index)
         
 
     async def is_mission_finished(self):
@@ -758,12 +858,20 @@ class Mission(AsyncBase):
          is_finished : bool
               True if the mission is finished and the last mission item has been reached
 
-         
+         Raises
+         ------
+         MissionError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = mission_pb2.IsMissionFinishedRequest()
         response = await self._stub.IsMissionFinished(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not MissionResult.Result.SUCCESS:
+            raise MissionError(result, "is_mission_finished()")
         
 
         return response.is_finished
@@ -805,12 +913,20 @@ class Mission(AsyncBase):
          enable : bool
               If true, trigger an RTL at the end of the mission
 
-         
+         Raises
+         ------
+         MissionError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = mission_pb2.GetReturnToLaunchAfterMissionRequest()
         response = await self._stub.GetReturnToLaunchAfterMission(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not MissionResult.Result.SUCCESS:
+            raise MissionError(result, "get_return_to_launch_after_mission()")
         
 
         return response.enable
@@ -828,7 +944,10 @@ class Mission(AsyncBase):
          enable : bool
               If true, trigger an RTL at the end of the mission
 
-         
+         Raises
+         ------
+         MissionError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = mission_pb2.SetReturnToLaunchAfterMissionRequest()
@@ -836,3 +955,48 @@ class Mission(AsyncBase):
         response = await self._stub.SetReturnToLaunchAfterMission(request)
 
         
+        result = self._extract_result(response)
+
+        if result.result is not MissionResult.Result.SUCCESS:
+            raise MissionError(result, "set_return_to_launch_after_mission()", enable)
+        
+
+    async def import_qgroundcontrol_mission(self, qgc_plan_path):
+        """
+         Import a QGroundControl (QGC) mission plan.
+
+         The method will fail if any of the imported mission items are not supported
+         by the MAVSDK API.
+
+         Parameters
+         ----------
+         qgc_plan_path : std::string
+              File path of the QGC plan
+
+         Returns
+         -------
+         mission_plan : MissionPlan
+              The mission plan
+
+         Raises
+         ------
+         MissionError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = mission_pb2.ImportQgroundcontrolMissionRequest()
+        
+            
+        request.qgc_plan_path = qgc_plan_path
+            
+        response = await self._stub.ImportQgroundcontrolMission(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not MissionResult.Result.SUCCESS:
+            raise MissionError(result, "import_qgroundcontrol_mission()", qgc_plan_path)
+        
+
+        return MissionPlan.translate_from_rpc(response.mission_plan)
+            

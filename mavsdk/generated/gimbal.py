@@ -23,18 +23,18 @@ class GimbalMode(Enum):
     YAW_LOCK = 1
 
     def translate_to_rpc(self, rpcGimbalMode):
-        return {
-                0: gimbal_pb2.YAW_FOLLOW,
-                1: gimbal_pb2.YAW_LOCK
-            }.get(self.value, None)
+        if self is GimbalMode.YAW_FOLLOW:
+            return gimbal_pb2.GIMBAL_MODE_YAW_FOLLOW
+        if self is GimbalMode.YAW_LOCK:
+            return gimbal_pb2.GIMBAL_MODE_YAW_LOCK
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        return {
-                0: GimbalMode.YAW_FOLLOW,
-                1: GimbalMode.YAW_LOCK,
-            }.get(rpc_enum_value, None)
+        if rpc_enum_value is gimbal_pb2.GIMBAL_MODE_YAW_FOLLOW:
+            return GimbalMode.YAW_FOLLOW
+        if rpc_enum_value is gimbal_pb2.GIMBAL_MODE_YAW_LOCK:
+            return GimbalMode.YAW_LOCK
 
     def __str__(self):
         return self.name
@@ -83,22 +83,26 @@ class GimbalResult:
         TIMEOUT = 3
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: gimbal_pb2.GimbalResult.UNKNOWN,
-                    1: gimbal_pb2.GimbalResult.SUCCESS,
-                    2: gimbal_pb2.GimbalResult.ERROR,
-                    3: gimbal_pb2.GimbalResult.TIMEOUT
-                }.get(self.value, None)
+            if self is GimbalResult.Result.UNKNOWN:
+                return gimbal_pb2.GimbalResult.RESULT_UNKNOWN
+            if self is GimbalResult.Result.SUCCESS:
+                return gimbal_pb2.GimbalResult.RESULT_SUCCESS
+            if self is GimbalResult.Result.ERROR:
+                return gimbal_pb2.GimbalResult.RESULT_ERROR
+            if self is GimbalResult.Result.TIMEOUT:
+                return gimbal_pb2.GimbalResult.RESULT_TIMEOUT
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: GimbalResult.Result.UNKNOWN,
-                    1: GimbalResult.Result.SUCCESS,
-                    2: GimbalResult.Result.ERROR,
-                    3: GimbalResult.Result.TIMEOUT,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value is gimbal_pb2.GimbalResult.RESULT_UNKNOWN:
+                return GimbalResult.Result.UNKNOWN
+            if rpc_enum_value is gimbal_pb2.GimbalResult.RESULT_SUCCESS:
+                return GimbalResult.Result.SUCCESS
+            if rpc_enum_value is gimbal_pb2.GimbalResult.RESULT_ERROR:
+                return GimbalResult.Result.ERROR
+            if rpc_enum_value is gimbal_pb2.GimbalResult.RESULT_TIMEOUT:
+                return GimbalResult.Result.TIMEOUT
 
         def __str__(self):
             return self.name
