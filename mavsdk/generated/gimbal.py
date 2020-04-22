@@ -265,3 +265,43 @@ class Gimbal(AsyncBase):
         if result.result is not GimbalResult.Result.SUCCESS:
             raise GimbalError(result, "set_mode()", gimbal_mode)
         
+
+    async def set_roi_location(self, latitude_deg, longitude_deg, altitude_m):
+        """
+         Set gimbal region of interest (ROI).
+
+         This sets a region of interest that the gimbal will point to.
+         The gimbal will continue to point to the specified region until it
+         receives a new command.
+         The function will return when the command is accepted, however, it might
+         take the gimbal longer to actually rotate to the ROI.
+
+         Parameters
+         ----------
+         latitude_deg : double
+              Latitude in degrees
+
+         longitude_deg : double
+              Longitude in degrees
+
+         altitude_m : float
+              Altitude in metres (AMSL)
+
+         Raises
+         ------
+         GimbalError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = gimbal_pb2.SetRoiLocationRequest()
+        request.latitude_deg = latitude_deg
+        request.longitude_deg = longitude_deg
+        request.altitude_m = altitude_m
+        response = await self._stub.SetRoiLocation(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not GimbalResult.Result.SUCCESS:
+            raise GimbalError(result, "set_roi_location()", latitude_deg, longitude_deg, altitude_m)
+        

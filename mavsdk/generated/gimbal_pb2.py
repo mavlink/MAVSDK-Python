@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='mavsdk.rpc.gimbal',
   syntax='proto3',
   serialized_options=b'\n\020io.mavsdk.gimbalB\013GimbalProto',
-  serialized_pb=b'\n\x0cgimbal.proto\x12\x11mavsdk.rpc.gimbal\";\n\x15SetPitchAndYawRequest\x12\x11\n\tpitch_deg\x18\x01 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x02 \x01(\x02\"P\n\x16SetPitchAndYawResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"D\n\x0eSetModeRequest\x12\x32\n\x0bgimbal_mode\x18\x01 \x01(\x0e\x32\x1d.mavsdk.rpc.gimbal.GimbalMode\"I\n\x0fSetModeResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"\x96\x01\n\x0cGimbalResult\x12\x36\n\x06result\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.gimbal.GimbalResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\":\n\x06Result\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x0b\n\x07SUCCESS\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x12\x0b\n\x07TIMEOUT\x10\x03**\n\nGimbalMode\x12\x0e\n\nYAW_FOLLOW\x10\x00\x12\x0c\n\x08YAW_LOCK\x10\x01\x32\xcc\x01\n\rGimbalService\x12g\n\x0eSetPitchAndYaw\x12(.mavsdk.rpc.gimbal.SetPitchAndYawRequest\x1a).mavsdk.rpc.gimbal.SetPitchAndYawResponse\"\x00\x12R\n\x07SetMode\x12!.mavsdk.rpc.gimbal.SetModeRequest\x1a\".mavsdk.rpc.gimbal.SetModeResponse\"\x00\x42\x1f\n\x10io.mavsdk.gimbalB\x0bGimbalProtob\x06proto3'
+  serialized_pb=b'\n\x0cgimbal.proto\x12\x11mavsdk.rpc.gimbal\";\n\x15SetPitchAndYawRequest\x12\x11\n\tpitch_deg\x18\x01 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x02 \x01(\x02\"P\n\x16SetPitchAndYawResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"D\n\x0eSetModeRequest\x12\x32\n\x0bgimbal_mode\x18\x01 \x01(\x0e\x32\x1d.mavsdk.rpc.gimbal.GimbalMode\"I\n\x0fSetModeResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"X\n\x15SetRoiLocationRequest\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x12\n\naltitude_m\x18\x03 \x01(\x02\"P\n\x16SetRoiLocationResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"\xb2\x01\n\x0cGimbalResult\x12\x36\n\x06result\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.gimbal.GimbalResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"V\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x10\n\x0cRESULT_ERROR\x10\x02\x12\x12\n\x0eRESULT_TIMEOUT\x10\x03*B\n\nGimbalMode\x12\x1a\n\x16GIMBAL_MODE_YAW_FOLLOW\x10\x00\x12\x18\n\x14GIMBAL_MODE_YAW_LOCK\x10\x01\x32\xb5\x02\n\rGimbalService\x12g\n\x0eSetPitchAndYaw\x12(.mavsdk.rpc.gimbal.SetPitchAndYawRequest\x1a).mavsdk.rpc.gimbal.SetPitchAndYawResponse\"\x00\x12R\n\x07SetMode\x12!.mavsdk.rpc.gimbal.SetModeRequest\x1a\".mavsdk.rpc.gimbal.SetModeResponse\"\x00\x12g\n\x0eSetRoiLocation\x12(.mavsdk.rpc.gimbal.SetRoiLocationRequest\x1a).mavsdk.rpc.gimbal.SetRoiLocationResponse\"\x00\x42\x1f\n\x10io.mavsdk.gimbalB\x0bGimbalProtob\x06proto3'
 )
 
 _GIMBALMODE = _descriptor.EnumDescriptor(
@@ -29,24 +29,24 @@ _GIMBALMODE = _descriptor.EnumDescriptor(
   file=DESCRIPTOR,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='YAW_FOLLOW', index=0, number=0,
+      name='GIMBAL_MODE_YAW_FOLLOW', index=0, number=0,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='YAW_LOCK', index=1, number=1,
+      name='GIMBAL_MODE_YAW_LOCK', index=1, number=1,
       serialized_options=None,
       type=None),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=476,
-  serialized_end=518,
+  serialized_start=676,
+  serialized_end=742,
 )
 _sym_db.RegisterEnumDescriptor(_GIMBALMODE)
 
 GimbalMode = enum_type_wrapper.EnumTypeWrapper(_GIMBALMODE)
-YAW_FOLLOW = 0
-YAW_LOCK = 1
+GIMBAL_MODE_YAW_FOLLOW = 0
+GIMBAL_MODE_YAW_LOCK = 1
 
 
 _GIMBALRESULT_RESULT = _descriptor.EnumDescriptor(
@@ -56,26 +56,26 @@ _GIMBALRESULT_RESULT = _descriptor.EnumDescriptor(
   file=DESCRIPTOR,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='UNKNOWN', index=0, number=0,
+      name='RESULT_UNKNOWN', index=0, number=0,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='SUCCESS', index=1, number=1,
+      name='RESULT_SUCCESS', index=1, number=1,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='ERROR', index=2, number=2,
+      name='RESULT_ERROR', index=2, number=2,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='TIMEOUT', index=3, number=3,
+      name='RESULT_TIMEOUT', index=3, number=3,
       serialized_options=None,
       type=None),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=416,
-  serialized_end=474,
+  serialized_start=588,
+  serialized_end=674,
 )
 _sym_db.RegisterEnumDescriptor(_GIMBALRESULT_RESULT)
 
@@ -211,6 +211,82 @@ _SETMODERESPONSE = _descriptor.Descriptor(
 )
 
 
+_SETROILOCATIONREQUEST = _descriptor.Descriptor(
+  name='SetRoiLocationRequest',
+  full_name='mavsdk.rpc.gimbal.SetRoiLocationRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='latitude_deg', full_name='mavsdk.rpc.gimbal.SetRoiLocationRequest.latitude_deg', index=0,
+      number=1, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='longitude_deg', full_name='mavsdk.rpc.gimbal.SetRoiLocationRequest.longitude_deg', index=1,
+      number=2, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='altitude_m', full_name='mavsdk.rpc.gimbal.SetRoiLocationRequest.altitude_m', index=2,
+      number=3, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=323,
+  serialized_end=411,
+)
+
+
+_SETROILOCATIONRESPONSE = _descriptor.Descriptor(
+  name='SetRoiLocationResponse',
+  full_name='mavsdk.rpc.gimbal.SetRoiLocationResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='gimbal_result', full_name='mavsdk.rpc.gimbal.SetRoiLocationResponse.gimbal_result', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=413,
+  serialized_end=493,
+)
+
+
 _GIMBALRESULT = _descriptor.Descriptor(
   name='GimbalResult',
   full_name='mavsdk.rpc.gimbal.GimbalResult',
@@ -245,19 +321,22 @@ _GIMBALRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=324,
-  serialized_end=474,
+  serialized_start=496,
+  serialized_end=674,
 )
 
 _SETPITCHANDYAWRESPONSE.fields_by_name['gimbal_result'].message_type = _GIMBALRESULT
 _SETMODEREQUEST.fields_by_name['gimbal_mode'].enum_type = _GIMBALMODE
 _SETMODERESPONSE.fields_by_name['gimbal_result'].message_type = _GIMBALRESULT
+_SETROILOCATIONRESPONSE.fields_by_name['gimbal_result'].message_type = _GIMBALRESULT
 _GIMBALRESULT.fields_by_name['result'].enum_type = _GIMBALRESULT_RESULT
 _GIMBALRESULT_RESULT.containing_type = _GIMBALRESULT
 DESCRIPTOR.message_types_by_name['SetPitchAndYawRequest'] = _SETPITCHANDYAWREQUEST
 DESCRIPTOR.message_types_by_name['SetPitchAndYawResponse'] = _SETPITCHANDYAWRESPONSE
 DESCRIPTOR.message_types_by_name['SetModeRequest'] = _SETMODEREQUEST
 DESCRIPTOR.message_types_by_name['SetModeResponse'] = _SETMODERESPONSE
+DESCRIPTOR.message_types_by_name['SetRoiLocationRequest'] = _SETROILOCATIONREQUEST
+DESCRIPTOR.message_types_by_name['SetRoiLocationResponse'] = _SETROILOCATIONRESPONSE
 DESCRIPTOR.message_types_by_name['GimbalResult'] = _GIMBALRESULT
 DESCRIPTOR.enum_types_by_name['GimbalMode'] = _GIMBALMODE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -290,6 +369,20 @@ SetModeResponse = _reflection.GeneratedProtocolMessageType('SetModeResponse', (_
   })
 _sym_db.RegisterMessage(SetModeResponse)
 
+SetRoiLocationRequest = _reflection.GeneratedProtocolMessageType('SetRoiLocationRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SETROILOCATIONREQUEST,
+  '__module__' : 'gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.SetRoiLocationRequest)
+  })
+_sym_db.RegisterMessage(SetRoiLocationRequest)
+
+SetRoiLocationResponse = _reflection.GeneratedProtocolMessageType('SetRoiLocationResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SETROILOCATIONRESPONSE,
+  '__module__' : 'gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.SetRoiLocationResponse)
+  })
+_sym_db.RegisterMessage(SetRoiLocationResponse)
+
 GimbalResult = _reflection.GeneratedProtocolMessageType('GimbalResult', (_message.Message,), {
   'DESCRIPTOR' : _GIMBALRESULT,
   '__module__' : 'gimbal_pb2'
@@ -306,8 +399,8 @@ _GIMBALSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=521,
-  serialized_end=725,
+  serialized_start=745,
+  serialized_end=1054,
   methods=[
   _descriptor.MethodDescriptor(
     name='SetPitchAndYaw',
@@ -325,6 +418,15 @@ _GIMBALSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_SETMODEREQUEST,
     output_type=_SETMODERESPONSE,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SetRoiLocation',
+    full_name='mavsdk.rpc.gimbal.GimbalService.SetRoiLocation',
+    index=2,
+    containing_service=None,
+    input_type=_SETROILOCATIONREQUEST,
+    output_type=_SETROILOCATIONRESPONSE,
     serialized_options=None,
   ),
 ])

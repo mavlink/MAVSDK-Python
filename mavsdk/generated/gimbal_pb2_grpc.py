@@ -24,6 +24,11 @@ class GimbalServiceStub(object):
                 request_serializer=gimbal__pb2.SetModeRequest.SerializeToString,
                 response_deserializer=gimbal__pb2.SetModeResponse.FromString,
                 )
+        self.SetRoiLocation = channel.unary_unary(
+                '/mavsdk.rpc.gimbal.GimbalService/SetRoiLocation',
+                request_serializer=gimbal__pb2.SetRoiLocationRequest.SerializeToString,
+                response_deserializer=gimbal__pb2.SetRoiLocationResponse.FromString,
+                )
 
 
 class GimbalServiceServicer(object):
@@ -55,6 +60,20 @@ class GimbalServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetRoiLocation(self, request, context):
+        """
+        Set gimbal region of interest (ROI).
+
+        This sets a region of interest that the gimbal will point to.
+        The gimbal will continue to point to the specified region until it
+        receives a new command.
+        The function will return when the command is accepted, however, it might
+        take the gimbal longer to actually rotate to the ROI.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_GimbalServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -67,6 +86,11 @@ def add_GimbalServiceServicer_to_server(servicer, server):
                     servicer.SetMode,
                     request_deserializer=gimbal__pb2.SetModeRequest.FromString,
                     response_serializer=gimbal__pb2.SetModeResponse.SerializeToString,
+            ),
+            'SetRoiLocation': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetRoiLocation,
+                    request_deserializer=gimbal__pb2.SetRoiLocationRequest.FromString,
+                    response_serializer=gimbal__pb2.SetRoiLocationResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -108,5 +132,21 @@ class GimbalService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.gimbal.GimbalService/SetMode',
             gimbal__pb2.SetModeRequest.SerializeToString,
             gimbal__pb2.SetModeResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetRoiLocation(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.gimbal.GimbalService/SetRoiLocation',
+            gimbal__pb2.SetRoiLocationRequest.SerializeToString,
+            gimbal__pb2.SetRoiLocationResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

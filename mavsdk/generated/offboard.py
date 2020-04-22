@@ -924,12 +924,20 @@ class Offboard(AsyncBase):
          is_active : bool
               True if offboard is active
 
-         
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.IsActiveRequest()
         response = await self._stub.IsActive(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "is_active()")
         
 
         return response.is_active
@@ -944,7 +952,10 @@ class Offboard(AsyncBase):
          attitude : Attitude
               Attitude roll, pitch and yaw along with thrust
 
-         
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetAttitudeRequest()
@@ -954,6 +965,11 @@ class Offboard(AsyncBase):
             
         response = await self._stub.SetAttitude(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_attitude()", attitude)
         
 
     async def set_actuator_control(self, actuator_control):
@@ -968,7 +984,10 @@ class Offboard(AsyncBase):
          actuator_control : ActuatorControl
               Actuator control values
 
-         
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetActuatorControlRequest()
@@ -978,6 +997,11 @@ class Offboard(AsyncBase):
             
         response = await self._stub.SetActuatorControl(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_actuator_control()", actuator_control)
         
 
     async def set_attitude_rate(self, attitude_rate):
@@ -989,7 +1013,10 @@ class Offboard(AsyncBase):
          attitude_rate : AttitudeRate
               Attitude rate roll, pitch and yaw angular rate along with thrust
 
-         
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetAttitudeRateRequest()
@@ -999,6 +1026,11 @@ class Offboard(AsyncBase):
             
         response = await self._stub.SetAttitudeRate(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_attitude_rate()", attitude_rate)
         
 
     async def set_position_ned(self, position_ned_yaw):
@@ -1010,7 +1042,10 @@ class Offboard(AsyncBase):
          position_ned_yaw : PositionNedYaw
               Position and yaw
 
-         
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetPositionNedRequest()
@@ -1020,6 +1055,11 @@ class Offboard(AsyncBase):
             
         response = await self._stub.SetPositionNed(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_position_ned()", position_ned_yaw)
         
 
     async def set_velocity_body(self, velocity_body_yawspeed):
@@ -1031,7 +1071,10 @@ class Offboard(AsyncBase):
          velocity_body_yawspeed : VelocityBodyYawspeed
               Velocity and yaw angular rate
 
-         
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetVelocityBodyRequest()
@@ -1041,6 +1084,11 @@ class Offboard(AsyncBase):
             
         response = await self._stub.SetVelocityBody(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_velocity_body()", velocity_body_yawspeed)
         
 
     async def set_velocity_ned(self, velocity_ned_yaw):
@@ -1052,7 +1100,10 @@ class Offboard(AsyncBase):
          velocity_ned_yaw : VelocityNedYaw
               Velocity and yaw
 
-         
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetVelocityNedRequest()
@@ -1062,4 +1113,9 @@ class Offboard(AsyncBase):
             
         response = await self._stub.SetVelocityNed(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_velocity_ned()", velocity_ned_yaw)
         
