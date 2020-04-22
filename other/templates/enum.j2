@@ -5,13 +5,13 @@ class {{ name.upper_camel_case }}(Enum):
      Values
      ------
      {% for value in values -%}
-     {% set value_without_prefix = value.name.uppercase[name.lower_snake_case|length+1:] %}{{ value_without_prefix }}
+     {{ value.name.uppercase }}
          {{ value.description }}
      {% endfor -%}
    """
 
     {% for value in values %}
-    {% set value_without_prefix = value.name.uppercase[name.lower_snake_case|length+1:] %}{{ value_without_prefix }} = {{ loop.index - 1 }}
+    {{ value.name.uppercase }} = {{ loop.index - 1 }}
     {%- endfor %}
 
     def translate_to_rpc(self, rpc{{ name.upper_camel_case }}):
@@ -26,7 +26,7 @@ class {{ name.upper_camel_case }}(Enum):
         """ Parses a gRPC response """
         return {
             {%- for value in values %}
-                {{ loop.index - 1 }}: {% if parent_struct is not none %}{{ parent_struct.upper_camel_case }}.{% endif %}{{ name.upper_camel_case }}.{% set value_without_prefix = value.name.uppercase[name.lower_snake_case|length+1:] %}{{ value_without_prefix }},
+                {{ loop.index - 1 }}: {% if parent_struct is not none %}{{ parent_struct.upper_camel_case }}.{% endif %}{{ name.upper_camel_case }}.{{ value.name.uppercase }},
             {%- endfor %}
             }.get(rpc_enum_value, None)
 
