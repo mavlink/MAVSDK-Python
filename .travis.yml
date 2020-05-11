@@ -67,7 +67,7 @@ script:
 - set -e
 - $PYTHON_BIN setup.py bdist_wheel
 - if [[ "${BUILD_TARGET}" = "linux" ]]; then
-    auditwheel repair dist/*.whl;
+    auditwheel repair --plat manylinux2010_x86_64 dist/*.whl;
   fi
 - if [[ "${BUILD_TARGET}" = "macos" ]]; then
     delocate-wheel -w wheelhouse -v dist/*.whl;
