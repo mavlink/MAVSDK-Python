@@ -71,17 +71,17 @@ class ShellResult:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is shell_pb2.ShellResult.RESULT_UNKNOWN:
+            if rpc_enum_value == shell_pb2.ShellResult.RESULT_UNKNOWN:
                 return ShellResult.Result.UNKNOWN
-            if rpc_enum_value is shell_pb2.ShellResult.RESULT_SUCCESS:
+            if rpc_enum_value == shell_pb2.ShellResult.RESULT_SUCCESS:
                 return ShellResult.Result.SUCCESS
-            if rpc_enum_value is shell_pb2.ShellResult.RESULT_NO_SYSTEM:
+            if rpc_enum_value == shell_pb2.ShellResult.RESULT_NO_SYSTEM:
                 return ShellResult.Result.NO_SYSTEM
-            if rpc_enum_value is shell_pb2.ShellResult.RESULT_CONNECTION_ERROR:
+            if rpc_enum_value == shell_pb2.ShellResult.RESULT_CONNECTION_ERROR:
                 return ShellResult.Result.CONNECTION_ERROR
-            if rpc_enum_value is shell_pb2.ShellResult.RESULT_NO_RESPONSE:
+            if rpc_enum_value == shell_pb2.ShellResult.RESULT_NO_RESPONSE:
                 return ShellResult.Result.NO_RESPONSE
-            if rpc_enum_value is shell_pb2.ShellResult.RESULT_BUSY:
+            if rpc_enum_value == shell_pb2.ShellResult.RESULT_BUSY:
                 return ShellResult.Result.BUSY
 
         def __str__(self):

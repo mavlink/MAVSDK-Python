@@ -71,17 +71,17 @@ class ParamResult:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is param_pb2.ParamResult.RESULT_UNKNOWN:
+            if rpc_enum_value == param_pb2.ParamResult.RESULT_UNKNOWN:
                 return ParamResult.Result.UNKNOWN
-            if rpc_enum_value is param_pb2.ParamResult.RESULT_SUCCESS:
+            if rpc_enum_value == param_pb2.ParamResult.RESULT_SUCCESS:
                 return ParamResult.Result.SUCCESS
-            if rpc_enum_value is param_pb2.ParamResult.RESULT_TIMEOUT:
+            if rpc_enum_value == param_pb2.ParamResult.RESULT_TIMEOUT:
                 return ParamResult.Result.TIMEOUT
-            if rpc_enum_value is param_pb2.ParamResult.RESULT_CONNECTION_ERROR:
+            if rpc_enum_value == param_pb2.ParamResult.RESULT_CONNECTION_ERROR:
                 return ParamResult.Result.CONNECTION_ERROR
-            if rpc_enum_value is param_pb2.ParamResult.RESULT_WRONG_TYPE:
+            if rpc_enum_value == param_pb2.ParamResult.RESULT_WRONG_TYPE:
                 return ParamResult.Result.WRONG_TYPE
-            if rpc_enum_value is param_pb2.ParamResult.RESULT_PARAM_NAME_TOO_LONG:
+            if rpc_enum_value == param_pb2.ParamResult.RESULT_PARAM_NAME_TOO_LONG:
                 return ParamResult.Result.PARAM_NAME_TOO_LONG
 
         def __str__(self):

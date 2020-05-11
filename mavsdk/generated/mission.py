@@ -100,17 +100,17 @@ class MissionItem:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is mission_pb2.MissionItem.CAMERA_ACTION_NONE:
+            if rpc_enum_value == mission_pb2.MissionItem.CAMERA_ACTION_NONE:
                 return MissionItem.CameraAction.NONE
-            if rpc_enum_value is mission_pb2.MissionItem.CAMERA_ACTION_TAKE_PHOTO:
+            if rpc_enum_value == mission_pb2.MissionItem.CAMERA_ACTION_TAKE_PHOTO:
                 return MissionItem.CameraAction.TAKE_PHOTO
-            if rpc_enum_value is mission_pb2.MissionItem.CAMERA_ACTION_START_PHOTO_INTERVAL:
+            if rpc_enum_value == mission_pb2.MissionItem.CAMERA_ACTION_START_PHOTO_INTERVAL:
                 return MissionItem.CameraAction.START_PHOTO_INTERVAL
-            if rpc_enum_value is mission_pb2.MissionItem.CAMERA_ACTION_STOP_PHOTO_INTERVAL:
+            if rpc_enum_value == mission_pb2.MissionItem.CAMERA_ACTION_STOP_PHOTO_INTERVAL:
                 return MissionItem.CameraAction.STOP_PHOTO_INTERVAL
-            if rpc_enum_value is mission_pb2.MissionItem.CAMERA_ACTION_START_VIDEO:
+            if rpc_enum_value == mission_pb2.MissionItem.CAMERA_ACTION_START_VIDEO:
                 return MissionItem.CameraAction.START_VIDEO
-            if rpc_enum_value is mission_pb2.MissionItem.CAMERA_ACTION_STOP_VIDEO:
+            if rpc_enum_value == mission_pb2.MissionItem.CAMERA_ACTION_STOP_VIDEO:
                 return MissionItem.CameraAction.STOP_VIDEO
 
         def __str__(self):
@@ -525,31 +525,31 @@ class MissionResult:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is mission_pb2.MissionResult.RESULT_UNKNOWN:
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_UNKNOWN:
                 return MissionResult.Result.UNKNOWN
-            if rpc_enum_value is mission_pb2.MissionResult.RESULT_SUCCESS:
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_SUCCESS:
                 return MissionResult.Result.SUCCESS
-            if rpc_enum_value is mission_pb2.MissionResult.RESULT_ERROR:
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_ERROR:
                 return MissionResult.Result.ERROR
-            if rpc_enum_value is mission_pb2.MissionResult.RESULT_TOO_MANY_MISSION_ITEMS:
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_TOO_MANY_MISSION_ITEMS:
                 return MissionResult.Result.TOO_MANY_MISSION_ITEMS
-            if rpc_enum_value is mission_pb2.MissionResult.RESULT_BUSY:
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_BUSY:
                 return MissionResult.Result.BUSY
-            if rpc_enum_value is mission_pb2.MissionResult.RESULT_TIMEOUT:
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_TIMEOUT:
                 return MissionResult.Result.TIMEOUT
-            if rpc_enum_value is mission_pb2.MissionResult.RESULT_INVALID_ARGUMENT:
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_INVALID_ARGUMENT:
                 return MissionResult.Result.INVALID_ARGUMENT
-            if rpc_enum_value is mission_pb2.MissionResult.RESULT_UNSUPPORTED:
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_UNSUPPORTED:
                 return MissionResult.Result.UNSUPPORTED
-            if rpc_enum_value is mission_pb2.MissionResult.RESULT_NO_MISSION_AVAILABLE:
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_NO_MISSION_AVAILABLE:
                 return MissionResult.Result.NO_MISSION_AVAILABLE
-            if rpc_enum_value is mission_pb2.MissionResult.RESULT_FAILED_TO_OPEN_QGC_PLAN:
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_FAILED_TO_OPEN_QGC_PLAN:
                 return MissionResult.Result.FAILED_TO_OPEN_QGC_PLAN
-            if rpc_enum_value is mission_pb2.MissionResult.RESULT_FAILED_TO_PARSE_QGC_PLAN:
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_FAILED_TO_PARSE_QGC_PLAN:
                 return MissionResult.Result.FAILED_TO_PARSE_QGC_PLAN
-            if rpc_enum_value is mission_pb2.MissionResult.RESULT_UNSUPPORTED_MISSION_CMD:
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_UNSUPPORTED_MISSION_CMD:
                 return MissionResult.Result.UNSUPPORTED_MISSION_CMD
-            if rpc_enum_value is mission_pb2.MissionResult.RESULT_TRANSFER_CANCELLED:
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_TRANSFER_CANCELLED:
                 return MissionResult.Result.TRANSFER_CANCELLED
 
         def __str__(self):

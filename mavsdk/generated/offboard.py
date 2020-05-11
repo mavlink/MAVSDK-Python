@@ -750,21 +750,21 @@ class OffboardResult:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_UNKNOWN:
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_UNKNOWN:
                 return OffboardResult.Result.UNKNOWN
-            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_SUCCESS:
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_SUCCESS:
                 return OffboardResult.Result.SUCCESS
-            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_NO_SYSTEM:
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_NO_SYSTEM:
                 return OffboardResult.Result.NO_SYSTEM
-            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_CONNECTION_ERROR:
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_CONNECTION_ERROR:
                 return OffboardResult.Result.CONNECTION_ERROR
-            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_BUSY:
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_BUSY:
                 return OffboardResult.Result.BUSY
-            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_COMMAND_DENIED:
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_COMMAND_DENIED:
                 return OffboardResult.Result.COMMAND_DENIED
-            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_TIMEOUT:
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_TIMEOUT:
                 return OffboardResult.Result.TIMEOUT
-            if rpc_enum_value is offboard_pb2.OffboardResult.RESULT_NO_SETPOINT_SET:
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_NO_SETPOINT_SET:
                 return OffboardResult.Result.NO_SETPOINT_SET
 
         def __str__(self):

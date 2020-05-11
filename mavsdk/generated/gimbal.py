@@ -31,9 +31,9 @@ class GimbalMode(Enum):
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        if rpc_enum_value is gimbal_pb2.GIMBAL_MODE_YAW_FOLLOW:
+        if rpc_enum_value == gimbal_pb2.GIMBAL_MODE_YAW_FOLLOW:
             return GimbalMode.YAW_FOLLOW
-        if rpc_enum_value is gimbal_pb2.GIMBAL_MODE_YAW_LOCK:
+        if rpc_enum_value == gimbal_pb2.GIMBAL_MODE_YAW_LOCK:
             return GimbalMode.YAW_LOCK
 
     def __str__(self):
@@ -95,13 +95,13 @@ class GimbalResult:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is gimbal_pb2.GimbalResult.RESULT_UNKNOWN:
+            if rpc_enum_value == gimbal_pb2.GimbalResult.RESULT_UNKNOWN:
                 return GimbalResult.Result.UNKNOWN
-            if rpc_enum_value is gimbal_pb2.GimbalResult.RESULT_SUCCESS:
+            if rpc_enum_value == gimbal_pb2.GimbalResult.RESULT_SUCCESS:
                 return GimbalResult.Result.SUCCESS
-            if rpc_enum_value is gimbal_pb2.GimbalResult.RESULT_ERROR:
+            if rpc_enum_value == gimbal_pb2.GimbalResult.RESULT_ERROR:
                 return GimbalResult.Result.ERROR
-            if rpc_enum_value is gimbal_pb2.GimbalResult.RESULT_TIMEOUT:
+            if rpc_enum_value == gimbal_pb2.GimbalResult.RESULT_TIMEOUT:
                 return GimbalResult.Result.TIMEOUT
 
         def __str__(self):

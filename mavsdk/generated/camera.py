@@ -37,11 +37,11 @@ class Mode(Enum):
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        if rpc_enum_value is camera_pb2.MODE_UNKNOWN:
+        if rpc_enum_value == camera_pb2.MODE_UNKNOWN:
             return Mode.UNKNOWN
-        if rpc_enum_value is camera_pb2.MODE_PHOTO:
+        if rpc_enum_value == camera_pb2.MODE_PHOTO:
             return Mode.PHOTO
-        if rpc_enum_value is camera_pb2.MODE_VIDEO:
+        if rpc_enum_value == camera_pb2.MODE_VIDEO:
             return Mode.VIDEO
 
     def __str__(self):
@@ -127,21 +127,21 @@ class CameraResult:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is camera_pb2.CameraResult.RESULT_UNKNOWN:
+            if rpc_enum_value == camera_pb2.CameraResult.RESULT_UNKNOWN:
                 return CameraResult.Result.UNKNOWN
-            if rpc_enum_value is camera_pb2.CameraResult.RESULT_SUCCESS:
+            if rpc_enum_value == camera_pb2.CameraResult.RESULT_SUCCESS:
                 return CameraResult.Result.SUCCESS
-            if rpc_enum_value is camera_pb2.CameraResult.RESULT_IN_PROGRESS:
+            if rpc_enum_value == camera_pb2.CameraResult.RESULT_IN_PROGRESS:
                 return CameraResult.Result.IN_PROGRESS
-            if rpc_enum_value is camera_pb2.CameraResult.RESULT_BUSY:
+            if rpc_enum_value == camera_pb2.CameraResult.RESULT_BUSY:
                 return CameraResult.Result.BUSY
-            if rpc_enum_value is camera_pb2.CameraResult.RESULT_DENIED:
+            if rpc_enum_value == camera_pb2.CameraResult.RESULT_DENIED:
                 return CameraResult.Result.DENIED
-            if rpc_enum_value is camera_pb2.CameraResult.RESULT_ERROR:
+            if rpc_enum_value == camera_pb2.CameraResult.RESULT_ERROR:
                 return CameraResult.Result.ERROR
-            if rpc_enum_value is camera_pb2.CameraResult.RESULT_TIMEOUT:
+            if rpc_enum_value == camera_pb2.CameraResult.RESULT_TIMEOUT:
                 return CameraResult.Result.TIMEOUT
-            if rpc_enum_value is camera_pb2.CameraResult.RESULT_WRONG_ARGUMENT:
+            if rpc_enum_value == camera_pb2.CameraResult.RESULT_WRONG_ARGUMENT:
                 return CameraResult.Result.WRONG_ARGUMENT
 
         def __str__(self):
@@ -855,9 +855,9 @@ class VideoStreamInfo:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is camera_pb2.VideoStreamInfo.STATUS_NOT_RUNNING:
+            if rpc_enum_value == camera_pb2.VideoStreamInfo.STATUS_NOT_RUNNING:
                 return VideoStreamInfo.Status.NOT_RUNNING
-            if rpc_enum_value is camera_pb2.VideoStreamInfo.STATUS_IN_PROGRESS:
+            if rpc_enum_value == camera_pb2.VideoStreamInfo.STATUS_IN_PROGRESS:
                 return VideoStreamInfo.Status.IN_PROGRESS
 
         def __str__(self):
@@ -989,11 +989,11 @@ class Status:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is camera_pb2.Status.STORAGE_STATUS_NOT_AVAILABLE:
+            if rpc_enum_value == camera_pb2.Status.STORAGE_STATUS_NOT_AVAILABLE:
                 return Status.StorageStatus.NOT_AVAILABLE
-            if rpc_enum_value is camera_pb2.Status.STORAGE_STATUS_UNFORMATTED:
+            if rpc_enum_value == camera_pb2.Status.STORAGE_STATUS_UNFORMATTED:
                 return Status.StorageStatus.UNFORMATTED
-            if rpc_enum_value is camera_pb2.Status.STORAGE_STATUS_FORMATTED:
+            if rpc_enum_value == camera_pb2.Status.STORAGE_STATUS_FORMATTED:
                 return Status.StorageStatus.FORMATTED
 
         def __str__(self):

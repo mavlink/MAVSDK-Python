@@ -107,29 +107,29 @@ class ActionResult:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is action_pb2.ActionResult.RESULT_UNKNOWN:
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_UNKNOWN:
                 return ActionResult.Result.UNKNOWN
-            if rpc_enum_value is action_pb2.ActionResult.RESULT_SUCCESS:
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_SUCCESS:
                 return ActionResult.Result.SUCCESS
-            if rpc_enum_value is action_pb2.ActionResult.RESULT_NO_SYSTEM:
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_NO_SYSTEM:
                 return ActionResult.Result.NO_SYSTEM
-            if rpc_enum_value is action_pb2.ActionResult.RESULT_CONNECTION_ERROR:
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_CONNECTION_ERROR:
                 return ActionResult.Result.CONNECTION_ERROR
-            if rpc_enum_value is action_pb2.ActionResult.RESULT_BUSY:
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_BUSY:
                 return ActionResult.Result.BUSY
-            if rpc_enum_value is action_pb2.ActionResult.RESULT_COMMAND_DENIED:
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_COMMAND_DENIED:
                 return ActionResult.Result.COMMAND_DENIED
-            if rpc_enum_value is action_pb2.ActionResult.RESULT_COMMAND_DENIED_LANDED_STATE_UNKNOWN:
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_COMMAND_DENIED_LANDED_STATE_UNKNOWN:
                 return ActionResult.Result.COMMAND_DENIED_LANDED_STATE_UNKNOWN
-            if rpc_enum_value is action_pb2.ActionResult.RESULT_COMMAND_DENIED_NOT_LANDED:
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_COMMAND_DENIED_NOT_LANDED:
                 return ActionResult.Result.COMMAND_DENIED_NOT_LANDED
-            if rpc_enum_value is action_pb2.ActionResult.RESULT_TIMEOUT:
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_TIMEOUT:
                 return ActionResult.Result.TIMEOUT
-            if rpc_enum_value is action_pb2.ActionResult.RESULT_VTOL_TRANSITION_SUPPORT_UNKNOWN:
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_VTOL_TRANSITION_SUPPORT_UNKNOWN:
                 return ActionResult.Result.VTOL_TRANSITION_SUPPORT_UNKNOWN
-            if rpc_enum_value is action_pb2.ActionResult.RESULT_NO_VTOL_TRANSITION_SUPPORT:
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_NO_VTOL_TRANSITION_SUPPORT:
                 return ActionResult.Result.NO_VTOL_TRANSITION_SUPPORT
-            if rpc_enum_value is action_pb2.ActionResult.RESULT_PARAMETER_ERROR:
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_PARAMETER_ERROR:
                 return ActionResult.Result.PARAMETER_ERROR
 
         def __str__(self):

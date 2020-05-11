@@ -812,9 +812,9 @@ class Odometry:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is mocap_pb2.Odometry.MAV_FRAME_MOCAP_NED:
+            if rpc_enum_value == mocap_pb2.Odometry.MAV_FRAME_MOCAP_NED:
                 return Odometry.MavFrame.MOCAP_NED
-            if rpc_enum_value is mocap_pb2.Odometry.MAV_FRAME_LOCAL_FRD:
+            if rpc_enum_value == mocap_pb2.Odometry.MAV_FRAME_LOCAL_FRD:
                 return Odometry.MavFrame.LOCAL_FRD
 
         def __str__(self):
@@ -1018,15 +1018,15 @@ class MocapResult:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is mocap_pb2.MocapResult.RESULT_UNKNOWN:
+            if rpc_enum_value == mocap_pb2.MocapResult.RESULT_UNKNOWN:
                 return MocapResult.Result.UNKNOWN
-            if rpc_enum_value is mocap_pb2.MocapResult.RESULT_SUCCESS:
+            if rpc_enum_value == mocap_pb2.MocapResult.RESULT_SUCCESS:
                 return MocapResult.Result.SUCCESS
-            if rpc_enum_value is mocap_pb2.MocapResult.RESULT_NO_SYSTEM:
+            if rpc_enum_value == mocap_pb2.MocapResult.RESULT_NO_SYSTEM:
                 return MocapResult.Result.NO_SYSTEM
-            if rpc_enum_value is mocap_pb2.MocapResult.RESULT_CONNECTION_ERROR:
+            if rpc_enum_value == mocap_pb2.MocapResult.RESULT_CONNECTION_ERROR:
                 return MocapResult.Result.CONNECTION_ERROR
-            if rpc_enum_value is mocap_pb2.MocapResult.RESULT_INVALID_REQUEST_DATA:
+            if rpc_enum_value == mocap_pb2.MocapResult.RESULT_INVALID_REQUEST_DATA:
                 return MocapResult.Result.INVALID_REQUEST_DATA
 
         def __str__(self):

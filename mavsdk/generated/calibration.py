@@ -95,25 +95,25 @@ class CalibrationResult:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is calibration_pb2.CalibrationResult.RESULT_UNKNOWN:
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_UNKNOWN:
                 return CalibrationResult.Result.UNKNOWN
-            if rpc_enum_value is calibration_pb2.CalibrationResult.RESULT_SUCCESS:
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_SUCCESS:
                 return CalibrationResult.Result.SUCCESS
-            if rpc_enum_value is calibration_pb2.CalibrationResult.RESULT_NEXT:
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_NEXT:
                 return CalibrationResult.Result.NEXT
-            if rpc_enum_value is calibration_pb2.CalibrationResult.RESULT_FAILED:
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_FAILED:
                 return CalibrationResult.Result.FAILED
-            if rpc_enum_value is calibration_pb2.CalibrationResult.RESULT_NO_SYSTEM:
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_NO_SYSTEM:
                 return CalibrationResult.Result.NO_SYSTEM
-            if rpc_enum_value is calibration_pb2.CalibrationResult.RESULT_CONNECTION_ERROR:
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_CONNECTION_ERROR:
                 return CalibrationResult.Result.CONNECTION_ERROR
-            if rpc_enum_value is calibration_pb2.CalibrationResult.RESULT_BUSY:
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_BUSY:
                 return CalibrationResult.Result.BUSY
-            if rpc_enum_value is calibration_pb2.CalibrationResult.RESULT_COMMAND_DENIED:
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_COMMAND_DENIED:
                 return CalibrationResult.Result.COMMAND_DENIED
-            if rpc_enum_value is calibration_pb2.CalibrationResult.RESULT_TIMEOUT:
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_TIMEOUT:
                 return CalibrationResult.Result.TIMEOUT
-            if rpc_enum_value is calibration_pb2.CalibrationResult.RESULT_CANCELLED:
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_CANCELLED:
                 return CalibrationResult.Result.CANCELLED
 
         def __str__(self):

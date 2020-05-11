@@ -61,19 +61,19 @@ class FixType(Enum):
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        if rpc_enum_value is telemetry_pb2.FIX_TYPE_NO_GPS:
+        if rpc_enum_value == telemetry_pb2.FIX_TYPE_NO_GPS:
             return FixType.NO_GPS
-        if rpc_enum_value is telemetry_pb2.FIX_TYPE_NO_FIX:
+        if rpc_enum_value == telemetry_pb2.FIX_TYPE_NO_FIX:
             return FixType.NO_FIX
-        if rpc_enum_value is telemetry_pb2.FIX_TYPE_FIX_2D:
+        if rpc_enum_value == telemetry_pb2.FIX_TYPE_FIX_2D:
             return FixType.FIX_2D
-        if rpc_enum_value is telemetry_pb2.FIX_TYPE_FIX_3D:
+        if rpc_enum_value == telemetry_pb2.FIX_TYPE_FIX_3D:
             return FixType.FIX_3D
-        if rpc_enum_value is telemetry_pb2.FIX_TYPE_FIX_DGPS:
+        if rpc_enum_value == telemetry_pb2.FIX_TYPE_FIX_DGPS:
             return FixType.FIX_DGPS
-        if rpc_enum_value is telemetry_pb2.FIX_TYPE_RTK_FLOAT:
+        if rpc_enum_value == telemetry_pb2.FIX_TYPE_RTK_FLOAT:
             return FixType.RTK_FLOAT
-        if rpc_enum_value is telemetry_pb2.FIX_TYPE_RTK_FIXED:
+        if rpc_enum_value == telemetry_pb2.FIX_TYPE_RTK_FIXED:
             return FixType.RTK_FIXED
 
     def __str__(self):
@@ -188,35 +188,35 @@ class FlightMode(Enum):
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_UNKNOWN:
+        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_UNKNOWN:
             return FlightMode.UNKNOWN
-        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_READY:
+        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_READY:
             return FlightMode.READY
-        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_TAKEOFF:
+        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_TAKEOFF:
             return FlightMode.TAKEOFF
-        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_HOLD:
+        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_HOLD:
             return FlightMode.HOLD
-        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_MISSION:
+        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_MISSION:
             return FlightMode.MISSION
-        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_RETURN_TO_LAUNCH:
+        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_RETURN_TO_LAUNCH:
             return FlightMode.RETURN_TO_LAUNCH
-        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_LAND:
+        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_LAND:
             return FlightMode.LAND
-        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_OFFBOARD:
+        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_OFFBOARD:
             return FlightMode.OFFBOARD
-        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_FOLLOW_ME:
+        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_FOLLOW_ME:
             return FlightMode.FOLLOW_ME
-        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_MANUAL:
+        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_MANUAL:
             return FlightMode.MANUAL
-        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_ALTCTL:
+        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_ALTCTL:
             return FlightMode.ALTCTL
-        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_POSCTL:
+        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_POSCTL:
             return FlightMode.POSCTL
-        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_ACRO:
+        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_ACRO:
             return FlightMode.ACRO
-        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_STABILIZED:
+        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_STABILIZED:
             return FlightMode.STABILIZED
-        if rpc_enum_value is telemetry_pb2.FLIGHT_MODE_RATTITUDE:
+        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_RATTITUDE:
             return FlightMode.RATTITUDE
 
     def __str__(self):
@@ -256,11 +256,11 @@ class StatusTextType(Enum):
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        if rpc_enum_value is telemetry_pb2.STATUS_TEXT_TYPE_INFO:
+        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_INFO:
             return StatusTextType.INFO
-        if rpc_enum_value is telemetry_pb2.STATUS_TEXT_TYPE_WARNING:
+        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_WARNING:
             return StatusTextType.WARNING
-        if rpc_enum_value is telemetry_pb2.STATUS_TEXT_TYPE_CRITICAL:
+        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_CRITICAL:
             return StatusTextType.CRITICAL
 
     def __str__(self):
@@ -312,15 +312,15 @@ class LandedState(Enum):
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        if rpc_enum_value is telemetry_pb2.LANDED_STATE_UNKNOWN:
+        if rpc_enum_value == telemetry_pb2.LANDED_STATE_UNKNOWN:
             return LandedState.UNKNOWN
-        if rpc_enum_value is telemetry_pb2.LANDED_STATE_ON_GROUND:
+        if rpc_enum_value == telemetry_pb2.LANDED_STATE_ON_GROUND:
             return LandedState.ON_GROUND
-        if rpc_enum_value is telemetry_pb2.LANDED_STATE_IN_AIR:
+        if rpc_enum_value == telemetry_pb2.LANDED_STATE_IN_AIR:
             return LandedState.IN_AIR
-        if rpc_enum_value is telemetry_pb2.LANDED_STATE_TAKING_OFF:
+        if rpc_enum_value == telemetry_pb2.LANDED_STATE_TAKING_OFF:
             return LandedState.TAKING_OFF
-        if rpc_enum_value is telemetry_pb2.LANDED_STATE_LANDING:
+        if rpc_enum_value == telemetry_pb2.LANDED_STATE_LANDING:
             return LandedState.LANDING
 
     def __str__(self):
@@ -1666,13 +1666,13 @@ class Odometry:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is telemetry_pb2.Odometry.MAV_FRAME_UNDEF:
+            if rpc_enum_value == telemetry_pb2.Odometry.MAV_FRAME_UNDEF:
                 return Odometry.MavFrame.UNDEF
-            if rpc_enum_value is telemetry_pb2.Odometry.MAV_FRAME_BODY_NED:
+            if rpc_enum_value == telemetry_pb2.Odometry.MAV_FRAME_BODY_NED:
                 return Odometry.MavFrame.BODY_NED
-            if rpc_enum_value is telemetry_pb2.Odometry.MAV_FRAME_VISION_NED:
+            if rpc_enum_value == telemetry_pb2.Odometry.MAV_FRAME_VISION_NED:
                 return Odometry.MavFrame.VISION_NED
-            if rpc_enum_value is telemetry_pb2.Odometry.MAV_FRAME_ESTIM_NED:
+            if rpc_enum_value == telemetry_pb2.Odometry.MAV_FRAME_ESTIM_NED:
                 return Odometry.MavFrame.ESTIM_NED
 
         def __str__(self):
@@ -2711,19 +2711,19 @@ class TelemetryResult:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is telemetry_pb2.TelemetryResult.RESULT_UNKNOWN:
+            if rpc_enum_value == telemetry_pb2.TelemetryResult.RESULT_UNKNOWN:
                 return TelemetryResult.Result.UNKNOWN
-            if rpc_enum_value is telemetry_pb2.TelemetryResult.RESULT_SUCCESS:
+            if rpc_enum_value == telemetry_pb2.TelemetryResult.RESULT_SUCCESS:
                 return TelemetryResult.Result.SUCCESS
-            if rpc_enum_value is telemetry_pb2.TelemetryResult.RESULT_NO_SYSTEM:
+            if rpc_enum_value == telemetry_pb2.TelemetryResult.RESULT_NO_SYSTEM:
                 return TelemetryResult.Result.NO_SYSTEM
-            if rpc_enum_value is telemetry_pb2.TelemetryResult.RESULT_CONNECTION_ERROR:
+            if rpc_enum_value == telemetry_pb2.TelemetryResult.RESULT_CONNECTION_ERROR:
                 return TelemetryResult.Result.CONNECTION_ERROR
-            if rpc_enum_value is telemetry_pb2.TelemetryResult.RESULT_BUSY:
+            if rpc_enum_value == telemetry_pb2.TelemetryResult.RESULT_BUSY:
                 return TelemetryResult.Result.BUSY
-            if rpc_enum_value is telemetry_pb2.TelemetryResult.RESULT_COMMAND_DENIED:
+            if rpc_enum_value == telemetry_pb2.TelemetryResult.RESULT_COMMAND_DENIED:
                 return TelemetryResult.Result.COMMAND_DENIED
-            if rpc_enum_value is telemetry_pb2.TelemetryResult.RESULT_TIMEOUT:
+            if rpc_enum_value == telemetry_pb2.TelemetryResult.RESULT_TIMEOUT:
                 return TelemetryResult.Result.TIMEOUT
 
         def __str__(self):

@@ -509,11 +509,11 @@ class InfoResult:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value is info_pb2.InfoResult.RESULT_UNKNOWN:
+            if rpc_enum_value == info_pb2.InfoResult.RESULT_UNKNOWN:
                 return InfoResult.Result.UNKNOWN
-            if rpc_enum_value is info_pb2.InfoResult.RESULT_SUCCESS:
+            if rpc_enum_value == info_pb2.InfoResult.RESULT_SUCCESS:
                 return InfoResult.Result.SUCCESS
-            if rpc_enum_value is info_pb2.InfoResult.RESULT_INFORMATION_NOT_RECEIVED_YET:
+            if rpc_enum_value == info_pb2.InfoResult.RESULT_INFORMATION_NOT_RECEIVED_YET:
                 return InfoResult.Result.INFORMATION_NOT_RECEIVED_YET
 
         def __str__(self):
