@@ -63,7 +63,7 @@ class GimbalResult:
          Values
          ------
          UNKNOWN
-              Unknown error
+              Unknown result
 
          SUCCESS
               Command was accepted

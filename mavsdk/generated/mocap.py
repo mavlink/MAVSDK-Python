@@ -4,6 +4,541 @@ from ..generated import mocap_pb2, mocap_pb2_grpc
 from enum import Enum
 
 
+class PositionBody:
+    """
+     Body position type
+
+     Parameters
+     ----------
+     x_m : float
+          X position in metres.
+
+     y_m : float
+          Y position in metres.
+
+     z_m : float
+          Z position in metres.
+
+     """
+
+    
+
+    def __init__(
+            self,
+            x_m,
+            y_m,
+            z_m):
+        """ Initializes the PositionBody object """
+        self.x_m = x_m
+        self.y_m = y_m
+        self.z_m = z_m
+
+    def __equals__(self, to_compare):
+        """ Checks if two PositionBody are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # PositionBody object
+            return \
+                (self.x_m == to_compare.x_m) and \
+                (self.y_m == to_compare.y_m) and \
+                (self.z_m == to_compare.z_m)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ PositionBody in string representation """
+        struct_repr = ", ".join([
+                "x_m: " + str(self.x_m),
+                "y_m: " + str(self.y_m),
+                "z_m: " + str(self.z_m)
+                ])
+
+        return f"PositionBody: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcPositionBody):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return PositionBody(
+                
+                rpcPositionBody.x_m,
+                
+                
+                rpcPositionBody.y_m,
+                
+                
+                rpcPositionBody.z_m
+                )
+
+    def translate_to_rpc(self, rpcPositionBody):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcPositionBody.x_m = self.x_m
+            
+        
+        
+        
+            
+        rpcPositionBody.y_m = self.y_m
+            
+        
+        
+        
+            
+        rpcPositionBody.z_m = self.z_m
+            
+        
+        
+
+
+class AngleBody:
+    """
+     Body angle type
+
+     Parameters
+     ----------
+     roll_rad : float
+          Roll angle in radians.
+
+     pitch_rad : float
+          Pitch angle in radians.
+
+     yaw_rad : float
+          Yaw angle in radians.
+
+     """
+
+    
+
+    def __init__(
+            self,
+            roll_rad,
+            pitch_rad,
+            yaw_rad):
+        """ Initializes the AngleBody object """
+        self.roll_rad = roll_rad
+        self.pitch_rad = pitch_rad
+        self.yaw_rad = yaw_rad
+
+    def __equals__(self, to_compare):
+        """ Checks if two AngleBody are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # AngleBody object
+            return \
+                (self.roll_rad == to_compare.roll_rad) and \
+                (self.pitch_rad == to_compare.pitch_rad) and \
+                (self.yaw_rad == to_compare.yaw_rad)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ AngleBody in string representation """
+        struct_repr = ", ".join([
+                "roll_rad: " + str(self.roll_rad),
+                "pitch_rad: " + str(self.pitch_rad),
+                "yaw_rad: " + str(self.yaw_rad)
+                ])
+
+        return f"AngleBody: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcAngleBody):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return AngleBody(
+                
+                rpcAngleBody.roll_rad,
+                
+                
+                rpcAngleBody.pitch_rad,
+                
+                
+                rpcAngleBody.yaw_rad
+                )
+
+    def translate_to_rpc(self, rpcAngleBody):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcAngleBody.roll_rad = self.roll_rad
+            
+        
+        
+        
+            
+        rpcAngleBody.pitch_rad = self.pitch_rad
+            
+        
+        
+        
+            
+        rpcAngleBody.yaw_rad = self.yaw_rad
+            
+        
+        
+
+
+class SpeedBody:
+    """
+     Speed type, represented in the Body (X Y Z) frame and in metres/second.
+
+     Parameters
+     ----------
+     x_m_s : float
+          Velocity in X in metres/second.
+
+     y_m_s : float
+          Velocity in Y in metres/second.
+
+     z_m_s : float
+          Velocity in Z in metres/second.
+
+     """
+
+    
+
+    def __init__(
+            self,
+            x_m_s,
+            y_m_s,
+            z_m_s):
+        """ Initializes the SpeedBody object """
+        self.x_m_s = x_m_s
+        self.y_m_s = y_m_s
+        self.z_m_s = z_m_s
+
+    def __equals__(self, to_compare):
+        """ Checks if two SpeedBody are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # SpeedBody object
+            return \
+                (self.x_m_s == to_compare.x_m_s) and \
+                (self.y_m_s == to_compare.y_m_s) and \
+                (self.z_m_s == to_compare.z_m_s)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ SpeedBody in string representation """
+        struct_repr = ", ".join([
+                "x_m_s: " + str(self.x_m_s),
+                "y_m_s: " + str(self.y_m_s),
+                "z_m_s: " + str(self.z_m_s)
+                ])
+
+        return f"SpeedBody: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcSpeedBody):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return SpeedBody(
+                
+                rpcSpeedBody.x_m_s,
+                
+                
+                rpcSpeedBody.y_m_s,
+                
+                
+                rpcSpeedBody.z_m_s
+                )
+
+    def translate_to_rpc(self, rpcSpeedBody):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcSpeedBody.x_m_s = self.x_m_s
+            
+        
+        
+        
+            
+        rpcSpeedBody.y_m_s = self.y_m_s
+            
+        
+        
+        
+            
+        rpcSpeedBody.z_m_s = self.z_m_s
+            
+        
+        
+
+
+class AngularVelocityBody:
+    """
+     Angular velocity type
+
+     Parameters
+     ----------
+     roll_rad_s : float
+          Roll angular velocity in radians/second.
+
+     pitch_rad_s : float
+          Pitch angular velocity in radians/second.
+
+     yaw_rad_s : float
+          Yaw angular velocity in radians/second.
+
+     """
+
+    
+
+    def __init__(
+            self,
+            roll_rad_s,
+            pitch_rad_s,
+            yaw_rad_s):
+        """ Initializes the AngularVelocityBody object """
+        self.roll_rad_s = roll_rad_s
+        self.pitch_rad_s = pitch_rad_s
+        self.yaw_rad_s = yaw_rad_s
+
+    def __equals__(self, to_compare):
+        """ Checks if two AngularVelocityBody are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # AngularVelocityBody object
+            return \
+                (self.roll_rad_s == to_compare.roll_rad_s) and \
+                (self.pitch_rad_s == to_compare.pitch_rad_s) and \
+                (self.yaw_rad_s == to_compare.yaw_rad_s)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ AngularVelocityBody in string representation """
+        struct_repr = ", ".join([
+                "roll_rad_s: " + str(self.roll_rad_s),
+                "pitch_rad_s: " + str(self.pitch_rad_s),
+                "yaw_rad_s: " + str(self.yaw_rad_s)
+                ])
+
+        return f"AngularVelocityBody: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcAngularVelocityBody):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return AngularVelocityBody(
+                
+                rpcAngularVelocityBody.roll_rad_s,
+                
+                
+                rpcAngularVelocityBody.pitch_rad_s,
+                
+                
+                rpcAngularVelocityBody.yaw_rad_s
+                )
+
+    def translate_to_rpc(self, rpcAngularVelocityBody):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcAngularVelocityBody.roll_rad_s = self.roll_rad_s
+            
+        
+        
+        
+            
+        rpcAngularVelocityBody.pitch_rad_s = self.pitch_rad_s
+            
+        
+        
+        
+            
+        rpcAngularVelocityBody.yaw_rad_s = self.yaw_rad_s
+            
+        
+        
+
+
+class Covariance:
+    """
+     Covariance type.
+     Row-major representation of a 6x6 cross-covariance matrix upper
+     right triangle.
+     Needs to be 21 entries or 1 entry with NaN if unknown.
+
+     Parameters
+     ----------
+     covariance_matrix : [float]
+          The covariance matrix
+
+     """
+
+    
+
+    def __init__(
+            self,
+            covariance_matrix):
+        """ Initializes the Covariance object """
+        self.covariance_matrix = covariance_matrix
+
+    def __equals__(self, to_compare):
+        """ Checks if two Covariance are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Covariance object
+            return \
+                (self.covariance_matrix == to_compare.covariance_matrix)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Covariance in string representation """
+        struct_repr = ", ".join([
+                "covariance_matrix: " + str(self.covariance_matrix)
+                ])
+
+        return f"Covariance: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcCovariance):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Covariance(
+                
+                rpcCovariance.covariance_matrix
+                )
+
+    def translate_to_rpc(self, rpcCovariance):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        for elem in self.covariance_matrix:
+          rpcCovariance.covariance_matrix.append(elem)
+            
+        
+        
+
+
+class Quaternion:
+    """
+     Quaternion type.
+
+     All rotations and axis systems follow the right-hand rule.
+     The Hamilton quaternion product definition is used.
+     A zero-rotation quaternion is represented by (1,0,0,0).
+     The quaternion could also be written as w + xi + yj + zk.
+
+     For more info see: https://en.wikipedia.org/wiki/Quaternion
+
+     Parameters
+     ----------
+     w : float
+          Quaternion entry 0, also denoted as a
+
+     x : float
+          Quaternion entry 1, also denoted as b
+
+     y : float
+          Quaternion entry 2, also denoted as c
+
+     z : float
+          Quaternion entry 3, also denoted as d
+
+     """
+
+    
+
+    def __init__(
+            self,
+            w,
+            x,
+            y,
+            z):
+        """ Initializes the Quaternion object """
+        self.w = w
+        self.x = x
+        self.y = y
+        self.z = z
+
+    def __equals__(self, to_compare):
+        """ Checks if two Quaternion are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Quaternion object
+            return \
+                (self.w == to_compare.w) and \
+                (self.x == to_compare.x) and \
+                (self.y == to_compare.y) and \
+                (self.z == to_compare.z)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Quaternion in string representation """
+        struct_repr = ", ".join([
+                "w: " + str(self.w),
+                "x: " + str(self.x),
+                "y: " + str(self.y),
+                "z: " + str(self.z)
+                ])
+
+        return f"Quaternion: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcQuaternion):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Quaternion(
+                
+                rpcQuaternion.w,
+                
+                
+                rpcQuaternion.x,
+                
+                
+                rpcQuaternion.y,
+                
+                
+                rpcQuaternion.z
+                )
+
+    def translate_to_rpc(self, rpcQuaternion):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcQuaternion.w = self.w
+            
+        
+        
+        
+            
+        rpcQuaternion.x = self.x
+            
+        
+        
+        
+            
+        rpcQuaternion.y = self.y
+            
+        
+        
+        
+            
+        rpcQuaternion.z = self.z
+            
+        
+        
+
+
 class VisionPositionEstimate:
     """
      Global position/attitude estimate from a vision source.
@@ -422,540 +957,6 @@ class Odometry:
         
 
 
-class PositionBody:
-    """
-     Body position type
-
-     Parameters
-     ----------
-     x_m : float
-          X position in metres.
-
-     y_m : float
-          Y position in metres.
-
-     z_m : float
-          Z position in metres.
-
-     """
-
-    
-
-    def __init__(
-            self,
-            x_m,
-            y_m,
-            z_m):
-        """ Initializes the PositionBody object """
-        self.x_m = x_m
-        self.y_m = y_m
-        self.z_m = z_m
-
-    def __equals__(self, to_compare):
-        """ Checks if two PositionBody are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # PositionBody object
-            return \
-                (self.x_m == to_compare.x_m) and \
-                (self.y_m == to_compare.y_m) and \
-                (self.z_m == to_compare.z_m)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ PositionBody in string representation """
-        struct_repr = ", ".join([
-                "x_m: " + str(self.x_m),
-                "y_m: " + str(self.y_m),
-                "z_m: " + str(self.z_m)
-                ])
-
-        return f"PositionBody: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcPositionBody):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return PositionBody(
-                
-                rpcPositionBody.x_m,
-                
-                
-                rpcPositionBody.y_m,
-                
-                
-                rpcPositionBody.z_m
-                )
-
-    def translate_to_rpc(self, rpcPositionBody):
-        """ Translates this SDK object into its gRPC equivalent """
-
-        
-        
-            
-        rpcPositionBody.x_m = self.x_m
-            
-        
-        
-        
-            
-        rpcPositionBody.y_m = self.y_m
-            
-        
-        
-        
-            
-        rpcPositionBody.z_m = self.z_m
-            
-        
-        
-
-
-class AngleBody:
-    """
-     Body angle type
-
-     Parameters
-     ----------
-     roll_rad : float
-          Roll angle in radians.
-
-     pitch_rad : float
-          Pitch angle in radians.
-
-     yaw_rad : float
-          Yaw angle in radians.
-
-     """
-
-    
-
-    def __init__(
-            self,
-            roll_rad,
-            pitch_rad,
-            yaw_rad):
-        """ Initializes the AngleBody object """
-        self.roll_rad = roll_rad
-        self.pitch_rad = pitch_rad
-        self.yaw_rad = yaw_rad
-
-    def __equals__(self, to_compare):
-        """ Checks if two AngleBody are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # AngleBody object
-            return \
-                (self.roll_rad == to_compare.roll_rad) and \
-                (self.pitch_rad == to_compare.pitch_rad) and \
-                (self.yaw_rad == to_compare.yaw_rad)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ AngleBody in string representation """
-        struct_repr = ", ".join([
-                "roll_rad: " + str(self.roll_rad),
-                "pitch_rad: " + str(self.pitch_rad),
-                "yaw_rad: " + str(self.yaw_rad)
-                ])
-
-        return f"AngleBody: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcAngleBody):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return AngleBody(
-                
-                rpcAngleBody.roll_rad,
-                
-                
-                rpcAngleBody.pitch_rad,
-                
-                
-                rpcAngleBody.yaw_rad
-                )
-
-    def translate_to_rpc(self, rpcAngleBody):
-        """ Translates this SDK object into its gRPC equivalent """
-
-        
-        
-            
-        rpcAngleBody.roll_rad = self.roll_rad
-            
-        
-        
-        
-            
-        rpcAngleBody.pitch_rad = self.pitch_rad
-            
-        
-        
-        
-            
-        rpcAngleBody.yaw_rad = self.yaw_rad
-            
-        
-        
-
-
-class SpeedBody:
-    """
-     Speed type, represented in the Body (X Y Z) frame and in metres/second.
-
-     Parameters
-     ----------
-     x_m_s : float
-          Velocity in X in metres/second.
-
-     y_m_s : float
-          Velocity in Y in metres/second.
-
-     z_m_s : float
-          Velocity in Z in metres/second.
-
-     """
-
-    
-
-    def __init__(
-            self,
-            x_m_s,
-            y_m_s,
-            z_m_s):
-        """ Initializes the SpeedBody object """
-        self.x_m_s = x_m_s
-        self.y_m_s = y_m_s
-        self.z_m_s = z_m_s
-
-    def __equals__(self, to_compare):
-        """ Checks if two SpeedBody are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # SpeedBody object
-            return \
-                (self.x_m_s == to_compare.x_m_s) and \
-                (self.y_m_s == to_compare.y_m_s) and \
-                (self.z_m_s == to_compare.z_m_s)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ SpeedBody in string representation """
-        struct_repr = ", ".join([
-                "x_m_s: " + str(self.x_m_s),
-                "y_m_s: " + str(self.y_m_s),
-                "z_m_s: " + str(self.z_m_s)
-                ])
-
-        return f"SpeedBody: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcSpeedBody):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return SpeedBody(
-                
-                rpcSpeedBody.x_m_s,
-                
-                
-                rpcSpeedBody.y_m_s,
-                
-                
-                rpcSpeedBody.z_m_s
-                )
-
-    def translate_to_rpc(self, rpcSpeedBody):
-        """ Translates this SDK object into its gRPC equivalent """
-
-        
-        
-            
-        rpcSpeedBody.x_m_s = self.x_m_s
-            
-        
-        
-        
-            
-        rpcSpeedBody.y_m_s = self.y_m_s
-            
-        
-        
-        
-            
-        rpcSpeedBody.z_m_s = self.z_m_s
-            
-        
-        
-
-
-class AngularVelocityBody:
-    """
-     Angular velocity type
-
-     Parameters
-     ----------
-     roll_rad_s : float
-          Roll angular velocity in radians/second.
-
-     pitch_rad_s : float
-          Pitch angular velocity in radians/second.
-
-     yaw_rad_s : float
-          Yaw angular velocity in radians/second.
-
-     """
-
-    
-
-    def __init__(
-            self,
-            roll_rad_s,
-            pitch_rad_s,
-            yaw_rad_s):
-        """ Initializes the AngularVelocityBody object """
-        self.roll_rad_s = roll_rad_s
-        self.pitch_rad_s = pitch_rad_s
-        self.yaw_rad_s = yaw_rad_s
-
-    def __equals__(self, to_compare):
-        """ Checks if two AngularVelocityBody are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # AngularVelocityBody object
-            return \
-                (self.roll_rad_s == to_compare.roll_rad_s) and \
-                (self.pitch_rad_s == to_compare.pitch_rad_s) and \
-                (self.yaw_rad_s == to_compare.yaw_rad_s)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ AngularVelocityBody in string representation """
-        struct_repr = ", ".join([
-                "roll_rad_s: " + str(self.roll_rad_s),
-                "pitch_rad_s: " + str(self.pitch_rad_s),
-                "yaw_rad_s: " + str(self.yaw_rad_s)
-                ])
-
-        return f"AngularVelocityBody: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcAngularVelocityBody):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return AngularVelocityBody(
-                
-                rpcAngularVelocityBody.roll_rad_s,
-                
-                
-                rpcAngularVelocityBody.pitch_rad_s,
-                
-                
-                rpcAngularVelocityBody.yaw_rad_s
-                )
-
-    def translate_to_rpc(self, rpcAngularVelocityBody):
-        """ Translates this SDK object into its gRPC equivalent """
-
-        
-        
-            
-        rpcAngularVelocityBody.roll_rad_s = self.roll_rad_s
-            
-        
-        
-        
-            
-        rpcAngularVelocityBody.pitch_rad_s = self.pitch_rad_s
-            
-        
-        
-        
-            
-        rpcAngularVelocityBody.yaw_rad_s = self.yaw_rad_s
-            
-        
-        
-
-
-class Covariance:
-    """
-     Covariance type.
-     Row-major representation of a 6x6 cross-covariance matrix
-     upper right triangle.
-     Set first to NaN if unknown.
-
-     Parameters
-     ----------
-     covariance_matrix : [float]
-         
-     """
-
-    
-
-    def __init__(
-            self,
-            covariance_matrix):
-        """ Initializes the Covariance object """
-        self.covariance_matrix = covariance_matrix
-
-    def __equals__(self, to_compare):
-        """ Checks if two Covariance are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # Covariance object
-            return \
-                (self.covariance_matrix == to_compare.covariance_matrix)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ Covariance in string representation """
-        struct_repr = ", ".join([
-                "covariance_matrix: " + str(self.covariance_matrix)
-                ])
-
-        return f"Covariance: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcCovariance):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return Covariance(
-                
-                rpcCovariance.covariance_matrix
-                )
-
-    def translate_to_rpc(self, rpcCovariance):
-        """ Translates this SDK object into its gRPC equivalent """
-
-        
-        
-            
-        for elem in self.covariance_matrix:
-          rpcCovariance.covariance_matrix.append(elem)
-            
-        
-        
-
-
-class Quaternion:
-    """
-     Quaternion type.
-
-     All rotations and axis systems follow the right-hand rule.
-     The Hamilton quaternion product definition is used.
-     A zero-rotation quaternion is represented by (1,0,0,0).
-     The quaternion could also be written as w + xi + yj + zk.
-
-     For more info see: https://en.wikipedia.org/wiki/Quaternion
-
-     Parameters
-     ----------
-     w : float
-          Quaternion entry 0, also denoted as a
-
-     x : float
-          Quaternion entry 1, also denoted as b
-
-     y : float
-          Quaternion entry 2, also denoted as c
-
-     z : float
-          Quaternion entry 3, also denoted as d
-
-     """
-
-    
-
-    def __init__(
-            self,
-            w,
-            x,
-            y,
-            z):
-        """ Initializes the Quaternion object """
-        self.w = w
-        self.x = x
-        self.y = y
-        self.z = z
-
-    def __equals__(self, to_compare):
-        """ Checks if two Quaternion are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # Quaternion object
-            return \
-                (self.w == to_compare.w) and \
-                (self.x == to_compare.x) and \
-                (self.y == to_compare.y) and \
-                (self.z == to_compare.z)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ Quaternion in string representation """
-        struct_repr = ", ".join([
-                "w: " + str(self.w),
-                "x: " + str(self.x),
-                "y: " + str(self.y),
-                "z: " + str(self.z)
-                ])
-
-        return f"Quaternion: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcQuaternion):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return Quaternion(
-                
-                rpcQuaternion.w,
-                
-                
-                rpcQuaternion.x,
-                
-                
-                rpcQuaternion.y,
-                
-                
-                rpcQuaternion.z
-                )
-
-    def translate_to_rpc(self, rpcQuaternion):
-        """ Translates this SDK object into its gRPC equivalent """
-
-        
-        
-            
-        rpcQuaternion.w = self.w
-            
-        
-        
-        
-            
-        rpcQuaternion.x = self.x
-            
-        
-        
-        
-            
-        rpcQuaternion.y = self.y
-            
-        
-        
-        
-            
-        rpcQuaternion.z = self.z
-            
-        
-        
-
-
 class MocapResult:
     """
      Result type.
@@ -1106,8 +1107,8 @@ class MocapError(Exception):
 class Mocap(AsyncBase):
     """
      *
-     Motion Capture allow vehicles to navigate when a global
-     position source is unavailable or unreliable
+     Allows interfacing a vehicle with a motion capture system in
+     order to allow navigation without global positioning sources available
      (e.g. indoors, or when flying under a bridge. etc.).
 
      Generated by dcsdkgen - MAVSDK Mocap API
@@ -1133,7 +1134,8 @@ class Mocap(AsyncBase):
          Parameters
          ----------
          vision_position_estimate : VisionPositionEstimate
-             
+              The vision position estimate
+
          Raises
          ------
          MocapError
@@ -1161,7 +1163,8 @@ class Mocap(AsyncBase):
          Parameters
          ----------
          attitude_position_mocap : AttitudePositionMocap
-             
+              The attitude and position data
+
          Raises
          ------
          MocapError
@@ -1189,7 +1192,8 @@ class Mocap(AsyncBase):
          Parameters
          ----------
          odometry : Odometry
-             
+              The odometry data
+
          Raises
          ------
          MocapError

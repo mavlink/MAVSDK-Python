@@ -6,8 +6,8 @@ from . import mocap_pb2 as mocap__pb2
 
 class MocapServiceStub(object):
     """*
-    Motion Capture allow vehicles to navigate when a global
-    position source is unavailable or unreliable
+    Allows interfacing a vehicle with a motion capture system in
+    order to allow navigation without global positioning sources available
     (e.g. indoors, or when flying under a bridge. etc.).
     """
 
@@ -36,8 +36,8 @@ class MocapServiceStub(object):
 
 class MocapServiceServicer(object):
     """*
-    Motion Capture allow vehicles to navigate when a global
-    position source is unavailable or unreliable
+    Allows interfacing a vehicle with a motion capture system in
+    order to allow navigation without global positioning sources available
     (e.g. indoors, or when flying under a bridge. etc.).
     """
 
@@ -89,8 +89,8 @@ def add_MocapServiceServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class MocapService(object):
     """*
-    Motion Capture allow vehicles to navigate when a global
-    position source is unavailable or unreliable
+    Allows interfacing a vehicle with a motion capture system in
+    order to allow navigation without global positioning sources available
     (e.g. indoors, or when flying under a bridge. etc.).
     """
 

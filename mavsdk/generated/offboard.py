@@ -694,7 +694,7 @@ class OffboardResult:
          Values
          ------
          UNKNOWN
-              Unknown error
+              Unknown result
 
          SUCCESS
               Request succeeded
@@ -924,20 +924,12 @@ class Offboard(AsyncBase):
          is_active : bool
               True if offboard is active
 
-         Raises
-         ------
-         OffboardError
-             If the request fails. The error contains the reason for the failure.
+         
         """
 
         request = offboard_pb2.IsActiveRequest()
         response = await self._stub.IsActive(request)
 
-        
-        result = self._extract_result(response)
-
-        if result.result is not OffboardResult.Result.SUCCESS:
-            raise OffboardError(result, "is_active()")
         
 
         return response.is_active

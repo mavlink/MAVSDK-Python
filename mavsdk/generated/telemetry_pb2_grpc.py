@@ -66,10 +66,10 @@ class TelemetryServiceStub(object):
                 request_serializer=telemetry__pb2.SubscribeCameraAttitudeEulerRequest.SerializeToString,
                 response_deserializer=telemetry__pb2.CameraAttitudeEulerResponse.FromString,
                 )
-        self.SubscribeGroundSpeedNed = channel.unary_stream(
-                '/mavsdk.rpc.telemetry.TelemetryService/SubscribeGroundSpeedNed',
-                request_serializer=telemetry__pb2.SubscribeGroundSpeedNedRequest.SerializeToString,
-                response_deserializer=telemetry__pb2.GroundSpeedNedResponse.FromString,
+        self.SubscribeVelocityNed = channel.unary_stream(
+                '/mavsdk.rpc.telemetry.TelemetryService/SubscribeVelocityNed',
+                request_serializer=telemetry__pb2.SubscribeVelocityNedRequest.SerializeToString,
+                response_deserializer=telemetry__pb2.VelocityNedResponse.FromString,
                 )
         self.SubscribeGpsInfo = channel.unary_stream(
                 '/mavsdk.rpc.telemetry.TelemetryService/SubscribeGpsInfo',
@@ -176,10 +176,10 @@ class TelemetryServiceStub(object):
                 request_serializer=telemetry__pb2.SetRateCameraAttitudeRequest.SerializeToString,
                 response_deserializer=telemetry__pb2.SetRateCameraAttitudeResponse.FromString,
                 )
-        self.SetRateGroundSpeedNed = channel.unary_unary(
-                '/mavsdk.rpc.telemetry.TelemetryService/SetRateGroundSpeedNed',
-                request_serializer=telemetry__pb2.SetRateGroundSpeedNedRequest.SerializeToString,
-                response_deserializer=telemetry__pb2.SetRateGroundSpeedNedResponse.FromString,
+        self.SetRateVelocityNed = channel.unary_unary(
+                '/mavsdk.rpc.telemetry.TelemetryService/SetRateVelocityNed',
+                request_serializer=telemetry__pb2.SetRateVelocityNedRequest.SerializeToString,
+                response_deserializer=telemetry__pb2.SetRateVelocityNedResponse.FromString,
                 )
         self.SetRateGpsInfo = channel.unary_unary(
                 '/mavsdk.rpc.telemetry.TelemetryService/SetRateGpsInfo',
@@ -314,7 +314,7 @@ class TelemetryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SubscribeGroundSpeedNed(self, request, context):
+    def SubscribeVelocityNed(self, request, context):
         """Subscribe to 'ground speed' updates (NED).
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -468,7 +468,7 @@ class TelemetryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SetRateGroundSpeedNed(self, request, context):
+    def SetRateVelocityNed(self, request, context):
         """Set rate to 'ground speed' updates (NED).
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -605,10 +605,10 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     request_deserializer=telemetry__pb2.SubscribeCameraAttitudeEulerRequest.FromString,
                     response_serializer=telemetry__pb2.CameraAttitudeEulerResponse.SerializeToString,
             ),
-            'SubscribeGroundSpeedNed': grpc.unary_stream_rpc_method_handler(
-                    servicer.SubscribeGroundSpeedNed,
-                    request_deserializer=telemetry__pb2.SubscribeGroundSpeedNedRequest.FromString,
-                    response_serializer=telemetry__pb2.GroundSpeedNedResponse.SerializeToString,
+            'SubscribeVelocityNed': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeVelocityNed,
+                    request_deserializer=telemetry__pb2.SubscribeVelocityNedRequest.FromString,
+                    response_serializer=telemetry__pb2.VelocityNedResponse.SerializeToString,
             ),
             'SubscribeGpsInfo': grpc.unary_stream_rpc_method_handler(
                     servicer.SubscribeGpsInfo,
@@ -715,10 +715,10 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     request_deserializer=telemetry__pb2.SetRateCameraAttitudeRequest.FromString,
                     response_serializer=telemetry__pb2.SetRateCameraAttitudeResponse.SerializeToString,
             ),
-            'SetRateGroundSpeedNed': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetRateGroundSpeedNed,
-                    request_deserializer=telemetry__pb2.SetRateGroundSpeedNedRequest.FromString,
-                    response_serializer=telemetry__pb2.SetRateGroundSpeedNedResponse.SerializeToString,
+            'SetRateVelocityNed': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetRateVelocityNed,
+                    request_deserializer=telemetry__pb2.SetRateVelocityNedRequest.FromString,
+                    response_serializer=telemetry__pb2.SetRateVelocityNedResponse.SerializeToString,
             ),
             'SetRateGpsInfo': grpc.unary_unary_rpc_method_handler(
                     servicer.SetRateGpsInfo,
@@ -949,7 +949,7 @@ class TelemetryService(object):
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SubscribeGroundSpeedNed(request,
+    def SubscribeVelocityNed(request,
             target,
             options=(),
             channel_credentials=None,
@@ -958,9 +958,9 @@ class TelemetryService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SubscribeGroundSpeedNed',
-            telemetry__pb2.SubscribeGroundSpeedNedRequest.SerializeToString,
-            telemetry__pb2.GroundSpeedNedResponse.FromString,
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SubscribeVelocityNed',
+            telemetry__pb2.SubscribeVelocityNedRequest.SerializeToString,
+            telemetry__pb2.VelocityNedResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -1301,7 +1301,7 @@ class TelemetryService(object):
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SetRateGroundSpeedNed(request,
+    def SetRateVelocityNed(request,
             target,
             options=(),
             channel_credentials=None,
@@ -1310,9 +1310,9 @@ class TelemetryService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SetRateGroundSpeedNed',
-            telemetry__pb2.SetRateGroundSpeedNedRequest.SerializeToString,
-            telemetry__pb2.SetRateGroundSpeedNedResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SetRateVelocityNed',
+            telemetry__pb2.SetRateVelocityNedRequest.SerializeToString,
+            telemetry__pb2.SetRateVelocityNedResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 

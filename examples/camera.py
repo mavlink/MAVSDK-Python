@@ -2,7 +2,7 @@
 
 import asyncio
 
-from mavsdk import (CameraError, CameraMode)
+from mavsdk import (CameraError, Mode)
 from mavsdk import System
 
 
@@ -17,11 +17,11 @@ async def run():
             break
 
     asyncio.ensure_future(print_camera_mode(drone))
-    asyncio.ensure_future(print_camera_status(drone))
+    asyncio.ensure_future(print_status(drone))
 
     print("Setting mode to 'PHOTO'")
     try:
-        await drone.camera.set_mode(CameraMode.PHOTO)
+        await drone.camera.set_mode(Mode.PHOTO)
     except CameraError as error:
         print(f"Setting mode failed with error code: {error._result.result}")
 
@@ -34,7 +34,7 @@ async def run():
         print(f"Couldn't take photo: {error._result.result}")
 
     # Shut down the running coroutines (here 'print_camera_mode()' and
-    # 'print_camera_status()')
+    # 'print_status()')
     await asyncio.get_event_loop().shutdown_asyncgens()
 
 
@@ -43,9 +43,9 @@ async def print_camera_mode(drone):
         print(f"Camera mode: {camera_mode}")
 
 
-async def print_camera_status(drone):
-    async for camera_status in drone.camera.camera_status():
-        print(camera_status)
+async def print_status(drone):
+    async for status in drone.camera.status():
+        print(status)
 
 
 if __name__ == "__main__":

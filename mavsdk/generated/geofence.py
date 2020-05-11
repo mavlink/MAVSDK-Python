@@ -216,7 +216,7 @@ class GeofenceResult:
          Values
          ------
          UNKNOWN
-              Unknown error
+              Unknown result
 
          SUCCESS
               Request succeeded

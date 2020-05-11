@@ -731,96 +731,6 @@ class AngularVelocityBody:
         
 
 
-class SpeedNed:
-    """
-     Speed type, represented in the NED (North East Down) frame and in metres/second.
-
-     Parameters
-     ----------
-     velocity_north_m_s : float
-          Velocity in North direction in metres/second
-
-     velocity_east_m_s : float
-          Velocity in East direction in metres/second
-
-     velocity_down_m_s : float
-          Velocity in Down direction in metres/second
-
-     """
-
-    
-
-    def __init__(
-            self,
-            velocity_north_m_s,
-            velocity_east_m_s,
-            velocity_down_m_s):
-        """ Initializes the SpeedNed object """
-        self.velocity_north_m_s = velocity_north_m_s
-        self.velocity_east_m_s = velocity_east_m_s
-        self.velocity_down_m_s = velocity_down_m_s
-
-    def __equals__(self, to_compare):
-        """ Checks if two SpeedNed are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # SpeedNed object
-            return \
-                (self.velocity_north_m_s == to_compare.velocity_north_m_s) and \
-                (self.velocity_east_m_s == to_compare.velocity_east_m_s) and \
-                (self.velocity_down_m_s == to_compare.velocity_down_m_s)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ SpeedNed in string representation """
-        struct_repr = ", ".join([
-                "velocity_north_m_s: " + str(self.velocity_north_m_s),
-                "velocity_east_m_s: " + str(self.velocity_east_m_s),
-                "velocity_down_m_s: " + str(self.velocity_down_m_s)
-                ])
-
-        return f"SpeedNed: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcSpeedNed):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return SpeedNed(
-                
-                rpcSpeedNed.velocity_north_m_s,
-                
-                
-                rpcSpeedNed.velocity_east_m_s,
-                
-                
-                rpcSpeedNed.velocity_down_m_s
-                )
-
-    def translate_to_rpc(self, rpcSpeedNed):
-        """ Translates this SDK object into its gRPC equivalent """
-
-        
-        
-            
-        rpcSpeedNed.velocity_north_m_s = self.velocity_north_m_s
-            
-        
-        
-        
-            
-        rpcSpeedNed.velocity_east_m_s = self.velocity_east_m_s
-            
-        
-        
-        
-            
-        rpcSpeedNed.velocity_down_m_s = self.velocity_down_m_s
-            
-        
-        
-
-
 class GpsInfo:
     """
      GPS information type.
@@ -2751,7 +2661,7 @@ class TelemetryResult:
          Values
          ------
          UNKNOWN
-              Unknown error
+              Unknown result
 
          SUCCESS
               Success: the telemetry command was accepted by the vehicle
@@ -3152,29 +3062,29 @@ class Telemetry(AsyncBase):
         finally:
             camera_attitude_euler_stream.cancel()
 
-    async def ground_speed_ned(self):
+    async def velocity_ned(self):
         """
          Subscribe to 'ground speed' updates (NED).
 
          Yields
          -------
-         ground_speed_ned : SpeedNed
-              The next ground speed (NED)
+         velocity_ned : VelocityNed
+              The next velocity (NED)
 
          
         """
 
-        request = telemetry_pb2.SubscribeGroundSpeedNedRequest()
-        ground_speed_ned_stream = self._stub.SubscribeGroundSpeedNed(request)
+        request = telemetry_pb2.SubscribeVelocityNedRequest()
+        velocity_ned_stream = self._stub.SubscribeVelocityNed(request)
 
         try:
-            async for response in ground_speed_ned_stream:
+            async for response in velocity_ned_stream:
                 
 
             
-                yield SpeedNed.translate_from_rpc(response.ground_speed_ned)
+                yield VelocityNed.translate_from_rpc(response.velocity_ned)
         finally:
-            ground_speed_ned_stream.cancel()
+            velocity_ned_stream.cancel()
 
     async def gps_info(self):
         """
@@ -3692,7 +3602,7 @@ class Telemetry(AsyncBase):
             raise TelemetryError(result, "set_rate_camera_attitude()", rate_hz)
         
 
-    async def set_rate_ground_speed_ned(self, rate_hz):
+    async def set_rate_velocity_ned(self, rate_hz):
         """
          Set rate to 'ground speed' updates (NED).
 
@@ -3707,15 +3617,15 @@ class Telemetry(AsyncBase):
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SetRateGroundSpeedNedRequest()
+        request = telemetry_pb2.SetRateVelocityNedRequest()
         request.rate_hz = rate_hz
-        response = await self._stub.SetRateGroundSpeedNed(request)
+        response = await self._stub.SetRateVelocityNed(request)
 
         
         result = self._extract_result(response)
 
         if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_ground_speed_ned()", rate_hz)
+            raise TelemetryError(result, "set_rate_velocity_ned()", rate_hz)
         
 
     async def set_rate_gps_info(self, rate_hz):

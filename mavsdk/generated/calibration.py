@@ -27,13 +27,13 @@ class CalibrationResult:
          Values
          ------
          UNKNOWN
-              Unknown error
+              Unknown result
 
          SUCCESS
-              The calibration process succeeded
+              The calibration succeeded
 
          NEXT
-              Intermediate message showing progress or instructions on the next steps required by the process
+              Intermediate message showing progress or instructions on the next steps
 
          FAILED
               Calibration failed
@@ -54,7 +54,7 @@ class CalibrationResult:
               Command timed out
 
          CANCELLED
-              Calibration process got cancelled
+              Calibration process was cancelled
 
          """
 

@@ -71,7 +71,7 @@ class CameraResult:
          Values
          ------
          UNKNOWN
-              Unknown error
+              Unknown result
 
          SUCCESS
               Command executed successfully

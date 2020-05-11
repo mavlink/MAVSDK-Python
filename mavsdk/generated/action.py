@@ -27,10 +27,10 @@ class ActionResult:
          Values
          ------
          UNKNOWN
-              Unknown error
+              Unknown result
 
          SUCCESS
-              Success: the action command was accepted by the vehicle
+              Request was successful
 
          NO_SYSTEM
               No system is connected
@@ -54,7 +54,7 @@ class ActionResult:
               Request timed out
 
          VTOL_TRANSITION_SUPPORT_UNKNOWN
-              Hybrid/VTOL transition refused because VTOL support is unknown
+              Hybrid/VTOL transition support is unknown
 
          NO_VTOL_TRANSITION_SUPPORT
               Vehicle does not support hybrid/VTOL transitions
