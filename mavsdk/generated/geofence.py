@@ -113,9 +113,9 @@ class Polygon:
         EXCLUSION = 1
 
         def translate_to_rpc(self, rpcType):
-            if self is Polygon.Type.INCLUSION:
+            if self == Polygon.Type.INCLUSION:
                 return geofence_pb2.Polygon.TYPE_INCLUSION
-            if self is Polygon.Type.EXCLUSION:
+            if self == Polygon.Type.EXCLUSION:
                 return geofence_pb2.Polygon.TYPE_EXCLUSION
 
         @staticmethod
@@ -248,19 +248,19 @@ class GeofenceResult:
         INVALID_ARGUMENT = 6
 
         def translate_to_rpc(self, rpcResult):
-            if self is GeofenceResult.Result.UNKNOWN:
+            if self == GeofenceResult.Result.UNKNOWN:
                 return geofence_pb2.GeofenceResult.RESULT_UNKNOWN
-            if self is GeofenceResult.Result.SUCCESS:
+            if self == GeofenceResult.Result.SUCCESS:
                 return geofence_pb2.GeofenceResult.RESULT_SUCCESS
-            if self is GeofenceResult.Result.ERROR:
+            if self == GeofenceResult.Result.ERROR:
                 return geofence_pb2.GeofenceResult.RESULT_ERROR
-            if self is GeofenceResult.Result.TOO_MANY_GEOFENCE_ITEMS:
+            if self == GeofenceResult.Result.TOO_MANY_GEOFENCE_ITEMS:
                 return geofence_pb2.GeofenceResult.RESULT_TOO_MANY_GEOFENCE_ITEMS
-            if self is GeofenceResult.Result.BUSY:
+            if self == GeofenceResult.Result.BUSY:
                 return geofence_pb2.GeofenceResult.RESULT_BUSY
-            if self is GeofenceResult.Result.TIMEOUT:
+            if self == GeofenceResult.Result.TIMEOUT:
                 return geofence_pb2.GeofenceResult.RESULT_TIMEOUT
-            if self is GeofenceResult.Result.INVALID_ARGUMENT:
+            if self == GeofenceResult.Result.INVALID_ARGUMENT:
                 return geofence_pb2.GeofenceResult.RESULT_INVALID_ARGUMENT
 
         @staticmethod

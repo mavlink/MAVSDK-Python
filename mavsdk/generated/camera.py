@@ -27,11 +27,11 @@ class Mode(Enum):
     VIDEO = 2
 
     def translate_to_rpc(self, rpcMode):
-        if self is Mode.UNKNOWN:
+        if self == Mode.UNKNOWN:
             return camera_pb2.MODE_UNKNOWN
-        if self is Mode.PHOTO:
+        if self == Mode.PHOTO:
             return camera_pb2.MODE_PHOTO
-        if self is Mode.VIDEO:
+        if self == Mode.VIDEO:
             return camera_pb2.MODE_VIDEO
 
     @staticmethod
@@ -107,21 +107,21 @@ class CameraResult:
         WRONG_ARGUMENT = 7
 
         def translate_to_rpc(self, rpcResult):
-            if self is CameraResult.Result.UNKNOWN:
+            if self == CameraResult.Result.UNKNOWN:
                 return camera_pb2.CameraResult.RESULT_UNKNOWN
-            if self is CameraResult.Result.SUCCESS:
+            if self == CameraResult.Result.SUCCESS:
                 return camera_pb2.CameraResult.RESULT_SUCCESS
-            if self is CameraResult.Result.IN_PROGRESS:
+            if self == CameraResult.Result.IN_PROGRESS:
                 return camera_pb2.CameraResult.RESULT_IN_PROGRESS
-            if self is CameraResult.Result.BUSY:
+            if self == CameraResult.Result.BUSY:
                 return camera_pb2.CameraResult.RESULT_BUSY
-            if self is CameraResult.Result.DENIED:
+            if self == CameraResult.Result.DENIED:
                 return camera_pb2.CameraResult.RESULT_DENIED
-            if self is CameraResult.Result.ERROR:
+            if self == CameraResult.Result.ERROR:
                 return camera_pb2.CameraResult.RESULT_ERROR
-            if self is CameraResult.Result.TIMEOUT:
+            if self == CameraResult.Result.TIMEOUT:
                 return camera_pb2.CameraResult.RESULT_TIMEOUT
-            if self is CameraResult.Result.WRONG_ARGUMENT:
+            if self == CameraResult.Result.WRONG_ARGUMENT:
                 return camera_pb2.CameraResult.RESULT_WRONG_ARGUMENT
 
         @staticmethod
@@ -847,9 +847,9 @@ class VideoStreamInfo:
         IN_PROGRESS = 1
 
         def translate_to_rpc(self, rpcStatus):
-            if self is VideoStreamInfo.Status.NOT_RUNNING:
+            if self == VideoStreamInfo.Status.NOT_RUNNING:
                 return camera_pb2.VideoStreamInfo.STATUS_NOT_RUNNING
-            if self is VideoStreamInfo.Status.IN_PROGRESS:
+            if self == VideoStreamInfo.Status.IN_PROGRESS:
                 return camera_pb2.VideoStreamInfo.STATUS_IN_PROGRESS
 
         @staticmethod
@@ -979,11 +979,11 @@ class Status:
         FORMATTED = 2
 
         def translate_to_rpc(self, rpcStorageStatus):
-            if self is Status.StorageStatus.NOT_AVAILABLE:
+            if self == Status.StorageStatus.NOT_AVAILABLE:
                 return camera_pb2.Status.STORAGE_STATUS_NOT_AVAILABLE
-            if self is Status.StorageStatus.UNFORMATTED:
+            if self == Status.StorageStatus.UNFORMATTED:
                 return camera_pb2.Status.STORAGE_STATUS_UNFORMATTED
-            if self is Status.StorageStatus.FORMATTED:
+            if self == Status.StorageStatus.FORMATTED:
                 return camera_pb2.Status.STORAGE_STATUS_FORMATTED
 
         @staticmethod

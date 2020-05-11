@@ -84,17 +84,17 @@ class MissionItem:
         STOP_VIDEO = 5
 
         def translate_to_rpc(self, rpcCameraAction):
-            if self is MissionItem.CameraAction.NONE:
+            if self == MissionItem.CameraAction.NONE:
                 return mission_pb2.MissionItem.CAMERA_ACTION_NONE
-            if self is MissionItem.CameraAction.TAKE_PHOTO:
+            if self == MissionItem.CameraAction.TAKE_PHOTO:
                 return mission_pb2.MissionItem.CAMERA_ACTION_TAKE_PHOTO
-            if self is MissionItem.CameraAction.START_PHOTO_INTERVAL:
+            if self == MissionItem.CameraAction.START_PHOTO_INTERVAL:
                 return mission_pb2.MissionItem.CAMERA_ACTION_START_PHOTO_INTERVAL
-            if self is MissionItem.CameraAction.STOP_PHOTO_INTERVAL:
+            if self == MissionItem.CameraAction.STOP_PHOTO_INTERVAL:
                 return mission_pb2.MissionItem.CAMERA_ACTION_STOP_PHOTO_INTERVAL
-            if self is MissionItem.CameraAction.START_VIDEO:
+            if self == MissionItem.CameraAction.START_VIDEO:
                 return mission_pb2.MissionItem.CAMERA_ACTION_START_VIDEO
-            if self is MissionItem.CameraAction.STOP_VIDEO:
+            if self == MissionItem.CameraAction.STOP_VIDEO:
                 return mission_pb2.MissionItem.CAMERA_ACTION_STOP_VIDEO
 
         @staticmethod
@@ -495,31 +495,31 @@ class MissionResult:
         TRANSFER_CANCELLED = 12
 
         def translate_to_rpc(self, rpcResult):
-            if self is MissionResult.Result.UNKNOWN:
+            if self == MissionResult.Result.UNKNOWN:
                 return mission_pb2.MissionResult.RESULT_UNKNOWN
-            if self is MissionResult.Result.SUCCESS:
+            if self == MissionResult.Result.SUCCESS:
                 return mission_pb2.MissionResult.RESULT_SUCCESS
-            if self is MissionResult.Result.ERROR:
+            if self == MissionResult.Result.ERROR:
                 return mission_pb2.MissionResult.RESULT_ERROR
-            if self is MissionResult.Result.TOO_MANY_MISSION_ITEMS:
+            if self == MissionResult.Result.TOO_MANY_MISSION_ITEMS:
                 return mission_pb2.MissionResult.RESULT_TOO_MANY_MISSION_ITEMS
-            if self is MissionResult.Result.BUSY:
+            if self == MissionResult.Result.BUSY:
                 return mission_pb2.MissionResult.RESULT_BUSY
-            if self is MissionResult.Result.TIMEOUT:
+            if self == MissionResult.Result.TIMEOUT:
                 return mission_pb2.MissionResult.RESULT_TIMEOUT
-            if self is MissionResult.Result.INVALID_ARGUMENT:
+            if self == MissionResult.Result.INVALID_ARGUMENT:
                 return mission_pb2.MissionResult.RESULT_INVALID_ARGUMENT
-            if self is MissionResult.Result.UNSUPPORTED:
+            if self == MissionResult.Result.UNSUPPORTED:
                 return mission_pb2.MissionResult.RESULT_UNSUPPORTED
-            if self is MissionResult.Result.NO_MISSION_AVAILABLE:
+            if self == MissionResult.Result.NO_MISSION_AVAILABLE:
                 return mission_pb2.MissionResult.RESULT_NO_MISSION_AVAILABLE
-            if self is MissionResult.Result.FAILED_TO_OPEN_QGC_PLAN:
+            if self == MissionResult.Result.FAILED_TO_OPEN_QGC_PLAN:
                 return mission_pb2.MissionResult.RESULT_FAILED_TO_OPEN_QGC_PLAN
-            if self is MissionResult.Result.FAILED_TO_PARSE_QGC_PLAN:
+            if self == MissionResult.Result.FAILED_TO_PARSE_QGC_PLAN:
                 return mission_pb2.MissionResult.RESULT_FAILED_TO_PARSE_QGC_PLAN
-            if self is MissionResult.Result.UNSUPPORTED_MISSION_CMD:
+            if self == MissionResult.Result.UNSUPPORTED_MISSION_CMD:
                 return mission_pb2.MissionResult.RESULT_UNSUPPORTED_MISSION_CMD
-            if self is MissionResult.Result.TRANSFER_CANCELLED:
+            if self == MissionResult.Result.TRANSFER_CANCELLED:
                 return mission_pb2.MissionResult.RESULT_TRANSFER_CANCELLED
 
         @staticmethod

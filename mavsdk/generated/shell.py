@@ -55,17 +55,17 @@ class ShellResult:
         BUSY = 5
 
         def translate_to_rpc(self, rpcResult):
-            if self is ShellResult.Result.UNKNOWN:
+            if self == ShellResult.Result.UNKNOWN:
                 return shell_pb2.ShellResult.RESULT_UNKNOWN
-            if self is ShellResult.Result.SUCCESS:
+            if self == ShellResult.Result.SUCCESS:
                 return shell_pb2.ShellResult.RESULT_SUCCESS
-            if self is ShellResult.Result.NO_SYSTEM:
+            if self == ShellResult.Result.NO_SYSTEM:
                 return shell_pb2.ShellResult.RESULT_NO_SYSTEM
-            if self is ShellResult.Result.CONNECTION_ERROR:
+            if self == ShellResult.Result.CONNECTION_ERROR:
                 return shell_pb2.ShellResult.RESULT_CONNECTION_ERROR
-            if self is ShellResult.Result.NO_RESPONSE:
+            if self == ShellResult.Result.NO_RESPONSE:
                 return shell_pb2.ShellResult.RESULT_NO_RESPONSE
-            if self is ShellResult.Result.BUSY:
+            if self == ShellResult.Result.BUSY:
                 return shell_pb2.ShellResult.RESULT_BUSY
 
         @staticmethod

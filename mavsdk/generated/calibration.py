@@ -71,25 +71,25 @@ class CalibrationResult:
         CANCELLED = 9
 
         def translate_to_rpc(self, rpcResult):
-            if self is CalibrationResult.Result.UNKNOWN:
+            if self == CalibrationResult.Result.UNKNOWN:
                 return calibration_pb2.CalibrationResult.RESULT_UNKNOWN
-            if self is CalibrationResult.Result.SUCCESS:
+            if self == CalibrationResult.Result.SUCCESS:
                 return calibration_pb2.CalibrationResult.RESULT_SUCCESS
-            if self is CalibrationResult.Result.NEXT:
+            if self == CalibrationResult.Result.NEXT:
                 return calibration_pb2.CalibrationResult.RESULT_NEXT
-            if self is CalibrationResult.Result.FAILED:
+            if self == CalibrationResult.Result.FAILED:
                 return calibration_pb2.CalibrationResult.RESULT_FAILED
-            if self is CalibrationResult.Result.NO_SYSTEM:
+            if self == CalibrationResult.Result.NO_SYSTEM:
                 return calibration_pb2.CalibrationResult.RESULT_NO_SYSTEM
-            if self is CalibrationResult.Result.CONNECTION_ERROR:
+            if self == CalibrationResult.Result.CONNECTION_ERROR:
                 return calibration_pb2.CalibrationResult.RESULT_CONNECTION_ERROR
-            if self is CalibrationResult.Result.BUSY:
+            if self == CalibrationResult.Result.BUSY:
                 return calibration_pb2.CalibrationResult.RESULT_BUSY
-            if self is CalibrationResult.Result.COMMAND_DENIED:
+            if self == CalibrationResult.Result.COMMAND_DENIED:
                 return calibration_pb2.CalibrationResult.RESULT_COMMAND_DENIED
-            if self is CalibrationResult.Result.TIMEOUT:
+            if self == CalibrationResult.Result.TIMEOUT:
                 return calibration_pb2.CalibrationResult.RESULT_TIMEOUT
-            if self is CalibrationResult.Result.CANCELLED:
+            if self == CalibrationResult.Result.CANCELLED:
                 return calibration_pb2.CalibrationResult.RESULT_CANCELLED
 
         @staticmethod

@@ -730,21 +730,21 @@ class OffboardResult:
         NO_SETPOINT_SET = 7
 
         def translate_to_rpc(self, rpcResult):
-            if self is OffboardResult.Result.UNKNOWN:
+            if self == OffboardResult.Result.UNKNOWN:
                 return offboard_pb2.OffboardResult.RESULT_UNKNOWN
-            if self is OffboardResult.Result.SUCCESS:
+            if self == OffboardResult.Result.SUCCESS:
                 return offboard_pb2.OffboardResult.RESULT_SUCCESS
-            if self is OffboardResult.Result.NO_SYSTEM:
+            if self == OffboardResult.Result.NO_SYSTEM:
                 return offboard_pb2.OffboardResult.RESULT_NO_SYSTEM
-            if self is OffboardResult.Result.CONNECTION_ERROR:
+            if self == OffboardResult.Result.CONNECTION_ERROR:
                 return offboard_pb2.OffboardResult.RESULT_CONNECTION_ERROR
-            if self is OffboardResult.Result.BUSY:
+            if self == OffboardResult.Result.BUSY:
                 return offboard_pb2.OffboardResult.RESULT_BUSY
-            if self is OffboardResult.Result.COMMAND_DENIED:
+            if self == OffboardResult.Result.COMMAND_DENIED:
                 return offboard_pb2.OffboardResult.RESULT_COMMAND_DENIED
-            if self is OffboardResult.Result.TIMEOUT:
+            if self == OffboardResult.Result.TIMEOUT:
                 return offboard_pb2.OffboardResult.RESULT_TIMEOUT
-            if self is OffboardResult.Result.NO_SETPOINT_SET:
+            if self == OffboardResult.Result.NO_SETPOINT_SET:
                 return offboard_pb2.OffboardResult.RESULT_NO_SETPOINT_SET
 
         @staticmethod

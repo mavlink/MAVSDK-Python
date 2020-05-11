@@ -804,9 +804,9 @@ class Odometry:
         LOCAL_FRD = 1
 
         def translate_to_rpc(self, rpcMavFrame):
-            if self is Odometry.MavFrame.MOCAP_NED:
+            if self == Odometry.MavFrame.MOCAP_NED:
                 return mocap_pb2.Odometry.MAV_FRAME_MOCAP_NED
-            if self is Odometry.MavFrame.LOCAL_FRD:
+            if self == Odometry.MavFrame.LOCAL_FRD:
                 return mocap_pb2.Odometry.MAV_FRAME_LOCAL_FRD
 
         @staticmethod
@@ -1004,15 +1004,15 @@ class MocapResult:
         INVALID_REQUEST_DATA = 4
 
         def translate_to_rpc(self, rpcResult):
-            if self is MocapResult.Result.UNKNOWN:
+            if self == MocapResult.Result.UNKNOWN:
                 return mocap_pb2.MocapResult.RESULT_UNKNOWN
-            if self is MocapResult.Result.SUCCESS:
+            if self == MocapResult.Result.SUCCESS:
                 return mocap_pb2.MocapResult.RESULT_SUCCESS
-            if self is MocapResult.Result.NO_SYSTEM:
+            if self == MocapResult.Result.NO_SYSTEM:
                 return mocap_pb2.MocapResult.RESULT_NO_SYSTEM
-            if self is MocapResult.Result.CONNECTION_ERROR:
+            if self == MocapResult.Result.CONNECTION_ERROR:
                 return mocap_pb2.MocapResult.RESULT_CONNECTION_ERROR
-            if self is MocapResult.Result.INVALID_REQUEST_DATA:
+            if self == MocapResult.Result.INVALID_REQUEST_DATA:
                 return mocap_pb2.MocapResult.RESULT_INVALID_REQUEST_DATA
 
         @staticmethod

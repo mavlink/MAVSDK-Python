@@ -55,17 +55,17 @@ class ParamResult:
         PARAM_NAME_TOO_LONG = 5
 
         def translate_to_rpc(self, rpcResult):
-            if self is ParamResult.Result.UNKNOWN:
+            if self == ParamResult.Result.UNKNOWN:
                 return param_pb2.ParamResult.RESULT_UNKNOWN
-            if self is ParamResult.Result.SUCCESS:
+            if self == ParamResult.Result.SUCCESS:
                 return param_pb2.ParamResult.RESULT_SUCCESS
-            if self is ParamResult.Result.TIMEOUT:
+            if self == ParamResult.Result.TIMEOUT:
                 return param_pb2.ParamResult.RESULT_TIMEOUT
-            if self is ParamResult.Result.CONNECTION_ERROR:
+            if self == ParamResult.Result.CONNECTION_ERROR:
                 return param_pb2.ParamResult.RESULT_CONNECTION_ERROR
-            if self is ParamResult.Result.WRONG_TYPE:
+            if self == ParamResult.Result.WRONG_TYPE:
                 return param_pb2.ParamResult.RESULT_WRONG_TYPE
-            if self is ParamResult.Result.PARAM_NAME_TOO_LONG:
+            if self == ParamResult.Result.PARAM_NAME_TOO_LONG:
                 return param_pb2.ParamResult.RESULT_PARAM_NAME_TOO_LONG
 
         @staticmethod

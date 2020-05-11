@@ -79,29 +79,29 @@ class ActionResult:
         PARAMETER_ERROR = 11
 
         def translate_to_rpc(self, rpcResult):
-            if self is ActionResult.Result.UNKNOWN:
+            if self == ActionResult.Result.UNKNOWN:
                 return action_pb2.ActionResult.RESULT_UNKNOWN
-            if self is ActionResult.Result.SUCCESS:
+            if self == ActionResult.Result.SUCCESS:
                 return action_pb2.ActionResult.RESULT_SUCCESS
-            if self is ActionResult.Result.NO_SYSTEM:
+            if self == ActionResult.Result.NO_SYSTEM:
                 return action_pb2.ActionResult.RESULT_NO_SYSTEM
-            if self is ActionResult.Result.CONNECTION_ERROR:
+            if self == ActionResult.Result.CONNECTION_ERROR:
                 return action_pb2.ActionResult.RESULT_CONNECTION_ERROR
-            if self is ActionResult.Result.BUSY:
+            if self == ActionResult.Result.BUSY:
                 return action_pb2.ActionResult.RESULT_BUSY
-            if self is ActionResult.Result.COMMAND_DENIED:
+            if self == ActionResult.Result.COMMAND_DENIED:
                 return action_pb2.ActionResult.RESULT_COMMAND_DENIED
-            if self is ActionResult.Result.COMMAND_DENIED_LANDED_STATE_UNKNOWN:
+            if self == ActionResult.Result.COMMAND_DENIED_LANDED_STATE_UNKNOWN:
                 return action_pb2.ActionResult.RESULT_COMMAND_DENIED_LANDED_STATE_UNKNOWN
-            if self is ActionResult.Result.COMMAND_DENIED_NOT_LANDED:
+            if self == ActionResult.Result.COMMAND_DENIED_NOT_LANDED:
                 return action_pb2.ActionResult.RESULT_COMMAND_DENIED_NOT_LANDED
-            if self is ActionResult.Result.TIMEOUT:
+            if self == ActionResult.Result.TIMEOUT:
                 return action_pb2.ActionResult.RESULT_TIMEOUT
-            if self is ActionResult.Result.VTOL_TRANSITION_SUPPORT_UNKNOWN:
+            if self == ActionResult.Result.VTOL_TRANSITION_SUPPORT_UNKNOWN:
                 return action_pb2.ActionResult.RESULT_VTOL_TRANSITION_SUPPORT_UNKNOWN
-            if self is ActionResult.Result.NO_VTOL_TRANSITION_SUPPORT:
+            if self == ActionResult.Result.NO_VTOL_TRANSITION_SUPPORT:
                 return action_pb2.ActionResult.RESULT_NO_VTOL_TRANSITION_SUPPORT
-            if self is ActionResult.Result.PARAMETER_ERROR:
+            if self == ActionResult.Result.PARAMETER_ERROR:
                 return action_pb2.ActionResult.RESULT_PARAMETER_ERROR
 
         @staticmethod

@@ -43,19 +43,19 @@ class FixType(Enum):
     RTK_FIXED = 6
 
     def translate_to_rpc(self, rpcFixType):
-        if self is FixType.NO_GPS:
+        if self == FixType.NO_GPS:
             return telemetry_pb2.FIX_TYPE_NO_GPS
-        if self is FixType.NO_FIX:
+        if self == FixType.NO_FIX:
             return telemetry_pb2.FIX_TYPE_NO_FIX
-        if self is FixType.FIX_2D:
+        if self == FixType.FIX_2D:
             return telemetry_pb2.FIX_TYPE_FIX_2D
-        if self is FixType.FIX_3D:
+        if self == FixType.FIX_3D:
             return telemetry_pb2.FIX_TYPE_FIX_3D
-        if self is FixType.FIX_DGPS:
+        if self == FixType.FIX_DGPS:
             return telemetry_pb2.FIX_TYPE_FIX_DGPS
-        if self is FixType.RTK_FLOAT:
+        if self == FixType.RTK_FLOAT:
             return telemetry_pb2.FIX_TYPE_RTK_FLOAT
-        if self is FixType.RTK_FIXED:
+        if self == FixType.RTK_FIXED:
             return telemetry_pb2.FIX_TYPE_RTK_FIXED
 
     @staticmethod
@@ -154,35 +154,35 @@ class FlightMode(Enum):
     RATTITUDE = 14
 
     def translate_to_rpc(self, rpcFlightMode):
-        if self is FlightMode.UNKNOWN:
+        if self == FlightMode.UNKNOWN:
             return telemetry_pb2.FLIGHT_MODE_UNKNOWN
-        if self is FlightMode.READY:
+        if self == FlightMode.READY:
             return telemetry_pb2.FLIGHT_MODE_READY
-        if self is FlightMode.TAKEOFF:
+        if self == FlightMode.TAKEOFF:
             return telemetry_pb2.FLIGHT_MODE_TAKEOFF
-        if self is FlightMode.HOLD:
+        if self == FlightMode.HOLD:
             return telemetry_pb2.FLIGHT_MODE_HOLD
-        if self is FlightMode.MISSION:
+        if self == FlightMode.MISSION:
             return telemetry_pb2.FLIGHT_MODE_MISSION
-        if self is FlightMode.RETURN_TO_LAUNCH:
+        if self == FlightMode.RETURN_TO_LAUNCH:
             return telemetry_pb2.FLIGHT_MODE_RETURN_TO_LAUNCH
-        if self is FlightMode.LAND:
+        if self == FlightMode.LAND:
             return telemetry_pb2.FLIGHT_MODE_LAND
-        if self is FlightMode.OFFBOARD:
+        if self == FlightMode.OFFBOARD:
             return telemetry_pb2.FLIGHT_MODE_OFFBOARD
-        if self is FlightMode.FOLLOW_ME:
+        if self == FlightMode.FOLLOW_ME:
             return telemetry_pb2.FLIGHT_MODE_FOLLOW_ME
-        if self is FlightMode.MANUAL:
+        if self == FlightMode.MANUAL:
             return telemetry_pb2.FLIGHT_MODE_MANUAL
-        if self is FlightMode.ALTCTL:
+        if self == FlightMode.ALTCTL:
             return telemetry_pb2.FLIGHT_MODE_ALTCTL
-        if self is FlightMode.POSCTL:
+        if self == FlightMode.POSCTL:
             return telemetry_pb2.FLIGHT_MODE_POSCTL
-        if self is FlightMode.ACRO:
+        if self == FlightMode.ACRO:
             return telemetry_pb2.FLIGHT_MODE_ACRO
-        if self is FlightMode.STABILIZED:
+        if self == FlightMode.STABILIZED:
             return telemetry_pb2.FLIGHT_MODE_STABILIZED
-        if self is FlightMode.RATTITUDE:
+        if self == FlightMode.RATTITUDE:
             return telemetry_pb2.FLIGHT_MODE_RATTITUDE
 
     @staticmethod
@@ -246,11 +246,11 @@ class StatusTextType(Enum):
     CRITICAL = 2
 
     def translate_to_rpc(self, rpcStatusTextType):
-        if self is StatusTextType.INFO:
+        if self == StatusTextType.INFO:
             return telemetry_pb2.STATUS_TEXT_TYPE_INFO
-        if self is StatusTextType.WARNING:
+        if self == StatusTextType.WARNING:
             return telemetry_pb2.STATUS_TEXT_TYPE_WARNING
-        if self is StatusTextType.CRITICAL:
+        if self == StatusTextType.CRITICAL:
             return telemetry_pb2.STATUS_TEXT_TYPE_CRITICAL
 
     @staticmethod
@@ -298,15 +298,15 @@ class LandedState(Enum):
     LANDING = 4
 
     def translate_to_rpc(self, rpcLandedState):
-        if self is LandedState.UNKNOWN:
+        if self == LandedState.UNKNOWN:
             return telemetry_pb2.LANDED_STATE_UNKNOWN
-        if self is LandedState.ON_GROUND:
+        if self == LandedState.ON_GROUND:
             return telemetry_pb2.LANDED_STATE_ON_GROUND
-        if self is LandedState.IN_AIR:
+        if self == LandedState.IN_AIR:
             return telemetry_pb2.LANDED_STATE_IN_AIR
-        if self is LandedState.TAKING_OFF:
+        if self == LandedState.TAKING_OFF:
             return telemetry_pb2.LANDED_STATE_TAKING_OFF
-        if self is LandedState.LANDING:
+        if self == LandedState.LANDING:
             return telemetry_pb2.LANDED_STATE_LANDING
 
     @staticmethod
@@ -1654,13 +1654,13 @@ class Odometry:
         ESTIM_NED = 3
 
         def translate_to_rpc(self, rpcMavFrame):
-            if self is Odometry.MavFrame.UNDEF:
+            if self == Odometry.MavFrame.UNDEF:
                 return telemetry_pb2.Odometry.MAV_FRAME_UNDEF
-            if self is Odometry.MavFrame.BODY_NED:
+            if self == Odometry.MavFrame.BODY_NED:
                 return telemetry_pb2.Odometry.MAV_FRAME_BODY_NED
-            if self is Odometry.MavFrame.VISION_NED:
+            if self == Odometry.MavFrame.VISION_NED:
                 return telemetry_pb2.Odometry.MAV_FRAME_VISION_NED
-            if self is Odometry.MavFrame.ESTIM_NED:
+            if self == Odometry.MavFrame.ESTIM_NED:
                 return telemetry_pb2.Odometry.MAV_FRAME_ESTIM_NED
 
         @staticmethod
@@ -2693,19 +2693,19 @@ class TelemetryResult:
         TIMEOUT = 6
 
         def translate_to_rpc(self, rpcResult):
-            if self is TelemetryResult.Result.UNKNOWN:
+            if self == TelemetryResult.Result.UNKNOWN:
                 return telemetry_pb2.TelemetryResult.RESULT_UNKNOWN
-            if self is TelemetryResult.Result.SUCCESS:
+            if self == TelemetryResult.Result.SUCCESS:
                 return telemetry_pb2.TelemetryResult.RESULT_SUCCESS
-            if self is TelemetryResult.Result.NO_SYSTEM:
+            if self == TelemetryResult.Result.NO_SYSTEM:
                 return telemetry_pb2.TelemetryResult.RESULT_NO_SYSTEM
-            if self is TelemetryResult.Result.CONNECTION_ERROR:
+            if self == TelemetryResult.Result.CONNECTION_ERROR:
                 return telemetry_pb2.TelemetryResult.RESULT_CONNECTION_ERROR
-            if self is TelemetryResult.Result.BUSY:
+            if self == TelemetryResult.Result.BUSY:
                 return telemetry_pb2.TelemetryResult.RESULT_BUSY
-            if self is TelemetryResult.Result.COMMAND_DENIED:
+            if self == TelemetryResult.Result.COMMAND_DENIED:
                 return telemetry_pb2.TelemetryResult.RESULT_COMMAND_DENIED
-            if self is TelemetryResult.Result.TIMEOUT:
+            if self == TelemetryResult.Result.TIMEOUT:
                 return telemetry_pb2.TelemetryResult.RESULT_TIMEOUT
 
         @staticmethod

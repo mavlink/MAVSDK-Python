@@ -499,11 +499,11 @@ class InfoResult:
         INFORMATION_NOT_RECEIVED_YET = 2
 
         def translate_to_rpc(self, rpcResult):
-            if self is InfoResult.Result.UNKNOWN:
+            if self == InfoResult.Result.UNKNOWN:
                 return info_pb2.InfoResult.RESULT_UNKNOWN
-            if self is InfoResult.Result.SUCCESS:
+            if self == InfoResult.Result.SUCCESS:
                 return info_pb2.InfoResult.RESULT_SUCCESS
-            if self is InfoResult.Result.INFORMATION_NOT_RECEIVED_YET:
+            if self == InfoResult.Result.INFORMATION_NOT_RECEIVED_YET:
                 return info_pb2.InfoResult.RESULT_INFORMATION_NOT_RECEIVED_YET
 
         @staticmethod
