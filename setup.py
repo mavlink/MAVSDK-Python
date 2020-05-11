@@ -53,7 +53,7 @@ class custom_build(build):
         Trying to detect the platform to know which `mavsdk_server` executable to download
         """
         if sys.platform.startswith('linux'):
-            return 'manylinux1-x64'
+            return 'manylinux2010-x64'
         elif sys.platform.startswith('darwin'):
             return 'macos'
         elif sys.platform.startswith('win'):
