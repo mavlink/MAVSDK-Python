@@ -4,424 +4,6 @@ from ..generated import mocap_pb2, mocap_pb2_grpc
 from enum import Enum
 
 
-class VisionPositionEstimate:
-    """
-     Global position/attitude estimate from a vision source.
-
-     Parameters
-     ----------
-     time_usec : uint64_t
-          PositionBody frame timestamp UNIX Epoch time (0 to use Backend timestamp)
-
-     position_body : PositionBody
-          Global position (m)
-
-     angle_body : AngleBody
-          Body angle (rad).
-
-     pose_covariance : Covariance
-          Pose cross-covariance matrix.
-
-     """
-
-    
-
-    def __init__(
-            self,
-            time_usec,
-            position_body,
-            angle_body,
-            pose_covariance):
-        """ Initializes the VisionPositionEstimate object """
-        self.time_usec = time_usec
-        self.position_body = position_body
-        self.angle_body = angle_body
-        self.pose_covariance = pose_covariance
-
-    def __equals__(self, to_compare):
-        """ Checks if two VisionPositionEstimate are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # VisionPositionEstimate object
-            return \
-                (self.time_usec == to_compare.time_usec) and \
-                (self.position_body == to_compare.position_body) and \
-                (self.angle_body == to_compare.angle_body) and \
-                (self.pose_covariance == to_compare.pose_covariance)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ VisionPositionEstimate in string representation """
-        struct_repr = ", ".join([
-                "time_usec: " + str(self.time_usec),
-                "position_body: " + str(self.position_body),
-                "angle_body: " + str(self.angle_body),
-                "pose_covariance: " + str(self.pose_covariance)
-                ])
-
-        return f"VisionPositionEstimate: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcVisionPositionEstimate):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return VisionPositionEstimate(
-                
-                rpcVisionPositionEstimate.time_usec,
-                
-                
-                PositionBody.translate_from_rpc(rpcVisionPositionEstimate.position_body),
-                
-                
-                AngleBody.translate_from_rpc(rpcVisionPositionEstimate.angle_body),
-                
-                
-                Covariance.translate_from_rpc(rpcVisionPositionEstimate.pose_covariance)
-                )
-
-    def translate_to_rpc(self, rpcVisionPositionEstimate):
-        """ Translates this SDK object into its gRPC equivalent """
-
-        
-        
-            
-        rpcVisionPositionEstimate.time_usec = self.time_usec
-            
-        
-        
-        
-            
-        self.position_body.translate_to_rpc(rpcVisionPositionEstimate.position_body)
-            
-        
-        
-        
-            
-        self.angle_body.translate_to_rpc(rpcVisionPositionEstimate.angle_body)
-            
-        
-        
-        
-            
-        self.pose_covariance.translate_to_rpc(rpcVisionPositionEstimate.pose_covariance)
-            
-        
-        
-
-
-class AttitudePositionMocap:
-    """
-     Motion capture attitude and position
-
-     Parameters
-     ----------
-     time_usec : uint64_t
-          PositionBody frame timestamp UNIX Epoch time (0 to use Backend timestamp)
-
-     q : Quaternion
-          Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
-
-     position_body : PositionBody
-          Body Position (NED)
-
-     pose_covariance : Covariance
-          Pose cross-covariance matrix.
-
-     """
-
-    
-
-    def __init__(
-            self,
-            time_usec,
-            q,
-            position_body,
-            pose_covariance):
-        """ Initializes the AttitudePositionMocap object """
-        self.time_usec = time_usec
-        self.q = q
-        self.position_body = position_body
-        self.pose_covariance = pose_covariance
-
-    def __equals__(self, to_compare):
-        """ Checks if two AttitudePositionMocap are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # AttitudePositionMocap object
-            return \
-                (self.time_usec == to_compare.time_usec) and \
-                (self.q == to_compare.q) and \
-                (self.position_body == to_compare.position_body) and \
-                (self.pose_covariance == to_compare.pose_covariance)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ AttitudePositionMocap in string representation """
-        struct_repr = ", ".join([
-                "time_usec: " + str(self.time_usec),
-                "q: " + str(self.q),
-                "position_body: " + str(self.position_body),
-                "pose_covariance: " + str(self.pose_covariance)
-                ])
-
-        return f"AttitudePositionMocap: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcAttitudePositionMocap):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return AttitudePositionMocap(
-                
-                rpcAttitudePositionMocap.time_usec,
-                
-                
-                Quaternion.translate_from_rpc(rpcAttitudePositionMocap.q),
-                
-                
-                PositionBody.translate_from_rpc(rpcAttitudePositionMocap.position_body),
-                
-                
-                Covariance.translate_from_rpc(rpcAttitudePositionMocap.pose_covariance)
-                )
-
-    def translate_to_rpc(self, rpcAttitudePositionMocap):
-        """ Translates this SDK object into its gRPC equivalent """
-
-        
-        
-            
-        rpcAttitudePositionMocap.time_usec = self.time_usec
-            
-        
-        
-        
-            
-        self.q.translate_to_rpc(rpcAttitudePositionMocap.q)
-            
-        
-        
-        
-            
-        self.position_body.translate_to_rpc(rpcAttitudePositionMocap.position_body)
-            
-        
-        
-        
-            
-        self.pose_covariance.translate_to_rpc(rpcAttitudePositionMocap.pose_covariance)
-            
-        
-        
-
-
-class Odometry:
-    """
-     Odometry message to communicate odometry information with an external interface.
-
-     Parameters
-     ----------
-     time_usec : uint64_t
-          Timestamp (0 to use Backend timestamp).
-
-     frame_id : MavFrame
-          Coordinate frame of reference for the pose data.
-
-     position_body : PositionBody
-          Body Position.
-
-     q : Quaternion
-          Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation).
-
-     speed_body : SpeedBody
-          Linear speed (m/s).
-
-     angular_velocity_body : AngularVelocityBody
-          Angular speed (rad/s).
-
-     pose_covariance : Covariance
-          Pose cross-covariance matrix.
-
-     velocity_covariance : Covariance
-          Velocity cross-covariance matrix.
-
-     """
-
-    
-    
-    class MavFrame(Enum):
-        """
-         Mavlink frame id
-
-         Values
-         ------
-         MOCAP_NED
-              MAVLink number: 14. Odometry local coordinate frame of data given by a motion capture system, Z-down (x: north, y: east, z: down).
-
-         LOCAL_FRD
-              MAVLink number: 20. Forward, Right, Down coordinate frame. This is a local frame with Z-down and arbitrary F/R alignment (i.e. not aligned with NED/earth frame). Replacement for MAV_FRAME_MOCAP_NED, MAV_FRAME_VISION_NED, MAV_FRAME_ESTIM_NED.
-
-         """
-
-        
-        MOCAP_NED = 0
-        LOCAL_FRD = 1
-
-        def translate_to_rpc(self, rpcMavFrame):
-            return {
-                    0: mocap_pb2.Odometry.MOCAP_NED,
-                    1: mocap_pb2.Odometry.LOCAL_FRD
-                }.get(self.value, None)
-
-        @staticmethod
-        def translate_from_rpc(rpc_enum_value):
-            """ Parses a gRPC response """
-            return {
-                    0: Odometry.MavFrame.MOCAP_NED,
-                    1: Odometry.MavFrame.LOCAL_FRD,
-                }.get(rpc_enum_value, None)
-
-        def __str__(self):
-            return self.name
-    
-
-    def __init__(
-            self,
-            time_usec,
-            frame_id,
-            position_body,
-            q,
-            speed_body,
-            angular_velocity_body,
-            pose_covariance,
-            velocity_covariance):
-        """ Initializes the Odometry object """
-        self.time_usec = time_usec
-        self.frame_id = frame_id
-        self.position_body = position_body
-        self.q = q
-        self.speed_body = speed_body
-        self.angular_velocity_body = angular_velocity_body
-        self.pose_covariance = pose_covariance
-        self.velocity_covariance = velocity_covariance
-
-    def __equals__(self, to_compare):
-        """ Checks if two Odometry are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # Odometry object
-            return \
-                (self.time_usec == to_compare.time_usec) and \
-                (self.frame_id == to_compare.frame_id) and \
-                (self.position_body == to_compare.position_body) and \
-                (self.q == to_compare.q) and \
-                (self.speed_body == to_compare.speed_body) and \
-                (self.angular_velocity_body == to_compare.angular_velocity_body) and \
-                (self.pose_covariance == to_compare.pose_covariance) and \
-                (self.velocity_covariance == to_compare.velocity_covariance)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ Odometry in string representation """
-        struct_repr = ", ".join([
-                "time_usec: " + str(self.time_usec),
-                "frame_id: " + str(self.frame_id),
-                "position_body: " + str(self.position_body),
-                "q: " + str(self.q),
-                "speed_body: " + str(self.speed_body),
-                "angular_velocity_body: " + str(self.angular_velocity_body),
-                "pose_covariance: " + str(self.pose_covariance),
-                "velocity_covariance: " + str(self.velocity_covariance)
-                ])
-
-        return f"Odometry: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcOdometry):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return Odometry(
-                
-                rpcOdometry.time_usec,
-                
-                
-                Odometry.MavFrame.translate_from_rpc(rpcOdometry.frame_id),
-                
-                
-                PositionBody.translate_from_rpc(rpcOdometry.position_body),
-                
-                
-                Quaternion.translate_from_rpc(rpcOdometry.q),
-                
-                
-                SpeedBody.translate_from_rpc(rpcOdometry.speed_body),
-                
-                
-                AngularVelocityBody.translate_from_rpc(rpcOdometry.angular_velocity_body),
-                
-                
-                Covariance.translate_from_rpc(rpcOdometry.pose_covariance),
-                
-                
-                Covariance.translate_from_rpc(rpcOdometry.velocity_covariance)
-                )
-
-    def translate_to_rpc(self, rpcOdometry):
-        """ Translates this SDK object into its gRPC equivalent """
-
-        
-        
-            
-        rpcOdometry.time_usec = self.time_usec
-            
-        
-        
-        
-            
-        self.frame_id.translate_to_rpc(rpcOdometry.frame_id)
-            
-        
-        
-        
-            
-        self.position_body.translate_to_rpc(rpcOdometry.position_body)
-            
-        
-        
-        
-            
-        self.q.translate_to_rpc(rpcOdometry.q)
-            
-        
-        
-        
-            
-        self.speed_body.translate_to_rpc(rpcOdometry.speed_body)
-            
-        
-        
-        
-            
-        self.angular_velocity_body.translate_to_rpc(rpcOdometry.angular_velocity_body)
-            
-        
-        
-        
-            
-        self.pose_covariance.translate_to_rpc(rpcOdometry.pose_covariance)
-            
-        
-        
-        
-            
-        self.velocity_covariance.translate_to_rpc(rpcOdometry.velocity_covariance)
-            
-        
-        
-
-
 class PositionBody:
     """
      Body position type
@@ -785,14 +367,15 @@ class AngularVelocityBody:
 class Covariance:
     """
      Covariance type.
-     Row-major representation of a 6x6 cross-covariance matrix
-     upper right triangle.
-     Set first to NaN if unknown.
+     Row-major representation of a 6x6 cross-covariance matrix upper
+     right triangle.
+     Needs to be 21 entries or 1 entry with NaN if unknown.
 
      Parameters
      ----------
      covariance_matrix : [float]
-         
+          The covariance matrix
+
      """
 
     
@@ -956,6 +539,424 @@ class Quaternion:
         
 
 
+class VisionPositionEstimate:
+    """
+     Global position/attitude estimate from a vision source.
+
+     Parameters
+     ----------
+     time_usec : uint64_t
+          PositionBody frame timestamp UNIX Epoch time (0 to use Backend timestamp)
+
+     position_body : PositionBody
+          Global position (m)
+
+     angle_body : AngleBody
+          Body angle (rad).
+
+     pose_covariance : Covariance
+          Pose cross-covariance matrix.
+
+     """
+
+    
+
+    def __init__(
+            self,
+            time_usec,
+            position_body,
+            angle_body,
+            pose_covariance):
+        """ Initializes the VisionPositionEstimate object """
+        self.time_usec = time_usec
+        self.position_body = position_body
+        self.angle_body = angle_body
+        self.pose_covariance = pose_covariance
+
+    def __equals__(self, to_compare):
+        """ Checks if two VisionPositionEstimate are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # VisionPositionEstimate object
+            return \
+                (self.time_usec == to_compare.time_usec) and \
+                (self.position_body == to_compare.position_body) and \
+                (self.angle_body == to_compare.angle_body) and \
+                (self.pose_covariance == to_compare.pose_covariance)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ VisionPositionEstimate in string representation """
+        struct_repr = ", ".join([
+                "time_usec: " + str(self.time_usec),
+                "position_body: " + str(self.position_body),
+                "angle_body: " + str(self.angle_body),
+                "pose_covariance: " + str(self.pose_covariance)
+                ])
+
+        return f"VisionPositionEstimate: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcVisionPositionEstimate):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return VisionPositionEstimate(
+                
+                rpcVisionPositionEstimate.time_usec,
+                
+                
+                PositionBody.translate_from_rpc(rpcVisionPositionEstimate.position_body),
+                
+                
+                AngleBody.translate_from_rpc(rpcVisionPositionEstimate.angle_body),
+                
+                
+                Covariance.translate_from_rpc(rpcVisionPositionEstimate.pose_covariance)
+                )
+
+    def translate_to_rpc(self, rpcVisionPositionEstimate):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcVisionPositionEstimate.time_usec = self.time_usec
+            
+        
+        
+        
+            
+        self.position_body.translate_to_rpc(rpcVisionPositionEstimate.position_body)
+            
+        
+        
+        
+            
+        self.angle_body.translate_to_rpc(rpcVisionPositionEstimate.angle_body)
+            
+        
+        
+        
+            
+        self.pose_covariance.translate_to_rpc(rpcVisionPositionEstimate.pose_covariance)
+            
+        
+        
+
+
+class AttitudePositionMocap:
+    """
+     Motion capture attitude and position
+
+     Parameters
+     ----------
+     time_usec : uint64_t
+          PositionBody frame timestamp UNIX Epoch time (0 to use Backend timestamp)
+
+     q : Quaternion
+          Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
+
+     position_body : PositionBody
+          Body Position (NED)
+
+     pose_covariance : Covariance
+          Pose cross-covariance matrix.
+
+     """
+
+    
+
+    def __init__(
+            self,
+            time_usec,
+            q,
+            position_body,
+            pose_covariance):
+        """ Initializes the AttitudePositionMocap object """
+        self.time_usec = time_usec
+        self.q = q
+        self.position_body = position_body
+        self.pose_covariance = pose_covariance
+
+    def __equals__(self, to_compare):
+        """ Checks if two AttitudePositionMocap are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # AttitudePositionMocap object
+            return \
+                (self.time_usec == to_compare.time_usec) and \
+                (self.q == to_compare.q) and \
+                (self.position_body == to_compare.position_body) and \
+                (self.pose_covariance == to_compare.pose_covariance)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ AttitudePositionMocap in string representation """
+        struct_repr = ", ".join([
+                "time_usec: " + str(self.time_usec),
+                "q: " + str(self.q),
+                "position_body: " + str(self.position_body),
+                "pose_covariance: " + str(self.pose_covariance)
+                ])
+
+        return f"AttitudePositionMocap: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcAttitudePositionMocap):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return AttitudePositionMocap(
+                
+                rpcAttitudePositionMocap.time_usec,
+                
+                
+                Quaternion.translate_from_rpc(rpcAttitudePositionMocap.q),
+                
+                
+                PositionBody.translate_from_rpc(rpcAttitudePositionMocap.position_body),
+                
+                
+                Covariance.translate_from_rpc(rpcAttitudePositionMocap.pose_covariance)
+                )
+
+    def translate_to_rpc(self, rpcAttitudePositionMocap):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcAttitudePositionMocap.time_usec = self.time_usec
+            
+        
+        
+        
+            
+        self.q.translate_to_rpc(rpcAttitudePositionMocap.q)
+            
+        
+        
+        
+            
+        self.position_body.translate_to_rpc(rpcAttitudePositionMocap.position_body)
+            
+        
+        
+        
+            
+        self.pose_covariance.translate_to_rpc(rpcAttitudePositionMocap.pose_covariance)
+            
+        
+        
+
+
+class Odometry:
+    """
+     Odometry message to communicate odometry information with an external interface.
+
+     Parameters
+     ----------
+     time_usec : uint64_t
+          Timestamp (0 to use Backend timestamp).
+
+     frame_id : MavFrame
+          Coordinate frame of reference for the pose data.
+
+     position_body : PositionBody
+          Body Position.
+
+     q : Quaternion
+          Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation).
+
+     speed_body : SpeedBody
+          Linear speed (m/s).
+
+     angular_velocity_body : AngularVelocityBody
+          Angular speed (rad/s).
+
+     pose_covariance : Covariance
+          Pose cross-covariance matrix.
+
+     velocity_covariance : Covariance
+          Velocity cross-covariance matrix.
+
+     """
+
+    
+    
+    class MavFrame(Enum):
+        """
+         Mavlink frame id
+
+         Values
+         ------
+         MOCAP_NED
+              MAVLink number: 14. Odometry local coordinate frame of data given by a motion capture system, Z-down (x: north, y: east, z: down).
+
+         LOCAL_FRD
+              MAVLink number: 20. Forward, Right, Down coordinate frame. This is a local frame with Z-down and arbitrary F/R alignment (i.e. not aligned with NED/earth frame). Replacement for MAV_FRAME_MOCAP_NED, MAV_FRAME_VISION_NED, MAV_FRAME_ESTIM_NED.
+
+         """
+
+        
+        MOCAP_NED = 0
+        LOCAL_FRD = 1
+
+        def translate_to_rpc(self, rpcMavFrame):
+            if self == Odometry.MavFrame.MOCAP_NED:
+                return mocap_pb2.Odometry.MAV_FRAME_MOCAP_NED
+            if self == Odometry.MavFrame.LOCAL_FRD:
+                return mocap_pb2.Odometry.MAV_FRAME_LOCAL_FRD
+
+        @staticmethod
+        def translate_from_rpc(rpc_enum_value):
+            """ Parses a gRPC response """
+            if rpc_enum_value == mocap_pb2.Odometry.MAV_FRAME_MOCAP_NED:
+                return Odometry.MavFrame.MOCAP_NED
+            if rpc_enum_value == mocap_pb2.Odometry.MAV_FRAME_LOCAL_FRD:
+                return Odometry.MavFrame.LOCAL_FRD
+
+        def __str__(self):
+            return self.name
+    
+
+    def __init__(
+            self,
+            time_usec,
+            frame_id,
+            position_body,
+            q,
+            speed_body,
+            angular_velocity_body,
+            pose_covariance,
+            velocity_covariance):
+        """ Initializes the Odometry object """
+        self.time_usec = time_usec
+        self.frame_id = frame_id
+        self.position_body = position_body
+        self.q = q
+        self.speed_body = speed_body
+        self.angular_velocity_body = angular_velocity_body
+        self.pose_covariance = pose_covariance
+        self.velocity_covariance = velocity_covariance
+
+    def __equals__(self, to_compare):
+        """ Checks if two Odometry are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Odometry object
+            return \
+                (self.time_usec == to_compare.time_usec) and \
+                (self.frame_id == to_compare.frame_id) and \
+                (self.position_body == to_compare.position_body) and \
+                (self.q == to_compare.q) and \
+                (self.speed_body == to_compare.speed_body) and \
+                (self.angular_velocity_body == to_compare.angular_velocity_body) and \
+                (self.pose_covariance == to_compare.pose_covariance) and \
+                (self.velocity_covariance == to_compare.velocity_covariance)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Odometry in string representation """
+        struct_repr = ", ".join([
+                "time_usec: " + str(self.time_usec),
+                "frame_id: " + str(self.frame_id),
+                "position_body: " + str(self.position_body),
+                "q: " + str(self.q),
+                "speed_body: " + str(self.speed_body),
+                "angular_velocity_body: " + str(self.angular_velocity_body),
+                "pose_covariance: " + str(self.pose_covariance),
+                "velocity_covariance: " + str(self.velocity_covariance)
+                ])
+
+        return f"Odometry: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcOdometry):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Odometry(
+                
+                rpcOdometry.time_usec,
+                
+                
+                Odometry.MavFrame.translate_from_rpc(rpcOdometry.frame_id),
+                
+                
+                PositionBody.translate_from_rpc(rpcOdometry.position_body),
+                
+                
+                Quaternion.translate_from_rpc(rpcOdometry.q),
+                
+                
+                SpeedBody.translate_from_rpc(rpcOdometry.speed_body),
+                
+                
+                AngularVelocityBody.translate_from_rpc(rpcOdometry.angular_velocity_body),
+                
+                
+                Covariance.translate_from_rpc(rpcOdometry.pose_covariance),
+                
+                
+                Covariance.translate_from_rpc(rpcOdometry.velocity_covariance)
+                )
+
+    def translate_to_rpc(self, rpcOdometry):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcOdometry.time_usec = self.time_usec
+            
+        
+        
+        
+            
+        self.frame_id.translate_to_rpc(rpcOdometry.frame_id)
+            
+        
+        
+        
+            
+        self.position_body.translate_to_rpc(rpcOdometry.position_body)
+            
+        
+        
+        
+            
+        self.q.translate_to_rpc(rpcOdometry.q)
+            
+        
+        
+        
+            
+        self.speed_body.translate_to_rpc(rpcOdometry.speed_body)
+            
+        
+        
+        
+            
+        self.angular_velocity_body.translate_to_rpc(rpcOdometry.angular_velocity_body)
+            
+        
+        
+        
+            
+        self.pose_covariance.translate_to_rpc(rpcOdometry.pose_covariance)
+            
+        
+        
+        
+            
+        self.velocity_covariance.translate_to_rpc(rpcOdometry.velocity_covariance)
+            
+        
+        
+
+
 class MocapResult:
     """
      Result type.
@@ -1003,24 +1004,30 @@ class MocapResult:
         INVALID_REQUEST_DATA = 4
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: mocap_pb2.MocapResult.UNKNOWN,
-                    1: mocap_pb2.MocapResult.SUCCESS,
-                    2: mocap_pb2.MocapResult.NO_SYSTEM,
-                    3: mocap_pb2.MocapResult.CONNECTION_ERROR,
-                    4: mocap_pb2.MocapResult.INVALID_REQUEST_DATA
-                }.get(self.value, None)
+            if self == MocapResult.Result.UNKNOWN:
+                return mocap_pb2.MocapResult.RESULT_UNKNOWN
+            if self == MocapResult.Result.SUCCESS:
+                return mocap_pb2.MocapResult.RESULT_SUCCESS
+            if self == MocapResult.Result.NO_SYSTEM:
+                return mocap_pb2.MocapResult.RESULT_NO_SYSTEM
+            if self == MocapResult.Result.CONNECTION_ERROR:
+                return mocap_pb2.MocapResult.RESULT_CONNECTION_ERROR
+            if self == MocapResult.Result.INVALID_REQUEST_DATA:
+                return mocap_pb2.MocapResult.RESULT_INVALID_REQUEST_DATA
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: MocapResult.Result.UNKNOWN,
-                    1: MocapResult.Result.SUCCESS,
-                    2: MocapResult.Result.NO_SYSTEM,
-                    3: MocapResult.Result.CONNECTION_ERROR,
-                    4: MocapResult.Result.INVALID_REQUEST_DATA,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value == mocap_pb2.MocapResult.RESULT_UNKNOWN:
+                return MocapResult.Result.UNKNOWN
+            if rpc_enum_value == mocap_pb2.MocapResult.RESULT_SUCCESS:
+                return MocapResult.Result.SUCCESS
+            if rpc_enum_value == mocap_pb2.MocapResult.RESULT_NO_SYSTEM:
+                return MocapResult.Result.NO_SYSTEM
+            if rpc_enum_value == mocap_pb2.MocapResult.RESULT_CONNECTION_ERROR:
+                return MocapResult.Result.CONNECTION_ERROR
+            if rpc_enum_value == mocap_pb2.MocapResult.RESULT_INVALID_REQUEST_DATA:
+                return MocapResult.Result.INVALID_REQUEST_DATA
 
         def __str__(self):
             return self.name
@@ -1100,8 +1107,8 @@ class MocapError(Exception):
 class Mocap(AsyncBase):
     """
      *
-     Motion Capture allow vehicles to navigate when a global
-     position source is unavailable or unreliable
+     Allows interfacing a vehicle with a motion capture system in
+     order to allow navigation without global positioning sources available
      (e.g. indoors, or when flying under a bridge. etc.).
 
      Generated by dcsdkgen - MAVSDK Mocap API
@@ -1127,7 +1134,8 @@ class Mocap(AsyncBase):
          Parameters
          ----------
          vision_position_estimate : VisionPositionEstimate
-             
+              The vision position estimate
+
          Raises
          ------
          MocapError
@@ -1155,7 +1163,8 @@ class Mocap(AsyncBase):
          Parameters
          ----------
          attitude_position_mocap : AttitudePositionMocap
-             
+              The attitude and position data
+
          Raises
          ------
          MocapError
@@ -1183,7 +1192,8 @@ class Mocap(AsyncBase):
          Parameters
          ----------
          odometry : Odometry
-             
+              The odometry data
+
          Raises
          ------
          MocapError

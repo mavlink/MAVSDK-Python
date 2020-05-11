@@ -4,99 +4,9 @@ from ..generated import shell_pb2, shell_pb2_grpc
 from enum import Enum
 
 
-class ShellMessage:
-    """
- 
-
-     Parameters
-     ----------
-     need_response : bool
-          Set if the sender wants the receiver to send a response.
-
-     timeout_ms : uint32_t
-          Timeout (ms).
-
-     data : std::string
-          Serial data.
-
-     """
-
-    
-
-    def __init__(
-            self,
-            need_response,
-            timeout_ms,
-            data):
-        """ Initializes the ShellMessage object """
-        self.need_response = need_response
-        self.timeout_ms = timeout_ms
-        self.data = data
-
-    def __equals__(self, to_compare):
-        """ Checks if two ShellMessage are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # ShellMessage object
-            return \
-                (self.need_response == to_compare.need_response) and \
-                (self.timeout_ms == to_compare.timeout_ms) and \
-                (self.data == to_compare.data)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ ShellMessage in string representation """
-        struct_repr = ", ".join([
-                "need_response: " + str(self.need_response),
-                "timeout_ms: " + str(self.timeout_ms),
-                "data: " + str(self.data)
-                ])
-
-        return f"ShellMessage: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcShellMessage):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return ShellMessage(
-                
-                rpcShellMessage.need_response,
-                
-                
-                rpcShellMessage.timeout_ms,
-                
-                
-                rpcShellMessage.data
-                )
-
-    def translate_to_rpc(self, rpcShellMessage):
-        """ Translates this SDK object into its gRPC equivalent """
-
-        
-        
-            
-        rpcShellMessage.need_response = self.need_response
-            
-        
-        
-        
-            
-        rpcShellMessage.timeout_ms = self.timeout_ms
-            
-        
-        
-        
-            
-        rpcShellMessage.data = self.data
-            
-        
-        
-
-
 class ShellResult:
     """
- 
+     Result type.
 
      Parameters
      ----------
@@ -117,7 +27,7 @@ class ShellResult:
          Values
          ------
          UNKNOWN
-              Unknown error
+              Unknown result
 
          SUCCESS
               Request succeeded
@@ -145,26 +55,34 @@ class ShellResult:
         BUSY = 5
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: shell_pb2.ShellResult.UNKNOWN,
-                    1: shell_pb2.ShellResult.SUCCESS,
-                    2: shell_pb2.ShellResult.NO_SYSTEM,
-                    3: shell_pb2.ShellResult.CONNECTION_ERROR,
-                    4: shell_pb2.ShellResult.NO_RESPONSE,
-                    5: shell_pb2.ShellResult.BUSY
-                }.get(self.value, None)
+            if self == ShellResult.Result.UNKNOWN:
+                return shell_pb2.ShellResult.RESULT_UNKNOWN
+            if self == ShellResult.Result.SUCCESS:
+                return shell_pb2.ShellResult.RESULT_SUCCESS
+            if self == ShellResult.Result.NO_SYSTEM:
+                return shell_pb2.ShellResult.RESULT_NO_SYSTEM
+            if self == ShellResult.Result.CONNECTION_ERROR:
+                return shell_pb2.ShellResult.RESULT_CONNECTION_ERROR
+            if self == ShellResult.Result.NO_RESPONSE:
+                return shell_pb2.ShellResult.RESULT_NO_RESPONSE
+            if self == ShellResult.Result.BUSY:
+                return shell_pb2.ShellResult.RESULT_BUSY
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: ShellResult.Result.UNKNOWN,
-                    1: ShellResult.Result.SUCCESS,
-                    2: ShellResult.Result.NO_SYSTEM,
-                    3: ShellResult.Result.CONNECTION_ERROR,
-                    4: ShellResult.Result.NO_RESPONSE,
-                    5: ShellResult.Result.BUSY,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value == shell_pb2.ShellResult.RESULT_UNKNOWN:
+                return ShellResult.Result.UNKNOWN
+            if rpc_enum_value == shell_pb2.ShellResult.RESULT_SUCCESS:
+                return ShellResult.Result.SUCCESS
+            if rpc_enum_value == shell_pb2.ShellResult.RESULT_NO_SYSTEM:
+                return ShellResult.Result.NO_SYSTEM
+            if rpc_enum_value == shell_pb2.ShellResult.RESULT_CONNECTION_ERROR:
+                return ShellResult.Result.CONNECTION_ERROR
+            if rpc_enum_value == shell_pb2.ShellResult.RESULT_NO_RESPONSE:
+                return ShellResult.Result.NO_RESPONSE
+            if rpc_enum_value == shell_pb2.ShellResult.RESULT_BUSY:
+                return ShellResult.Result.BUSY
 
         def __str__(self):
             return self.name
@@ -262,18 +180,14 @@ class Shell(AsyncBase):
         return ShellResult.translate_from_rpc(response.shell_result)
     
 
-    async def send(self, shell_message):
+    async def send(self, command):
         """
-         Communicate with a vehicle's Shell.
+         Send a command line.
 
          Parameters
          ----------
-         shell_message : ShellMessage
-             
-         Returns
-         -------
-         response_message_data : std::string
-              Response message data (if available)
+         command : std::string
+              The command line to send
 
          Raises
          ------
@@ -282,20 +196,38 @@ class Shell(AsyncBase):
         """
 
         request = shell_pb2.SendRequest()
-        
-            
-                
-        shell_message.translate_to_rpc(request.shell_message)
-                
-            
+        request.command = command
         response = await self._stub.Send(request)
 
         
         result = self._extract_result(response)
 
         if result.result is not ShellResult.Result.SUCCESS:
-            raise ShellError(result, "send()", shell_message)
+            raise ShellError(result, "send()", command)
         
 
-        return response.response_message_data
-        
+    async def receive(self):
+        """
+         Receive feedback from a sent command line.
+
+         This subscription needs to be made before a command line is sent, otherwise, no response will be sent.
+
+         Yields
+         -------
+         data : std::string
+              Received data.
+
+         
+        """
+
+        request = shell_pb2.SubscribeReceiveRequest()
+        receive_stream = self._stub.SubscribeReceive(request)
+
+        try:
+            async for response in receive_stream:
+                
+
+            
+                yield response.data
+        finally:
+            receive_stream.cancel()

@@ -5,46 +5,68 @@ from . import geofence_pb2 as geofence__pb2
 
 
 class GeofenceServiceStub(object):
-  """Enable setting a geofence.
-  """
-
-  def __init__(self, channel):
-    """Constructor.
-
-    Args:
-      channel: A grpc.Channel.
+    """Enable setting a geofence.
     """
-    self.UploadGeofence = channel.unary_unary(
-        '/mavsdk.rpc.geofence.GeofenceService/UploadGeofence',
-        request_serializer=geofence__pb2.UploadGeofenceRequest.SerializeToString,
-        response_deserializer=geofence__pb2.UploadGeofenceResponse.FromString,
-        )
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.UploadGeofence = channel.unary_unary(
+                '/mavsdk.rpc.geofence.GeofenceService/UploadGeofence',
+                request_serializer=geofence__pb2.UploadGeofenceRequest.SerializeToString,
+                response_deserializer=geofence__pb2.UploadGeofenceResponse.FromString,
+                )
 
 
 class GeofenceServiceServicer(object):
-  """Enable setting a geofence.
-  """
-
-  def UploadGeofence(self, request, context):
+    """Enable setting a geofence.
     """
-    Upload a geofence.
 
-    Polygons are uploaded to a drone. Once uploaded, the geofence will remain
-    on the drone even if a connection is lost.
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
+    def UploadGeofence(self, request, context):
+        """
+        Upload a geofence.
+
+        Polygons are uploaded to a drone. Once uploaded, the geofence will remain
+        on the drone even if a connection is lost.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
 
 def add_GeofenceServiceServicer_to_server(servicer, server):
-  rpc_method_handlers = {
-      'UploadGeofence': grpc.unary_unary_rpc_method_handler(
-          servicer.UploadGeofence,
-          request_deserializer=geofence__pb2.UploadGeofenceRequest.FromString,
-          response_serializer=geofence__pb2.UploadGeofenceResponse.SerializeToString,
-      ),
-  }
-  generic_handler = grpc.method_handlers_generic_handler(
-      'mavsdk.rpc.geofence.GeofenceService', rpc_method_handlers)
-  server.add_generic_rpc_handlers((generic_handler,))
+    rpc_method_handlers = {
+            'UploadGeofence': grpc.unary_unary_rpc_method_handler(
+                    servicer.UploadGeofence,
+                    request_deserializer=geofence__pb2.UploadGeofenceRequest.FromString,
+                    response_serializer=geofence__pb2.UploadGeofenceResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'mavsdk.rpc.geofence.GeofenceService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class GeofenceService(object):
+    """Enable setting a geofence.
+    """
+
+    @staticmethod
+    def UploadGeofence(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.geofence.GeofenceService/UploadGeofence',
+            geofence__pb2.UploadGeofenceRequest.SerializeToString,
+            geofence__pb2.UploadGeofenceResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)

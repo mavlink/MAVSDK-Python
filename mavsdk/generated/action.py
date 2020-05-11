@@ -27,10 +27,10 @@ class ActionResult:
          Values
          ------
          UNKNOWN
-              Unknown error
+              Unknown result
 
          SUCCESS
-              Success: the action command was accepted by the vehicle
+              Request was successful
 
          NO_SYSTEM
               No system is connected
@@ -54,7 +54,7 @@ class ActionResult:
               Request timed out
 
          VTOL_TRANSITION_SUPPORT_UNKNOWN
-              Hybrid/VTOL transition refused because VTOL support is unknown
+              Hybrid/VTOL transition support is unknown
 
          NO_VTOL_TRANSITION_SUPPORT
               Vehicle does not support hybrid/VTOL transitions
@@ -79,38 +79,58 @@ class ActionResult:
         PARAMETER_ERROR = 11
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: action_pb2.ActionResult.UNKNOWN,
-                    1: action_pb2.ActionResult.SUCCESS,
-                    2: action_pb2.ActionResult.NO_SYSTEM,
-                    3: action_pb2.ActionResult.CONNECTION_ERROR,
-                    4: action_pb2.ActionResult.BUSY,
-                    5: action_pb2.ActionResult.COMMAND_DENIED,
-                    6: action_pb2.ActionResult.COMMAND_DENIED_LANDED_STATE_UNKNOWN,
-                    7: action_pb2.ActionResult.COMMAND_DENIED_NOT_LANDED,
-                    8: action_pb2.ActionResult.TIMEOUT,
-                    9: action_pb2.ActionResult.VTOL_TRANSITION_SUPPORT_UNKNOWN,
-                    10: action_pb2.ActionResult.NO_VTOL_TRANSITION_SUPPORT,
-                    11: action_pb2.ActionResult.PARAMETER_ERROR
-                }.get(self.value, None)
+            if self == ActionResult.Result.UNKNOWN:
+                return action_pb2.ActionResult.RESULT_UNKNOWN
+            if self == ActionResult.Result.SUCCESS:
+                return action_pb2.ActionResult.RESULT_SUCCESS
+            if self == ActionResult.Result.NO_SYSTEM:
+                return action_pb2.ActionResult.RESULT_NO_SYSTEM
+            if self == ActionResult.Result.CONNECTION_ERROR:
+                return action_pb2.ActionResult.RESULT_CONNECTION_ERROR
+            if self == ActionResult.Result.BUSY:
+                return action_pb2.ActionResult.RESULT_BUSY
+            if self == ActionResult.Result.COMMAND_DENIED:
+                return action_pb2.ActionResult.RESULT_COMMAND_DENIED
+            if self == ActionResult.Result.COMMAND_DENIED_LANDED_STATE_UNKNOWN:
+                return action_pb2.ActionResult.RESULT_COMMAND_DENIED_LANDED_STATE_UNKNOWN
+            if self == ActionResult.Result.COMMAND_DENIED_NOT_LANDED:
+                return action_pb2.ActionResult.RESULT_COMMAND_DENIED_NOT_LANDED
+            if self == ActionResult.Result.TIMEOUT:
+                return action_pb2.ActionResult.RESULT_TIMEOUT
+            if self == ActionResult.Result.VTOL_TRANSITION_SUPPORT_UNKNOWN:
+                return action_pb2.ActionResult.RESULT_VTOL_TRANSITION_SUPPORT_UNKNOWN
+            if self == ActionResult.Result.NO_VTOL_TRANSITION_SUPPORT:
+                return action_pb2.ActionResult.RESULT_NO_VTOL_TRANSITION_SUPPORT
+            if self == ActionResult.Result.PARAMETER_ERROR:
+                return action_pb2.ActionResult.RESULT_PARAMETER_ERROR
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: ActionResult.Result.UNKNOWN,
-                    1: ActionResult.Result.SUCCESS,
-                    2: ActionResult.Result.NO_SYSTEM,
-                    3: ActionResult.Result.CONNECTION_ERROR,
-                    4: ActionResult.Result.BUSY,
-                    5: ActionResult.Result.COMMAND_DENIED,
-                    6: ActionResult.Result.COMMAND_DENIED_LANDED_STATE_UNKNOWN,
-                    7: ActionResult.Result.COMMAND_DENIED_NOT_LANDED,
-                    8: ActionResult.Result.TIMEOUT,
-                    9: ActionResult.Result.VTOL_TRANSITION_SUPPORT_UNKNOWN,
-                    10: ActionResult.Result.NO_VTOL_TRANSITION_SUPPORT,
-                    11: ActionResult.Result.PARAMETER_ERROR,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_UNKNOWN:
+                return ActionResult.Result.UNKNOWN
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_SUCCESS:
+                return ActionResult.Result.SUCCESS
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_NO_SYSTEM:
+                return ActionResult.Result.NO_SYSTEM
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_CONNECTION_ERROR:
+                return ActionResult.Result.CONNECTION_ERROR
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_BUSY:
+                return ActionResult.Result.BUSY
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_COMMAND_DENIED:
+                return ActionResult.Result.COMMAND_DENIED
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_COMMAND_DENIED_LANDED_STATE_UNKNOWN:
+                return ActionResult.Result.COMMAND_DENIED_LANDED_STATE_UNKNOWN
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_COMMAND_DENIED_NOT_LANDED:
+                return ActionResult.Result.COMMAND_DENIED_NOT_LANDED
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_TIMEOUT:
+                return ActionResult.Result.TIMEOUT
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_VTOL_TRANSITION_SUPPORT_UNKNOWN:
+                return ActionResult.Result.VTOL_TRANSITION_SUPPORT_UNKNOWN
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_NO_VTOL_TRANSITION_SUPPORT:
+                return ActionResult.Result.NO_VTOL_TRANSITION_SUPPORT
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_PARAMETER_ERROR:
+                return ActionResult.Result.PARAMETER_ERROR
 
         def __str__(self):
             return self.name
@@ -257,7 +277,7 @@ class Action(AsyncBase):
         """
          Send command to take off and hover.
 
-         This switches the drone into position control mode and commands 
+         This switches the drone into position control mode and commands
          it to take off and hover at the takeoff altitude.
 
          Note that the vehicle must be armed before it can take off.
@@ -322,9 +342,33 @@ class Action(AsyncBase):
             raise ActionError(result, "reboot()")
         
 
+    async def shutdown(self):
+        """
+         Send command to shut down the drone components.
+
+         This will shut down the autopilot, onboard computer, camera and gimbal.
+         This command should only be used when the autopilot is disarmed and autopilots commonly
+         reject it if they are not already ready to shut down.
+
+         Raises
+         ------
+         ActionError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = action_pb2.ShutdownRequest()
+        response = await self._stub.Shutdown(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not ActionResult.Result.SUCCESS:
+            raise ActionError(result, "shutdown()")
+        
+
     async def kill(self):
         """
-         Send command to kill the drone. 
+         Send command to kill the drone.
 
          This will disarm a drone irrespective of whether it is landed or flying.
          Note that the drone will fall out of the sky if this command is used while flying.
@@ -349,7 +393,7 @@ class Action(AsyncBase):
         """
          Send command to return to the launch (takeoff) position and land.
 
-         This switches the drone into [RTL mode](https://docs.px4.io/en/flight_modes/rtl.html) which
+         This switches the drone into [Return mode](https://docs.px4.io/master/en/flight_modes/return.html) which
          generally means it will rise up to a certain altitude to clear any obstacles before heading
          back to the launch (takeoff) position and land there.
 
@@ -369,7 +413,50 @@ class Action(AsyncBase):
             raise ActionError(result, "return_to_launch()")
         
 
-    async def transition_to_fixed_wing(self):
+    async def goto_location(self, latitude_deg, longitude_deg, absolute_altitude_m, yaw_deg):
+        """
+         Send command to move the vehicle to a specific global position.
+
+         The latitude and longitude are given in degrees (WGS84 frame) and the altitude
+         in meters AMSL (above mean sea level).
+
+         The yaw angle is in degrees (frame is NED, 0 is North, positive is clockwise).
+
+         Parameters
+         ----------
+         latitude_deg : double
+              Latitude (in degrees)
+
+         longitude_deg : double
+              Longitude (in degrees)
+
+         absolute_altitude_m : float
+              Altitude AMSL (in meters)
+
+         yaw_deg : float
+              Yaw angle (in degrees, frame is NED, 0 is North, positive is clockwise)
+
+         Raises
+         ------
+         ActionError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = action_pb2.GotoLocationRequest()
+        request.latitude_deg = latitude_deg
+        request.longitude_deg = longitude_deg
+        request.absolute_altitude_m = absolute_altitude_m
+        request.yaw_deg = yaw_deg
+        response = await self._stub.GotoLocation(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not ActionResult.Result.SUCCESS:
+            raise ActionError(result, "goto_location()", latitude_deg, longitude_deg, absolute_altitude_m, yaw_deg)
+        
+
+    async def transition_to_fixedwing(self):
         """
          Send command to transition the drone to fixedwing.
 
@@ -383,14 +470,14 @@ class Action(AsyncBase):
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = action_pb2.TransitionToFixedWingRequest()
-        response = await self._stub.TransitionToFixedWing(request)
+        request = action_pb2.TransitionToFixedwingRequest()
+        response = await self._stub.TransitionToFixedwing(request)
 
         
         result = self._extract_result(response)
 
         if result.result is not ActionResult.Result.SUCCESS:
-            raise ActionError(result, "transition_to_fixed_wing()")
+            raise ActionError(result, "transition_to_fixedwing()")
         
 
     async def transition_to_multicopter(self):

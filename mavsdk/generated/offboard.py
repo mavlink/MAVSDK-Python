@@ -694,7 +694,7 @@ class OffboardResult:
          Values
          ------
          UNKNOWN
-              Unknown error
+              Unknown result
 
          SUCCESS
               Request succeeded
@@ -730,30 +730,42 @@ class OffboardResult:
         NO_SETPOINT_SET = 7
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: offboard_pb2.OffboardResult.UNKNOWN,
-                    1: offboard_pb2.OffboardResult.SUCCESS,
-                    2: offboard_pb2.OffboardResult.NO_SYSTEM,
-                    3: offboard_pb2.OffboardResult.CONNECTION_ERROR,
-                    4: offboard_pb2.OffboardResult.BUSY,
-                    5: offboard_pb2.OffboardResult.COMMAND_DENIED,
-                    6: offboard_pb2.OffboardResult.TIMEOUT,
-                    7: offboard_pb2.OffboardResult.NO_SETPOINT_SET
-                }.get(self.value, None)
+            if self == OffboardResult.Result.UNKNOWN:
+                return offboard_pb2.OffboardResult.RESULT_UNKNOWN
+            if self == OffboardResult.Result.SUCCESS:
+                return offboard_pb2.OffboardResult.RESULT_SUCCESS
+            if self == OffboardResult.Result.NO_SYSTEM:
+                return offboard_pb2.OffboardResult.RESULT_NO_SYSTEM
+            if self == OffboardResult.Result.CONNECTION_ERROR:
+                return offboard_pb2.OffboardResult.RESULT_CONNECTION_ERROR
+            if self == OffboardResult.Result.BUSY:
+                return offboard_pb2.OffboardResult.RESULT_BUSY
+            if self == OffboardResult.Result.COMMAND_DENIED:
+                return offboard_pb2.OffboardResult.RESULT_COMMAND_DENIED
+            if self == OffboardResult.Result.TIMEOUT:
+                return offboard_pb2.OffboardResult.RESULT_TIMEOUT
+            if self == OffboardResult.Result.NO_SETPOINT_SET:
+                return offboard_pb2.OffboardResult.RESULT_NO_SETPOINT_SET
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: OffboardResult.Result.UNKNOWN,
-                    1: OffboardResult.Result.SUCCESS,
-                    2: OffboardResult.Result.NO_SYSTEM,
-                    3: OffboardResult.Result.CONNECTION_ERROR,
-                    4: OffboardResult.Result.BUSY,
-                    5: OffboardResult.Result.COMMAND_DENIED,
-                    6: OffboardResult.Result.TIMEOUT,
-                    7: OffboardResult.Result.NO_SETPOINT_SET,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_UNKNOWN:
+                return OffboardResult.Result.UNKNOWN
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_SUCCESS:
+                return OffboardResult.Result.SUCCESS
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_NO_SYSTEM:
+                return OffboardResult.Result.NO_SYSTEM
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_CONNECTION_ERROR:
+                return OffboardResult.Result.CONNECTION_ERROR
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_BUSY:
+                return OffboardResult.Result.BUSY
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_COMMAND_DENIED:
+                return OffboardResult.Result.COMMAND_DENIED
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_TIMEOUT:
+                return OffboardResult.Result.TIMEOUT
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_NO_SETPOINT_SET:
+                return OffboardResult.Result.NO_SETPOINT_SET
 
         def __str__(self):
             return self.name
@@ -932,7 +944,10 @@ class Offboard(AsyncBase):
          attitude : Attitude
               Attitude roll, pitch and yaw along with thrust
 
-         
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetAttitudeRequest()
@@ -942,6 +957,11 @@ class Offboard(AsyncBase):
             
         response = await self._stub.SetAttitude(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_attitude()", attitude)
         
 
     async def set_actuator_control(self, actuator_control):
@@ -956,7 +976,10 @@ class Offboard(AsyncBase):
          actuator_control : ActuatorControl
               Actuator control values
 
-         
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetActuatorControlRequest()
@@ -966,6 +989,11 @@ class Offboard(AsyncBase):
             
         response = await self._stub.SetActuatorControl(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_actuator_control()", actuator_control)
         
 
     async def set_attitude_rate(self, attitude_rate):
@@ -977,7 +1005,10 @@ class Offboard(AsyncBase):
          attitude_rate : AttitudeRate
               Attitude rate roll, pitch and yaw angular rate along with thrust
 
-         
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetAttitudeRateRequest()
@@ -987,6 +1018,11 @@ class Offboard(AsyncBase):
             
         response = await self._stub.SetAttitudeRate(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_attitude_rate()", attitude_rate)
         
 
     async def set_position_ned(self, position_ned_yaw):
@@ -998,7 +1034,10 @@ class Offboard(AsyncBase):
          position_ned_yaw : PositionNedYaw
               Position and yaw
 
-         
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetPositionNedRequest()
@@ -1008,6 +1047,11 @@ class Offboard(AsyncBase):
             
         response = await self._stub.SetPositionNed(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_position_ned()", position_ned_yaw)
         
 
     async def set_velocity_body(self, velocity_body_yawspeed):
@@ -1019,7 +1063,10 @@ class Offboard(AsyncBase):
          velocity_body_yawspeed : VelocityBodyYawspeed
               Velocity and yaw angular rate
 
-         
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetVelocityBodyRequest()
@@ -1029,6 +1076,11 @@ class Offboard(AsyncBase):
             
         response = await self._stub.SetVelocityBody(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_velocity_body()", velocity_body_yawspeed)
         
 
     async def set_velocity_ned(self, velocity_ned_yaw):
@@ -1040,7 +1092,10 @@ class Offboard(AsyncBase):
          velocity_ned_yaw : VelocityNedYaw
               Velocity and yaw
 
-         
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetVelocityNedRequest()
@@ -1050,4 +1105,9 @@ class Offboard(AsyncBase):
             
         response = await self._stub.SetVelocityNed(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_velocity_ned()", velocity_ned_yaw)
         

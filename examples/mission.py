@@ -3,7 +3,7 @@
 import asyncio
 
 from mavsdk import System
-from mavsdk import (MissionItem)
+from mavsdk import (MissionItem, MissionPlan)
 
 
 async def run():
@@ -51,10 +51,12 @@ async def run():
                                      float('nan'),
                                      float('nan')))
 
+    mission_plan = MissionPlan(mission_items)
+
     await drone.mission.set_return_to_launch_after_mission(True)
 
     print("-- Uploading mission")
-    await drone.mission.upload_mission(mission_items)
+    await drone.mission.upload_mission(mission_plan)
 
     print("-- Arming")
     await drone.action.arm()
@@ -68,8 +70,8 @@ async def run():
 async def print_mission_progress(drone):
     async for mission_progress in drone.mission.mission_progress():
         print(f"Mission progress: "
-              f"{mission_progress.current_item_index}/"
-              f"{mission_progress.mission_count}")
+              f"{mission_progress.current}/"
+              f"{mission_progress.total}")
 
 
 async def observe_is_in_air(drone):

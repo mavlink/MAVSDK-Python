@@ -1,4 +1,5 @@
 #!/bin/bash
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WORK_DIR="${SCRIPT_DIR}/../../"
 PROTO_DIR="${WORK_DIR}/proto"
@@ -9,64 +10,51 @@ export TEMPLATE_PATH="${WORK_DIR}/other/templates/"
 function generate {
     printf "# -*- coding: utf-8 -*-\n\n" > $PLUGIN_INIT
 
-    for PROTO_FILE in `find ${PROTO_DIR}/protos -name "*.proto" -type f`; do
+    # Generate our extensions
+    python3 -m grpc_tools.protoc -I${PROTO_DIR}/protos \
+                                 --proto_path=${PROTO_DIR}/protos/ \
+                                 --python_out=${GENERATED_DIR} \
+                                 --grpc_python_out=${GENERATED_DIR} \
+                                 mavsdk_options.proto
 
-        # Generate bindings for each file individually
-        python3 -m grpc_tools.protoc -I${GENERATED_DIR} \
-                                     --proto_path=$(dirname ${PROTO_FILE}) \
+    for plugin in action calibration geofence gimbal camera core info mission mocap offboard param shell telemetry; do
+
+       # Generate protobuf and gRPC files
+        python3 -m grpc_tools.protoc -I${PROTO_DIR}/protos \
+                                     --proto_path=${PROTO_DIR}/protos/${plugin} \
                                      --python_out=${GENERATED_DIR} \
                                      --grpc_python_out=${GENERATED_DIR} \
-                                     ${PROTO_FILE}
-
-        # For some reason the import is broken with Python3.5.x and works fine
-        # with Python3.6.x, set an absolute path and everything is fine
-        PROTO_IMPORT_NAME="$(basename -- ${PROTO_FILE%.*})_pb2"
+                                     ${plugin}.proto
 
         # We need to create the .original backup files, otherwise we're not compatible with
         # BSD sed.
-        sed -i'.sedoriginal' -e "s/import ${PROTO_IMPORT_NAME}/from . import ${PROTO_IMPORT_NAME}/" \
-            "${GENERATED_DIR}/${PROTO_IMPORT_NAME}_grpc.py"
+        sed -i'.sedoriginal' -e "s/import mavsdk_options_pb2/from . import mavsdk_options_pb2/" \
+            "${GENERATED_DIR}/${plugin}_pb2.py"
+        sed -i'.sedoriginal' -e "s/import ${plugin}_pb2/from . import ${plugin}_pb2/" \
+            "${GENERATED_DIR}/${plugin}_pb2_grpc.py"
         # Clean up the backup files.
         find ${GENERATED_DIR} -name '*.sedoriginal' -delete
 
-        echo " -> [+] Generated protobuf and gRPC bindings for ${PROTO_IMPORT_NAME%_*}"
+        echo " -> [+] Generated protobuf and gRPC bindings for ${plugin}"
 
         # Generate plugin
-        python3 -m grpc_tools.protoc -I$(dirname ${PROTO_FILE}) \
+        python3 -m grpc_tools.protoc -I${PROTO_DIR}/protos \
+                                     --proto_path=${PROTO_DIR}/protos/${plugin} \
                                      --plugin=protoc-gen-custom=$(which protoc-gen-dcsdk) \
                                      --custom_out=${GENERATED_DIR} \
                                      --custom_opt=file_ext=py \
-                                     ${PROTO_FILE}
+                                    ${plugin}.proto
 
-        WANTED_PLUGIN_NAME="$(echo ${PROTO_FILE} | sed "s#.*/\(.*\).proto#\1#g").py"
-        # protoc generates java like filenames, we don't want that with python
-
-        # @TODO: cleanup this script and figure out a way to make it cross-os friendly perhaps rewrite in python
-        # capilalization as trivial as this needs a workaround for macos bash 3.2
-        # this solution avoids using bash ^ substitution (from bash >4.0) and is using python 3 instead
-        CAPITALIZED_PLUGIN_NAME=$(python3 -c "import sys;print(sys.argv[1].capitalize())" "$WANTED_PLUGIN_NAME")
-        mv ${GENERATED_DIR}/${CAPITALIZED_PLUGIN_NAME} ${GENERATED_DIR}/${WANTED_PLUGIN_NAME}
+        # protoc-gen-dcsdk capitalizes filenames, and we don't want that with python
+        mv ${GENERATED_DIR}/${plugin^}.py ${GENERATED_DIR}/${plugin}.py
 
         # Add to imports
-        echo "from .${WANTED_PLUGIN_NAME%.py} import *" >> $PLUGIN_INIT
-        echo " -> [+] Generated plugin for ${PROTO_IMPORT_NAME%_*}"
+        echo "from .${plugin} import *" >> $PLUGIN_INIT
+        echo " -> [+] Generated plugin for ${plugin}"
 
     done
 }
 
-function install_dcsdkgen {
-    cd ${PROTO_DIR}/pb_plugins
-    if [[ "$VIRTUAL_ENV" != "" ]]
-    then
-        pip3 install .
-    else
-        pip3 install --user .
-    fi
-}
-
-echo "[+] Installing the MAVSDK autogenerator"
-install_dcsdkgen
-echo "[+] Done"
 echo "[+] Generating plugins from "
 generate
 echo "[+] Done"

@@ -4,6 +4,244 @@ from ..generated import info_pb2, info_pb2_grpc
 from enum import Enum
 
 
+class FlightInfo:
+    """
+     System flight information.
+
+     Parameters
+     ----------
+     time_boot_ms : uint32_t
+          Time since system boot
+
+     flight_uid : uint64_t
+          Flight counter. Starts from zero, is incremented at every disarm and is never reset (even after reboot)
+
+     """
+
+    
+
+    def __init__(
+            self,
+            time_boot_ms,
+            flight_uid):
+        """ Initializes the FlightInfo object """
+        self.time_boot_ms = time_boot_ms
+        self.flight_uid = flight_uid
+
+    def __equals__(self, to_compare):
+        """ Checks if two FlightInfo are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # FlightInfo object
+            return \
+                (self.time_boot_ms == to_compare.time_boot_ms) and \
+                (self.flight_uid == to_compare.flight_uid)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ FlightInfo in string representation """
+        struct_repr = ", ".join([
+                "time_boot_ms: " + str(self.time_boot_ms),
+                "flight_uid: " + str(self.flight_uid)
+                ])
+
+        return f"FlightInfo: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcFlightInfo):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return FlightInfo(
+                
+                rpcFlightInfo.time_boot_ms,
+                
+                
+                rpcFlightInfo.flight_uid
+                )
+
+    def translate_to_rpc(self, rpcFlightInfo):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcFlightInfo.time_boot_ms = self.time_boot_ms
+            
+        
+        
+        
+            
+        rpcFlightInfo.flight_uid = self.flight_uid
+            
+        
+        
+
+
+class Identification:
+    """
+     System identification.
+
+     Parameters
+     ----------
+     hardware_uid : std::string
+          UID of the hardware. This refers to uid2 of MAVLink. If the system does not support uid2 yet, this is all zeros.
+
+     """
+
+    
+
+    def __init__(
+            self,
+            hardware_uid):
+        """ Initializes the Identification object """
+        self.hardware_uid = hardware_uid
+
+    def __equals__(self, to_compare):
+        """ Checks if two Identification are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Identification object
+            return \
+                (self.hardware_uid == to_compare.hardware_uid)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Identification in string representation """
+        struct_repr = ", ".join([
+                "hardware_uid: " + str(self.hardware_uid)
+                ])
+
+        return f"Identification: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcIdentification):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Identification(
+                
+                rpcIdentification.hardware_uid
+                )
+
+    def translate_to_rpc(self, rpcIdentification):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcIdentification.hardware_uid = self.hardware_uid
+            
+        
+        
+
+
+class Product:
+    """
+     System product information.
+
+     Parameters
+     ----------
+     vendor_id : int32_t
+          ID of the board vendor
+
+     vendor_name : std::string
+          Name of the vendor
+
+     product_id : int32_t
+          ID of the product
+
+     product_name : std::string
+          Name of the product
+
+     """
+
+    
+
+    def __init__(
+            self,
+            vendor_id,
+            vendor_name,
+            product_id,
+            product_name):
+        """ Initializes the Product object """
+        self.vendor_id = vendor_id
+        self.vendor_name = vendor_name
+        self.product_id = product_id
+        self.product_name = product_name
+
+    def __equals__(self, to_compare):
+        """ Checks if two Product are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Product object
+            return \
+                (self.vendor_id == to_compare.vendor_id) and \
+                (self.vendor_name == to_compare.vendor_name) and \
+                (self.product_id == to_compare.product_id) and \
+                (self.product_name == to_compare.product_name)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Product in string representation """
+        struct_repr = ", ".join([
+                "vendor_id: " + str(self.vendor_id),
+                "vendor_name: " + str(self.vendor_name),
+                "product_id: " + str(self.product_id),
+                "product_name: " + str(self.product_name)
+                ])
+
+        return f"Product: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcProduct):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Product(
+                
+                rpcProduct.vendor_id,
+                
+                
+                rpcProduct.vendor_name,
+                
+                
+                rpcProduct.product_id,
+                
+                
+                rpcProduct.product_name
+                )
+
+    def translate_to_rpc(self, rpcProduct):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcProduct.vendor_id = self.vendor_id
+            
+        
+        
+        
+            
+        rpcProduct.vendor_name = self.vendor_name
+            
+        
+        
+        
+            
+        rpcProduct.product_id = self.product_id
+            
+        
+        
+        
+            
+        rpcProduct.product_name = self.product_name
+            
+        
+        
+
+
 class Version:
     """
      System version information.
@@ -37,6 +275,12 @@ class Version:
      os_sw_patch : int32_t
           Operating system software patch version
 
+     flight_sw_git_hash : std::string
+          Flight software git hash
+
+     os_sw_git_hash : std::string
+          Operating system software git hash
+
      """
 
     
@@ -51,7 +295,9 @@ class Version:
             flight_sw_vendor_patch,
             os_sw_major,
             os_sw_minor,
-            os_sw_patch):
+            os_sw_patch,
+            flight_sw_git_hash,
+            os_sw_git_hash):
         """ Initializes the Version object """
         self.flight_sw_major = flight_sw_major
         self.flight_sw_minor = flight_sw_minor
@@ -62,6 +308,8 @@ class Version:
         self.os_sw_major = os_sw_major
         self.os_sw_minor = os_sw_minor
         self.os_sw_patch = os_sw_patch
+        self.flight_sw_git_hash = flight_sw_git_hash
+        self.os_sw_git_hash = os_sw_git_hash
 
     def __equals__(self, to_compare):
         """ Checks if two Version are the same """
@@ -77,7 +325,9 @@ class Version:
                 (self.flight_sw_vendor_patch == to_compare.flight_sw_vendor_patch) and \
                 (self.os_sw_major == to_compare.os_sw_major) and \
                 (self.os_sw_minor == to_compare.os_sw_minor) and \
-                (self.os_sw_patch == to_compare.os_sw_patch)
+                (self.os_sw_patch == to_compare.os_sw_patch) and \
+                (self.flight_sw_git_hash == to_compare.flight_sw_git_hash) and \
+                (self.os_sw_git_hash == to_compare.os_sw_git_hash)
 
         except AttributeError:
             return False
@@ -93,7 +343,9 @@ class Version:
                 "flight_sw_vendor_patch: " + str(self.flight_sw_vendor_patch),
                 "os_sw_major: " + str(self.os_sw_major),
                 "os_sw_minor: " + str(self.os_sw_minor),
-                "os_sw_patch: " + str(self.os_sw_patch)
+                "os_sw_patch: " + str(self.os_sw_patch),
+                "flight_sw_git_hash: " + str(self.flight_sw_git_hash),
+                "os_sw_git_hash: " + str(self.os_sw_git_hash)
                 ])
 
         return f"Version: [{struct_repr}]"
@@ -127,7 +379,13 @@ class Version:
                 rpcVersion.os_sw_minor,
                 
                 
-                rpcVersion.os_sw_patch
+                rpcVersion.os_sw_patch,
+                
+                
+                rpcVersion.flight_sw_git_hash,
+                
+                
+                rpcVersion.os_sw_git_hash
                 )
 
     def translate_to_rpc(self, rpcVersion):
@@ -188,6 +446,18 @@ class Version:
             
         
         
+        
+            
+        rpcVersion.flight_sw_git_hash = self.flight_sw_git_hash
+            
+        
+        
+        
+            
+        rpcVersion.os_sw_git_hash = self.os_sw_git_hash
+            
+        
+        
 
 
 class InfoResult:
@@ -213,7 +483,7 @@ class InfoResult:
          Values
          ------
          UNKNOWN
-              Unknown error
+              Unknown result
 
          SUCCESS
               Request succeeded
@@ -229,20 +499,22 @@ class InfoResult:
         INFORMATION_NOT_RECEIVED_YET = 2
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: info_pb2.InfoResult.UNKNOWN,
-                    1: info_pb2.InfoResult.SUCCESS,
-                    2: info_pb2.InfoResult.INFORMATION_NOT_RECEIVED_YET
-                }.get(self.value, None)
+            if self == InfoResult.Result.UNKNOWN:
+                return info_pb2.InfoResult.RESULT_UNKNOWN
+            if self == InfoResult.Result.SUCCESS:
+                return info_pb2.InfoResult.RESULT_SUCCESS
+            if self == InfoResult.Result.INFORMATION_NOT_RECEIVED_YET:
+                return info_pb2.InfoResult.RESULT_INFORMATION_NOT_RECEIVED_YET
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: InfoResult.Result.UNKNOWN,
-                    1: InfoResult.Result.SUCCESS,
-                    2: InfoResult.Result.INFORMATION_NOT_RECEIVED_YET,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value == info_pb2.InfoResult.RESULT_UNKNOWN:
+                return InfoResult.Result.UNKNOWN
+            if rpc_enum_value == info_pb2.InfoResult.RESULT_SUCCESS:
+                return InfoResult.Result.SUCCESS
+            if rpc_enum_value == info_pb2.InfoResult.RESULT_INFORMATION_NOT_RECEIVED_YET:
+                return InfoResult.Result.INFORMATION_NOT_RECEIVED_YET
 
         def __str__(self):
             return self.name
@@ -321,7 +593,7 @@ class InfoError(Exception):
 
 class Info(AsyncBase):
     """
-     Provide infomation about the hardware and/or software of a system.
+     Provide information about the hardware and/or software of a system.
 
      Generated by dcsdkgen - MAVSDK Info API
     """
@@ -339,9 +611,93 @@ class Info(AsyncBase):
         return InfoResult.translate_from_rpc(response.info_result)
     
 
+    async def get_flight_information(self):
+        """
+         Get flight information of the system.
+
+         Returns
+         -------
+         flight_info : FlightInfo
+              Flight information of the system
+
+         Raises
+         ------
+         InfoError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = info_pb2.GetFlightInformationRequest()
+        response = await self._stub.GetFlightInformation(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not InfoResult.Result.SUCCESS:
+            raise InfoError(result, "get_flight_information()")
+        
+
+        return FlightInfo.translate_from_rpc(response.flight_info)
+            
+
+    async def get_identification(self):
+        """
+         Get the identification of the system.
+
+         Returns
+         -------
+         identification : Identification
+              Identification of the system
+
+         Raises
+         ------
+         InfoError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = info_pb2.GetIdentificationRequest()
+        response = await self._stub.GetIdentification(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not InfoResult.Result.SUCCESS:
+            raise InfoError(result, "get_identification()")
+        
+
+        return Identification.translate_from_rpc(response.identification)
+            
+
+    async def get_product(self):
+        """
+         Get product information of the system.
+
+         Returns
+         -------
+         product : Product
+              Product information of the system
+
+         Raises
+         ------
+         InfoError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = info_pb2.GetProductRequest()
+        response = await self._stub.GetProduct(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not InfoResult.Result.SUCCESS:
+            raise InfoError(result, "get_product()")
+        
+
+        return Product.translate_from_rpc(response.product)
+            
+
     async def get_version(self):
         """
-         Get the system version information.
+         Get the version information of the system.
 
          Returns
          -------
@@ -365,4 +721,4 @@ class Info(AsyncBase):
         
 
         return Version.translate_from_rpc(response.version)
-        
+            

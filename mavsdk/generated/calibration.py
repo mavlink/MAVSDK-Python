@@ -27,16 +27,13 @@ class CalibrationResult:
          Values
          ------
          UNKNOWN
-              Unknown error
+              Unknown result
 
          SUCCESS
-              The calibration process succeeded
+              The calibration succeeded
 
-         IN_PROGRESS
-              Intermediate message showing progress of the calibration process
-
-         INSTRUCTION
-              Intermediate message giving instructions on the next steps required by the process
+         NEXT
+              Intermediate message showing progress or instructions on the next steps
 
          FAILED
               Calibration failed
@@ -57,54 +54,67 @@ class CalibrationResult:
               Command timed out
 
          CANCELLED
-              Calibration process got cancelled
+              Calibration process was cancelled
 
          """
 
         
         UNKNOWN = 0
         SUCCESS = 1
-        IN_PROGRESS = 2
-        INSTRUCTION = 3
-        FAILED = 4
-        NO_SYSTEM = 5
-        CONNECTION_ERROR = 6
-        BUSY = 7
-        COMMAND_DENIED = 8
-        TIMEOUT = 9
-        CANCELLED = 10
+        NEXT = 2
+        FAILED = 3
+        NO_SYSTEM = 4
+        CONNECTION_ERROR = 5
+        BUSY = 6
+        COMMAND_DENIED = 7
+        TIMEOUT = 8
+        CANCELLED = 9
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: calibration_pb2.CalibrationResult.UNKNOWN,
-                    1: calibration_pb2.CalibrationResult.SUCCESS,
-                    2: calibration_pb2.CalibrationResult.IN_PROGRESS,
-                    3: calibration_pb2.CalibrationResult.INSTRUCTION,
-                    4: calibration_pb2.CalibrationResult.FAILED,
-                    5: calibration_pb2.CalibrationResult.NO_SYSTEM,
-                    6: calibration_pb2.CalibrationResult.CONNECTION_ERROR,
-                    7: calibration_pb2.CalibrationResult.BUSY,
-                    8: calibration_pb2.CalibrationResult.COMMAND_DENIED,
-                    9: calibration_pb2.CalibrationResult.TIMEOUT,
-                    10: calibration_pb2.CalibrationResult.CANCELLED
-                }.get(self.value, None)
+            if self == CalibrationResult.Result.UNKNOWN:
+                return calibration_pb2.CalibrationResult.RESULT_UNKNOWN
+            if self == CalibrationResult.Result.SUCCESS:
+                return calibration_pb2.CalibrationResult.RESULT_SUCCESS
+            if self == CalibrationResult.Result.NEXT:
+                return calibration_pb2.CalibrationResult.RESULT_NEXT
+            if self == CalibrationResult.Result.FAILED:
+                return calibration_pb2.CalibrationResult.RESULT_FAILED
+            if self == CalibrationResult.Result.NO_SYSTEM:
+                return calibration_pb2.CalibrationResult.RESULT_NO_SYSTEM
+            if self == CalibrationResult.Result.CONNECTION_ERROR:
+                return calibration_pb2.CalibrationResult.RESULT_CONNECTION_ERROR
+            if self == CalibrationResult.Result.BUSY:
+                return calibration_pb2.CalibrationResult.RESULT_BUSY
+            if self == CalibrationResult.Result.COMMAND_DENIED:
+                return calibration_pb2.CalibrationResult.RESULT_COMMAND_DENIED
+            if self == CalibrationResult.Result.TIMEOUT:
+                return calibration_pb2.CalibrationResult.RESULT_TIMEOUT
+            if self == CalibrationResult.Result.CANCELLED:
+                return calibration_pb2.CalibrationResult.RESULT_CANCELLED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: CalibrationResult.Result.UNKNOWN,
-                    1: CalibrationResult.Result.SUCCESS,
-                    2: CalibrationResult.Result.IN_PROGRESS,
-                    3: CalibrationResult.Result.INSTRUCTION,
-                    4: CalibrationResult.Result.FAILED,
-                    5: CalibrationResult.Result.NO_SYSTEM,
-                    6: CalibrationResult.Result.CONNECTION_ERROR,
-                    7: CalibrationResult.Result.BUSY,
-                    8: CalibrationResult.Result.COMMAND_DENIED,
-                    9: CalibrationResult.Result.TIMEOUT,
-                    10: CalibrationResult.Result.CANCELLED,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_UNKNOWN:
+                return CalibrationResult.Result.UNKNOWN
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_SUCCESS:
+                return CalibrationResult.Result.SUCCESS
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_NEXT:
+                return CalibrationResult.Result.NEXT
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_FAILED:
+                return CalibrationResult.Result.FAILED
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_NO_SYSTEM:
+                return CalibrationResult.Result.NO_SYSTEM
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_CONNECTION_ERROR:
+                return CalibrationResult.Result.CONNECTION_ERROR
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_BUSY:
+                return CalibrationResult.Result.BUSY
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_COMMAND_DENIED:
+                return CalibrationResult.Result.COMMAND_DENIED
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_TIMEOUT:
+                return CalibrationResult.Result.TIMEOUT
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_CANCELLED:
+                return CalibrationResult.Result.CANCELLED
 
         def __str__(self):
             return self.name
@@ -177,12 +187,14 @@ class ProgressData:
      Parameters
      ----------
      has_progress : bool
-         
+          Whether this ProgressData contains a 'progress' status or not
+
      progress : float
           Progress (percentage)
 
      has_status_text : bool
-         
+          Whether this ProgressData contains a 'status_text' or not
+
      status_text : std::string
           Instruction text
 
@@ -331,10 +343,8 @@ class Calibration(AsyncBase):
                 result = self._extract_result(response)
 
                 success_codes = [CalibrationResult.Result.SUCCESS]
-                if 'IN_PROGRESS' in [return_code.name for return_code in CalibrationResult.Result]:
-                    success_codes.append(CalibrationResult.Result.IN_PROGRESS)
-                if 'INSTRUCTION' in [return_code.name for return_code in CalibrationResult.Result]:
-                    success_codes.append(CalibrationResult.Result.INSTRUCTION)
+                if 'NEXT' in [return_code.name for return_code in CalibrationResult.Result]:
+                    success_codes.append(CalibrationResult.Result.NEXT)
 
                 if result.result not in success_codes:
                     raise CalibrationError(result, "calibrate_gyro()")
@@ -373,10 +383,8 @@ class Calibration(AsyncBase):
                 result = self._extract_result(response)
 
                 success_codes = [CalibrationResult.Result.SUCCESS]
-                if 'IN_PROGRESS' in [return_code.name for return_code in CalibrationResult.Result]:
-                    success_codes.append(CalibrationResult.Result.IN_PROGRESS)
-                if 'INSTRUCTION' in [return_code.name for return_code in CalibrationResult.Result]:
-                    success_codes.append(CalibrationResult.Result.INSTRUCTION)
+                if 'NEXT' in [return_code.name for return_code in CalibrationResult.Result]:
+                    success_codes.append(CalibrationResult.Result.NEXT)
 
                 if result.result not in success_codes:
                     raise CalibrationError(result, "calibrate_accelerometer()")
@@ -415,10 +423,8 @@ class Calibration(AsyncBase):
                 result = self._extract_result(response)
 
                 success_codes = [CalibrationResult.Result.SUCCESS]
-                if 'IN_PROGRESS' in [return_code.name for return_code in CalibrationResult.Result]:
-                    success_codes.append(CalibrationResult.Result.IN_PROGRESS)
-                if 'INSTRUCTION' in [return_code.name for return_code in CalibrationResult.Result]:
-                    success_codes.append(CalibrationResult.Result.INSTRUCTION)
+                if 'NEXT' in [return_code.name for return_code in CalibrationResult.Result]:
+                    success_codes.append(CalibrationResult.Result.NEXT)
 
                 if result.result not in success_codes:
                     raise CalibrationError(result, "calibrate_magnetometer()")
@@ -457,10 +463,8 @@ class Calibration(AsyncBase):
                 result = self._extract_result(response)
 
                 success_codes = [CalibrationResult.Result.SUCCESS]
-                if 'IN_PROGRESS' in [return_code.name for return_code in CalibrationResult.Result]:
-                    success_codes.append(CalibrationResult.Result.IN_PROGRESS)
-                if 'INSTRUCTION' in [return_code.name for return_code in CalibrationResult.Result]:
-                    success_codes.append(CalibrationResult.Result.INSTRUCTION)
+                if 'NEXT' in [return_code.name for return_code in CalibrationResult.Result]:
+                    success_codes.append(CalibrationResult.Result.NEXT)
 
                 if result.result not in success_codes:
                     raise CalibrationError(result, "calibrate_gimbal_accelerometer()")

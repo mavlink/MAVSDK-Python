@@ -79,11 +79,12 @@ Run the following helper script. It will generate the Python wrappers for each p
 ./other/tools/run_protoc.sh
 ```
 
-### Install the package locally
+### Build and install the package locally
 
 After generating the wrapper you can install a development (editable) version of the package using:
 
 ```
+python3 setup.py build
 pip3 install -e .
 ```
 

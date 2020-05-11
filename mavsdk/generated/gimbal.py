@@ -23,18 +23,18 @@ class GimbalMode(Enum):
     YAW_LOCK = 1
 
     def translate_to_rpc(self, rpcGimbalMode):
-        return {
-                0: gimbal_pb2.YAW_FOLLOW,
-                1: gimbal_pb2.YAW_LOCK
-            }.get(self.value, None)
+        if self == GimbalMode.YAW_FOLLOW:
+            return gimbal_pb2.GIMBAL_MODE_YAW_FOLLOW
+        if self == GimbalMode.YAW_LOCK:
+            return gimbal_pb2.GIMBAL_MODE_YAW_LOCK
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        return {
-                0: GimbalMode.YAW_FOLLOW,
-                1: GimbalMode.YAW_LOCK,
-            }.get(rpc_enum_value, None)
+        if rpc_enum_value == gimbal_pb2.GIMBAL_MODE_YAW_FOLLOW:
+            return GimbalMode.YAW_FOLLOW
+        if rpc_enum_value == gimbal_pb2.GIMBAL_MODE_YAW_LOCK:
+            return GimbalMode.YAW_LOCK
 
     def __str__(self):
         return self.name
@@ -63,7 +63,7 @@ class GimbalResult:
          Values
          ------
          UNKNOWN
-              Unknown error
+              Unknown result
 
          SUCCESS
               Command was accepted
@@ -83,22 +83,26 @@ class GimbalResult:
         TIMEOUT = 3
 
         def translate_to_rpc(self, rpcResult):
-            return {
-                    0: gimbal_pb2.GimbalResult.UNKNOWN,
-                    1: gimbal_pb2.GimbalResult.SUCCESS,
-                    2: gimbal_pb2.GimbalResult.ERROR,
-                    3: gimbal_pb2.GimbalResult.TIMEOUT
-                }.get(self.value, None)
+            if self == GimbalResult.Result.UNKNOWN:
+                return gimbal_pb2.GimbalResult.RESULT_UNKNOWN
+            if self == GimbalResult.Result.SUCCESS:
+                return gimbal_pb2.GimbalResult.RESULT_SUCCESS
+            if self == GimbalResult.Result.ERROR:
+                return gimbal_pb2.GimbalResult.RESULT_ERROR
+            if self == GimbalResult.Result.TIMEOUT:
+                return gimbal_pb2.GimbalResult.RESULT_TIMEOUT
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            return {
-                    0: GimbalResult.Result.UNKNOWN,
-                    1: GimbalResult.Result.SUCCESS,
-                    2: GimbalResult.Result.ERROR,
-                    3: GimbalResult.Result.TIMEOUT,
-                }.get(rpc_enum_value, None)
+            if rpc_enum_value == gimbal_pb2.GimbalResult.RESULT_UNKNOWN:
+                return GimbalResult.Result.UNKNOWN
+            if rpc_enum_value == gimbal_pb2.GimbalResult.RESULT_SUCCESS:
+                return GimbalResult.Result.SUCCESS
+            if rpc_enum_value == gimbal_pb2.GimbalResult.RESULT_ERROR:
+                return GimbalResult.Result.ERROR
+            if rpc_enum_value == gimbal_pb2.GimbalResult.RESULT_TIMEOUT:
+                return GimbalResult.Result.TIMEOUT
 
         def __str__(self):
             return self.name
@@ -260,4 +264,44 @@ class Gimbal(AsyncBase):
 
         if result.result is not GimbalResult.Result.SUCCESS:
             raise GimbalError(result, "set_mode()", gimbal_mode)
+        
+
+    async def set_roi_location(self, latitude_deg, longitude_deg, altitude_m):
+        """
+         Set gimbal region of interest (ROI).
+
+         This sets a region of interest that the gimbal will point to.
+         The gimbal will continue to point to the specified region until it
+         receives a new command.
+         The function will return when the command is accepted, however, it might
+         take the gimbal longer to actually rotate to the ROI.
+
+         Parameters
+         ----------
+         latitude_deg : double
+              Latitude in degrees
+
+         longitude_deg : double
+              Longitude in degrees
+
+         altitude_m : float
+              Altitude in metres (AMSL)
+
+         Raises
+         ------
+         GimbalError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = gimbal_pb2.SetRoiLocationRequest()
+        request.latitude_deg = latitude_deg
+        request.longitude_deg = longitude_deg
+        request.altitude_m = altitude_m
+        response = await self._stub.SetRoiLocation(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not GimbalResult.Result.SUCCESS:
+            raise GimbalError(result, "set_roi_location()", latitude_deg, longitude_deg, altitude_m)
         
