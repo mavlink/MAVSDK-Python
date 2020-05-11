@@ -16,8 +16,10 @@ async def run():
             print(f"Drone discovered with UUID: {state.uuid}")
             break
 
-    asyncio.ensure_future(print_mission_progress(drone))
-    termination_task = asyncio.ensure_future(observe_is_in_air(drone))
+    print_mission_progress_task = asyncio.ensure_future(print_mission_progress(drone))
+
+    running_tasks = [print_mission_progress_task]
+    termination_task = asyncio.ensure_future(observe_is_in_air(drone, running_tasks))
 
     mission_items = []
     mission_items.append(MissionItem(47.398039859999997,
@@ -74,7 +76,7 @@ async def print_mission_progress(drone):
               f"{mission_progress.total}")
 
 
-async def observe_is_in_air(drone):
+async def observe_is_in_air(drone, running_tasks):
     """ Monitors whether the drone is flying or not and
     returns after landing """
 
@@ -85,7 +87,14 @@ async def observe_is_in_air(drone):
             was_in_air = is_in_air
 
         if was_in_air and not is_in_air:
+            for task in running_tasks:
+                task.cancel()
+                try:
+                    await task
+                except asyncio.CancelledError:
+                    pass
             await asyncio.get_event_loop().shutdown_asyncgens()
+
             return
 
 
