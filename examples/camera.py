@@ -16,8 +16,9 @@ async def run():
             print(f"Drone discovered with UUID: {state.uuid}")
             break
 
-    asyncio.ensure_future(print_camera_mode(drone))
-    asyncio.ensure_future(print_status(drone))
+    print_mode_task = asyncio.ensure_future(print_mode(drone))
+    print_status_task = asyncio.ensure_future(print_status(drone))
+    running_tasks = [print_mode_task, print_status_task]
 
     print("Setting mode to 'PHOTO'")
     try:
@@ -33,14 +34,20 @@ async def run():
     except CameraError as error:
         print(f"Couldn't take photo: {error._result.result}")
 
-    # Shut down the running coroutines (here 'print_camera_mode()' and
+    # Shut down the running coroutines (here 'print_mode()' and
     # 'print_status()')
+    for task in running_tasks:
+        task.cancel()
+        try:
+            await task
+        except asyncio.CancelledError:
+            pass
     await asyncio.get_event_loop().shutdown_asyncgens()
 
 
-async def print_camera_mode(drone):
-    async for camera_mode in drone.camera.mode():
-        print(f"Camera mode: {camera_mode}")
+async def print_mode(drone):
+    async for mode in drone.camera.mode():
+        print(f"Camera mode: {mode}")
 
 
 async def print_status(drone):

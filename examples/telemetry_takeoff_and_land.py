@@ -35,9 +35,11 @@ async def run():
             break
 
     # Start parallel tasks
-    asyncio.ensure_future(print_altitude(drone))
-    asyncio.ensure_future(print_flight_mode(drone))
-    termination_task = asyncio.ensure_future(observe_is_in_air(drone))
+    print_altitude_task = asyncio.ensure_future(print_altitude(drone))
+    print_flight_mode_task = asyncio.ensure_future(print_flight_mode(drone))
+
+    running_tasks = [print_altitude_task, print_flight_mode_task]
+    termination_task = asyncio.ensure_future(observe_is_in_air(drone, running_tasks))
 
     # Execute the maneuvers
     print("-- Arming")
@@ -78,7 +80,7 @@ async def print_flight_mode(drone):
             print(f"Flight mode: {flight_mode}")
 
 
-async def observe_is_in_air(drone):
+async def observe_is_in_air(drone, running_tasks):
     """ Monitors whether the drone is flying or not and
     returns after landing """
 
@@ -89,6 +91,12 @@ async def observe_is_in_air(drone):
             was_in_air = is_in_air
 
         if was_in_air and not is_in_air:
+            for task in running_tasks:
+                task.cancel()
+                try:
+                    await task
+                except asyncio.CancelledError:
+                    pass
             await asyncio.get_event_loop().shutdown_asyncgens()
             return
 
