@@ -6,6 +6,7 @@ from os import path, getcwd
 
 import urllib.request
 import os
+import platform
 import stat
 import sys
 import subprocess
@@ -52,7 +53,7 @@ class custom_build(build):
         """
         Trying to detect the platform to know which `mavsdk_server` executable to download
         """
-        if sys.platform.startswith('linux'):
+        if sys.platform.startswith('linux') and platform.machine() == "x86_64":
             return 'manylinux2010-x64'
         elif sys.platform.startswith('darwin'):
             return 'macos'
@@ -60,7 +61,7 @@ class custom_build(build):
             return 'win32.exe'
         else:
             raise NotImplementedError(
-                f"Platform {sys.platform} is not (yet) supported by this setup.py!")
+                f"Error: mavsdk_server is not distributed for platform {sys.platform} (yet)! You should set the 'MAVSDK_BUILD_PURE=ON' environment variable and get mavsdk_server manually.")
 
     @property
     def mavsdk_server_filepath(self):
@@ -86,7 +87,9 @@ class custom_build(build):
         return f"https://github.com/mavlink/MAVSDK/releases/download/{self.mavsdk_server_tag}/mavsdk_server_{self.platform_suffix}"
 
     def run(self):
-        self.download_mavsdk_server()
+        if 'MAVSDK_BUILD_PURE' not in os.environ:
+            self.download_mavsdk_server()
+
         build.run(self)
 
     def download_mavsdk_server(self):
