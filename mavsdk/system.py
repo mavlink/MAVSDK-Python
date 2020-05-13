@@ -162,14 +162,18 @@ class System:
         else:
             from importlib_resources import path
 
-        with path(bin, 'mavsdk_server') as backend:
-            bin_path_and_args = [os.fspath(backend), "-p", "50051"]
-            if system_address:
-                bin_path_and_args.append(system_address)
-            p = subprocess.Popen(bin_path_and_args,
-                                 shell=False,
-                                 stdout=subprocess.DEVNULL,
-                                 stderr=subprocess.DEVNULL)
+        try:
+            with path(bin, 'mavsdk_server') as backend:
+                bin_path_and_args = [os.fspath(backend), "-p", "50051"]
+                if system_address:
+                    bin_path_and_args.append(system_address)
+                p = subprocess.Popen(bin_path_and_args,
+                                     shell=False,
+                                     stdout=subprocess.DEVNULL,
+                                     stderr=subprocess.DEVNULL)
+        except FileNotFoundError:
+            raise Exception("\nIt seems like this installation does not provide an embedded 'mavsdk_server' binary. If you installed from pip, it means that 'mavsdk_server' is not distributed for your platform (yet). You will need to get and run it manually:\n\n\t1. Build 'mavsdk_server': https://github.com/mavlink/mavsdk.\n\t2. Run it, e.g. on port 50051: './mavsdk_server -p 50051'.\n\t3. Set the 'mavsdk_server_address' and port when creating the System: 'drone = System(mavsdk_server_address='localhost', port=50051)\n")
+
 
         def cleanup():
             p.kill()

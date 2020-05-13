@@ -7,6 +7,23 @@ matrix:
   fast_finish: true
   include:
   - os: linux
+    name: linux (pure wheel)
+    dist: bionic
+    python:
+    - 3.6
+    - 3.7
+    before_install:
+      python3 --version;
+      pip3 --version;
+    env:
+    - BUILD_TARGET=linux_pure_wheel
+    - PYTHON_BIN=python3
+    - MAVSDK_BUILD_PURE=ON
+    addons:
+      apt:
+        packages:
+        - patchelf
+  - os: linux
     name: Linux
     dist: bionic
     python:
@@ -66,6 +83,10 @@ install:
 script:
 - set -e
 - $PYTHON_BIN setup.py bdist_wheel
+- if [[ "${BUILD_TARGET}" = "linux_pure_wheel" ]]; then
+    mkdir wheelhouse;
+    mv dist/*.whl wheelhouse;
+  fi
 - if [[ "${BUILD_TARGET}" = "linux" ]]; then
     auditwheel repair --plat manylinux2010_x86_64 dist/*.whl;
   fi
