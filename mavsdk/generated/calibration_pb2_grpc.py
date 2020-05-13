@@ -29,6 +29,11 @@ class CalibrationServiceStub(object):
                 request_serializer=calibration__pb2.SubscribeCalibrateMagnetometerRequest.SerializeToString,
                 response_deserializer=calibration__pb2.CalibrateMagnetometerResponse.FromString,
                 )
+        self.SubscribeCalibrateLevelHorizon = channel.unary_stream(
+                '/mavsdk.rpc.calibration.CalibrationService/SubscribeCalibrateLevelHorizon',
+                request_serializer=calibration__pb2.SubscribeCalibrateLevelHorizonRequest.SerializeToString,
+                response_deserializer=calibration__pb2.CalibrateLevelHorizonResponse.FromString,
+                )
         self.SubscribeCalibrateGimbalAccelerometer = channel.unary_stream(
                 '/mavsdk.rpc.calibration.CalibrationService/SubscribeCalibrateGimbalAccelerometer',
                 request_serializer=calibration__pb2.SubscribeCalibrateGimbalAccelerometerRequest.SerializeToString,
@@ -60,7 +65,14 @@ class CalibrationServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SubscribeCalibrateMagnetometer(self, request, context):
-        """Perform magnetometer caliration.
+        """Perform magnetometer calibration.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeCalibrateLevelHorizon(self, request, context):
+        """Perform board level horizon calibration.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -97,6 +109,11 @@ def add_CalibrationServiceServicer_to_server(servicer, server):
                     servicer.SubscribeCalibrateMagnetometer,
                     request_deserializer=calibration__pb2.SubscribeCalibrateMagnetometerRequest.FromString,
                     response_serializer=calibration__pb2.CalibrateMagnetometerResponse.SerializeToString,
+            ),
+            'SubscribeCalibrateLevelHorizon': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeCalibrateLevelHorizon,
+                    request_deserializer=calibration__pb2.SubscribeCalibrateLevelHorizonRequest.FromString,
+                    response_serializer=calibration__pb2.CalibrateLevelHorizonResponse.SerializeToString,
             ),
             'SubscribeCalibrateGimbalAccelerometer': grpc.unary_stream_rpc_method_handler(
                     servicer.SubscribeCalibrateGimbalAccelerometer,
@@ -164,6 +181,22 @@ class CalibrationService(object):
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.calibration.CalibrationService/SubscribeCalibrateMagnetometer',
             calibration__pb2.SubscribeCalibrateMagnetometerRequest.SerializeToString,
             calibration__pb2.CalibrateMagnetometerResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeCalibrateLevelHorizon(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.calibration.CalibrationService/SubscribeCalibrateLevelHorizon',
+            calibration__pb2.SubscribeCalibrateLevelHorizonRequest.SerializeToString,
+            calibration__pb2.CalibrateLevelHorizonResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 

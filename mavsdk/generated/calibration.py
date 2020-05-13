@@ -56,6 +56,9 @@ class CalibrationResult:
          CANCELLED
               Calibration process was cancelled
 
+         FAILED_ARMED
+              Calibration process failed since the vehicle is armed
+
          """
 
         
@@ -69,6 +72,7 @@ class CalibrationResult:
         COMMAND_DENIED = 7
         TIMEOUT = 8
         CANCELLED = 9
+        FAILED_ARMED = 10
 
         def translate_to_rpc(self, rpcResult):
             if self == CalibrationResult.Result.UNKNOWN:
@@ -91,6 +95,8 @@ class CalibrationResult:
                 return calibration_pb2.CalibrationResult.RESULT_TIMEOUT
             if self == CalibrationResult.Result.CANCELLED:
                 return calibration_pb2.CalibrationResult.RESULT_CANCELLED
+            if self == CalibrationResult.Result.FAILED_ARMED:
+                return calibration_pb2.CalibrationResult.RESULT_FAILED_ARMED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -115,6 +121,8 @@ class CalibrationResult:
                 return CalibrationResult.Result.TIMEOUT
             if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_CANCELLED:
                 return CalibrationResult.Result.CANCELLED
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_FAILED_ARMED:
+                return CalibrationResult.Result.FAILED_ARMED
 
         def __str__(self):
             return self.name
@@ -401,7 +409,7 @@ class Calibration(AsyncBase):
 
     async def calibrate_magnetometer(self):
         """
-         Perform magnetometer caliration.
+         Perform magnetometer calibration.
 
          Yields
          -------
@@ -438,6 +446,46 @@ class Calibration(AsyncBase):
                 yield ProgressData.translate_from_rpc(response.progress_data)
         finally:
             calibrate_magnetometer_stream.cancel()
+
+    async def calibrate_level_horizon(self):
+        """
+         Perform board level horizon calibration.
+
+         Yields
+         -------
+         progress_data : ProgressData
+              Progress data
+
+         Raises
+         ------
+         CalibrationError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = calibration_pb2.SubscribeCalibrateLevelHorizonRequest()
+        calibrate_level_horizon_stream = self._stub.SubscribeCalibrateLevelHorizon(request)
+
+        try:
+            async for response in calibrate_level_horizon_stream:
+                
+                result = self._extract_result(response)
+
+                success_codes = [CalibrationResult.Result.SUCCESS]
+                if 'NEXT' in [return_code.name for return_code in CalibrationResult.Result]:
+                    success_codes.append(CalibrationResult.Result.NEXT)
+
+                if result.result not in success_codes:
+                    raise CalibrationError(result, "calibrate_level_horizon()")
+
+                if result.result is CalibrationResult.Result.SUCCESS:
+                    calibrate_level_horizon_stream.cancel();
+                    return
+                
+
+            
+                yield ProgressData.translate_from_rpc(response.progress_data)
+        finally:
+            calibrate_level_horizon_stream.cancel()
 
     async def calibrate_gimbal_accelerometer(self):
         """
