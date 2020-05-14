@@ -7,6 +7,10 @@ GENERATED_DIR="${WORK_DIR}/mavsdk/generated"
 PLUGIN_INIT="${GENERATED_DIR}/__init__.py"
 export TEMPLATE_PATH="${WORK_DIR}/other/templates/"
 
+function snake_case_to_camel_case {
+    echo $1 | sed -r 's/(^|_)([a-z])/\U\2/g'
+}
+
 function generate {
     printf "# -*- coding: utf-8 -*-\n\n" > $PLUGIN_INIT
 
@@ -17,7 +21,7 @@ function generate {
                                  --grpc_python_out=${GENERATED_DIR} \
                                  mavsdk_options.proto
 
-    for plugin in action calibration geofence gimbal camera core info mission mocap offboard param shell telemetry; do
+    for plugin in action calibration camera core follow_me ftp geofence gimbal info log_files mission mission_raw mocap offboard param shell telemetry tune; do
 
        # Generate protobuf and gRPC files
         python3 -m grpc_tools.protoc -I${PROTO_DIR}/protos \
@@ -46,7 +50,7 @@ function generate {
                                     ${plugin}.proto
 
         # protoc-gen-dcsdk capitalizes filenames, and we don't want that with python
-        mv ${GENERATED_DIR}/${plugin^}.py ${GENERATED_DIR}/${plugin}.py
+        mv ${GENERATED_DIR}/$(snake_case_to_camel_case ${plugin}).py ${GENERATED_DIR}/${plugin}.py
 
         # Add to imports
         echo "from .${plugin} import *" >> $PLUGIN_INIT
