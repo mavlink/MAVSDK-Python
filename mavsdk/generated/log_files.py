@@ -206,7 +206,7 @@ class LogFilesResult:
         INVALID_ARGUMENT = 5
         FILE_OPEN_FAILED = 6
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == LogFilesResult.Result.UNKNOWN:
                 return log_files_pb2.LogFilesResult.RESULT_UNKNOWN
             if self == LogFilesResult.Result.SUCCESS:
@@ -290,7 +290,7 @@ class LogFilesResult:
         
         
             
-        self.result.translate_to_rpc(rpcLogFilesResult.result)
+        rpcLogFilesResult.result = self.result.translate_to_rpc()
             
         
         

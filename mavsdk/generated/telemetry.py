@@ -42,7 +42,7 @@ class FixType(Enum):
     RTK_FLOAT = 5
     RTK_FIXED = 6
 
-    def translate_to_rpc(self, rpcFixType):
+    def translate_to_rpc(self):
         if self == FixType.NO_GPS:
             return telemetry_pb2.FIX_TYPE_NO_GPS
         if self == FixType.NO_FIX:
@@ -153,7 +153,7 @@ class FlightMode(Enum):
     STABILIZED = 13
     RATTITUDE = 14
 
-    def translate_to_rpc(self, rpcFlightMode):
+    def translate_to_rpc(self):
         if self == FlightMode.UNKNOWN:
             return telemetry_pb2.FLIGHT_MODE_UNKNOWN
         if self == FlightMode.READY:
@@ -245,7 +245,7 @@ class StatusTextType(Enum):
     WARNING = 1
     CRITICAL = 2
 
-    def translate_to_rpc(self, rpcStatusTextType):
+    def translate_to_rpc(self):
         if self == StatusTextType.INFO:
             return telemetry_pb2.STATUS_TEXT_TYPE_INFO
         if self == StatusTextType.WARNING:
@@ -297,7 +297,7 @@ class LandedState(Enum):
     TAKING_OFF = 3
     LANDING = 4
 
-    def translate_to_rpc(self, rpcLandedState):
+    def translate_to_rpc(self):
         if self == LandedState.UNKNOWN:
             return telemetry_pb2.LANDED_STATE_UNKNOWN
         if self == LandedState.ON_GROUND:
@@ -799,7 +799,7 @@ class GpsInfo:
         
         
             
-        self.fix_type.translate_to_rpc(rpcGpsInfo.fix_type)
+        rpcGpsInfo.fix_type = self.fix_type.translate_to_rpc()
             
         
         
@@ -1185,7 +1185,7 @@ class StatusText:
         
         
             
-        self.type.translate_to_rpc(rpcStatusText.type)
+        rpcStatusText.type = self.type.translate_to_rpc()
             
         
         
@@ -1653,7 +1653,7 @@ class Odometry:
         VISION_NED = 2
         ESTIM_NED = 3
 
-        def translate_to_rpc(self, rpcMavFrame):
+        def translate_to_rpc(self):
             if self == Odometry.MavFrame.UNDEF:
                 return telemetry_pb2.Odometry.MAV_FRAME_UNDEF
             if self == Odometry.MavFrame.BODY_NED:
@@ -1780,13 +1780,13 @@ class Odometry:
         
         
             
-        self.frame_id.translate_to_rpc(rpcOdometry.frame_id)
+        rpcOdometry.frame_id = self.frame_id.translate_to_rpc()
             
         
         
         
             
-        self.child_frame_id.translate_to_rpc(rpcOdometry.child_frame_id)
+        rpcOdometry.child_frame_id = self.child_frame_id.translate_to_rpc()
             
         
         
@@ -2692,7 +2692,7 @@ class TelemetryResult:
         COMMAND_DENIED = 5
         TIMEOUT = 6
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == TelemetryResult.Result.UNKNOWN:
                 return telemetry_pb2.TelemetryResult.RESULT_UNKNOWN
             if self == TelemetryResult.Result.SUCCESS:
@@ -2776,7 +2776,7 @@ class TelemetryResult:
         
         
             
-        self.result.translate_to_rpc(rpcTelemetryResult.result)
+        rpcTelemetryResult.result = self.result.translate_to_rpc()
             
         
         

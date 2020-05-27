@@ -54,7 +54,7 @@ class ShellResult:
         NO_RESPONSE = 4
         BUSY = 5
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == ShellResult.Result.UNKNOWN:
                 return shell_pb2.ShellResult.RESULT_UNKNOWN
             if self == ShellResult.Result.SUCCESS:
@@ -134,7 +134,7 @@ class ShellResult:
         
         
             
-        self.result.translate_to_rpc(rpcShellResult.result)
+        rpcShellResult.result = self.result.translate_to_rpc()
             
         
         

@@ -54,7 +54,7 @@ class ParamResult:
         WRONG_TYPE = 4
         PARAM_NAME_TOO_LONG = 5
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == ParamResult.Result.UNKNOWN:
                 return param_pb2.ParamResult.RESULT_UNKNOWN
             if self == ParamResult.Result.SUCCESS:
@@ -134,7 +134,7 @@ class ParamResult:
         
         
             
-        self.result.translate_to_rpc(rpcParamResult.result)
+        rpcParamResult.result = self.result.translate_to_rpc()
             
         
         

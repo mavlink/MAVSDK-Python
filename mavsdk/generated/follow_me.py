@@ -56,7 +56,7 @@ class Config:
         FRONT_RIGHT = 3
         FRONT_LEFT = 4
 
-        def translate_to_rpc(self, rpcFollowDirection):
+        def translate_to_rpc(self):
             if self == Config.FollowDirection.NONE:
                 return follow_me_pb2.Config.FOLLOW_DIRECTION_NONE
             if self == Config.FollowDirection.BEHIND:
@@ -158,7 +158,7 @@ class Config:
         
         
             
-        self.follow_direction.translate_to_rpc(rpcConfig.follow_direction)
+        rpcConfig.follow_direction = self.follow_direction.translate_to_rpc()
             
         
         
@@ -370,7 +370,7 @@ class FollowMeResult:
         NOT_ACTIVE = 7
         SET_CONFIG_FAILED = 8
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == FollowMeResult.Result.UNKNOWN:
                 return follow_me_pb2.FollowMeResult.RESULT_UNKNOWN
             if self == FollowMeResult.Result.SUCCESS:
@@ -462,7 +462,7 @@ class FollowMeResult:
         
         
             
-        self.result.translate_to_rpc(rpcFollowMeResult.result)
+        rpcFollowMeResult.result = self.result.translate_to_rpc()
             
         
         

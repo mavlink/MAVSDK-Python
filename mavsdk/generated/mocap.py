@@ -803,7 +803,7 @@ class Odometry:
         MOCAP_NED = 0
         LOCAL_FRD = 1
 
-        def translate_to_rpc(self, rpcMavFrame):
+        def translate_to_rpc(self):
             if self == Odometry.MavFrame.MOCAP_NED:
                 return mocap_pb2.Odometry.MAV_FRAME_MOCAP_NED
             if self == Odometry.MavFrame.LOCAL_FRD:
@@ -915,7 +915,7 @@ class Odometry:
         
         
             
-        self.frame_id.translate_to_rpc(rpcOdometry.frame_id)
+        rpcOdometry.frame_id = self.frame_id.translate_to_rpc()
             
         
         
@@ -1003,7 +1003,7 @@ class MocapResult:
         CONNECTION_ERROR = 3
         INVALID_REQUEST_DATA = 4
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == MocapResult.Result.UNKNOWN:
                 return mocap_pb2.MocapResult.RESULT_UNKNOWN
             if self == MocapResult.Result.SUCCESS:
@@ -1079,7 +1079,7 @@ class MocapResult:
         
         
             
-        self.result.translate_to_rpc(rpcMocapResult.result)
+        rpcMocapResult.result = self.result.translate_to_rpc()
             
         
         

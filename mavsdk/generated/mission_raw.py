@@ -394,7 +394,7 @@ class MissionRawResult:
         NO_MISSION_AVAILABLE = 8
         TRANSFER_CANCELLED = 9
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == MissionRawResult.Result.UNKNOWN:
                 return mission_raw_pb2.MissionRawResult.RESULT_UNKNOWN
             if self == MissionRawResult.Result.SUCCESS:
@@ -490,7 +490,7 @@ class MissionRawResult:
         
         
             
-        self.result.translate_to_rpc(rpcMissionRawResult.result)
+        rpcMissionRawResult.result = self.result.translate_to_rpc()
             
         
         

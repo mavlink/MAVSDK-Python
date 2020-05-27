@@ -498,7 +498,7 @@ class InfoResult:
         SUCCESS = 1
         INFORMATION_NOT_RECEIVED_YET = 2
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == InfoResult.Result.UNKNOWN:
                 return info_pb2.InfoResult.RESULT_UNKNOWN
             if self == InfoResult.Result.SUCCESS:
@@ -566,7 +566,7 @@ class InfoResult:
         
         
             
-        self.result.translate_to_rpc(rpcInfoResult.result)
+        rpcInfoResult.result = self.result.translate_to_rpc()
             
         
         

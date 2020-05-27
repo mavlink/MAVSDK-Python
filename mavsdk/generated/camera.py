@@ -26,7 +26,7 @@ class Mode(Enum):
     PHOTO = 1
     VIDEO = 2
 
-    def translate_to_rpc(self, rpcMode):
+    def translate_to_rpc(self):
         if self == Mode.UNKNOWN:
             return camera_pb2.MODE_UNKNOWN
         if self == Mode.PHOTO:
@@ -106,7 +106,7 @@ class CameraResult:
         TIMEOUT = 6
         WRONG_ARGUMENT = 7
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == CameraResult.Result.UNKNOWN:
                 return camera_pb2.CameraResult.RESULT_UNKNOWN
             if self == CameraResult.Result.SUCCESS:
@@ -194,7 +194,7 @@ class CameraResult:
         
         
             
-        self.result.translate_to_rpc(rpcCameraResult.result)
+        rpcCameraResult.result = self.result.translate_to_rpc()
             
         
         
@@ -846,7 +846,7 @@ class VideoStreamInfo:
         NOT_RUNNING = 0
         IN_PROGRESS = 1
 
-        def translate_to_rpc(self, rpcStatus):
+        def translate_to_rpc(self):
             if self == VideoStreamInfo.Status.NOT_RUNNING:
                 return camera_pb2.VideoStreamInfo.STATUS_NOT_RUNNING
             if self == VideoStreamInfo.Status.IN_PROGRESS:
@@ -916,7 +916,7 @@ class VideoStreamInfo:
         
         
             
-        self.status.translate_to_rpc(rpcVideoStreamInfo.status)
+        rpcVideoStreamInfo.status = self.status.translate_to_rpc()
             
         
         
@@ -978,7 +978,7 @@ class Status:
         UNFORMATTED = 1
         FORMATTED = 2
 
-        def translate_to_rpc(self, rpcStorageStatus):
+        def translate_to_rpc(self):
             if self == Status.StorageStatus.NOT_AVAILABLE:
                 return camera_pb2.Status.STORAGE_STATUS_NOT_AVAILABLE
             if self == Status.StorageStatus.UNFORMATTED:
@@ -1130,7 +1130,7 @@ class Status:
         
         
             
-        self.storage_status.translate_to_rpc(rpcStatus.storage_status)
+        rpcStatus.storage_status = self.storage_status.translate_to_rpc()
             
         
         
