@@ -78,6 +78,8 @@ class {{ name.upper_camel_case }}:
         {% else %}
             {% if field.type_info.is_primitive %}
         rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }} = self.{{ field.name.lower_snake_case }}
+            {% elif field.type_info.is_enum %}
+        rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }} = self.{{ field.name.lower_snake_case }}.translate_to_rpc()
             {% else %}
         self.{{ field.name.lower_snake_case}}.translate_to_rpc(rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }})
             {% endif %}

@@ -83,7 +83,7 @@ class MissionItem:
         START_VIDEO = 4
         STOP_VIDEO = 5
 
-        def translate_to_rpc(self, rpcCameraAction):
+        def translate_to_rpc(self):
             if self == MissionItem.CameraAction.NONE:
                 return mission_pb2.MissionItem.CAMERA_ACTION_NONE
             if self == MissionItem.CameraAction.TAKE_PHOTO:
@@ -261,7 +261,7 @@ class MissionItem:
         
         
             
-        self.camera_action.translate_to_rpc(rpcMissionItem.camera_action)
+        rpcMissionItem.camera_action = self.camera_action.translate_to_rpc()
             
         
         
@@ -494,7 +494,7 @@ class MissionResult:
         UNSUPPORTED_MISSION_CMD = 11
         TRANSFER_CANCELLED = 12
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == MissionResult.Result.UNKNOWN:
                 return mission_pb2.MissionResult.RESULT_UNKNOWN
             if self == MissionResult.Result.SUCCESS:
@@ -602,7 +602,7 @@ class MissionResult:
         
         
             
-        self.result.translate_to_rpc(rpcMissionResult.result)
+        rpcMissionResult.result = self.result.translate_to_rpc()
             
         
         

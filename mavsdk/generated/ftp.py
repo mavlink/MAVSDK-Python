@@ -152,7 +152,7 @@ class FtpResult:
         UNSUPPORTED = 10
         PROTOCOL_ERROR = 11
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == FtpResult.Result.UNKNOWN:
                 return ftp_pb2.FtpResult.RESULT_UNKNOWN
             if self == FtpResult.Result.SUCCESS:
@@ -256,7 +256,7 @@ class FtpResult:
         
         
             
-        self.result.translate_to_rpc(rpcFtpResult.result)
+        rpcFtpResult.result = self.result.translate_to_rpc()
             
         
         

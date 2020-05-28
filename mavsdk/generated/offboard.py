@@ -729,7 +729,7 @@ class OffboardResult:
         TIMEOUT = 6
         NO_SETPOINT_SET = 7
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == OffboardResult.Result.UNKNOWN:
                 return offboard_pb2.OffboardResult.RESULT_UNKNOWN
             if self == OffboardResult.Result.SUCCESS:
@@ -817,7 +817,7 @@ class OffboardResult:
         
         
             
-        self.result.translate_to_rpc(rpcOffboardResult.result)
+        rpcOffboardResult.result = self.result.translate_to_rpc()
             
         
         

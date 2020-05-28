@@ -112,7 +112,7 @@ class Polygon:
         INCLUSION = 0
         EXCLUSION = 1
 
-        def translate_to_rpc(self, rpcType):
+        def translate_to_rpc(self):
             if self == Polygon.Type.INCLUSION:
                 return geofence_pb2.Polygon.TYPE_INCLUSION
             if self == Polygon.Type.EXCLUSION:
@@ -187,7 +187,7 @@ class Polygon:
         
         
             
-        self.type.translate_to_rpc(rpcPolygon.type)
+        rpcPolygon.type = self.type.translate_to_rpc()
             
         
         
@@ -247,7 +247,7 @@ class GeofenceResult:
         TIMEOUT = 5
         INVALID_ARGUMENT = 6
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == GeofenceResult.Result.UNKNOWN:
                 return geofence_pb2.GeofenceResult.RESULT_UNKNOWN
             if self == GeofenceResult.Result.SUCCESS:
@@ -331,7 +331,7 @@ class GeofenceResult:
         
         
             
-        self.result.translate_to_rpc(rpcGeofenceResult.result)
+        rpcGeofenceResult.result = self.result.translate_to_rpc()
             
         
         

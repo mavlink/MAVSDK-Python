@@ -74,7 +74,7 @@ class CalibrationResult:
         CANCELLED = 9
         FAILED_ARMED = 10
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == CalibrationResult.Result.UNKNOWN:
                 return calibration_pb2.CalibrationResult.RESULT_UNKNOWN
             if self == CalibrationResult.Result.SUCCESS:
@@ -174,7 +174,7 @@ class CalibrationResult:
         
         
             
-        self.result.translate_to_rpc(rpcCalibrationResult.result)
+        rpcCalibrationResult.result = self.result.translate_to_rpc()
             
         
         

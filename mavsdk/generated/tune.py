@@ -98,7 +98,7 @@ class SongElement(Enum):
     OCTAVE_UP = 19
     OCTAVE_DOWN = 20
 
-    def translate_to_rpc(self, rpcSongElement):
+    def translate_to_rpc(self):
         if self == SongElement.STYLE_LEGATO:
             return tune_pb2.SONG_ELEMENT_STYLE_LEGATO
         if self == SongElement.STYLE_NORMAL:
@@ -313,7 +313,7 @@ class TuneResult:
         TUNE_TOO_LONG = 2
         ERROR = 3
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == TuneResult.Result.SUCCESS:
                 return tune_pb2.TuneResult.RESULT_SUCCESS
             if self == TuneResult.Result.INVALID_TEMPO:
@@ -385,7 +385,7 @@ class TuneResult:
         
         
             
-        self.result.translate_to_rpc(rpcTuneResult.result)
+        rpcTuneResult.result = self.result.translate_to_rpc()
             
         
         

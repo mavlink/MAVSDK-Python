@@ -22,7 +22,7 @@ class GimbalMode(Enum):
     YAW_FOLLOW = 0
     YAW_LOCK = 1
 
-    def translate_to_rpc(self, rpcGimbalMode):
+    def translate_to_rpc(self):
         if self == GimbalMode.YAW_FOLLOW:
             return gimbal_pb2.GIMBAL_MODE_YAW_FOLLOW
         if self == GimbalMode.YAW_LOCK:
@@ -82,7 +82,7 @@ class GimbalResult:
         ERROR = 2
         TIMEOUT = 3
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == GimbalResult.Result.UNKNOWN:
                 return gimbal_pb2.GimbalResult.RESULT_UNKNOWN
             if self == GimbalResult.Result.SUCCESS:
@@ -154,7 +154,7 @@ class GimbalResult:
         
         
             
-        self.result.translate_to_rpc(rpcGimbalResult.result)
+        rpcGimbalResult.result = self.result.translate_to_rpc()
             
         
         

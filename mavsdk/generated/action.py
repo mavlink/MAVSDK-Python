@@ -78,7 +78,7 @@ class ActionResult:
         NO_VTOL_TRANSITION_SUPPORT = 10
         PARAMETER_ERROR = 11
 
-        def translate_to_rpc(self, rpcResult):
+        def translate_to_rpc(self):
             if self == ActionResult.Result.UNKNOWN:
                 return action_pb2.ActionResult.RESULT_UNKNOWN
             if self == ActionResult.Result.SUCCESS:
@@ -182,7 +182,7 @@ class ActionResult:
         
         
             
-        self.result.translate_to_rpc(rpcActionResult.result)
+        rpcActionResult.result = self.result.translate_to_rpc()
             
         
         
