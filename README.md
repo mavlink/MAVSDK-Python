@@ -84,7 +84,7 @@ Run the following helper script. It will generate the Python wrappers for each p
 ./other/tools/run_protoc.sh
 ```
 
-### Generate the documentation
+### Generate the API documentation
 
 ```
 pip3 install sphinx numpydoc
