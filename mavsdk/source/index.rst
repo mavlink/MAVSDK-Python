@@ -3,8 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to MAVSDK-Python's documentation!
-=========================================
+|
+
+.. image:: nature_adapted/static/sdk_logo_full.png
+   :alt: MAVSDK logo
+   :scale: 30%
+
+MAVSDK-Python API reference
+===========================
+
 
 .. toctree::
    :maxdepth: 5
