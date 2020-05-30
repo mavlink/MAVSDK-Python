@@ -65,7 +65,6 @@ First install the protoc plugin (`protoc-gen-dcsdk`):
 ```
 cd proto/pb_plugins
 pip3 install -r requirements.txt
-pip3 install -e .
 ```
 
 You can check that the plugin was installed with `$ which protoc-gen-dcsdk`, as it should now be in the PATH.
