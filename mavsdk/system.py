@@ -23,40 +23,42 @@ class System:
         "Telemetry"
     ]
 
-    """Instantiate a System object, that will serve as a proxy to
-       all the MAVSDK plugins.
-
-       Parameters
-       ----------
-       mavsdk_server_address: str
-           Address of a running mavsdk_server instance. If None,
-           an instance of mavsdk_server will be automatically
-           started (on localhost).
-
-       port: int
-           Port of the running mavsdk_server instance specified by
-           mavsdk_server_address.
-
-    """
     def __init__(self, mavsdk_server_address=None, port=50051):
+        """Instantiate a System object, that will serve as a proxy to
+        all the MAVSDK plugins.
+
+        Parameters
+        ----------
+        mavsdk_server_address: str
+            Address of a running mavsdk_server instance. If None,
+            an instance of mavsdk_server will be automatically
+            started (on localhost).
+
+        port: int
+            Port of the running mavsdk_server instance specified by
+            mavsdk_server_address.
+
+        """
         self._mavsdk_server_address = mavsdk_server_address
         self._port = port
 
         self._plugins = {}
 
-    """Connect the System object to a remote system.
-
-       Parameters
-       ----------
-       system_address: str
-           The address of the remote system. If None, it will
-           default to udp://:14540. Supported URL formats:
-               - Serial: serial:///path/to/serial/dev[:baudrate]
-               - UDP: udp://[bind_host][:bind_port]
-               - TCP: tcp://[server_host][:server_port]
-
-    """
     async def connect(self, system_address=None):
+        """
+        Connect the System object to a remote system.
+
+        Parameters
+        ----------
+        system_address: str
+            The address of the remote system. If None, it will
+            default to udp://:14540. Supported URL formats:
+
+                - Serial: serial:///path/to/serial/dev[:baudrate]
+                - UDP: udp://[bind_host][:bind_port]
+                - TCP: tcp://[server_host][:server_port]
+
+        """
         if self._mavsdk_server_address is None:
             self._mavsdk_server_address = 'localhost'
             self._start_mavsdk_server(system_address)

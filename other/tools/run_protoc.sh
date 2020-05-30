@@ -1,11 +1,18 @@
 #!/bin/bash
 
+set -e
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WORK_DIR="${SCRIPT_DIR}/../../"
 PROTO_DIR="${WORK_DIR}/proto"
 GENERATED_DIR="${WORK_DIR}/mavsdk/generated"
 PLUGIN_INIT="${GENERATED_DIR}/__init__.py"
-export TEMPLATE_PATH="${WORK_DIR}/other/templates/"
+TEMPLATE_PATH="${WORK_DIR}/other/templates/py"
+
+TEMPLATE_PATH_RST="${WORK_DIR}/other/templates/rst"
+GENERATED_DIR_RST="${WORK_DIR}/mavsdk/source/plugins"
+
+PLUGIN_LIST=$(cd ${WORK_DIR}/proto/protos && ls -d */ | sed 's:/*$::')
 
 function snake_case_to_camel_case {
     echo $1 | sed -r 's/(^|_)([a-z])/\U\2/g'
@@ -21,7 +28,7 @@ function generate {
                                  --grpc_python_out=${GENERATED_DIR} \
                                  mavsdk_options.proto
 
-    for plugin in action calibration camera core follow_me ftp geofence gimbal info log_files mission mission_raw mocap offboard param shell telemetry tune; do
+    for plugin in ${PLUGIN_LIST}; do
 
        # Generate protobuf and gRPC files
         python3 -m grpc_tools.protoc -I${PROTO_DIR}/protos \
@@ -46,15 +53,32 @@ function generate {
                                      --proto_path=${PROTO_DIR}/protos/${plugin} \
                                      --plugin=protoc-gen-custom=$(which protoc-gen-dcsdk) \
                                      --custom_out=${GENERATED_DIR} \
-                                     --custom_opt=file_ext=py \
+                                     --custom_opt="file_ext=py,template_path=${TEMPLATE_PATH}" \
                                     ${plugin}.proto
 
         # protoc-gen-dcsdk capitalizes filenames, and we don't want that with python
         mv ${GENERATED_DIR}/$(snake_case_to_camel_case ${plugin}).py ${GENERATED_DIR}/${plugin}.py
-
         # Add to imports
         echo "from .${plugin} import *" >> $PLUGIN_INIT
         echo " -> [+] Generated plugin for ${plugin}"
+
+        # Generate plugin doc entry
+        python3 -m grpc_tools.protoc -I${PROTO_DIR}/protos \
+                                     --proto_path=${PROTO_DIR}/protos/${plugin} \
+                                     --plugin=protoc-gen-custom=$(which protoc-gen-dcsdk) \
+                                     --custom_out=${GENERATED_DIR_RST} \
+                                     --custom_opt="file_ext=rst,template_path=${TEMPLATE_PATH_RST}" \
+                                    ${plugin}.proto
+
+        # Again move generated file to its place.
+        mv ${GENERATED_DIR_RST}/$(snake_case_to_camel_case ${plugin}).rst ${GENERATED_DIR_RST}/${plugin}.rst
+        echo " -> [+] Generated doc entry for ${plugin}"
+
+        # Add plugin entry to docs index if not already listed.
+        if [[ ! $(grep ${plugin} ${GENERATED_DIR_RST}/index.rst) ]]; then
+            echo " -> [+] Add doc entry for ${plugin} to index"
+            echo "   ${plugin}" >> ${GENERATED_DIR_RST}/index.rst
+        fi
 
     done
 }

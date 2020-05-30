@@ -6,11 +6,16 @@ This is the Python wrapper for MAVSDK.
 
 The Python wrapper is based on a gRPC client communicating with the gRPC server written in C++. To use the Python wrapper the gRPC server called "backend" needs to be running on the same system. The wrapper is essentially auto-generated from the message definitions ([proto files](https://github.com/mavlink/MAVSDK-Proto)).
 
+
 ## Important Notes
 
 - Python 3.6+ is required (because the wrapper is based on [asyncio](https://docs.python.org/3.7/library/asyncio.html)).
 - You may need to run `pip3` instead of `pip` and `python3` instead of `python`, depending of your system defaults.
 - Auterion has a [Getting started with MAVSDK-Python](https://auterion.com/getting-started-with-mavsdk-python/) guide if you're a beginner and not sure where to start.
+
+## API Reference docs
+
+-> [API Reference documentation](http://mavsdk-python-docs.s3-website.eu-central-1.amazonaws.com/).
 
 ## Install using pip from PyPi
 
@@ -65,7 +70,6 @@ First install the protoc plugin (`protoc-gen-dcsdk`):
 ```
 cd proto/pb_plugins
 pip3 install -r requirements.txt
-pip3 install -e .
 ```
 
 You can check that the plugin was installed with `$ which protoc-gen-dcsdk`, as it should now be in the PATH.
@@ -84,6 +88,14 @@ Run the following helper script. It will generate the Python wrappers for each p
 ```
 ./other/tools/run_protoc.sh
 ```
+
+### Generate the API documentation
+
+```
+pip3 install sphinx numpydoc
+make -C mavsdk html
+```
+
 
 ### Update `mavsdk_server` version
 
