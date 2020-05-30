@@ -7,7 +7,7 @@ WORK_DIR="${SCRIPT_DIR}/../../"
 PROTO_DIR="${WORK_DIR}/proto"
 GENERATED_DIR="${WORK_DIR}/mavsdk/generated"
 PLUGIN_INIT="${GENERATED_DIR}/__init__.py"
-export TEMPLATE_PATH="${WORK_DIR}/other/templates/py"
+TEMPLATE_PATH="${WORK_DIR}/other/templates/py"
 
 PLUGIN_LIST=$(cd ${WORK_DIR}/proto/protos && ls -d */ | sed 's:/*$::')
 
@@ -50,7 +50,7 @@ function generate {
                                      --proto_path=${PROTO_DIR}/protos/${plugin} \
                                      --plugin=protoc-gen-custom=$(which protoc-gen-dcsdk) \
                                      --custom_out=${GENERATED_DIR} \
-                                     --custom_opt=file_ext=py \
+                                     --custom_opt="file_ext=py,template_path=${TEMPLATE_PATH}" \
                                     ${plugin}.proto
 
         # protoc-gen-dcsdk capitalizes filenames, and we don't want that with python
