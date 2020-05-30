@@ -1,7 +1,7 @@
-Action
+Calibration
 ====
 
-.. automodule:: mavsdk.generated.action
+.. automodule:: mavsdk.generated.calibration
     :members:
     :undoc-members:
     :show-inheritance:

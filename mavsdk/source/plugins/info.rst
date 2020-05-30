@@ -1,7 +1,7 @@
-Action
+Info
 ====
 
-.. automodule:: mavsdk.generated.action
+.. automodule:: mavsdk.generated.info
     :members:
     :undoc-members:
     :show-inheritance:

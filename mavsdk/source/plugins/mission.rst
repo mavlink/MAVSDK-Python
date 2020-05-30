@@ -1,7 +1,7 @@
-Action
+Mission
 ====
 
-.. automodule:: mavsdk.generated.action
+.. automodule:: mavsdk.generated.mission
     :members:
     :undoc-members:
     :show-inheritance:

@@ -1,7 +1,7 @@
-Action
+Tune
 ====
 
-.. automodule:: mavsdk.generated.action
+.. automodule:: mavsdk.generated.tune
     :members:
     :undoc-members:
     :show-inheritance:

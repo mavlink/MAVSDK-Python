@@ -1,7 +1,7 @@
-Action
+Camera
 ====
 
-.. automodule:: mavsdk.generated.action
+.. automodule:: mavsdk.generated.camera
     :members:
     :undoc-members:
     :show-inheritance:

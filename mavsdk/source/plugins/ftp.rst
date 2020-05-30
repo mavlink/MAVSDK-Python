@@ -1,7 +1,7 @@
-Action
+Ftp
 ====
 
-.. automodule:: mavsdk.generated.action
+.. automodule:: mavsdk.generated.ftp
     :members:
     :undoc-members:
     :show-inheritance:

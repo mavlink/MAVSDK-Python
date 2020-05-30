@@ -1,7 +1,7 @@
-Action
+MissionRaw
 ====
 
-.. automodule:: mavsdk.generated.action
+.. automodule:: mavsdk.generated.mission_raw
     :members:
     :undoc-members:
     :show-inheritance:

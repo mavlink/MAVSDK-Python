@@ -1,7 +1,7 @@
-Action
+LogFiles
 ====
 
-.. automodule:: mavsdk.generated.action
+.. automodule:: mavsdk.generated.log_files
     :members:
     :undoc-members:
     :show-inheritance:

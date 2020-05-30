@@ -1,7 +1,7 @@
-Action
+FollowMe
 ====
 
-.. automodule:: mavsdk.generated.action
+.. automodule:: mavsdk.generated.follow_me
     :members:
     :undoc-members:
     :show-inheritance:

@@ -1,7 +1,7 @@
-Action
+Shell
 ====
 
-.. automodule:: mavsdk.generated.action
+.. automodule:: mavsdk.generated.shell
     :members:
     :undoc-members:
     :show-inheritance:

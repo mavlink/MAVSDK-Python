@@ -1,7 +1,7 @@
-Action
+Core
 ====
 
-.. automodule:: mavsdk.generated.action
+.. automodule:: mavsdk.generated.core
     :members:
     :undoc-members:
     :show-inheritance:

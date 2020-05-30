@@ -1,7 +1,7 @@
-Action
+Gimbal
 ====
 
-.. automodule:: mavsdk.generated.action
+.. automodule:: mavsdk.generated.gimbal
     :members:
     :undoc-members:
     :show-inheritance:
