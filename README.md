@@ -84,6 +84,14 @@ Run the following helper script. It will generate the Python wrappers for each p
 ./other/tools/run_protoc.sh
 ```
 
+### Generate the documentation
+
+```
+pip3 install sphinx numpydoc
+make -C mavsdk html
+```
+
+
 ### Update `mavsdk_server` version
 
 [MAVSDK_SERVER_VERSION](./MAVSDK_SERVER_VERSION) contains exactly the tag name of the `mavsdk_server` release corresponding to the version of MAVSDK-Python. When the [proto](./proto) submodule is updated here, chances are that `mavsdk_server` should be updated, too. Just edit this file, and the corresponding binary will be downloaded by the `setup.py` script (see below).
