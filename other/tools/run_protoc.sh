@@ -7,6 +7,8 @@ GENERATED_DIR="${WORK_DIR}/mavsdk/generated"
 PLUGIN_INIT="${GENERATED_DIR}/__init__.py"
 export TEMPLATE_PATH="${WORK_DIR}/other/templates/py"
 
+PLUGIN_LIST=$(cd ${WORK_DIR}/proto/protos && ls -d */ | sed 's:/*$::')
+
 function snake_case_to_camel_case {
     echo $1 | sed -r 's/(^|_)([a-z])/\U\2/g'
 }
@@ -21,7 +23,7 @@ function generate {
                                  --grpc_python_out=${GENERATED_DIR} \
                                  mavsdk_options.proto
 
-    for plugin in action calibration camera core follow_me ftp geofence gimbal info log_files mission mission_raw mocap offboard param shell telemetry tune; do
+    for plugin in ${PLUGIN_LIST}; do
 
        # Generate protobuf and gRPC files
         python3 -m grpc_tools.protoc -I${PROTO_DIR}/protos \
