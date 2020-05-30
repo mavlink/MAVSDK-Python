@@ -69,7 +69,7 @@ class Entry:
      Parameters
      ----------
      id : uint32_t
-          ID of the log file, to specify a file to be download
+          ID of the log file, to specify a file to be downloaded
 
      date : std::string
           Date of the log file in UTC in ISO 8601 format "yyyy-mm-ddThh:mm:ssZ"
