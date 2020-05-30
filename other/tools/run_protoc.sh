@@ -5,7 +5,7 @@ WORK_DIR="${SCRIPT_DIR}/../../"
 PROTO_DIR="${WORK_DIR}/proto"
 GENERATED_DIR="${WORK_DIR}/mavsdk/generated"
 PLUGIN_INIT="${GENERATED_DIR}/__init__.py"
-export TEMPLATE_PATH="${WORK_DIR}/other/templates/"
+export TEMPLATE_PATH="${WORK_DIR}/other/templates/py"
 
 function snake_case_to_camel_case {
     echo $1 | sed -r 's/(^|_)([a-z])/\U\2/g'
