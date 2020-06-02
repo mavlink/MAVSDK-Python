@@ -91,112 +91,117 @@ class System:
         for plugin in self._core_plugins:
             self._plugins[plugin.lower()] = globals()[plugin](plugin_manager)
 
+    @staticmethod
+    def error_uninitialized(plugin_name: str) -> str:
+        return "{plugin_name} plugin has not been initialized!" \
+            "Did you run `System.connect()`?"
+
     @property
     def action(self) -> Action:
         if "action" not in self._plugins:
-            raise RuntimeError("Action plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("Action"))
         return self._plugins["action"]
 
     @property
     def calibration(self) -> Calibration:
         if "calibration" not in self._plugins:
-            raise RuntimeError("Calibration plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("Calibration"))
         return self._plugins["calibration"]
 
     @property
     def camera(self) -> Camera:
         if "camera" not in self._plugins:
-            raise RuntimeError("Camera plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("Camera"))
         return self._plugins["camera"]
 
     @property
     def core(self) -> Core:
         if "core" not in self._plugins:
-            raise RuntimeError("Core plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("Core"))
         return self._plugins["core"]
 
     @property
     def follow_me(self) -> FollowMe:
         if "follow_me" not in self._plugins:
-            raise RuntimeError("FollowMe plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("FollowMe"))
         return self._plugins["follow_me"]
 
     @property
     def ftp(self) -> Ftp:
         if "ftp" not in self._plugins:
-            raise RuntimeError("Ftp plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("Ftp"))
         return self._plugins["Ftp"]
 
     @property
     def geofence(self) -> Geofence:
         if "geofence" not in self._plugins:
-            raise RuntimeError("Geofence plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("Geofence"))
         return self._plugins["geofence"]
 
     @property
     def gimbal(self) -> Gimbal:
         if "gimbal" not in self._plugins:
-            raise RuntimeError("Gimbal plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("Gimbal"))
         return self._plugins["gimbal"]
 
     @property
     def info(self) -> Info:
         if "info" not in self._plugins:
-            raise RuntimeError("Info plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("Info"))
         return self._plugins["info"]
 
     @property
     def log_files(self) -> LogFiles:
         if "log_files" not in self._plugins:
-            raise RuntimeError("LogFiles plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("LogFiles"))
         return self._plugins["log_files"]
 
     @property
     def mission(self) -> Mission:
         if "mission" not in self._plugins:
-            raise RuntimeError("Mission plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("Mission"))
         return self._plugins["mission"]
 
     @property
     def mission_raw(self) -> MissionRaw:
         if "mission_raw" not in self._plugins:
-            raise RuntimeError("MissionRaw plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("MissionRaw"))
         return self._plugins["mission_raw"]
 
     @property
     def mocap(self) -> Mocap:
         if "mocap" not in self._plugins:
-            raise RuntimeError("Mocap plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("Mocap"))
         return self._plugins["mocap"]
 
     @property
     def offboard(self) -> Offboard:
         if "offboard" not in self._plugins:
-            raise RuntimeError("Offboard plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("Offboard"))
         return self._plugins["offboard"]
 
     @property
     def param(self) -> Param:
         if "param" not in self._plugins:
-            raise RuntimeError("Param plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("Param"))
         return self._plugins["param"]
 
     @property
     def shell(self) -> Shell:
         if "shell" not in self._plugins:
-            raise RuntimeError("Shell plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("Shell"))
         return self._plugins["shell"]
 
     @property
     def telemetry(self) -> Telemetry:
         if "telemetry" not in self._plugins:
-            raise RuntimeError("Telemetry plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("Telemetry"))
         return self._plugins["telemetry"]
 
     @property
     def tune(self) -> Tune:
         if "tune" not in self._plugins:
-            raise RuntimeError("Tune plugin has not been initialized! Did you run `System.connect()`?")
+            raise RuntimeError(self.error_uninitialized("Tune"))
         return self._plugins["tune"]
 
     @staticmethod
@@ -233,7 +238,6 @@ class System:
                        'drone = System(mavsdk_server_address='localhost', port=50051)'
                   """)
             sys.exit(1)
-
 
         def cleanup():
             p.kill()
