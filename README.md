@@ -117,4 +117,4 @@ make -C mavsdk html
 
 ### Release to PyPi repository
 
-The CI will create and push a wheel for Windows, Linux and macOS whenever a release tag is created.
+The CI will create and push a wheel for Windows, Linux and macOS to PyPi whenever a tag is pushed and a release created.
