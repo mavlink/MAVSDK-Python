@@ -77,6 +77,9 @@ install:
 - set -e
 - pip3 install -r requirements.txt -r requirements-dev.txt
 - pip3 install auditwheel twine
+- if [[ "${BUILD_TARGET}" = "linux" ]]; then
+    pip3 install sphinx numpydoc s3cmd;
+  fi
 - if [[ "${BUILD_TARGET}" = "macos" ]]; then
     pip3 install delocate;
   fi
@@ -89,6 +92,7 @@ script:
   fi
 - if [[ "${BUILD_TARGET}" = "linux" ]]; then
     auditwheel repair --plat manylinux2010_x86_64 dist/*.whl;
+    make -C mavsdk html;
   fi
 - if [[ "${BUILD_TARGET}" = "macos" ]]; then
     delocate-wheel -w wheelhouse -v dist/*.whl;
@@ -110,7 +114,15 @@ script:
   else
     echo "Not deploying without git tag.";
   fi
+- if [[ "${BUILD_TARGET}" = "linux" ]] && [[ ! -z "${TRAVIS_TAG}" ]]; then
+    echo "Uploading docs";
+    other/tools/upload_docs.sh;
+  else
+    echo "Not uploading docs without git tag.";
+  fi
 env:
   global:
   - secure: cpJLKiOqUTYB1ozkVus4SlPBP/XJ1uUxfMKos+XLWxEVOTguLIW+bKhLfquY9+PlY2rajl5jxxzrX5RZOgZR0fbHHh9FAzioWhzEEUQb76IKnDD7St8J6Pq65bO1Vk8o0sdtQ+ht8+RK54TJL6d8jxVh4RNV3txBB6wFzkFcw5WTDxgWr/+HsYfC9IQkIXGf8NJmvdCUBunL2xDULZ3rlPzEG/YmXjR79g51juNWvZjDKFjLmpHe/qN8VSws1QrI7tKtTtNrNutlAVnOWSlcnJspzex0WfG4EINyjJH7WQZppLiax55jWSBAzxee3/7jXyDVDOJBPl8JT/GyqoQL/qHDmiJuHm53Ktpgg0saGlcSuYuA643PVVJ2Q1SerTtboukJIfNi08GykSPLIbT6PHqhB7NzaA+rWXWgTIoMUyPQ38M+/2lpVqNc6fwAClAbYrJKxyiH7g6GLShV5/UOqDWK18OGGYnpWs+X2eFPXFXLVfZ540VvqlZimwMd6PZuB6RpgKBcBPH1FMac1dE0+FaNHHHj9KNONkiTfzJCFEThwTtS0z3xrKzq8q8iAmbbhTKMJjwID0hpdKdfvzxkPW7IJiW/zG5X2WBL5gB2bhKhpkiozZCuO087aPxPx6Y+Jua5nt3hm3p1tVqZD3hX+SNv4ymHXfsyeIvweLKi0QQ=
   - secure: CiOtzgly9Rl0KwaA3W3FJTzSaUoSpRVPgSRj+x9UdmDBKHm9dvW3kc5amsUKzx7jF9qb2Cuyw2Bg9kmq7SIIqvvN14/3NkzTb2aDpE+f/O627asKJlrr5CuQtmwFX//ZjLIeLFPySBj/Oz1SUz39hqtRVkyTAPfvxiVu52AQveXqyxhcgC5ALI/kIAVaWeKBqH8f6PJ5HUphL2u+QOO1/r88tEumbmVUA6tvQZxHUsu7tU1SOwB4SAfCwTfwJ8h0ZUEicuTkUB3KJc6gDWF8i2AUi1akrysAO4DDd606K1APA7QusTq+PP16tG23ul6kmme8SNRXZUouqGv902giif3TZdJqSyoPkih4TTUUeQ47xBQ81EJba5lXbEZIu4N3Soxl6RSa6O85LNuc9XKxNSEbruRWROxg+hMBh+8403S4NlWfxnri4SwM8iM98psWjTGyl/JLLNU7JJniiuBY5coEV65XzP/6gnAdo1TGy3kdolnTeocT1Nrx0WSH8LxZM6LhWdt2uV1eJK4NT2MhxW8CI/S6BGiwZV/31+HfMUoseEjYPPaGFDazIWtC6WWlPRFLsk1cktNjK+/KxDThkVBW+kkiGrqifRi8u+TNjWLRJbotNnDq5RYipvXjCIurl1UlPIDx6l7JnJjknblu35JjjOevOn/WDIJdpDTODdw=
+  - secure: XdfCbE+3tmWZTkuXArqjcs3CBe7T41iT2Jf9cqOBuO/bGJmL+dWU4JEl9/VsZEZBvAiMrXzZQxZVFjVpwoK2c95EkmG9OZyp5zMmmv16eiUbJEi0Vr3pfq6R5V4kzVlvX3fPX6WI0BGg+XaeoQwU/qDkB7Y49GjaJrBf6wJRAabvx3mhAVZIc2pe/mEFepueJRZqNhXy5cQ3i7KS2HLncZXL9cOMlXlSeM8DP83HMwdKotC32LP2Yq8xbhg1gfoWwGUK8cGVhjAsbz1ufzcA8h4IhdEtegLAWUT7qSb05lcCl1rf8xEYAHznxE5ph70inSD4Dw102GeReUcLmAarKI4vnZsP0LTANAWCyY6CUDdoCsyBGlmKrAW3EWV9sTDsMrmWLZTG8I+LzoFMoZ7xqhjE7+MnK6QSAyb9kk84rxOZwTYbp91OZXpL78m7I4Fbgx3Hy0UXKnQ99cpVtebfbrbWgijKmE3aolBM14MlZuqMCZVQlluefchhXjCAdX1nfS4Xnc6NrYpdgNjwtL6S732NkvKB0ow2NkBmSAxFhQgykfFqD5PN830JvOqN6aHev18GH8oR6Ey0gUNBjryz1+IdUKjaPZt8QiMNSCKpl3CN5vAKO/b8RscLHkNtEuwKflGKuT7ScPH9jpmyJZoDOUU28QS2eekESJ6FqQuae6c=
+  - secure: GtKNWNjxb+QGxCZRgb42R64zMOHcs0NxBWnsQzrQz0xkwdlZOXBmO2rzkSj6j3djUcowhThi3bRhmJy/stHvs+0eAEY3UvW0TMrnC34+JN6WnAx60EfQSLr0Imrzv55RDbLWDVyzC50ks95iRSCtkZnXL2OUdoIqTZMiV3fbJS1kxy8K3k00qiBLwviHC9FSV+Ujz9nIQDJfLEELDzQVFEOMRd+qfJYkkVIRUl9VThC25T1ykN0A3jL1SI9tc5+XHdEy8poKjtncXjdGu9AS1vxSJsc0oOkbn9quRW+GYq3J105BHtMjfTHWRVsTyMeRgimxeMWq+l9bD28/K8ou1dhvdY1CAZLZUOeDDDPsWrWDYdD3pk+Dehur2H0raEOMvfEOfYKgN2vRPxX0hlwFTaumCHElEHZN0sHw5fwDYOo4uCFEUr1kMm2KBth3NvckHLpOGI+yrUuSmeVgrnpz5aO9V4/I9+lK1FarcvBeh6ERThO33bcTpF1GVWYdFxS4p9xoggtz5mra+nddNS1jrVJYa4P1AL9HFKcu7wjCRZFSLHL1lPP+4p2N4nIRxiWmjX5aG2gASDO/qld5ZtwhePyI5JxAMp0vMBTx9aFEbc7y2F0SlyPtUKin0RQ1SRG8q+P37Jug936EAbhsVm3/Wi/KtDCGxyM0zqMs06ANidU=
