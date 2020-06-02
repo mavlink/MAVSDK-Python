@@ -107,7 +107,7 @@ Note: MAVDSK-Python runs `mavsdk/bin/mavsdk_server` when `await drone.connect()`
 
 ### Generate the API documentation
 
-Make sure the version is set correctly before generating and uploading new documentation.
+Make sure the version tag is set correctly before generating new documentation.
 
 ```
 pip3 install sphinx numpydoc
@@ -115,6 +115,18 @@ make -C mavsdk html
 ```
 
 
-### Release to PyPi repository
+### Release steps
 
-The CI will create and push a wheel for Windows, Linux and macOS to PyPi whenever a tag is pushed and a release created.
+1. Check all required pull requests are merged to master
+2. Check [MAVSDK_SERVER_VERSION](MAVSDK_SERVER_VERSION) is set to the correct version of mavsdk_server.
+3. Create git tag on laster master, e.g.:
+   ```
+   git switch master
+   git pull
+   git tag X.Y.Z
+   git push --tags
+   ```
+4. Go to [releases page](https://github.com/mavlink/MAVSDK-Python/releases) and create new release.
+   The CI will now:
+   - Create and push a wheel for Windows, Linux and macOS to PyPi.
+   - Generate the latest docs and push them to s3.
