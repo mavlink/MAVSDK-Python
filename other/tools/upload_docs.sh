@@ -4,7 +4,7 @@
 # http://mavsdk-python-docs.s3-website.eu-central-1.amazonaws.com/
 
 # Sync everything
-s3cmd sync mavsdk/build/html/genindex.html mavsdk/build/html/_images mavsdk/build/html/index.html mavsdk/build/html/objects.inv mavsdk/build/html/plugins mavsdk/build/html/py-modindex.html mavsdk/build/html/search.html mavsdk/build/html/searchindex.js mavsdk/build/html/_sources mavsdk/build/html/_static mavsdk/build/html/system.html s3://mavsdk-python-docs
+s3cmd sync mavsdk/build/html/ s3://mavsdk-python-docs
 
 # Fix meta data
 s3cmd put -m text/html mavsdk/build/html/index.html s3://mavsdk-python-docs
