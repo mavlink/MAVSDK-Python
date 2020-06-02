@@ -12,15 +12,20 @@ class System:
         "Calibration",
         "Camera",
         "Core",
+        "FollowMe",
+        "Ftp",
         "Geofence",
         "Gimbal",
         "Info",
+        "LogFiles",
         "Mission",
+        "MissionRaw",
         "Mocap",
-        "Param",
         "Offboard",
+        "Param",
         "Shell",
-        "Telemetry"
+        "Telemetry",
+        "Tune",
     ]
 
     """Instantiate a System object, that will serve as a proxy to
@@ -94,6 +99,18 @@ class System:
         return self._plugins["core"]
 
     @property
+    def follow_me(self) -> FollowMe:
+        if "follow_me" not in self._plugins:
+            raise RuntimeError("FollowMe plugin has not been initialized! Did you run `System.connect()`?")
+        return self._plugins["follow_me"]
+
+    @property
+    def ftp(self) -> Ftp:
+        if "ftp" not in self._plugins:
+            raise RuntimeError("Ftp plugin has not been initialized! Did you run `System.connect()`?")
+        return self._plugins["Ftp"]
+
+    @property
     def geofence(self) -> Geofence:
         if "geofence" not in self._plugins:
             raise RuntimeError("Geofence plugin has not been initialized! Did you run `System.connect()`?")
@@ -112,16 +129,28 @@ class System:
         return self._plugins["info"]
 
     @property
+    def log_files(self) -> LogFiles:
+        if "log_files" not in self._plugins:
+            raise RuntimeError("LogFiles plugin has not been initialized! Did you run `System.connect()`?")
+        return self._plugins["log_files"]
+
+    @property
     def mission(self) -> Mission:
         if "mission" not in self._plugins:
             raise RuntimeError("Mission plugin has not been initialized! Did you run `System.connect()`?")
         return self._plugins["mission"]
 
     @property
-    def param(self) -> Param:
-        if "param" not in self._plugins:
-            raise RuntimeError("Param plugin has not been initialized! Did you run `System.connect()`?")
-        return self._plugins["param"]
+    def mission_raw(self) -> MissionRaw:
+        if "mission_raw" not in self._plugins:
+            raise RuntimeError("MissionRaw plugin has not been initialized! Did you run `System.connect()`?")
+        return self._plugins["mission_raw"]
+
+    @property
+    def mocap(self) -> Mocap:
+        if "mocap" not in self._plugins:
+            raise RuntimeError("Mocap plugin has not been initialized! Did you run `System.connect()`?")
+        return self._plugins["mocap"]
 
     @property
     def offboard(self) -> Offboard:
@@ -130,10 +159,10 @@ class System:
         return self._plugins["offboard"]
 
     @property
-    def telemetry(self) -> Telemetry:
-        if "telemetry" not in self._plugins:
-            raise RuntimeError("Telemetry plugin has not been initialized! Did you run `System.connect()`?")
-        return self._plugins["telemetry"]
+    def param(self) -> Param:
+        if "param" not in self._plugins:
+            raise RuntimeError("Param plugin has not been initialized! Did you run `System.connect()`?")
+        return self._plugins["param"]
 
     @property
     def shell(self) -> Shell:
@@ -142,10 +171,16 @@ class System:
         return self._plugins["shell"]
 
     @property
-    def mocap(self) -> Mocap:
-        if "mocap" not in self._plugins:
-            raise RuntimeError("Mocap plugin has not been initialized! Did you run `System.connect()`?")
-        return self._plugins["mocap"]
+    def telemetry(self) -> Telemetry:
+        if "telemetry" not in self._plugins:
+            raise RuntimeError("Telemetry plugin has not been initialized! Did you run `System.connect()`?")
+        return self._plugins["telemetry"]
+
+    @property
+    def tune(self) -> Tune:
+        if "tune" not in self._plugins:
+            raise RuntimeError("Tune plugin has not been initialized! Did you run `System.connect()`?")
+        return self._plugins["tune"]
 
     @staticmethod
     def _start_mavsdk_server(system_address=None):
