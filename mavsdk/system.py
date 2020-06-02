@@ -1,7 +1,24 @@
 # -*- coding: utf-8 -*-
 
-from .async_plugin_manager import AsyncPluginManager # NOQA
-from .generated import * # NOQA
+from .async_plugin_manager import AsyncPluginManager
+from .generated import Action
+from .generated import Calibration
+from .generated import Camera
+from .generated import Core
+from .generated import FollowMe
+from .generated import Ftp
+from .generated import Geofence
+from .generated import Gimbal
+from .generated import Info
+from .generated import LogFiles
+from .generated import Mission
+from .generated import MissionRaw
+from .generated import Mocap
+from .generated import Offboard
+from .generated import Param
+from .generated import Shell
+from .generated import Telemetry
+from .generated import Tune
 
 from . import bin
 
