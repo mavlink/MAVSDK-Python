@@ -14,15 +14,18 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-
 # -- Project information -----------------------------------------------------
+import subprocess
 
 project = 'MAVSDK-Python'
 copyright = '2020, Jonas Vautherin, Julian Oes'
 author = 'Jonas Vautherin, Julian Oes'
 
+result = subprocess.run(['git', 'describe', '--tag', '--abbrev=0'],
+                        stdout=subprocess.PIPE)
+
 # The full version, including alpha/beta/rc tags
-release = '0.7.0'
+release = result.stdout.decode('utf-8')
 
 
 # -- General configuration ---------------------------------------------------
