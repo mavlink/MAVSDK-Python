@@ -230,13 +230,21 @@ class System:
                                      stderr=subprocess.DEVNULL)
         except FileNotFoundError:
             print("""
-                  It seems like this installation does not provide an embedded 'mavsdk_server' binary. If you installed from pip, it means that 'mavsdk_server' is not distributed for your platform (yet). You will need to get and run it manually:
+This installation does not provide an embedded 'mavsdk_server' binary.
+If you installed using pip, this means that 'mavsdk_server' is not distributed
+for your platform yet (e.g. arm).
 
-                    1. Download 'mavsdk_server' from releases: https://github.com/mavlink/mavsdk/releases (or build it from source).
-                    2. Run it, e.g. on port 50051: './mavsdk_server -p 50051'.
-                    3. Set the 'mavsdk_server_address' and port when creating the System:
-                       'drone = System(mavsdk_server_address='localhost', port=50051)'
-                  """)
+You will need to get and run the 'mavsdk_server' binary manually:
+
+  1. Download 'mavsdk_server' from: https://github.com/mavlink/mavsdk/releases
+     or build it from source.
+
+  2. Run it, e.g. on port 50051:
+     './mavsdk_server -p 50051'
+
+  3. Set the 'mavsdk_server_address' and port when creating the System:
+     'drone = System(mavsdk_server_address='localhost', port=50051)'
+""")
             sys.exit(1)
 
         def cleanup():
