@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from .._base import AsyncBase
-from ..generated import tune_pb2, tune_pb2_grpc
+from . import tune_pb2, tune_pb2_grpc
 from enum import Enum
 
 

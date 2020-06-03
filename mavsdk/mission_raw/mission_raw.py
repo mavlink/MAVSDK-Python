@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from .._base import AsyncBase
-from ..generated import mission_raw_pb2, mission_raw_pb2_grpc
+from . import mission_raw_pb2, mission_raw_pb2_grpc
 from enum import Enum
 
 

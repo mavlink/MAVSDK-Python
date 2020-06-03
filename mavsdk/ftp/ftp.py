@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from .._base import AsyncBase
-from ..generated import ftp_pb2, ftp_pb2_grpc
+from . import ftp_pb2, ftp_pb2_grpc
 from enum import Enum
 
 

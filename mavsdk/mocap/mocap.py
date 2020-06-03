@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from .._base import AsyncBase
-from ..generated import mocap_pb2, mocap_pb2_grpc
+from . import mocap_pb2, mocap_pb2_grpc
 from enum import Enum
 
 

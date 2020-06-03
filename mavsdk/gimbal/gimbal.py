@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from .._base import AsyncBase
-from ..generated import gimbal_pb2, gimbal_pb2_grpc
+from . import gimbal_pb2, gimbal_pb2_grpc
 from enum import Enum
 
 

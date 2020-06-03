@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from .._base import AsyncBase
-from ..generated import camera_pb2, camera_pb2_grpc
+from . import camera_pb2, camera_pb2_grpc
 from enum import Enum
 
 

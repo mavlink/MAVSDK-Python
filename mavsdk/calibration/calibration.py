@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from .._base import AsyncBase
-from ..generated import calibration_pb2, calibration_pb2_grpc
+from . import calibration_pb2, calibration_pb2_grpc
 from enum import Enum
 
 

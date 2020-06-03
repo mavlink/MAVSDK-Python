@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from .._base import AsyncBase
-from ..generated import geofence_pb2, geofence_pb2_grpc
+from . import geofence_pb2, geofence_pb2_grpc
 from enum import Enum
 
 

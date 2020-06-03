@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from .._base import AsyncBase
-from ..generated import shell_pb2, shell_pb2_grpc
+from . import shell_pb2, shell_pb2_grpc
 from enum import Enum
 
 
