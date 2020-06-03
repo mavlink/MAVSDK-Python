@@ -242,7 +242,7 @@ class TuneDescription:
         """ Translates a gRPC struct to the SDK equivalent """
         return TuneDescription(
                 
-                SongElement.translate_from_rpc(rpcTuneDescription.song_elements),
+                map(lambda elem: SongElement.translate_from_rpc(elem), rpcTuneDescription.song_elements),
                 
                 
                 rpcTuneDescription.tempo
