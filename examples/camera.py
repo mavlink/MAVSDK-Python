@@ -2,7 +2,7 @@
 
 import asyncio
 
-from mavsdk import (CameraError, Mode)
+from mavsdk.camera import (CameraError, Mode)
 from mavsdk import System
 
 
