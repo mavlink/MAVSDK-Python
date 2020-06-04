@@ -4,7 +4,7 @@
 import asyncio
 
 from mavsdk import System
-from mavsdk import (OffboardError, VelocityNedYaw)
+from mavsdk.offboard import (OffboardError, VelocityNedYaw)
 
 
 async def run():

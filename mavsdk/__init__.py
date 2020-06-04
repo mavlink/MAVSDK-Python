@@ -5,7 +5,6 @@ import platform
 import sys
 
 from .system import System
-from .generated import * # NOQA
 
 # Check for compatibility
 if float(".".join(platform.python_version_tuple()[0:-1])) < 3.6:

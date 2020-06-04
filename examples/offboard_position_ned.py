@@ -11,7 +11,7 @@ non-gps environment.
 import asyncio
 
 from mavsdk import System
-from mavsdk import (OffboardError, PositionNedYaw)
+from mavsdk.offboard import (OffboardError, PositionNedYaw)
 
 
 async def run():
