@@ -1,50 +1,30 @@
 # -*- coding: utf-8 -*-
 
 from .async_plugin_manager import AsyncPluginManager
-from .generated import Action
-from .generated import Calibration
-from .generated import Camera
-from .generated import Core
-from .generated import FollowMe
-from .generated import Ftp
-from .generated import Geofence
-from .generated import Gimbal
-from .generated import Info
-from .generated import LogFiles
-from .generated import Mission
-from .generated import MissionRaw
-from .generated import Mocap
-from .generated import Offboard
-from .generated import Param
-from .generated import Shell
-from .generated import Telemetry
-from .generated import Tune
+
+from .action import action
+from .calibration import calibration
+from .camera import camera
+from .core import core
+from .follow_me import follow_me
+from .ftp import ftp
+from .geofence import geofence
+from .gimbal import gimbal
+from .info import info
+from .log_files import log_files
+from .mission import mission
+from .mission_raw import mission_raw
+from .mocap import mocap
+from .offboard import offboard
+from .param import param
+from .shell import shell
+from .telemetry import telemetry
+from .tune import tune
 
 from . import bin
 
 
 class System:
-    _core_plugins = [
-        "Action",
-        "Calibration",
-        "Camera",
-        "Core",
-        "FollowMe",
-        "Ftp",
-        "Geofence",
-        "Gimbal",
-        "Info",
-        "LogFiles",
-        "Mission",
-        "MissionRaw",
-        "Mocap",
-        "Offboard",
-        "Param",
-        "Shell",
-        "Telemetry",
-        "Tune",
-    ]
-
     def __init__(self, mavsdk_server_address=None, port=50051):
         """Instantiate a System object, that will serve as a proxy to
         all the MAVSDK plugins.
@@ -90,8 +70,26 @@ class System:
     async def _init_plugins(self, host, port):
         plugin_manager = await AsyncPluginManager.create(host=host, port=port)
 
-        for plugin in self._core_plugins:
-            self._plugins[plugin.lower()] = globals()[plugin](plugin_manager)
+        self._plugins = {}
+        self._plugins["action"] = action.Action(plugin_manager)
+        self._plugins["calibration"] = calibration.Calibration(plugin_manager)
+        self._plugins["camera"] = camera.Camera(plugin_manager)
+        self._plugins["core"] = core.Core(plugin_manager)
+        self._plugins["follow_me"] = follow_me.FollowMe(plugin_manager)
+        self._plugins["ftp"] = ftp.Ftp(plugin_manager)
+        self._plugins["geofence"] = geofence.Geofence(plugin_manager)
+        self._plugins["gimbal"] = gimbal.Gimbal(plugin_manager)
+        self._plugins["info"] = info.Info(plugin_manager)
+        self._plugins["log_files"] = log_files.LogFiles(plugin_manager)
+        self._plugins["mission"] = mission.Mission(plugin_manager)
+        self._plugins["mission_raw"] = mission_raw.MissionRaw(plugin_manager)
+        self._plugins["mocap"] = mocap.Mocap(plugin_manager)
+        self._plugins["offboard"] = offboard.Offboard(plugin_manager)
+        self._plugins["param"] = param.Param(plugin_manager)
+        self._plugins["shell"] = shell.Shell(plugin_manager)
+        self._plugins["telemetry"] = telemetry.Telemetry(plugin_manager)
+        self._plugins["tune"] = tune.Tune(plugin_manager)
+
 
     @staticmethod
     def error_uninitialized(plugin_name: str) -> str:
@@ -99,109 +97,109 @@ class System:
             "Did you run `System.connect()`?"
 
     @property
-    def action(self) -> Action:
+    def action(self) -> action.Action:
         if "action" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Action"))
         return self._plugins["action"]
 
     @property
-    def calibration(self) -> Calibration:
+    def calibration(self) -> calibration.Calibration:
         if "calibration" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Calibration"))
         return self._plugins["calibration"]
 
     @property
-    def camera(self) -> Camera:
+    def camera(self) -> camera.Camera:
         if "camera" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Camera"))
         return self._plugins["camera"]
 
     @property
-    def core(self) -> Core:
+    def core(self) -> core.Core:
         if "core" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Core"))
         return self._plugins["core"]
 
     @property
-    def follow_me(self) -> FollowMe:
+    def follow_me(self) -> follow_me.FollowMe:
         if "follow_me" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("FollowMe"))
         return self._plugins["follow_me"]
 
     @property
-    def ftp(self) -> Ftp:
+    def ftp(self) -> ftp.Ftp:
         if "ftp" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Ftp"))
         return self._plugins["ftp"]
 
     @property
-    def geofence(self) -> Geofence:
+    def geofence(self) -> geofence.Geofence:
         if "geofence" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Geofence"))
         return self._plugins["geofence"]
 
     @property
-    def gimbal(self) -> Gimbal:
+    def gimbal(self) -> gimbal.Gimbal:
         if "gimbal" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Gimbal"))
         return self._plugins["gimbal"]
 
     @property
-    def info(self) -> Info:
+    def info(self) -> info.Info:
         if "info" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Info"))
         return self._plugins["info"]
 
     @property
-    def log_files(self) -> LogFiles:
+    def log_files(self) -> log_files.LogFiles:
         if "log_files" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("LogFiles"))
         return self._plugins["log_files"]
 
     @property
-    def mission(self) -> Mission:
+    def mission(self) -> mission.Mission:
         if "mission" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Mission"))
         return self._plugins["mission"]
 
     @property
-    def mission_raw(self) -> MissionRaw:
+    def mission_raw(self) -> mission_raw.MissionRaw:
         if "mission_raw" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("MissionRaw"))
         return self._plugins["mission_raw"]
 
     @property
-    def mocap(self) -> Mocap:
+    def mocap(self) -> mocap.Mocap:
         if "mocap" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Mocap"))
         return self._plugins["mocap"]
 
     @property
-    def offboard(self) -> Offboard:
+    def offboard(self) -> offboard.Offboard:
         if "offboard" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Offboard"))
         return self._plugins["offboard"]
 
     @property
-    def param(self) -> Param:
+    def param(self) -> param.Param:
         if "param" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Param"))
         return self._plugins["param"]
 
     @property
-    def shell(self) -> Shell:
+    def shell(self) -> shell.Shell:
         if "shell" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Shell"))
         return self._plugins["shell"]
 
     @property
-    def telemetry(self) -> Telemetry:
+    def telemetry(self) -> telemetry.Telemetry:
         if "telemetry" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Telemetry"))
         return self._plugins["telemetry"]
 
     @property
-    def tune(self) -> Tune:
+    def tune(self) -> tune.Tune:
         if "tune" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Tune"))
         return self._plugins["tune"]

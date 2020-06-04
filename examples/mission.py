@@ -3,7 +3,7 @@
 import asyncio
 
 from mavsdk import System
-from mavsdk import (MissionItem, MissionPlan)
+from mavsdk.mission import (MissionItem, MissionPlan)
 
 
 async def run():
