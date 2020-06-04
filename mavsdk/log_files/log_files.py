@@ -392,6 +392,8 @@ class LogFiles(AsyncBase):
         """
 
         request = logFiles_pb2.SubscribeDownloadLogFileRequest()
+        request.id = id
+        request.path = path
         download_log_file_stream = self._stub.SubscribeDownloadLogFile(request)
 
         try:
