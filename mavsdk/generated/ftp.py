@@ -345,6 +345,8 @@ class Ftp(AsyncBase):
         """
 
         request = ftp_pb2.SubscribeDownloadRequest()
+        request.remote_file_path = remote_file_path
+        request.local_dir = local_dir
         download_stream = self._stub.SubscribeDownload(request)
 
         try:
@@ -393,6 +395,8 @@ class Ftp(AsyncBase):
         """
 
         request = ftp_pb2.SubscribeUploadRequest()
+        request.local_file_path = local_file_path
+        request.remote_dir = remote_dir
         upload_stream = self._stub.SubscribeUpload(request)
 
         try:

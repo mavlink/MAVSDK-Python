@@ -132,7 +132,7 @@ class System:
     def ftp(self) -> Ftp:
         if "ftp" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Ftp"))
-        return self._plugins["Ftp"]
+        return self._plugins["ftp"]
 
     @property
     def geofence(self) -> Geofence:
