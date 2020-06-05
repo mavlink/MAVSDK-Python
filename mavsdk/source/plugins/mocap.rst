@@ -1,7 +1,7 @@
 Mocap
 ====
 
-.. automodule:: mavsdk.generated.mocap
+.. automodule:: mavsdk.mocap
     :members:
     :undoc-members:
     :show-inheritance:

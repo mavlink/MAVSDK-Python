@@ -2,45 +2,46 @@
 
 from .async_plugin_manager import AsyncPluginManager
 
-from .action import action
-from .calibration import calibration
-from .camera import camera
-from .core import core
-from .follow_me import follow_me
-from .ftp import ftp
-from .geofence import geofence
-from .gimbal import gimbal
-from .info import info
-from .log_files import log_files
-from .mission import mission
-from .mission_raw import mission_raw
-from .mocap import mocap
-from .offboard import offboard
-from .param import param
-from .shell import shell
-from .telemetry import telemetry
-from .tune import tune
+from . import action
+from . import calibration
+from . import camera
+from . import core
+from . import follow_me
+from . import ftp
+from . import geofence
+from . import gimbal
+from . import info
+from . import log_files
+from . import mission
+from . import mission_raw
+from . import mocap
+from . import offboard
+from . import param
+from . import shell
+from . import telemetry
+from . import tune
 
 from . import bin
 
 
 class System:
+    """
+    Instantiate a System object, that will serve as a proxy to
+    all the MAVSDK plugins.
+
+    Parameters
+    ----------
+    mavsdk_server_address: str
+        Address of a running mavsdk_server instance. If None,
+        an instance of mavsdk_server will be automatically
+        started (on localhost).
+
+    port: int
+        Port of the running mavsdk_server instance specified by
+        mavsdk_server_address.
+
+    """
     def __init__(self, mavsdk_server_address=None, port=50051):
-        """Instantiate a System object, that will serve as a proxy to
-        all the MAVSDK plugins.
-
-        Parameters
-        ----------
-        mavsdk_server_address: str
-            Address of a running mavsdk_server instance. If None,
-            an instance of mavsdk_server will be automatically
-            started (on localhost).
-
-        port: int
-            Port of the running mavsdk_server instance specified by
-            mavsdk_server_address.
-
-        """
         self._mavsdk_server_address = mavsdk_server_address
         self._port = port
 
@@ -89,7 +90,6 @@ class System:
         self._plugins["shell"] = shell.Shell(plugin_manager)
         self._plugins["telemetry"] = telemetry.Telemetry(plugin_manager)
         self._plugins["tune"] = tune.Tune(plugin_manager)
-
 
     @staticmethod
     def error_uninitialized(plugin_name: str) -> str:
