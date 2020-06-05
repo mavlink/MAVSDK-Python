@@ -34,12 +34,16 @@ function generate {
 
         # We need to create the .original backup files, otherwise we're not compatible with
         # BSD sed.
-        sed -i'.sedoriginal' -e "s/import mavsdk_options_pb2/from .. import mavsdk_options_pb2/" \
+        sed -i'.sedoriginal' -e "s/import mavsdk_options_pb2/from . import mavsdk_options_pb2/" \
             "${GENERATED_DIR}/${plugin}/${plugin}_pb2.py"
         sed -i'.sedoriginal' -e "s/from ${plugin} import ${plugin}_pb2/from . import ${plugin}_pb2/" \
             "${GENERATED_DIR}/${plugin}/${plugin}_pb2_grpc.py"
-        ## Clean up the backup files.
+        # Clean up the backup files.
         find ${GENERATED_DIR} -name '*.sedoriginal' -delete
+
+        mv "${GENERATED_DIR}/${plugin}/${plugin}_pb2.py" "${GENERATED_DIR}/${plugin}_pb2.py"
+        mv "${GENERATED_DIR}/${plugin}/${plugin}_pb2_grpc.py" "${GENERATED_DIR}/${plugin}_pb2_grpc.py"
+
 
         echo " -> [+] Generated protobuf and gRPC bindings for ${plugin}"
 
@@ -51,11 +55,7 @@ function generate {
                                      ${plugin}/${plugin}.proto
 
         # protoc-gen-dcsdk capitalizes filenames, and we don't want that with python
-        mv ${GENERATED_DIR}/${plugin}/$(snake_case_to_camel_case ${plugin}).py ${GENERATED_DIR}/${plugin}/${plugin}.py
-
-        # Make a module out of it
-        echo "from .${plugin} import *" > ${GENERATED_DIR}/${plugin}/__init__.py
-        echo " -> [+] Generated plugin for ${plugin}"
+        mv ${GENERATED_DIR}/${plugin}/$(snake_case_to_camel_case ${plugin}).py ${GENERATED_DIR}/${plugin}.py
 
         # Generate plugin doc entry
         python3 -m grpc_tools.protoc -I${PROTO_DIR}/protos \
@@ -74,6 +74,8 @@ function generate {
             echo " -> [+] Add doc entry for ${plugin} to index"
             echo "   ${plugin}" >> ${GENERATED_DIR_RST}/index.rst
         fi
+
+        rmdir ${GENERATED_DIR}/${plugin}
 
     done
 }
