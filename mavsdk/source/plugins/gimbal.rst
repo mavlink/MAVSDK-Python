@@ -1,7 +1,7 @@
 Gimbal
 ====
 
-.. automodule:: mavsdk.generated.gimbal
+.. automodule:: mavsdk.gimbal
     :members:
     :undoc-members:
     :show-inheritance:

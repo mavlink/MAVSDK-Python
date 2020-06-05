@@ -1,7 +1,7 @@
 Ftp
 ====
 
-.. automodule:: mavsdk.generated.ftp
+.. automodule:: mavsdk.ftp
     :members:
     :undoc-members:
     :show-inheritance:

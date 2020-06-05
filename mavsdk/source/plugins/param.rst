@@ -1,7 +1,7 @@
 Param
 ====
 
-.. automodule:: mavsdk.generated.param
+.. automodule:: mavsdk.param
     :members:
     :undoc-members:
     :show-inheritance:

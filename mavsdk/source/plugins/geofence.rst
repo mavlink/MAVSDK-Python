@@ -1,7 +1,7 @@
 Geofence
 ====
 
-.. automodule:: mavsdk.generated.geofence
+.. automodule:: mavsdk.geofence
     :members:
     :undoc-members:
     :show-inheritance:

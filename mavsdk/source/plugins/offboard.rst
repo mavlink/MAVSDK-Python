@@ -1,7 +1,7 @@
 Offboard
 ====
 
-.. automodule:: mavsdk.generated.offboard
+.. automodule:: mavsdk.offboard
     :members:
     :undoc-members:
     :show-inheritance:

@@ -1,7 +1,7 @@
 Telemetry
 ====
 
-.. automodule:: mavsdk.generated.telemetry
+.. automodule:: mavsdk.telemetry
     :members:
     :undoc-members:
     :show-inheritance:
