@@ -752,7 +752,7 @@ class MissionRaw(AsyncBase):
          
         """
 
-        request = missionRaw_pb2.SubscribeMissionProgressRequest()
+        request = mission_raw_pb2.SubscribeMissionProgressRequest()
         mission_progress_stream = self._stub.SubscribeMissionProgress(request)
 
         try:
@@ -782,7 +782,7 @@ class MissionRaw(AsyncBase):
          
         """
 
-        request = missionRaw_pb2.SubscribeMissionChangedRequest()
+        request = mission_raw_pb2.SubscribeMissionChangedRequest()
         mission_changed_stream = self._stub.SubscribeMissionChanged(request)
 
         try:
