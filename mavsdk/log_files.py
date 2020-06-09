@@ -391,7 +391,7 @@ class LogFiles(AsyncBase):
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = logFiles_pb2.SubscribeDownloadLogFileRequest()
+        request = log_files_pb2.SubscribeDownloadLogFileRequest()
         request.id = id
         request.path = path
         download_log_file_stream = self._stub.SubscribeDownloadLogFile(request)

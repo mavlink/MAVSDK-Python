@@ -24,7 +24,7 @@ async def {{ name.lower_snake_case }}(self{% for param in params %}, {{ param.na
      {%- endif %}
     """
 
-    request = {{ plugin_name.lower_camel_case }}_pb2.Subscribe{{ name.upper_camel_case }}Request()
+    request = {{ plugin_name.lower_snake_case }}_pb2.Subscribe{{ name.upper_camel_case }}Request()
     {% for param in params %}
         {%- if param.type_info.is_primitive -%}
     request.{{ param.name.lower_snake_case }} = {{ param.name.lower_snake_case }}
