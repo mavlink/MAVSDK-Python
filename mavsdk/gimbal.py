@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# DO NOT EDIT! This file is auto-generated from
+# https://github.com/mavlink/MAVSDK-Python/tree/master/other/templates/py
 from ._base import AsyncBase
 from . import gimbal_pb2, gimbal_pb2_grpc
 from enum import Enum

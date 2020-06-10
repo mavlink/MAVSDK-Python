@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# DO NOT EDIT! This file is auto-generated from
+# https://github.com/mavlink/MAVSDK-Python/tree/master/other/templates/py
 from ._base import AsyncBase
 from . import ftp_pb2, ftp_pb2_grpc
 from enum import Enum
