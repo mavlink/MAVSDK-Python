@@ -64,7 +64,7 @@ class System:
         """
         if self._mavsdk_server_address is None:
             self._mavsdk_server_address = 'localhost'
-            self._start_mavsdk_server(system_address)
+            self._start_mavsdk_server(system_address,self._port)
 
         await self._init_plugins(self._mavsdk_server_address, self._port)
 
@@ -205,9 +205,10 @@ class System:
         return self._plugins["tune"]
 
     @staticmethod
-    def _start_mavsdk_server(system_address=None):
+    def _start_mavsdk_server(system_address=None,port=50051):
         """
-        Starts the gRPC server in a subprocess, listening on localhost:50051
+        Starts the gRPC server in a subprocess, listening on localhost:port
+        port parameter can be specified now to allow multiple mavsdk servers to be spawned via code
         """
         import atexit
         import os
@@ -221,7 +222,7 @@ class System:
 
         try:
             with path(bin, 'mavsdk_server') as backend:
-                bin_path_and_args = [os.fspath(backend), "-p", "50051"]
+                bin_path_and_args = [os.fspath(backend), "-p", str(port)]
                 if system_address:
                     bin_path_and_args.append(system_address)
                 p = subprocess.Popen(bin_path_and_args,
