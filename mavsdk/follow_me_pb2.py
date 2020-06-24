@@ -19,6 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='mavsdk.rpc.follow_me',
   syntax='proto3',
   serialized_options=b'\n\023io.mavsdk.follow_meB\rFollowMeProto',
+  create_key=_descriptor._internal_create_key,
   serialized_pb=b'\n\x19\x66ollow_me/follow_me.proto\x12\x14mavsdk.rpc.follow_me\x1a\x14mavsdk_options.proto\"\xdf\x02\n\x06\x43onfig\x12\x1d\n\x0cmin_height_m\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03\x38.0\x12\"\n\x11\x66ollow_distance_m\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03\x38.0\x12\x46\n\x10\x66ollow_direction\x18\x03 \x01(\x0e\x32,.mavsdk.rpc.follow_me.Config.FollowDirection\x12\x1f\n\x0eresponsiveness\x18\x04 \x01(\x02\x42\x07\x82\xb5\x18\x03\x30.5\"\xa8\x01\n\x0f\x46ollowDirection\x12\x19\n\x15\x46OLLOW_DIRECTION_NONE\x10\x00\x12\x1b\n\x17\x46OLLOW_DIRECTION_BEHIND\x10\x01\x12\x1a\n\x16\x46OLLOW_DIRECTION_FRONT\x10\x02\x12 \n\x1c\x46OLLOW_DIRECTION_FRONT_RIGHT\x10\x03\x12\x1f\n\x1b\x46OLLOW_DIRECTION_FRONT_LEFT\x10\x04\"\xd8\x01\n\x0eTargetLocation\x12\x1d\n\x0clatitude_deg\x18\x01 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12\x1e\n\rlongitude_deg\x18\x02 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1f\n\x0evelocity_x_m_s\x18\x04 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1f\n\x0evelocity_y_m_s\x18\x05 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1f\n\x0evelocity_z_m_s\x18\x06 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"\x12\n\x10GetConfigRequest\"A\n\x11GetConfigResponse\x12,\n\x06\x63onfig\x18\x01 \x01(\x0b\x32\x1c.mavsdk.rpc.follow_me.Config\"@\n\x10SetConfigRequest\x12,\n\x06\x63onfig\x18\x01 \x01(\x0b\x32\x1c.mavsdk.rpc.follow_me.Config\"S\n\x11SetConfigResponse\x12>\n\x10\x66ollow_me_result\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.follow_me.FollowMeResult\"\x11\n\x0fIsActiveRequest\"%\n\x10IsActiveResponse\x12\x11\n\tis_active\x18\x01 \x01(\x08\"R\n\x18SetTargetLocationRequest\x12\x36\n\x08location\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.follow_me.TargetLocation\"[\n\x19SetTargetLocationResponse\x12>\n\x10\x66ollow_me_result\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.follow_me.FollowMeResult\"\x18\n\x16GetLastLocationRequest\"Q\n\x17GetLastLocationResponse\x12\x36\n\x08location\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.follow_me.TargetLocation\"\x0e\n\x0cStartRequest\"O\n\rStartResponse\x12>\n\x10\x66ollow_me_result\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.follow_me.FollowMeResult\"\r\n\x0bStopRequest\"N\n\x0cStopResponse\x12>\n\x10\x66ollow_me_result\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.follow_me.FollowMeResult\"\xbc\x02\n\x0e\x46ollowMeResult\x12;\n\x06result\x18\x01 \x01(\x0e\x32+.mavsdk.rpc.follow_me.FollowMeResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xd8\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x15\n\x11RESULT_NOT_ACTIVE\x10\x07\x12\x1c\n\x18RESULT_SET_CONFIG_FAILED\x10\x08\x32\xd9\x05\n\x0f\x46ollowMeService\x12\x62\n\tGetConfig\x12&.mavsdk.rpc.follow_me.GetConfigRequest\x1a\'.mavsdk.rpc.follow_me.GetConfigResponse\"\x04\x80\xb5\x18\x01\x12\x62\n\tSetConfig\x12&.mavsdk.rpc.follow_me.SetConfigRequest\x1a\'.mavsdk.rpc.follow_me.SetConfigResponse\"\x04\x80\xb5\x18\x01\x12_\n\x08IsActive\x12%.mavsdk.rpc.follow_me.IsActiveRequest\x1a&.mavsdk.rpc.follow_me.IsActiveResponse\"\x04\x80\xb5\x18\x01\x12z\n\x11SetTargetLocation\x12..mavsdk.rpc.follow_me.SetTargetLocationRequest\x1a/.mavsdk.rpc.follow_me.SetTargetLocationResponse\"\x04\x80\xb5\x18\x01\x12t\n\x0fGetLastLocation\x12,.mavsdk.rpc.follow_me.GetLastLocationRequest\x1a-.mavsdk.rpc.follow_me.GetLastLocationResponse\"\x04\x80\xb5\x18\x01\x12V\n\x05Start\x12\".mavsdk.rpc.follow_me.StartRequest\x1a#.mavsdk.rpc.follow_me.StartResponse\"\x04\x80\xb5\x18\x01\x12S\n\x04Stop\x12!.mavsdk.rpc.follow_me.StopRequest\x1a\".mavsdk.rpc.follow_me.StopResponse\"\x04\x80\xb5\x18\x01\x42$\n\x13io.mavsdk.follow_meB\rFollowMeProtob\x06proto3'
   ,
   dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
@@ -30,27 +31,33 @@ _CONFIG_FOLLOWDIRECTION = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.follow_me.Config.FollowDirection',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='FOLLOW_DIRECTION_NONE', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FOLLOW_DIRECTION_BEHIND', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FOLLOW_DIRECTION_FRONT', index=2, number=2,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FOLLOW_DIRECTION_FRONT_RIGHT', index=3, number=3,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FOLLOW_DIRECTION_FRONT_LEFT', index=4, number=4,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
@@ -64,43 +71,53 @@ _FOLLOWMERESULT_RESULT = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.follow_me.FollowMeResult.Result',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='RESULT_UNKNOWN', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_SUCCESS', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_NO_SYSTEM', index=2, number=2,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_CONNECTION_ERROR', index=3, number=3,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_BUSY', index=4, number=4,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_COMMAND_DENIED', index=5, number=5,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_TIMEOUT', index=6, number=6,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_NOT_ACTIVE', index=7, number=7,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_SET_CONFIG_FAILED', index=8, number=8,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
@@ -116,6 +133,7 @@ _CONFIG = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='min_height_m', full_name='mavsdk.rpc.follow_me.Config.min_height_m', index=0,
@@ -123,28 +141,28 @@ _CONFIG = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\0038.0', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\0038.0', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='follow_distance_m', full_name='mavsdk.rpc.follow_me.Config.follow_distance_m', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\0038.0', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\0038.0', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='follow_direction', full_name='mavsdk.rpc.follow_me.Config.follow_direction', index=2,
       number=3, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='responsiveness', full_name='mavsdk.rpc.follow_me.Config.responsiveness', index=3,
       number=4, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\0030.5', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\0030.5', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -169,6 +187,7 @@ _TARGETLOCATION = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='latitude_deg', full_name='mavsdk.rpc.follow_me.TargetLocation.latitude_deg', index=0,
@@ -176,42 +195,42 @@ _TARGETLOCATION = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='longitude_deg', full_name='mavsdk.rpc.follow_me.TargetLocation.longitude_deg', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='absolute_altitude_m', full_name='mavsdk.rpc.follow_me.TargetLocation.absolute_altitude_m', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='velocity_x_m_s', full_name='mavsdk.rpc.follow_me.TargetLocation.velocity_x_m_s', index=3,
       number=4, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='velocity_y_m_s', full_name='mavsdk.rpc.follow_me.TargetLocation.velocity_y_m_s', index=4,
       number=5, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='velocity_z_m_s', full_name='mavsdk.rpc.follow_me.TargetLocation.velocity_z_m_s', index=5,
       number=6, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -235,6 +254,7 @@ _GETCONFIGREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -259,6 +279,7 @@ _GETCONFIGRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='config', full_name='mavsdk.rpc.follow_me.GetConfigResponse.config', index=0,
@@ -266,7 +287,7 @@ _GETCONFIGRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -290,6 +311,7 @@ _SETCONFIGREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='config', full_name='mavsdk.rpc.follow_me.SetConfigRequest.config', index=0,
@@ -297,7 +319,7 @@ _SETCONFIGREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -321,6 +343,7 @@ _SETCONFIGRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='follow_me_result', full_name='mavsdk.rpc.follow_me.SetConfigResponse.follow_me_result', index=0,
@@ -328,7 +351,7 @@ _SETCONFIGRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -352,6 +375,7 @@ _ISACTIVEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -376,6 +400,7 @@ _ISACTIVERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='is_active', full_name='mavsdk.rpc.follow_me.IsActiveResponse.is_active', index=0,
@@ -383,7 +408,7 @@ _ISACTIVERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -407,6 +432,7 @@ _SETTARGETLOCATIONREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='location', full_name='mavsdk.rpc.follow_me.SetTargetLocationRequest.location', index=0,
@@ -414,7 +440,7 @@ _SETTARGETLOCATIONREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -438,6 +464,7 @@ _SETTARGETLOCATIONRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='follow_me_result', full_name='mavsdk.rpc.follow_me.SetTargetLocationResponse.follow_me_result', index=0,
@@ -445,7 +472,7 @@ _SETTARGETLOCATIONRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -469,6 +496,7 @@ _GETLASTLOCATIONREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -493,6 +521,7 @@ _GETLASTLOCATIONRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='location', full_name='mavsdk.rpc.follow_me.GetLastLocationResponse.location', index=0,
@@ -500,7 +529,7 @@ _GETLASTLOCATIONRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -524,6 +553,7 @@ _STARTREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -548,6 +578,7 @@ _STARTRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='follow_me_result', full_name='mavsdk.rpc.follow_me.StartResponse.follow_me_result', index=0,
@@ -555,7 +586,7 @@ _STARTRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -579,6 +610,7 @@ _STOPREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -603,6 +635,7 @@ _STOPRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='follow_me_result', full_name='mavsdk.rpc.follow_me.StopResponse.follow_me_result', index=0,
@@ -610,7 +643,7 @@ _STOPRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -634,6 +667,7 @@ _FOLLOWMERESULT = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='result', full_name='mavsdk.rpc.follow_me.FollowMeResult.result', index=0,
@@ -641,14 +675,14 @@ _FOLLOWMERESULT = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='result_str', full_name='mavsdk.rpc.follow_me.FollowMeResult.result_str', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -834,6 +868,7 @@ _FOLLOWMESERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
+  create_key=_descriptor._internal_create_key,
   serialized_start=1740,
   serialized_end=2469,
   methods=[
@@ -845,6 +880,7 @@ _FOLLOWMESERVICE = _descriptor.ServiceDescriptor(
     input_type=_GETCONFIGREQUEST,
     output_type=_GETCONFIGRESPONSE,
     serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetConfig',
@@ -854,6 +890,7 @@ _FOLLOWMESERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETCONFIGREQUEST,
     output_type=_SETCONFIGRESPONSE,
     serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='IsActive',
@@ -863,6 +900,7 @@ _FOLLOWMESERVICE = _descriptor.ServiceDescriptor(
     input_type=_ISACTIVEREQUEST,
     output_type=_ISACTIVERESPONSE,
     serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetTargetLocation',
@@ -872,6 +910,7 @@ _FOLLOWMESERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETTARGETLOCATIONREQUEST,
     output_type=_SETTARGETLOCATIONRESPONSE,
     serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='GetLastLocation',
@@ -881,6 +920,7 @@ _FOLLOWMESERVICE = _descriptor.ServiceDescriptor(
     input_type=_GETLASTLOCATIONREQUEST,
     output_type=_GETLASTLOCATIONRESPONSE,
     serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='Start',
@@ -890,6 +930,7 @@ _FOLLOWMESERVICE = _descriptor.ServiceDescriptor(
     input_type=_STARTREQUEST,
     output_type=_STARTRESPONSE,
     serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='Stop',
@@ -899,6 +940,7 @@ _FOLLOWMESERVICE = _descriptor.ServiceDescriptor(
     input_type=_STOPREQUEST,
     output_type=_STOPRESPONSE,
     serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_FOLLOWMESERVICE)

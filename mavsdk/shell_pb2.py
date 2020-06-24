@@ -19,6 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='mavsdk.rpc.shell',
   syntax='proto3',
   serialized_options=b'\n\017io.mavsdk.shellB\nShellProto',
+  create_key=_descriptor._internal_create_key,
   serialized_pb=b'\n\x11shell/shell.proto\x12\x10mavsdk.rpc.shell\x1a\x14mavsdk_options.proto\"\x1e\n\x0bSendRequest\x12\x0f\n\x07\x63ommand\x18\x01 \x01(\t\"C\n\x0cSendResponse\x12\x33\n\x0cshell_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.shell.ShellResult\"\x19\n\x17SubscribeReceiveRequest\"\x1f\n\x0fReceiveResponse\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\t\"\xe6\x01\n\x0bShellResult\x12\x34\n\x06result\x18\x01 \x01(\x0e\x32$.mavsdk.rpc.shell.ShellResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\x8c\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x16\n\x12RESULT_NO_RESPONSE\x10\x04\x12\x0f\n\x0bRESULT_BUSY\x10\x05\x32\xc5\x01\n\x0cShellService\x12K\n\x04Send\x12\x1d.mavsdk.rpc.shell.SendRequest\x1a\x1e.mavsdk.rpc.shell.SendResponse\"\x04\x80\xb5\x18\x01\x12h\n\x10SubscribeReceive\x12).mavsdk.rpc.shell.SubscribeReceiveRequest\x1a!.mavsdk.rpc.shell.ReceiveResponse\"\x04\x80\xb5\x18\x00\x30\x01\x42\x1d\n\x0fio.mavsdk.shellB\nShellProtob\x06proto3'
   ,
   dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
@@ -30,31 +31,38 @@ _SHELLRESULT_RESULT = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.shell.ShellResult.Result',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='RESULT_UNKNOWN', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_SUCCESS', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_NO_SYSTEM', index=2, number=2,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_CONNECTION_ERROR', index=3, number=3,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_NO_RESPONSE', index=4, number=4,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_BUSY', index=5, number=5,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
@@ -70,6 +78,7 @@ _SENDREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='command', full_name='mavsdk.rpc.shell.SendRequest.command', index=0,
@@ -77,7 +86,7 @@ _SENDREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -101,6 +110,7 @@ _SENDRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='shell_result', full_name='mavsdk.rpc.shell.SendResponse.shell_result', index=0,
@@ -108,7 +118,7 @@ _SENDRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -132,6 +142,7 @@ _SUBSCRIBERECEIVEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -156,6 +167,7 @@ _RECEIVERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='data', full_name='mavsdk.rpc.shell.ReceiveResponse.data', index=0,
@@ -163,7 +175,7 @@ _RECEIVERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -187,6 +199,7 @@ _SHELLRESULT = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='result', full_name='mavsdk.rpc.shell.ShellResult.result', index=0,
@@ -194,14 +207,14 @@ _SHELLRESULT = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='result_str', full_name='mavsdk.rpc.shell.ShellResult.result_str', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -273,6 +286,7 @@ _SHELLSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
+  create_key=_descriptor._internal_create_key,
   serialized_start=456,
   serialized_end=653,
   methods=[
@@ -284,6 +298,7 @@ _SHELLSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SENDREQUEST,
     output_type=_SENDRESPONSE,
     serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeReceive',
@@ -293,6 +308,7 @@ _SHELLSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBERECEIVEREQUEST,
     output_type=_RECEIVERESPONSE,
     serialized_options=b'\200\265\030\000',
+    create_key=_descriptor._internal_create_key,
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_SHELLSERVICE)

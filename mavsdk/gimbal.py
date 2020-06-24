@@ -76,6 +76,9 @@ class GimbalResult:
          TIMEOUT
               Command timed out
 
+         UNSUPPORTED
+              Functionality not supported
+
          """
 
         
@@ -83,6 +86,7 @@ class GimbalResult:
         SUCCESS = 1
         ERROR = 2
         TIMEOUT = 3
+        UNSUPPORTED = 4
 
         def translate_to_rpc(self):
             if self == GimbalResult.Result.UNKNOWN:
@@ -93,6 +97,8 @@ class GimbalResult:
                 return gimbal_pb2.GimbalResult.RESULT_ERROR
             if self == GimbalResult.Result.TIMEOUT:
                 return gimbal_pb2.GimbalResult.RESULT_TIMEOUT
+            if self == GimbalResult.Result.UNSUPPORTED:
+                return gimbal_pb2.GimbalResult.RESULT_UNSUPPORTED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -105,6 +111,8 @@ class GimbalResult:
                 return GimbalResult.Result.ERROR
             if rpc_enum_value == gimbal_pb2.GimbalResult.RESULT_TIMEOUT:
                 return GimbalResult.Result.TIMEOUT
+            if rpc_enum_value == gimbal_pb2.GimbalResult.RESULT_UNSUPPORTED:
+                return GimbalResult.Result.UNSUPPORTED
 
         def __str__(self):
             return self.name

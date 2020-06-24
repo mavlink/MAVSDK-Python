@@ -89,14 +89,14 @@ class Polygon:
      points : [Point]
           Points defining the polygon
 
-     type : Type
+     fence_type : FenceType
           Fence type
 
      """
 
     
     
-    class Type(Enum):
+    class FenceType(Enum):
         """
          Geofence polygon types.
 
@@ -115,18 +115,18 @@ class Polygon:
         EXCLUSION = 1
 
         def translate_to_rpc(self):
-            if self == Polygon.Type.INCLUSION:
-                return geofence_pb2.Polygon.TYPE_INCLUSION
-            if self == Polygon.Type.EXCLUSION:
-                return geofence_pb2.Polygon.TYPE_EXCLUSION
+            if self == Polygon.FenceType.INCLUSION:
+                return geofence_pb2.Polygon.FENCE_TYPE_INCLUSION
+            if self == Polygon.FenceType.EXCLUSION:
+                return geofence_pb2.Polygon.FENCE_TYPE_EXCLUSION
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value == geofence_pb2.Polygon.TYPE_INCLUSION:
-                return Polygon.Type.INCLUSION
-            if rpc_enum_value == geofence_pb2.Polygon.TYPE_EXCLUSION:
-                return Polygon.Type.EXCLUSION
+            if rpc_enum_value == geofence_pb2.Polygon.FENCE_TYPE_INCLUSION:
+                return Polygon.FenceType.INCLUSION
+            if rpc_enum_value == geofence_pb2.Polygon.FENCE_TYPE_EXCLUSION:
+                return Polygon.FenceType.EXCLUSION
 
         def __str__(self):
             return self.name
@@ -135,10 +135,10 @@ class Polygon:
     def __init__(
             self,
             points,
-            type):
+            fence_type):
         """ Initializes the Polygon object """
         self.points = points
-        self.type = type
+        self.fence_type = fence_type
 
     def __equals__(self, to_compare):
         """ Checks if two Polygon are the same """
@@ -147,7 +147,7 @@ class Polygon:
             # Polygon object
             return \
                 (self.points == to_compare.points) and \
-                (self.type == to_compare.type)
+                (self.fence_type == to_compare.fence_type)
 
         except AttributeError:
             return False
@@ -156,7 +156,7 @@ class Polygon:
         """ Polygon in string representation """
         struct_repr = ", ".join([
                 "points: " + str(self.points),
-                "type: " + str(self.type)
+                "fence_type: " + str(self.fence_type)
                 ])
 
         return f"Polygon: [{struct_repr}]"
@@ -169,7 +169,7 @@ class Polygon:
                 map(lambda elem: Point.translate_from_rpc(elem), rpcPolygon.points),
                 
                 
-                Polygon.Type.translate_from_rpc(rpcPolygon.type)
+                Polygon.FenceType.translate_from_rpc(rpcPolygon.fence_type)
                 )
 
     def translate_to_rpc(self, rpcPolygon):
@@ -189,7 +189,7 @@ class Polygon:
         
         
             
-        rpcPolygon.type = self.type.translate_to_rpc()
+        rpcPolygon.fence_type = self.fence_type.translate_to_rpc()
             
         
         
