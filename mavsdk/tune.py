@@ -295,6 +295,9 @@ class TuneResult:
 
          Values
          ------
+         UNKNOWN
+              Unknown result
+
          SUCCESS
               Request succeeded
 
@@ -310,12 +313,15 @@ class TuneResult:
          """
 
         
-        SUCCESS = 0
-        INVALID_TEMPO = 1
-        TUNE_TOO_LONG = 2
-        ERROR = 3
+        UNKNOWN = 0
+        SUCCESS = 1
+        INVALID_TEMPO = 2
+        TUNE_TOO_LONG = 3
+        ERROR = 4
 
         def translate_to_rpc(self):
+            if self == TuneResult.Result.UNKNOWN:
+                return tune_pb2.TuneResult.RESULT_UNKNOWN
             if self == TuneResult.Result.SUCCESS:
                 return tune_pb2.TuneResult.RESULT_SUCCESS
             if self == TuneResult.Result.INVALID_TEMPO:
@@ -328,6 +334,8 @@ class TuneResult:
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
+            if rpc_enum_value == tune_pb2.TuneResult.RESULT_UNKNOWN:
+                return TuneResult.Result.UNKNOWN
             if rpc_enum_value == tune_pb2.TuneResult.RESULT_SUCCESS:
                 return TuneResult.Result.SUCCESS
             if rpc_enum_value == tune_pb2.TuneResult.RESULT_INVALID_TEMPO:

@@ -20,6 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='mavsdk.rpc.telemetry',
   syntax='proto3',
   serialized_options=b'\n\023io.mavsdk.telemetryB\016TelemetryProto',
+  create_key=_descriptor._internal_create_key,
   serialized_pb=b'\n\x19telemetry/telemetry.proto\x12\x14mavsdk.rpc.telemetry\x1a\x14mavsdk_options.proto\"\x1a\n\x18SubscribePositionRequest\"D\n\x10PositionResponse\x12\x30\n\x08position\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.telemetry.Position\"\x16\n\x14SubscribeHomeRequest\"<\n\x0cHomeResponse\x12,\n\x04home\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.telemetry.Position\"\x17\n\x15SubscribeInAirRequest\"\"\n\rInAirResponse\x12\x11\n\tis_in_air\x18\x01 \x01(\x08\"\x1d\n\x1bSubscribeLandedStateRequest\"N\n\x13LandedStateResponse\x12\x37\n\x0clanded_state\x18\x01 \x01(\x0e\x32!.mavsdk.rpc.telemetry.LandedState\"\x17\n\x15SubscribeArmedRequest\"!\n\rArmedResponse\x12\x10\n\x08is_armed\x18\x01 \x01(\x08\"$\n\"SubscribeAttitudeQuaternionRequest\"[\n\x1a\x41ttitudeQuaternionResponse\x12=\n\x13\x61ttitude_quaternion\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry.Quaternion\"\x1f\n\x1dSubscribeAttitudeEulerRequest\"Q\n\x15\x41ttitudeEulerResponse\x12\x38\n\x0e\x61ttitude_euler\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry.EulerAngle\"-\n+SubscribeAttitudeAngularVelocityBodyRequest\"x\n#AttitudeAngularVelocityBodyResponse\x12Q\n\x1e\x61ttitude_angular_velocity_body\x18\x01 \x01(\x0b\x32).mavsdk.rpc.telemetry.AngularVelocityBody\"*\n(SubscribeCameraAttitudeQuaternionRequest\"a\n CameraAttitudeQuaternionResponse\x12=\n\x13\x61ttitude_quaternion\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry.Quaternion\"%\n#SubscribeCameraAttitudeEulerRequest\"W\n\x1b\x43\x61meraAttitudeEulerResponse\x12\x38\n\x0e\x61ttitude_euler\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry.EulerAngle\"\x1d\n\x1bSubscribeVelocityNedRequest\"N\n\x13VelocityNedResponse\x12\x37\n\x0cvelocity_ned\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.telemetry.VelocityNed\"\x19\n\x17SubscribeGpsInfoRequest\"B\n\x0fGpsInfoResponse\x12/\n\x08gps_info\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.telemetry.GpsInfo\"\x19\n\x17SubscribeBatteryRequest\"A\n\x0f\x42\x61tteryResponse\x12.\n\x07\x62\x61ttery\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.telemetry.Battery\"\x1c\n\x1aSubscribeFlightModeRequest\"K\n\x12\x46lightModeResponse\x12\x35\n\x0b\x66light_mode\x18\x01 \x01(\x0e\x32 .mavsdk.rpc.telemetry.FlightMode\"\x18\n\x16SubscribeHealthRequest\">\n\x0eHealthResponse\x12,\n\x06health\x18\x01 \x01(\x0b\x32\x1c.mavsdk.rpc.telemetry.Health\"\x1a\n\x18SubscribeRcStatusRequest\"E\n\x10RcStatusResponse\x12\x31\n\trc_status\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.telemetry.RcStatus\"\x1c\n\x1aSubscribeStatusTextRequest\"K\n\x12StatusTextResponse\x12\x35\n\x0bstatus_text\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry.StatusText\"\'\n%SubscribeActuatorControlTargetRequest\"m\n\x1d\x41\x63tuatorControlTargetResponse\x12L\n\x17\x61\x63tuator_control_target\x18\x01 \x01(\x0b\x32+.mavsdk.rpc.telemetry.ActuatorControlTarget\"&\n$SubscribeActuatorOutputStatusRequest\"j\n\x1c\x41\x63tuatorOutputStatusResponse\x12J\n\x16\x61\x63tuator_output_status\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.telemetry.ActuatorOutputStatus\"\x1a\n\x18SubscribeOdometryRequest\"D\n\x10OdometryResponse\x12\x30\n\x08odometry\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.telemetry.Odometry\"%\n#SubscribePositionVelocityNedRequest\"g\n\x1bPositionVelocityNedResponse\x12H\n\x15position_velocity_ned\x18\x01 \x01(\x0b\x32).mavsdk.rpc.telemetry.PositionVelocityNed\"\x1d\n\x1bSubscribeGroundTruthRequest\"N\n\x13GroundTruthResponse\x12\x37\n\x0cground_truth\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.telemetry.GroundTruth\"\"\n SubscribeFixedwingMetricsRequest\"]\n\x18\x46ixedwingMetricsResponse\x12\x41\n\x11\x66ixedwing_metrics\x18\x01 \x01(\x0b\x32&.mavsdk.rpc.telemetry.FixedwingMetrics\"\x15\n\x13SubscribeImuRequest\"5\n\x0bImuResponse\x12&\n\x03imu\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.telemetry.Imu\"\x1d\n\x1bSubscribeHealthAllOkRequest\"/\n\x13HealthAllOkResponse\x12\x18\n\x10is_health_all_ok\x18\x01 \x01(\x08\"\x1f\n\x1dSubscribeUnixEpochTimeRequest\"(\n\x15UnixEpochTimeResponse\x12\x0f\n\x07time_us\x18\x01 \x01(\x04\")\n\x16SetRatePositionRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"Z\n\x17SetRatePositionResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\"%\n\x12SetRateHomeRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"V\n\x13SetRateHomeResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\"&\n\x13SetRateInAirRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"W\n\x14SetRateInAirResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\",\n\x19SetRateLandedStateRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"]\n\x1aSetRateLandedStateResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\")\n\x16SetRateAttitudeRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"Z\n\x17SetRateAttitudeResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\"<\n)SetRateAttitudeAngularVelocityBodyRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"m\n*SetRateAttitudeAngularVelocityBodyResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\"9\n&SetRateCameraAttitudeQuaternionRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"j\n\'SetRateCameraAttitudeQuaternionResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\"/\n\x1cSetRateCameraAttitudeRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"`\n\x1dSetRateCameraAttitudeResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\",\n\x19SetRateVelocityNedRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"]\n\x1aSetRateVelocityNedResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\"(\n\x15SetRateGpsInfoRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"Y\n\x16SetRateGpsInfoResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\"(\n\x15SetRateBatteryRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"Y\n\x16SetRateBatteryResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\")\n\x16SetRateRcStatusRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"Z\n\x17SetRateRcStatusResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\"6\n#SetRateActuatorControlTargetRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"g\n$SetRateActuatorControlTargetResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\"5\n\"SetRateActuatorOutputStatusRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"f\n#SetRateActuatorOutputStatusResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\")\n\x16SetRateOdometryRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"Z\n\x17SetRateOdometryResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\"4\n!SetRatePositionVelocityNedRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"e\n\"SetRatePositionVelocityNedResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\",\n\x19SetRateGroundTruthRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"]\n\x1aSetRateGroundTruthResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\"1\n\x1eSetRateFixedwingMetricsRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"b\n\x1fSetRateFixedwingMetricsResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\"$\n\x11SetRateImuRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"U\n\x12SetRateImuResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\".\n\x1bSetRateUnixEpochTimeRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"_\n\x1cSetRateUnixEpochTimeResponse\x12?\n\x10telemetry_result\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.TelemetryResult\"\x95\x01\n\x08Position\x12\x1d\n\x0clatitude_deg\x18\x01 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12\x1e\n\rlongitude_deg\x18\x02 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13relative_altitude_m\x18\x04 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"\\\n\nQuaternion\x12\x12\n\x01w\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x12\n\x01x\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x12\n\x01y\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x12\n\x01z\x18\x04 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"]\n\nEulerAngle\x12\x19\n\x08roll_deg\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1a\n\tpitch_deg\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x18\n\x07yaw_deg\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"l\n\x13\x41ngularVelocityBody\x12\x1b\n\nroll_rad_s\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1c\n\x0bpitch_rad_s\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1a\n\tyaw_rad_s\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"Y\n\x07GpsInfo\x12\x1d\n\x0enum_satellites\x18\x01 \x01(\x05\x42\x05\x82\xb5\x18\x01\x30\x12/\n\x08\x66ix_type\x18\x02 \x01(\x0e\x32\x1d.mavsdk.rpc.telemetry.FixType\"I\n\x07\x42\x61ttery\x12\x1a\n\tvoltage_v\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\"\n\x11remaining_percent\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"\xc6\x02\n\x06Health\x12.\n\x1bis_gyrometer_calibration_ok\x18\x01 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\x12\x32\n\x1fis_accelerometer_calibration_ok\x18\x02 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\x12\x31\n\x1eis_magnetometer_calibration_ok\x18\x03 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\x12*\n\x17is_level_calibration_ok\x18\x04 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\x12\'\n\x14is_local_position_ok\x18\x05 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\x12(\n\x15is_global_position_ok\x18\x06 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\x12&\n\x13is_home_position_ok\x18\x07 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\"z\n\x08RcStatus\x12%\n\x12was_available_once\x18\x01 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\x12\x1f\n\x0cis_available\x18\x02 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\x12&\n\x17signal_strength_percent\x18\x03 \x01(\x02\x42\x05\x82\xb5\x18\x01\x30\"N\n\nStatusText\x12\x32\n\x04type\x18\x01 \x01(\x0e\x32$.mavsdk.rpc.telemetry.StatusTextType\x12\x0c\n\x04text\x18\x02 \x01(\t\"?\n\x15\x41\x63tuatorControlTarget\x12\x14\n\x05group\x18\x01 \x01(\x05\x42\x05\x82\xb5\x18\x01\x30\x12\x10\n\x08\x63ontrols\x18\x02 \x03(\x02\"?\n\x14\x41\x63tuatorOutputStatus\x12\x15\n\x06\x61\x63tive\x18\x01 \x01(\rB\x05\x82\xb5\x18\x01\x30\x12\x10\n\x08\x61\x63tuator\x18\x02 \x03(\x02\"\'\n\nCovariance\x12\x19\n\x11\x63ovariance_matrix\x18\x01 \x03(\x02\";\n\x0cVelocityBody\x12\r\n\x05x_m_s\x18\x01 \x01(\x02\x12\r\n\x05y_m_s\x18\x02 \x01(\x02\x12\r\n\x05z_m_s\x18\x03 \x01(\x02\"5\n\x0cPositionBody\x12\x0b\n\x03x_m\x18\x01 \x01(\x02\x12\x0b\n\x03y_m\x18\x02 \x01(\x02\x12\x0b\n\x03z_m\x18\x03 \x01(\x02\"\xec\x04\n\x08Odometry\x12\x11\n\ttime_usec\x18\x01 \x01(\x04\x12\x39\n\x08\x66rame_id\x18\x02 \x01(\x0e\x32\'.mavsdk.rpc.telemetry.Odometry.MavFrame\x12?\n\x0e\x63hild_frame_id\x18\x03 \x01(\x0e\x32\'.mavsdk.rpc.telemetry.Odometry.MavFrame\x12\x39\n\rposition_body\x18\x04 \x01(\x0b\x32\".mavsdk.rpc.telemetry.PositionBody\x12+\n\x01q\x18\x05 \x01(\x0b\x32 .mavsdk.rpc.telemetry.Quaternion\x12\x39\n\rvelocity_body\x18\x06 \x01(\x0b\x32\".mavsdk.rpc.telemetry.VelocityBody\x12H\n\x15\x61ngular_velocity_body\x18\x07 \x01(\x0b\x32).mavsdk.rpc.telemetry.AngularVelocityBody\x12\x39\n\x0fpose_covariance\x18\x08 \x01(\x0b\x32 .mavsdk.rpc.telemetry.Covariance\x12=\n\x13velocity_covariance\x18\t \x01(\x0b\x32 .mavsdk.rpc.telemetry.Covariance\"j\n\x08MavFrame\x12\x13\n\x0fMAV_FRAME_UNDEF\x10\x00\x12\x16\n\x12MAV_FRAME_BODY_NED\x10\x08\x12\x18\n\x14MAV_FRAME_VISION_NED\x10\x10\x12\x17\n\x13MAV_FRAME_ESTIM_NED\x10\x12\"Y\n\x0bPositionNed\x12\x18\n\x07north_m\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x17\n\x06\x65\x61st_m\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x17\n\x06\x64own_m\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"D\n\x0bVelocityNed\x12\x11\n\tnorth_m_s\x18\x01 \x01(\x02\x12\x10\n\x08\x65\x61st_m_s\x18\x02 \x01(\x02\x12\x10\n\x08\x64own_m_s\x18\x03 \x01(\x02\"\x7f\n\x13PositionVelocityNed\x12\x33\n\x08position\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.telemetry.PositionNed\x12\x33\n\x08velocity\x18\x02 \x01(\x0b\x32!.mavsdk.rpc.telemetry.VelocityNed\"r\n\x0bGroundTruth\x12\x1d\n\x0clatitude_deg\x18\x01 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12\x1e\n\rlongitude_deg\x18\x02 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"x\n\x10\x46ixedwingMetrics\x12\x1d\n\x0c\x61irspeed_m_s\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13throttle_percentage\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1f\n\x0e\x63limb_rate_m_s\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"i\n\x0f\x41\x63\x63\x65lerationFrd\x12\x1d\n\x0c\x66orward_m_s2\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1b\n\nright_m_s2\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1a\n\tdown_m_s2\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"o\n\x12\x41ngularVelocityFrd\x12\x1e\n\rforward_rad_s\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1c\n\x0bright_rad_s\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1b\n\ndown_rad_s\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"m\n\x10MagneticFieldFrd\x12\x1e\n\rforward_gauss\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1c\n\x0bright_gauss\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1b\n\ndown_gauss\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"\xf5\x01\n\x03Imu\x12?\n\x10\x61\x63\x63\x65leration_frd\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry.AccelerationFrd\x12\x46\n\x14\x61ngular_velocity_frd\x18\x02 \x01(\x0b\x32(.mavsdk.rpc.telemetry.AngularVelocityFrd\x12\x42\n\x12magnetic_field_frd\x18\x03 \x01(\x0b\x32&.mavsdk.rpc.telemetry.MagneticFieldFrd\x12!\n\x10temperature_degc\x18\x04 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"\x89\x02\n\x0fTelemetryResult\x12<\n\x06result\x18\x01 \x01(\x0e\x32,.mavsdk.rpc.telemetry.TelemetryResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xa3\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06*\xa4\x01\n\x07\x46ixType\x12\x13\n\x0f\x46IX_TYPE_NO_GPS\x10\x00\x12\x13\n\x0f\x46IX_TYPE_NO_FIX\x10\x01\x12\x13\n\x0f\x46IX_TYPE_FIX_2D\x10\x02\x12\x13\n\x0f\x46IX_TYPE_FIX_3D\x10\x03\x12\x15\n\x11\x46IX_TYPE_FIX_DGPS\x10\x04\x12\x16\n\x12\x46IX_TYPE_RTK_FLOAT\x10\x05\x12\x16\n\x12\x46IX_TYPE_RTK_FIXED\x10\x06*\x86\x03\n\nFlightMode\x12\x17\n\x13\x46LIGHT_MODE_UNKNOWN\x10\x00\x12\x15\n\x11\x46LIGHT_MODE_READY\x10\x01\x12\x17\n\x13\x46LIGHT_MODE_TAKEOFF\x10\x02\x12\x14\n\x10\x46LIGHT_MODE_HOLD\x10\x03\x12\x17\n\x13\x46LIGHT_MODE_MISSION\x10\x04\x12 \n\x1c\x46LIGHT_MODE_RETURN_TO_LAUNCH\x10\x05\x12\x14\n\x10\x46LIGHT_MODE_LAND\x10\x06\x12\x18\n\x14\x46LIGHT_MODE_OFFBOARD\x10\x07\x12\x19\n\x15\x46LIGHT_MODE_FOLLOW_ME\x10\x08\x12\x16\n\x12\x46LIGHT_MODE_MANUAL\x10\t\x12\x16\n\x12\x46LIGHT_MODE_ALTCTL\x10\n\x12\x16\n\x12\x46LIGHT_MODE_POSCTL\x10\x0b\x12\x14\n\x10\x46LIGHT_MODE_ACRO\x10\x0c\x12\x1a\n\x16\x46LIGHT_MODE_STABILIZED\x10\r\x12\x19\n\x15\x46LIGHT_MODE_RATTITUDE\x10\x0e*h\n\x0eStatusTextType\x12\x19\n\x15STATUS_TEXT_TYPE_INFO\x10\x00\x12\x1c\n\x18STATUS_TEXT_TYPE_WARNING\x10\x01\x12\x1d\n\x19STATUS_TEXT_TYPE_CRITICAL\x10\x02*\x93\x01\n\x0bLandedState\x12\x18\n\x14LANDED_STATE_UNKNOWN\x10\x00\x12\x1a\n\x16LANDED_STATE_ON_GROUND\x10\x01\x12\x17\n\x13LANDED_STATE_IN_AIR\x10\x02\x12\x1b\n\x17LANDED_STATE_TAKING_OFF\x10\x03\x12\x18\n\x14LANDED_STATE_LANDING\x10\x04\x32\xf4*\n\x10TelemetryService\x12o\n\x11SubscribePosition\x12..mavsdk.rpc.telemetry.SubscribePositionRequest\x1a&.mavsdk.rpc.telemetry.PositionResponse\"\x00\x30\x01\x12\x63\n\rSubscribeHome\x12*.mavsdk.rpc.telemetry.SubscribeHomeRequest\x1a\".mavsdk.rpc.telemetry.HomeResponse\"\x00\x30\x01\x12\x66\n\x0eSubscribeInAir\x12+.mavsdk.rpc.telemetry.SubscribeInAirRequest\x1a#.mavsdk.rpc.telemetry.InAirResponse\"\x00\x30\x01\x12x\n\x14SubscribeLandedState\x12\x31.mavsdk.rpc.telemetry.SubscribeLandedStateRequest\x1a).mavsdk.rpc.telemetry.LandedStateResponse\"\x00\x30\x01\x12\x66\n\x0eSubscribeArmed\x12+.mavsdk.rpc.telemetry.SubscribeArmedRequest\x1a#.mavsdk.rpc.telemetry.ArmedResponse\"\x00\x30\x01\x12\x8d\x01\n\x1bSubscribeAttitudeQuaternion\x12\x38.mavsdk.rpc.telemetry.SubscribeAttitudeQuaternionRequest\x1a\x30.mavsdk.rpc.telemetry.AttitudeQuaternionResponse\"\x00\x30\x01\x12~\n\x16SubscribeAttitudeEuler\x12\x33.mavsdk.rpc.telemetry.SubscribeAttitudeEulerRequest\x1a+.mavsdk.rpc.telemetry.AttitudeEulerResponse\"\x00\x30\x01\x12\xa8\x01\n$SubscribeAttitudeAngularVelocityBody\x12\x41.mavsdk.rpc.telemetry.SubscribeAttitudeAngularVelocityBodyRequest\x1a\x39.mavsdk.rpc.telemetry.AttitudeAngularVelocityBodyResponse\"\x00\x30\x01\x12\x9f\x01\n!SubscribeCameraAttitudeQuaternion\x12>.mavsdk.rpc.telemetry.SubscribeCameraAttitudeQuaternionRequest\x1a\x36.mavsdk.rpc.telemetry.CameraAttitudeQuaternionResponse\"\x00\x30\x01\x12\x90\x01\n\x1cSubscribeCameraAttitudeEuler\x12\x39.mavsdk.rpc.telemetry.SubscribeCameraAttitudeEulerRequest\x1a\x31.mavsdk.rpc.telemetry.CameraAttitudeEulerResponse\"\x00\x30\x01\x12x\n\x14SubscribeVelocityNed\x12\x31.mavsdk.rpc.telemetry.SubscribeVelocityNedRequest\x1a).mavsdk.rpc.telemetry.VelocityNedResponse\"\x00\x30\x01\x12l\n\x10SubscribeGpsInfo\x12-.mavsdk.rpc.telemetry.SubscribeGpsInfoRequest\x1a%.mavsdk.rpc.telemetry.GpsInfoResponse\"\x00\x30\x01\x12l\n\x10SubscribeBattery\x12-.mavsdk.rpc.telemetry.SubscribeBatteryRequest\x1a%.mavsdk.rpc.telemetry.BatteryResponse\"\x00\x30\x01\x12u\n\x13SubscribeFlightMode\x12\x30.mavsdk.rpc.telemetry.SubscribeFlightModeRequest\x1a(.mavsdk.rpc.telemetry.FlightModeResponse\"\x00\x30\x01\x12i\n\x0fSubscribeHealth\x12,.mavsdk.rpc.telemetry.SubscribeHealthRequest\x1a$.mavsdk.rpc.telemetry.HealthResponse\"\x00\x30\x01\x12o\n\x11SubscribeRcStatus\x12..mavsdk.rpc.telemetry.SubscribeRcStatusRequest\x1a&.mavsdk.rpc.telemetry.RcStatusResponse\"\x00\x30\x01\x12u\n\x13SubscribeStatusText\x12\x30.mavsdk.rpc.telemetry.SubscribeStatusTextRequest\x1a(.mavsdk.rpc.telemetry.StatusTextResponse\"\x00\x30\x01\x12\x96\x01\n\x1eSubscribeActuatorControlTarget\x12;.mavsdk.rpc.telemetry.SubscribeActuatorControlTargetRequest\x1a\x33.mavsdk.rpc.telemetry.ActuatorControlTargetResponse\"\x00\x30\x01\x12\x93\x01\n\x1dSubscribeActuatorOutputStatus\x12:.mavsdk.rpc.telemetry.SubscribeActuatorOutputStatusRequest\x1a\x32.mavsdk.rpc.telemetry.ActuatorOutputStatusResponse\"\x00\x30\x01\x12o\n\x11SubscribeOdometry\x12..mavsdk.rpc.telemetry.SubscribeOdometryRequest\x1a&.mavsdk.rpc.telemetry.OdometryResponse\"\x00\x30\x01\x12\x90\x01\n\x1cSubscribePositionVelocityNed\x12\x39.mavsdk.rpc.telemetry.SubscribePositionVelocityNedRequest\x1a\x31.mavsdk.rpc.telemetry.PositionVelocityNedResponse\"\x00\x30\x01\x12x\n\x14SubscribeGroundTruth\x12\x31.mavsdk.rpc.telemetry.SubscribeGroundTruthRequest\x1a).mavsdk.rpc.telemetry.GroundTruthResponse\"\x00\x30\x01\x12\x87\x01\n\x19SubscribeFixedwingMetrics\x12\x36.mavsdk.rpc.telemetry.SubscribeFixedwingMetricsRequest\x1a..mavsdk.rpc.telemetry.FixedwingMetricsResponse\"\x00\x30\x01\x12`\n\x0cSubscribeImu\x12).mavsdk.rpc.telemetry.SubscribeImuRequest\x1a!.mavsdk.rpc.telemetry.ImuResponse\"\x00\x30\x01\x12x\n\x14SubscribeHealthAllOk\x12\x31.mavsdk.rpc.telemetry.SubscribeHealthAllOkRequest\x1a).mavsdk.rpc.telemetry.HealthAllOkResponse\"\x00\x30\x01\x12~\n\x16SubscribeUnixEpochTime\x12\x33.mavsdk.rpc.telemetry.SubscribeUnixEpochTimeRequest\x1a+.mavsdk.rpc.telemetry.UnixEpochTimeResponse\"\x00\x30\x01\x12p\n\x0fSetRatePosition\x12,.mavsdk.rpc.telemetry.SetRatePositionRequest\x1a-.mavsdk.rpc.telemetry.SetRatePositionResponse\"\x00\x12\x64\n\x0bSetRateHome\x12(.mavsdk.rpc.telemetry.SetRateHomeRequest\x1a).mavsdk.rpc.telemetry.SetRateHomeResponse\"\x00\x12g\n\x0cSetRateInAir\x12).mavsdk.rpc.telemetry.SetRateInAirRequest\x1a*.mavsdk.rpc.telemetry.SetRateInAirResponse\"\x00\x12y\n\x12SetRateLandedState\x12/.mavsdk.rpc.telemetry.SetRateLandedStateRequest\x1a\x30.mavsdk.rpc.telemetry.SetRateLandedStateResponse\"\x00\x12p\n\x0fSetRateAttitude\x12,.mavsdk.rpc.telemetry.SetRateAttitudeRequest\x1a-.mavsdk.rpc.telemetry.SetRateAttitudeResponse\"\x00\x12\x82\x01\n\x15SetRateCameraAttitude\x12\x32.mavsdk.rpc.telemetry.SetRateCameraAttitudeRequest\x1a\x33.mavsdk.rpc.telemetry.SetRateCameraAttitudeResponse\"\x00\x12y\n\x12SetRateVelocityNed\x12/.mavsdk.rpc.telemetry.SetRateVelocityNedRequest\x1a\x30.mavsdk.rpc.telemetry.SetRateVelocityNedResponse\"\x00\x12m\n\x0eSetRateGpsInfo\x12+.mavsdk.rpc.telemetry.SetRateGpsInfoRequest\x1a,.mavsdk.rpc.telemetry.SetRateGpsInfoResponse\"\x00\x12m\n\x0eSetRateBattery\x12+.mavsdk.rpc.telemetry.SetRateBatteryRequest\x1a,.mavsdk.rpc.telemetry.SetRateBatteryResponse\"\x00\x12p\n\x0fSetRateRcStatus\x12,.mavsdk.rpc.telemetry.SetRateRcStatusRequest\x1a-.mavsdk.rpc.telemetry.SetRateRcStatusResponse\"\x00\x12\x97\x01\n\x1cSetRateActuatorControlTarget\x12\x39.mavsdk.rpc.telemetry.SetRateActuatorControlTargetRequest\x1a:.mavsdk.rpc.telemetry.SetRateActuatorControlTargetResponse\"\x00\x12\x94\x01\n\x1bSetRateActuatorOutputStatus\x12\x38.mavsdk.rpc.telemetry.SetRateActuatorOutputStatusRequest\x1a\x39.mavsdk.rpc.telemetry.SetRateActuatorOutputStatusResponse\"\x00\x12p\n\x0fSetRateOdometry\x12,.mavsdk.rpc.telemetry.SetRateOdometryRequest\x1a-.mavsdk.rpc.telemetry.SetRateOdometryResponse\"\x00\x12\x91\x01\n\x1aSetRatePositionVelocityNed\x12\x37.mavsdk.rpc.telemetry.SetRatePositionVelocityNedRequest\x1a\x38.mavsdk.rpc.telemetry.SetRatePositionVelocityNedResponse\"\x00\x12y\n\x12SetRateGroundTruth\x12/.mavsdk.rpc.telemetry.SetRateGroundTruthRequest\x1a\x30.mavsdk.rpc.telemetry.SetRateGroundTruthResponse\"\x00\x12\x88\x01\n\x17SetRateFixedwingMetrics\x12\x34.mavsdk.rpc.telemetry.SetRateFixedwingMetricsRequest\x1a\x35.mavsdk.rpc.telemetry.SetRateFixedwingMetricsResponse\"\x00\x12\x61\n\nSetRateImu\x12\'.mavsdk.rpc.telemetry.SetRateImuRequest\x1a(.mavsdk.rpc.telemetry.SetRateImuResponse\"\x00\x12\x7f\n\x14SetRateUnixEpochTime\x12\x31.mavsdk.rpc.telemetry.SetRateUnixEpochTimeRequest\x1a\x32.mavsdk.rpc.telemetry.SetRateUnixEpochTimeResponse\"\x00\x42%\n\x13io.mavsdk.telemetryB\x0eTelemetryProtob\x06proto3'
   ,
   dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
@@ -29,35 +30,43 @@ _FIXTYPE = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.telemetry.FixType',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='FIX_TYPE_NO_GPS', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FIX_TYPE_NO_FIX', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FIX_TYPE_FIX_2D', index=2, number=2,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FIX_TYPE_FIX_3D', index=3, number=3,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FIX_TYPE_FIX_DGPS', index=4, number=4,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FIX_TYPE_RTK_FLOAT', index=5, number=5,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FIX_TYPE_RTK_FIXED', index=6, number=6,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
@@ -72,67 +81,83 @@ _FLIGHTMODE = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.telemetry.FlightMode',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='FLIGHT_MODE_UNKNOWN', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FLIGHT_MODE_READY', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FLIGHT_MODE_TAKEOFF', index=2, number=2,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FLIGHT_MODE_HOLD', index=3, number=3,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FLIGHT_MODE_MISSION', index=4, number=4,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FLIGHT_MODE_RETURN_TO_LAUNCH', index=5, number=5,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FLIGHT_MODE_LAND', index=6, number=6,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FLIGHT_MODE_OFFBOARD', index=7, number=7,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FLIGHT_MODE_FOLLOW_ME', index=8, number=8,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FLIGHT_MODE_MANUAL', index=9, number=9,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FLIGHT_MODE_ALTCTL', index=10, number=10,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FLIGHT_MODE_POSCTL', index=11, number=11,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FLIGHT_MODE_ACRO', index=12, number=12,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FLIGHT_MODE_STABILIZED', index=13, number=13,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='FLIGHT_MODE_RATTITUDE', index=14, number=14,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
@@ -147,19 +172,23 @@ _STATUSTEXTTYPE = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.telemetry.StatusTextType',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='STATUS_TEXT_TYPE_INFO', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='STATUS_TEXT_TYPE_WARNING', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='STATUS_TEXT_TYPE_CRITICAL', index=2, number=2,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
@@ -174,27 +203,33 @@ _LANDEDSTATE = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.telemetry.LandedState',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='LANDED_STATE_UNKNOWN', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='LANDED_STATE_ON_GROUND', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='LANDED_STATE_IN_AIR', index=2, number=2,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='LANDED_STATE_TAKING_OFF', index=3, number=3,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='LANDED_STATE_LANDING', index=4, number=4,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
@@ -241,23 +276,28 @@ _ODOMETRY_MAVFRAME = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.telemetry.Odometry.MavFrame',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='MAV_FRAME_UNDEF', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='MAV_FRAME_BODY_NED', index=1, number=8,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='MAV_FRAME_VISION_NED', index=2, number=16,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='MAV_FRAME_ESTIM_NED', index=3, number=18,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
@@ -271,35 +311,43 @@ _TELEMETRYRESULT_RESULT = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.telemetry.TelemetryResult.Result',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='RESULT_UNKNOWN', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_SUCCESS', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_NO_SYSTEM', index=2, number=2,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_CONNECTION_ERROR', index=3, number=3,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_BUSY', index=4, number=4,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_COMMAND_DENIED', index=5, number=5,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_TIMEOUT', index=6, number=6,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
@@ -315,6 +363,7 @@ _SUBSCRIBEPOSITIONREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -339,6 +388,7 @@ _POSITIONRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='position', full_name='mavsdk.rpc.telemetry.PositionResponse.position', index=0,
@@ -346,7 +396,7 @@ _POSITIONRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -370,6 +420,7 @@ _SUBSCRIBEHOMEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -394,6 +445,7 @@ _HOMERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='home', full_name='mavsdk.rpc.telemetry.HomeResponse.home', index=0,
@@ -401,7 +453,7 @@ _HOMERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -425,6 +477,7 @@ _SUBSCRIBEINAIRREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -449,6 +502,7 @@ _INAIRRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='is_in_air', full_name='mavsdk.rpc.telemetry.InAirResponse.is_in_air', index=0,
@@ -456,7 +510,7 @@ _INAIRRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -480,6 +534,7 @@ _SUBSCRIBELANDEDSTATEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -504,6 +559,7 @@ _LANDEDSTATERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='landed_state', full_name='mavsdk.rpc.telemetry.LandedStateResponse.landed_state', index=0,
@@ -511,7 +567,7 @@ _LANDEDSTATERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -535,6 +591,7 @@ _SUBSCRIBEARMEDREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -559,6 +616,7 @@ _ARMEDRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='is_armed', full_name='mavsdk.rpc.telemetry.ArmedResponse.is_armed', index=0,
@@ -566,7 +624,7 @@ _ARMEDRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -590,6 +648,7 @@ _SUBSCRIBEATTITUDEQUATERNIONREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -614,6 +673,7 @@ _ATTITUDEQUATERNIONRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='attitude_quaternion', full_name='mavsdk.rpc.telemetry.AttitudeQuaternionResponse.attitude_quaternion', index=0,
@@ -621,7 +681,7 @@ _ATTITUDEQUATERNIONRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -645,6 +705,7 @@ _SUBSCRIBEATTITUDEEULERREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -669,6 +730,7 @@ _ATTITUDEEULERRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='attitude_euler', full_name='mavsdk.rpc.telemetry.AttitudeEulerResponse.attitude_euler', index=0,
@@ -676,7 +738,7 @@ _ATTITUDEEULERRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -700,6 +762,7 @@ _SUBSCRIBEATTITUDEANGULARVELOCITYBODYREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -724,6 +787,7 @@ _ATTITUDEANGULARVELOCITYBODYRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='attitude_angular_velocity_body', full_name='mavsdk.rpc.telemetry.AttitudeAngularVelocityBodyResponse.attitude_angular_velocity_body', index=0,
@@ -731,7 +795,7 @@ _ATTITUDEANGULARVELOCITYBODYRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -755,6 +819,7 @@ _SUBSCRIBECAMERAATTITUDEQUATERNIONREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -779,6 +844,7 @@ _CAMERAATTITUDEQUATERNIONRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='attitude_quaternion', full_name='mavsdk.rpc.telemetry.CameraAttitudeQuaternionResponse.attitude_quaternion', index=0,
@@ -786,7 +852,7 @@ _CAMERAATTITUDEQUATERNIONRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -810,6 +876,7 @@ _SUBSCRIBECAMERAATTITUDEEULERREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -834,6 +901,7 @@ _CAMERAATTITUDEEULERRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='attitude_euler', full_name='mavsdk.rpc.telemetry.CameraAttitudeEulerResponse.attitude_euler', index=0,
@@ -841,7 +909,7 @@ _CAMERAATTITUDEEULERRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -865,6 +933,7 @@ _SUBSCRIBEVELOCITYNEDREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -889,6 +958,7 @@ _VELOCITYNEDRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='velocity_ned', full_name='mavsdk.rpc.telemetry.VelocityNedResponse.velocity_ned', index=0,
@@ -896,7 +966,7 @@ _VELOCITYNEDRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -920,6 +990,7 @@ _SUBSCRIBEGPSINFOREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -944,6 +1015,7 @@ _GPSINFORESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='gps_info', full_name='mavsdk.rpc.telemetry.GpsInfoResponse.gps_info', index=0,
@@ -951,7 +1023,7 @@ _GPSINFORESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -975,6 +1047,7 @@ _SUBSCRIBEBATTERYREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -999,6 +1072,7 @@ _BATTERYRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='battery', full_name='mavsdk.rpc.telemetry.BatteryResponse.battery', index=0,
@@ -1006,7 +1080,7 @@ _BATTERYRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1030,6 +1104,7 @@ _SUBSCRIBEFLIGHTMODEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -1054,6 +1129,7 @@ _FLIGHTMODERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='flight_mode', full_name='mavsdk.rpc.telemetry.FlightModeResponse.flight_mode', index=0,
@@ -1061,7 +1137,7 @@ _FLIGHTMODERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1085,6 +1161,7 @@ _SUBSCRIBEHEALTHREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -1109,6 +1186,7 @@ _HEALTHRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='health', full_name='mavsdk.rpc.telemetry.HealthResponse.health', index=0,
@@ -1116,7 +1194,7 @@ _HEALTHRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1140,6 +1218,7 @@ _SUBSCRIBERCSTATUSREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -1164,6 +1243,7 @@ _RCSTATUSRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rc_status', full_name='mavsdk.rpc.telemetry.RcStatusResponse.rc_status', index=0,
@@ -1171,7 +1251,7 @@ _RCSTATUSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1195,6 +1275,7 @@ _SUBSCRIBESTATUSTEXTREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -1219,6 +1300,7 @@ _STATUSTEXTRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='status_text', full_name='mavsdk.rpc.telemetry.StatusTextResponse.status_text', index=0,
@@ -1226,7 +1308,7 @@ _STATUSTEXTRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1250,6 +1332,7 @@ _SUBSCRIBEACTUATORCONTROLTARGETREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -1274,6 +1357,7 @@ _ACTUATORCONTROLTARGETRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='actuator_control_target', full_name='mavsdk.rpc.telemetry.ActuatorControlTargetResponse.actuator_control_target', index=0,
@@ -1281,7 +1365,7 @@ _ACTUATORCONTROLTARGETRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1305,6 +1389,7 @@ _SUBSCRIBEACTUATOROUTPUTSTATUSREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -1329,6 +1414,7 @@ _ACTUATOROUTPUTSTATUSRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='actuator_output_status', full_name='mavsdk.rpc.telemetry.ActuatorOutputStatusResponse.actuator_output_status', index=0,
@@ -1336,7 +1422,7 @@ _ACTUATOROUTPUTSTATUSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1360,6 +1446,7 @@ _SUBSCRIBEODOMETRYREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -1384,6 +1471,7 @@ _ODOMETRYRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='odometry', full_name='mavsdk.rpc.telemetry.OdometryResponse.odometry', index=0,
@@ -1391,7 +1479,7 @@ _ODOMETRYRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1415,6 +1503,7 @@ _SUBSCRIBEPOSITIONVELOCITYNEDREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -1439,6 +1528,7 @@ _POSITIONVELOCITYNEDRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='position_velocity_ned', full_name='mavsdk.rpc.telemetry.PositionVelocityNedResponse.position_velocity_ned', index=0,
@@ -1446,7 +1536,7 @@ _POSITIONVELOCITYNEDRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1470,6 +1560,7 @@ _SUBSCRIBEGROUNDTRUTHREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -1494,6 +1585,7 @@ _GROUNDTRUTHRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='ground_truth', full_name='mavsdk.rpc.telemetry.GroundTruthResponse.ground_truth', index=0,
@@ -1501,7 +1593,7 @@ _GROUNDTRUTHRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1525,6 +1617,7 @@ _SUBSCRIBEFIXEDWINGMETRICSREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -1549,6 +1642,7 @@ _FIXEDWINGMETRICSRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='fixedwing_metrics', full_name='mavsdk.rpc.telemetry.FixedwingMetricsResponse.fixedwing_metrics', index=0,
@@ -1556,7 +1650,7 @@ _FIXEDWINGMETRICSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1580,6 +1674,7 @@ _SUBSCRIBEIMUREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -1604,6 +1699,7 @@ _IMURESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='imu', full_name='mavsdk.rpc.telemetry.ImuResponse.imu', index=0,
@@ -1611,7 +1707,7 @@ _IMURESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1635,6 +1731,7 @@ _SUBSCRIBEHEALTHALLOKREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -1659,6 +1756,7 @@ _HEALTHALLOKRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='is_health_all_ok', full_name='mavsdk.rpc.telemetry.HealthAllOkResponse.is_health_all_ok', index=0,
@@ -1666,7 +1764,7 @@ _HEALTHALLOKRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1690,6 +1788,7 @@ _SUBSCRIBEUNIXEPOCHTIMEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -1714,6 +1813,7 @@ _UNIXEPOCHTIMERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='time_us', full_name='mavsdk.rpc.telemetry.UnixEpochTimeResponse.time_us', index=0,
@@ -1721,7 +1821,7 @@ _UNIXEPOCHTIMERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1745,6 +1845,7 @@ _SETRATEPOSITIONREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRatePositionRequest.rate_hz', index=0,
@@ -1752,7 +1853,7 @@ _SETRATEPOSITIONREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1776,6 +1877,7 @@ _SETRATEPOSITIONRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRatePositionResponse.telemetry_result', index=0,
@@ -1783,7 +1885,7 @@ _SETRATEPOSITIONRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1807,6 +1909,7 @@ _SETRATEHOMEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateHomeRequest.rate_hz', index=0,
@@ -1814,7 +1917,7 @@ _SETRATEHOMEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1838,6 +1941,7 @@ _SETRATEHOMERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateHomeResponse.telemetry_result', index=0,
@@ -1845,7 +1949,7 @@ _SETRATEHOMERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1869,6 +1973,7 @@ _SETRATEINAIRREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateInAirRequest.rate_hz', index=0,
@@ -1876,7 +1981,7 @@ _SETRATEINAIRREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1900,6 +2005,7 @@ _SETRATEINAIRRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateInAirResponse.telemetry_result', index=0,
@@ -1907,7 +2013,7 @@ _SETRATEINAIRRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1931,6 +2037,7 @@ _SETRATELANDEDSTATEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateLandedStateRequest.rate_hz', index=0,
@@ -1938,7 +2045,7 @@ _SETRATELANDEDSTATEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1962,6 +2069,7 @@ _SETRATELANDEDSTATERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateLandedStateResponse.telemetry_result', index=0,
@@ -1969,7 +2077,7 @@ _SETRATELANDEDSTATERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1993,6 +2101,7 @@ _SETRATEATTITUDEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateAttitudeRequest.rate_hz', index=0,
@@ -2000,7 +2109,7 @@ _SETRATEATTITUDEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2024,6 +2133,7 @@ _SETRATEATTITUDERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateAttitudeResponse.telemetry_result', index=0,
@@ -2031,7 +2141,7 @@ _SETRATEATTITUDERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2055,6 +2165,7 @@ _SETRATEATTITUDEANGULARVELOCITYBODYREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateAttitudeAngularVelocityBodyRequest.rate_hz', index=0,
@@ -2062,7 +2173,7 @@ _SETRATEATTITUDEANGULARVELOCITYBODYREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2086,6 +2197,7 @@ _SETRATEATTITUDEANGULARVELOCITYBODYRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateAttitudeAngularVelocityBodyResponse.telemetry_result', index=0,
@@ -2093,7 +2205,7 @@ _SETRATEATTITUDEANGULARVELOCITYBODYRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2117,6 +2229,7 @@ _SETRATECAMERAATTITUDEQUATERNIONREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateCameraAttitudeQuaternionRequest.rate_hz', index=0,
@@ -2124,7 +2237,7 @@ _SETRATECAMERAATTITUDEQUATERNIONREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2148,6 +2261,7 @@ _SETRATECAMERAATTITUDEQUATERNIONRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateCameraAttitudeQuaternionResponse.telemetry_result', index=0,
@@ -2155,7 +2269,7 @@ _SETRATECAMERAATTITUDEQUATERNIONRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2179,6 +2293,7 @@ _SETRATECAMERAATTITUDEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateCameraAttitudeRequest.rate_hz', index=0,
@@ -2186,7 +2301,7 @@ _SETRATECAMERAATTITUDEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2210,6 +2325,7 @@ _SETRATECAMERAATTITUDERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateCameraAttitudeResponse.telemetry_result', index=0,
@@ -2217,7 +2333,7 @@ _SETRATECAMERAATTITUDERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2241,6 +2357,7 @@ _SETRATEVELOCITYNEDREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateVelocityNedRequest.rate_hz', index=0,
@@ -2248,7 +2365,7 @@ _SETRATEVELOCITYNEDREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2272,6 +2389,7 @@ _SETRATEVELOCITYNEDRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateVelocityNedResponse.telemetry_result', index=0,
@@ -2279,7 +2397,7 @@ _SETRATEVELOCITYNEDRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2303,6 +2421,7 @@ _SETRATEGPSINFOREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateGpsInfoRequest.rate_hz', index=0,
@@ -2310,7 +2429,7 @@ _SETRATEGPSINFOREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2334,6 +2453,7 @@ _SETRATEGPSINFORESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateGpsInfoResponse.telemetry_result', index=0,
@@ -2341,7 +2461,7 @@ _SETRATEGPSINFORESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2365,6 +2485,7 @@ _SETRATEBATTERYREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateBatteryRequest.rate_hz', index=0,
@@ -2372,7 +2493,7 @@ _SETRATEBATTERYREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2396,6 +2517,7 @@ _SETRATEBATTERYRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateBatteryResponse.telemetry_result', index=0,
@@ -2403,7 +2525,7 @@ _SETRATEBATTERYRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2427,6 +2549,7 @@ _SETRATERCSTATUSREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateRcStatusRequest.rate_hz', index=0,
@@ -2434,7 +2557,7 @@ _SETRATERCSTATUSREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2458,6 +2581,7 @@ _SETRATERCSTATUSRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateRcStatusResponse.telemetry_result', index=0,
@@ -2465,7 +2589,7 @@ _SETRATERCSTATUSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2489,6 +2613,7 @@ _SETRATEACTUATORCONTROLTARGETREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateActuatorControlTargetRequest.rate_hz', index=0,
@@ -2496,7 +2621,7 @@ _SETRATEACTUATORCONTROLTARGETREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2520,6 +2645,7 @@ _SETRATEACTUATORCONTROLTARGETRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateActuatorControlTargetResponse.telemetry_result', index=0,
@@ -2527,7 +2653,7 @@ _SETRATEACTUATORCONTROLTARGETRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2551,6 +2677,7 @@ _SETRATEACTUATOROUTPUTSTATUSREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateActuatorOutputStatusRequest.rate_hz', index=0,
@@ -2558,7 +2685,7 @@ _SETRATEACTUATOROUTPUTSTATUSREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2582,6 +2709,7 @@ _SETRATEACTUATOROUTPUTSTATUSRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateActuatorOutputStatusResponse.telemetry_result', index=0,
@@ -2589,7 +2717,7 @@ _SETRATEACTUATOROUTPUTSTATUSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2613,6 +2741,7 @@ _SETRATEODOMETRYREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateOdometryRequest.rate_hz', index=0,
@@ -2620,7 +2749,7 @@ _SETRATEODOMETRYREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2644,6 +2773,7 @@ _SETRATEODOMETRYRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateOdometryResponse.telemetry_result', index=0,
@@ -2651,7 +2781,7 @@ _SETRATEODOMETRYRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2675,6 +2805,7 @@ _SETRATEPOSITIONVELOCITYNEDREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRatePositionVelocityNedRequest.rate_hz', index=0,
@@ -2682,7 +2813,7 @@ _SETRATEPOSITIONVELOCITYNEDREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2706,6 +2837,7 @@ _SETRATEPOSITIONVELOCITYNEDRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRatePositionVelocityNedResponse.telemetry_result', index=0,
@@ -2713,7 +2845,7 @@ _SETRATEPOSITIONVELOCITYNEDRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2737,6 +2869,7 @@ _SETRATEGROUNDTRUTHREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateGroundTruthRequest.rate_hz', index=0,
@@ -2744,7 +2877,7 @@ _SETRATEGROUNDTRUTHREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2768,6 +2901,7 @@ _SETRATEGROUNDTRUTHRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateGroundTruthResponse.telemetry_result', index=0,
@@ -2775,7 +2909,7 @@ _SETRATEGROUNDTRUTHRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2799,6 +2933,7 @@ _SETRATEFIXEDWINGMETRICSREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateFixedwingMetricsRequest.rate_hz', index=0,
@@ -2806,7 +2941,7 @@ _SETRATEFIXEDWINGMETRICSREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2830,6 +2965,7 @@ _SETRATEFIXEDWINGMETRICSRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateFixedwingMetricsResponse.telemetry_result', index=0,
@@ -2837,7 +2973,7 @@ _SETRATEFIXEDWINGMETRICSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2861,6 +2997,7 @@ _SETRATEIMUREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateImuRequest.rate_hz', index=0,
@@ -2868,7 +3005,7 @@ _SETRATEIMUREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2892,6 +3029,7 @@ _SETRATEIMURESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateImuResponse.telemetry_result', index=0,
@@ -2899,7 +3037,7 @@ _SETRATEIMURESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2923,6 +3061,7 @@ _SETRATEUNIXEPOCHTIMEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='rate_hz', full_name='mavsdk.rpc.telemetry.SetRateUnixEpochTimeRequest.rate_hz', index=0,
@@ -2930,7 +3069,7 @@ _SETRATEUNIXEPOCHTIMEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2954,6 +3093,7 @@ _SETRATEUNIXEPOCHTIMERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='telemetry_result', full_name='mavsdk.rpc.telemetry.SetRateUnixEpochTimeResponse.telemetry_result', index=0,
@@ -2961,7 +3101,7 @@ _SETRATEUNIXEPOCHTIMERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2985,6 +3125,7 @@ _POSITION = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='latitude_deg', full_name='mavsdk.rpc.telemetry.Position.latitude_deg', index=0,
@@ -2992,28 +3133,28 @@ _POSITION = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='longitude_deg', full_name='mavsdk.rpc.telemetry.Position.longitude_deg', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='absolute_altitude_m', full_name='mavsdk.rpc.telemetry.Position.absolute_altitude_m', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='relative_altitude_m', full_name='mavsdk.rpc.telemetry.Position.relative_altitude_m', index=3,
       number=4, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3037,6 +3178,7 @@ _QUATERNION = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='w', full_name='mavsdk.rpc.telemetry.Quaternion.w', index=0,
@@ -3044,28 +3186,28 @@ _QUATERNION = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='x', full_name='mavsdk.rpc.telemetry.Quaternion.x', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='y', full_name='mavsdk.rpc.telemetry.Quaternion.y', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='z', full_name='mavsdk.rpc.telemetry.Quaternion.z', index=3,
       number=4, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3089,6 +3231,7 @@ _EULERANGLE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='roll_deg', full_name='mavsdk.rpc.telemetry.EulerAngle.roll_deg', index=0,
@@ -3096,21 +3239,21 @@ _EULERANGLE = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='pitch_deg', full_name='mavsdk.rpc.telemetry.EulerAngle.pitch_deg', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='yaw_deg', full_name='mavsdk.rpc.telemetry.EulerAngle.yaw_deg', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3134,6 +3277,7 @@ _ANGULARVELOCITYBODY = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='roll_rad_s', full_name='mavsdk.rpc.telemetry.AngularVelocityBody.roll_rad_s', index=0,
@@ -3141,21 +3285,21 @@ _ANGULARVELOCITYBODY = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='pitch_rad_s', full_name='mavsdk.rpc.telemetry.AngularVelocityBody.pitch_rad_s', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='yaw_rad_s', full_name='mavsdk.rpc.telemetry.AngularVelocityBody.yaw_rad_s', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3179,6 +3323,7 @@ _GPSINFO = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='num_satellites', full_name='mavsdk.rpc.telemetry.GpsInfo.num_satellites', index=0,
@@ -3186,14 +3331,14 @@ _GPSINFO = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\0010', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\0010', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='fix_type', full_name='mavsdk.rpc.telemetry.GpsInfo.fix_type', index=1,
       number=2, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3217,6 +3362,7 @@ _BATTERY = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='voltage_v', full_name='mavsdk.rpc.telemetry.Battery.voltage_v', index=0,
@@ -3224,14 +3370,14 @@ _BATTERY = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='remaining_percent', full_name='mavsdk.rpc.telemetry.Battery.remaining_percent', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3255,6 +3401,7 @@ _HEALTH = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='is_gyrometer_calibration_ok', full_name='mavsdk.rpc.telemetry.Health.is_gyrometer_calibration_ok', index=0,
@@ -3262,49 +3409,49 @@ _HEALTH = _descriptor.Descriptor(
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='is_accelerometer_calibration_ok', full_name='mavsdk.rpc.telemetry.Health.is_accelerometer_calibration_ok', index=1,
       number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='is_magnetometer_calibration_ok', full_name='mavsdk.rpc.telemetry.Health.is_magnetometer_calibration_ok', index=2,
       number=3, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='is_level_calibration_ok', full_name='mavsdk.rpc.telemetry.Health.is_level_calibration_ok', index=3,
       number=4, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='is_local_position_ok', full_name='mavsdk.rpc.telemetry.Health.is_local_position_ok', index=4,
       number=5, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='is_global_position_ok', full_name='mavsdk.rpc.telemetry.Health.is_global_position_ok', index=5,
       number=6, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='is_home_position_ok', full_name='mavsdk.rpc.telemetry.Health.is_home_position_ok', index=6,
       number=7, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3328,6 +3475,7 @@ _RCSTATUS = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='was_available_once', full_name='mavsdk.rpc.telemetry.RcStatus.was_available_once', index=0,
@@ -3335,21 +3483,21 @@ _RCSTATUS = _descriptor.Descriptor(
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='is_available', full_name='mavsdk.rpc.telemetry.RcStatus.is_available', index=1,
       number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='signal_strength_percent', full_name='mavsdk.rpc.telemetry.RcStatus.signal_strength_percent', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\0010', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\0010', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3373,6 +3521,7 @@ _STATUSTEXT = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='type', full_name='mavsdk.rpc.telemetry.StatusText.type', index=0,
@@ -3380,14 +3529,14 @@ _STATUSTEXT = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='text', full_name='mavsdk.rpc.telemetry.StatusText.text', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3411,6 +3560,7 @@ _ACTUATORCONTROLTARGET = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='group', full_name='mavsdk.rpc.telemetry.ActuatorControlTarget.group', index=0,
@@ -3418,14 +3568,14 @@ _ACTUATORCONTROLTARGET = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\0010', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\0010', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='controls', full_name='mavsdk.rpc.telemetry.ActuatorControlTarget.controls', index=1,
       number=2, type=2, cpp_type=6, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3449,6 +3599,7 @@ _ACTUATOROUTPUTSTATUS = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='active', full_name='mavsdk.rpc.telemetry.ActuatorOutputStatus.active', index=0,
@@ -3456,14 +3607,14 @@ _ACTUATOROUTPUTSTATUS = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\0010', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\0010', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='actuator', full_name='mavsdk.rpc.telemetry.ActuatorOutputStatus.actuator', index=1,
       number=2, type=2, cpp_type=6, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3487,6 +3638,7 @@ _COVARIANCE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='covariance_matrix', full_name='mavsdk.rpc.telemetry.Covariance.covariance_matrix', index=0,
@@ -3494,7 +3646,7 @@ _COVARIANCE = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3518,6 +3670,7 @@ _VELOCITYBODY = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='x_m_s', full_name='mavsdk.rpc.telemetry.VelocityBody.x_m_s', index=0,
@@ -3525,21 +3678,21 @@ _VELOCITYBODY = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='y_m_s', full_name='mavsdk.rpc.telemetry.VelocityBody.y_m_s', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='z_m_s', full_name='mavsdk.rpc.telemetry.VelocityBody.z_m_s', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3563,6 +3716,7 @@ _POSITIONBODY = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='x_m', full_name='mavsdk.rpc.telemetry.PositionBody.x_m', index=0,
@@ -3570,21 +3724,21 @@ _POSITIONBODY = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='y_m', full_name='mavsdk.rpc.telemetry.PositionBody.y_m', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='z_m', full_name='mavsdk.rpc.telemetry.PositionBody.z_m', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3608,6 +3762,7 @@ _ODOMETRY = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='time_usec', full_name='mavsdk.rpc.telemetry.Odometry.time_usec', index=0,
@@ -3615,63 +3770,63 @@ _ODOMETRY = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='frame_id', full_name='mavsdk.rpc.telemetry.Odometry.frame_id', index=1,
       number=2, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='child_frame_id', full_name='mavsdk.rpc.telemetry.Odometry.child_frame_id', index=2,
       number=3, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='position_body', full_name='mavsdk.rpc.telemetry.Odometry.position_body', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='q', full_name='mavsdk.rpc.telemetry.Odometry.q', index=4,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='velocity_body', full_name='mavsdk.rpc.telemetry.Odometry.velocity_body', index=5,
       number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='angular_velocity_body', full_name='mavsdk.rpc.telemetry.Odometry.angular_velocity_body', index=6,
       number=7, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='pose_covariance', full_name='mavsdk.rpc.telemetry.Odometry.pose_covariance', index=7,
       number=8, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='velocity_covariance', full_name='mavsdk.rpc.telemetry.Odometry.velocity_covariance', index=8,
       number=9, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3696,6 +3851,7 @@ _POSITIONNED = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='north_m', full_name='mavsdk.rpc.telemetry.PositionNed.north_m', index=0,
@@ -3703,21 +3859,21 @@ _POSITIONNED = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='east_m', full_name='mavsdk.rpc.telemetry.PositionNed.east_m', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='down_m', full_name='mavsdk.rpc.telemetry.PositionNed.down_m', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3741,6 +3897,7 @@ _VELOCITYNED = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='north_m_s', full_name='mavsdk.rpc.telemetry.VelocityNed.north_m_s', index=0,
@@ -3748,21 +3905,21 @@ _VELOCITYNED = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='east_m_s', full_name='mavsdk.rpc.telemetry.VelocityNed.east_m_s', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='down_m_s', full_name='mavsdk.rpc.telemetry.VelocityNed.down_m_s', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3786,6 +3943,7 @@ _POSITIONVELOCITYNED = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='position', full_name='mavsdk.rpc.telemetry.PositionVelocityNed.position', index=0,
@@ -3793,14 +3951,14 @@ _POSITIONVELOCITYNED = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='velocity', full_name='mavsdk.rpc.telemetry.PositionVelocityNed.velocity', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3824,6 +3982,7 @@ _GROUNDTRUTH = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='latitude_deg', full_name='mavsdk.rpc.telemetry.GroundTruth.latitude_deg', index=0,
@@ -3831,21 +3990,21 @@ _GROUNDTRUTH = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='longitude_deg', full_name='mavsdk.rpc.telemetry.GroundTruth.longitude_deg', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='absolute_altitude_m', full_name='mavsdk.rpc.telemetry.GroundTruth.absolute_altitude_m', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3869,6 +4028,7 @@ _FIXEDWINGMETRICS = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='airspeed_m_s', full_name='mavsdk.rpc.telemetry.FixedwingMetrics.airspeed_m_s', index=0,
@@ -3876,21 +4036,21 @@ _FIXEDWINGMETRICS = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='throttle_percentage', full_name='mavsdk.rpc.telemetry.FixedwingMetrics.throttle_percentage', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='climb_rate_m_s', full_name='mavsdk.rpc.telemetry.FixedwingMetrics.climb_rate_m_s', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3914,6 +4074,7 @@ _ACCELERATIONFRD = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='forward_m_s2', full_name='mavsdk.rpc.telemetry.AccelerationFrd.forward_m_s2', index=0,
@@ -3921,21 +4082,21 @@ _ACCELERATIONFRD = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='right_m_s2', full_name='mavsdk.rpc.telemetry.AccelerationFrd.right_m_s2', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='down_m_s2', full_name='mavsdk.rpc.telemetry.AccelerationFrd.down_m_s2', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3959,6 +4120,7 @@ _ANGULARVELOCITYFRD = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='forward_rad_s', full_name='mavsdk.rpc.telemetry.AngularVelocityFrd.forward_rad_s', index=0,
@@ -3966,21 +4128,21 @@ _ANGULARVELOCITYFRD = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='right_rad_s', full_name='mavsdk.rpc.telemetry.AngularVelocityFrd.right_rad_s', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='down_rad_s', full_name='mavsdk.rpc.telemetry.AngularVelocityFrd.down_rad_s', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -4004,6 +4166,7 @@ _MAGNETICFIELDFRD = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='forward_gauss', full_name='mavsdk.rpc.telemetry.MagneticFieldFrd.forward_gauss', index=0,
@@ -4011,21 +4174,21 @@ _MAGNETICFIELDFRD = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='right_gauss', full_name='mavsdk.rpc.telemetry.MagneticFieldFrd.right_gauss', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='down_gauss', full_name='mavsdk.rpc.telemetry.MagneticFieldFrd.down_gauss', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -4049,6 +4212,7 @@ _IMU = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='acceleration_frd', full_name='mavsdk.rpc.telemetry.Imu.acceleration_frd', index=0,
@@ -4056,28 +4220,28 @@ _IMU = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='angular_velocity_frd', full_name='mavsdk.rpc.telemetry.Imu.angular_velocity_frd', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='magnetic_field_frd', full_name='mavsdk.rpc.telemetry.Imu.magnetic_field_frd', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='temperature_degc', full_name='mavsdk.rpc.telemetry.Imu.temperature_degc', index=3,
       number=4, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR),
+      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -4101,6 +4265,7 @@ _TELEMETRYRESULT = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='result', full_name='mavsdk.rpc.telemetry.TelemetryResult.result', index=0,
@@ -4108,14 +4273,14 @@ _TELEMETRYRESULT = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='result_str', full_name='mavsdk.rpc.telemetry.TelemetryResult.result_str', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -5192,6 +5357,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
+  create_key=_descriptor._internal_create_key,
   serialized_start=10018,
   serialized_end=15510,
   methods=[
@@ -5203,6 +5369,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEPOSITIONREQUEST,
     output_type=_POSITIONRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeHome',
@@ -5212,6 +5379,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEHOMEREQUEST,
     output_type=_HOMERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeInAir',
@@ -5221,6 +5389,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEINAIRREQUEST,
     output_type=_INAIRRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeLandedState',
@@ -5230,6 +5399,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBELANDEDSTATEREQUEST,
     output_type=_LANDEDSTATERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeArmed',
@@ -5239,6 +5409,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEARMEDREQUEST,
     output_type=_ARMEDRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeAttitudeQuaternion',
@@ -5248,6 +5419,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEATTITUDEQUATERNIONREQUEST,
     output_type=_ATTITUDEQUATERNIONRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeAttitudeEuler',
@@ -5257,6 +5429,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEATTITUDEEULERREQUEST,
     output_type=_ATTITUDEEULERRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeAttitudeAngularVelocityBody',
@@ -5266,6 +5439,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEATTITUDEANGULARVELOCITYBODYREQUEST,
     output_type=_ATTITUDEANGULARVELOCITYBODYRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeCameraAttitudeQuaternion',
@@ -5275,6 +5449,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBECAMERAATTITUDEQUATERNIONREQUEST,
     output_type=_CAMERAATTITUDEQUATERNIONRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeCameraAttitudeEuler',
@@ -5284,6 +5459,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBECAMERAATTITUDEEULERREQUEST,
     output_type=_CAMERAATTITUDEEULERRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeVelocityNed',
@@ -5293,6 +5469,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEVELOCITYNEDREQUEST,
     output_type=_VELOCITYNEDRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeGpsInfo',
@@ -5302,6 +5479,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEGPSINFOREQUEST,
     output_type=_GPSINFORESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeBattery',
@@ -5311,6 +5489,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEBATTERYREQUEST,
     output_type=_BATTERYRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeFlightMode',
@@ -5320,6 +5499,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEFLIGHTMODEREQUEST,
     output_type=_FLIGHTMODERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeHealth',
@@ -5329,6 +5509,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEHEALTHREQUEST,
     output_type=_HEALTHRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeRcStatus',
@@ -5338,6 +5519,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBERCSTATUSREQUEST,
     output_type=_RCSTATUSRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeStatusText',
@@ -5347,6 +5529,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBESTATUSTEXTREQUEST,
     output_type=_STATUSTEXTRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeActuatorControlTarget',
@@ -5356,6 +5539,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEACTUATORCONTROLTARGETREQUEST,
     output_type=_ACTUATORCONTROLTARGETRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeActuatorOutputStatus',
@@ -5365,6 +5549,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEACTUATOROUTPUTSTATUSREQUEST,
     output_type=_ACTUATOROUTPUTSTATUSRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeOdometry',
@@ -5374,6 +5559,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEODOMETRYREQUEST,
     output_type=_ODOMETRYRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribePositionVelocityNed',
@@ -5383,6 +5569,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEPOSITIONVELOCITYNEDREQUEST,
     output_type=_POSITIONVELOCITYNEDRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeGroundTruth',
@@ -5392,6 +5579,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEGROUNDTRUTHREQUEST,
     output_type=_GROUNDTRUTHRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeFixedwingMetrics',
@@ -5401,6 +5589,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEFIXEDWINGMETRICSREQUEST,
     output_type=_FIXEDWINGMETRICSRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeImu',
@@ -5410,6 +5599,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEIMUREQUEST,
     output_type=_IMURESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeHealthAllOk',
@@ -5419,6 +5609,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEHEALTHALLOKREQUEST,
     output_type=_HEALTHALLOKRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeUnixEpochTime',
@@ -5428,6 +5619,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEUNIXEPOCHTIMEREQUEST,
     output_type=_UNIXEPOCHTIMERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRatePosition',
@@ -5437,6 +5629,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATEPOSITIONREQUEST,
     output_type=_SETRATEPOSITIONRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateHome',
@@ -5446,6 +5639,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATEHOMEREQUEST,
     output_type=_SETRATEHOMERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateInAir',
@@ -5455,6 +5649,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATEINAIRREQUEST,
     output_type=_SETRATEINAIRRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateLandedState',
@@ -5464,6 +5659,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATELANDEDSTATEREQUEST,
     output_type=_SETRATELANDEDSTATERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateAttitude',
@@ -5473,6 +5669,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATEATTITUDEREQUEST,
     output_type=_SETRATEATTITUDERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateCameraAttitude',
@@ -5482,6 +5679,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATECAMERAATTITUDEREQUEST,
     output_type=_SETRATECAMERAATTITUDERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateVelocityNed',
@@ -5491,6 +5689,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATEVELOCITYNEDREQUEST,
     output_type=_SETRATEVELOCITYNEDRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateGpsInfo',
@@ -5500,6 +5699,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATEGPSINFOREQUEST,
     output_type=_SETRATEGPSINFORESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateBattery',
@@ -5509,6 +5709,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATEBATTERYREQUEST,
     output_type=_SETRATEBATTERYRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateRcStatus',
@@ -5518,6 +5719,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATERCSTATUSREQUEST,
     output_type=_SETRATERCSTATUSRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateActuatorControlTarget',
@@ -5527,6 +5729,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATEACTUATORCONTROLTARGETREQUEST,
     output_type=_SETRATEACTUATORCONTROLTARGETRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateActuatorOutputStatus',
@@ -5536,6 +5739,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATEACTUATOROUTPUTSTATUSREQUEST,
     output_type=_SETRATEACTUATOROUTPUTSTATUSRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateOdometry',
@@ -5545,6 +5749,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATEODOMETRYREQUEST,
     output_type=_SETRATEODOMETRYRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRatePositionVelocityNed',
@@ -5554,6 +5759,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATEPOSITIONVELOCITYNEDREQUEST,
     output_type=_SETRATEPOSITIONVELOCITYNEDRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateGroundTruth',
@@ -5563,6 +5769,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATEGROUNDTRUTHREQUEST,
     output_type=_SETRATEGROUNDTRUTHRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateFixedwingMetrics',
@@ -5572,6 +5779,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATEFIXEDWINGMETRICSREQUEST,
     output_type=_SETRATEFIXEDWINGMETRICSRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateImu',
@@ -5581,6 +5789,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATEIMUREQUEST,
     output_type=_SETRATEIMURESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRateUnixEpochTime',
@@ -5590,6 +5799,7 @@ _TELEMETRYSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRATEUNIXEPOCHTIMEREQUEST,
     output_type=_SETRATEUNIXEPOCHTIMERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_TELEMETRYSERVICE)

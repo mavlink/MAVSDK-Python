@@ -20,7 +20,8 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='mavsdk.rpc.tune',
   syntax='proto3',
   serialized_options=b'\n\016io.mavsdk.tuneB\tTuneProto',
-  serialized_pb=b'\n\x0ftune/tune.proto\x12\x0fmavsdk.rpc.tune\x1a\x14mavsdk_options.proto\"H\n\x0fPlayTuneRequest\x12\x35\n\x0b\x64\x65scription\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.tune.TuneDescription\"D\n\x10PlayTuneResponse\x12\x30\n\x0btune_result\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.tune.TuneResult\"U\n\x0fTuneDescription\x12\x33\n\rsong_elements\x18\x01 \x03(\x0e\x32\x1c.mavsdk.rpc.tune.SongElement\x12\r\n\x05tempo\x18\x02 \x01(\x05\"\xb8\x01\n\nTuneResult\x12\x32\n\x06result\x18\x01 \x01(\x0e\x32\".mavsdk.rpc.tune.TuneResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"b\n\x06Result\x12\x12\n\x0eRESULT_SUCCESS\x10\x00\x12\x18\n\x14RESULT_INVALID_TEMPO\x10\x01\x12\x18\n\x14RESULT_TUNE_TOO_LONG\x10\x02\x12\x10\n\x0cRESULT_ERROR\x10\x03*\xd1\x04\n\x0bSongElement\x12\x1d\n\x19SONG_ELEMENT_STYLE_LEGATO\x10\x00\x12\x1d\n\x19SONG_ELEMENT_STYLE_NORMAL\x10\x01\x12\x1f\n\x1bSONG_ELEMENT_STYLE_STACCATO\x10\x02\x12\x1b\n\x17SONG_ELEMENT_DURATION_1\x10\x03\x12\x1b\n\x17SONG_ELEMENT_DURATION_2\x10\x04\x12\x1b\n\x17SONG_ELEMENT_DURATION_4\x10\x05\x12\x1b\n\x17SONG_ELEMENT_DURATION_8\x10\x06\x12\x1c\n\x18SONG_ELEMENT_DURATION_16\x10\x07\x12\x1c\n\x18SONG_ELEMENT_DURATION_32\x10\x08\x12\x17\n\x13SONG_ELEMENT_NOTE_A\x10\t\x12\x17\n\x13SONG_ELEMENT_NOTE_B\x10\n\x12\x17\n\x13SONG_ELEMENT_NOTE_C\x10\x0b\x12\x17\n\x13SONG_ELEMENT_NOTE_D\x10\x0c\x12\x17\n\x13SONG_ELEMENT_NOTE_E\x10\r\x12\x17\n\x13SONG_ELEMENT_NOTE_F\x10\x0e\x12\x17\n\x13SONG_ELEMENT_NOTE_G\x10\x0f\x12\x1b\n\x17SONG_ELEMENT_NOTE_PAUSE\x10\x10\x12\x16\n\x12SONG_ELEMENT_SHARP\x10\x11\x12\x15\n\x11SONG_ELEMENT_FLAT\x10\x12\x12\x1a\n\x16SONG_ELEMENT_OCTAVE_UP\x10\x13\x12\x1c\n\x18SONG_ELEMENT_OCTAVE_DOWN\x10\x14\x32`\n\x0bTuneService\x12Q\n\x08PlayTune\x12 .mavsdk.rpc.tune.PlayTuneRequest\x1a!.mavsdk.rpc.tune.PlayTuneResponse\"\x00\x42\x1b\n\x0eio.mavsdk.tuneB\tTuneProtob\x06proto3'
+  create_key=_descriptor._internal_create_key,
+  serialized_pb=b'\n\x0ftune/tune.proto\x12\x0fmavsdk.rpc.tune\x1a\x14mavsdk_options.proto\"H\n\x0fPlayTuneRequest\x12\x35\n\x0b\x64\x65scription\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.tune.TuneDescription\"D\n\x10PlayTuneResponse\x12\x30\n\x0btune_result\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.tune.TuneResult\"U\n\x0fTuneDescription\x12\x33\n\rsong_elements\x18\x01 \x03(\x0e\x32\x1c.mavsdk.rpc.tune.SongElement\x12\r\n\x05tempo\x18\x02 \x01(\x05\"\xcc\x01\n\nTuneResult\x12\x32\n\x06result\x18\x01 \x01(\x0e\x32\".mavsdk.rpc.tune.TuneResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"v\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x18\n\x14RESULT_INVALID_TEMPO\x10\x02\x12\x18\n\x14RESULT_TUNE_TOO_LONG\x10\x03\x12\x10\n\x0cRESULT_ERROR\x10\x04*\xd1\x04\n\x0bSongElement\x12\x1d\n\x19SONG_ELEMENT_STYLE_LEGATO\x10\x00\x12\x1d\n\x19SONG_ELEMENT_STYLE_NORMAL\x10\x01\x12\x1f\n\x1bSONG_ELEMENT_STYLE_STACCATO\x10\x02\x12\x1b\n\x17SONG_ELEMENT_DURATION_1\x10\x03\x12\x1b\n\x17SONG_ELEMENT_DURATION_2\x10\x04\x12\x1b\n\x17SONG_ELEMENT_DURATION_4\x10\x05\x12\x1b\n\x17SONG_ELEMENT_DURATION_8\x10\x06\x12\x1c\n\x18SONG_ELEMENT_DURATION_16\x10\x07\x12\x1c\n\x18SONG_ELEMENT_DURATION_32\x10\x08\x12\x17\n\x13SONG_ELEMENT_NOTE_A\x10\t\x12\x17\n\x13SONG_ELEMENT_NOTE_B\x10\n\x12\x17\n\x13SONG_ELEMENT_NOTE_C\x10\x0b\x12\x17\n\x13SONG_ELEMENT_NOTE_D\x10\x0c\x12\x17\n\x13SONG_ELEMENT_NOTE_E\x10\r\x12\x17\n\x13SONG_ELEMENT_NOTE_F\x10\x0e\x12\x17\n\x13SONG_ELEMENT_NOTE_G\x10\x0f\x12\x1b\n\x17SONG_ELEMENT_NOTE_PAUSE\x10\x10\x12\x16\n\x12SONG_ELEMENT_SHARP\x10\x11\x12\x15\n\x11SONG_ELEMENT_FLAT\x10\x12\x12\x1a\n\x16SONG_ELEMENT_OCTAVE_UP\x10\x13\x12\x1c\n\x18SONG_ELEMENT_OCTAVE_DOWN\x10\x14\x32`\n\x0bTuneService\x12Q\n\x08PlayTune\x12 .mavsdk.rpc.tune.PlayTuneRequest\x1a!.mavsdk.rpc.tune.PlayTuneResponse\"\x00\x42\x1b\n\x0eio.mavsdk.tuneB\tTuneProtob\x06proto3'
   ,
   dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
 
@@ -29,96 +30,118 @@ _SONGELEMENT = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.tune.SongElement',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_STYLE_LEGATO', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_STYLE_NORMAL', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_STYLE_STACCATO', index=2, number=2,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_DURATION_1', index=3, number=3,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_DURATION_2', index=4, number=4,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_DURATION_4', index=5, number=5,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_DURATION_8', index=6, number=6,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_DURATION_16', index=7, number=7,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_DURATION_32', index=8, number=8,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_NOTE_A', index=9, number=9,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_NOTE_B', index=10, number=10,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_NOTE_C', index=11, number=11,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_NOTE_D', index=12, number=12,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_NOTE_E', index=13, number=13,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_NOTE_F', index=14, number=14,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_NOTE_G', index=15, number=15,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_NOTE_PAUSE', index=16, number=16,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_SHARP', index=17, number=17,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_FLAT', index=18, number=18,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_OCTAVE_UP', index=19, number=19,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='SONG_ELEMENT_OCTAVE_DOWN', index=20, number=20,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=477,
-  serialized_end=1070,
+  serialized_start=497,
+  serialized_end=1090,
 )
 _sym_db.RegisterEnumDescriptor(_SONGELEMENT)
 
@@ -151,28 +174,38 @@ _TUNERESULT_RESULT = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.tune.TuneResult.Result',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='RESULT_SUCCESS', index=0, number=0,
+      name='RESULT_UNKNOWN', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='RESULT_INVALID_TEMPO', index=1, number=1,
+      name='RESULT_SUCCESS', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='RESULT_TUNE_TOO_LONG', index=2, number=2,
+      name='RESULT_INVALID_TEMPO', index=2, number=2,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='RESULT_ERROR', index=3, number=3,
+      name='RESULT_TUNE_TOO_LONG', index=3, number=3,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='RESULT_ERROR', index=4, number=4,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
   serialized_start=376,
-  serialized_end=474,
+  serialized_end=494,
 )
 _sym_db.RegisterEnumDescriptor(_TUNERESULT_RESULT)
 
@@ -183,6 +216,7 @@ _PLAYTUNEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='description', full_name='mavsdk.rpc.tune.PlayTuneRequest.description', index=0,
@@ -190,7 +224,7 @@ _PLAYTUNEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -214,6 +248,7 @@ _PLAYTUNERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='tune_result', full_name='mavsdk.rpc.tune.PlayTuneResponse.tune_result', index=0,
@@ -221,7 +256,7 @@ _PLAYTUNERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -245,6 +280,7 @@ _TUNEDESCRIPTION = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='song_elements', full_name='mavsdk.rpc.tune.TuneDescription.song_elements', index=0,
@@ -252,14 +288,14 @@ _TUNEDESCRIPTION = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='tempo', full_name='mavsdk.rpc.tune.TuneDescription.tempo', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -283,6 +319,7 @@ _TUNERESULT = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='result', full_name='mavsdk.rpc.tune.TuneResult.result', index=0,
@@ -290,14 +327,14 @@ _TUNERESULT = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='result_str', full_name='mavsdk.rpc.tune.TuneResult.result_str', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -312,7 +349,7 @@ _TUNERESULT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=290,
-  serialized_end=474,
+  serialized_end=494,
 )
 
 _PLAYTUNEREQUEST.fields_by_name['description'].message_type = _TUNEDESCRIPTION
@@ -364,8 +401,9 @@ _TUNESERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=1072,
-  serialized_end=1168,
+  create_key=_descriptor._internal_create_key,
+  serialized_start=1092,
+  serialized_end=1188,
   methods=[
   _descriptor.MethodDescriptor(
     name='PlayTune',
@@ -375,6 +413,7 @@ _TUNESERVICE = _descriptor.ServiceDescriptor(
     input_type=_PLAYTUNEREQUEST,
     output_type=_PLAYTUNERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_TUNESERVICE)

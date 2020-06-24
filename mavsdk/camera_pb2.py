@@ -20,6 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='mavsdk.rpc.camera',
   syntax='proto3',
   serialized_options=b'\n\020io.mavsdk.cameraB\013CameraProto',
+  create_key=_descriptor._internal_create_key,
   serialized_pb=b'\n\x13\x63\x61mera/camera.proto\x12\x11mavsdk.rpc.camera\x1a\x14mavsdk_options.proto\"\x12\n\x10TakePhotoRequest\"K\n\x11TakePhotoResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"/\n\x19StartPhotoIntervalRequest\x12\x12\n\ninterval_s\x18\x01 \x01(\x02\"T\n\x1aStartPhotoIntervalResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x1a\n\x18StopPhotoIntervalRequest\"S\n\x19StopPhotoIntervalResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x13\n\x11StartVideoRequest\"L\n\x12StartVideoResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x12\n\x10StopVideoRequest\"K\n\x11StopVideoResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x1c\n\x1aStartVideoStreamingRequest\"U\n\x1bStartVideoStreamingResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x1b\n\x19StopVideoStreamingRequest\"T\n\x1aStopVideoStreamingResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"7\n\x0eSetModeRequest\x12%\n\x04mode\x18\x01 \x01(\x0e\x32\x17.mavsdk.rpc.camera.Mode\"I\n\x0fSetModeResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x1d\n\x1bSubscribeInformationRequest\"J\n\x13InformationResponse\x12\x33\n\x0binformation\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.camera.Information\"\x16\n\x14SubscribeModeRequest\"5\n\x0cModeResponse\x12%\n\x04mode\x18\x01 \x01(\x0e\x32\x17.mavsdk.rpc.camera.Mode\"!\n\x1fSubscribeVideoStreamInfoRequest\"X\n\x17VideoStreamInfoResponse\x12=\n\x11video_stream_info\x18\x01 \x01(\x0b\x32\".mavsdk.rpc.camera.VideoStreamInfo\"\x1d\n\x1bSubscribeCaptureInfoRequest\"K\n\x13\x43\x61ptureInfoResponse\x12\x34\n\x0c\x63\x61pture_info\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.camera.CaptureInfo\"\x18\n\x16SubscribeStatusRequest\"B\n\x0eStatusResponse\x12\x30\n\rcamera_status\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.camera.Status\"!\n\x1fSubscribeCurrentSettingsRequest\"O\n\x17\x43urrentSettingsResponse\x12\x34\n\x10\x63urrent_settings\x18\x01 \x03(\x0b\x32\x1a.mavsdk.rpc.camera.Setting\"(\n&SubscribePossibleSettingOptionsRequest\"\\\n\x1ePossibleSettingOptionsResponse\x12:\n\x0fsetting_options\x18\x01 \x03(\x0b\x32!.mavsdk.rpc.camera.SettingOptions\"@\n\x11SetSettingRequest\x12+\n\x07setting\x18\x01 \x01(\x0b\x32\x1a.mavsdk.rpc.camera.Setting\"L\n\x12SetSettingResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"@\n\x11GetSettingRequest\x12+\n\x07setting\x18\x01 \x01(\x0b\x32\x1a.mavsdk.rpc.camera.Setting\"y\n\x12GetSettingResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\x12+\n\x07setting\x18\x02 \x01(\x0b\x32\x1a.mavsdk.rpc.camera.Setting\"\x16\n\x14\x46ormatStorageRequest\"O\n\x15\x46ormatStorageResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x8a\x02\n\x0c\x43\x61meraResult\x12\x36\n\x06result\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.camera.CameraResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xad\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x16\n\x12RESULT_IN_PROGRESS\x10\x02\x12\x0f\n\x0bRESULT_BUSY\x10\x03\x12\x11\n\rRESULT_DENIED\x10\x04\x12\x10\n\x0cRESULT_ERROR\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x19\n\x15RESULT_WRONG_ARGUMENT\x10\x07\"q\n\x08Position\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x12\x1b\n\x13relative_altitude_m\x18\x04 \x01(\x02\"8\n\nQuaternion\x12\t\n\x01w\x18\x01 \x01(\x02\x12\t\n\x01x\x18\x02 \x01(\x02\x12\t\n\x01y\x18\x03 \x01(\x02\x12\t\n\x01z\x18\x04 \x01(\x02\"B\n\nEulerAngle\x12\x10\n\x08roll_deg\x18\x01 \x01(\x02\x12\x11\n\tpitch_deg\x18\x02 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x03 \x01(\x02\"\xff\x01\n\x0b\x43\x61ptureInfo\x12-\n\x08position\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.camera.Position\x12:\n\x13\x61ttitude_quaternion\x18\x02 \x01(\x0b\x32\x1d.mavsdk.rpc.camera.Quaternion\x12;\n\x14\x61ttitude_euler_angle\x18\x03 \x01(\x0b\x32\x1d.mavsdk.rpc.camera.EulerAngle\x12\x13\n\x0btime_utc_us\x18\x04 \x01(\x04\x12\x12\n\nis_success\x18\x05 \x01(\x08\x12\r\n\x05index\x18\x06 \x01(\x05\x12\x10\n\x08\x66ile_url\x18\x07 \x01(\t\"\xa9\x01\n\x13VideoStreamSettings\x12\x15\n\rframe_rate_hz\x18\x01 \x01(\x02\x12!\n\x19horizontal_resolution_pix\x18\x02 \x01(\r\x12\x1f\n\x17vertical_resolution_pix\x18\x03 \x01(\r\x12\x14\n\x0c\x62it_rate_b_s\x18\x04 \x01(\r\x12\x14\n\x0crotation_deg\x18\x05 \x01(\r\x12\x0b\n\x03uri\x18\x06 \x01(\t\"\xc0\x01\n\x0fVideoStreamInfo\x12\x38\n\x08settings\x18\x01 \x01(\x0b\x32&.mavsdk.rpc.camera.VideoStreamSettings\x12\x39\n\x06status\x18\x02 \x01(\x0e\x32).mavsdk.rpc.camera.VideoStreamInfo.Status\"8\n\x06Status\x12\x16\n\x12STATUS_NOT_RUNNING\x10\x00\x12\x16\n\x12STATUS_IN_PROGRESS\x10\x01\"\xf0\x02\n\x06Status\x12\x10\n\x08video_on\x18\x01 \x01(\x08\x12\x19\n\x11photo_interval_on\x18\x02 \x01(\x08\x12\x18\n\x10used_storage_mib\x18\x03 \x01(\x02\x12\x1d\n\x15\x61vailable_storage_mib\x18\x04 \x01(\x02\x12\x19\n\x11total_storage_mib\x18\x05 \x01(\x02\x12\x18\n\x10recording_time_s\x18\x06 \x01(\x02\x12\x19\n\x11media_folder_name\x18\x07 \x01(\t\x12?\n\x0estorage_status\x18\x08 \x01(\x0e\x32\'.mavsdk.rpc.camera.Status.StorageStatus\"o\n\rStorageStatus\x12 \n\x1cSTORAGE_STATUS_NOT_AVAILABLE\x10\x00\x12\x1e\n\x1aSTORAGE_STATUS_UNFORMATTED\x10\x01\x12\x1c\n\x18STORAGE_STATUS_FORMATTED\x10\x02\"7\n\x06Option\x12\x11\n\toption_id\x18\x01 \x01(\t\x12\x1a\n\x12option_description\x18\x02 \x01(\t\"w\n\x07Setting\x12\x12\n\nsetting_id\x18\x01 \x01(\t\x12\x1b\n\x13setting_description\x18\x02 \x01(\t\x12)\n\x06option\x18\x03 \x01(\x0b\x32\x19.mavsdk.rpc.camera.Option\x12\x10\n\x08is_range\x18\x04 \x01(\x08\"\x7f\n\x0eSettingOptions\x12\x12\n\nsetting_id\x18\x01 \x01(\t\x12\x1b\n\x13setting_description\x18\x02 \x01(\t\x12*\n\x07options\x18\x03 \x03(\x0b\x32\x19.mavsdk.rpc.camera.Option\x12\x10\n\x08is_range\x18\x04 \x01(\x08\"6\n\x0bInformation\x12\x13\n\x0bvendor_name\x18\x01 \x01(\t\x12\x12\n\nmodel_name\x18\x02 \x01(\t*8\n\x04Mode\x12\x10\n\x0cMODE_UNKNOWN\x10\x00\x12\x0e\n\nMODE_PHOTO\x10\x01\x12\x0e\n\nMODE_VIDEO\x10\x02\x32\xbb\x0f\n\rCameraService\x12X\n\tTakePhoto\x12#.mavsdk.rpc.camera.TakePhotoRequest\x1a$.mavsdk.rpc.camera.TakePhotoResponse\"\x00\x12s\n\x12StartPhotoInterval\x12,.mavsdk.rpc.camera.StartPhotoIntervalRequest\x1a-.mavsdk.rpc.camera.StartPhotoIntervalResponse\"\x00\x12p\n\x11StopPhotoInterval\x12+.mavsdk.rpc.camera.StopPhotoIntervalRequest\x1a,.mavsdk.rpc.camera.StopPhotoIntervalResponse\"\x00\x12[\n\nStartVideo\x12$.mavsdk.rpc.camera.StartVideoRequest\x1a%.mavsdk.rpc.camera.StartVideoResponse\"\x00\x12X\n\tStopVideo\x12#.mavsdk.rpc.camera.StopVideoRequest\x1a$.mavsdk.rpc.camera.StopVideoResponse\"\x00\x12z\n\x13StartVideoStreaming\x12-.mavsdk.rpc.camera.StartVideoStreamingRequest\x1a..mavsdk.rpc.camera.StartVideoStreamingResponse\"\x04\x80\xb5\x18\x01\x12w\n\x12StopVideoStreaming\x12,.mavsdk.rpc.camera.StopVideoStreamingRequest\x1a-.mavsdk.rpc.camera.StopVideoStreamingResponse\"\x04\x80\xb5\x18\x01\x12R\n\x07SetMode\x12!.mavsdk.rpc.camera.SetModeRequest\x1a\".mavsdk.rpc.camera.SetModeResponse\"\x00\x12]\n\rSubscribeMode\x12\'.mavsdk.rpc.camera.SubscribeModeRequest\x1a\x1f.mavsdk.rpc.camera.ModeResponse\"\x00\x30\x01\x12r\n\x14SubscribeInformation\x12..mavsdk.rpc.camera.SubscribeInformationRequest\x1a&.mavsdk.rpc.camera.InformationResponse\"\x00\x30\x01\x12~\n\x18SubscribeVideoStreamInfo\x12\x32.mavsdk.rpc.camera.SubscribeVideoStreamInfoRequest\x1a*.mavsdk.rpc.camera.VideoStreamInfoResponse\"\x00\x30\x01\x12v\n\x14SubscribeCaptureInfo\x12..mavsdk.rpc.camera.SubscribeCaptureInfoRequest\x1a&.mavsdk.rpc.camera.CaptureInfoResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x63\n\x0fSubscribeStatus\x12).mavsdk.rpc.camera.SubscribeStatusRequest\x1a!.mavsdk.rpc.camera.StatusResponse\"\x00\x30\x01\x12\x82\x01\n\x18SubscribeCurrentSettings\x12\x32.mavsdk.rpc.camera.SubscribeCurrentSettingsRequest\x1a*.mavsdk.rpc.camera.CurrentSettingsResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x93\x01\n\x1fSubscribePossibleSettingOptions\x12\x39.mavsdk.rpc.camera.SubscribePossibleSettingOptionsRequest\x1a\x31.mavsdk.rpc.camera.PossibleSettingOptionsResponse\"\x00\x30\x01\x12[\n\nSetSetting\x12$.mavsdk.rpc.camera.SetSettingRequest\x1a%.mavsdk.rpc.camera.SetSettingResponse\"\x00\x12[\n\nGetSetting\x12$.mavsdk.rpc.camera.GetSettingRequest\x1a%.mavsdk.rpc.camera.GetSettingResponse\"\x00\x12\x64\n\rFormatStorage\x12\'.mavsdk.rpc.camera.FormatStorageRequest\x1a(.mavsdk.rpc.camera.FormatStorageResponse\"\x00\x42\x1f\n\x10io.mavsdk.cameraB\x0b\x43\x61meraProtob\x06proto3'
   ,
   dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
@@ -29,19 +30,23 @@ _MODE = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.camera.Mode',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='MODE_UNKNOWN', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='MODE_PHOTO', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='MODE_VIDEO', index=2, number=2,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
@@ -61,39 +66,48 @@ _CAMERARESULT_RESULT = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.camera.CameraResult.Result',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='RESULT_UNKNOWN', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_SUCCESS', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_IN_PROGRESS', index=2, number=2,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_BUSY', index=3, number=3,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_DENIED', index=4, number=4,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_ERROR', index=5, number=5,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_TIMEOUT', index=6, number=6,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_WRONG_ARGUMENT', index=7, number=7,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
@@ -107,15 +121,18 @@ _VIDEOSTREAMINFO_STATUS = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.camera.VideoStreamInfo.Status',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='STATUS_NOT_RUNNING', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='STATUS_IN_PROGRESS', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
@@ -129,19 +146,23 @@ _STATUS_STORAGESTATUS = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.camera.Status.StorageStatus',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='STORAGE_STATUS_NOT_AVAILABLE', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='STORAGE_STATUS_UNFORMATTED', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='STORAGE_STATUS_FORMATTED', index=2, number=2,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
@@ -157,6 +178,7 @@ _TAKEPHOTOREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -181,6 +203,7 @@ _TAKEPHOTORESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='camera_result', full_name='mavsdk.rpc.camera.TakePhotoResponse.camera_result', index=0,
@@ -188,7 +211,7 @@ _TAKEPHOTORESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -212,6 +235,7 @@ _STARTPHOTOINTERVALREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='interval_s', full_name='mavsdk.rpc.camera.StartPhotoIntervalRequest.interval_s', index=0,
@@ -219,7 +243,7 @@ _STARTPHOTOINTERVALREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -243,6 +267,7 @@ _STARTPHOTOINTERVALRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='camera_result', full_name='mavsdk.rpc.camera.StartPhotoIntervalResponse.camera_result', index=0,
@@ -250,7 +275,7 @@ _STARTPHOTOINTERVALRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -274,6 +299,7 @@ _STOPPHOTOINTERVALREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -298,6 +324,7 @@ _STOPPHOTOINTERVALRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='camera_result', full_name='mavsdk.rpc.camera.StopPhotoIntervalResponse.camera_result', index=0,
@@ -305,7 +332,7 @@ _STOPPHOTOINTERVALRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -329,6 +356,7 @@ _STARTVIDEOREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -353,6 +381,7 @@ _STARTVIDEORESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='camera_result', full_name='mavsdk.rpc.camera.StartVideoResponse.camera_result', index=0,
@@ -360,7 +389,7 @@ _STARTVIDEORESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -384,6 +413,7 @@ _STOPVIDEOREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -408,6 +438,7 @@ _STOPVIDEORESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='camera_result', full_name='mavsdk.rpc.camera.StopVideoResponse.camera_result', index=0,
@@ -415,7 +446,7 @@ _STOPVIDEORESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -439,6 +470,7 @@ _STARTVIDEOSTREAMINGREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -463,6 +495,7 @@ _STARTVIDEOSTREAMINGRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='camera_result', full_name='mavsdk.rpc.camera.StartVideoStreamingResponse.camera_result', index=0,
@@ -470,7 +503,7 @@ _STARTVIDEOSTREAMINGRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -494,6 +527,7 @@ _STOPVIDEOSTREAMINGREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -518,6 +552,7 @@ _STOPVIDEOSTREAMINGRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='camera_result', full_name='mavsdk.rpc.camera.StopVideoStreamingResponse.camera_result', index=0,
@@ -525,7 +560,7 @@ _STOPVIDEOSTREAMINGRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -549,6 +584,7 @@ _SETMODEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='mode', full_name='mavsdk.rpc.camera.SetModeRequest.mode', index=0,
@@ -556,7 +592,7 @@ _SETMODEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -580,6 +616,7 @@ _SETMODERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='camera_result', full_name='mavsdk.rpc.camera.SetModeResponse.camera_result', index=0,
@@ -587,7 +624,7 @@ _SETMODERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -611,6 +648,7 @@ _SUBSCRIBEINFORMATIONREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -635,6 +673,7 @@ _INFORMATIONRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='information', full_name='mavsdk.rpc.camera.InformationResponse.information', index=0,
@@ -642,7 +681,7 @@ _INFORMATIONRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -666,6 +705,7 @@ _SUBSCRIBEMODEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -690,6 +730,7 @@ _MODERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='mode', full_name='mavsdk.rpc.camera.ModeResponse.mode', index=0,
@@ -697,7 +738,7 @@ _MODERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -721,6 +762,7 @@ _SUBSCRIBEVIDEOSTREAMINFOREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -745,6 +787,7 @@ _VIDEOSTREAMINFORESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='video_stream_info', full_name='mavsdk.rpc.camera.VideoStreamInfoResponse.video_stream_info', index=0,
@@ -752,7 +795,7 @@ _VIDEOSTREAMINFORESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -776,6 +819,7 @@ _SUBSCRIBECAPTUREINFOREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -800,6 +844,7 @@ _CAPTUREINFORESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='capture_info', full_name='mavsdk.rpc.camera.CaptureInfoResponse.capture_info', index=0,
@@ -807,7 +852,7 @@ _CAPTUREINFORESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -831,6 +876,7 @@ _SUBSCRIBESTATUSREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -855,6 +901,7 @@ _STATUSRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='camera_status', full_name='mavsdk.rpc.camera.StatusResponse.camera_status', index=0,
@@ -862,7 +909,7 @@ _STATUSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -886,6 +933,7 @@ _SUBSCRIBECURRENTSETTINGSREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -910,6 +958,7 @@ _CURRENTSETTINGSRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='current_settings', full_name='mavsdk.rpc.camera.CurrentSettingsResponse.current_settings', index=0,
@@ -917,7 +966,7 @@ _CURRENTSETTINGSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -941,6 +990,7 @@ _SUBSCRIBEPOSSIBLESETTINGOPTIONSREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -965,6 +1015,7 @@ _POSSIBLESETTINGOPTIONSRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='setting_options', full_name='mavsdk.rpc.camera.PossibleSettingOptionsResponse.setting_options', index=0,
@@ -972,7 +1023,7 @@ _POSSIBLESETTINGOPTIONSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -996,6 +1047,7 @@ _SETSETTINGREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='setting', full_name='mavsdk.rpc.camera.SetSettingRequest.setting', index=0,
@@ -1003,7 +1055,7 @@ _SETSETTINGREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1027,6 +1079,7 @@ _SETSETTINGRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='camera_result', full_name='mavsdk.rpc.camera.SetSettingResponse.camera_result', index=0,
@@ -1034,7 +1087,7 @@ _SETSETTINGRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1058,6 +1111,7 @@ _GETSETTINGREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='setting', full_name='mavsdk.rpc.camera.GetSettingRequest.setting', index=0,
@@ -1065,7 +1119,7 @@ _GETSETTINGREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1089,6 +1143,7 @@ _GETSETTINGRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='camera_result', full_name='mavsdk.rpc.camera.GetSettingResponse.camera_result', index=0,
@@ -1096,14 +1151,14 @@ _GETSETTINGRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='setting', full_name='mavsdk.rpc.camera.GetSettingResponse.setting', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1127,6 +1182,7 @@ _FORMATSTORAGEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -1151,6 +1207,7 @@ _FORMATSTORAGERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='camera_result', full_name='mavsdk.rpc.camera.FormatStorageResponse.camera_result', index=0,
@@ -1158,7 +1215,7 @@ _FORMATSTORAGERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1182,6 +1239,7 @@ _CAMERARESULT = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='result', full_name='mavsdk.rpc.camera.CameraResult.result', index=0,
@@ -1189,14 +1247,14 @@ _CAMERARESULT = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='result_str', full_name='mavsdk.rpc.camera.CameraResult.result_str', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1221,6 +1279,7 @@ _POSITION = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='latitude_deg', full_name='mavsdk.rpc.camera.Position.latitude_deg', index=0,
@@ -1228,28 +1287,28 @@ _POSITION = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='longitude_deg', full_name='mavsdk.rpc.camera.Position.longitude_deg', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='absolute_altitude_m', full_name='mavsdk.rpc.camera.Position.absolute_altitude_m', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='relative_altitude_m', full_name='mavsdk.rpc.camera.Position.relative_altitude_m', index=3,
       number=4, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1273,6 +1332,7 @@ _QUATERNION = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='w', full_name='mavsdk.rpc.camera.Quaternion.w', index=0,
@@ -1280,28 +1340,28 @@ _QUATERNION = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='x', full_name='mavsdk.rpc.camera.Quaternion.x', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='y', full_name='mavsdk.rpc.camera.Quaternion.y', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='z', full_name='mavsdk.rpc.camera.Quaternion.z', index=3,
       number=4, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1325,6 +1385,7 @@ _EULERANGLE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='roll_deg', full_name='mavsdk.rpc.camera.EulerAngle.roll_deg', index=0,
@@ -1332,21 +1393,21 @@ _EULERANGLE = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='pitch_deg', full_name='mavsdk.rpc.camera.EulerAngle.pitch_deg', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='yaw_deg', full_name='mavsdk.rpc.camera.EulerAngle.yaw_deg', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1370,6 +1431,7 @@ _CAPTUREINFO = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='position', full_name='mavsdk.rpc.camera.CaptureInfo.position', index=0,
@@ -1377,49 +1439,49 @@ _CAPTUREINFO = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='attitude_quaternion', full_name='mavsdk.rpc.camera.CaptureInfo.attitude_quaternion', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='attitude_euler_angle', full_name='mavsdk.rpc.camera.CaptureInfo.attitude_euler_angle', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='time_utc_us', full_name='mavsdk.rpc.camera.CaptureInfo.time_utc_us', index=3,
       number=4, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='is_success', full_name='mavsdk.rpc.camera.CaptureInfo.is_success', index=4,
       number=5, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='index', full_name='mavsdk.rpc.camera.CaptureInfo.index', index=5,
       number=6, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='file_url', full_name='mavsdk.rpc.camera.CaptureInfo.file_url', index=6,
       number=7, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1443,6 +1505,7 @@ _VIDEOSTREAMSETTINGS = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='frame_rate_hz', full_name='mavsdk.rpc.camera.VideoStreamSettings.frame_rate_hz', index=0,
@@ -1450,42 +1513,42 @@ _VIDEOSTREAMSETTINGS = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='horizontal_resolution_pix', full_name='mavsdk.rpc.camera.VideoStreamSettings.horizontal_resolution_pix', index=1,
       number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='vertical_resolution_pix', full_name='mavsdk.rpc.camera.VideoStreamSettings.vertical_resolution_pix', index=2,
       number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='bit_rate_b_s', full_name='mavsdk.rpc.camera.VideoStreamSettings.bit_rate_b_s', index=3,
       number=4, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='rotation_deg', full_name='mavsdk.rpc.camera.VideoStreamSettings.rotation_deg', index=4,
       number=5, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='uri', full_name='mavsdk.rpc.camera.VideoStreamSettings.uri', index=5,
       number=6, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1509,6 +1572,7 @@ _VIDEOSTREAMINFO = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='settings', full_name='mavsdk.rpc.camera.VideoStreamInfo.settings', index=0,
@@ -1516,14 +1580,14 @@ _VIDEOSTREAMINFO = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='status', full_name='mavsdk.rpc.camera.VideoStreamInfo.status', index=1,
       number=2, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1548,6 +1612,7 @@ _STATUS = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='video_on', full_name='mavsdk.rpc.camera.Status.video_on', index=0,
@@ -1555,56 +1620,56 @@ _STATUS = _descriptor.Descriptor(
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='photo_interval_on', full_name='mavsdk.rpc.camera.Status.photo_interval_on', index=1,
       number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='used_storage_mib', full_name='mavsdk.rpc.camera.Status.used_storage_mib', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='available_storage_mib', full_name='mavsdk.rpc.camera.Status.available_storage_mib', index=3,
       number=4, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='total_storage_mib', full_name='mavsdk.rpc.camera.Status.total_storage_mib', index=4,
       number=5, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='recording_time_s', full_name='mavsdk.rpc.camera.Status.recording_time_s', index=5,
       number=6, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='media_folder_name', full_name='mavsdk.rpc.camera.Status.media_folder_name', index=6,
       number=7, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='storage_status', full_name='mavsdk.rpc.camera.Status.storage_status', index=7,
       number=8, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1629,6 +1694,7 @@ _OPTION = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='option_id', full_name='mavsdk.rpc.camera.Option.option_id', index=0,
@@ -1636,14 +1702,14 @@ _OPTION = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='option_description', full_name='mavsdk.rpc.camera.Option.option_description', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1667,6 +1733,7 @@ _SETTING = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='setting_id', full_name='mavsdk.rpc.camera.Setting.setting_id', index=0,
@@ -1674,28 +1741,28 @@ _SETTING = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='setting_description', full_name='mavsdk.rpc.camera.Setting.setting_description', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='option', full_name='mavsdk.rpc.camera.Setting.option', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='is_range', full_name='mavsdk.rpc.camera.Setting.is_range', index=3,
       number=4, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1719,6 +1786,7 @@ _SETTINGOPTIONS = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='setting_id', full_name='mavsdk.rpc.camera.SettingOptions.setting_id', index=0,
@@ -1726,28 +1794,28 @@ _SETTINGOPTIONS = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='setting_description', full_name='mavsdk.rpc.camera.SettingOptions.setting_description', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='options', full_name='mavsdk.rpc.camera.SettingOptions.options', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='is_range', full_name='mavsdk.rpc.camera.SettingOptions.is_range', index=3,
       number=4, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1771,6 +1839,7 @@ _INFORMATION = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='vendor_name', full_name='mavsdk.rpc.camera.Information.vendor_name', index=0,
@@ -1778,14 +1847,14 @@ _INFORMATION = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='model_name', full_name='mavsdk.rpc.camera.Information.model_name', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2232,6 +2301,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
+  create_key=_descriptor._internal_create_key,
   serialized_start=4100,
   serialized_end=6079,
   methods=[
@@ -2243,6 +2313,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_TAKEPHOTOREQUEST,
     output_type=_TAKEPHOTORESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='StartPhotoInterval',
@@ -2252,6 +2323,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_STARTPHOTOINTERVALREQUEST,
     output_type=_STARTPHOTOINTERVALRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='StopPhotoInterval',
@@ -2261,6 +2333,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_STOPPHOTOINTERVALREQUEST,
     output_type=_STOPPHOTOINTERVALRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='StartVideo',
@@ -2270,6 +2343,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_STARTVIDEOREQUEST,
     output_type=_STARTVIDEORESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='StopVideo',
@@ -2279,6 +2353,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_STOPVIDEOREQUEST,
     output_type=_STOPVIDEORESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='StartVideoStreaming',
@@ -2288,6 +2363,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_STARTVIDEOSTREAMINGREQUEST,
     output_type=_STARTVIDEOSTREAMINGRESPONSE,
     serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='StopVideoStreaming',
@@ -2297,6 +2373,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_STOPVIDEOSTREAMINGREQUEST,
     output_type=_STOPVIDEOSTREAMINGRESPONSE,
     serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetMode',
@@ -2306,6 +2383,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETMODEREQUEST,
     output_type=_SETMODERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeMode',
@@ -2315,6 +2393,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEMODEREQUEST,
     output_type=_MODERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeInformation',
@@ -2324,6 +2403,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEINFORMATIONREQUEST,
     output_type=_INFORMATIONRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeVideoStreamInfo',
@@ -2333,6 +2413,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEVIDEOSTREAMINFOREQUEST,
     output_type=_VIDEOSTREAMINFORESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeCaptureInfo',
@@ -2342,6 +2423,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBECAPTUREINFOREQUEST,
     output_type=_CAPTUREINFORESPONSE,
     serialized_options=b'\200\265\030\000',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeStatus',
@@ -2351,6 +2433,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBESTATUSREQUEST,
     output_type=_STATUSRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeCurrentSettings',
@@ -2360,6 +2443,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBECURRENTSETTINGSREQUEST,
     output_type=_CURRENTSETTINGSRESPONSE,
     serialized_options=b'\200\265\030\000',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribePossibleSettingOptions',
@@ -2369,6 +2453,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEPOSSIBLESETTINGOPTIONSREQUEST,
     output_type=_POSSIBLESETTINGOPTIONSRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetSetting',
@@ -2378,6 +2463,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETSETTINGREQUEST,
     output_type=_SETSETTINGRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='GetSetting',
@@ -2387,6 +2473,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_GETSETTINGREQUEST,
     output_type=_GETSETTINGRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='FormatStorage',
@@ -2396,6 +2483,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
     input_type=_FORMATSTORAGEREQUEST,
     output_type=_FORMATSTORAGERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_CAMERASERVICE)
