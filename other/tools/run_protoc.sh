@@ -13,6 +13,16 @@ GENERATED_DIR_RST="${WORK_DIR}/mavsdk/source/plugins"
 
 PLUGIN_LIST=$(cd ${WORK_DIR}/proto/protos && ls -d */ | sed 's:/*$::')
 
+command -v protoc-gen-mavsdk > /dev/null || {
+    echo "-------------------------------"
+    echo " Error"
+    echo "-------------------------------"
+    echo >&2 "'protoc-gen-mavsdk' not found in PATH"
+    echo >&2 ""
+    echo >&2 "Make sure 'protoc-gen-mavsdk' is installed and available"
+    exit 1
+}
+
 function snake_case_to_camel_case {
     echo $1 | sed -r 's/(^|_)([a-z])/\U\2/g'
 }
@@ -49,18 +59,18 @@ function generate {
 
         # Generate plugin
         python3 -m grpc_tools.protoc -I${PROTO_DIR}/protos \
-                                     --plugin=protoc-gen-custom=$(which protoc-gen-dcsdk) \
+                                     --plugin=protoc-gen-custom=$(which protoc-gen-mavsdk) \
                                      --custom_out=${GENERATED_DIR} \
                                      --custom_opt="file_ext=py,template_path=${TEMPLATE_PATH}" \
                                      ${plugin}/${plugin}.proto
 
-        # protoc-gen-dcsdk capitalizes filenames, and we don't want that with python
+        # protoc-gen-mavsdk capitalizes filenames, and we don't want that with python
         mv ${GENERATED_DIR}/${plugin}/$(snake_case_to_camel_case ${plugin}).py ${GENERATED_DIR}/${plugin}.py
 
         # Generate plugin doc entry
         python3 -m grpc_tools.protoc -I${PROTO_DIR}/protos \
                                      --proto_path=${PROTO_DIR}/protos/${plugin} \
-                                     --plugin=protoc-gen-custom=$(which protoc-gen-dcsdk) \
+                                     --plugin=protoc-gen-custom=$(which protoc-gen-mavsdk) \
                                      --custom_out=${GENERATED_DIR_RST} \
                                      --custom_opt="file_ext=rst,template_path=${TEMPLATE_PATH_RST}" \
                                      ${plugin}.proto
