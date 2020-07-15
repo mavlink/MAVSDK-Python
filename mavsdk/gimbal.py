@@ -264,7 +264,7 @@ class Gimbal(AsyncBase):
 
         request = gimbal_pb2.SetModeRequest()
         
-        gimbal_mode.translate_to_rpc(request.gimbal_mode)
+        request.gimbal_mode = gimbal_mode.translate_to_rpc()
                 
             
         response = await self._stub.SetMode(request)

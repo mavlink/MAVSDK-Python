@@ -18,7 +18,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='mavsdk.rpc.action',
   syntax='proto3',
   serialized_options=b'\n\020io.mavsdk.actionB\013ActionProto',
-  create_key=_descriptor._internal_create_key,
   serialized_pb=b'\n\x13\x61\x63tion/action.proto\x12\x11mavsdk.rpc.action\"\x0c\n\nArmRequest\"E\n\x0b\x41rmResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x0f\n\rDisarmRequest\"H\n\x0e\x44isarmResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x10\n\x0eTakeoffRequest\"I\n\x0fTakeoffResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\r\n\x0bLandRequest\"F\n\x0cLandResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x0f\n\rRebootRequest\"H\n\x0eRebootResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x11\n\x0fShutdownRequest\"J\n\x10ShutdownResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\r\n\x0bKillRequest\"F\n\x0cKillResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x17\n\x15ReturnToLaunchRequest\"P\n\x16ReturnToLaunchResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"p\n\x13GotoLocationRequest\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x04 \x01(\x02\"N\n\x14GotoLocationResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x1e\n\x1cTransitionToFixedwingRequest\"W\n\x1dTransitionToFixedwingResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\" \n\x1eTransitionToMulticopterRequest\"Y\n\x1fTransitionToMulticopterResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x1b\n\x19GetTakeoffAltitudeRequest\"f\n\x1aGetTakeoffAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\x12\x10\n\x08\x61ltitude\x18\x02 \x01(\x02\"-\n\x19SetTakeoffAltitudeRequest\x12\x10\n\x08\x61ltitude\x18\x01 \x01(\x02\"T\n\x1aSetTakeoffAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x18\n\x16GetMaximumSpeedRequest\"`\n\x17GetMaximumSpeedResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\x12\r\n\x05speed\x18\x02 \x01(\x02\"\'\n\x16SetMaximumSpeedRequest\x12\r\n\x05speed\x18\x01 \x01(\x02\"Q\n\x17SetMaximumSpeedResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\"\n GetReturnToLaunchAltitudeRequest\"x\n!GetReturnToLaunchAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\x12\x1b\n\x13relative_altitude_m\x18\x02 \x01(\x02\"?\n SetReturnToLaunchAltitudeRequest\x12\x1b\n\x13relative_altitude_m\x18\x01 \x01(\x02\"[\n!SetReturnToLaunchAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\xc5\x03\n\x0c\x41\x63tionResult\x12\x36\n\x06result\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.action.ActionResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xe8\x02\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x05\x12.\n*RESULT_COMMAND_DENIED_LANDED_STATE_UNKNOWN\x10\x06\x12$\n RESULT_COMMAND_DENIED_NOT_LANDED\x10\x07\x12\x12\n\x0eRESULT_TIMEOUT\x10\x08\x12*\n&RESULT_VTOL_TRANSITION_SUPPORT_UNKNOWN\x10\t\x12%\n!RESULT_NO_VTOL_TRANSITION_SUPPORT\x10\n\x12\x1a\n\x16RESULT_PARAMETER_ERROR\x10\x0b\x32\xe1\r\n\rActionService\x12\x46\n\x03\x41rm\x12\x1d.mavsdk.rpc.action.ArmRequest\x1a\x1e.mavsdk.rpc.action.ArmResponse\"\x00\x12O\n\x06\x44isarm\x12 .mavsdk.rpc.action.DisarmRequest\x1a!.mavsdk.rpc.action.DisarmResponse\"\x00\x12R\n\x07Takeoff\x12!.mavsdk.rpc.action.TakeoffRequest\x1a\".mavsdk.rpc.action.TakeoffResponse\"\x00\x12I\n\x04Land\x12\x1e.mavsdk.rpc.action.LandRequest\x1a\x1f.mavsdk.rpc.action.LandResponse\"\x00\x12O\n\x06Reboot\x12 .mavsdk.rpc.action.RebootRequest\x1a!.mavsdk.rpc.action.RebootResponse\"\x00\x12U\n\x08Shutdown\x12\".mavsdk.rpc.action.ShutdownRequest\x1a#.mavsdk.rpc.action.ShutdownResponse\"\x00\x12I\n\x04Kill\x12\x1e.mavsdk.rpc.action.KillRequest\x1a\x1f.mavsdk.rpc.action.KillResponse\"\x00\x12g\n\x0eReturnToLaunch\x12(.mavsdk.rpc.action.ReturnToLaunchRequest\x1a).mavsdk.rpc.action.ReturnToLaunchResponse\"\x00\x12\x61\n\x0cGotoLocation\x12&.mavsdk.rpc.action.GotoLocationRequest\x1a\'.mavsdk.rpc.action.GotoLocationResponse\"\x00\x12|\n\x15TransitionToFixedwing\x12/.mavsdk.rpc.action.TransitionToFixedwingRequest\x1a\x30.mavsdk.rpc.action.TransitionToFixedwingResponse\"\x00\x12\x82\x01\n\x17TransitionToMulticopter\x12\x31.mavsdk.rpc.action.TransitionToMulticopterRequest\x1a\x32.mavsdk.rpc.action.TransitionToMulticopterResponse\"\x00\x12s\n\x12GetTakeoffAltitude\x12,.mavsdk.rpc.action.GetTakeoffAltitudeRequest\x1a-.mavsdk.rpc.action.GetTakeoffAltitudeResponse\"\x00\x12s\n\x12SetTakeoffAltitude\x12,.mavsdk.rpc.action.SetTakeoffAltitudeRequest\x1a-.mavsdk.rpc.action.SetTakeoffAltitudeResponse\"\x00\x12j\n\x0fGetMaximumSpeed\x12).mavsdk.rpc.action.GetMaximumSpeedRequest\x1a*.mavsdk.rpc.action.GetMaximumSpeedResponse\"\x00\x12j\n\x0fSetMaximumSpeed\x12).mavsdk.rpc.action.SetMaximumSpeedRequest\x1a*.mavsdk.rpc.action.SetMaximumSpeedResponse\"\x00\x12\x88\x01\n\x19GetReturnToLaunchAltitude\x12\x33.mavsdk.rpc.action.GetReturnToLaunchAltitudeRequest\x1a\x34.mavsdk.rpc.action.GetReturnToLaunchAltitudeResponse\"\x00\x12\x88\x01\n\x19SetReturnToLaunchAltitude\x12\x33.mavsdk.rpc.action.SetReturnToLaunchAltitudeRequest\x1a\x34.mavsdk.rpc.action.SetReturnToLaunchAltitudeResponse\"\x00\x42\x1f\n\x10io.mavsdk.actionB\x0b\x41\x63tionProtob\x06proto3'
 )
 
@@ -29,68 +28,55 @@ _ACTIONRESULT_RESULT = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.action.ActionResult.Result',
   filename=None,
   file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='RESULT_UNKNOWN', index=0, number=0,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_SUCCESS', index=1, number=1,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_NO_SYSTEM', index=2, number=2,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_CONNECTION_ERROR', index=3, number=3,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_BUSY', index=4, number=4,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_COMMAND_DENIED', index=5, number=5,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_COMMAND_DENIED_LANDED_STATE_UNKNOWN', index=6, number=6,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_COMMAND_DENIED_NOT_LANDED', index=7, number=7,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_TIMEOUT', index=8, number=8,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_VTOL_TRANSITION_SUPPORT_UNKNOWN', index=9, number=9,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_NO_VTOL_TRANSITION_SUPPORT', index=10, number=10,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_PARAMETER_ERROR', index=11, number=11,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
   ],
   containing_type=None,
   serialized_options=None,
@@ -106,7 +92,6 @@ _ARMREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -131,7 +116,6 @@ _ARMRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.ArmResponse.action_result', index=0,
@@ -139,7 +123,7 @@ _ARMRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -163,7 +147,6 @@ _DISARMREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -188,7 +171,6 @@ _DISARMRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.DisarmResponse.action_result', index=0,
@@ -196,7 +178,7 @@ _DISARMRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -220,7 +202,6 @@ _TAKEOFFREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -245,7 +226,6 @@ _TAKEOFFRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.TakeoffResponse.action_result', index=0,
@@ -253,7 +233,7 @@ _TAKEOFFRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -277,7 +257,6 @@ _LANDREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -302,7 +281,6 @@ _LANDRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.LandResponse.action_result', index=0,
@@ -310,7 +288,7 @@ _LANDRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -334,7 +312,6 @@ _REBOOTREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -359,7 +336,6 @@ _REBOOTRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.RebootResponse.action_result', index=0,
@@ -367,7 +343,7 @@ _REBOOTRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -391,7 +367,6 @@ _SHUTDOWNREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -416,7 +391,6 @@ _SHUTDOWNRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.ShutdownResponse.action_result', index=0,
@@ -424,7 +398,7 @@ _SHUTDOWNRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -448,7 +422,6 @@ _KILLREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -473,7 +446,6 @@ _KILLRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.KillResponse.action_result', index=0,
@@ -481,7 +453,7 @@ _KILLRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -505,7 +477,6 @@ _RETURNTOLAUNCHREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -530,7 +501,6 @@ _RETURNTOLAUNCHRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.ReturnToLaunchResponse.action_result', index=0,
@@ -538,7 +508,7 @@ _RETURNTOLAUNCHRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -562,7 +532,6 @@ _GOTOLOCATIONREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='latitude_deg', full_name='mavsdk.rpc.action.GotoLocationRequest.latitude_deg', index=0,
@@ -570,28 +539,28 @@ _GOTOLOCATIONREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='longitude_deg', full_name='mavsdk.rpc.action.GotoLocationRequest.longitude_deg', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='absolute_altitude_m', full_name='mavsdk.rpc.action.GotoLocationRequest.absolute_altitude_m', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='yaw_deg', full_name='mavsdk.rpc.action.GotoLocationRequest.yaw_deg', index=3,
       number=4, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -615,7 +584,6 @@ _GOTOLOCATIONRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.GotoLocationResponse.action_result', index=0,
@@ -623,7 +591,7 @@ _GOTOLOCATIONRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -647,7 +615,6 @@ _TRANSITIONTOFIXEDWINGREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -672,7 +639,6 @@ _TRANSITIONTOFIXEDWINGRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.TransitionToFixedwingResponse.action_result', index=0,
@@ -680,7 +646,7 @@ _TRANSITIONTOFIXEDWINGRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -704,7 +670,6 @@ _TRANSITIONTOMULTICOPTERREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -729,7 +694,6 @@ _TRANSITIONTOMULTICOPTERRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.TransitionToMulticopterResponse.action_result', index=0,
@@ -737,7 +701,7 @@ _TRANSITIONTOMULTICOPTERRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -761,7 +725,6 @@ _GETTAKEOFFALTITUDEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -786,7 +749,6 @@ _GETTAKEOFFALTITUDERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.GetTakeoffAltitudeResponse.action_result', index=0,
@@ -794,14 +756,14 @@ _GETTAKEOFFALTITUDERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='altitude', full_name='mavsdk.rpc.action.GetTakeoffAltitudeResponse.altitude', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -825,7 +787,6 @@ _SETTAKEOFFALTITUDEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='altitude', full_name='mavsdk.rpc.action.SetTakeoffAltitudeRequest.altitude', index=0,
@@ -833,7 +794,7 @@ _SETTAKEOFFALTITUDEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -857,7 +818,6 @@ _SETTAKEOFFALTITUDERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.SetTakeoffAltitudeResponse.action_result', index=0,
@@ -865,7 +825,7 @@ _SETTAKEOFFALTITUDERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -889,7 +849,6 @@ _GETMAXIMUMSPEEDREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -914,7 +873,6 @@ _GETMAXIMUMSPEEDRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.GetMaximumSpeedResponse.action_result', index=0,
@@ -922,14 +880,14 @@ _GETMAXIMUMSPEEDRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='speed', full_name='mavsdk.rpc.action.GetMaximumSpeedResponse.speed', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -953,7 +911,6 @@ _SETMAXIMUMSPEEDREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='speed', full_name='mavsdk.rpc.action.SetMaximumSpeedRequest.speed', index=0,
@@ -961,7 +918,7 @@ _SETMAXIMUMSPEEDREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -985,7 +942,6 @@ _SETMAXIMUMSPEEDRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.SetMaximumSpeedResponse.action_result', index=0,
@@ -993,7 +949,7 @@ _SETMAXIMUMSPEEDRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1017,7 +973,6 @@ _GETRETURNTOLAUNCHALTITUDEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -1042,7 +997,6 @@ _GETRETURNTOLAUNCHALTITUDERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.GetReturnToLaunchAltitudeResponse.action_result', index=0,
@@ -1050,14 +1004,14 @@ _GETRETURNTOLAUNCHALTITUDERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='relative_altitude_m', full_name='mavsdk.rpc.action.GetReturnToLaunchAltitudeResponse.relative_altitude_m', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1081,7 +1035,6 @@ _SETRETURNTOLAUNCHALTITUDEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='relative_altitude_m', full_name='mavsdk.rpc.action.SetReturnToLaunchAltitudeRequest.relative_altitude_m', index=0,
@@ -1089,7 +1042,7 @@ _SETRETURNTOLAUNCHALTITUDEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1113,7 +1066,6 @@ _SETRETURNTOLAUNCHALTITUDERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='action_result', full_name='mavsdk.rpc.action.SetReturnToLaunchAltitudeResponse.action_result', index=0,
@@ -1121,7 +1073,7 @@ _SETRETURNTOLAUNCHALTITUDERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1145,7 +1097,6 @@ _ACTIONRESULT = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='result', full_name='mavsdk.rpc.action.ActionResult.result', index=0,
@@ -1153,14 +1104,14 @@ _ACTIONRESULT = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='result_str', full_name='mavsdk.rpc.action.ActionResult.result_str', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1488,7 +1439,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  create_key=_descriptor._internal_create_key,
   serialized_start=2505,
   serialized_end=4266,
   methods=[
@@ -1500,7 +1450,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_ARMREQUEST,
     output_type=_ARMRESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='Disarm',
@@ -1510,7 +1459,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_DISARMREQUEST,
     output_type=_DISARMRESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='Takeoff',
@@ -1520,7 +1468,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_TAKEOFFREQUEST,
     output_type=_TAKEOFFRESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='Land',
@@ -1530,7 +1477,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_LANDREQUEST,
     output_type=_LANDRESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='Reboot',
@@ -1540,7 +1486,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_REBOOTREQUEST,
     output_type=_REBOOTRESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='Shutdown',
@@ -1550,7 +1495,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SHUTDOWNREQUEST,
     output_type=_SHUTDOWNRESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='Kill',
@@ -1560,7 +1504,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_KILLREQUEST,
     output_type=_KILLRESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='ReturnToLaunch',
@@ -1570,7 +1513,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_RETURNTOLAUNCHREQUEST,
     output_type=_RETURNTOLAUNCHRESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='GotoLocation',
@@ -1580,7 +1522,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_GOTOLOCATIONREQUEST,
     output_type=_GOTOLOCATIONRESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='TransitionToFixedwing',
@@ -1590,7 +1531,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_TRANSITIONTOFIXEDWINGREQUEST,
     output_type=_TRANSITIONTOFIXEDWINGRESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='TransitionToMulticopter',
@@ -1600,7 +1540,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_TRANSITIONTOMULTICOPTERREQUEST,
     output_type=_TRANSITIONTOMULTICOPTERRESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='GetTakeoffAltitude',
@@ -1610,7 +1549,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_GETTAKEOFFALTITUDEREQUEST,
     output_type=_GETTAKEOFFALTITUDERESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetTakeoffAltitude',
@@ -1620,7 +1558,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETTAKEOFFALTITUDEREQUEST,
     output_type=_SETTAKEOFFALTITUDERESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='GetMaximumSpeed',
@@ -1630,7 +1567,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_GETMAXIMUMSPEEDREQUEST,
     output_type=_GETMAXIMUMSPEEDRESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetMaximumSpeed',
@@ -1640,7 +1576,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETMAXIMUMSPEEDREQUEST,
     output_type=_SETMAXIMUMSPEEDRESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='GetReturnToLaunchAltitude',
@@ -1650,7 +1585,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_GETRETURNTOLAUNCHALTITUDEREQUEST,
     output_type=_GETRETURNTOLAUNCHALTITUDERESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetReturnToLaunchAltitude',
@@ -1660,7 +1594,6 @@ _ACTIONSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETRETURNTOLAUNCHALTITUDEREQUEST,
     output_type=_SETRETURNTOLAUNCHALTITUDERESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_ACTIONSERVICE)

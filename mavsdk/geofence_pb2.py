@@ -18,7 +18,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='mavsdk.rpc.geofence',
   syntax='proto3',
   serialized_options=b'\n\022io.mavsdk.geofenceB\rGeofenceProto',
-  create_key=_descriptor._internal_create_key,
   serialized_pb=b'\n\x17geofence/geofence.proto\x12\x13mavsdk.rpc.geofence\"4\n\x05Point\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\"\xb2\x01\n\x07Polygon\x12*\n\x06points\x18\x01 \x03(\x0b\x32\x1a.mavsdk.rpc.geofence.Point\x12:\n\nfence_type\x18\x02 \x01(\x0e\x32&.mavsdk.rpc.geofence.Polygon.FenceType\"?\n\tFenceType\x12\x18\n\x14\x46\x45NCE_TYPE_INCLUSION\x10\x00\x12\x18\n\x14\x46\x45NCE_TYPE_EXCLUSION\x10\x01\"G\n\x15UploadGeofenceRequest\x12.\n\x08polygons\x18\x01 \x03(\x0b\x32\x1c.mavsdk.rpc.geofence.Polygon\"V\n\x16UploadGeofenceResponse\x12<\n\x0fgeofence_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.geofence.GeofenceResult\"\x8b\x02\n\x0eGeofenceResult\x12:\n\x06result\x18\x01 \x01(\x0e\x32*.mavsdk.rpc.geofence.GeofenceResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xa8\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x10\n\x0cRESULT_ERROR\x10\x02\x12\"\n\x1eRESULT_TOO_MANY_GEOFENCE_ITEMS\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x12\n\x0eRESULT_TIMEOUT\x10\x05\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x06\x32~\n\x0fGeofenceService\x12k\n\x0eUploadGeofence\x12*.mavsdk.rpc.geofence.UploadGeofenceRequest\x1a+.mavsdk.rpc.geofence.UploadGeofenceResponse\"\x00\x42#\n\x12io.mavsdk.geofenceB\rGeofenceProtob\x06proto3'
 )
 
@@ -29,18 +28,15 @@ _POLYGON_FENCETYPE = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.geofence.Polygon.FenceType',
   filename=None,
   file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='FENCE_TYPE_INCLUSION', index=0, number=0,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='FENCE_TYPE_EXCLUSION', index=1, number=1,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
   ],
   containing_type=None,
   serialized_options=None,
@@ -54,43 +50,35 @@ _GEOFENCERESULT_RESULT = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.geofence.GeofenceResult.Result',
   filename=None,
   file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='RESULT_UNKNOWN', index=0, number=0,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_SUCCESS', index=1, number=1,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_ERROR', index=2, number=2,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_TOO_MANY_GEOFENCE_ITEMS', index=3, number=3,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_BUSY', index=4, number=4,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_TIMEOUT', index=5, number=5,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_INVALID_ARGUMENT', index=6, number=6,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
   ],
   containing_type=None,
   serialized_options=None,
@@ -106,7 +94,6 @@ _POINT = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='latitude_deg', full_name='mavsdk.rpc.geofence.Point.latitude_deg', index=0,
@@ -114,14 +101,14 @@ _POINT = _descriptor.Descriptor(
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='longitude_deg', full_name='mavsdk.rpc.geofence.Point.longitude_deg', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -145,7 +132,6 @@ _POLYGON = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='points', full_name='mavsdk.rpc.geofence.Polygon.points', index=0,
@@ -153,14 +139,14 @@ _POLYGON = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='fence_type', full_name='mavsdk.rpc.geofence.Polygon.fence_type', index=1,
       number=2, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -185,7 +171,6 @@ _UPLOADGEOFENCEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='polygons', full_name='mavsdk.rpc.geofence.UploadGeofenceRequest.polygons', index=0,
@@ -193,7 +178,7 @@ _UPLOADGEOFENCEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -217,7 +202,6 @@ _UPLOADGEOFENCERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='geofence_result', full_name='mavsdk.rpc.geofence.UploadGeofenceResponse.geofence_result', index=0,
@@ -225,7 +209,7 @@ _UPLOADGEOFENCERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -249,7 +233,6 @@ _GEOFENCERESULT = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='result', full_name='mavsdk.rpc.geofence.GeofenceResult.result', index=0,
@@ -257,14 +240,14 @@ _GEOFENCERESULT = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='result_str', full_name='mavsdk.rpc.geofence.GeofenceResult.result_str', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -340,7 +323,6 @@ _GEOFENCESERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  create_key=_descriptor._internal_create_key,
   serialized_start=714,
   serialized_end=840,
   methods=[
@@ -352,7 +334,6 @@ _GEOFENCESERVICE = _descriptor.ServiceDescriptor(
     input_type=_UPLOADGEOFENCEREQUEST,
     output_type=_UPLOADGEOFENCERESPONSE,
     serialized_options=None,
-    create_key=_descriptor._internal_create_key,
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_GEOFENCESERVICE)
