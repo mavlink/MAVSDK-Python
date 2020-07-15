@@ -1705,7 +1705,7 @@ class Camera(AsyncBase):
 
         request = camera_pb2.SetModeRequest()
         
-        mode.translate_to_rpc(request.mode)
+        request.mode = mode.translate_to_rpc()
                 
             
         response = await self._stub.SetMode(request)
