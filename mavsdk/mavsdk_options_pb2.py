@@ -20,7 +20,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='mavsdk.options',
   syntax='proto3',
   serialized_options=b'\n\016options.mavsdk',
-  create_key=_descriptor._internal_create_key,
   serialized_pb=b'\n\x14mavsdk_options.proto\x12\x0emavsdk.options\x1a google/protobuf/descriptor.proto**\n\tAsyncType\x12\t\n\x05\x41SYNC\x10\x00\x12\x08\n\x04SYNC\x10\x01\x12\x08\n\x04\x42OTH\x10\x02:6\n\rdefault_value\x12\x1d.google.protobuf.FieldOptions\x18\xd0\x86\x03 \x01(\t:0\n\x07\x65psilon\x12\x1d.google.protobuf.FieldOptions\x18\xd1\x86\x03 \x01(\x01:O\n\nasync_type\x12\x1e.google.protobuf.MethodOptions\x18\xd0\x86\x03 \x01(\x0e\x32\x19.mavsdk.options.AsyncType:3\n\tis_finite\x12\x1e.google.protobuf.MethodOptions\x18\xd1\x86\x03 \x01(\x08\x42\x10\n\x0eoptions.mavsdkb\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_descriptor__pb2.DESCRIPTOR,])
@@ -30,23 +29,19 @@ _ASYNCTYPE = _descriptor.EnumDescriptor(
   full_name='mavsdk.options.AsyncType',
   filename=None,
   file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='ASYNC', index=0, number=0,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='SYNC', index=1, number=1,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='BOTH', index=2, number=2,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
   ],
   containing_type=None,
   serialized_options=None,
@@ -67,7 +62,7 @@ default_value = _descriptor.FieldDescriptor(
   has_default_value=False, default_value=b"".decode('utf-8'),
   message_type=None, enum_type=None, containing_type=None,
   is_extension=True, extension_scope=None,
-  serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key)
+  serialized_options=None, file=DESCRIPTOR)
 EPSILON_FIELD_NUMBER = 50001
 epsilon = _descriptor.FieldDescriptor(
   name='epsilon', full_name='mavsdk.options.epsilon', index=1,
@@ -75,7 +70,7 @@ epsilon = _descriptor.FieldDescriptor(
   has_default_value=False, default_value=float(0),
   message_type=None, enum_type=None, containing_type=None,
   is_extension=True, extension_scope=None,
-  serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key)
+  serialized_options=None, file=DESCRIPTOR)
 ASYNC_TYPE_FIELD_NUMBER = 50000
 async_type = _descriptor.FieldDescriptor(
   name='async_type', full_name='mavsdk.options.async_type', index=2,
@@ -83,7 +78,7 @@ async_type = _descriptor.FieldDescriptor(
   has_default_value=False, default_value=0,
   message_type=None, enum_type=None, containing_type=None,
   is_extension=True, extension_scope=None,
-  serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key)
+  serialized_options=None, file=DESCRIPTOR)
 IS_FINITE_FIELD_NUMBER = 50001
 is_finite = _descriptor.FieldDescriptor(
   name='is_finite', full_name='mavsdk.options.is_finite', index=3,
@@ -91,7 +86,7 @@ is_finite = _descriptor.FieldDescriptor(
   has_default_value=False, default_value=False,
   message_type=None, enum_type=None, containing_type=None,
   is_extension=True, extension_scope=None,
-  serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key)
+  serialized_options=None, file=DESCRIPTOR)
 
 DESCRIPTOR.enum_types_by_name['AsyncType'] = _ASYNCTYPE
 DESCRIPTOR.extensions_by_name['default_value'] = default_value

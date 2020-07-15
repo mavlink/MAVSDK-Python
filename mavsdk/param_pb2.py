@@ -19,7 +19,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='mavsdk.rpc.param',
   syntax='proto3',
   serialized_options=b'\n\017io.mavsdk.paramB\nParamProto',
-  create_key=_descriptor._internal_create_key,
   serialized_pb=b'\n\x11param/param.proto\x12\x10mavsdk.rpc.param\x1a\x14mavsdk_options.proto\"\"\n\x12GetParamIntRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"Y\n\x13GetParamIntResponse\x12\x33\n\x0cparam_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.param.ParamResult\x12\r\n\x05value\x18\x02 \x01(\x05\"1\n\x12SetParamIntRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05\"J\n\x13SetParamIntResponse\x12\x33\n\x0cparam_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.param.ParamResult\"$\n\x14GetParamFloatRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"[\n\x15GetParamFloatResponse\x12\x33\n\x0cparam_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.param.ParamResult\x12\r\n\x05value\x18\x02 \x01(\x02\"3\n\x14SetParamFloatRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02\"L\n\x15SetParamFloatResponse\x12\x33\n\x0cparam_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.param.ParamResult\"\xf2\x01\n\x0bParamResult\x12\x34\n\x06result\x18\x01 \x01(\x0e\x32$.mavsdk.rpc.param.ParamResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\x98\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x12\n\x0eRESULT_TIMEOUT\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x15\n\x11RESULT_WRONG_TYPE\x10\x04\x12\x1e\n\x1aRESULT_PARAM_NAME_TOO_LONG\x10\x05\x32\xa2\x03\n\x0cParamService\x12`\n\x0bGetParamInt\x12$.mavsdk.rpc.param.GetParamIntRequest\x1a%.mavsdk.rpc.param.GetParamIntResponse\"\x04\x80\xb5\x18\x01\x12`\n\x0bSetParamInt\x12$.mavsdk.rpc.param.SetParamIntRequest\x1a%.mavsdk.rpc.param.SetParamIntResponse\"\x04\x80\xb5\x18\x01\x12\x66\n\rGetParamFloat\x12&.mavsdk.rpc.param.GetParamFloatRequest\x1a\'.mavsdk.rpc.param.GetParamFloatResponse\"\x04\x80\xb5\x18\x01\x12\x66\n\rSetParamFloat\x12&.mavsdk.rpc.param.SetParamFloatRequest\x1a\'.mavsdk.rpc.param.SetParamFloatResponse\"\x04\x80\xb5\x18\x01\x42\x1d\n\x0fio.mavsdk.paramB\nParamProtob\x06proto3'
   ,
   dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
@@ -31,38 +30,31 @@ _PARAMRESULT_RESULT = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.param.ParamResult.Result',
   filename=None,
   file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='RESULT_UNKNOWN', index=0, number=0,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_SUCCESS', index=1, number=1,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_TIMEOUT', index=2, number=2,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_CONNECTION_ERROR', index=3, number=3,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_WRONG_TYPE', index=4, number=4,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
     _descriptor.EnumValueDescriptor(
       name='RESULT_PARAM_NAME_TOO_LONG', index=5, number=5,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
   ],
   containing_type=None,
   serialized_options=None,
@@ -78,7 +70,6 @@ _GETPARAMINTREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='name', full_name='mavsdk.rpc.param.GetParamIntRequest.name', index=0,
@@ -86,7 +77,7 @@ _GETPARAMINTREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -110,7 +101,6 @@ _GETPARAMINTRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='param_result', full_name='mavsdk.rpc.param.GetParamIntResponse.param_result', index=0,
@@ -118,14 +108,14 @@ _GETPARAMINTRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='value', full_name='mavsdk.rpc.param.GetParamIntResponse.value', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -149,7 +139,6 @@ _SETPARAMINTREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='name', full_name='mavsdk.rpc.param.SetParamIntRequest.name', index=0,
@@ -157,14 +146,14 @@ _SETPARAMINTREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='value', full_name='mavsdk.rpc.param.SetParamIntRequest.value', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -188,7 +177,6 @@ _SETPARAMINTRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='param_result', full_name='mavsdk.rpc.param.SetParamIntResponse.param_result', index=0,
@@ -196,7 +184,7 @@ _SETPARAMINTRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -220,7 +208,6 @@ _GETPARAMFLOATREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='name', full_name='mavsdk.rpc.param.GetParamFloatRequest.name', index=0,
@@ -228,7 +215,7 @@ _GETPARAMFLOATREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -252,7 +239,6 @@ _GETPARAMFLOATRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='param_result', full_name='mavsdk.rpc.param.GetParamFloatResponse.param_result', index=0,
@@ -260,14 +246,14 @@ _GETPARAMFLOATRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='value', full_name='mavsdk.rpc.param.GetParamFloatResponse.value', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -291,7 +277,6 @@ _SETPARAMFLOATREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='name', full_name='mavsdk.rpc.param.SetParamFloatRequest.name', index=0,
@@ -299,14 +284,14 @@ _SETPARAMFLOATREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='value', full_name='mavsdk.rpc.param.SetParamFloatRequest.value', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -330,7 +315,6 @@ _SETPARAMFLOATRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='param_result', full_name='mavsdk.rpc.param.SetParamFloatResponse.param_result', index=0,
@@ -338,7 +322,7 @@ _SETPARAMFLOATRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -362,7 +346,6 @@ _PARAMRESULT = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
-  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='result', full_name='mavsdk.rpc.param.ParamResult.result', index=0,
@@ -370,14 +353,14 @@ _PARAMRESULT = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='result_str', full_name='mavsdk.rpc.param.ParamResult.result_str', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -484,7 +467,6 @@ _PARAMSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  create_key=_descriptor._internal_create_key,
   serialized_start=823,
   serialized_end=1241,
   methods=[
@@ -496,7 +478,6 @@ _PARAMSERVICE = _descriptor.ServiceDescriptor(
     input_type=_GETPARAMINTREQUEST,
     output_type=_GETPARAMINTRESPONSE,
     serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetParamInt',
@@ -506,7 +487,6 @@ _PARAMSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETPARAMINTREQUEST,
     output_type=_SETPARAMINTRESPONSE,
     serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='GetParamFloat',
@@ -516,7 +496,6 @@ _PARAMSERVICE = _descriptor.ServiceDescriptor(
     input_type=_GETPARAMFLOATREQUEST,
     output_type=_GETPARAMFLOATRESPONSE,
     serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetParamFloat',
@@ -526,7 +505,6 @@ _PARAMSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETPARAMFLOATREQUEST,
     output_type=_SETPARAMFLOATRESPONSE,
     serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_PARAMSERVICE)
