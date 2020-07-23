@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# Warning: Only try this in simulation!
+#          The direct attitude interface is a low level interface to be used
+#          with caution. On real vehicles the thrust values are likely not
+#          adjusted properly and you need to close the loop using altitude.
 
 import asyncio
 
@@ -35,6 +39,10 @@ async def run():
         await drone.action.disarm()
         return
 
+    print("-- Go up at 70% thrust")
+    await drone.offboard.set_attitude(Attitude(0.0, 0.0, 0.0, 0.7))
+    await asyncio.sleep(2)
+
     print("-- Roll 30 at 60% thrust")
     await drone.offboard.set_attitude(Attitude(30.0, 0.0, 0.0, 0.6))
     await asyncio.sleep(2)
@@ -43,7 +51,7 @@ async def run():
     await drone.offboard.set_attitude(Attitude(-30.0, 0.0, 0.0, 0.6))
     await asyncio.sleep(2)
 
-    print("-- Roll 0 at 60% thrust")
+    print("-- Hover at 60% thrust")
     await drone.offboard.set_attitude(Attitude(0.0, 0.0, 0.0, 0.6))
     await asyncio.sleep(2)
 
@@ -53,6 +61,8 @@ async def run():
     except OffboardError as error:
         print(f"Stopping offboard mode failed with error code: \
               {error._result.result}")
+
+    await drone.action.land()
 
 
 if __name__ == "__main__":
