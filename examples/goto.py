@@ -28,10 +28,7 @@ async def run():
 
     await asyncio.sleep(1)
 
-    await drone.action.goto_location(47.399386, 8.535245, 500, 0)
-
-    while True:
-        await asyncio.sleep(1)
+    await drone.action.goto_location(47.399386, 8.535245, 500, float('nan'))
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
