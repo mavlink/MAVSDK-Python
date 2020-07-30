@@ -1058,7 +1058,7 @@ class Offboard(AsyncBase):
 
     async def set_velocity_body(self, velocity_body_yawspeed):
         """
-         Set the velocity in body coordinates and yaw angular rate.
+         Set the velocity in body coordinates and yaw angular rate. Not available for fixed-wing aircraft.
 
          Parameters
          ----------
@@ -1087,7 +1087,7 @@ class Offboard(AsyncBase):
 
     async def set_velocity_ned(self, velocity_ned_yaw):
         """
-         Set the velocity in NED coordinates and yaw.
+         Set the velocity in NED coordinates and yaw. Not available for fixed-wing aircraft.
 
          Parameters
          ----------
