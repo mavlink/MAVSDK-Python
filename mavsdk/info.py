@@ -724,3 +724,31 @@ class Info(AsyncBase):
 
         return Version.translate_from_rpc(response.version)
             
+
+    async def get_speed_factor(self):
+        """
+         Get the speed factor of a simulation (with lockstep a simulation can run faster or slower than realtime).
+
+         Returns
+         -------
+         speed_factor : double
+              Speed factor of simulation
+
+         Raises
+         ------
+         InfoError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = info_pb2.GetSpeedFactorRequest()
+        response = await self._stub.GetSpeedFactor(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not InfoResult.Result.SUCCESS:
+            raise InfoError(result, "get_speed_factor()")
+        
+
+        return response.speed_factor
+        

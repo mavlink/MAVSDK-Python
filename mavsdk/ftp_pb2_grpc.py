@@ -65,15 +65,15 @@ class FtpServiceStub(object):
                 request_serializer=ftp_dot_ftp__pb2.SetRootDirectoryRequest.SerializeToString,
                 response_deserializer=ftp_dot_ftp__pb2.SetRootDirectoryResponse.FromString,
                 )
-        self.SetTargetComponentId = channel.unary_unary(
-                '/mavsdk.rpc.ftp.FtpService/SetTargetComponentId',
-                request_serializer=ftp_dot_ftp__pb2.SetTargetComponentIdRequest.SerializeToString,
-                response_deserializer=ftp_dot_ftp__pb2.SetTargetComponentIdResponse.FromString,
+        self.SetTargetCompid = channel.unary_unary(
+                '/mavsdk.rpc.ftp.FtpService/SetTargetCompid',
+                request_serializer=ftp_dot_ftp__pb2.SetTargetCompidRequest.SerializeToString,
+                response_deserializer=ftp_dot_ftp__pb2.SetTargetCompidResponse.FromString,
                 )
-        self.GetOurComponentId = channel.unary_unary(
-                '/mavsdk.rpc.ftp.FtpService/GetOurComponentId',
-                request_serializer=ftp_dot_ftp__pb2.GetOurComponentIdRequest.SerializeToString,
-                response_deserializer=ftp_dot_ftp__pb2.GetOurComponentIdResponse.FromString,
+        self.GetOurCompid = channel.unary_unary(
+                '/mavsdk.rpc.ftp.FtpService/GetOurCompid',
+                request_serializer=ftp_dot_ftp__pb2.GetOurCompidRequest.SerializeToString,
+                response_deserializer=ftp_dot_ftp__pb2.GetOurCompidResponse.FromString,
                 )
 
 
@@ -162,7 +162,7 @@ class FtpServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SetTargetComponentId(self, request, context):
+    def SetTargetCompid(self, request, context):
         """
         Set target component ID. By default it is the autopilot.
         """
@@ -170,7 +170,7 @@ class FtpServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetOurComponentId(self, request, context):
+    def GetOurCompid(self, request, context):
         """
         Get our own component ID.
         """
@@ -231,15 +231,15 @@ def add_FtpServiceServicer_to_server(servicer, server):
                     request_deserializer=ftp_dot_ftp__pb2.SetRootDirectoryRequest.FromString,
                     response_serializer=ftp_dot_ftp__pb2.SetRootDirectoryResponse.SerializeToString,
             ),
-            'SetTargetComponentId': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetTargetComponentId,
-                    request_deserializer=ftp_dot_ftp__pb2.SetTargetComponentIdRequest.FromString,
-                    response_serializer=ftp_dot_ftp__pb2.SetTargetComponentIdResponse.SerializeToString,
+            'SetTargetCompid': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetTargetCompid,
+                    request_deserializer=ftp_dot_ftp__pb2.SetTargetCompidRequest.FromString,
+                    response_serializer=ftp_dot_ftp__pb2.SetTargetCompidResponse.SerializeToString,
             ),
-            'GetOurComponentId': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetOurComponentId,
-                    request_deserializer=ftp_dot_ftp__pb2.GetOurComponentIdRequest.FromString,
-                    response_serializer=ftp_dot_ftp__pb2.GetOurComponentIdResponse.SerializeToString,
+            'GetOurCompid': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetOurCompid,
+                    request_deserializer=ftp_dot_ftp__pb2.GetOurCompidRequest.FromString,
+                    response_serializer=ftp_dot_ftp__pb2.GetOurCompidResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -414,7 +414,7 @@ class FtpService(object):
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SetTargetComponentId(request,
+    def SetTargetCompid(request,
             target,
             options=(),
             channel_credentials=None,
@@ -423,14 +423,14 @@ class FtpService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/SetTargetComponentId',
-            ftp_dot_ftp__pb2.SetTargetComponentIdRequest.SerializeToString,
-            ftp_dot_ftp__pb2.SetTargetComponentIdResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/SetTargetCompid',
+            ftp_dot_ftp__pb2.SetTargetCompidRequest.SerializeToString,
+            ftp_dot_ftp__pb2.SetTargetCompidResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetOurComponentId(request,
+    def GetOurCompid(request,
             target,
             options=(),
             channel_credentials=None,
@@ -439,8 +439,8 @@ class FtpService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/GetOurComponentId',
-            ftp_dot_ftp__pb2.GetOurComponentIdRequest.SerializeToString,
-            ftp_dot_ftp__pb2.GetOurComponentIdResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/GetOurCompid',
+            ftp_dot_ftp__pb2.GetOurCompidRequest.SerializeToString,
+            ftp_dot_ftp__pb2.GetOurCompidResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

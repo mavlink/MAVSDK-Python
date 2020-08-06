@@ -22,3 +22,5 @@ Plugins
    shell
    telemetry
    tune
+   failure
+   manual_control

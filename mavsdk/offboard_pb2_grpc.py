@@ -147,7 +147,7 @@ class OffboardServiceServicer(object):
 
     def SetVelocityBody(self, request, context):
         """
-        Set the velocity in body coordinates and yaw angular rate.
+        Set the velocity in body coordinates and yaw angular rate. Not available for fixed-wing aircraft.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -155,7 +155,7 @@ class OffboardServiceServicer(object):
 
     def SetVelocityNed(self, request, context):
         """
-        Set the velocity in NED coordinates and yaw.
+        Set the velocity in NED coordinates and yaw. Not available for fixed-wing aircraft.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

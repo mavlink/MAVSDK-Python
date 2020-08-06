@@ -638,13 +638,13 @@ class Ftp(AsyncBase):
             raise FtpError(result, "set_root_directory()", root_dir)
         
 
-    async def set_target_component_id(self, component_id):
+    async def set_target_compid(self, compid):
         """
          Set target component ID. By default it is the autopilot.
 
          Parameters
          ----------
-         component_id : uint32_t
+         compid : uint32_t
               The component ID to set.
 
          Raises
@@ -653,33 +653,33 @@ class Ftp(AsyncBase):
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = ftp_pb2.SetTargetComponentIdRequest()
-        request.component_id = component_id
-        response = await self._stub.SetTargetComponentId(request)
+        request = ftp_pb2.SetTargetCompidRequest()
+        request.compid = compid
+        response = await self._stub.SetTargetCompid(request)
 
         
         result = self._extract_result(response)
 
         if result.result is not FtpResult.Result.SUCCESS:
-            raise FtpError(result, "set_target_component_id()", component_id)
+            raise FtpError(result, "set_target_compid()", compid)
         
 
-    async def get_our_component_id(self):
+    async def get_our_compid(self):
         """
          Get our own component ID.
 
          Returns
          -------
-         component_id : uint32_t
+         compid : uint32_t
               Our component ID.
 
          
         """
 
-        request = ftp_pb2.GetOurComponentIdRequest()
-        response = await self._stub.GetOurComponentId(request)
+        request = ftp_pb2.GetOurCompidRequest()
+        response = await self._stub.GetOurCompid(request)
 
         
 
-        return response.component_id
+        return response.compid
         

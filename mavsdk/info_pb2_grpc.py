@@ -34,6 +34,11 @@ class InfoServiceStub(object):
                 request_serializer=info_dot_info__pb2.GetVersionRequest.SerializeToString,
                 response_deserializer=info_dot_info__pb2.GetVersionResponse.FromString,
                 )
+        self.GetSpeedFactor = channel.unary_unary(
+                '/mavsdk.rpc.info.InfoService/GetSpeedFactor',
+                request_serializer=info_dot_info__pb2.GetSpeedFactorRequest.SerializeToString,
+                response_deserializer=info_dot_info__pb2.GetSpeedFactorResponse.FromString,
+                )
 
 
 class InfoServiceServicer(object):
@@ -68,6 +73,13 @@ class InfoServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetSpeedFactor(self, request, context):
+        """Get the speed factor of a simulation (with lockstep a simulation can run faster or slower than realtime).
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_InfoServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -90,6 +102,11 @@ def add_InfoServiceServicer_to_server(servicer, server):
                     servicer.GetVersion,
                     request_deserializer=info_dot_info__pb2.GetVersionRequest.FromString,
                     response_serializer=info_dot_info__pb2.GetVersionResponse.SerializeToString,
+            ),
+            'GetSpeedFactor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSpeedFactor,
+                    request_deserializer=info_dot_info__pb2.GetSpeedFactorRequest.FromString,
+                    response_serializer=info_dot_info__pb2.GetSpeedFactorResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -163,5 +180,21 @@ class InfoService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.info.InfoService/GetVersion',
             info_dot_info__pb2.GetVersionRequest.SerializeToString,
             info_dot_info__pb2.GetVersionResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetSpeedFactor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.info.InfoService/GetSpeedFactor',
+            info_dot_info__pb2.GetSpeedFactorRequest.SerializeToString,
+            info_dot_info__pb2.GetSpeedFactorResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
