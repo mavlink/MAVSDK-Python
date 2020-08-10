@@ -12,6 +12,7 @@ from . import geofence
 from . import gimbal
 from . import info
 from . import log_files
+from . import manual_control
 from . import mission
 from . import mission_raw
 from . import mocap
@@ -82,6 +83,7 @@ class System:
         self._plugins["gimbal"] = gimbal.Gimbal(plugin_manager)
         self._plugins["info"] = info.Info(plugin_manager)
         self._plugins["log_files"] = log_files.LogFiles(plugin_manager)
+        self._plugins["manual_control"] = manual_control.ManualControl(plugin_manager)
         self._plugins["mission"] = mission.Mission(plugin_manager)
         self._plugins["mission_raw"] = mission_raw.MissionRaw(plugin_manager)
         self._plugins["mocap"] = mocap.Mocap(plugin_manager)
@@ -155,6 +157,12 @@ class System:
         if "log_files" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("LogFiles"))
         return self._plugins["log_files"]
+
+    @property
+    def manual_control(self) -> manual_control.ManualControl:
+        if "manual_control" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("ManualControl"))
+        return self._plugins["manual_control"]
 
     @property
     def mission(self) -> mission.Mission:

@@ -14,6 +14,7 @@ Plugins
    gimbal
    info
    log_files
+   manual_control
    mission
    mission_raw
    mocap
@@ -23,4 +24,3 @@ Plugins
    telemetry
    tune
    failure
-   manual_control
