@@ -35,12 +35,10 @@ async def fly_drone():
     #Arming the drone
     print ("-- Arming")
     await drone.action.arm()
-    await asyncio.sleep(1)
     
     #Follow me Mode requires some configuration to be done before starting the mode
     conf = Config(default_height, follow_distance, direction, responsiveness)
     await drone.follow_me.set_config(conf)
-    await asyncio.sleep(1)
     
     print ("-- Taking Off")
     await drone.action.takeoff()
@@ -64,9 +62,6 @@ async def fly_drone():
     
     print ("-- Landing")
     await drone.action.land()
-    await asyncio.sleep(35)
-    print ("-- Disarming")
-    await drone.action.disarm()
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
