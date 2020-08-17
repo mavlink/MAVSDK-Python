@@ -20,8 +20,8 @@ async def run():
             print("Global position estimate ok")
             break
 
-    print("Fetching altitude amsl at home location....")
-    async for terrain_info in drone.telemetry.position():
+    print("Fetching amsl altitude at home location....")
+    async for terrain_info in drone.telemetry.home():
         absolute_altitude = terrain_info.absolute_altitude_m
         break
 
