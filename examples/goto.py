@@ -20,6 +20,11 @@ async def run():
             print("Global position estimate ok")
             break
 
+    print("Fetching amsl altitude at home location....")
+    async for terrain_info in drone.telemetry.home():
+        absolute_altitude = terrain_info.absolute_altitude_m
+        break
+
     print("-- Arming")
     await drone.action.arm()
 
@@ -27,8 +32,9 @@ async def run():
     await drone.action.takeoff()
 
     await asyncio.sleep(1)
-
-    await drone.action.goto_location(47.399386, 8.535245, 500, float('nan'))
+    flying_alt = absolute_altitude + 20.0 #To fly drone 20m above the ground plane
+    #goto_location() takes Absolute MSL altitude 
+    await drone.action.goto_location(47.399386, 8.535245, flying_alt, 0)
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
