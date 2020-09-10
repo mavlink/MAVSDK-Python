@@ -18,6 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='mavsdk.rpc.core',
   syntax='proto3',
   serialized_options=b'\n\016io.mavsdk.coreB\tCoreProto',
+  create_key=_descriptor._internal_create_key,
   serialized_pb=b'\n\x0f\x63ore/core.proto\x12\x0fmavsdk.rpc.core\"!\n\x1fSubscribeConnectionStateRequest\"U\n\x17\x43onnectionStateResponse\x12:\n\x10\x63onnection_state\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.core.ConnectionState\"\x1b\n\x19ListRunningPluginsRequest\"N\n\x1aListRunningPluginsResponse\x12\x30\n\x0bplugin_info\x18\x01 \x03(\x0b\x32\x1b.mavsdk.rpc.core.PluginInfo\"5\n\x0f\x43onnectionState\x12\x0c\n\x04uuid\x18\x01 \x01(\x04\x12\x14\n\x0cis_connected\x18\x02 \x01(\x08\"9\n\nPluginInfo\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07\x61\x64\x64ress\x18\x02 \x01(\t\x12\x0c\n\x04port\x18\x03 \x01(\x05\x32\xfa\x01\n\x0b\x43oreService\x12z\n\x18SubscribeConnectionState\x12\x30.mavsdk.rpc.core.SubscribeConnectionStateRequest\x1a(.mavsdk.rpc.core.ConnectionStateResponse\"\x00\x30\x01\x12o\n\x12ListRunningPlugins\x12*.mavsdk.rpc.core.ListRunningPluginsRequest\x1a+.mavsdk.rpc.core.ListRunningPluginsResponse\"\x00\x42\x1b\n\x0eio.mavsdk.coreB\tCoreProtob\x06proto3'
 )
 
@@ -30,6 +31,7 @@ _SUBSCRIBECONNECTIONSTATEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -54,6 +56,7 @@ _CONNECTIONSTATERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='connection_state', full_name='mavsdk.rpc.core.ConnectionStateResponse.connection_state', index=0,
@@ -61,7 +64,7 @@ _CONNECTIONSTATERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -85,6 +88,7 @@ _LISTRUNNINGPLUGINSREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -109,6 +113,7 @@ _LISTRUNNINGPLUGINSRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='plugin_info', full_name='mavsdk.rpc.core.ListRunningPluginsResponse.plugin_info', index=0,
@@ -116,7 +121,7 @@ _LISTRUNNINGPLUGINSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -140,6 +145,7 @@ _CONNECTIONSTATE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='uuid', full_name='mavsdk.rpc.core.ConnectionState.uuid', index=0,
@@ -147,14 +153,14 @@ _CONNECTIONSTATE = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='is_connected', full_name='mavsdk.rpc.core.ConnectionState.is_connected', index=1,
       number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -178,6 +184,7 @@ _PLUGININFO = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='name', full_name='mavsdk.rpc.core.PluginInfo.name', index=0,
@@ -185,21 +192,21 @@ _PLUGININFO = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='address', full_name='mavsdk.rpc.core.PluginInfo.address', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='port', full_name='mavsdk.rpc.core.PluginInfo.port', index=2,
       number=3, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -277,6 +284,7 @@ _CORESERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
+  create_key=_descriptor._internal_create_key,
   serialized_start=382,
   serialized_end=632,
   methods=[
@@ -288,6 +296,7 @@ _CORESERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBECONNECTIONSTATEREQUEST,
     output_type=_CONNECTIONSTATERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='ListRunningPlugins',
@@ -297,6 +306,7 @@ _CORESERVICE = _descriptor.ServiceDescriptor(
     input_type=_LISTRUNNINGPLUGINSREQUEST,
     output_type=_LISTRUNNINGPLUGINSRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_CORESERVICE)

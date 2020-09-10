@@ -19,6 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='mavsdk.rpc.mission_raw',
   syntax='proto3',
   serialized_options=b'\n\025io.mavsdk.mission_rawB\017MissionRawProto',
+  create_key=_descriptor._internal_create_key,
   serialized_pb=b'\n\x1dmission_raw/mission_raw.proto\x12\x16mavsdk.rpc.mission_raw\x1a\x14mavsdk_options.proto\"R\n\x14UploadMissionRequest\x12:\n\rmission_items\x18\x01 \x03(\x0b\x32#.mavsdk.rpc.mission_raw.MissionItem\"]\n\x15UploadMissionResponse\x12\x44\n\x12mission_raw_result\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.mission_raw.MissionRawResult\"\x1c\n\x1a\x43\x61ncelMissionUploadRequest\"c\n\x1b\x43\x61ncelMissionUploadResponse\x12\x44\n\x12mission_raw_result\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.mission_raw.MissionRawResult\"\x18\n\x16\x44ownloadMissionRequest\"\x9b\x01\n\x17\x44ownloadMissionResponse\x12\x44\n\x12mission_raw_result\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.mission_raw.MissionRawResult\x12:\n\rmission_items\x18\x02 \x03(\x0b\x32#.mavsdk.rpc.mission_raw.MissionItem\"\x1e\n\x1c\x43\x61ncelMissionDownloadRequest\"e\n\x1d\x43\x61ncelMissionDownloadResponse\x12\x44\n\x12mission_raw_result\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.mission_raw.MissionRawResult\"\x15\n\x13StartMissionRequest\"\\\n\x14StartMissionResponse\x12\x44\n\x12mission_raw_result\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.mission_raw.MissionRawResult\"\x15\n\x13PauseMissionRequest\"\\\n\x14PauseMissionResponse\x12\x44\n\x12mission_raw_result\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.mission_raw.MissionRawResult\"\x15\n\x13\x43learMissionRequest\"\\\n\x14\x43learMissionResponse\x12\x44\n\x12mission_raw_result\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.mission_raw.MissionRawResult\"-\n\x1cSetCurrentMissionItemRequest\x12\r\n\x05index\x18\x01 \x01(\x05\"e\n\x1dSetCurrentMissionItemResponse\x12\x44\n\x12mission_raw_result\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.mission_raw.MissionRawResult\"!\n\x1fSubscribeMissionProgressRequest\"\\\n\x17MissionProgressResponse\x12\x41\n\x10mission_progress\x18\x01 \x01(\x0b\x32\'.mavsdk.rpc.mission_raw.MissionProgress\" \n\x1eSubscribeMissionChangedRequest\"1\n\x16MissionChangedResponse\x12\x17\n\x0fmission_changed\x18\x01 \x01(\x08\"1\n\x0fMissionProgress\x12\x0f\n\x07\x63urrent\x18\x01 \x01(\x05\x12\r\n\x05total\x18\x02 \x01(\x05\"\xd8\x01\n\x0bMissionItem\x12\x0b\n\x03seq\x18\x01 \x01(\r\x12\r\n\x05\x66rame\x18\x02 \x01(\r\x12\x0f\n\x07\x63ommand\x18\x03 \x01(\r\x12\x0f\n\x07\x63urrent\x18\x04 \x01(\r\x12\x14\n\x0c\x61utocontinue\x18\x05 \x01(\r\x12\x0e\n\x06param1\x18\x06 \x01(\x02\x12\x0e\n\x06param2\x18\x07 \x01(\x02\x12\x0e\n\x06param3\x18\x08 \x01(\x02\x12\x0e\n\x06param4\x18\t \x01(\x02\x12\t\n\x01x\x18\n \x01(\x05\x12\t\n\x01y\x18\x0b \x01(\x05\x12\t\n\x01z\x18\x0c \x01(\x02\x12\x14\n\x0cmission_type\x18\r \x01(\r\"\xe9\x02\n\x10MissionRawResult\x12?\n\x06result\x18\x01 \x01(\x0e\x32/.mavsdk.rpc.mission_raw.MissionRawResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xff\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x10\n\x0cRESULT_ERROR\x10\x02\x12!\n\x1dRESULT_TOO_MANY_MISSION_ITEMS\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x12\n\x0eRESULT_TIMEOUT\x10\x05\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x06\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x07\x12\x1f\n\x1bRESULT_NO_MISSION_AVAILABLE\x10\x08\x12\x1d\n\x19RESULT_TRANSFER_CANCELLED\x10\t2\xf4\t\n\x11MissionRawService\x12n\n\rUploadMission\x12,.mavsdk.rpc.mission_raw.UploadMissionRequest\x1a-.mavsdk.rpc.mission_raw.UploadMissionResponse\"\x00\x12\x84\x01\n\x13\x43\x61ncelMissionUpload\x12\x32.mavsdk.rpc.mission_raw.CancelMissionUploadRequest\x1a\x33.mavsdk.rpc.mission_raw.CancelMissionUploadResponse\"\x04\x80\xb5\x18\x01\x12t\n\x0f\x44ownloadMission\x12..mavsdk.rpc.mission_raw.DownloadMissionRequest\x1a/.mavsdk.rpc.mission_raw.DownloadMissionResponse\"\x00\x12\x8a\x01\n\x15\x43\x61ncelMissionDownload\x12\x34.mavsdk.rpc.mission_raw.CancelMissionDownloadRequest\x1a\x35.mavsdk.rpc.mission_raw.CancelMissionDownloadResponse\"\x04\x80\xb5\x18\x01\x12k\n\x0cStartMission\x12+.mavsdk.rpc.mission_raw.StartMissionRequest\x1a,.mavsdk.rpc.mission_raw.StartMissionResponse\"\x00\x12k\n\x0cPauseMission\x12+.mavsdk.rpc.mission_raw.PauseMissionRequest\x1a,.mavsdk.rpc.mission_raw.PauseMissionResponse\"\x00\x12k\n\x0c\x43learMission\x12+.mavsdk.rpc.mission_raw.ClearMissionRequest\x1a,.mavsdk.rpc.mission_raw.ClearMissionResponse\"\x00\x12\x86\x01\n\x15SetCurrentMissionItem\x12\x34.mavsdk.rpc.mission_raw.SetCurrentMissionItemRequest\x1a\x35.mavsdk.rpc.mission_raw.SetCurrentMissionItemResponse\"\x00\x12\x88\x01\n\x18SubscribeMissionProgress\x12\x37.mavsdk.rpc.mission_raw.SubscribeMissionProgressRequest\x1a/.mavsdk.rpc.mission_raw.MissionProgressResponse\"\x00\x30\x01\x12\x89\x01\n\x17SubscribeMissionChanged\x12\x36.mavsdk.rpc.mission_raw.SubscribeMissionChangedRequest\x1a..mavsdk.rpc.mission_raw.MissionChangedResponse\"\x04\x80\xb5\x18\x00\x30\x01\x42(\n\x15io.mavsdk.mission_rawB\x0fMissionRawProtob\x06proto3'
   ,
   dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
@@ -30,47 +31,58 @@ _MISSIONRAWRESULT_RESULT = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.mission_raw.MissionRawResult.Result',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='RESULT_UNKNOWN', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_SUCCESS', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_ERROR', index=2, number=2,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_TOO_MANY_MISSION_ITEMS', index=3, number=3,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_BUSY', index=4, number=4,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_TIMEOUT', index=5, number=5,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_INVALID_ARGUMENT', index=6, number=6,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_UNSUPPORTED', index=7, number=7,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_NO_MISSION_AVAILABLE', index=8, number=8,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_TRANSFER_CANCELLED', index=9, number=9,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
@@ -86,6 +98,7 @@ _UPLOADMISSIONREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='mission_items', full_name='mavsdk.rpc.mission_raw.UploadMissionRequest.mission_items', index=0,
@@ -93,7 +106,7 @@ _UPLOADMISSIONREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -117,6 +130,7 @@ _UPLOADMISSIONRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='mission_raw_result', full_name='mavsdk.rpc.mission_raw.UploadMissionResponse.mission_raw_result', index=0,
@@ -124,7 +138,7 @@ _UPLOADMISSIONRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -148,6 +162,7 @@ _CANCELMISSIONUPLOADREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -172,6 +187,7 @@ _CANCELMISSIONUPLOADRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='mission_raw_result', full_name='mavsdk.rpc.mission_raw.CancelMissionUploadResponse.mission_raw_result', index=0,
@@ -179,7 +195,7 @@ _CANCELMISSIONUPLOADRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -203,6 +219,7 @@ _DOWNLOADMISSIONREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -227,6 +244,7 @@ _DOWNLOADMISSIONRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='mission_raw_result', full_name='mavsdk.rpc.mission_raw.DownloadMissionResponse.mission_raw_result', index=0,
@@ -234,14 +252,14 @@ _DOWNLOADMISSIONRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='mission_items', full_name='mavsdk.rpc.mission_raw.DownloadMissionResponse.mission_items', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -265,6 +283,7 @@ _CANCELMISSIONDOWNLOADREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -289,6 +308,7 @@ _CANCELMISSIONDOWNLOADRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='mission_raw_result', full_name='mavsdk.rpc.mission_raw.CancelMissionDownloadResponse.mission_raw_result', index=0,
@@ -296,7 +316,7 @@ _CANCELMISSIONDOWNLOADRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -320,6 +340,7 @@ _STARTMISSIONREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -344,6 +365,7 @@ _STARTMISSIONRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='mission_raw_result', full_name='mavsdk.rpc.mission_raw.StartMissionResponse.mission_raw_result', index=0,
@@ -351,7 +373,7 @@ _STARTMISSIONRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -375,6 +397,7 @@ _PAUSEMISSIONREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -399,6 +422,7 @@ _PAUSEMISSIONRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='mission_raw_result', full_name='mavsdk.rpc.mission_raw.PauseMissionResponse.mission_raw_result', index=0,
@@ -406,7 +430,7 @@ _PAUSEMISSIONRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -430,6 +454,7 @@ _CLEARMISSIONREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -454,6 +479,7 @@ _CLEARMISSIONRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='mission_raw_result', full_name='mavsdk.rpc.mission_raw.ClearMissionResponse.mission_raw_result', index=0,
@@ -461,7 +487,7 @@ _CLEARMISSIONRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -485,6 +511,7 @@ _SETCURRENTMISSIONITEMREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='index', full_name='mavsdk.rpc.mission_raw.SetCurrentMissionItemRequest.index', index=0,
@@ -492,7 +519,7 @@ _SETCURRENTMISSIONITEMREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -516,6 +543,7 @@ _SETCURRENTMISSIONITEMRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='mission_raw_result', full_name='mavsdk.rpc.mission_raw.SetCurrentMissionItemResponse.mission_raw_result', index=0,
@@ -523,7 +551,7 @@ _SETCURRENTMISSIONITEMRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -547,6 +575,7 @@ _SUBSCRIBEMISSIONPROGRESSREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -571,6 +600,7 @@ _MISSIONPROGRESSRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='mission_progress', full_name='mavsdk.rpc.mission_raw.MissionProgressResponse.mission_progress', index=0,
@@ -578,7 +608,7 @@ _MISSIONPROGRESSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -602,6 +632,7 @@ _SUBSCRIBEMISSIONCHANGEDREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -626,6 +657,7 @@ _MISSIONCHANGEDRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='mission_changed', full_name='mavsdk.rpc.mission_raw.MissionChangedResponse.mission_changed', index=0,
@@ -633,7 +665,7 @@ _MISSIONCHANGEDRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -657,6 +689,7 @@ _MISSIONPROGRESS = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='current', full_name='mavsdk.rpc.mission_raw.MissionProgress.current', index=0,
@@ -664,14 +697,14 @@ _MISSIONPROGRESS = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='total', full_name='mavsdk.rpc.mission_raw.MissionProgress.total', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -695,6 +728,7 @@ _MISSIONITEM = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='seq', full_name='mavsdk.rpc.mission_raw.MissionItem.seq', index=0,
@@ -702,91 +736,91 @@ _MISSIONITEM = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='frame', full_name='mavsdk.rpc.mission_raw.MissionItem.frame', index=1,
       number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='command', full_name='mavsdk.rpc.mission_raw.MissionItem.command', index=2,
       number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='current', full_name='mavsdk.rpc.mission_raw.MissionItem.current', index=3,
       number=4, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='autocontinue', full_name='mavsdk.rpc.mission_raw.MissionItem.autocontinue', index=4,
       number=5, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='param1', full_name='mavsdk.rpc.mission_raw.MissionItem.param1', index=5,
       number=6, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='param2', full_name='mavsdk.rpc.mission_raw.MissionItem.param2', index=6,
       number=7, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='param3', full_name='mavsdk.rpc.mission_raw.MissionItem.param3', index=7,
       number=8, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='param4', full_name='mavsdk.rpc.mission_raw.MissionItem.param4', index=8,
       number=9, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='x', full_name='mavsdk.rpc.mission_raw.MissionItem.x', index=9,
       number=10, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='y', full_name='mavsdk.rpc.mission_raw.MissionItem.y', index=10,
       number=11, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='z', full_name='mavsdk.rpc.mission_raw.MissionItem.z', index=11,
       number=12, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='mission_type', full_name='mavsdk.rpc.mission_raw.MissionItem.mission_type', index=12,
       number=13, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -810,6 +844,7 @@ _MISSIONRAWRESULT = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='result', full_name='mavsdk.rpc.mission_raw.MissionRawResult.result', index=0,
@@ -817,14 +852,14 @@ _MISSIONRAWRESULT = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='result_str', full_name='mavsdk.rpc.mission_raw.MissionRawResult.result_str', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1050,6 +1085,7 @@ _MISSIONRAWSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
+  create_key=_descriptor._internal_create_key,
   serialized_start=2058,
   serialized_end=3326,
   methods=[
@@ -1061,6 +1097,7 @@ _MISSIONRAWSERVICE = _descriptor.ServiceDescriptor(
     input_type=_UPLOADMISSIONREQUEST,
     output_type=_UPLOADMISSIONRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='CancelMissionUpload',
@@ -1070,6 +1107,7 @@ _MISSIONRAWSERVICE = _descriptor.ServiceDescriptor(
     input_type=_CANCELMISSIONUPLOADREQUEST,
     output_type=_CANCELMISSIONUPLOADRESPONSE,
     serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='DownloadMission',
@@ -1079,6 +1117,7 @@ _MISSIONRAWSERVICE = _descriptor.ServiceDescriptor(
     input_type=_DOWNLOADMISSIONREQUEST,
     output_type=_DOWNLOADMISSIONRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='CancelMissionDownload',
@@ -1088,6 +1127,7 @@ _MISSIONRAWSERVICE = _descriptor.ServiceDescriptor(
     input_type=_CANCELMISSIONDOWNLOADREQUEST,
     output_type=_CANCELMISSIONDOWNLOADRESPONSE,
     serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='StartMission',
@@ -1097,6 +1137,7 @@ _MISSIONRAWSERVICE = _descriptor.ServiceDescriptor(
     input_type=_STARTMISSIONREQUEST,
     output_type=_STARTMISSIONRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='PauseMission',
@@ -1106,6 +1147,7 @@ _MISSIONRAWSERVICE = _descriptor.ServiceDescriptor(
     input_type=_PAUSEMISSIONREQUEST,
     output_type=_PAUSEMISSIONRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='ClearMission',
@@ -1115,6 +1157,7 @@ _MISSIONRAWSERVICE = _descriptor.ServiceDescriptor(
     input_type=_CLEARMISSIONREQUEST,
     output_type=_CLEARMISSIONRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetCurrentMissionItem',
@@ -1124,6 +1167,7 @@ _MISSIONRAWSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETCURRENTMISSIONITEMREQUEST,
     output_type=_SETCURRENTMISSIONITEMRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeMissionProgress',
@@ -1133,6 +1177,7 @@ _MISSIONRAWSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEMISSIONPROGRESSREQUEST,
     output_type=_MISSIONPROGRESSRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeMissionChanged',
@@ -1142,6 +1187,7 @@ _MISSIONRAWSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEMISSIONCHANGEDREQUEST,
     output_type=_MISSIONCHANGEDRESPONSE,
     serialized_options=b'\200\265\030\000',
+    create_key=_descriptor._internal_create_key,
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_MISSIONRAWSERVICE)
