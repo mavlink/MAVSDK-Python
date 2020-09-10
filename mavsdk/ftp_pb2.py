@@ -19,6 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='mavsdk.rpc.ftp',
   syntax='proto3',
   serialized_options=b'\n\rio.mavsdk.ftpB\010FtpProto',
+  create_key=_descriptor._internal_create_key,
   serialized_pb=b'\n\rftp/ftp.proto\x12\x0emavsdk.rpc.ftp\x1a\x14mavsdk_options.proto\"\x0e\n\x0cResetRequest\">\n\rResetResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\"G\n\x18SubscribeDownloadRequest\x12\x18\n\x10remote_file_path\x18\x01 \x01(\t\x12\x11\n\tlocal_dir\x18\x02 \x01(\t\"v\n\x10\x44ownloadResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\x12\x33\n\rprogress_data\x18\x02 \x01(\x0b\x32\x1c.mavsdk.rpc.ftp.ProgressData\"E\n\x16SubscribeUploadRequest\x12\x17\n\x0flocal_file_path\x18\x01 \x01(\t\x12\x12\n\nremote_dir\x18\x02 \x01(\t\"t\n\x0eUploadResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\x12\x33\n\rprogress_data\x18\x02 \x01(\x0b\x32\x1c.mavsdk.rpc.ftp.ProgressData\"*\n\x14ListDirectoryRequest\x12\x12\n\nremote_dir\x18\x01 \x01(\t\"U\n\x15ListDirectoryResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\x12\r\n\x05paths\x18\x02 \x03(\t\",\n\x16\x43reateDirectoryRequest\x12\x12\n\nremote_dir\x18\x01 \x01(\t\"H\n\x17\x43reateDirectoryResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\",\n\x16RemoveDirectoryRequest\x12\x12\n\nremote_dir\x18\x01 \x01(\t\"H\n\x17RemoveDirectoryResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\"-\n\x11RemoveFileRequest\x12\x18\n\x10remote_file_path\x18\x01 \x01(\t\"C\n\x12RemoveFileResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\"A\n\rRenameRequest\x12\x18\n\x10remote_from_path\x18\x01 \x01(\t\x12\x16\n\x0eremote_to_path\x18\x02 \x01(\t\"?\n\x0eRenameResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\"M\n\x18\x41reFilesIdenticalRequest\x12\x17\n\x0flocal_file_path\x18\x01 \x01(\t\x12\x18\n\x10remote_file_path\x18\x02 \x01(\t\"a\n\x19\x41reFilesIdenticalResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\x12\x15\n\rare_identical\x18\x02 \x01(\x08\"+\n\x17SetRootDirectoryRequest\x12\x10\n\x08root_dir\x18\x01 \x01(\t\"I\n\x18SetRootDirectoryResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\"(\n\x16SetTargetCompidRequest\x12\x0e\n\x06\x63ompid\x18\x01 \x01(\r\"H\n\x17SetTargetCompidResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\"\x15\n\x13GetOurCompidRequest\"&\n\x14GetOurCompidResponse\x12\x0e\n\x06\x63ompid\x18\x01 \x01(\r\">\n\x0cProgressData\x12\x19\n\x11\x62ytes_transferred\x18\x01 \x01(\r\x12\x13\n\x0btotal_bytes\x18\x02 \x01(\r\"\xf8\x02\n\tFtpResult\x12\x30\n\x06result\x18\x01 \x01(\x0e\x32 .mavsdk.rpc.ftp.FtpResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xa4\x02\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x0f\n\x0bRESULT_NEXT\x10\x02\x12\x12\n\x0eRESULT_TIMEOUT\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x18\n\x14RESULT_FILE_IO_ERROR\x10\x05\x12\x16\n\x12RESULT_FILE_EXISTS\x10\x06\x12\x1e\n\x1aRESULT_FILE_DOES_NOT_EXIST\x10\x07\x12\x19\n\x15RESULT_FILE_PROTECTED\x10\x08\x12\x1c\n\x18RESULT_INVALID_PARAMETER\x10\t\x12\x16\n\x12RESULT_UNSUPPORTED\x10\n\x12\x19\n\x15RESULT_PROTOCOL_ERROR\x10\x0b\x32\x9e\t\n\nFtpService\x12J\n\x05Reset\x12\x1c.mavsdk.rpc.ftp.ResetRequest\x1a\x1d.mavsdk.rpc.ftp.ResetResponse\"\x04\x80\xb5\x18\x00\x12k\n\x11SubscribeDownload\x12(.mavsdk.rpc.ftp.SubscribeDownloadRequest\x1a .mavsdk.rpc.ftp.DownloadResponse\"\x08\x80\xb5\x18\x00\x88\xb5\x18\x01\x30\x01\x12\x65\n\x0fSubscribeUpload\x12&.mavsdk.rpc.ftp.SubscribeUploadRequest\x1a\x1e.mavsdk.rpc.ftp.UploadResponse\"\x08\x80\xb5\x18\x00\x88\xb5\x18\x01\x30\x01\x12^\n\rListDirectory\x12$.mavsdk.rpc.ftp.ListDirectoryRequest\x1a%.mavsdk.rpc.ftp.ListDirectoryResponse\"\x00\x12\x64\n\x0f\x43reateDirectory\x12&.mavsdk.rpc.ftp.CreateDirectoryRequest\x1a\'.mavsdk.rpc.ftp.CreateDirectoryResponse\"\x00\x12\x64\n\x0fRemoveDirectory\x12&.mavsdk.rpc.ftp.RemoveDirectoryRequest\x1a\'.mavsdk.rpc.ftp.RemoveDirectoryResponse\"\x00\x12U\n\nRemoveFile\x12!.mavsdk.rpc.ftp.RemoveFileRequest\x1a\".mavsdk.rpc.ftp.RemoveFileResponse\"\x00\x12I\n\x06Rename\x12\x1d.mavsdk.rpc.ftp.RenameRequest\x1a\x1e.mavsdk.rpc.ftp.RenameResponse\"\x00\x12j\n\x11\x41reFilesIdentical\x12(.mavsdk.rpc.ftp.AreFilesIdenticalRequest\x1a).mavsdk.rpc.ftp.AreFilesIdenticalResponse\"\x00\x12k\n\x10SetRootDirectory\x12\'.mavsdk.rpc.ftp.SetRootDirectoryRequest\x1a(.mavsdk.rpc.ftp.SetRootDirectoryResponse\"\x04\x80\xb5\x18\x01\x12h\n\x0fSetTargetCompid\x12&.mavsdk.rpc.ftp.SetTargetCompidRequest\x1a\'.mavsdk.rpc.ftp.SetTargetCompidResponse\"\x04\x80\xb5\x18\x01\x12_\n\x0cGetOurCompid\x12#.mavsdk.rpc.ftp.GetOurCompidRequest\x1a$.mavsdk.rpc.ftp.GetOurCompidResponse\"\x04\x80\xb5\x18\x01\x42\x19\n\rio.mavsdk.ftpB\x08\x46tpProtob\x06proto3'
   ,
   dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
@@ -30,55 +31,68 @@ _FTPRESULT_RESULT = _descriptor.EnumDescriptor(
   full_name='mavsdk.rpc.ftp.FtpResult.Result',
   filename=None,
   file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
       name='RESULT_UNKNOWN', index=0, number=0,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_SUCCESS', index=1, number=1,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_NEXT', index=2, number=2,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_TIMEOUT', index=3, number=3,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_BUSY', index=4, number=4,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_FILE_IO_ERROR', index=5, number=5,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_FILE_EXISTS', index=6, number=6,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_FILE_DOES_NOT_EXIST', index=7, number=7,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_FILE_PROTECTED', index=8, number=8,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_INVALID_PARAMETER', index=9, number=9,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_UNSUPPORTED', index=10, number=10,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
       name='RESULT_PROTOCOL_ERROR', index=11, number=11,
       serialized_options=None,
-      type=None),
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
@@ -94,6 +108,7 @@ _RESETREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -118,6 +133,7 @@ _RESETRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='ftp_result', full_name='mavsdk.rpc.ftp.ResetResponse.ftp_result', index=0,
@@ -125,7 +141,7 @@ _RESETRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -149,6 +165,7 @@ _SUBSCRIBEDOWNLOADREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='remote_file_path', full_name='mavsdk.rpc.ftp.SubscribeDownloadRequest.remote_file_path', index=0,
@@ -156,14 +173,14 @@ _SUBSCRIBEDOWNLOADREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='local_dir', full_name='mavsdk.rpc.ftp.SubscribeDownloadRequest.local_dir', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -187,6 +204,7 @@ _DOWNLOADRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='ftp_result', full_name='mavsdk.rpc.ftp.DownloadResponse.ftp_result', index=0,
@@ -194,14 +212,14 @@ _DOWNLOADRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='progress_data', full_name='mavsdk.rpc.ftp.DownloadResponse.progress_data', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -225,6 +243,7 @@ _SUBSCRIBEUPLOADREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='local_file_path', full_name='mavsdk.rpc.ftp.SubscribeUploadRequest.local_file_path', index=0,
@@ -232,14 +251,14 @@ _SUBSCRIBEUPLOADREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='remote_dir', full_name='mavsdk.rpc.ftp.SubscribeUploadRequest.remote_dir', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -263,6 +282,7 @@ _UPLOADRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='ftp_result', full_name='mavsdk.rpc.ftp.UploadResponse.ftp_result', index=0,
@@ -270,14 +290,14 @@ _UPLOADRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='progress_data', full_name='mavsdk.rpc.ftp.UploadResponse.progress_data', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -301,6 +321,7 @@ _LISTDIRECTORYREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='remote_dir', full_name='mavsdk.rpc.ftp.ListDirectoryRequest.remote_dir', index=0,
@@ -308,7 +329,7 @@ _LISTDIRECTORYREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -332,6 +353,7 @@ _LISTDIRECTORYRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='ftp_result', full_name='mavsdk.rpc.ftp.ListDirectoryResponse.ftp_result', index=0,
@@ -339,14 +361,14 @@ _LISTDIRECTORYRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='paths', full_name='mavsdk.rpc.ftp.ListDirectoryResponse.paths', index=1,
       number=2, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -370,6 +392,7 @@ _CREATEDIRECTORYREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='remote_dir', full_name='mavsdk.rpc.ftp.CreateDirectoryRequest.remote_dir', index=0,
@@ -377,7 +400,7 @@ _CREATEDIRECTORYREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -401,6 +424,7 @@ _CREATEDIRECTORYRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='ftp_result', full_name='mavsdk.rpc.ftp.CreateDirectoryResponse.ftp_result', index=0,
@@ -408,7 +432,7 @@ _CREATEDIRECTORYRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -432,6 +456,7 @@ _REMOVEDIRECTORYREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='remote_dir', full_name='mavsdk.rpc.ftp.RemoveDirectoryRequest.remote_dir', index=0,
@@ -439,7 +464,7 @@ _REMOVEDIRECTORYREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -463,6 +488,7 @@ _REMOVEDIRECTORYRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='ftp_result', full_name='mavsdk.rpc.ftp.RemoveDirectoryResponse.ftp_result', index=0,
@@ -470,7 +496,7 @@ _REMOVEDIRECTORYRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -494,6 +520,7 @@ _REMOVEFILEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='remote_file_path', full_name='mavsdk.rpc.ftp.RemoveFileRequest.remote_file_path', index=0,
@@ -501,7 +528,7 @@ _REMOVEFILEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -525,6 +552,7 @@ _REMOVEFILERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='ftp_result', full_name='mavsdk.rpc.ftp.RemoveFileResponse.ftp_result', index=0,
@@ -532,7 +560,7 @@ _REMOVEFILERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -556,6 +584,7 @@ _RENAMEREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='remote_from_path', full_name='mavsdk.rpc.ftp.RenameRequest.remote_from_path', index=0,
@@ -563,14 +592,14 @@ _RENAMEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='remote_to_path', full_name='mavsdk.rpc.ftp.RenameRequest.remote_to_path', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -594,6 +623,7 @@ _RENAMERESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='ftp_result', full_name='mavsdk.rpc.ftp.RenameResponse.ftp_result', index=0,
@@ -601,7 +631,7 @@ _RENAMERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -625,6 +655,7 @@ _AREFILESIDENTICALREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='local_file_path', full_name='mavsdk.rpc.ftp.AreFilesIdenticalRequest.local_file_path', index=0,
@@ -632,14 +663,14 @@ _AREFILESIDENTICALREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='remote_file_path', full_name='mavsdk.rpc.ftp.AreFilesIdenticalRequest.remote_file_path', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -663,6 +694,7 @@ _AREFILESIDENTICALRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='ftp_result', full_name='mavsdk.rpc.ftp.AreFilesIdenticalResponse.ftp_result', index=0,
@@ -670,14 +702,14 @@ _AREFILESIDENTICALRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='are_identical', full_name='mavsdk.rpc.ftp.AreFilesIdenticalResponse.are_identical', index=1,
       number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -701,6 +733,7 @@ _SETROOTDIRECTORYREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='root_dir', full_name='mavsdk.rpc.ftp.SetRootDirectoryRequest.root_dir', index=0,
@@ -708,7 +741,7 @@ _SETROOTDIRECTORYREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -732,6 +765,7 @@ _SETROOTDIRECTORYRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='ftp_result', full_name='mavsdk.rpc.ftp.SetRootDirectoryResponse.ftp_result', index=0,
@@ -739,7 +773,7 @@ _SETROOTDIRECTORYRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -763,6 +797,7 @@ _SETTARGETCOMPIDREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='compid', full_name='mavsdk.rpc.ftp.SetTargetCompidRequest.compid', index=0,
@@ -770,7 +805,7 @@ _SETTARGETCOMPIDREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -794,6 +829,7 @@ _SETTARGETCOMPIDRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='ftp_result', full_name='mavsdk.rpc.ftp.SetTargetCompidResponse.ftp_result', index=0,
@@ -801,7 +837,7 @@ _SETTARGETCOMPIDRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -825,6 +861,7 @@ _GETOURCOMPIDREQUEST = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
   ],
   extensions=[
@@ -849,6 +886,7 @@ _GETOURCOMPIDRESPONSE = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='compid', full_name='mavsdk.rpc.ftp.GetOurCompidResponse.compid', index=0,
@@ -856,7 +894,7 @@ _GETOURCOMPIDRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -880,6 +918,7 @@ _PROGRESSDATA = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='bytes_transferred', full_name='mavsdk.rpc.ftp.ProgressData.bytes_transferred', index=0,
@@ -887,14 +926,14 @@ _PROGRESSDATA = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='total_bytes', full_name='mavsdk.rpc.ftp.ProgressData.total_bytes', index=1,
       number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -918,6 +957,7 @@ _FTPRESULT = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='result', full_name='mavsdk.rpc.ftp.FtpResult.result', index=0,
@@ -925,14 +965,14 @@ _FTPRESULT = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='result_str', full_name='mavsdk.rpc.ftp.FtpResult.result_str', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1184,6 +1224,7 @@ _FTPSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
+  create_key=_descriptor._internal_create_key,
   serialized_start=2057,
   serialized_end=3239,
   methods=[
@@ -1195,6 +1236,7 @@ _FTPSERVICE = _descriptor.ServiceDescriptor(
     input_type=_RESETREQUEST,
     output_type=_RESETRESPONSE,
     serialized_options=b'\200\265\030\000',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeDownload',
@@ -1204,6 +1246,7 @@ _FTPSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEDOWNLOADREQUEST,
     output_type=_DOWNLOADRESPONSE,
     serialized_options=b'\200\265\030\000\210\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SubscribeUpload',
@@ -1213,6 +1256,7 @@ _FTPSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SUBSCRIBEUPLOADREQUEST,
     output_type=_UPLOADRESPONSE,
     serialized_options=b'\200\265\030\000\210\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='ListDirectory',
@@ -1222,6 +1266,7 @@ _FTPSERVICE = _descriptor.ServiceDescriptor(
     input_type=_LISTDIRECTORYREQUEST,
     output_type=_LISTDIRECTORYRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='CreateDirectory',
@@ -1231,6 +1276,7 @@ _FTPSERVICE = _descriptor.ServiceDescriptor(
     input_type=_CREATEDIRECTORYREQUEST,
     output_type=_CREATEDIRECTORYRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='RemoveDirectory',
@@ -1240,6 +1286,7 @@ _FTPSERVICE = _descriptor.ServiceDescriptor(
     input_type=_REMOVEDIRECTORYREQUEST,
     output_type=_REMOVEDIRECTORYRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='RemoveFile',
@@ -1249,6 +1296,7 @@ _FTPSERVICE = _descriptor.ServiceDescriptor(
     input_type=_REMOVEFILEREQUEST,
     output_type=_REMOVEFILERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='Rename',
@@ -1258,6 +1306,7 @@ _FTPSERVICE = _descriptor.ServiceDescriptor(
     input_type=_RENAMEREQUEST,
     output_type=_RENAMERESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='AreFilesIdentical',
@@ -1267,6 +1316,7 @@ _FTPSERVICE = _descriptor.ServiceDescriptor(
     input_type=_AREFILESIDENTICALREQUEST,
     output_type=_AREFILESIDENTICALRESPONSE,
     serialized_options=None,
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetRootDirectory',
@@ -1276,6 +1326,7 @@ _FTPSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETROOTDIRECTORYREQUEST,
     output_type=_SETROOTDIRECTORYRESPONSE,
     serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='SetTargetCompid',
@@ -1285,6 +1336,7 @@ _FTPSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SETTARGETCOMPIDREQUEST,
     output_type=_SETTARGETCOMPIDRESPONSE,
     serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='GetOurCompid',
@@ -1294,6 +1346,7 @@ _FTPSERVICE = _descriptor.ServiceDescriptor(
     input_type=_GETOURCOMPIDREQUEST,
     output_type=_GETOURCOMPIDRESPONSE,
     serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_FTPSERVICE)

@@ -231,39 +231,79 @@ class StatusTextType(Enum):
 
      Values
      ------
+     DEBUG
+          Debug
+
      INFO
-          Information or other
+          Information
+
+     NOTICE
+          Notice
 
      WARNING
           Warning
 
+     ERROR
+          Error
+
      CRITICAL
           Critical
+
+     ALERT
+          Alert
+
+     EMERGENCY
+          Emergency
 
      """
 
     
-    INFO = 0
-    WARNING = 1
-    CRITICAL = 2
+    DEBUG = 0
+    INFO = 1
+    NOTICE = 2
+    WARNING = 3
+    ERROR = 4
+    CRITICAL = 5
+    ALERT = 6
+    EMERGENCY = 7
 
     def translate_to_rpc(self):
+        if self == StatusTextType.DEBUG:
+            return telemetry_pb2.STATUS_TEXT_TYPE_DEBUG
         if self == StatusTextType.INFO:
             return telemetry_pb2.STATUS_TEXT_TYPE_INFO
+        if self == StatusTextType.NOTICE:
+            return telemetry_pb2.STATUS_TEXT_TYPE_NOTICE
         if self == StatusTextType.WARNING:
             return telemetry_pb2.STATUS_TEXT_TYPE_WARNING
+        if self == StatusTextType.ERROR:
+            return telemetry_pb2.STATUS_TEXT_TYPE_ERROR
         if self == StatusTextType.CRITICAL:
             return telemetry_pb2.STATUS_TEXT_TYPE_CRITICAL
+        if self == StatusTextType.ALERT:
+            return telemetry_pb2.STATUS_TEXT_TYPE_ALERT
+        if self == StatusTextType.EMERGENCY:
+            return telemetry_pb2.STATUS_TEXT_TYPE_EMERGENCY
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
+        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_DEBUG:
+            return StatusTextType.DEBUG
         if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_INFO:
             return StatusTextType.INFO
+        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_NOTICE:
+            return StatusTextType.NOTICE
         if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_WARNING:
             return StatusTextType.WARNING
+        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_ERROR:
+            return StatusTextType.ERROR
         if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_CRITICAL:
             return StatusTextType.CRITICAL
+        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_ALERT:
+            return StatusTextType.ALERT
+        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_EMERGENCY:
+            return StatusTextType.EMERGENCY
 
     def __str__(self):
         return self.name
