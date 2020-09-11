@@ -6,6 +6,7 @@ from . import action
 from . import calibration
 from . import camera
 from . import core
+from . import failure
 from . import follow_me
 from . import ftp
 from . import geofence
@@ -77,6 +78,7 @@ class System:
         self._plugins["calibration"] = calibration.Calibration(plugin_manager)
         self._plugins["camera"] = camera.Camera(plugin_manager)
         self._plugins["core"] = core.Core(plugin_manager)
+        self._plugins["failue"] = core.Failure(plugin_manager)
         self._plugins["follow_me"] = follow_me.FollowMe(plugin_manager)
         self._plugins["ftp"] = ftp.Ftp(plugin_manager)
         self._plugins["geofence"] = geofence.Geofence(plugin_manager)
@@ -122,6 +124,12 @@ class System:
             raise RuntimeError(self.error_uninitialized("Core"))
         return self._plugins["core"]
 
+    @property
+    def failure(self) -> failure.Failure:
+        if "failure" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("Failure"))
+        return self._plugins["failure"]
+    
     @property
     def follow_me(self) -> follow_me.FollowMe:
         if "follow_me" not in self._plugins:
