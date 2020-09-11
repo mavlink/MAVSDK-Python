@@ -78,7 +78,7 @@ class System:
         self._plugins["calibration"] = calibration.Calibration(plugin_manager)
         self._plugins["camera"] = camera.Camera(plugin_manager)
         self._plugins["core"] = core.Core(plugin_manager)
-        self._plugins["failue"] = core.Failure(plugin_manager)
+        self._plugins["failue"] = failure.Failure(plugin_manager)
         self._plugins["follow_me"] = follow_me.FollowMe(plugin_manager)
         self._plugins["ftp"] = ftp.Ftp(plugin_manager)
         self._plugins["geofence"] = geofence.Geofence(plugin_manager)
