@@ -1,8 +1,17 @@
 #! /usr/bin/env python3
 
-# This example shows how to use the manual controls plugin. Manual inputs are taken from a test set, but the use of a joystick can be implemented using third party extensions.
+"""
+This example shows how to use the manual controls plugin.
 
-import asyncio, random
+Note: Manual inputs are taken from a test set in this example to decrease complexity. Manual inputs
+can be received from devices such as a joystick using third-party python extensions
+
+Note: Taking off the drone is not necessary before enabling manual inputs. It is acceptable to send
+positive throttle input to leave the ground. Takeoff is used in this example to decrease complexity
+"""
+
+import asyncio
+import random
 from mavsdk import System
 
 # Test set of manual inputs. Format: [roll, pitch, throttle, yaw]
@@ -20,6 +29,7 @@ manual_inputs = [
 
 
 async def manual_controls():
+    """Main function to connect to the drone and input manual controls"""
     # Connect to the Simulation
     drone = System()
     await drone.connect(system_address="udp://:14540")
@@ -45,7 +55,7 @@ async def manual_controls():
     print("-- Arming")
     await drone.action.arm()
 
-    # Takeoff the vehicle (Not a necessary command, but makes it easier to see manual controls working)
+    # Takeoff the vehicle
     print("-- Taking off")
     await drone.action.takeoff()
     await asyncio.sleep(5)
@@ -60,7 +70,8 @@ async def manual_controls():
     await drone.manual_control.start_position_control()
 
     while True:
-        # grabs a random input from the test list. WARNING - your simulation vehicle may crash if its unlucky enough
+        # grabs a random input from the test list
+        # WARNING - your simulation vehicle may crash if its unlucky enough
         input_index = random.randint(0, len(manual_inputs) - 1)
         input_list = manual_inputs[input_index]
 
@@ -68,7 +79,7 @@ async def manual_controls():
         roll = float(input_list[0])
         # get current state of pitch axis (between -1 and 1)
         pitch = float(input_list[1])
-        # get current state of throttle axis (between -1 and 1, but between 0 and 1 is expected right now)
+        # get current state of throttle axis (between -1 and 1, but between 0 and 1 is expected)
         throttle = float(input_list[2])
         # get current state of yaw axis (between -1 and 1)
         yaw = float(input_list[3])
