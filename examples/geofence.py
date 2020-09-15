@@ -11,6 +11,7 @@ Note: The behavior when your vehicle hits the geofence is NOT configured in this
 
 """
 
+
 async def run():
 
     # Connect to the Simulation
@@ -47,6 +48,7 @@ async def run():
     await drone.geofence.upload_geofence([polygon])
 
     print("Geofence uploaded!")
+
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
