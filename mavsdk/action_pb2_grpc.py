@@ -45,6 +45,11 @@ class ActionServiceStub(object):
                 request_serializer=action_dot_action__pb2.ShutdownRequest.SerializeToString,
                 response_deserializer=action_dot_action__pb2.ShutdownResponse.FromString,
                 )
+        self.Terminate = channel.unary_unary(
+                '/mavsdk.rpc.action.ActionService/Terminate',
+                request_serializer=action_dot_action__pb2.TerminateRequest.SerializeToString,
+                response_deserializer=action_dot_action__pb2.TerminateResponse.FromString,
+                )
         self.Kill = channel.unary_unary(
                 '/mavsdk.rpc.action.ActionService/Kill',
                 request_serializer=action_dot_action__pb2.KillRequest.SerializeToString,
@@ -168,6 +173,16 @@ class ActionServiceServicer(object):
         This will shut down the autopilot, onboard computer, camera and gimbal.
         This command should only be used when the autopilot is disarmed and autopilots commonly
         reject it if they are not already ready to shut down.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Terminate(self, request, context):
+        """
+        Send command to terminate the drone.
+
+        This will run the terminate routine as configured on the drone (e.g. disarm and open the parachute).
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -313,6 +328,11 @@ def add_ActionServiceServicer_to_server(servicer, server):
                     servicer.Shutdown,
                     request_deserializer=action_dot_action__pb2.ShutdownRequest.FromString,
                     response_serializer=action_dot_action__pb2.ShutdownResponse.SerializeToString,
+            ),
+            'Terminate': grpc.unary_unary_rpc_method_handler(
+                    servicer.Terminate,
+                    request_deserializer=action_dot_action__pb2.TerminateRequest.FromString,
+                    response_serializer=action_dot_action__pb2.TerminateResponse.SerializeToString,
             ),
             'Kill': grpc.unary_unary_rpc_method_handler(
                     servicer.Kill,
@@ -473,6 +493,22 @@ class ActionService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.action.ActionService/Shutdown',
             action_dot_action__pb2.ShutdownRequest.SerializeToString,
             action_dot_action__pb2.ShutdownResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Terminate(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.action.ActionService/Terminate',
+            action_dot_action__pb2.TerminateRequest.SerializeToString,
+            action_dot_action__pb2.TerminateResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 

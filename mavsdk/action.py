@@ -368,6 +368,28 @@ class Action(AsyncBase):
             raise ActionError(result, "shutdown()")
         
 
+    async def terminate(self):
+        """
+         Send command to terminate the drone.
+
+         This will run the terminate routine as configured on the drone (e.g. disarm and open the parachute).
+
+         Raises
+         ------
+         ActionError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = action_pb2.TerminateRequest()
+        response = await self._stub.Terminate(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not ActionResult.Result.SUCCESS:
+            raise ActionError(result, "terminate()")
+        
+
     async def kill(self):
         """
          Send command to kill the drone.
