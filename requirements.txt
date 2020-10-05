@@ -1,4 +1,4 @@
-protobuf>=3.5.1
+protobuf>=3.13.0
 aiogrpc>=1.5
 grpcio>=1.11.0
 importlib_resources>=1.0.2;python_version<"3.7"
