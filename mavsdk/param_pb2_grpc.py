@@ -35,6 +35,11 @@ class ParamServiceStub(object):
                 request_serializer=param_dot_param__pb2.SetParamFloatRequest.SerializeToString,
                 response_deserializer=param_dot_param__pb2.SetParamFloatResponse.FromString,
                 )
+        self.GetAllParams = channel.unary_unary(
+                '/mavsdk.rpc.param.ParamService/GetAllParams',
+                request_serializer=param_dot_param__pb2.GetAllParamsRequest.SerializeToString,
+                response_deserializer=param_dot_param__pb2.GetAllParamsResponse.FromString,
+                )
 
 
 class ParamServiceServicer(object):
@@ -81,6 +86,14 @@ class ParamServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetAllParams(self, request, context):
+        """
+        Get all parameters.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ParamServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -103,6 +116,11 @@ def add_ParamServiceServicer_to_server(servicer, server):
                     servicer.SetParamFloat,
                     request_deserializer=param_dot_param__pb2.SetParamFloatRequest.FromString,
                     response_serializer=param_dot_param__pb2.SetParamFloatResponse.SerializeToString,
+            ),
+            'GetAllParams': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAllParams,
+                    request_deserializer=param_dot_param__pb2.GetAllParamsRequest.FromString,
+                    response_serializer=param_dot_param__pb2.GetAllParamsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -176,5 +194,21 @@ class ParamService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.param.ParamService/SetParamFloat',
             param_dot_param__pb2.SetParamFloatRequest.SerializeToString,
             param_dot_param__pb2.SetParamFloatResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAllParams(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.param.ParamService/GetAllParams',
+            param_dot_param__pb2.GetAllParamsRequest.SerializeToString,
+            param_dot_param__pb2.GetAllParamsResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

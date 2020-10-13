@@ -1870,6 +1870,96 @@ class Odometry:
         
 
 
+class DistanceSensor:
+    """
+     DistanceSensor message type.
+
+     Parameters
+     ----------
+     minimum_distance_m : float
+          Minimum distance the sensor can measure, NaN if unknown.
+
+     maximum_distance_m : float
+          Maximum distance the sensor can measure, NaN if unknown.
+
+     current_distance_m : float
+          Current distance reading, NaN if unknown.
+
+     """
+
+    
+
+    def __init__(
+            self,
+            minimum_distance_m,
+            maximum_distance_m,
+            current_distance_m):
+        """ Initializes the DistanceSensor object """
+        self.minimum_distance_m = minimum_distance_m
+        self.maximum_distance_m = maximum_distance_m
+        self.current_distance_m = current_distance_m
+
+    def __equals__(self, to_compare):
+        """ Checks if two DistanceSensor are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # DistanceSensor object
+            return \
+                (self.minimum_distance_m == to_compare.minimum_distance_m) and \
+                (self.maximum_distance_m == to_compare.maximum_distance_m) and \
+                (self.current_distance_m == to_compare.current_distance_m)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ DistanceSensor in string representation """
+        struct_repr = ", ".join([
+                "minimum_distance_m: " + str(self.minimum_distance_m),
+                "maximum_distance_m: " + str(self.maximum_distance_m),
+                "current_distance_m: " + str(self.current_distance_m)
+                ])
+
+        return f"DistanceSensor: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcDistanceSensor):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return DistanceSensor(
+                
+                rpcDistanceSensor.minimum_distance_m,
+                
+                
+                rpcDistanceSensor.maximum_distance_m,
+                
+                
+                rpcDistanceSensor.current_distance_m
+                )
+
+    def translate_to_rpc(self, rpcDistanceSensor):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcDistanceSensor.minimum_distance_m = self.minimum_distance_m
+            
+        
+        
+        
+            
+        rpcDistanceSensor.maximum_distance_m = self.maximum_distance_m
+            
+        
+        
+        
+            
+        rpcDistanceSensor.current_distance_m = self.current_distance_m
+            
+        
+        
+
+
 class PositionNed:
     """
      PositionNed message type.
@@ -3488,6 +3578,30 @@ class Telemetry(AsyncBase):
         finally:
             unix_epoch_time_stream.cancel()
 
+    async def distance_sensor(self):
+        """
+         Subscribe to 'Distance Sensor' updates.
+
+         Yields
+         -------
+         distance_sensor : DistanceSensor
+              The next Distance Sensor status
+
+         
+        """
+
+        request = telemetry_pb2.SubscribeDistanceSensorRequest()
+        distance_sensor_stream = self._stub.SubscribeDistanceSensor(request)
+
+        try:
+            async for response in distance_sensor_stream:
+                
+
+            
+                yield DistanceSensor.translate_from_rpc(response.distance_sensor)
+        finally:
+            distance_sensor_stream.cancel()
+
     async def set_rate_position(self, rate_hz):
         """
          Set rate to 'position' updates.
@@ -3954,4 +4068,30 @@ class Telemetry(AsyncBase):
 
         if result.result is not TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_unix_epoch_time()", rate_hz)
+        
+
+    async def set_rate_distance_sensor(self, rate_hz):
+        """
+         Set rate to 'Distance Sensor' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateDistanceSensorRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateDistanceSensor(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_distance_sensor()", rate_hz)
         
