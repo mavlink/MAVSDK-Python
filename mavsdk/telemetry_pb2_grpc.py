@@ -147,6 +147,11 @@ class TelemetryServiceStub(object):
                 request_serializer=telemetry_dot_telemetry__pb2.SubscribeUnixEpochTimeRequest.SerializeToString,
                 response_deserializer=telemetry_dot_telemetry__pb2.UnixEpochTimeResponse.FromString,
                 )
+        self.SubscribeDistanceSensor = channel.unary_stream(
+                '/mavsdk.rpc.telemetry.TelemetryService/SubscribeDistanceSensor',
+                request_serializer=telemetry_dot_telemetry__pb2.SubscribeDistanceSensorRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.DistanceSensorResponse.FromString,
+                )
         self.SetRatePosition = channel.unary_unary(
                 '/mavsdk.rpc.telemetry.TelemetryService/SetRatePosition',
                 request_serializer=telemetry_dot_telemetry__pb2.SetRatePositionRequest.SerializeToString,
@@ -236,6 +241,11 @@ class TelemetryServiceStub(object):
                 '/mavsdk.rpc.telemetry.TelemetryService/SetRateUnixEpochTime',
                 request_serializer=telemetry_dot_telemetry__pb2.SetRateUnixEpochTimeRequest.SerializeToString,
                 response_deserializer=telemetry_dot_telemetry__pb2.SetRateUnixEpochTimeResponse.FromString,
+                )
+        self.SetRateDistanceSensor = channel.unary_unary(
+                '/mavsdk.rpc.telemetry.TelemetryService/SetRateDistanceSensor',
+                request_serializer=telemetry_dot_telemetry__pb2.SetRateDistanceSensorRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.SetRateDistanceSensorResponse.FromString,
                 )
 
 
@@ -427,6 +437,13 @@ class TelemetryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SubscribeDistanceSensor(self, request, context):
+        """Subscribe to 'Distance Sensor' updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetRatePosition(self, request, context):
         """Set rate to 'position' updates.
         """
@@ -548,6 +565,13 @@ class TelemetryServiceServicer(object):
 
     def SetRateUnixEpochTime(self, request, context):
         """Set rate to 'unix epoch time' updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetRateDistanceSensor(self, request, context):
+        """Set rate to 'Distance Sensor' updates.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -686,6 +710,11 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     request_deserializer=telemetry_dot_telemetry__pb2.SubscribeUnixEpochTimeRequest.FromString,
                     response_serializer=telemetry_dot_telemetry__pb2.UnixEpochTimeResponse.SerializeToString,
             ),
+            'SubscribeDistanceSensor': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeDistanceSensor,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SubscribeDistanceSensorRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.DistanceSensorResponse.SerializeToString,
+            ),
             'SetRatePosition': grpc.unary_unary_rpc_method_handler(
                     servicer.SetRatePosition,
                     request_deserializer=telemetry_dot_telemetry__pb2.SetRatePositionRequest.FromString,
@@ -775,6 +804,11 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     servicer.SetRateUnixEpochTime,
                     request_deserializer=telemetry_dot_telemetry__pb2.SetRateUnixEpochTimeRequest.FromString,
                     response_serializer=telemetry_dot_telemetry__pb2.SetRateUnixEpochTimeResponse.SerializeToString,
+            ),
+            'SetRateDistanceSensor': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetRateDistanceSensor,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SetRateDistanceSensorRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.SetRateDistanceSensorResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1206,6 +1240,22 @@ class TelemetryService(object):
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def SubscribeDistanceSensor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SubscribeDistanceSensor',
+            telemetry_dot_telemetry__pb2.SubscribeDistanceSensorRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.DistanceSensorResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def SetRatePosition(request,
             target,
             options=(),
@@ -1490,5 +1540,21 @@ class TelemetryService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SetRateUnixEpochTime',
             telemetry_dot_telemetry__pb2.SetRateUnixEpochTimeRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateUnixEpochTimeResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetRateDistanceSensor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SetRateDistanceSensor',
+            telemetry_dot_telemetry__pb2.SetRateDistanceSensorRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.SetRateDistanceSensorResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
