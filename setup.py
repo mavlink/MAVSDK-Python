@@ -55,7 +55,7 @@ class custom_build(build):
         """
         if sys.platform.startswith('linux') and platform.machine() == "x86_64":
             return 'musl_x86_64'
-        elif sys.platform.startswith('linux') and platform.machine() == "armv6":
+        elif sys.platform.startswith('linux') and platform.machine() == "armv6l":
             return 'musl_armv6'
         elif sys.platform.startswith('linux') and platform.machine() == "armv7l":
             return 'musl_armv7'
