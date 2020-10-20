@@ -126,6 +126,7 @@ class InfoService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -134,7 +135,7 @@ class InfoService(object):
             info_dot_info__pb2.GetFlightInformationRequest.SerializeToString,
             info_dot_info__pb2.GetFlightInformationResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetIdentification(request,
@@ -142,6 +143,7 @@ class InfoService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -150,7 +152,7 @@ class InfoService(object):
             info_dot_info__pb2.GetIdentificationRequest.SerializeToString,
             info_dot_info__pb2.GetIdentificationResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetProduct(request,
@@ -158,6 +160,7 @@ class InfoService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -166,7 +169,7 @@ class InfoService(object):
             info_dot_info__pb2.GetProductRequest.SerializeToString,
             info_dot_info__pb2.GetProductResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetVersion(request,
@@ -174,6 +177,7 @@ class InfoService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -182,7 +186,7 @@ class InfoService(object):
             info_dot_info__pb2.GetVersionRequest.SerializeToString,
             info_dot_info__pb2.GetVersionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetSpeedFactor(request,
@@ -190,6 +194,7 @@ class InfoService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -198,4 +203,4 @@ class InfoService(object):
             info_dot_info__pb2.GetSpeedFactorRequest.SerializeToString,
             info_dot_info__pb2.GetSpeedFactorResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

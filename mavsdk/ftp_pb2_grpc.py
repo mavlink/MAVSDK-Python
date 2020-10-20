@@ -260,6 +260,7 @@ class FtpService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -268,7 +269,7 @@ class FtpService(object):
             ftp_dot_ftp__pb2.ResetRequest.SerializeToString,
             ftp_dot_ftp__pb2.ResetResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeDownload(request,
@@ -276,6 +277,7 @@ class FtpService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -284,7 +286,7 @@ class FtpService(object):
             ftp_dot_ftp__pb2.SubscribeDownloadRequest.SerializeToString,
             ftp_dot_ftp__pb2.DownloadResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeUpload(request,
@@ -292,6 +294,7 @@ class FtpService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -300,7 +303,7 @@ class FtpService(object):
             ftp_dot_ftp__pb2.SubscribeUploadRequest.SerializeToString,
             ftp_dot_ftp__pb2.UploadResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def ListDirectory(request,
@@ -308,6 +311,7 @@ class FtpService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -316,7 +320,7 @@ class FtpService(object):
             ftp_dot_ftp__pb2.ListDirectoryRequest.SerializeToString,
             ftp_dot_ftp__pb2.ListDirectoryResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def CreateDirectory(request,
@@ -324,6 +328,7 @@ class FtpService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -332,7 +337,7 @@ class FtpService(object):
             ftp_dot_ftp__pb2.CreateDirectoryRequest.SerializeToString,
             ftp_dot_ftp__pb2.CreateDirectoryResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def RemoveDirectory(request,
@@ -340,6 +345,7 @@ class FtpService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -348,7 +354,7 @@ class FtpService(object):
             ftp_dot_ftp__pb2.RemoveDirectoryRequest.SerializeToString,
             ftp_dot_ftp__pb2.RemoveDirectoryResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def RemoveFile(request,
@@ -356,6 +362,7 @@ class FtpService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -364,7 +371,7 @@ class FtpService(object):
             ftp_dot_ftp__pb2.RemoveFileRequest.SerializeToString,
             ftp_dot_ftp__pb2.RemoveFileResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Rename(request,
@@ -372,6 +379,7 @@ class FtpService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -380,7 +388,7 @@ class FtpService(object):
             ftp_dot_ftp__pb2.RenameRequest.SerializeToString,
             ftp_dot_ftp__pb2.RenameResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def AreFilesIdentical(request,
@@ -388,6 +396,7 @@ class FtpService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -396,7 +405,7 @@ class FtpService(object):
             ftp_dot_ftp__pb2.AreFilesIdenticalRequest.SerializeToString,
             ftp_dot_ftp__pb2.AreFilesIdenticalResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRootDirectory(request,
@@ -404,6 +413,7 @@ class FtpService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -412,7 +422,7 @@ class FtpService(object):
             ftp_dot_ftp__pb2.SetRootDirectoryRequest.SerializeToString,
             ftp_dot_ftp__pb2.SetRootDirectoryResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetTargetCompid(request,
@@ -420,6 +430,7 @@ class FtpService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -428,7 +439,7 @@ class FtpService(object):
             ftp_dot_ftp__pb2.SetTargetCompidRequest.SerializeToString,
             ftp_dot_ftp__pb2.SetTargetCompidResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetOurCompid(request,
@@ -436,6 +447,7 @@ class FtpService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -444,4 +456,4 @@ class FtpService(object):
             ftp_dot_ftp__pb2.GetOurCompidRequest.SerializeToString,
             ftp_dot_ftp__pb2.GetOurCompidResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

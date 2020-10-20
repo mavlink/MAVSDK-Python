@@ -104,6 +104,7 @@ class ManualControlService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -112,7 +113,7 @@ class ManualControlService(object):
             manual__control_dot_manual__control__pb2.StartPositionControlRequest.SerializeToString,
             manual__control_dot_manual__control__pb2.StartPositionControlResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def StartAltitudeControl(request,
@@ -120,6 +121,7 @@ class ManualControlService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -128,7 +130,7 @@ class ManualControlService(object):
             manual__control_dot_manual__control__pb2.StartAltitudeControlRequest.SerializeToString,
             manual__control_dot_manual__control__pb2.StartAltitudeControlResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetManualControlInput(request,
@@ -136,6 +138,7 @@ class ManualControlService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -144,4 +147,4 @@ class ManualControlService(object):
             manual__control_dot_manual__control__pb2.SetManualControlInputRequest.SerializeToString,
             manual__control_dot_manual__control__pb2.SetManualControlInputResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -101,6 +101,7 @@ class MocapService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -109,7 +110,7 @@ class MocapService(object):
             mocap_dot_mocap__pb2.SetVisionPositionEstimateRequest.SerializeToString,
             mocap_dot_mocap__pb2.SetVisionPositionEstimateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetAttitudePositionMocap(request,
@@ -117,6 +118,7 @@ class MocapService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -125,7 +127,7 @@ class MocapService(object):
             mocap_dot_mocap__pb2.SetAttitudePositionMocapRequest.SerializeToString,
             mocap_dot_mocap__pb2.SetAttitudePositionMocapResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetOdometry(request,
@@ -133,6 +135,7 @@ class MocapService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -141,4 +144,4 @@ class MocapService(object):
             mocap_dot_mocap__pb2.SetOdometryRequest.SerializeToString,
             mocap_dot_mocap__pb2.SetOdometryResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -235,6 +235,7 @@ class OffboardService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -243,7 +244,7 @@ class OffboardService(object):
             offboard_dot_offboard__pb2.StartRequest.SerializeToString,
             offboard_dot_offboard__pb2.StartResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Stop(request,
@@ -251,6 +252,7 @@ class OffboardService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -259,7 +261,7 @@ class OffboardService(object):
             offboard_dot_offboard__pb2.StopRequest.SerializeToString,
             offboard_dot_offboard__pb2.StopResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def IsActive(request,
@@ -267,6 +269,7 @@ class OffboardService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -275,7 +278,7 @@ class OffboardService(object):
             offboard_dot_offboard__pb2.IsActiveRequest.SerializeToString,
             offboard_dot_offboard__pb2.IsActiveResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetAttitude(request,
@@ -283,6 +286,7 @@ class OffboardService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -291,7 +295,7 @@ class OffboardService(object):
             offboard_dot_offboard__pb2.SetAttitudeRequest.SerializeToString,
             offboard_dot_offboard__pb2.SetAttitudeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetActuatorControl(request,
@@ -299,6 +303,7 @@ class OffboardService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -307,7 +312,7 @@ class OffboardService(object):
             offboard_dot_offboard__pb2.SetActuatorControlRequest.SerializeToString,
             offboard_dot_offboard__pb2.SetActuatorControlResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetAttitudeRate(request,
@@ -315,6 +320,7 @@ class OffboardService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -323,7 +329,7 @@ class OffboardService(object):
             offboard_dot_offboard__pb2.SetAttitudeRateRequest.SerializeToString,
             offboard_dot_offboard__pb2.SetAttitudeRateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetPositionNed(request,
@@ -331,6 +337,7 @@ class OffboardService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -339,7 +346,7 @@ class OffboardService(object):
             offboard_dot_offboard__pb2.SetPositionNedRequest.SerializeToString,
             offboard_dot_offboard__pb2.SetPositionNedResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetVelocityBody(request,
@@ -347,6 +354,7 @@ class OffboardService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -355,7 +363,7 @@ class OffboardService(object):
             offboard_dot_offboard__pb2.SetVelocityBodyRequest.SerializeToString,
             offboard_dot_offboard__pb2.SetVelocityBodyResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetVelocityNed(request,
@@ -363,6 +371,7 @@ class OffboardService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -371,4 +380,4 @@ class OffboardService(object):
             offboard_dot_offboard__pb2.SetVelocityNedRequest.SerializeToString,
             offboard_dot_offboard__pb2.SetVelocityNedResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

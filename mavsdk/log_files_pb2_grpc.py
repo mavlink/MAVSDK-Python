@@ -78,6 +78,7 @@ class LogFilesService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -86,7 +87,7 @@ class LogFilesService(object):
             log__files_dot_log__files__pb2.GetEntriesRequest.SerializeToString,
             log__files_dot_log__files__pb2.GetEntriesResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeDownloadLogFile(request,
@@ -94,6 +95,7 @@ class LogFilesService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -102,4 +104,4 @@ class LogFilesService(object):
             log__files_dot_log__files__pb2.SubscribeDownloadLogFileRequest.SerializeToString,
             log__files_dot_log__files__pb2.DownloadLogFileResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

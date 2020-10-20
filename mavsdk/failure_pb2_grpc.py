@@ -58,6 +58,7 @@ class FailureService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -66,4 +67,4 @@ class FailureService(object):
             failure_dot_failure__pb2.InjectRequest.SerializeToString,
             failure_dot_failure__pb2.InjectResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

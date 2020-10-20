@@ -75,6 +75,7 @@ class CoreService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -83,7 +84,7 @@ class CoreService(object):
             core_dot_core__pb2.SubscribeConnectionStateRequest.SerializeToString,
             core_dot_core__pb2.ConnectionStateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def ListRunningPlugins(request,
@@ -91,6 +92,7 @@ class CoreService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -99,4 +101,4 @@ class CoreService(object):
             core_dot_core__pb2.ListRunningPluginsRequest.SerializeToString,
             core_dot_core__pb2.ListRunningPluginsResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -110,6 +110,7 @@ class GimbalService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -118,7 +119,7 @@ class GimbalService(object):
             gimbal_dot_gimbal__pb2.SetPitchAndYawRequest.SerializeToString,
             gimbal_dot_gimbal__pb2.SetPitchAndYawResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetMode(request,
@@ -126,6 +127,7 @@ class GimbalService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -134,7 +136,7 @@ class GimbalService(object):
             gimbal_dot_gimbal__pb2.SetModeRequest.SerializeToString,
             gimbal_dot_gimbal__pb2.SetModeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRoiLocation(request,
@@ -142,6 +144,7 @@ class GimbalService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -150,4 +153,4 @@ class GimbalService(object):
             gimbal_dot_gimbal__pb2.SetRoiLocationRequest.SerializeToString,
             gimbal_dot_gimbal__pb2.SetRoiLocationResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

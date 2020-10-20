@@ -239,6 +239,7 @@ class MissionRawService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -247,7 +248,7 @@ class MissionRawService(object):
             mission__raw_dot_mission__raw__pb2.UploadMissionRequest.SerializeToString,
             mission__raw_dot_mission__raw__pb2.UploadMissionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def CancelMissionUpload(request,
@@ -255,6 +256,7 @@ class MissionRawService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -263,7 +265,7 @@ class MissionRawService(object):
             mission__raw_dot_mission__raw__pb2.CancelMissionUploadRequest.SerializeToString,
             mission__raw_dot_mission__raw__pb2.CancelMissionUploadResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def DownloadMission(request,
@@ -271,6 +273,7 @@ class MissionRawService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -279,7 +282,7 @@ class MissionRawService(object):
             mission__raw_dot_mission__raw__pb2.DownloadMissionRequest.SerializeToString,
             mission__raw_dot_mission__raw__pb2.DownloadMissionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def CancelMissionDownload(request,
@@ -287,6 +290,7 @@ class MissionRawService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -295,7 +299,7 @@ class MissionRawService(object):
             mission__raw_dot_mission__raw__pb2.CancelMissionDownloadRequest.SerializeToString,
             mission__raw_dot_mission__raw__pb2.CancelMissionDownloadResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def StartMission(request,
@@ -303,6 +307,7 @@ class MissionRawService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -311,7 +316,7 @@ class MissionRawService(object):
             mission__raw_dot_mission__raw__pb2.StartMissionRequest.SerializeToString,
             mission__raw_dot_mission__raw__pb2.StartMissionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def PauseMission(request,
@@ -319,6 +324,7 @@ class MissionRawService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -327,7 +333,7 @@ class MissionRawService(object):
             mission__raw_dot_mission__raw__pb2.PauseMissionRequest.SerializeToString,
             mission__raw_dot_mission__raw__pb2.PauseMissionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def ClearMission(request,
@@ -335,6 +341,7 @@ class MissionRawService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -343,7 +350,7 @@ class MissionRawService(object):
             mission__raw_dot_mission__raw__pb2.ClearMissionRequest.SerializeToString,
             mission__raw_dot_mission__raw__pb2.ClearMissionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetCurrentMissionItem(request,
@@ -351,6 +358,7 @@ class MissionRawService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -359,7 +367,7 @@ class MissionRawService(object):
             mission__raw_dot_mission__raw__pb2.SetCurrentMissionItemRequest.SerializeToString,
             mission__raw_dot_mission__raw__pb2.SetCurrentMissionItemResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeMissionProgress(request,
@@ -367,6 +375,7 @@ class MissionRawService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -375,7 +384,7 @@ class MissionRawService(object):
             mission__raw_dot_mission__raw__pb2.SubscribeMissionProgressRequest.SerializeToString,
             mission__raw_dot_mission__raw__pb2.MissionProgressResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeMissionChanged(request,
@@ -383,6 +392,7 @@ class MissionRawService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -391,4 +401,4 @@ class MissionRawService(object):
             mission__raw_dot_mission__raw__pb2.SubscribeMissionChangedRequest.SerializeToString,
             mission__raw_dot_mission__raw__pb2.MissionChangedResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
