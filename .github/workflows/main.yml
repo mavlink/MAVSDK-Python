@@ -31,7 +31,7 @@ jobs:
       - name: Install prerequisites
         run: |
           pip3 install -r requirements.txt -r requirements-dev.txt
-          pip3 install auditwheel
+          pip3 install auditwheel twine
 
       - name: Create wheel
         run: |
@@ -77,6 +77,7 @@ jobs:
       - name: Install prerequisites
         run: |
           pip3 install -r requirements.txt -r requirements-dev.txt
+          pip3 install twine
 
       - name: Create wheel
         run: |
