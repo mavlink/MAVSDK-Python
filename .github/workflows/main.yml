@@ -48,9 +48,11 @@ jobs:
         env:
           TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+          TWINE_NON_INTERACTIVE: 1
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          TWINE_NON_INTERACTIVE=1 twine upload wheelhouse/*.whl
+          export PATH=$PATH:$HOME/.local/bin
+          twine upload wheelhouse/*.whl
 
   ubuntu20-other:
     name: Ubuntu 20.04 ${{ matrix.arch }}
@@ -96,9 +98,11 @@ jobs:
         env:
           TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+          TWINE_NON_INTERACTIVE: 1
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          TWINE_NON_INTERACTIVE=1 twine upload dist/*.whl
+          export PATH=$PATH:$HOME/.local/bin
+          twine upload dist/*.whl
 
   macOS:
     name: macOS
@@ -133,9 +137,11 @@ jobs:
         env:
           TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+          TWINE_NON_INTERACTIVE: 1
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          TWINE_NON_INTERACTIVE=1 twine upload wheelhouse/*.whl
+          export PATH=$PATH:$HOME/.local/bin
+          twine upload wheelhouse/*.whl
 
   Windows:
     name: Windows (${{ matrix.arch }})
@@ -184,6 +190,8 @@ jobs:
         env:
           TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+          TWINE_NON_INTERACTIVE: 1
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          TWINE_NON_INTERACTIVE=1 twine upload dist/*.whl
+          export PATH=$PATH:$HOME/.local/bin
+          twine upload dist/*.whl
