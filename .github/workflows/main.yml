@@ -1,0 +1,177 @@
+name: PyPi Upload
+
+on:
+  push:
+    branches:
+    - 'master'
+    - 'develop'
+    tags:
+    - 'v*'
+  pull_request:
+    branches:
+    - '*'
+
+jobs:
+  ubuntu20:
+    name: Ubuntu 20.04 x86_64
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: recursive
+
+      - name: Get tags
+        run: |
+         git fetch --tags
+         echo $?
+         git tag --list
+
+      - name: Install patchelf
+        run: sudo apt-get install -y patchelf python3-pip
+
+      - name: Install prerequisites
+        run: |
+          pip3 install -r requirements.txt -r requirements-dev.txt
+          pip3 install auditwheel
+
+      - name: Create wheel
+        run: |
+          python3 setup.py bdist_wheel
+          mkdir wheelhouse
+          export PATH=$PATH:$HOME/.local/bin
+          auditwheel repair --plat manylinux2014_x86_64 dist/*.whl
+
+      - name: Check the artifacts
+        run: |
+          ls -lh "wheelhouse/"
+
+      - name: Upload to PyPi
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          TWINE_NON_INTERACTIVE=1 twine upload wheelhouse/*.whl
+
+  ubuntu20-other:
+    name: Ubuntu 20.04 ${{ matrix.arch }}
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        include:
+          - arch: armv6l
+          - arch: armv7l
+          - arch: aarch64
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: recursive
+
+      - name: Get tags
+        run: |
+         git fetch --tags
+         echo $?
+         git tag --list
+
+      - name: Install patchelf
+        run: sudo apt-get install -y patchelf python3-pip
+
+      - name: Install prerequisites
+        run: |
+          pip3 install -r requirements.txt -r requirements-dev.txt
+
+      - name: Create wheel
+        run: |
+          export MAVSDK_SERVER_ARCH=${{ matrix.arch }}
+          python3 setup.py bdist_wheel
+          ls dist/*any.whl | sed -e 'p;s/any/linux_${{ matrix.arch }}/' | xargs -n2 mv
+
+      - name: Check the artifacts
+        run: |
+          ls -lh "dist/"
+
+      - name: Upload to PyPi
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          TWINE_NON_INTERACTIVE=1 twine upload dist/*.whl
+
+  macOS:
+    name: macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: recursive
+
+      - name: Get tags
+        run: |
+         git fetch --tags
+         echo $?
+         git tag --list
+
+      - name: Install prerequisites
+        run: |
+          pip3 install -r requirements.txt -r requirements-dev.txt
+          pip3 install delocate twine
+
+      - name: Create wheel
+        run: |
+          python3 setup.py bdist_wheel
+          delocate-wheel -w wheelhouse -v dist/*.whl
+          ls wheelhouse/*any.whl | sed -e 'p;s/any/macosx_10_9_x86_64/' | xargs -n2 mv
+
+      - name: Check the artifacts
+        run: |
+          ls -lh "wheelhouse/"
+
+      - name: Upload to PyPi
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          TWINE_NON_INTERACTIVE=1 twine upload wheelhouse/*.whl
+
+  Windows:
+    name: Windows (${{ matrix.arch }})
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        include:
+          - arch: x86
+            wheel_arch: win32
+          - arch: x64
+            wheel_arch: win_amd64
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: recursive
+
+      - name: Get tags
+        run: |
+         git fetch --tags
+         echo $?
+         git tag --list
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+          architecture: ${{ matrix.arch }}
+
+      - name: Install prerequisites
+        run: |
+          pip3 install -r requirements.txt -r requirements-dev.txt
+          pip3 install twine wheel
+
+      - name: Create wheel
+        run: |
+          python setup.py bdist_wheel
+          Dir "dist/" | rename-item -NewName {$_.name -replace '-any.whl','-${{ matrix.wheel_arch }}.whl'}
+
+      - name: Check the artifacts
+        run: |
+          ls "dist/"
+
+      - name: Upload to PyPi
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          TWINE_NON_INTERACTIVE=1 twine upload dist/*.whl

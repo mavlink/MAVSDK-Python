@@ -6,7 +6,6 @@ from os import path, getcwd
 
 import urllib.request
 import os
-import platform
 import stat
 import sys
 import subprocess
@@ -53,14 +52,18 @@ class custom_build(build):
         """
         Trying to detect the platform to know which `mavsdk_server` executable to download
         """
-        if sys.platform.startswith('linux') and platform.machine() == "x86_64":
+        if sys.platform.startswith('linux') and 'MAVSDK_SERVER_ARCH' in os.environ:
+            if os.environ['MAVSDK_SERVER_ARCH'] == "armv6l":
+                return 'musl_armv6'
+            elif os.environ['MAVSDK_SERVER_ARCH'] == "armv7l":
+                return 'musl_armv7'
+            elif os.environ['MAVSDK_SERVER_ARCH'] == "aarch64":
+                return 'musl_aarch64'
+            else:
+                raise NotImplementedError(
+                    f"Error: unknown MAVSDK_SERVER_ARCH: {os.environ['MAVSDK_SERVER_ARCH']}")
+        elif sys.platform.startswith('linux'):
             return 'musl_x86_64'
-        elif sys.platform.startswith('linux') and platform.machine() == "armv6l":
-            return 'musl_armv6'
-        elif sys.platform.startswith('linux') and platform.machine() == "armv7l":
-            return 'musl_armv7'
-        elif sys.platform.startswith('linux') and platform.machine() == "aarch64":
-            return 'musl_aarch64'
         elif sys.platform.startswith('darwin'):
             return 'macos'
         elif sys.platform.startswith('win'):
