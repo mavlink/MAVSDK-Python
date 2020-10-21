@@ -45,6 +45,9 @@ jobs:
           ls -lh "wheelhouse/"
 
       - name: Upload to PyPi
+        env:
+          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           TWINE_NON_INTERACTIVE=1 twine upload wheelhouse/*.whl
@@ -90,6 +93,9 @@ jobs:
           ls -lh "dist/"
 
       - name: Upload to PyPi
+        env:
+          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           TWINE_NON_INTERACTIVE=1 twine upload dist/*.whl
@@ -124,6 +130,9 @@ jobs:
           ls -lh "wheelhouse/"
 
       - name: Upload to PyPi
+        env:
+          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           TWINE_NON_INTERACTIVE=1 twine upload wheelhouse/*.whl
@@ -172,6 +181,9 @@ jobs:
           ls "dist/"
 
       - name: Upload to PyPi
+        env:
+          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           TWINE_NON_INTERACTIVE=1 twine upload dist/*.whl
