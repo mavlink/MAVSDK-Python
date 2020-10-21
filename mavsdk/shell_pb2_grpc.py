@@ -82,6 +82,7 @@ class ShellService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -90,7 +91,7 @@ class ShellService(object):
             shell_dot_shell__pb2.SendRequest.SerializeToString,
             shell_dot_shell__pb2.SendResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeReceive(request,
@@ -98,6 +99,7 @@ class ShellService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -106,4 +108,4 @@ class ShellService(object):
             shell_dot_shell__pb2.SubscribeReceiveRequest.SerializeToString,
             shell_dot_shell__pb2.ReceiveResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

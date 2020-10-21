@@ -1,6 +1,6 @@
 # MAVSDK-Python
 
-[![Build Status](https://travis-ci.org/mavlink/MAVSDK-Python.svg?branch=master)](https://travis-ci.org/mavlink/MAVSDK-Python)
+[![GitHub Actions Status](https://github.com/mavlink/MAVSDK-Python/workflows/PyPi Upload/badge.svg?branch=master)](https://github.com/mavlink/MAVSDK-Python/actions?query=branch%3Amaster)
 
 This is the Python wrapper for MAVSDK.
 

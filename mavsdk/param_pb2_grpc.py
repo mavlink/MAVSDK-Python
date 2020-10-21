@@ -139,6 +139,7 @@ class ParamService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -147,7 +148,7 @@ class ParamService(object):
             param_dot_param__pb2.GetParamIntRequest.SerializeToString,
             param_dot_param__pb2.GetParamIntResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetParamInt(request,
@@ -155,6 +156,7 @@ class ParamService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -163,7 +165,7 @@ class ParamService(object):
             param_dot_param__pb2.SetParamIntRequest.SerializeToString,
             param_dot_param__pb2.SetParamIntResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetParamFloat(request,
@@ -171,6 +173,7 @@ class ParamService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -179,7 +182,7 @@ class ParamService(object):
             param_dot_param__pb2.GetParamFloatRequest.SerializeToString,
             param_dot_param__pb2.GetParamFloatResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetParamFloat(request,
@@ -187,6 +190,7 @@ class ParamService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -195,7 +199,7 @@ class ParamService(object):
             param_dot_param__pb2.SetParamFloatRequest.SerializeToString,
             param_dot_param__pb2.SetParamFloatResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetAllParams(request,
@@ -203,6 +207,7 @@ class ParamService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -211,4 +216,4 @@ class ParamService(object):
             param_dot_param__pb2.GetAllParamsRequest.SerializeToString,
             param_dot_param__pb2.GetAllParamsResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

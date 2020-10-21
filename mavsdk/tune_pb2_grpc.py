@@ -58,6 +58,7 @@ class TuneService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -66,4 +67,4 @@ class TuneService(object):
             tune_dot_tune__pb2.PlayTuneRequest.SerializeToString,
             tune_dot_tune__pb2.PlayTuneResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

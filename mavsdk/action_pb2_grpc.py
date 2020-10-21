@@ -406,6 +406,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -414,7 +415,7 @@ class ActionService(object):
             action_dot_action__pb2.ArmRequest.SerializeToString,
             action_dot_action__pb2.ArmResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Disarm(request,
@@ -422,6 +423,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -430,7 +432,7 @@ class ActionService(object):
             action_dot_action__pb2.DisarmRequest.SerializeToString,
             action_dot_action__pb2.DisarmResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Takeoff(request,
@@ -438,6 +440,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -446,7 +449,7 @@ class ActionService(object):
             action_dot_action__pb2.TakeoffRequest.SerializeToString,
             action_dot_action__pb2.TakeoffResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Land(request,
@@ -454,6 +457,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -462,7 +466,7 @@ class ActionService(object):
             action_dot_action__pb2.LandRequest.SerializeToString,
             action_dot_action__pb2.LandResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Reboot(request,
@@ -470,6 +474,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -478,7 +483,7 @@ class ActionService(object):
             action_dot_action__pb2.RebootRequest.SerializeToString,
             action_dot_action__pb2.RebootResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Shutdown(request,
@@ -486,6 +491,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -494,7 +500,7 @@ class ActionService(object):
             action_dot_action__pb2.ShutdownRequest.SerializeToString,
             action_dot_action__pb2.ShutdownResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Terminate(request,
@@ -502,6 +508,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -510,7 +517,7 @@ class ActionService(object):
             action_dot_action__pb2.TerminateRequest.SerializeToString,
             action_dot_action__pb2.TerminateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Kill(request,
@@ -518,6 +525,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -526,7 +534,7 @@ class ActionService(object):
             action_dot_action__pb2.KillRequest.SerializeToString,
             action_dot_action__pb2.KillResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def ReturnToLaunch(request,
@@ -534,6 +542,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -542,7 +551,7 @@ class ActionService(object):
             action_dot_action__pb2.ReturnToLaunchRequest.SerializeToString,
             action_dot_action__pb2.ReturnToLaunchResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GotoLocation(request,
@@ -550,6 +559,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -558,7 +568,7 @@ class ActionService(object):
             action_dot_action__pb2.GotoLocationRequest.SerializeToString,
             action_dot_action__pb2.GotoLocationResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def TransitionToFixedwing(request,
@@ -566,6 +576,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -574,7 +585,7 @@ class ActionService(object):
             action_dot_action__pb2.TransitionToFixedwingRequest.SerializeToString,
             action_dot_action__pb2.TransitionToFixedwingResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def TransitionToMulticopter(request,
@@ -582,6 +593,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -590,7 +602,7 @@ class ActionService(object):
             action_dot_action__pb2.TransitionToMulticopterRequest.SerializeToString,
             action_dot_action__pb2.TransitionToMulticopterResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetTakeoffAltitude(request,
@@ -598,6 +610,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -606,7 +619,7 @@ class ActionService(object):
             action_dot_action__pb2.GetTakeoffAltitudeRequest.SerializeToString,
             action_dot_action__pb2.GetTakeoffAltitudeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetTakeoffAltitude(request,
@@ -614,6 +627,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -622,7 +636,7 @@ class ActionService(object):
             action_dot_action__pb2.SetTakeoffAltitudeRequest.SerializeToString,
             action_dot_action__pb2.SetTakeoffAltitudeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetMaximumSpeed(request,
@@ -630,6 +644,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -638,7 +653,7 @@ class ActionService(object):
             action_dot_action__pb2.GetMaximumSpeedRequest.SerializeToString,
             action_dot_action__pb2.GetMaximumSpeedResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetMaximumSpeed(request,
@@ -646,6 +661,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -654,7 +670,7 @@ class ActionService(object):
             action_dot_action__pb2.SetMaximumSpeedRequest.SerializeToString,
             action_dot_action__pb2.SetMaximumSpeedResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetReturnToLaunchAltitude(request,
@@ -662,6 +678,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -670,7 +687,7 @@ class ActionService(object):
             action_dot_action__pb2.GetReturnToLaunchAltitudeRequest.SerializeToString,
             action_dot_action__pb2.GetReturnToLaunchAltitudeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetReturnToLaunchAltitude(request,
@@ -678,6 +695,7 @@ class ActionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -686,4 +704,4 @@ class ActionService(object):
             action_dot_action__pb2.SetReturnToLaunchAltitudeRequest.SerializeToString,
             action_dot_action__pb2.SetReturnToLaunchAltitudeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

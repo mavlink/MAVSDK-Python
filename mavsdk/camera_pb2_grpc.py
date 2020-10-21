@@ -392,6 +392,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -400,7 +401,7 @@ class CameraService(object):
             camera_dot_camera__pb2.TakePhotoRequest.SerializeToString,
             camera_dot_camera__pb2.TakePhotoResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def StartPhotoInterval(request,
@@ -408,6 +409,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -416,7 +418,7 @@ class CameraService(object):
             camera_dot_camera__pb2.StartPhotoIntervalRequest.SerializeToString,
             camera_dot_camera__pb2.StartPhotoIntervalResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def StopPhotoInterval(request,
@@ -424,6 +426,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -432,7 +435,7 @@ class CameraService(object):
             camera_dot_camera__pb2.StopPhotoIntervalRequest.SerializeToString,
             camera_dot_camera__pb2.StopPhotoIntervalResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def StartVideo(request,
@@ -440,6 +443,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -448,7 +452,7 @@ class CameraService(object):
             camera_dot_camera__pb2.StartVideoRequest.SerializeToString,
             camera_dot_camera__pb2.StartVideoResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def StopVideo(request,
@@ -456,6 +460,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -464,7 +469,7 @@ class CameraService(object):
             camera_dot_camera__pb2.StopVideoRequest.SerializeToString,
             camera_dot_camera__pb2.StopVideoResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def StartVideoStreaming(request,
@@ -472,6 +477,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -480,7 +486,7 @@ class CameraService(object):
             camera_dot_camera__pb2.StartVideoStreamingRequest.SerializeToString,
             camera_dot_camera__pb2.StartVideoStreamingResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def StopVideoStreaming(request,
@@ -488,6 +494,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -496,7 +503,7 @@ class CameraService(object):
             camera_dot_camera__pb2.StopVideoStreamingRequest.SerializeToString,
             camera_dot_camera__pb2.StopVideoStreamingResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetMode(request,
@@ -504,6 +511,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -512,7 +520,7 @@ class CameraService(object):
             camera_dot_camera__pb2.SetModeRequest.SerializeToString,
             camera_dot_camera__pb2.SetModeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeMode(request,
@@ -520,6 +528,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -528,7 +537,7 @@ class CameraService(object):
             camera_dot_camera__pb2.SubscribeModeRequest.SerializeToString,
             camera_dot_camera__pb2.ModeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeInformation(request,
@@ -536,6 +545,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -544,7 +554,7 @@ class CameraService(object):
             camera_dot_camera__pb2.SubscribeInformationRequest.SerializeToString,
             camera_dot_camera__pb2.InformationResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeVideoStreamInfo(request,
@@ -552,6 +562,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -560,7 +571,7 @@ class CameraService(object):
             camera_dot_camera__pb2.SubscribeVideoStreamInfoRequest.SerializeToString,
             camera_dot_camera__pb2.VideoStreamInfoResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeCaptureInfo(request,
@@ -568,6 +579,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -576,7 +588,7 @@ class CameraService(object):
             camera_dot_camera__pb2.SubscribeCaptureInfoRequest.SerializeToString,
             camera_dot_camera__pb2.CaptureInfoResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeStatus(request,
@@ -584,6 +596,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -592,7 +605,7 @@ class CameraService(object):
             camera_dot_camera__pb2.SubscribeStatusRequest.SerializeToString,
             camera_dot_camera__pb2.StatusResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeCurrentSettings(request,
@@ -600,6 +613,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -608,7 +622,7 @@ class CameraService(object):
             camera_dot_camera__pb2.SubscribeCurrentSettingsRequest.SerializeToString,
             camera_dot_camera__pb2.CurrentSettingsResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribePossibleSettingOptions(request,
@@ -616,6 +630,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -624,7 +639,7 @@ class CameraService(object):
             camera_dot_camera__pb2.SubscribePossibleSettingOptionsRequest.SerializeToString,
             camera_dot_camera__pb2.PossibleSettingOptionsResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetSetting(request,
@@ -632,6 +647,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -640,7 +656,7 @@ class CameraService(object):
             camera_dot_camera__pb2.SetSettingRequest.SerializeToString,
             camera_dot_camera__pb2.SetSettingResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetSetting(request,
@@ -648,6 +664,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -656,7 +673,7 @@ class CameraService(object):
             camera_dot_camera__pb2.GetSettingRequest.SerializeToString,
             camera_dot_camera__pb2.GetSettingResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def FormatStorage(request,
@@ -664,6 +681,7 @@ class CameraService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -672,4 +690,4 @@ class CameraService(object):
             camera_dot_camera__pb2.FormatStorageRequest.SerializeToString,
             camera_dot_camera__pb2.FormatStorageResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -62,6 +62,7 @@ class GeofenceService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -70,4 +71,4 @@ class GeofenceService(object):
             geofence_dot_geofence__pb2.UploadGeofenceRequest.SerializeToString,
             geofence_dot_geofence__pb2.UploadGeofenceResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -143,6 +143,7 @@ class CalibrationService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -151,7 +152,7 @@ class CalibrationService(object):
             calibration_dot_calibration__pb2.SubscribeCalibrateGyroRequest.SerializeToString,
             calibration_dot_calibration__pb2.CalibrateGyroResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeCalibrateAccelerometer(request,
@@ -159,6 +160,7 @@ class CalibrationService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -167,7 +169,7 @@ class CalibrationService(object):
             calibration_dot_calibration__pb2.SubscribeCalibrateAccelerometerRequest.SerializeToString,
             calibration_dot_calibration__pb2.CalibrateAccelerometerResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeCalibrateMagnetometer(request,
@@ -175,6 +177,7 @@ class CalibrationService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -183,7 +186,7 @@ class CalibrationService(object):
             calibration_dot_calibration__pb2.SubscribeCalibrateMagnetometerRequest.SerializeToString,
             calibration_dot_calibration__pb2.CalibrateMagnetometerResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeCalibrateLevelHorizon(request,
@@ -191,6 +194,7 @@ class CalibrationService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -199,7 +203,7 @@ class CalibrationService(object):
             calibration_dot_calibration__pb2.SubscribeCalibrateLevelHorizonRequest.SerializeToString,
             calibration_dot_calibration__pb2.CalibrateLevelHorizonResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeCalibrateGimbalAccelerometer(request,
@@ -207,6 +211,7 @@ class CalibrationService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -215,7 +220,7 @@ class CalibrationService(object):
             calibration_dot_calibration__pb2.SubscribeCalibrateGimbalAccelerometerRequest.SerializeToString,
             calibration_dot_calibration__pb2.CalibrateGimbalAccelerometerResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Cancel(request,
@@ -223,6 +228,7 @@ class CalibrationService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -231,4 +237,4 @@ class CalibrationService(object):
             calibration_dot_calibration__pb2.CancelRequest.SerializeToString,
             calibration_dot_calibration__pb2.CancelResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

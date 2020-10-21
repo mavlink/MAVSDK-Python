@@ -166,6 +166,7 @@ class FollowMeService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -174,7 +175,7 @@ class FollowMeService(object):
             follow__me_dot_follow__me__pb2.GetConfigRequest.SerializeToString,
             follow__me_dot_follow__me__pb2.GetConfigResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetConfig(request,
@@ -182,6 +183,7 @@ class FollowMeService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -190,7 +192,7 @@ class FollowMeService(object):
             follow__me_dot_follow__me__pb2.SetConfigRequest.SerializeToString,
             follow__me_dot_follow__me__pb2.SetConfigResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def IsActive(request,
@@ -198,6 +200,7 @@ class FollowMeService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -206,7 +209,7 @@ class FollowMeService(object):
             follow__me_dot_follow__me__pb2.IsActiveRequest.SerializeToString,
             follow__me_dot_follow__me__pb2.IsActiveResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetTargetLocation(request,
@@ -214,6 +217,7 @@ class FollowMeService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -222,7 +226,7 @@ class FollowMeService(object):
             follow__me_dot_follow__me__pb2.SetTargetLocationRequest.SerializeToString,
             follow__me_dot_follow__me__pb2.SetTargetLocationResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetLastLocation(request,
@@ -230,6 +234,7 @@ class FollowMeService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -238,7 +243,7 @@ class FollowMeService(object):
             follow__me_dot_follow__me__pb2.GetLastLocationRequest.SerializeToString,
             follow__me_dot_follow__me__pb2.GetLastLocationResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Start(request,
@@ -246,6 +251,7 @@ class FollowMeService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -254,7 +260,7 @@ class FollowMeService(object):
             follow__me_dot_follow__me__pb2.StartRequest.SerializeToString,
             follow__me_dot_follow__me__pb2.StartResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Stop(request,
@@ -262,6 +268,7 @@ class FollowMeService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -270,4 +277,4 @@ class FollowMeService(object):
             follow__me_dot_follow__me__pb2.StopRequest.SerializeToString,
             follow__me_dot_follow__me__pb2.StopResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

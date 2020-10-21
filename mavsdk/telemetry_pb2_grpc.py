@@ -829,6 +829,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -837,7 +838,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribePositionRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.PositionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeHome(request,
@@ -845,6 +846,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -853,7 +855,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeHomeRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.HomeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeInAir(request,
@@ -861,6 +863,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -869,7 +872,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeInAirRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.InAirResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeLandedState(request,
@@ -877,6 +880,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -885,7 +889,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeLandedStateRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.LandedStateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeArmed(request,
@@ -893,6 +897,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -901,7 +906,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeArmedRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.ArmedResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeAttitudeQuaternion(request,
@@ -909,6 +914,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -917,7 +923,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeAttitudeQuaternionRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.AttitudeQuaternionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeAttitudeEuler(request,
@@ -925,6 +931,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -933,7 +940,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeAttitudeEulerRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.AttitudeEulerResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeAttitudeAngularVelocityBody(request,
@@ -941,6 +948,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -949,7 +957,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeAttitudeAngularVelocityBodyRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.AttitudeAngularVelocityBodyResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeCameraAttitudeQuaternion(request,
@@ -957,6 +965,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -965,7 +974,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeCameraAttitudeQuaternionRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.CameraAttitudeQuaternionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeCameraAttitudeEuler(request,
@@ -973,6 +982,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -981,7 +991,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeCameraAttitudeEulerRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.CameraAttitudeEulerResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeVelocityNed(request,
@@ -989,6 +999,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -997,7 +1008,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeVelocityNedRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.VelocityNedResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeGpsInfo(request,
@@ -1005,6 +1016,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1013,7 +1025,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeGpsInfoRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.GpsInfoResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeBattery(request,
@@ -1021,6 +1033,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1029,7 +1042,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeBatteryRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.BatteryResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeFlightMode(request,
@@ -1037,6 +1050,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1045,7 +1059,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeFlightModeRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.FlightModeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeHealth(request,
@@ -1053,6 +1067,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1061,7 +1076,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeHealthRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.HealthResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeRcStatus(request,
@@ -1069,6 +1084,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1077,7 +1093,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeRcStatusRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.RcStatusResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeStatusText(request,
@@ -1085,6 +1101,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1093,7 +1110,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeStatusTextRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.StatusTextResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeActuatorControlTarget(request,
@@ -1101,6 +1118,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1109,7 +1127,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeActuatorControlTargetRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.ActuatorControlTargetResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeActuatorOutputStatus(request,
@@ -1117,6 +1135,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1125,7 +1144,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeActuatorOutputStatusRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.ActuatorOutputStatusResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeOdometry(request,
@@ -1133,6 +1152,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1141,7 +1161,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeOdometryRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.OdometryResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribePositionVelocityNed(request,
@@ -1149,6 +1169,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1157,7 +1178,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribePositionVelocityNedRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.PositionVelocityNedResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeGroundTruth(request,
@@ -1165,6 +1186,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1173,7 +1195,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeGroundTruthRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.GroundTruthResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeFixedwingMetrics(request,
@@ -1181,6 +1203,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1189,7 +1212,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeFixedwingMetricsRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.FixedwingMetricsResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeImu(request,
@@ -1197,6 +1220,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1205,7 +1229,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeImuRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.ImuResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeHealthAllOk(request,
@@ -1213,6 +1237,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1221,7 +1246,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeHealthAllOkRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.HealthAllOkResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeUnixEpochTime(request,
@@ -1229,6 +1254,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1237,7 +1263,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeUnixEpochTimeRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.UnixEpochTimeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeDistanceSensor(request,
@@ -1245,6 +1271,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1253,7 +1280,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SubscribeDistanceSensorRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.DistanceSensorResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRatePosition(request,
@@ -1261,6 +1288,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1269,7 +1297,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRatePositionRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRatePositionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateHome(request,
@@ -1277,6 +1305,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1285,7 +1314,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateHomeRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateHomeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateInAir(request,
@@ -1293,6 +1322,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1301,7 +1331,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateInAirRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateInAirResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateLandedState(request,
@@ -1309,6 +1339,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1317,7 +1348,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateLandedStateRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateLandedStateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateAttitude(request,
@@ -1325,6 +1356,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1333,7 +1365,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateAttitudeRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateAttitudeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateCameraAttitude(request,
@@ -1341,6 +1373,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1349,7 +1382,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateCameraAttitudeRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateCameraAttitudeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateVelocityNed(request,
@@ -1357,6 +1390,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1365,7 +1399,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateVelocityNedRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateVelocityNedResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateGpsInfo(request,
@@ -1373,6 +1407,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1381,7 +1416,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateGpsInfoRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateGpsInfoResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateBattery(request,
@@ -1389,6 +1424,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1397,7 +1433,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateBatteryRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateBatteryResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateRcStatus(request,
@@ -1405,6 +1441,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1413,7 +1450,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateRcStatusRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateRcStatusResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateActuatorControlTarget(request,
@@ -1421,6 +1458,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1429,7 +1467,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateActuatorControlTargetRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateActuatorControlTargetResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateActuatorOutputStatus(request,
@@ -1437,6 +1475,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1445,7 +1484,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateActuatorOutputStatusRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateActuatorOutputStatusResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateOdometry(request,
@@ -1453,6 +1492,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1461,7 +1501,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateOdometryRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateOdometryResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRatePositionVelocityNed(request,
@@ -1469,6 +1509,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1477,7 +1518,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRatePositionVelocityNedRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRatePositionVelocityNedResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateGroundTruth(request,
@@ -1485,6 +1526,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1493,7 +1535,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateGroundTruthRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateGroundTruthResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateFixedwingMetrics(request,
@@ -1501,6 +1543,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1509,7 +1552,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateFixedwingMetricsRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateFixedwingMetricsResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateImu(request,
@@ -1517,6 +1560,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1525,7 +1569,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateImuRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateImuResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateUnixEpochTime(request,
@@ -1533,6 +1577,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1541,7 +1586,7 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateUnixEpochTimeRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateUnixEpochTimeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetRateDistanceSensor(request,
@@ -1549,6 +1594,7 @@ class TelemetryService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1557,4 +1603,4 @@ class TelemetryService(object):
             telemetry_dot_telemetry__pb2.SetRateDistanceSensorRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateDistanceSensorResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -303,6 +303,7 @@ class MissionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -311,7 +312,7 @@ class MissionService(object):
             mission_dot_mission__pb2.UploadMissionRequest.SerializeToString,
             mission_dot_mission__pb2.UploadMissionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def CancelMissionUpload(request,
@@ -319,6 +320,7 @@ class MissionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -327,7 +329,7 @@ class MissionService(object):
             mission_dot_mission__pb2.CancelMissionUploadRequest.SerializeToString,
             mission_dot_mission__pb2.CancelMissionUploadResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def DownloadMission(request,
@@ -335,6 +337,7 @@ class MissionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -343,7 +346,7 @@ class MissionService(object):
             mission_dot_mission__pb2.DownloadMissionRequest.SerializeToString,
             mission_dot_mission__pb2.DownloadMissionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def CancelMissionDownload(request,
@@ -351,6 +354,7 @@ class MissionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -359,7 +363,7 @@ class MissionService(object):
             mission_dot_mission__pb2.CancelMissionDownloadRequest.SerializeToString,
             mission_dot_mission__pb2.CancelMissionDownloadResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def StartMission(request,
@@ -367,6 +371,7 @@ class MissionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -375,7 +380,7 @@ class MissionService(object):
             mission_dot_mission__pb2.StartMissionRequest.SerializeToString,
             mission_dot_mission__pb2.StartMissionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def PauseMission(request,
@@ -383,6 +388,7 @@ class MissionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -391,7 +397,7 @@ class MissionService(object):
             mission_dot_mission__pb2.PauseMissionRequest.SerializeToString,
             mission_dot_mission__pb2.PauseMissionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def ClearMission(request,
@@ -399,6 +405,7 @@ class MissionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -407,7 +414,7 @@ class MissionService(object):
             mission_dot_mission__pb2.ClearMissionRequest.SerializeToString,
             mission_dot_mission__pb2.ClearMissionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetCurrentMissionItem(request,
@@ -415,6 +422,7 @@ class MissionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -423,7 +431,7 @@ class MissionService(object):
             mission_dot_mission__pb2.SetCurrentMissionItemRequest.SerializeToString,
             mission_dot_mission__pb2.SetCurrentMissionItemResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def IsMissionFinished(request,
@@ -431,6 +439,7 @@ class MissionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -439,7 +448,7 @@ class MissionService(object):
             mission_dot_mission__pb2.IsMissionFinishedRequest.SerializeToString,
             mission_dot_mission__pb2.IsMissionFinishedResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeMissionProgress(request,
@@ -447,6 +456,7 @@ class MissionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -455,7 +465,7 @@ class MissionService(object):
             mission_dot_mission__pb2.SubscribeMissionProgressRequest.SerializeToString,
             mission_dot_mission__pb2.MissionProgressResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetReturnToLaunchAfterMission(request,
@@ -463,6 +473,7 @@ class MissionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -471,7 +482,7 @@ class MissionService(object):
             mission_dot_mission__pb2.GetReturnToLaunchAfterMissionRequest.SerializeToString,
             mission_dot_mission__pb2.GetReturnToLaunchAfterMissionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetReturnToLaunchAfterMission(request,
@@ -479,6 +490,7 @@ class MissionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -487,7 +499,7 @@ class MissionService(object):
             mission_dot_mission__pb2.SetReturnToLaunchAfterMissionRequest.SerializeToString,
             mission_dot_mission__pb2.SetReturnToLaunchAfterMissionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def ImportQgroundcontrolMission(request,
@@ -495,6 +507,7 @@ class MissionService(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -503,4 +516,4 @@ class MissionService(object):
             mission_dot_mission__pb2.ImportQgroundcontrolMissionRequest.SerializeToString,
             mission_dot_mission__pb2.ImportQgroundcontrolMissionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
