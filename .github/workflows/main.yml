@@ -31,7 +31,7 @@ jobs:
       - name: Install prerequisites
         run: |
           pip3 install -r requirements.txt -r requirements-dev.txt
-          pip3 install auditwheel
+          pip3 install auditwheel twine
 
       - name: Create wheel
         run: |
@@ -45,6 +45,9 @@ jobs:
           ls -lh "wheelhouse/"
 
       - name: Upload to PyPi
+        env:
+          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           TWINE_NON_INTERACTIVE=1 twine upload wheelhouse/*.whl
@@ -77,6 +80,7 @@ jobs:
       - name: Install prerequisites
         run: |
           pip3 install -r requirements.txt -r requirements-dev.txt
+          pip3 install twine
 
       - name: Create wheel
         run: |
@@ -89,6 +93,9 @@ jobs:
           ls -lh "dist/"
 
       - name: Upload to PyPi
+        env:
+          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           TWINE_NON_INTERACTIVE=1 twine upload dist/*.whl
@@ -123,6 +130,9 @@ jobs:
           ls -lh "wheelhouse/"
 
       - name: Upload to PyPi
+        env:
+          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           TWINE_NON_INTERACTIVE=1 twine upload wheelhouse/*.whl
@@ -171,6 +181,9 @@ jobs:
           ls "dist/"
 
       - name: Upload to PyPi
+        env:
+          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           TWINE_NON_INTERACTIVE=1 twine upload dist/*.whl
