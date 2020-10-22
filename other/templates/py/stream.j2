@@ -66,8 +66,10 @@ async def {{ name.lower_snake_case }}(self{% for param in params %}, {{ param.na
             yield None
         {%- elif return_type.is_primitive %}
             yield response.{{ return_name.lower_snake_case }}
-        {%- else %}
+        {%- elif not return_type.is_primitive and not return_type.is_repeated %}
             yield {{ return_type.name }}.translate_from_rpc(response.{{ return_name.lower_snake_case }})
+        {%- elif not return_type.is_primitive and return_type.is_repeated %}
+            yield list(map(lambda x : {{ return_type.inner_name }}.translate_from_rpc(x), response.{{ return_name.lower_snake_case }}))
         {%- endif %}
     finally:
         {{ name.lower_snake_case }}_stream.cancel()
