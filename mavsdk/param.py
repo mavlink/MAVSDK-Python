@@ -204,10 +204,10 @@ class AllParams:
         """ Translates a gRPC struct to the SDK equivalent """
         return AllParams(
                 
-                map(lambda elem: IntParam.translate_from_rpc(elem), rpcAllParams.int_params),
+                list(map(lambda elem: IntParam.translate_from_rpc(elem), rpcAllParams.int_params)),
                 
                 
-                map(lambda elem: FloatParam.translate_from_rpc(elem), rpcAllParams.float_params)
+                list(map(lambda elem: FloatParam.translate_from_rpc(elem), rpcAllParams.float_params))
                 )
 
     def translate_to_rpc(self, rpcAllParams):

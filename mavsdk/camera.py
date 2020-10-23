@@ -1388,7 +1388,7 @@ class SettingOptions:
                 rpcSettingOptions.setting_description,
                 
                 
-                map(lambda elem: Option.translate_from_rpc(elem), rpcSettingOptions.options),
+                list(map(lambda elem: Option.translate_from_rpc(elem), rpcSettingOptions.options)),
                 
                 
                 rpcSettingOptions.is_range
