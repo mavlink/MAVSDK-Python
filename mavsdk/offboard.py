@@ -229,7 +229,7 @@ class ActuatorControl:
         """ Translates a gRPC struct to the SDK equivalent """
         return ActuatorControl(
                 
-                map(lambda elem: ActuatorControlGroup.translate_from_rpc(elem), rpcActuatorControl.groups)
+                list(map(lambda elem: ActuatorControlGroup.translate_from_rpc(elem), rpcActuatorControl.groups))
                 )
 
     def translate_to_rpc(self, rpcActuatorControl):

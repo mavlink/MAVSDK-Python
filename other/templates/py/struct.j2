@@ -56,7 +56,7 @@ class {{ name.upper_camel_case }}:
                 rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }}{{ "," if not loop.last }}
                 {% else %}
                     {%- if field.type_info.is_repeated %}
-                map(lambda elem: {{ field.type_info.inner_name }}.translate_from_rpc(elem), rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }}){{ "," if not loop.last }}
+                list(map(lambda elem: {{ field.type_info.inner_name }}.translate_from_rpc(elem), rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }})){{ "," if not loop.last }}
                     {%- else %}
                 {% if field.type_info.parent_type is not none %}{{ field.type_info.parent_type }}.{% endif %}{{ field.type_info.inner_name }}.translate_from_rpc(rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }}){{ "," if not loop.last }}
                     {%- endif %}

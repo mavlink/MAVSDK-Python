@@ -324,7 +324,7 @@ class MissionPlan:
         """ Translates a gRPC struct to the SDK equivalent """
         return MissionPlan(
                 
-                map(lambda elem: MissionItem.translate_from_rpc(elem), rpcMissionPlan.mission_items)
+                list(map(lambda elem: MissionItem.translate_from_rpc(elem), rpcMissionPlan.mission_items))
                 )
 
     def translate_to_rpc(self, rpcMissionPlan):

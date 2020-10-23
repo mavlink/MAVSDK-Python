@@ -166,7 +166,7 @@ class Polygon:
         """ Translates a gRPC struct to the SDK equivalent """
         return Polygon(
                 
-                map(lambda elem: Point.translate_from_rpc(elem), rpcPolygon.points),
+                list(map(lambda elem: Point.translate_from_rpc(elem), rpcPolygon.points)),
                 
                 
                 Polygon.FenceType.translate_from_rpc(rpcPolygon.fence_type)
