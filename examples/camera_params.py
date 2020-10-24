@@ -18,8 +18,8 @@ current_settings = []
 possible_setting_options = []
 
 async def run():
-    drone = System(mavsdk_server_address="localhost")
-    await drone.connect()
+    drone = System()
+    await drone.connect(system_address="udp://:14540")
 
     asyncio.ensure_future(observe_current_settings(drone))
     asyncio.ensure_future(observe_possible_setting_options(drone))
