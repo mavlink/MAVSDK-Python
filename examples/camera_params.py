@@ -58,6 +58,7 @@ async def run():
 
             print(f"Setting {selected_setting.setting_id} to {selected_option.option_description}!")
             setting = Setting(selected_setting.setting_id, "", selected_option, selected_setting.is_range)
+            result = await drone.camera.set_setting(setting)
         else:
             print("Invalid input!")
             continue
