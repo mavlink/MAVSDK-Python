@@ -4,16 +4,18 @@ import asyncio
 
 from aioconsole import ainput
 from mavsdk import System
-from mavsdk.camera import (Option, Setting)
+from mavsdk.camera import (Mode, Option, Setting)
 
 
 usage_str = """
 Usage:
   p    print current (changeable) camera settings
+  m    change camera mode
   s    change a setting
 
 """
 
+camera_mode = Mode.UNKNOWN
 current_settings = []
 possible_setting_options = []
 
@@ -22,6 +24,7 @@ async def run():
     await drone.connect(system_address="udp://:14540")
 
     asyncio.ensure_future(observe_current_settings(drone))
+    asyncio.ensure_future(observe_camera_mode(drone))
     asyncio.ensure_future(observe_possible_setting_options(drone))
 
     while(True):
@@ -30,6 +33,24 @@ async def run():
         if (entered_input == "p"):
             print(f"\n=== Current settings ===\n")
             print_current_settings()
+        elif (entered_input == "m"):
+            print(f"\n=== Possible modes ===\n")
+            print(f"1. PHOTO")
+            print(f"2. VIDEO")
+
+            try:
+                index_mode = await make_user_choose_camera_mode()
+            except ValueError:
+                print("Invalid index")
+                continue
+
+            if (index_mode == 1):
+                chosen_mode = Mode.PHOTO
+            else:
+                chosen_mode = Mode.VIDEO
+
+            print(f"Setting camera mode to {chosen_mode}!")
+            await drone.camera.set_mode(chosen_mode)
         elif (entered_input == "s"):
             print(f"\n=== Possible settings ===\n")
             print_possible_settings(possible_setting_options)
@@ -63,6 +84,11 @@ async def run():
             print("Invalid input!")
             continue
 
+async def observe_camera_mode(drone):
+    global camera_mode
+    async for mode in drone.camera.mode():
+        camera_mode = mode
+
 async def observe_current_settings(drone):
     global current_settings
     async for settings in drone.camera.current_settings():
@@ -74,9 +100,18 @@ async def observe_possible_setting_options(drone):
         possible_setting_options = settings
 
 def print_current_settings():
+    print(f"* CAM_MODE: {camera_mode}")
     for setting in current_settings:
         print(f"* {setting.setting_id}: {setting.setting_description}")
         print(f"    -> {setting.option.option_description}")
+
+async def make_user_choose_camera_mode():
+    index_mode_str = await ainput(f"\nWhich mode do you want? [1..2] >>> ")
+    index_mode = int(index_mode_str)
+    if (index_mode < 1 or index_mode > 2):
+        raise ValueError()
+
+    return index_mode
 
 def print_possible_settings(possible_settings):
     i = 1
