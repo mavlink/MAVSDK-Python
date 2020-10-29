@@ -4,7 +4,7 @@ import asyncio
 
 from aioconsole import ainput
 from mavsdk import System
-from mavsdk.camera import (Mode, Option, Setting)
+from mavsdk.camera import (CameraError, Mode, Option, Setting)
 
 
 usage_str = """
@@ -50,7 +50,12 @@ async def run():
                 chosen_mode = Mode.VIDEO
 
             print(f"Setting camera mode to {chosen_mode}!")
-            await drone.camera.set_mode(chosen_mode)
+
+            try:
+                await drone.camera.set_mode(chosen_mode)
+                print(f" --> Succeeded")
+            except CameraError as error:
+                print(f" --> Failed with code: {error._result.result_str}")
         elif (entered_input == "s"):
             print(f"\n=== Possible settings ===\n")
             print_possible_settings(possible_setting_options)
@@ -79,7 +84,12 @@ async def run():
 
             print(f"Setting {selected_setting.setting_id} to {selected_option.option_description}!")
             setting = Setting(selected_setting.setting_id, "", selected_option, selected_setting.is_range)
-            result = await drone.camera.set_setting(setting)
+
+            try:
+                await drone.camera.set_setting(setting)
+                print(f" --> Succeeded")
+            except CameraError as error:
+                print(f" --> Failed with code: {error._result.result_str}")
         else:
             print("Invalid input!")
             continue
