@@ -49,6 +49,9 @@ class System:
         self._plugins = {}
         self._server_process = None
 
+    def __del__(self):
+        self._stop_mavsdk_server()
+
     async def connect(self, system_address=None):
         """
         Connect the System object to a remote system.
