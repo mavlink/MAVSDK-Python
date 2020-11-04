@@ -110,7 +110,7 @@ Note: MAVDSK-Python runs `mavsdk/bin/mavsdk_server` when `await drone.connect()`
 Make sure the version tag is set correctly before generating new documentation.
 
 ```
-pip3 install sphinx numpydoc
+pip3 install -r requirements-docs.txt
 make -C mavsdk html
 ```
 
