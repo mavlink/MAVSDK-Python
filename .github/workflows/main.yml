@@ -46,6 +46,7 @@ jobs:
 
       - name: Create docs
         run: |
+          export PATH=$PATH:$HOME/.local/bin
           make -C mavsdk html
 
       - name: Upload to PyPi
@@ -64,6 +65,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         if: startsWith(github.ref, 'refs/tags/')
         run: |
+          export PATH=$PATH:$HOME/.local/bin
           other/tools/upload_docs.sh
 
 
