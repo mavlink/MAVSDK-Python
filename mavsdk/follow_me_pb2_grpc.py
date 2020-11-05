@@ -111,6 +111,13 @@ class FollowMeServiceServicer(object):
 
 
 def add_FollowMeServiceServicer_to_server(servicer, server):
+    """
+    Adds an rpc server to an rpc server.
+
+    Args:
+        servicer: (todo): write your description
+        server: (todo): write your description
+    """
     rpc_method_handlers = {
             'GetConfig': grpc.unary_unary_rpc_method_handler(
                     servicer.GetConfig,
@@ -171,6 +178,21 @@ class FollowMeService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a grpc configuration.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (str): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (int): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.follow_me.FollowMeService/GetConfig',
             follow__me_dot_follow__me__pb2.GetConfigRequest.SerializeToString,
             follow__me_dot_follow__me__pb2.GetConfigResponse.FromString,
@@ -188,6 +210,21 @@ class FollowMeService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Initialize a grpc configuration.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (dict): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (int): write your description
+            timeout: (int): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.follow_me.FollowMeService/SetConfig',
             follow__me_dot_follow__me__pb2.SetConfigRequest.SerializeToString,
             follow__me_dot_follow__me__pb2.SetConfigResponse.FromString,
@@ -205,6 +242,21 @@ class FollowMeService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Checks if a device.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.follow_me.FollowMeService/IsActive',
             follow__me_dot_follow__me__pb2.IsActiveRequest.SerializeToString,
             follow__me_dot_follow__me__pb2.IsActiveResponse.FromString,
@@ -222,6 +274,21 @@ class FollowMeService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a grpc location.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (str): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (int): write your description
+            metadata: (str): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.follow_me.FollowMeService/SetTargetLocation',
             follow__me_dot_follow__me__pb2.SetTargetLocationRequest.SerializeToString,
             follow__me_dot_follow__me__pb2.SetTargetLocationResponse.FromString,
@@ -239,6 +306,21 @@ class FollowMeService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a grpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (str): write your description
+            compression: (str): write your description
+            wait_for_ready: (str): write your description
+            timeout: (int): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.follow_me.FollowMeService/GetLastLocation',
             follow__me_dot_follow__me__pb2.GetLastLocationRequest.SerializeToString,
             follow__me_dot_follow__me__pb2.GetLastLocationResponse.FromString,
@@ -256,6 +338,21 @@ class FollowMeService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Starts a new grpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.follow_me.FollowMeService/Start',
             follow__me_dot_follow__me__pb2.StartRequest.SerializeToString,
             follow__me_dot_follow__me__pb2.StartResponse.FromString,
@@ -273,6 +370,21 @@ class FollowMeService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Stops a stop.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.follow_me.FollowMeService/Stop',
             follow__me_dot_follow__me__pb2.StopRequest.SerializeToString,
             follow__me_dot_follow__me__pb2.StopResponse.FromString,

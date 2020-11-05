@@ -96,6 +96,13 @@ class ParamServiceServicer(object):
 
 
 def add_ParamServiceServicer_to_server(servicer, server):
+    """
+    Adds a protobuf to a protobuf.
+
+    Args:
+        servicer: (todo): write your description
+        server: (todo): write your description
+    """
     rpc_method_handlers = {
             'GetParamInt': grpc.unary_unary_rpc_method_handler(
                     servicer.GetParamInt,
@@ -144,6 +151,21 @@ class ParamService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a grpc request.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (int): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.param.ParamService/GetParamInt',
             param_dot_param__pb2.GetParamIntRequest.SerializeToString,
             param_dot_param__pb2.GetParamIntResponse.FromString,
@@ -161,6 +183,21 @@ class ParamService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Sets a grpc request.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.param.ParamService/SetParamInt',
             param_dot_param__pb2.SetParamIntRequest.SerializeToString,
             param_dot_param__pb2.SetParamIntResponse.FromString,
@@ -178,6 +215,21 @@ class ParamService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a grpc request.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (str): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (int): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.param.ParamService/GetParamFloat',
             param_dot_param__pb2.GetParamFloatRequest.SerializeToString,
             param_dot_param__pb2.GetParamFloatResponse.FromString,
@@ -195,6 +247,21 @@ class ParamService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Sends a grpc request.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.param.ParamService/SetParamFloat',
             param_dot_param__pb2.SetParamFloatRequest.SerializeToString,
             param_dot_param__pb2.SetParamFloatResponse.FromString,
@@ -212,6 +279,21 @@ class ParamService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a grpc request.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (todo): write your description
+            insecure: (todo): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (int): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.param.ParamService/GetAllParams',
             param_dot_param__pb2.GetAllParamsRequest.SerializeToString,
             param_dot_param__pb2.GetAllParamsResponse.FromString,

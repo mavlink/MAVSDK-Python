@@ -71,6 +71,13 @@ class ManualControlServiceServicer(object):
 
 
 def add_ManualControlServiceServicer_to_server(servicer, server):
+    """
+    Adds an rpc server to an rpc server.
+
+    Args:
+        servicer: (todo): write your description
+        server: (todo): write your description
+    """
     rpc_method_handlers = {
             'StartPositionControl': grpc.unary_unary_rpc_method_handler(
                     servicer.StartPositionControl,
@@ -109,6 +116,21 @@ class ManualControlService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Starts a new grpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.manual_control.ManualControlService/StartPositionControl',
             manual__control_dot_manual__control__pb2.StartPositionControlRequest.SerializeToString,
             manual__control_dot_manual__control__pb2.StartPositionControlResponse.FromString,
@@ -126,6 +148,21 @@ class ManualControlService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Starts a new grpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (bool): write your description
+            insecure: (todo): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.manual_control.ManualControlService/StartAltitudeControl',
             manual__control_dot_manual__control__pb2.StartAltitudeControlRequest.SerializeToString,
             manual__control_dot_manual__control__pb2.StartAltitudeControlResponse.FromString,
@@ -143,6 +180,21 @@ class ManualControlService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Sets the control input.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (todo): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.manual_control.ManualControlService/SetManualControlInput',
             manual__control_dot_manual__control__pb2.SetManualControlInputRequest.SerializeToString,
             manual__control_dot_manual__control__pb2.SetManualControlInputResponse.FromString,

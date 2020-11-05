@@ -5,6 +5,11 @@ from mavsdk import System
 
 
 async def run():
+      """
+      Run a connection.
+
+      Args:
+      """
     drone = System()
     await drone.connect(system_address="udp://:14540")
 

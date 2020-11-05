@@ -65,6 +65,13 @@ class MocapServiceServicer(object):
 
 
 def add_MocapServiceServicer_to_server(servicer, server):
+    """
+    Adds a protobuf to a server.
+
+    Args:
+        servicer: (todo): write your description
+        server: (todo): write your description
+    """
     rpc_method_handlers = {
             'SetVisionPositionEstimate': grpc.unary_unary_rpc_method_handler(
                     servicer.SetVisionPositionEstimate,
@@ -106,6 +113,21 @@ class MocapService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a grpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (todo): write your description
+            insecure: (todo): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mocap.MocapService/SetVisionPositionEstimate',
             mocap_dot_mocap__pb2.SetVisionPositionEstimateRequest.SerializeToString,
             mocap_dot_mocap__pb2.SetVisionPositionEstimateResponse.FromString,
@@ -123,6 +145,21 @@ class MocapService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Creates a grpc client for a set of a grpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mocap.MocapService/SetAttitudePositionMocap',
             mocap_dot_mocap__pb2.SetAttitudePositionMocapRequest.SerializeToString,
             mocap_dot_mocap__pb2.SetAttitudePositionMocapResponse.FromString,
@@ -140,6 +177,21 @@ class MocapService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Creates a kernel for a kernel.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mocap.MocapService/SetOdometry',
             mocap_dot_mocap__pb2.SetOdometryRequest.SerializeToString,
             mocap_dot_mocap__pb2.SetOdometryResponse.FromString,

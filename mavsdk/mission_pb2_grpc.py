@@ -220,6 +220,13 @@ class MissionServiceServicer(object):
 
 
 def add_MissionServiceServicer_to_server(servicer, server):
+    """
+    Adds an rpc protobuf to a protobuf.
+
+    Args:
+        servicer: (todo): write your description
+        server: (todo): write your description
+    """
     rpc_method_handlers = {
             'UploadMission': grpc.unary_unary_rpc_method_handler(
                     servicer.UploadMission,
@@ -308,6 +315,21 @@ class MissionService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Creates a new grpc.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (str): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission.MissionService/UploadMission',
             mission_dot_mission__pb2.UploadMissionRequest.SerializeToString,
             mission_dot_mission__pb2.UploadMissionResponse.FromString,
@@ -325,6 +347,21 @@ class MissionService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a thread pool.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (todo): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission.MissionService/CancelMissionUpload',
             mission_dot_mission__pb2.CancelMissionUploadRequest.SerializeToString,
             mission_dot_mission__pb2.CancelMissionUploadResponse.FromString,
@@ -342,6 +379,21 @@ class MissionService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a simple grpc request.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (dict): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (str): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission.MissionService/DownloadMission',
             mission_dot_mission__pb2.DownloadMissionRequest.SerializeToString,
             mission_dot_mission__pb2.DownloadMissionResponse.FromString,
@@ -359,6 +411,21 @@ class MissionService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Issues a request.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission.MissionService/CancelMissionDownload',
             mission_dot_mission__pb2.CancelMissionDownloadRequest.SerializeToString,
             mission_dot_mission__pb2.CancelMissionDownloadResponse.FromString,
@@ -376,6 +443,21 @@ class MissionService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Starts a new thread.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (todo): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission.MissionService/StartMission',
             mission_dot_mission__pb2.StartMissionRequest.SerializeToString,
             mission_dot_mission__pb2.StartMissionResponse.FromString,
@@ -393,6 +475,21 @@ class MissionService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a google cloud.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission.MissionService/PauseMission',
             mission_dot_mission__pb2.PauseMissionRequest.SerializeToString,
             mission_dot_mission__pb2.PauseMissionResponse.FromString,
@@ -410,6 +507,21 @@ class MissionService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Pushes a thread.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission.MissionService/ClearMission',
             mission_dot_mission__pb2.ClearMissionRequest.SerializeToString,
             mission_dot_mission__pb2.ClearMissionResponse.FromString,
@@ -427,6 +539,21 @@ class MissionService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Sets the specified item.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (str): write your description
+            insecure: (todo): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (int): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission.MissionService/SetCurrentMissionItem',
             mission_dot_mission__pb2.SetCurrentMissionItemRequest.SerializeToString,
             mission_dot_mission__pb2.SetCurrentMissionItemResponse.FromString,
@@ -444,6 +571,21 @@ class MissionService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Checks if a coroutine.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission.MissionService/IsMissionFinished',
             mission_dot_mission__pb2.IsMissionFinishedRequest.SerializeToString,
             mission_dot_mission__pb2.IsMissionFinishedResponse.FromString,
@@ -461,6 +603,21 @@ class MissionService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a simple grpc operation.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (int): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.mission.MissionService/SubscribeMissionProgress',
             mission_dot_mission__pb2.SubscribeMissionProgressRequest.SerializeToString,
             mission_dot_mission__pb2.MissionProgressResponse.FromString,
@@ -478,6 +635,21 @@ class MissionService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a grpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (todo): write your description
+            insecure: (todo): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (int): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission.MissionService/GetReturnToLaunchAfterMission',
             mission_dot_mission__pb2.GetReturnToLaunchAfterMissionRequest.SerializeToString,
             mission_dot_mission__pb2.GetReturnToLaunchAfterMissionResponse.FromString,
@@ -495,6 +667,21 @@ class MissionService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Creates a grpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (int): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission.MissionService/SetReturnToLaunchAfterMission',
             mission_dot_mission__pb2.SetReturnToLaunchAfterMissionRequest.SerializeToString,
             mission_dot_mission__pb2.SetReturnToLaunchAfterMissionResponse.FromString,
@@ -512,6 +699,21 @@ class MissionService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a prpc import.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (str): write your description
+            insecure: (todo): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (int): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission.MissionService/ImportQgroundcontrolMission',
             mission_dot_mission__pb2.ImportQgroundcontrolMissionRequest.SerializeToString,
             mission_dot_mission__pb2.ImportQgroundcontrolMissionResponse.FromString,

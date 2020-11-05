@@ -45,6 +45,12 @@ class FixType(Enum):
     RTK_FIXED = 6
 
     def translate_to_rpc(self):
+        """
+        Convert a protobuf to a user response.
+
+        Args:
+            self: (todo): write your description
+        """
         if self == FixType.NO_GPS:
             return telemetry_pb2.FIX_TYPE_NO_GPS
         if self == FixType.NO_FIX:
@@ -79,6 +85,12 @@ class FixType(Enum):
             return FixType.RTK_FIXED
 
     def __str__(self):
+        """
+        Return the string representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return self.name
 
 
@@ -156,6 +168,12 @@ class FlightMode(Enum):
     RATTITUDE = 14
 
     def translate_to_rpc(self):
+        """
+        Converts an rpc protobuf
+
+        Args:
+            self: (todo): write your description
+        """
         if self == FlightMode.UNKNOWN:
             return telemetry_pb2.FLIGHT_MODE_UNKNOWN
         if self == FlightMode.READY:
@@ -222,6 +240,12 @@ class FlightMode(Enum):
             return FlightMode.RATTITUDE
 
     def __str__(self):
+        """
+        Return the string representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return self.name
 
 
@@ -268,6 +292,12 @@ class StatusTextType(Enum):
     EMERGENCY = 7
 
     def translate_to_rpc(self):
+        """
+        Convert an rpc protobuf protobuf
+
+        Args:
+            self: (todo): write your description
+        """
         if self == StatusTextType.DEBUG:
             return telemetry_pb2.STATUS_TEXT_TYPE_DEBUG
         if self == StatusTextType.INFO:
@@ -306,6 +336,12 @@ class StatusTextType(Enum):
             return StatusTextType.EMERGENCY
 
     def __str__(self):
+        """
+        Return the string representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return self.name
 
 
@@ -340,6 +376,12 @@ class LandedState(Enum):
     LANDING = 4
 
     def translate_to_rpc(self):
+        """
+        Convert an rpc protobuf to a user response.
+
+        Args:
+            self: (todo): write your description
+        """
         if self == LandedState.UNKNOWN:
             return telemetry_pb2.LANDED_STATE_UNKNOWN
         if self == LandedState.ON_GROUND:
@@ -366,6 +408,12 @@ class LandedState(Enum):
             return LandedState.LANDING
 
     def __str__(self):
+        """
+        Return the string representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return self.name
 
 
@@ -1696,6 +1744,12 @@ class Odometry:
         ESTIM_NED = 3
 
         def translate_to_rpc(self):
+            """
+            Convert an rpc protobuf to user rpc.
+
+            Args:
+                self: (todo): write your description
+            """
             if self == Odometry.MavFrame.UNDEF:
                 return telemetry_pb2.Odometry.MAV_FRAME_UNDEF
             if self == Odometry.MavFrame.BODY_NED:
@@ -1718,6 +1772,12 @@ class Odometry:
                 return Odometry.MavFrame.ESTIM_NED
 
         def __str__(self):
+            """
+            Return the string representation of this object.
+
+            Args:
+                self: (todo): write your description
+            """
             return self.name
     
 
@@ -2825,6 +2885,12 @@ class TelemetryResult:
         TIMEOUT = 6
 
         def translate_to_rpc(self):
+            """
+            Convert an rpc protobuf.
+
+            Args:
+                self: (todo): write your description
+            """
             if self == TelemetryResult.Result.UNKNOWN:
                 return telemetry_pb2.TelemetryResult.RESULT_UNKNOWN
             if self == TelemetryResult.Result.SUCCESS:
@@ -2859,6 +2925,12 @@ class TelemetryResult:
                 return TelemetryResult.Result.TIMEOUT
 
         def __str__(self):
+            """
+            Return the string representation of this object.
+
+            Args:
+                self: (todo): write your description
+            """
             return self.name
     
 
@@ -2925,11 +2997,26 @@ class TelemetryError(Exception):
     """ Raised when a TelemetryResult is a fail code """
 
     def __init__(self, result, origin, *params):
+        """
+        Initialize the result.
+
+        Args:
+            self: (todo): write your description
+            result: (dict): write your description
+            origin: (todo): write your description
+            params: (dict): write your description
+        """
         self._result = result
         self._origin = origin
         self._params = params
 
     def __str__(self):
+        """
+        Return a string representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return f"{self._result.result}: '{self._result.result_str}'; origin: {self._origin}; params: {self._params}"
 
 

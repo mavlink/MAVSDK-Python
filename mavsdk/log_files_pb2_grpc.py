@@ -49,6 +49,13 @@ class LogFilesServiceServicer(object):
 
 
 def add_LogFilesServiceServicer_to_server(servicer, server):
+    """
+    Adds a protobuf handler to a zip file.
+
+    Args:
+        servicer: (todo): write your description
+        server: (todo): write your description
+    """
     rpc_method_handlers = {
             'GetEntries': grpc.unary_unary_rpc_method_handler(
                     servicer.GetEntries,
@@ -83,6 +90,21 @@ class LogFilesService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Gets a list of grpcs.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (str): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (int): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.log_files.LogFilesService/GetEntries',
             log__files_dot_log__files__pb2.GetEntriesRequest.SerializeToString,
             log__files_dot_log__files__pb2.GetEntriesResponse.FromString,
@@ -100,6 +122,21 @@ class LogFilesService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Downloads a file.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (dict): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.log_files.LogFilesService/SubscribeDownloadLogFile',
             log__files_dot_log__files__pb2.SubscribeDownloadLogFileRequest.SerializeToString,
             log__files_dot_log__files__pb2.DownloadLogFileResponse.FromString,

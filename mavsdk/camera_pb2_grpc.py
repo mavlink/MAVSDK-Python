@@ -277,6 +277,13 @@ class CameraServiceServicer(object):
 
 
 def add_CameraServiceServicer_to_server(servicer, server):
+    """
+    Adds a method to a client.
+
+    Args:
+        servicer: (todo): write your description
+        server: (todo): write your description
+    """
     rpc_method_handlers = {
             'TakePhoto': grpc.unary_unary_rpc_method_handler(
                     servicer.TakePhoto,
@@ -397,6 +404,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a new camera.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (dict): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/TakePhoto',
             camera_dot_camera__pb2.TakePhotoRequest.SerializeToString,
             camera_dot_camera__pb2.TakePhotoResponse.FromString,
@@ -414,6 +436,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Starts a new timer.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/StartPhotoInterval',
             camera_dot_camera__pb2.StartPhotoIntervalRequest.SerializeToString,
             camera_dot_camera__pb2.StartPhotoIntervalResponse.FromString,
@@ -431,6 +468,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Stops a new camera.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/StopPhotoInterval',
             camera_dot_camera__pb2.StopPhotoIntervalRequest.SerializeToString,
             camera_dot_camera__pb2.StopPhotoIntervalResponse.FromString,
@@ -448,6 +500,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Starts a new camera.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/StartVideo',
             camera_dot_camera__pb2.StartVideoRequest.SerializeToString,
             camera_dot_camera__pb2.StartVideoResponse.FromString,
@@ -465,6 +532,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Stops a camera.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/StopVideo',
             camera_dot_camera__pb2.StopVideoRequest.SerializeToString,
             camera_dot_camera__pb2.StopVideoResponse.FromString,
@@ -482,6 +564,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Starts a new multi - process.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/StartVideoStreaming',
             camera_dot_camera__pb2.StartVideoStreamingRequest.SerializeToString,
             camera_dot_camera__pb2.StartVideoStreamingResponse.FromString,
@@ -499,6 +596,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Stops a camera manager.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/StopVideoStreaming',
             camera_dot_camera__pb2.StopVideoStreamingRequest.SerializeToString,
             camera_dot_camera__pb2.StopVideoStreamingResponse.FromString,
@@ -516,6 +628,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Sets a new camera.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/SetMode',
             camera_dot_camera__pb2.SetModeRequest.SerializeToString,
             camera_dot_camera__pb2.SetModeResponse.FromString,
@@ -533,6 +660,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Creates a batch manager.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera.CameraService/SubscribeMode',
             camera_dot_camera__pb2.SubscribeModeRequest.SerializeToString,
             camera_dot_camera__pb2.ModeResponse.FromString,
@@ -550,6 +692,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a grpc manager.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (int): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera.CameraService/SubscribeInformation',
             camera_dot_camera__pb2.SubscribeInformationRequest.SerializeToString,
             camera_dot_camera__pb2.InformationResponse.FromString,
@@ -567,6 +724,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a grpc stream.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera.CameraService/SubscribeVideoStreamInfo',
             camera_dot_camera__pb2.SubscribeVideoStreamInfoRequest.SerializeToString,
             camera_dot_camera__pb2.VideoStreamInfoResponse.FromString,
@@ -584,6 +756,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Creates a device.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera.CameraService/SubscribeCaptureInfo',
             camera_dot_camera__pb2.SubscribeCaptureInfoRequest.SerializeToString,
             camera_dot_camera__pb2.CaptureInfoResponse.FromString,
@@ -601,6 +788,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a simple redis command.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera.CameraService/SubscribeStatus',
             camera_dot_camera__pb2.SubscribeStatusRequest.SerializeToString,
             camera_dot_camera__pb2.StatusResponse.FromString,
@@ -618,6 +820,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a grpc stream.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera.CameraService/SubscribeCurrentSettings',
             camera_dot_camera__pb2.SubscribeCurrentSettingsRequest.SerializeToString,
             camera_dot_camera__pb2.CurrentSettingsResponse.FromString,
@@ -635,6 +852,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads out all android android android android android android application.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera.CameraService/SubscribePossibleSettingOptions',
             camera_dot_camera__pb2.SubscribePossibleSettingOptionsRequest.SerializeToString,
             camera_dot_camera__pb2.PossibleSettingOptionsResponse.FromString,
@@ -652,6 +884,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Gets a camera manager.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (dict): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/SetSetting',
             camera_dot_camera__pb2.SetSettingRequest.SerializeToString,
             camera_dot_camera__pb2.SetSettingResponse.FromString,
@@ -669,6 +916,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a camera manager.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (str): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (int): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/GetSetting',
             camera_dot_camera__pb2.GetSettingRequest.SerializeToString,
             camera_dot_camera__pb2.GetSettingResponse.FromString,
@@ -686,6 +948,21 @@ class CameraService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a grpc file.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/FormatStorage',
             camera_dot_camera__pb2.FormatStorageRequest.SerializeToString,
             camera_dot_camera__pb2.FormatStorageResponse.FromString,

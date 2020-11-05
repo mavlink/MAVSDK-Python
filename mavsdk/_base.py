@@ -7,6 +7,13 @@ class AsyncBase:
     """
 
     def __init__(self, async_plugin_manager):
+        """
+        Initialize the plugin.
+
+        Args:
+            self: (todo): write your description
+            async_plugin_manager: (todo): write your description
+        """
         self._init_plugin(async_plugin_manager)
 
     def _init_plugin(self, async_plugin_manager):

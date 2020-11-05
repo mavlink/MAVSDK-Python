@@ -5,6 +5,11 @@ from mavsdk import System
 
 
 async def run():
+      """
+      Run the calibration.
+
+      Args:
+      """
 
     drone = System()
     await drone.connect(system_address="udp://:14540")

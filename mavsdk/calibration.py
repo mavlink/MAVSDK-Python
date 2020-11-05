@@ -77,6 +77,12 @@ class CalibrationResult:
         FAILED_ARMED = 10
 
         def translate_to_rpc(self):
+            """
+            Translate an rpc protobuf to a protobuf.
+
+            Args:
+                self: (todo): write your description
+            """
             if self == CalibrationResult.Result.UNKNOWN:
                 return calibration_pb2.CalibrationResult.RESULT_UNKNOWN
             if self == CalibrationResult.Result.SUCCESS:
@@ -127,6 +133,12 @@ class CalibrationResult:
                 return CalibrationResult.Result.FAILED_ARMED
 
         def __str__(self):
+            """
+            Return the string representation of this object.
+
+            Args:
+                self: (todo): write your description
+            """
             return self.name
     
 
@@ -301,11 +313,26 @@ class CalibrationError(Exception):
     """ Raised when a CalibrationResult is a fail code """
 
     def __init__(self, result, origin, *params):
+        """
+        Initialize the result.
+
+        Args:
+            self: (todo): write your description
+            result: (dict): write your description
+            origin: (todo): write your description
+            params: (dict): write your description
+        """
         self._result = result
         self._origin = origin
         self._params = params
 
     def __str__(self):
+        """
+        Return a string representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return f"{self._result.result}: '{self._result.result_str}'; origin: {self._origin}; params: {self._params}"
 
 

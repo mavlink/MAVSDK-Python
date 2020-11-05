@@ -501,6 +501,12 @@ class InfoResult:
         INFORMATION_NOT_RECEIVED_YET = 2
 
         def translate_to_rpc(self):
+            """
+            Convert a protobuf protobuf protobuf.
+
+            Args:
+                self: (todo): write your description
+            """
             if self == InfoResult.Result.UNKNOWN:
                 return info_pb2.InfoResult.RESULT_UNKNOWN
             if self == InfoResult.Result.SUCCESS:
@@ -519,6 +525,12 @@ class InfoResult:
                 return InfoResult.Result.INFORMATION_NOT_RECEIVED_YET
 
         def __str__(self):
+            """
+            Return the string representation of this object.
+
+            Args:
+                self: (todo): write your description
+            """
             return self.name
     
 
@@ -585,11 +597,26 @@ class InfoError(Exception):
     """ Raised when a InfoResult is a fail code """
 
     def __init__(self, result, origin, *params):
+        """
+        Initialize the result.
+
+        Args:
+            self: (todo): write your description
+            result: (dict): write your description
+            origin: (todo): write your description
+            params: (dict): write your description
+        """
         self._result = result
         self._origin = origin
         self._params = params
 
     def __str__(self):
+        """
+        Return a string representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return f"{self._result.result}: '{self._result.result_str}'; origin: {self._origin}; params: {self._params}"
 
 

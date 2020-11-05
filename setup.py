@@ -96,12 +96,24 @@ class custom_build(build):
         return f"https://github.com/mavlink/MAVSDK/releases/download/{self.mavsdk_server_tag}/mavsdk_server_{self.platform_suffix}"
 
     def run(self):
+        """
+        Downloads the server.
+
+        Args:
+            self: (todo): write your description
+        """
         if 'MAVSDK_BUILD_PURE' not in os.environ:
             self.download_mavsdk_server()
 
         build.run(self)
 
     def download_mavsdk_server(self):
+        """
+        Download the server
+
+        Args:
+            self: (todo): write your description
+        """
         print(
             f"downloading {self.mavsdk_server_url} into {self.mavsdk_server_filepath}")
         urllib.request.urlretrieve(
@@ -114,6 +126,11 @@ class custom_build(build):
 
 
 def version():
+    """
+    Returns the version of the current process.
+
+    Args:
+    """
     process = subprocess.Popen(["git", "describe", "--tags"],
                                stdout=subprocess.PIPE)
     (output, err) = process.communicate()

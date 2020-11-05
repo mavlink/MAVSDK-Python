@@ -35,6 +35,13 @@ class TuneServiceServicer(object):
 
 
 def add_TuneServiceServicer_to_server(servicer, server):
+    """
+    Adds an rpc server to an rpc server.
+
+    Args:
+        servicer: (todo): write your description
+        server: (todo): write your description
+    """
     rpc_method_handlers = {
             'PlayTune': grpc.unary_unary_rpc_method_handler(
                     servicer.PlayTune,
@@ -63,6 +70,21 @@ class TuneService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a hue.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.tune.TuneService/PlayTune',
             tune_dot_tune__pb2.PlayTuneRequest.SerializeToString,
             tune_dot_tune__pb2.PlayTuneResponse.FromString,

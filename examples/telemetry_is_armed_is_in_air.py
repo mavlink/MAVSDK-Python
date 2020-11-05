@@ -5,6 +5,11 @@ from mavsdk import System
 
 
 async def run():
+      """
+      Run the client.
+
+      Args:
+      """
     drone = System()
     await drone.connect(system_address="udp://:14540")
 
@@ -13,11 +18,23 @@ async def run():
 
 
 async def print_is_armed(drone):
+      """
+      Check if print is print is enabled.
+
+      Args:
+          drone: (str): write your description
+      """
     async for is_armed in drone.telemetry.armed():
         print("Is_armed:", is_armed)
 
 
 async def print_is_in_air(drone):
+      """
+      Print out the given identifiers in - place.
+
+      Args:
+          drone: (str): write your description
+      """
     async for is_in_air in drone.telemetry.in_air():
         print("Is_in_air:", is_in_air)
 

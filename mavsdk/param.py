@@ -289,6 +289,12 @@ class ParamResult:
         PARAM_NAME_TOO_LONG = 5
 
         def translate_to_rpc(self):
+            """
+            Convert a protobuf to a protobuf.
+
+            Args:
+                self: (todo): write your description
+            """
             if self == ParamResult.Result.UNKNOWN:
                 return param_pb2.ParamResult.RESULT_UNKNOWN
             if self == ParamResult.Result.SUCCESS:
@@ -319,6 +325,12 @@ class ParamResult:
                 return ParamResult.Result.PARAM_NAME_TOO_LONG
 
         def __str__(self):
+            """
+            Return the string representation of this object.
+
+            Args:
+                self: (todo): write your description
+            """
             return self.name
     
 
@@ -385,11 +397,26 @@ class ParamError(Exception):
     """ Raised when a ParamResult is a fail code """
 
     def __init__(self, result, origin, *params):
+        """
+        Initialize the result.
+
+        Args:
+            self: (todo): write your description
+            result: (dict): write your description
+            origin: (todo): write your description
+            params: (dict): write your description
+        """
         self._result = result
         self._origin = origin
         self._params = params
 
     def __str__(self):
+        """
+        Return a string representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return f"{self._result.result}: '{self._result.result_str}'; origin: {self._origin}; params: {self._params}"
 
 

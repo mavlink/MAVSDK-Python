@@ -47,6 +47,13 @@ class CoreServiceServicer(object):
 
 
 def add_CoreServiceServicer_to_server(servicer, server):
+    """
+    Adds an rpc server to an rpc server.
+
+    Args:
+        servicer: (todo): write your description
+        server: (todo): write your description
+    """
     rpc_method_handlers = {
             'SubscribeConnectionState': grpc.unary_stream_rpc_method_handler(
                     servicer.SubscribeConnectionState,
@@ -80,6 +87,21 @@ class CoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a prpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (str): write your description
+            wait_for_ready: (str): write your description
+            timeout: (int): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.core.CoreService/SubscribeConnectionState',
             core_dot_core__pb2.SubscribeConnectionStateRequest.SerializeToString,
             core_dot_core__pb2.ConnectionStateResponse.FromString,
@@ -97,6 +119,21 @@ class CoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Lists all channels.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (dict): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.core.CoreService/ListRunningPlugins',
             core_dot_core__pb2.ListRunningPluginsRequest.SerializeToString,
             core_dot_core__pb2.ListRunningPluginsResponse.FromString,

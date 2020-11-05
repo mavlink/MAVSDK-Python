@@ -155,6 +155,12 @@ class FtpResult:
         PROTOCOL_ERROR = 11
 
         def translate_to_rpc(self):
+            """
+            Convert an rpc protobuf.
+
+            Args:
+                self: (todo): write your description
+            """
             if self == FtpResult.Result.UNKNOWN:
                 return ftp_pb2.FtpResult.RESULT_UNKNOWN
             if self == FtpResult.Result.SUCCESS:
@@ -209,6 +215,12 @@ class FtpResult:
                 return FtpResult.Result.PROTOCOL_ERROR
 
         def __str__(self):
+            """
+            Return the string representation of this object.
+
+            Args:
+                self: (todo): write your description
+            """
             return self.name
     
 
@@ -275,11 +287,26 @@ class FtpError(Exception):
     """ Raised when a FtpResult is a fail code """
 
     def __init__(self, result, origin, *params):
+        """
+        Initialize the result.
+
+        Args:
+            self: (todo): write your description
+            result: (dict): write your description
+            origin: (todo): write your description
+            params: (dict): write your description
+        """
         self._result = result
         self._origin = origin
         self._params = params
 
     def __str__(self):
+        """
+        Return a string representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return f"{self._result.result}: '{self._result.result_str}'; origin: {self._origin}; params: {self._params}"
 
 

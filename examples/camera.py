@@ -7,6 +7,11 @@ from mavsdk import System
 
 
 async def run():
+      """
+      Run the command line.
+
+      Args:
+      """
     drone = System()
     await drone.connect(system_address="udp://:14540")
 
@@ -46,11 +51,23 @@ async def run():
 
 
 async def print_mode(drone):
+      """
+      Print mode.
+
+      Args:
+          drone: (str): write your description
+      """
     async for mode in drone.camera.mode():
         print(f"Camera mode: {mode}")
 
 
 async def print_status(drone):
+      """
+      Print status
+
+      Args:
+          drone: (str): write your description
+      """
     async for status in drone.camera.status():
         print(status)
 

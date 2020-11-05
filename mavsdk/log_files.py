@@ -209,6 +209,12 @@ class LogFilesResult:
         FILE_OPEN_FAILED = 6
 
         def translate_to_rpc(self):
+            """
+            Translate log protobuf to protobuf.
+
+            Args:
+                self: (todo): write your description
+            """
             if self == LogFilesResult.Result.UNKNOWN:
                 return log_files_pb2.LogFilesResult.RESULT_UNKNOWN
             if self == LogFilesResult.Result.SUCCESS:
@@ -243,6 +249,12 @@ class LogFilesResult:
                 return LogFilesResult.Result.FILE_OPEN_FAILED
 
         def __str__(self):
+            """
+            Return the string representation of this object.
+
+            Args:
+                self: (todo): write your description
+            """
             return self.name
     
 
@@ -309,11 +321,26 @@ class LogFilesError(Exception):
     """ Raised when a LogFilesResult is a fail code """
 
     def __init__(self, result, origin, *params):
+        """
+        Initialize the result.
+
+        Args:
+            self: (todo): write your description
+            result: (dict): write your description
+            origin: (todo): write your description
+            params: (dict): write your description
+        """
         self._result = result
         self._origin = origin
         self._params = params
 
     def __str__(self):
+        """
+        Return a string representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return f"{self._result.result}: '{self._result.result_str}'; origin: {self._origin}; params: {self._params}"
 
 

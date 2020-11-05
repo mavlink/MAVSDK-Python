@@ -44,6 +44,14 @@ class System:
 
     """
     def __init__(self, mavsdk_server_address=None, port=50051):
+        """
+        Initialize the mavsdk server.
+
+        Args:
+            self: (todo): write your description
+            mavsdk_server_address: (todo): write your description
+            port: (int): write your description
+        """
         self._mavsdk_server_address = mavsdk_server_address
         self._port = port
 
@@ -51,6 +59,12 @@ class System:
         self._server_process = None
 
     def __del__(self):
+        """
+        Deliver the server.
+
+        Args:
+            self: (todo): write your description
+        """
         self._stop_mavsdk_server()
 
     async def connect(self, system_address=None):
@@ -93,6 +107,14 @@ class System:
             self.__init__(port = self._port)
 
     async def _init_plugins(self, host, port):
+          """
+          Initialize the plugins.
+
+          Args:
+              self: (todo): write your description
+              host: (str): write your description
+              port: (int): write your description
+          """
         plugin_manager = await AsyncPluginManager.create(host=host, port=port)
 
         self._plugins = {}
@@ -119,125 +141,251 @@ class System:
 
     @staticmethod
     def error_uninitialized(plugin_name: str) -> str:
+        """
+        Return uninitialized uninitialized.
+
+        Args:
+            plugin_name: (str): write your description
+        """
         return "{plugin_name} plugin has not been initialized!" \
             "Did you run `System.connect()`?"
 
     @property
     def action(self) -> action.Action:
+        """
+        The plugins associated with the plugins.
+
+        Args:
+            self: (todo): write your description
+        """
         if "action" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Action"))
         return self._plugins["action"]
 
     @property
     def calibration(self) -> calibration.Calibration:
+        """
+        Calculate calibration calibration.
+
+        Args:
+            self: (todo): write your description
+        """
         if "calibration" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Calibration"))
         return self._plugins["calibration"]
 
     @property
     def camera(self) -> camera.Camera:
+        """
+        Return the camera.
+
+        Args:
+            self: (todo): write your description
+        """
         if "camera" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Camera"))
         return self._plugins["camera"]
 
     @property
     def core(self) -> core.Core:
+        """
+        The core core.
+
+        Args:
+            self: (todo): write your description
+        """
         if "core" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Core"))
         return self._plugins["core"]
 
     @property
     def failure(self) -> failure.Failure:
+        """
+        Return the plugins that match the plugins.
+
+        Args:
+            self: (todo): write your description
+        """
         if "failure" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Failure"))
         return self._plugins["failure"]
     
     @property
     def follow_me(self) -> follow_me.FollowMe:
+        """
+        Follow plugins : class :.
+
+        Args:
+            self: (todo): write your description
+        """
         if "follow_me" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("FollowMe"))
         return self._plugins["follow_me"]
 
     @property
     def ftp(self) -> ftp.Ftp:
+        """
+        Ftpair plugins.
+
+        Args:
+            self: (todo): write your description
+        """
         if "ftp" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Ftp"))
         return self._plugins["ftp"]
 
     @property
     def geofence(self) -> geofence.Geofence:
+        """
+        Return the geofence of the geofence.
+
+        Args:
+            self: (todo): write your description
+        """
         if "geofence" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Geofence"))
         return self._plugins["geofence"]
 
     @property
     def gimbal(self) -> gimbal.Gimbal:
+        """
+        Return the gimbal object.
+
+        Args:
+            self: (todo): write your description
+        """
         if "gimbal" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Gimbal"))
         return self._plugins["gimbal"]
 
     @property
     def info(self) -> info.Info:
+        """
+        Return the info about the plugins.
+
+        Args:
+            self: (todo): write your description
+        """
         if "info" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Info"))
         return self._plugins["info"]
 
     @property
     def log_files(self) -> log_files.LogFiles:
+        """
+        List of all log files.
+
+        Args:
+            self: (todo): write your description
+        """
         if "log_files" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("LogFiles"))
         return self._plugins["log_files"]
 
     @property
     def manual_control(self) -> manual_control.ManualControl:
+        """
+        The control control control control.
+
+        Args:
+            self: (todo): write your description
+        """
         if "manual_control" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("ManualControl"))
         return self._plugins["manual_control"]
 
     @property
     def mission(self) -> mission.Mission:
+        """
+        Return the mission.
+
+        Args:
+            self: (todo): write your description
+        """
         if "mission" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Mission"))
         return self._plugins["mission"]
 
     @property
     def mission_raw(self) -> mission_raw.MissionRaw:
+        """
+        Return the raw mission.
+
+        Args:
+            self: (todo): write your description
+        """
         if "mission_raw" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("MissionRaw"))
         return self._plugins["mission_raw"]
 
     @property
     def mocap(self) -> mocap.Mocap:
+        """
+        Mocap plugins. plugins.
+
+        Args:
+            self: (todo): write your description
+        """
         if "mocap" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Mocap"))
         return self._plugins["mocap"]
 
     @property
     def offboard(self) -> offboard.Offboard:
+        """
+        Get the board.
+
+        Args:
+            self: (todo): write your description
+        """
         if "offboard" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Offboard"))
         return self._plugins["offboard"]
 
     @property
     def param(self) -> param.Param:
+        """
+        Return the list.
+
+        Args:
+            self: (todo): write your description
+        """
         if "param" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Param"))
         return self._plugins["param"]
 
     @property
     def shell(self) -> shell.Shell:
+        """
+        Returns the shell.
+
+        Args:
+            self: (todo): write your description
+        """
         if "shell" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Shell"))
         return self._plugins["shell"]
 
     @property
     def telemetry(self) -> telemetry.Telemetry:
+        """
+        Telemetry plugins that are uninitialized.
+
+        Args:
+            self: (todo): write your description
+        """
         if "telemetry" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Telemetry"))
         return self._plugins["telemetry"]
 
     @property
     def tune(self) -> tune.Tune:
+        """
+        Tune the plugins.
+
+        Args:
+            self: (todo): write your description
+        """
         if "tune" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Tune"))
         return self._plugins["tune"]
@@ -287,6 +435,11 @@ You will need to get and run the 'mavsdk_server' binary manually:
             sys.exit(1)
 
         def cleanup():
+            """
+            Clean up the cleanup.
+
+            Args:
+            """
             p.kill()
 
         atexit.register(cleanup)

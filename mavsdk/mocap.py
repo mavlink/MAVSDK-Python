@@ -806,6 +806,12 @@ class Odometry:
         LOCAL_FRD = 1
 
         def translate_to_rpc(self):
+            """
+            Convert an rpc protobuf to a user defined rpc.
+
+            Args:
+                self: (todo): write your description
+            """
             if self == Odometry.MavFrame.MOCAP_NED:
                 return mocap_pb2.Odometry.MAV_FRAME_MOCAP_NED
             if self == Odometry.MavFrame.LOCAL_FRD:
@@ -820,6 +826,12 @@ class Odometry:
                 return Odometry.MavFrame.LOCAL_FRD
 
         def __str__(self):
+            """
+            Return the string representation of this object.
+
+            Args:
+                self: (todo): write your description
+            """
             return self.name
     
 
@@ -1006,6 +1018,12 @@ class MocapResult:
         INVALID_REQUEST_DATA = 4
 
         def translate_to_rpc(self):
+            """
+            Convert a protobuf to a pocap protobuf.
+
+            Args:
+                self: (todo): write your description
+            """
             if self == MocapResult.Result.UNKNOWN:
                 return mocap_pb2.MocapResult.RESULT_UNKNOWN
             if self == MocapResult.Result.SUCCESS:
@@ -1032,6 +1050,12 @@ class MocapResult:
                 return MocapResult.Result.INVALID_REQUEST_DATA
 
         def __str__(self):
+            """
+            Return the string representation of this object.
+
+            Args:
+                self: (todo): write your description
+            """
             return self.name
     
 
@@ -1098,11 +1122,26 @@ class MocapError(Exception):
     """ Raised when a MocapResult is a fail code """
 
     def __init__(self, result, origin, *params):
+        """
+        Initialize the result.
+
+        Args:
+            self: (todo): write your description
+            result: (dict): write your description
+            origin: (todo): write your description
+            params: (dict): write your description
+        """
         self._result = result
         self._origin = origin
         self._params = params
 
     def __str__(self):
+        """
+        Return a string representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return f"{self._result.result}: '{self._result.result_str}'; origin: {self._origin}; params: {self._params}"
 
 

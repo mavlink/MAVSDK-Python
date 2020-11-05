@@ -95,6 +95,13 @@ class CalibrationServiceServicer(object):
 
 
 def add_CalibrationServiceServicer_to_server(servicer, server):
+    """
+    Adds an rpc server to an rpc server.
+
+    Args:
+        servicer: (todo): write your description
+        server: (todo): write your description
+    """
     rpc_method_handlers = {
             'SubscribeCalibrateGyro': grpc.unary_stream_rpc_method_handler(
                     servicer.SubscribeCalibrateGyro,
@@ -148,6 +155,21 @@ class CalibrationService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a simple simple dispatcher.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.calibration.CalibrationService/SubscribeCalibrateGyro',
             calibration_dot_calibration__pb2.SubscribeCalibrateGyroRequest.SerializeToString,
             calibration_dot_calibration__pb2.CalibrateGyroResponse.FromString,
@@ -165,6 +187,21 @@ class CalibrationService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a redibrate command.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.calibration.CalibrationService/SubscribeCalibrateAccelerometer',
             calibration_dot_calibration__pb2.SubscribeCalibrateAccelerometerRequest.SerializeToString,
             calibration_dot_calibration__pb2.CalibrateAccelerometerResponse.FromString,
@@ -182,6 +219,21 @@ class CalibrationService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a simple grpc netometer.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.calibration.CalibrationService/SubscribeCalibrateMagnetometer',
             calibration_dot_calibration__pb2.SubscribeCalibrateMagnetometerRequest.SerializeToString,
             calibration_dot_calibration__pb2.CalibrateMagnetometerResponse.FromString,
@@ -199,6 +251,21 @@ class CalibrationService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a ray - kernel.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.calibration.CalibrationService/SubscribeCalibrateLevelHorizon',
             calibration_dot_calibration__pb2.SubscribeCalibrateLevelHorizonRequest.SerializeToString,
             calibration_dot_calibration__pb2.CalibrateLevelHorizonResponse.FromString,
@@ -216,6 +283,21 @@ class CalibrationService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a simple gimbalometer request.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.calibration.CalibrationService/SubscribeCalibrateGimbalAccelerometer',
             calibration_dot_calibration__pb2.SubscribeCalibrateGimbalAccelerometerRequest.SerializeToString,
             calibration_dot_calibration__pb2.CalibrateGimbalAccelerometerResponse.FromString,
@@ -233,6 +315,21 @@ class CalibrationService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a cancel command.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (dict): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.calibration.CalibrationService/Cancel',
             calibration_dot_calibration__pb2.CancelRequest.SerializeToString,
             calibration_dot_calibration__pb2.CancelResponse.FromString,

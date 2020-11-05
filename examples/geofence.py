@@ -13,6 +13,11 @@ Note: The behavior when your vehicle hits the geofence is NOT configured in this
 
 
 async def run():
+      """
+      Run the geofence.
+
+      Args:
+      """
 
     # Connect to the Simulation
     drone = System()

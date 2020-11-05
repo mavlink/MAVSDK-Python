@@ -83,6 +83,13 @@ class InfoServiceServicer(object):
 
 
 def add_InfoServiceServicer_to_server(servicer, server):
+    """
+    Adds an rpc server to a protobuf.
+
+    Args:
+        servicer: (todo): write your description
+        server: (todo): write your description
+    """
     rpc_method_handlers = {
             'GetFlightInformation': grpc.unary_unary_rpc_method_handler(
                     servicer.GetFlightInformation,
@@ -131,6 +138,21 @@ class InfoService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a grpc message.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (str): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (str): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (int): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.info.InfoService/GetFlightInformation',
             info_dot_info__pb2.GetFlightInformationRequest.SerializeToString,
             info_dot_info__pb2.GetFlightInformationResponse.FromString,
@@ -148,6 +170,21 @@ class InfoService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a grpc request.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (str): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (int): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.info.InfoService/GetIdentification',
             info_dot_info__pb2.GetIdentificationRequest.SerializeToString,
             info_dot_info__pb2.GetIdentificationResponse.FromString,
@@ -165,6 +202,21 @@ class InfoService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a grpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (str): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (int): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.info.InfoService/GetProduct',
             info_dot_info__pb2.GetProductRequest.SerializeToString,
             info_dot_info__pb2.GetProductResponse.FromString,
@@ -182,6 +234,21 @@ class InfoService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Create a grpc version.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (str): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (int): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.info.InfoService/GetVersion',
             info_dot_info__pb2.GetVersionRequest.SerializeToString,
             info_dot_info__pb2.GetVersionResponse.FromString,
@@ -199,6 +266,21 @@ class InfoService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Creates a grpc request.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (todo): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (int): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.info.InfoService/GetSpeedFactor',
             info_dot_info__pb2.GetSpeedFactorRequest.SerializeToString,
             info_dot_info__pb2.GetSpeedFactorResponse.FromString,

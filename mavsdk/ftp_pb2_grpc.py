@@ -181,6 +181,13 @@ class FtpServiceServicer(object):
 
 
 def add_FtpServiceServicer_to_server(servicer, server):
+    """
+    Adds ftp ftp rpc server.
+
+    Args:
+        servicer: (todo): write your description
+        server: (todo): write your description
+    """
     rpc_method_handlers = {
             'Reset': grpc.unary_unary_rpc_method_handler(
                     servicer.Reset,
@@ -265,6 +272,21 @@ class FtpService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Initialize a go - channel.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/Reset',
             ftp_dot_ftp__pb2.ResetRequest.SerializeToString,
             ftp_dot_ftp__pb2.ResetResponse.FromString,
@@ -282,6 +304,21 @@ class FtpService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Creates a generator for reading a generator.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.ftp.FtpService/SubscribeDownload',
             ftp_dot_ftp__pb2.SubscribeDownloadRequest.SerializeToString,
             ftp_dot_ftp__pb2.DownloadResponse.FromString,
@@ -299,6 +336,21 @@ class FtpService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a grpc operation.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.ftp.FtpService/SubscribeUpload',
             ftp_dot_ftp__pb2.SubscribeUploadRequest.SerializeToString,
             ftp_dot_ftp__pb2.UploadResponse.FromString,
@@ -316,6 +368,21 @@ class FtpService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a directory.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/ListDirectory',
             ftp_dot_ftp__pb2.ListDirectoryRequest.SerializeToString,
             ftp_dot_ftp__pb2.ListDirectoryResponse.FromString,
@@ -333,6 +400,21 @@ class FtpService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Creates a temporary directory.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (todo): write your description
+            insecure: (todo): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/CreateDirectory',
             ftp_dot_ftp__pb2.CreateDirectoryRequest.SerializeToString,
             ftp_dot_ftp__pb2.CreateDirectoryResponse.FromString,
@@ -350,6 +432,21 @@ class FtpService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Deletes a directory.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (todo): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/RemoveDirectory',
             ftp_dot_ftp__pb2.RemoveDirectoryRequest.SerializeToString,
             ftp_dot_ftp__pb2.RemoveDirectoryResponse.FromString,
@@ -367,6 +464,21 @@ class FtpService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Removes a grpc.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (dict): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (todo): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/RemoveFile',
             ftp_dot_ftp__pb2.RemoveFileRequest.SerializeToString,
             ftp_dot_ftp__pb2.RemoveFileResponse.FromString,
@@ -384,6 +496,21 @@ class FtpService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Perform a grpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/Rename',
             ftp_dot_ftp__pb2.RenameRequest.SerializeToString,
             ftp_dot_ftp__pb2.RenameResponse.FromString,
@@ -401,6 +528,21 @@ class FtpService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Returns a generator over all metadata.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (todo): write your description
+            insecure: (todo): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/AreFilesIdentical',
             ftp_dot_ftp__pb2.AreFilesIdenticalRequest.SerializeToString,
             ftp_dot_ftp__pb2.AreFilesIdenticalResponse.FromString,
@@ -418,6 +560,21 @@ class FtpService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Sets a grpc client credentials.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/SetRootDirectory',
             ftp_dot_ftp__pb2.SetRootDirectoryRequest.SerializeToString,
             ftp_dot_ftp__pb2.SetRootDirectoryResponse.FromString,
@@ -435,6 +592,21 @@ class FtpService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Sets a grpc request.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (str): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (int): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/SetTargetCompid',
             ftp_dot_ftp__pb2.SetTargetCompidRequest.SerializeToString,
             ftp_dot_ftp__pb2.SetTargetCompidResponse.FromString,
@@ -452,6 +624,21 @@ class FtpService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Reads a grpc request.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (todo): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (int): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/GetOurCompid',
             ftp_dot_ftp__pb2.GetOurCompidRequest.SerializeToString,
             ftp_dot_ftp__pb2.GetOurCompidResponse.FromString,

@@ -7,6 +7,11 @@ from mavsdk.mission import (MissionItem, MissionPlan)
 
 
 async def run():
+      """
+      Run the mission.
+
+      Args:
+      """
     drone = System()
     await drone.connect(system_address="udp://:14540")
 
@@ -70,6 +75,12 @@ async def run():
 
 
 async def print_mission_progress(drone):
+      """
+      Print a submission submission.
+
+      Args:
+          drone: (todo): write your description
+      """
     async for mission_progress in drone.mission.mission_progress():
         print(f"Mission progress: "
               f"{mission_progress.current}/"

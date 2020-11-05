@@ -164,6 +164,13 @@ class OffboardServiceServicer(object):
 
 
 def add_OffboardServiceServicer_to_server(servicer, server):
+    """
+    Adds a protobuf to a protobuf.
+
+    Args:
+        servicer: (todo): write your description
+        server: (todo): write your description
+    """
     rpc_method_handlers = {
             'Start': grpc.unary_unary_rpc_method_handler(
                     servicer.Start,
@@ -240,6 +247,21 @@ class OffboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Starts a new grpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (str): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.offboard.OffboardService/Start',
             offboard_dot_offboard__pb2.StartRequest.SerializeToString,
             offboard_dot_offboard__pb2.StartResponse.FromString,
@@ -257,6 +279,21 @@ class OffboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Stops a grpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (str): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.offboard.OffboardService/Stop',
             offboard_dot_offboard__pb2.StopRequest.SerializeToString,
             offboard_dot_offboard__pb2.StopResponse.FromString,
@@ -274,6 +311,21 @@ class OffboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Checks if a client is running.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (bool): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.offboard.OffboardService/IsActive',
             offboard_dot_offboard__pb2.IsActiveRequest.SerializeToString,
             offboard_dot_offboard__pb2.IsActiveResponse.FromString,
@@ -291,6 +343,21 @@ class OffboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Sets a set of the specified grpc.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (str): write your description
+            call_credentials: (str): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.offboard.OffboardService/SetAttitude',
             offboard_dot_offboard__pb2.SetAttitudeRequest.SerializeToString,
             offboard_dot_offboard__pb2.SetAttitudeResponse.FromString,
@@ -308,6 +375,21 @@ class OffboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Creates a grpc client for a grpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.offboard.OffboardService/SetActuatorControl',
             offboard_dot_offboard__pb2.SetActuatorControlRequest.SerializeToString,
             offboard_dot_offboard__pb2.SetActuatorControlResponse.FromString,
@@ -325,6 +407,21 @@ class OffboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Sets a grpc for a set for the specified grpcs.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (str): write your description
+            insecure: (todo): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.offboard.OffboardService/SetAttitudeRate',
             offboard_dot_offboard__pb2.SetAttitudeRateRequest.SerializeToString,
             offboard_dot_offboard__pb2.SetAttitudeRateResponse.FromString,
@@ -342,6 +439,21 @@ class OffboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Sets a grpc manager.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (todo): write your description
+            channel_credentials: (todo): write your description
+            call_credentials: (str): write your description
+            insecure: (todo): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.offboard.OffboardService/SetPositionNed',
             offboard_dot_offboard__pb2.SetPositionNedRequest.SerializeToString,
             offboard_dot_offboard__pb2.SetPositionNedResponse.FromString,
@@ -359,6 +471,21 @@ class OffboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Initialize a grpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (bool): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (todo): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.offboard.OffboardService/SetVelocityBody',
             offboard_dot_offboard__pb2.SetVelocityBodyRequest.SerializeToString,
             offboard_dot_offboard__pb2.SetVelocityBodyResponse.FromString,
@@ -376,6 +503,21 @@ class OffboardService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
+        """
+        Initialize a grpc client.
+
+        Args:
+            request: (todo): write your description
+            target: (todo): write your description
+            options: (dict): write your description
+            channel_credentials: (bool): write your description
+            call_credentials: (todo): write your description
+            insecure: (bool): write your description
+            compression: (todo): write your description
+            wait_for_ready: (todo): write your description
+            timeout: (float): write your description
+            metadata: (dict): write your description
+        """
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.offboard.OffboardService/SetVelocityNed',
             offboard_dot_offboard__pb2.SetVelocityNedRequest.SerializeToString,
             offboard_dot_offboard__pb2.SetVelocityNedResponse.FromString,

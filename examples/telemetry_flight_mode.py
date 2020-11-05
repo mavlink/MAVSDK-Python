@@ -5,6 +5,11 @@ from mavsdk import System
 
 
 async def print_flight_mode():
+      """
+      Print flight mode.
+
+      Args:
+      """
     drone = System()
     await drone.connect(system_address="udp://:14540")
 
