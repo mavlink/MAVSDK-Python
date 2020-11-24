@@ -1,6 +1,6 @@
 # MAVSDK-Python
 
-[![GitHub Actions Status](https://github.com/mavlink/MAVSDK-Python/workflows/PyPi%20Upload/badge.svg?branch=master)](https://github.com/mavlink/MAVSDK-Python/actions?query=branch%3Amaster)
+[![GitHub Actions Status](https://github.com/mavlink/MAVSDK-Python/workflows/PyPi%20Upload/badge.svg?branch=main)](https://github.com/mavlink/MAVSDK-Python/actions?query=branch%3Amain)
 
 This is the Python wrapper for MAVSDK.
 
@@ -117,11 +117,11 @@ make -C mavsdk html
 
 ### Release steps
 
-1. Check all required pull requests are merged to master
+1. Check all required pull requests are merged to main
 2. Check [MAVSDK_SERVER_VERSION](MAVSDK_SERVER_VERSION) is set to the correct version of mavsdk_server.
-3. Create git tag on laster master, e.g.:
+3. Create git tag on laster main, e.g.:
    ```
-   git switch master
+   git switch main
    git pull
    git tag X.Y.Z
    git push --tags
