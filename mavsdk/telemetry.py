@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # DO NOT EDIT! This file is auto-generated from
-# https://github.com/mavlink/MAVSDK-Python/tree/master/other/templates/py
+# https://github.com/mavlink/MAVSDK-Python/tree/main/other/templates/py
 from ._base import AsyncBase
 from . import telemetry_pb2, telemetry_pb2_grpc
 from enum import Enum
@@ -2770,6 +2770,96 @@ class Imu:
         
 
 
+class GpsGlobalOrigin:
+    """
+     Gps global origin type.
+
+     Parameters
+     ----------
+     latitude_deg : double
+          Latitude of the origin
+
+     longitude_deg : double
+          Longitude of the origin
+
+     altitude_m : float
+          Altitude AMSL (above mean sea level) in metres
+
+     """
+
+    
+
+    def __init__(
+            self,
+            latitude_deg,
+            longitude_deg,
+            altitude_m):
+        """ Initializes the GpsGlobalOrigin object """
+        self.latitude_deg = latitude_deg
+        self.longitude_deg = longitude_deg
+        self.altitude_m = altitude_m
+
+    def __equals__(self, to_compare):
+        """ Checks if two GpsGlobalOrigin are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # GpsGlobalOrigin object
+            return \
+                (self.latitude_deg == to_compare.latitude_deg) and \
+                (self.longitude_deg == to_compare.longitude_deg) and \
+                (self.altitude_m == to_compare.altitude_m)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ GpsGlobalOrigin in string representation """
+        struct_repr = ", ".join([
+                "latitude_deg: " + str(self.latitude_deg),
+                "longitude_deg: " + str(self.longitude_deg),
+                "altitude_m: " + str(self.altitude_m)
+                ])
+
+        return f"GpsGlobalOrigin: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcGpsGlobalOrigin):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return GpsGlobalOrigin(
+                
+                rpcGpsGlobalOrigin.latitude_deg,
+                
+                
+                rpcGpsGlobalOrigin.longitude_deg,
+                
+                
+                rpcGpsGlobalOrigin.altitude_m
+                )
+
+    def translate_to_rpc(self, rpcGpsGlobalOrigin):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcGpsGlobalOrigin.latitude_deg = self.latitude_deg
+            
+        
+        
+        
+            
+        rpcGpsGlobalOrigin.longitude_deg = self.longitude_deg
+            
+        
+        
+        
+            
+        rpcGpsGlobalOrigin.altitude_m = self.altitude_m
+            
+        
+        
+
+
 class TelemetryResult:
     """
      Result type.
@@ -4095,3 +4185,30 @@ class Telemetry(AsyncBase):
         if result.result is not TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_distance_sensor()", rate_hz)
         
+
+    async def get_gps_global_origin(self):
+        """
+         Get the GPS location of where the estimator has been initialized.
+
+         Returns
+         -------
+         gps_global_origin : GpsGlobalOrigin
+             
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.GetGpsGlobalOriginRequest()
+        response = await self._stub.GetGpsGlobalOrigin(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "get_gps_global_origin()")
+        
+
+        return GpsGlobalOrigin.translate_from_rpc(response.gps_global_origin)
+            

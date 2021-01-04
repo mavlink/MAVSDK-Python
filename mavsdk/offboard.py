@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # DO NOT EDIT! This file is auto-generated from
-# https://github.com/mavlink/MAVSDK-Python/tree/master/other/templates/py
+# https://github.com/mavlink/MAVSDK-Python/tree/main/other/templates/py
 from ._base import AsyncBase
 from . import offboard_pb2, offboard_pb2_grpc
 from enum import Enum
@@ -1112,4 +1112,40 @@ class Offboard(AsyncBase):
 
         if result.result is not OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_velocity_ned()", velocity_ned_yaw)
+        
+
+    async def set_position_velocity_ned(self, position_ned_yaw, velocity_ned_yaw):
+        """
+         Set the position in NED coordinates, with the velocity to be used as feed-forward.
+
+         Parameters
+         ----------
+         position_ned_yaw : PositionNedYaw
+              Position and yaw
+
+         velocity_ned_yaw : VelocityNedYaw
+              Velocity and yaw
+
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = offboard_pb2.SetPositionVelocityNedRequest()
+        
+        position_ned_yaw.translate_to_rpc(request.position_ned_yaw)
+                
+            
+        
+        velocity_ned_yaw.translate_to_rpc(request.velocity_ned_yaw)
+                
+            
+        response = await self._stub.SetPositionVelocityNed(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_position_velocity_ned()", position_ned_yaw, velocity_ned_yaw)
         
