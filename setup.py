@@ -54,11 +54,11 @@ class custom_build(build):
         """
         if sys.platform.startswith('linux') and 'MAVSDK_SERVER_ARCH' in os.environ:
             if os.environ['MAVSDK_SERVER_ARCH'] == "armv6l":
-                return 'musl_armv6'
+                return 'linux-armv6-musl'
             elif os.environ['MAVSDK_SERVER_ARCH'] == "armv7l":
-                return 'musl_armv7'
+                return 'linux-armv7l-musl'
             elif os.environ['MAVSDK_SERVER_ARCH'] == "aarch64":
-                return 'musl_aarch64'
+                return 'linux-arm64-musl'
             else:
                 raise NotImplementedError(
                     f"Error: unknown MAVSDK_SERVER_ARCH: {os.environ['MAVSDK_SERVER_ARCH']}")
