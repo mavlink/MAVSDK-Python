@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # DO NOT EDIT! This file is auto-generated from
-# https://github.com/mavlink/MAVSDK-Python/tree/master/other/templates/py
+# https://github.com/mavlink/MAVSDK-Python/tree/main/other/templates/py
 from ._base import AsyncBase
 from . import manual_control_pb2, manual_control_pb2_grpc
 from enum import Enum
@@ -52,6 +52,9 @@ class ManualControlResult:
          INPUT_OUT_OF_RANGE
               Input out of range
 
+         INPUT_NOT_SET
+              No Input set
+
          """
 
         
@@ -63,6 +66,7 @@ class ManualControlResult:
         COMMAND_DENIED = 5
         TIMEOUT = 6
         INPUT_OUT_OF_RANGE = 7
+        INPUT_NOT_SET = 8
 
         def translate_to_rpc(self):
             if self == ManualControlResult.Result.UNKNOWN:
@@ -81,6 +85,8 @@ class ManualControlResult:
                 return manual_control_pb2.ManualControlResult.RESULT_TIMEOUT
             if self == ManualControlResult.Result.INPUT_OUT_OF_RANGE:
                 return manual_control_pb2.ManualControlResult.RESULT_INPUT_OUT_OF_RANGE
+            if self == ManualControlResult.Result.INPUT_NOT_SET:
+                return manual_control_pb2.ManualControlResult.RESULT_INPUT_NOT_SET
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -101,6 +107,8 @@ class ManualControlResult:
                 return ManualControlResult.Result.TIMEOUT
             if rpc_enum_value == manual_control_pb2.ManualControlResult.RESULT_INPUT_OUT_OF_RANGE:
                 return ManualControlResult.Result.INPUT_OUT_OF_RANGE
+            if rpc_enum_value == manual_control_pb2.ManualControlResult.RESULT_INPUT_NOT_SET:
+                return ManualControlResult.Result.INPUT_NOT_SET
 
         def __str__(self):
             return self.name

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # DO NOT EDIT! This file is auto-generated from
-# https://github.com/mavlink/MAVSDK-Python/tree/master/other/templates/py
+# https://github.com/mavlink/MAVSDK-Python/tree/main/other/templates/py
 from ._base import AsyncBase
 from . import failure_pb2, failure_pb2_grpc
 from enum import Enum

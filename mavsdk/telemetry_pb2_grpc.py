@@ -247,6 +247,11 @@ class TelemetryServiceStub(object):
                 request_serializer=telemetry_dot_telemetry__pb2.SetRateDistanceSensorRequest.SerializeToString,
                 response_deserializer=telemetry_dot_telemetry__pb2.SetRateDistanceSensorResponse.FromString,
                 )
+        self.GetGpsGlobalOrigin = channel.unary_unary(
+                '/mavsdk.rpc.telemetry.TelemetryService/GetGpsGlobalOrigin',
+                request_serializer=telemetry_dot_telemetry__pb2.GetGpsGlobalOriginRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.GetGpsGlobalOriginResponse.FromString,
+                )
 
 
 class TelemetryServiceServicer(object):
@@ -577,6 +582,13 @@ class TelemetryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetGpsGlobalOrigin(self, request, context):
+        """Get the GPS location of where the estimator has been initialized.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_TelemetryServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -809,6 +821,11 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     servicer.SetRateDistanceSensor,
                     request_deserializer=telemetry_dot_telemetry__pb2.SetRateDistanceSensorRequest.FromString,
                     response_serializer=telemetry_dot_telemetry__pb2.SetRateDistanceSensorResponse.SerializeToString,
+            ),
+            'GetGpsGlobalOrigin': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetGpsGlobalOrigin,
+                    request_deserializer=telemetry_dot_telemetry__pb2.GetGpsGlobalOriginRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.GetGpsGlobalOriginResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1602,5 +1619,22 @@ class TelemetryService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SetRateDistanceSensor',
             telemetry_dot_telemetry__pb2.SetRateDistanceSensorRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateDistanceSensorResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetGpsGlobalOrigin(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/GetGpsGlobalOrigin',
+            telemetry_dot_telemetry__pb2.GetGpsGlobalOriginRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.GetGpsGlobalOriginResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
