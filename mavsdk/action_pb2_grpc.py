@@ -65,6 +65,11 @@ class ActionServiceStub(object):
                 request_serializer=action_dot_action__pb2.GotoLocationRequest.SerializeToString,
                 response_deserializer=action_dot_action__pb2.GotoLocationResponse.FromString,
                 )
+        self.DoOrbit = channel.unary_unary(
+                '/mavsdk.rpc.action.ActionService/DoOrbit',
+                request_serializer=action_dot_action__pb2.DoOrbitRequest.SerializeToString,
+                response_deserializer=action_dot_action__pb2.DoOrbitResponse.FromString,
+                )
         self.TransitionToFixedwing = channel.unary_unary(
                 '/mavsdk.rpc.action.ActionService/TransitionToFixedwing',
                 request_serializer=action_dot_action__pb2.TransitionToFixedwingRequest.SerializeToString,
@@ -224,6 +229,16 @@ class ActionServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def DoOrbit(self, request, context):
+        """
+        Send command do orbit to the drone.
+
+        This will run the orbit routine with the given parameters.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def TransitionToFixedwing(self, request, context):
         """
         Send command to transition the drone to fixedwing.
@@ -348,6 +363,11 @@ def add_ActionServiceServicer_to_server(servicer, server):
                     servicer.GotoLocation,
                     request_deserializer=action_dot_action__pb2.GotoLocationRequest.FromString,
                     response_serializer=action_dot_action__pb2.GotoLocationResponse.SerializeToString,
+            ),
+            'DoOrbit': grpc.unary_unary_rpc_method_handler(
+                    servicer.DoOrbit,
+                    request_deserializer=action_dot_action__pb2.DoOrbitRequest.FromString,
+                    response_serializer=action_dot_action__pb2.DoOrbitResponse.SerializeToString,
             ),
             'TransitionToFixedwing': grpc.unary_unary_rpc_method_handler(
                     servicer.TransitionToFixedwing,
@@ -567,6 +587,23 @@ class ActionService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.action.ActionService/GotoLocation',
             action_dot_action__pb2.GotoLocationRequest.SerializeToString,
             action_dot_action__pb2.GotoLocationResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DoOrbit(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.action.ActionService/DoOrbit',
+            action_dot_action__pb2.DoOrbitRequest.SerializeToString,
+            action_dot_action__pb2.DoOrbitResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

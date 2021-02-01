@@ -6,6 +6,66 @@ from . import action_pb2, action_pb2_grpc
 from enum import Enum
 
 
+class OrbitYawBehavior(Enum):
+    """
+     Yaw behaviour during orbit flight.
+
+     Values
+     ------
+     HOLD_FRONT_TO_CIRCLE_CENTER
+          Vehicle front points to the center (default)
+
+     HOLD_INITIAL_HEADING
+          Vehicle front holds heading when message received
+
+     UNCONTROLLED
+          Yaw uncontrolled
+
+     HOLD_FRONT_TANGENT_TO_CIRCLE
+          Vehicle front follows flight path (tangential to circle)
+
+     RC_CONTROLLED
+          Yaw controlled by RC input
+
+     """
+
+    
+    HOLD_FRONT_TO_CIRCLE_CENTER = 0
+    HOLD_INITIAL_HEADING = 1
+    UNCONTROLLED = 2
+    HOLD_FRONT_TANGENT_TO_CIRCLE = 3
+    RC_CONTROLLED = 4
+
+    def translate_to_rpc(self):
+        if self == OrbitYawBehavior.HOLD_FRONT_TO_CIRCLE_CENTER:
+            return action_pb2.ORBIT_YAW_BEHAVIOR_HOLD_FRONT_TO_CIRCLE_CENTER
+        if self == OrbitYawBehavior.HOLD_INITIAL_HEADING:
+            return action_pb2.ORBIT_YAW_BEHAVIOR_HOLD_INITIAL_HEADING
+        if self == OrbitYawBehavior.UNCONTROLLED:
+            return action_pb2.ORBIT_YAW_BEHAVIOR_UNCONTROLLED
+        if self == OrbitYawBehavior.HOLD_FRONT_TANGENT_TO_CIRCLE:
+            return action_pb2.ORBIT_YAW_BEHAVIOR_HOLD_FRONT_TANGENT_TO_CIRCLE
+        if self == OrbitYawBehavior.RC_CONTROLLED:
+            return action_pb2.ORBIT_YAW_BEHAVIOR_RC_CONTROLLED
+
+    @staticmethod
+    def translate_from_rpc(rpc_enum_value):
+        """ Parses a gRPC response """
+        if rpc_enum_value == action_pb2.ORBIT_YAW_BEHAVIOR_HOLD_FRONT_TO_CIRCLE_CENTER:
+            return OrbitYawBehavior.HOLD_FRONT_TO_CIRCLE_CENTER
+        if rpc_enum_value == action_pb2.ORBIT_YAW_BEHAVIOR_HOLD_INITIAL_HEADING:
+            return OrbitYawBehavior.HOLD_INITIAL_HEADING
+        if rpc_enum_value == action_pb2.ORBIT_YAW_BEHAVIOR_UNCONTROLLED:
+            return OrbitYawBehavior.UNCONTROLLED
+        if rpc_enum_value == action_pb2.ORBIT_YAW_BEHAVIOR_HOLD_FRONT_TANGENT_TO_CIRCLE:
+            return OrbitYawBehavior.HOLD_FRONT_TANGENT_TO_CIRCLE
+        if rpc_enum_value == action_pb2.ORBIT_YAW_BEHAVIOR_RC_CONTROLLED:
+            return OrbitYawBehavior.RC_CONTROLLED
+
+    def __str__(self):
+        return self.name
+
+
 class ActionResult:
     """
      Result type.
@@ -478,6 +538,57 @@ class Action(AsyncBase):
 
         if result.result is not ActionResult.Result.SUCCESS:
             raise ActionError(result, "goto_location()", latitude_deg, longitude_deg, absolute_altitude_m, yaw_deg)
+        
+
+    async def do_orbit(self, radius_m, velocity_ms, yaw_behavior, latitude_deg, longitude_deg, absolute_altitude_m):
+        """
+         Send command do orbit to the drone.
+
+         This will run the orbit routine with the given parameters.
+
+         Parameters
+         ----------
+         radius_m : float
+              Radius of circle (in meters)
+
+         velocity_ms : float
+              Tangential velocity (in m/s)
+
+         yaw_behavior : OrbitYawBehavior
+              Yaw behavior of vehicle (ORBIT_YAW_BEHAVIOUR)
+
+         latitude_deg : double
+              Center point latitude in degrees. NAN: use current latitude for center
+
+         longitude_deg : double
+              Center point longitude in degrees. NAN: use current longitude for center
+
+         absolute_altitude_m : double
+              Center point altitude in meters. NAN: use current altitude for center
+
+         Raises
+         ------
+         ActionError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = action_pb2.DoOrbitRequest()
+        request.radius_m = radius_m
+        request.velocity_ms = velocity_ms
+        
+        request.yaw_behavior = yaw_behavior.translate_to_rpc()
+                
+            
+        request.latitude_deg = latitude_deg
+        request.longitude_deg = longitude_deg
+        request.absolute_altitude_m = absolute_altitude_m
+        response = await self._stub.DoOrbit(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not ActionResult.Result.SUCCESS:
+            raise ActionError(result, "do_orbit()", radius_m, velocity_ms, yaw_behavior, latitude_deg, longitude_deg, absolute_altitude_m)
         
 
     async def transition_to_fixedwing(self):
