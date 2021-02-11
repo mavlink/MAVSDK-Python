@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\020io.mavsdk.gimbalB\013GimbalProto',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x13gimbal/gimbal.proto\x12\x11mavsdk.rpc.gimbal\";\n\x15SetPitchAndYawRequest\x12\x11\n\tpitch_deg\x18\x01 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x02 \x01(\x02\"P\n\x16SetPitchAndYawResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"D\n\x0eSetModeRequest\x12\x32\n\x0bgimbal_mode\x18\x01 \x01(\x0e\x32\x1d.mavsdk.rpc.gimbal.GimbalMode\"I\n\x0fSetModeResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"X\n\x15SetRoiLocationRequest\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x12\n\naltitude_m\x18\x03 \x01(\x02\"P\n\x16SetRoiLocationResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"\xca\x01\n\x0cGimbalResult\x12\x36\n\x06result\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.gimbal.GimbalResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"n\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x10\n\x0cRESULT_ERROR\x10\x02\x12\x12\n\x0eRESULT_TIMEOUT\x10\x03\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x04*B\n\nGimbalMode\x12\x1a\n\x16GIMBAL_MODE_YAW_FOLLOW\x10\x00\x12\x18\n\x14GIMBAL_MODE_YAW_LOCK\x10\x01\x32\xb5\x02\n\rGimbalService\x12g\n\x0eSetPitchAndYaw\x12(.mavsdk.rpc.gimbal.SetPitchAndYawRequest\x1a).mavsdk.rpc.gimbal.SetPitchAndYawResponse\"\x00\x12R\n\x07SetMode\x12!.mavsdk.rpc.gimbal.SetModeRequest\x1a\".mavsdk.rpc.gimbal.SetModeResponse\"\x00\x12g\n\x0eSetRoiLocation\x12(.mavsdk.rpc.gimbal.SetRoiLocationRequest\x1a).mavsdk.rpc.gimbal.SetRoiLocationResponse\"\x00\x42\x1f\n\x10io.mavsdk.gimbalB\x0bGimbalProtob\x06proto3'
+  serialized_pb=b'\n\x13gimbal/gimbal.proto\x12\x11mavsdk.rpc.gimbal\";\n\x15SetPitchAndYawRequest\x12\x11\n\tpitch_deg\x18\x01 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x02 \x01(\x02\"P\n\x16SetPitchAndYawResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"Q\n\x1dSetPitchRateAndYawRateRequest\x12\x18\n\x10pitch_rate_deg_s\x18\x01 \x01(\x02\x12\x16\n\x0eyaw_rate_deg_s\x18\x02 \x01(\x02\"X\n\x1eSetPitchRateAndYawRateResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"D\n\x0eSetModeRequest\x12\x32\n\x0bgimbal_mode\x18\x01 \x01(\x0e\x32\x1d.mavsdk.rpc.gimbal.GimbalMode\"I\n\x0fSetModeResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"X\n\x15SetRoiLocationRequest\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x12\n\naltitude_m\x18\x03 \x01(\x02\"P\n\x16SetRoiLocationResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"J\n\x12TakeControlRequest\x12\x34\n\x0c\x63ontrol_mode\x18\x01 \x01(\x0e\x32\x1e.mavsdk.rpc.gimbal.ControlMode\"M\n\x13TakeControlResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"\x17\n\x15ReleaseControlRequest\"P\n\x16ReleaseControlResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"\x19\n\x17SubscribeControlRequest\"K\n\x0f\x43ontrolResponse\x12\x38\n\x0e\x63ontrol_status\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.gimbal.ControlStatus\"\xc7\x01\n\rControlStatus\x12\x34\n\x0c\x63ontrol_mode\x18\x01 \x01(\x0e\x32\x1e.mavsdk.rpc.gimbal.ControlMode\x12\x1d\n\x15sysid_primary_control\x18\x02 \x01(\x05\x12\x1e\n\x16\x63ompid_primary_control\x18\x03 \x01(\x05\x12\x1f\n\x17sysid_secondary_control\x18\x04 \x01(\x05\x12 \n\x18\x63ompid_secondary_control\x18\x05 \x01(\x05\"\xca\x01\n\x0cGimbalResult\x12\x36\n\x06result\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.gimbal.GimbalResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"n\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x10\n\x0cRESULT_ERROR\x10\x02\x12\x12\n\x0eRESULT_TIMEOUT\x10\x03\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x04*B\n\nGimbalMode\x12\x1a\n\x16GIMBAL_MODE_YAW_FOLLOW\x10\x00\x12\x18\n\x14GIMBAL_MODE_YAW_LOCK\x10\x01*Z\n\x0b\x43ontrolMode\x12\x15\n\x11\x43ONTROL_MODE_NONE\x10\x00\x12\x18\n\x14\x43ONTROL_MODE_PRIMARY\x10\x01\x12\x1a\n\x16\x43ONTROL_MODE_SECONDARY\x10\x02\x32\xe7\x05\n\rGimbalService\x12g\n\x0eSetPitchAndYaw\x12(.mavsdk.rpc.gimbal.SetPitchAndYawRequest\x1a).mavsdk.rpc.gimbal.SetPitchAndYawResponse\"\x00\x12\x7f\n\x16SetPitchRateAndYawRate\x12\x30.mavsdk.rpc.gimbal.SetPitchRateAndYawRateRequest\x1a\x31.mavsdk.rpc.gimbal.SetPitchRateAndYawRateResponse\"\x00\x12R\n\x07SetMode\x12!.mavsdk.rpc.gimbal.SetModeRequest\x1a\".mavsdk.rpc.gimbal.SetModeResponse\"\x00\x12g\n\x0eSetRoiLocation\x12(.mavsdk.rpc.gimbal.SetRoiLocationRequest\x1a).mavsdk.rpc.gimbal.SetRoiLocationResponse\"\x00\x12^\n\x0bTakeControl\x12%.mavsdk.rpc.gimbal.TakeControlRequest\x1a&.mavsdk.rpc.gimbal.TakeControlResponse\"\x00\x12g\n\x0eReleaseControl\x12(.mavsdk.rpc.gimbal.ReleaseControlRequest\x1a).mavsdk.rpc.gimbal.ReleaseControlResponse\"\x00\x12\x66\n\x10SubscribeControl\x12*.mavsdk.rpc.gimbal.SubscribeControlRequest\x1a\".mavsdk.rpc.gimbal.ControlResponse\"\x00\x30\x01\x42\x1f\n\x10io.mavsdk.gimbalB\x0bGimbalProtob\x06proto3'
 )
 
 _GIMBALMODE = _descriptor.EnumDescriptor(
@@ -43,14 +43,48 @@ _GIMBALMODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=707,
-  serialized_end=773,
+  serialized_start=1448,
+  serialized_end=1514,
 )
 _sym_db.RegisterEnumDescriptor(_GIMBALMODE)
 
 GimbalMode = enum_type_wrapper.EnumTypeWrapper(_GIMBALMODE)
+_CONTROLMODE = _descriptor.EnumDescriptor(
+  name='ControlMode',
+  full_name='mavsdk.rpc.gimbal.ControlMode',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='CONTROL_MODE_NONE', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='CONTROL_MODE_PRIMARY', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='CONTROL_MODE_SECONDARY', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=1516,
+  serialized_end=1606,
+)
+_sym_db.RegisterEnumDescriptor(_CONTROLMODE)
+
+ControlMode = enum_type_wrapper.EnumTypeWrapper(_CONTROLMODE)
 GIMBAL_MODE_YAW_FOLLOW = 0
 GIMBAL_MODE_YAW_LOCK = 1
+CONTROL_MODE_NONE = 0
+CONTROL_MODE_PRIMARY = 1
+CONTROL_MODE_SECONDARY = 2
 
 
 _GIMBALRESULT_RESULT = _descriptor.EnumDescriptor(
@@ -88,8 +122,8 @@ _GIMBALRESULT_RESULT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=595,
-  serialized_end=705,
+  serialized_start=1336,
+  serialized_end=1446,
 )
 _sym_db.RegisterEnumDescriptor(_GIMBALRESULT_RESULT)
 
@@ -165,6 +199,77 @@ _SETPITCHANDYAWRESPONSE = _descriptor.Descriptor(
 )
 
 
+_SETPITCHRATEANDYAWRATEREQUEST = _descriptor.Descriptor(
+  name='SetPitchRateAndYawRateRequest',
+  full_name='mavsdk.rpc.gimbal.SetPitchRateAndYawRateRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='pitch_rate_deg_s', full_name='mavsdk.rpc.gimbal.SetPitchRateAndYawRateRequest.pitch_rate_deg_s', index=0,
+      number=1, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='yaw_rate_deg_s', full_name='mavsdk.rpc.gimbal.SetPitchRateAndYawRateRequest.yaw_rate_deg_s', index=1,
+      number=2, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=185,
+  serialized_end=266,
+)
+
+
+_SETPITCHRATEANDYAWRATERESPONSE = _descriptor.Descriptor(
+  name='SetPitchRateAndYawRateResponse',
+  full_name='mavsdk.rpc.gimbal.SetPitchRateAndYawRateResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='gimbal_result', full_name='mavsdk.rpc.gimbal.SetPitchRateAndYawRateResponse.gimbal_result', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=268,
+  serialized_end=356,
+)
+
+
 _SETMODEREQUEST = _descriptor.Descriptor(
   name='SetModeRequest',
   full_name='mavsdk.rpc.gimbal.SetModeRequest',
@@ -192,8 +297,8 @@ _SETMODEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=185,
-  serialized_end=253,
+  serialized_start=358,
+  serialized_end=426,
 )
 
 
@@ -224,8 +329,8 @@ _SETMODERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=255,
-  serialized_end=328,
+  serialized_start=428,
+  serialized_end=501,
 )
 
 
@@ -270,8 +375,8 @@ _SETROILOCATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=330,
-  serialized_end=418,
+  serialized_start=503,
+  serialized_end=591,
 )
 
 
@@ -302,8 +407,246 @@ _SETROILOCATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=420,
-  serialized_end=500,
+  serialized_start=593,
+  serialized_end=673,
+)
+
+
+_TAKECONTROLREQUEST = _descriptor.Descriptor(
+  name='TakeControlRequest',
+  full_name='mavsdk.rpc.gimbal.TakeControlRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='control_mode', full_name='mavsdk.rpc.gimbal.TakeControlRequest.control_mode', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=675,
+  serialized_end=749,
+)
+
+
+_TAKECONTROLRESPONSE = _descriptor.Descriptor(
+  name='TakeControlResponse',
+  full_name='mavsdk.rpc.gimbal.TakeControlResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='gimbal_result', full_name='mavsdk.rpc.gimbal.TakeControlResponse.gimbal_result', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=751,
+  serialized_end=828,
+)
+
+
+_RELEASECONTROLREQUEST = _descriptor.Descriptor(
+  name='ReleaseControlRequest',
+  full_name='mavsdk.rpc.gimbal.ReleaseControlRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=830,
+  serialized_end=853,
+)
+
+
+_RELEASECONTROLRESPONSE = _descriptor.Descriptor(
+  name='ReleaseControlResponse',
+  full_name='mavsdk.rpc.gimbal.ReleaseControlResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='gimbal_result', full_name='mavsdk.rpc.gimbal.ReleaseControlResponse.gimbal_result', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=855,
+  serialized_end=935,
+)
+
+
+_SUBSCRIBECONTROLREQUEST = _descriptor.Descriptor(
+  name='SubscribeControlRequest',
+  full_name='mavsdk.rpc.gimbal.SubscribeControlRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=937,
+  serialized_end=962,
+)
+
+
+_CONTROLRESPONSE = _descriptor.Descriptor(
+  name='ControlResponse',
+  full_name='mavsdk.rpc.gimbal.ControlResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='control_status', full_name='mavsdk.rpc.gimbal.ControlResponse.control_status', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=964,
+  serialized_end=1039,
+)
+
+
+_CONTROLSTATUS = _descriptor.Descriptor(
+  name='ControlStatus',
+  full_name='mavsdk.rpc.gimbal.ControlStatus',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='control_mode', full_name='mavsdk.rpc.gimbal.ControlStatus.control_mode', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='sysid_primary_control', full_name='mavsdk.rpc.gimbal.ControlStatus.sysid_primary_control', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='compid_primary_control', full_name='mavsdk.rpc.gimbal.ControlStatus.compid_primary_control', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='sysid_secondary_control', full_name='mavsdk.rpc.gimbal.ControlStatus.sysid_secondary_control', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='compid_secondary_control', full_name='mavsdk.rpc.gimbal.ControlStatus.compid_secondary_control', index=4,
+      number=5, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1042,
+  serialized_end=1241,
 )
 
 
@@ -342,24 +685,40 @@ _GIMBALRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=503,
-  serialized_end=705,
+  serialized_start=1244,
+  serialized_end=1446,
 )
 
 _SETPITCHANDYAWRESPONSE.fields_by_name['gimbal_result'].message_type = _GIMBALRESULT
+_SETPITCHRATEANDYAWRATERESPONSE.fields_by_name['gimbal_result'].message_type = _GIMBALRESULT
 _SETMODEREQUEST.fields_by_name['gimbal_mode'].enum_type = _GIMBALMODE
 _SETMODERESPONSE.fields_by_name['gimbal_result'].message_type = _GIMBALRESULT
 _SETROILOCATIONRESPONSE.fields_by_name['gimbal_result'].message_type = _GIMBALRESULT
+_TAKECONTROLREQUEST.fields_by_name['control_mode'].enum_type = _CONTROLMODE
+_TAKECONTROLRESPONSE.fields_by_name['gimbal_result'].message_type = _GIMBALRESULT
+_RELEASECONTROLRESPONSE.fields_by_name['gimbal_result'].message_type = _GIMBALRESULT
+_CONTROLRESPONSE.fields_by_name['control_status'].message_type = _CONTROLSTATUS
+_CONTROLSTATUS.fields_by_name['control_mode'].enum_type = _CONTROLMODE
 _GIMBALRESULT.fields_by_name['result'].enum_type = _GIMBALRESULT_RESULT
 _GIMBALRESULT_RESULT.containing_type = _GIMBALRESULT
 DESCRIPTOR.message_types_by_name['SetPitchAndYawRequest'] = _SETPITCHANDYAWREQUEST
 DESCRIPTOR.message_types_by_name['SetPitchAndYawResponse'] = _SETPITCHANDYAWRESPONSE
+DESCRIPTOR.message_types_by_name['SetPitchRateAndYawRateRequest'] = _SETPITCHRATEANDYAWRATEREQUEST
+DESCRIPTOR.message_types_by_name['SetPitchRateAndYawRateResponse'] = _SETPITCHRATEANDYAWRATERESPONSE
 DESCRIPTOR.message_types_by_name['SetModeRequest'] = _SETMODEREQUEST
 DESCRIPTOR.message_types_by_name['SetModeResponse'] = _SETMODERESPONSE
 DESCRIPTOR.message_types_by_name['SetRoiLocationRequest'] = _SETROILOCATIONREQUEST
 DESCRIPTOR.message_types_by_name['SetRoiLocationResponse'] = _SETROILOCATIONRESPONSE
+DESCRIPTOR.message_types_by_name['TakeControlRequest'] = _TAKECONTROLREQUEST
+DESCRIPTOR.message_types_by_name['TakeControlResponse'] = _TAKECONTROLRESPONSE
+DESCRIPTOR.message_types_by_name['ReleaseControlRequest'] = _RELEASECONTROLREQUEST
+DESCRIPTOR.message_types_by_name['ReleaseControlResponse'] = _RELEASECONTROLRESPONSE
+DESCRIPTOR.message_types_by_name['SubscribeControlRequest'] = _SUBSCRIBECONTROLREQUEST
+DESCRIPTOR.message_types_by_name['ControlResponse'] = _CONTROLRESPONSE
+DESCRIPTOR.message_types_by_name['ControlStatus'] = _CONTROLSTATUS
 DESCRIPTOR.message_types_by_name['GimbalResult'] = _GIMBALRESULT
 DESCRIPTOR.enum_types_by_name['GimbalMode'] = _GIMBALMODE
+DESCRIPTOR.enum_types_by_name['ControlMode'] = _CONTROLMODE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 SetPitchAndYawRequest = _reflection.GeneratedProtocolMessageType('SetPitchAndYawRequest', (_message.Message,), {
@@ -375,6 +734,20 @@ SetPitchAndYawResponse = _reflection.GeneratedProtocolMessageType('SetPitchAndYa
   # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.SetPitchAndYawResponse)
   })
 _sym_db.RegisterMessage(SetPitchAndYawResponse)
+
+SetPitchRateAndYawRateRequest = _reflection.GeneratedProtocolMessageType('SetPitchRateAndYawRateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SETPITCHRATEANDYAWRATEREQUEST,
+  '__module__' : 'gimbal.gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.SetPitchRateAndYawRateRequest)
+  })
+_sym_db.RegisterMessage(SetPitchRateAndYawRateRequest)
+
+SetPitchRateAndYawRateResponse = _reflection.GeneratedProtocolMessageType('SetPitchRateAndYawRateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SETPITCHRATEANDYAWRATERESPONSE,
+  '__module__' : 'gimbal.gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.SetPitchRateAndYawRateResponse)
+  })
+_sym_db.RegisterMessage(SetPitchRateAndYawRateResponse)
 
 SetModeRequest = _reflection.GeneratedProtocolMessageType('SetModeRequest', (_message.Message,), {
   'DESCRIPTOR' : _SETMODEREQUEST,
@@ -404,6 +777,55 @@ SetRoiLocationResponse = _reflection.GeneratedProtocolMessageType('SetRoiLocatio
   })
 _sym_db.RegisterMessage(SetRoiLocationResponse)
 
+TakeControlRequest = _reflection.GeneratedProtocolMessageType('TakeControlRequest', (_message.Message,), {
+  'DESCRIPTOR' : _TAKECONTROLREQUEST,
+  '__module__' : 'gimbal.gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.TakeControlRequest)
+  })
+_sym_db.RegisterMessage(TakeControlRequest)
+
+TakeControlResponse = _reflection.GeneratedProtocolMessageType('TakeControlResponse', (_message.Message,), {
+  'DESCRIPTOR' : _TAKECONTROLRESPONSE,
+  '__module__' : 'gimbal.gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.TakeControlResponse)
+  })
+_sym_db.RegisterMessage(TakeControlResponse)
+
+ReleaseControlRequest = _reflection.GeneratedProtocolMessageType('ReleaseControlRequest', (_message.Message,), {
+  'DESCRIPTOR' : _RELEASECONTROLREQUEST,
+  '__module__' : 'gimbal.gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.ReleaseControlRequest)
+  })
+_sym_db.RegisterMessage(ReleaseControlRequest)
+
+ReleaseControlResponse = _reflection.GeneratedProtocolMessageType('ReleaseControlResponse', (_message.Message,), {
+  'DESCRIPTOR' : _RELEASECONTROLRESPONSE,
+  '__module__' : 'gimbal.gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.ReleaseControlResponse)
+  })
+_sym_db.RegisterMessage(ReleaseControlResponse)
+
+SubscribeControlRequest = _reflection.GeneratedProtocolMessageType('SubscribeControlRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBECONTROLREQUEST,
+  '__module__' : 'gimbal.gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.SubscribeControlRequest)
+  })
+_sym_db.RegisterMessage(SubscribeControlRequest)
+
+ControlResponse = _reflection.GeneratedProtocolMessageType('ControlResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CONTROLRESPONSE,
+  '__module__' : 'gimbal.gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.ControlResponse)
+  })
+_sym_db.RegisterMessage(ControlResponse)
+
+ControlStatus = _reflection.GeneratedProtocolMessageType('ControlStatus', (_message.Message,), {
+  'DESCRIPTOR' : _CONTROLSTATUS,
+  '__module__' : 'gimbal.gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.ControlStatus)
+  })
+_sym_db.RegisterMessage(ControlStatus)
+
 GimbalResult = _reflection.GeneratedProtocolMessageType('GimbalResult', (_message.Message,), {
   'DESCRIPTOR' : _GIMBALRESULT,
   '__module__' : 'gimbal.gimbal_pb2'
@@ -421,8 +843,8 @@ _GIMBALSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=776,
-  serialized_end=1085,
+  serialized_start=1609,
+  serialized_end=2352,
   methods=[
   _descriptor.MethodDescriptor(
     name='SetPitchAndYaw',
@@ -435,9 +857,19 @@ _GIMBALSERVICE = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='SetPitchRateAndYawRate',
+    full_name='mavsdk.rpc.gimbal.GimbalService.SetPitchRateAndYawRate',
+    index=1,
+    containing_service=None,
+    input_type=_SETPITCHRATEANDYAWRATEREQUEST,
+    output_type=_SETPITCHRATEANDYAWRATERESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='SetMode',
     full_name='mavsdk.rpc.gimbal.GimbalService.SetMode',
-    index=1,
+    index=2,
     containing_service=None,
     input_type=_SETMODEREQUEST,
     output_type=_SETMODERESPONSE,
@@ -447,10 +879,40 @@ _GIMBALSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetRoiLocation',
     full_name='mavsdk.rpc.gimbal.GimbalService.SetRoiLocation',
-    index=2,
+    index=3,
     containing_service=None,
     input_type=_SETROILOCATIONREQUEST,
     output_type=_SETROILOCATIONRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='TakeControl',
+    full_name='mavsdk.rpc.gimbal.GimbalService.TakeControl',
+    index=4,
+    containing_service=None,
+    input_type=_TAKECONTROLREQUEST,
+    output_type=_TAKECONTROLRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ReleaseControl',
+    full_name='mavsdk.rpc.gimbal.GimbalService.ReleaseControl',
+    index=5,
+    containing_service=None,
+    input_type=_RELEASECONTROLREQUEST,
+    output_type=_RELEASECONTROLRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SubscribeControl',
+    full_name='mavsdk.rpc.gimbal.GimbalService.SubscribeControl',
+    index=6,
+    containing_service=None,
+    input_type=_SUBSCRIBECONTROLREQUEST,
+    output_type=_CONTROLRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
