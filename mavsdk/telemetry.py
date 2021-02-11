@@ -500,6 +500,9 @@ class Quaternion:
      z : float
           Quaternion entry 3, also denoted as d
 
+     timestamp_us : uint64_t
+          Timestamp in microseconds
+
      """
 
     
@@ -509,12 +512,14 @@ class Quaternion:
             w,
             x,
             y,
-            z):
+            z,
+            timestamp_us):
         """ Initializes the Quaternion object """
         self.w = w
         self.x = x
         self.y = y
         self.z = z
+        self.timestamp_us = timestamp_us
 
     def __equals__(self, to_compare):
         """ Checks if two Quaternion are the same """
@@ -525,7 +530,8 @@ class Quaternion:
                 (self.w == to_compare.w) and \
                 (self.x == to_compare.x) and \
                 (self.y == to_compare.y) and \
-                (self.z == to_compare.z)
+                (self.z == to_compare.z) and \
+                (self.timestamp_us == to_compare.timestamp_us)
 
         except AttributeError:
             return False
@@ -536,7 +542,8 @@ class Quaternion:
                 "w: " + str(self.w),
                 "x: " + str(self.x),
                 "y: " + str(self.y),
-                "z: " + str(self.z)
+                "z: " + str(self.z),
+                "timestamp_us: " + str(self.timestamp_us)
                 ])
 
         return f"Quaternion: [{struct_repr}]"
@@ -555,7 +562,10 @@ class Quaternion:
                 rpcQuaternion.y,
                 
                 
-                rpcQuaternion.z
+                rpcQuaternion.z,
+                
+                
+                rpcQuaternion.timestamp_us
                 )
 
     def translate_to_rpc(self, rpcQuaternion):
@@ -586,6 +596,12 @@ class Quaternion:
             
         
         
+        
+            
+        rpcQuaternion.timestamp_us = self.timestamp_us
+            
+        
+        
 
 
 class EulerAngle:
@@ -608,6 +624,9 @@ class EulerAngle:
      yaw_deg : float
           Yaw angle in degrees, positive is clock-wise seen from above
 
+     timestamp_us : uint64_t
+          Timestamp in microseconds
+
      """
 
     
@@ -616,11 +635,13 @@ class EulerAngle:
             self,
             roll_deg,
             pitch_deg,
-            yaw_deg):
+            yaw_deg,
+            timestamp_us):
         """ Initializes the EulerAngle object """
         self.roll_deg = roll_deg
         self.pitch_deg = pitch_deg
         self.yaw_deg = yaw_deg
+        self.timestamp_us = timestamp_us
 
     def __equals__(self, to_compare):
         """ Checks if two EulerAngle are the same """
@@ -630,7 +651,8 @@ class EulerAngle:
             return \
                 (self.roll_deg == to_compare.roll_deg) and \
                 (self.pitch_deg == to_compare.pitch_deg) and \
-                (self.yaw_deg == to_compare.yaw_deg)
+                (self.yaw_deg == to_compare.yaw_deg) and \
+                (self.timestamp_us == to_compare.timestamp_us)
 
         except AttributeError:
             return False
@@ -640,7 +662,8 @@ class EulerAngle:
         struct_repr = ", ".join([
                 "roll_deg: " + str(self.roll_deg),
                 "pitch_deg: " + str(self.pitch_deg),
-                "yaw_deg: " + str(self.yaw_deg)
+                "yaw_deg: " + str(self.yaw_deg),
+                "timestamp_us: " + str(self.timestamp_us)
                 ])
 
         return f"EulerAngle: [{struct_repr}]"
@@ -656,7 +679,10 @@ class EulerAngle:
                 rpcEulerAngle.pitch_deg,
                 
                 
-                rpcEulerAngle.yaw_deg
+                rpcEulerAngle.yaw_deg,
+                
+                
+                rpcEulerAngle.timestamp_us
                 )
 
     def translate_to_rpc(self, rpcEulerAngle):
@@ -678,6 +704,12 @@ class EulerAngle:
         
             
         rpcEulerAngle.yaw_deg = self.yaw_deg
+            
+        
+        
+        
+            
+        rpcEulerAngle.timestamp_us = self.timestamp_us
             
         
         
