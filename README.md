@@ -117,16 +117,17 @@ make -C mavsdk html
 
 ### Release steps
 
-1. Check all required pull requests are merged to main
-2. Check [MAVSDK_SERVER_VERSION](MAVSDK_SERVER_VERSION) is set to the correct version of mavsdk_server.
-3. Create git tag on laster main, e.g.:
+1. Check the proto submodule is up-to-date and the generated code has been updated.
+2. Check all required pull requests are merged to main
+3. Check [MAVSDK_SERVER_VERSION](MAVSDK_SERVER_VERSION) is set to the correct version of mavsdk_server.
+4. Create git tag on laster main, e.g.:
    ```
    git switch main
    git pull
    git tag X.Y.Z
    git push --tags
    ```
-4. Go to [releases page](https://github.com/mavlink/MAVSDK-Python/releases) and create new release.
+5. Go to [releases page](https://github.com/mavlink/MAVSDK-Python/releases) and create new release.
    The CI will now:
    - Create and push a wheel for Windows, Linux and macOS to PyPi.
    - Generate the latest docs and push them to s3.
