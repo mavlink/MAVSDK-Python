@@ -24,3 +24,4 @@ Plugins
    telemetry
    tune
    failure
+   tracking_server
