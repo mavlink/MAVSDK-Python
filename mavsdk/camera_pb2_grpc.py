@@ -62,6 +62,11 @@ class CameraServiceStub(object):
                 request_serializer=camera_dot_camera__pb2.SetModeRequest.SerializeToString,
                 response_deserializer=camera_dot_camera__pb2.SetModeResponse.FromString,
                 )
+        self.ListPhotos = channel.unary_unary(
+                '/mavsdk.rpc.camera.CameraService/ListPhotos',
+                request_serializer=camera_dot_camera__pb2.ListPhotosRequest.SerializeToString,
+                response_deserializer=camera_dot_camera__pb2.ListPhotosResponse.FromString,
+                )
         self.SubscribeMode = channel.unary_stream(
                 '/mavsdk.rpc.camera.CameraService/SubscribeMode',
                 request_serializer=camera_dot_camera__pb2.SubscribeModeRequest.SerializeToString,
@@ -184,6 +189,14 @@ class CameraServiceServicer(object):
     def SetMode(self, request, context):
         """
         Set camera mode.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListPhotos(self, request, context):
+        """
+        List photos available on the camera.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -317,6 +330,11 @@ def add_CameraServiceServicer_to_server(servicer, server):
                     servicer.SetMode,
                     request_deserializer=camera_dot_camera__pb2.SetModeRequest.FromString,
                     response_serializer=camera_dot_camera__pb2.SetModeResponse.SerializeToString,
+            ),
+            'ListPhotos': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListPhotos,
+                    request_deserializer=camera_dot_camera__pb2.ListPhotosRequest.FromString,
+                    response_serializer=camera_dot_camera__pb2.ListPhotosResponse.SerializeToString,
             ),
             'SubscribeMode': grpc.unary_stream_rpc_method_handler(
                     servicer.SubscribeMode,
@@ -519,6 +537,23 @@ class CameraService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/SetMode',
             camera_dot_camera__pb2.SetModeRequest.SerializeToString,
             camera_dot_camera__pb2.SetModeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListPhotos(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/ListPhotos',
+            camera_dot_camera__pb2.ListPhotosRequest.SerializeToString,
+            camera_dot_camera__pb2.ListPhotosResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

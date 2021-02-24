@@ -21,6 +21,7 @@ from . import offboard
 from . import param
 from . import shell
 from . import telemetry
+from . import tracking_server
 from . import tune
 
 from . import bin
@@ -115,6 +116,7 @@ class System:
         self._plugins["param"] = param.Param(plugin_manager)
         self._plugins["shell"] = shell.Shell(plugin_manager)
         self._plugins["telemetry"] = telemetry.Telemetry(plugin_manager)
+        self._plugins["tracking_server"] = tracking_server.TrackingServer(plugin_manager)
         self._plugins["tune"] = tune.Tune(plugin_manager)
 
     @staticmethod
@@ -235,6 +237,12 @@ class System:
         if "telemetry" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Telemetry"))
         return self._plugins["telemetry"]
+
+    @property
+    def tracking_server(self) -> tracking_server.TrackingServer:
+        if "tracking_server" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("TrackingServer"))
+        return self._plugins["tracking_server"]
 
     @property
     def tune(self) -> tune.Tune:

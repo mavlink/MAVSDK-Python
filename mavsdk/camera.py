@@ -50,6 +50,42 @@ class Mode(Enum):
         return self.name
 
 
+class PhotosRange(Enum):
+    """
+     Photos range type.
+
+     Values
+     ------
+     ALL
+          All the photos present on the camera
+
+     SINCE_CONNECTION
+          Photos taken since MAVSDK got connected
+
+     """
+
+    
+    ALL = 0
+    SINCE_CONNECTION = 1
+
+    def translate_to_rpc(self):
+        if self == PhotosRange.ALL:
+            return camera_pb2.PHOTOS_RANGE_ALL
+        if self == PhotosRange.SINCE_CONNECTION:
+            return camera_pb2.PHOTOS_RANGE_SINCE_CONNECTION
+
+    @staticmethod
+    def translate_from_rpc(rpc_enum_value):
+        """ Parses a gRPC response """
+        if rpc_enum_value == camera_pb2.PHOTOS_RANGE_ALL:
+            return PhotosRange.ALL
+        if rpc_enum_value == camera_pb2.PHOTOS_RANGE_SINCE_CONNECTION:
+            return PhotosRange.SINCE_CONNECTION
+
+    def __str__(self):
+        return self.name
+
+
 class CameraResult:
     """
      Result type.
@@ -1716,6 +1752,49 @@ class Camera(AsyncBase):
         if result.result is not CameraResult.Result.SUCCESS:
             raise CameraError(result, "set_mode()", mode)
         
+
+    async def list_photos(self, photos_range):
+        """
+         List photos available on the camera.
+
+         Parameters
+         ----------
+         photos_range : PhotosRange
+              Which photos should be listed (all or since connection)
+
+         Returns
+         -------
+         capture_infos : [CaptureInfo]
+              List of capture infos (representing the photos)
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.ListPhotosRequest()
+        
+            
+                
+        request.photos_range = photos_range.translate_to_rpc()
+                
+            
+        response = await self._stub.ListPhotos(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not CameraResult.Result.SUCCESS:
+            raise CameraError(result, "list_photos()", photos_range)
+        
+
+        capture_infos = []
+        for capture_infos_rpc in response.capture_infos:
+            capture_infos.append(CaptureInfo.translate_from_rpc(capture_infos_rpc))
+
+        return capture_infos
+            
 
     async def mode(self):
         """
