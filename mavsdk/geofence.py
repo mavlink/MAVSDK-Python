@@ -180,9 +180,11 @@ class Polygon:
             
         rpc_elems_list = []
         for elem in self.points:
+                
             rpc_elem = geofence_pb2.Point()
             elem.translate_to_rpc(rpc_elem)
             rpc_elems_list.append(rpc_elem)
+                
         rpcPolygon.points.extend(rpc_elems_list)
             
         
@@ -400,9 +402,11 @@ class Geofence(AsyncBase):
         
         rpc_elems_list = []
         for elem in polygons:
+                    
             rpc_elem = geofence_pb2.Polygon()
             elem.translate_to_rpc(rpc_elem)
             rpc_elems_list.append(rpc_elem)
+                    
         request.polygons.extend(rpc_elems_list)
                 
             

@@ -74,9 +74,14 @@ class {{ name.upper_camel_case }}:
             {% else %}
         rpc_elems_list = []
         for elem in self.{{ field.name.lower_snake_case }}:
+                {% if field.type_info.is_enum %}
+            rpc_elem = {{ plugin_name.lower_snake_case }}_pb2.{{ field.type_info.inner_name }}
+            rpc_elems_list.append(elem.translate_to_rpc())
+                {% else %}
             rpc_elem = {{ plugin_name.lower_snake_case }}_pb2.{{ field.type_info.inner_name }}()
             elem.translate_to_rpc(rpc_elem)
             rpc_elems_list.append(rpc_elem)
+                {% endif %}
         rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }}.extend(rpc_elems_list)
             {% endif %}
         {% else %}

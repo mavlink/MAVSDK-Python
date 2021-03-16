@@ -559,9 +559,11 @@ class MissionRaw(AsyncBase):
         
         rpc_elems_list = []
         for elem in mission_items:
+                    
             rpc_elem = mission_raw_pb2.MissionItem()
             elem.translate_to_rpc(rpc_elem)
             rpc_elems_list.append(rpc_elem)
+                    
         request.mission_items.extend(rpc_elems_list)
                 
             
