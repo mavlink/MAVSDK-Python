@@ -258,9 +258,9 @@ class TuneDescription:
             
         rpc_elems_list = []
         for elem in self.song_elements:
-            rpc_elem = tune_pb2.SongElement()
-            elem.translate_to_rpc(rpc_elem)
-            rpc_elems_list.append(rpc_elem)
+                
+            rpc_elems_list.append(elem.translate_to_rpc())
+                
         rpcTuneDescription.song_elements.extend(rpc_elems_list)
             
         

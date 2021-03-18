@@ -240,9 +240,11 @@ class ActuatorControl:
             
         rpc_elems_list = []
         for elem in self.groups:
+                
             rpc_elem = offboard_pb2.ActuatorControlGroup()
             elem.translate_to_rpc(rpc_elem)
             rpc_elems_list.append(rpc_elem)
+                
         rpcActuatorControl.groups.extend(rpc_elems_list)
             
         

@@ -1450,9 +1450,11 @@ class SettingOptions:
             
         rpc_elems_list = []
         for elem in self.options:
+                
             rpc_elem = camera_pb2.Option()
             elem.translate_to_rpc(rpc_elem)
             rpc_elems_list.append(rpc_elem)
+                
         rpcSettingOptions.options.extend(rpc_elems_list)
             
         
