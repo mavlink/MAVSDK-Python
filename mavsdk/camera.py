@@ -736,6 +736,9 @@ class VideoStreamSettings:
      uri : std::string
           Video stream URI
 
+     horizontal_fov_deg : float
+          Horizontal fov in degrees
+
      """
 
     
@@ -747,7 +750,8 @@ class VideoStreamSettings:
             vertical_resolution_pix,
             bit_rate_b_s,
             rotation_deg,
-            uri):
+            uri,
+            horizontal_fov_deg):
         """ Initializes the VideoStreamSettings object """
         self.frame_rate_hz = frame_rate_hz
         self.horizontal_resolution_pix = horizontal_resolution_pix
@@ -755,6 +759,7 @@ class VideoStreamSettings:
         self.bit_rate_b_s = bit_rate_b_s
         self.rotation_deg = rotation_deg
         self.uri = uri
+        self.horizontal_fov_deg = horizontal_fov_deg
 
     def __equals__(self, to_compare):
         """ Checks if two VideoStreamSettings are the same """
@@ -767,7 +772,8 @@ class VideoStreamSettings:
                 (self.vertical_resolution_pix == to_compare.vertical_resolution_pix) and \
                 (self.bit_rate_b_s == to_compare.bit_rate_b_s) and \
                 (self.rotation_deg == to_compare.rotation_deg) and \
-                (self.uri == to_compare.uri)
+                (self.uri == to_compare.uri) and \
+                (self.horizontal_fov_deg == to_compare.horizontal_fov_deg)
 
         except AttributeError:
             return False
@@ -780,7 +786,8 @@ class VideoStreamSettings:
                 "vertical_resolution_pix: " + str(self.vertical_resolution_pix),
                 "bit_rate_b_s: " + str(self.bit_rate_b_s),
                 "rotation_deg: " + str(self.rotation_deg),
-                "uri: " + str(self.uri)
+                "uri: " + str(self.uri),
+                "horizontal_fov_deg: " + str(self.horizontal_fov_deg)
                 ])
 
         return f"VideoStreamSettings: [{struct_repr}]"
@@ -805,7 +812,10 @@ class VideoStreamSettings:
                 rpcVideoStreamSettings.rotation_deg,
                 
                 
-                rpcVideoStreamSettings.uri
+                rpcVideoStreamSettings.uri,
+                
+                
+                rpcVideoStreamSettings.horizontal_fov_deg
                 )
 
     def translate_to_rpc(self, rpcVideoStreamSettings):
@@ -848,6 +858,12 @@ class VideoStreamSettings:
             
         
         
+        
+            
+        rpcVideoStreamSettings.horizontal_fov_deg = self.horizontal_fov_deg
+            
+        
+        
 
 
 class VideoStreamInfo:
@@ -859,14 +875,17 @@ class VideoStreamInfo:
      settings : VideoStreamSettings
           Video stream settings
 
-     status : Status
+     status : VideoStreamStatus
           Current status of video streaming
+
+     spectrum : VideoStreamSpectrum
+          Light-spectrum of the video stream
 
      """
 
     
     
-    class Status(Enum):
+    class VideoStreamStatus(Enum):
         """
          Video stream status type.
 
@@ -885,18 +904,62 @@ class VideoStreamInfo:
         IN_PROGRESS = 1
 
         def translate_to_rpc(self):
-            if self == VideoStreamInfo.Status.NOT_RUNNING:
-                return camera_pb2.VideoStreamInfo.STATUS_NOT_RUNNING
-            if self == VideoStreamInfo.Status.IN_PROGRESS:
-                return camera_pb2.VideoStreamInfo.STATUS_IN_PROGRESS
+            if self == VideoStreamInfo.VideoStreamStatus.NOT_RUNNING:
+                return camera_pb2.VideoStreamInfo.VIDEO_STREAM_STATUS_NOT_RUNNING
+            if self == VideoStreamInfo.VideoStreamStatus.IN_PROGRESS:
+                return camera_pb2.VideoStreamInfo.VIDEO_STREAM_STATUS_IN_PROGRESS
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value == camera_pb2.VideoStreamInfo.STATUS_NOT_RUNNING:
-                return VideoStreamInfo.Status.NOT_RUNNING
-            if rpc_enum_value == camera_pb2.VideoStreamInfo.STATUS_IN_PROGRESS:
-                return VideoStreamInfo.Status.IN_PROGRESS
+            if rpc_enum_value == camera_pb2.VideoStreamInfo.VIDEO_STREAM_STATUS_NOT_RUNNING:
+                return VideoStreamInfo.VideoStreamStatus.NOT_RUNNING
+            if rpc_enum_value == camera_pb2.VideoStreamInfo.VIDEO_STREAM_STATUS_IN_PROGRESS:
+                return VideoStreamInfo.VideoStreamStatus.IN_PROGRESS
+
+        def __str__(self):
+            return self.name
+    
+    
+    class VideoStreamSpectrum(Enum):
+        """
+         Video stream light spectrum type
+
+         Values
+         ------
+         UNKNOWN
+              Unknown
+
+         VISIBLE_LIGHT
+              Visible light
+
+         INFRARED
+              Infrared
+
+         """
+
+        
+        UNKNOWN = 0
+        VISIBLE_LIGHT = 1
+        INFRARED = 2
+
+        def translate_to_rpc(self):
+            if self == VideoStreamInfo.VideoStreamSpectrum.UNKNOWN:
+                return camera_pb2.VideoStreamInfo.VIDEO_STREAM_SPECTRUM_UNKNOWN
+            if self == VideoStreamInfo.VideoStreamSpectrum.VISIBLE_LIGHT:
+                return camera_pb2.VideoStreamInfo.VIDEO_STREAM_SPECTRUM_VISIBLE_LIGHT
+            if self == VideoStreamInfo.VideoStreamSpectrum.INFRARED:
+                return camera_pb2.VideoStreamInfo.VIDEO_STREAM_SPECTRUM_INFRARED
+
+        @staticmethod
+        def translate_from_rpc(rpc_enum_value):
+            """ Parses a gRPC response """
+            if rpc_enum_value == camera_pb2.VideoStreamInfo.VIDEO_STREAM_SPECTRUM_UNKNOWN:
+                return VideoStreamInfo.VideoStreamSpectrum.UNKNOWN
+            if rpc_enum_value == camera_pb2.VideoStreamInfo.VIDEO_STREAM_SPECTRUM_VISIBLE_LIGHT:
+                return VideoStreamInfo.VideoStreamSpectrum.VISIBLE_LIGHT
+            if rpc_enum_value == camera_pb2.VideoStreamInfo.VIDEO_STREAM_SPECTRUM_INFRARED:
+                return VideoStreamInfo.VideoStreamSpectrum.INFRARED
 
         def __str__(self):
             return self.name
@@ -905,10 +968,12 @@ class VideoStreamInfo:
     def __init__(
             self,
             settings,
-            status):
+            status,
+            spectrum):
         """ Initializes the VideoStreamInfo object """
         self.settings = settings
         self.status = status
+        self.spectrum = spectrum
 
     def __equals__(self, to_compare):
         """ Checks if two VideoStreamInfo are the same """
@@ -917,7 +982,8 @@ class VideoStreamInfo:
             # VideoStreamInfo object
             return \
                 (self.settings == to_compare.settings) and \
-                (self.status == to_compare.status)
+                (self.status == to_compare.status) and \
+                (self.spectrum == to_compare.spectrum)
 
         except AttributeError:
             return False
@@ -926,7 +992,8 @@ class VideoStreamInfo:
         """ VideoStreamInfo in string representation """
         struct_repr = ", ".join([
                 "settings: " + str(self.settings),
-                "status: " + str(self.status)
+                "status: " + str(self.status),
+                "spectrum: " + str(self.spectrum)
                 ])
 
         return f"VideoStreamInfo: [{struct_repr}]"
@@ -939,7 +1006,10 @@ class VideoStreamInfo:
                 VideoStreamSettings.translate_from_rpc(rpcVideoStreamInfo.settings),
                 
                 
-                VideoStreamInfo.Status.translate_from_rpc(rpcVideoStreamInfo.status)
+                VideoStreamInfo.VideoStreamStatus.translate_from_rpc(rpcVideoStreamInfo.status),
+                
+                
+                VideoStreamInfo.VideoStreamSpectrum.translate_from_rpc(rpcVideoStreamInfo.spectrum)
                 )
 
     def translate_to_rpc(self, rpcVideoStreamInfo):
@@ -955,6 +1025,12 @@ class VideoStreamInfo:
         
             
         rpcVideoStreamInfo.status = self.status.translate_to_rpc()
+            
+        
+        
+        
+            
+        rpcVideoStreamInfo.spectrum = self.spectrum.translate_to_rpc()
             
         
         
@@ -1009,12 +1085,16 @@ class Status:
          FORMATTED
               Storage is formatted (i.e. has recognized a file system)
 
+         NOT_SUPPORTED
+              Storage status is not supported
+
          """
 
         
         NOT_AVAILABLE = 0
         UNFORMATTED = 1
         FORMATTED = 2
+        NOT_SUPPORTED = 3
 
         def translate_to_rpc(self):
             if self == Status.StorageStatus.NOT_AVAILABLE:
@@ -1023,6 +1103,8 @@ class Status:
                 return camera_pb2.Status.STORAGE_STATUS_UNFORMATTED
             if self == Status.StorageStatus.FORMATTED:
                 return camera_pb2.Status.STORAGE_STATUS_FORMATTED
+            if self == Status.StorageStatus.NOT_SUPPORTED:
+                return camera_pb2.Status.STORAGE_STATUS_NOT_SUPPORTED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -1033,6 +1115,8 @@ class Status:
                 return Status.StorageStatus.UNFORMATTED
             if rpc_enum_value == camera_pb2.Status.STORAGE_STATUS_FORMATTED:
                 return Status.StorageStatus.FORMATTED
+            if rpc_enum_value == camera_pb2.Status.STORAGE_STATUS_NOT_SUPPORTED:
+                return Status.StorageStatus.NOT_SUPPORTED
 
         def __str__(self):
             return self.name

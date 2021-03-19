@@ -469,12 +469,6 @@ class MissionResult:
          NO_MISSION_AVAILABLE
               No mission available on the system
 
-         FAILED_TO_OPEN_QGC_PLAN
-              Failed to open the QGroundControl plan
-
-         FAILED_TO_PARSE_QGC_PLAN
-              Failed to parse the QGroundControl plan
-
          UNSUPPORTED_MISSION_CMD
               Unsupported mission command
 
@@ -493,10 +487,8 @@ class MissionResult:
         INVALID_ARGUMENT = 6
         UNSUPPORTED = 7
         NO_MISSION_AVAILABLE = 8
-        FAILED_TO_OPEN_QGC_PLAN = 9
-        FAILED_TO_PARSE_QGC_PLAN = 10
-        UNSUPPORTED_MISSION_CMD = 11
-        TRANSFER_CANCELLED = 12
+        UNSUPPORTED_MISSION_CMD = 9
+        TRANSFER_CANCELLED = 10
 
         def translate_to_rpc(self):
             if self == MissionResult.Result.UNKNOWN:
@@ -517,10 +509,6 @@ class MissionResult:
                 return mission_pb2.MissionResult.RESULT_UNSUPPORTED
             if self == MissionResult.Result.NO_MISSION_AVAILABLE:
                 return mission_pb2.MissionResult.RESULT_NO_MISSION_AVAILABLE
-            if self == MissionResult.Result.FAILED_TO_OPEN_QGC_PLAN:
-                return mission_pb2.MissionResult.RESULT_FAILED_TO_OPEN_QGC_PLAN
-            if self == MissionResult.Result.FAILED_TO_PARSE_QGC_PLAN:
-                return mission_pb2.MissionResult.RESULT_FAILED_TO_PARSE_QGC_PLAN
             if self == MissionResult.Result.UNSUPPORTED_MISSION_CMD:
                 return mission_pb2.MissionResult.RESULT_UNSUPPORTED_MISSION_CMD
             if self == MissionResult.Result.TRANSFER_CANCELLED:
@@ -547,10 +535,6 @@ class MissionResult:
                 return MissionResult.Result.UNSUPPORTED
             if rpc_enum_value == mission_pb2.MissionResult.RESULT_NO_MISSION_AVAILABLE:
                 return MissionResult.Result.NO_MISSION_AVAILABLE
-            if rpc_enum_value == mission_pb2.MissionResult.RESULT_FAILED_TO_OPEN_QGC_PLAN:
-                return MissionResult.Result.FAILED_TO_OPEN_QGC_PLAN
-            if rpc_enum_value == mission_pb2.MissionResult.RESULT_FAILED_TO_PARSE_QGC_PLAN:
-                return MissionResult.Result.FAILED_TO_PARSE_QGC_PLAN
             if rpc_enum_value == mission_pb2.MissionResult.RESULT_UNSUPPORTED_MISSION_CMD:
                 return MissionResult.Result.UNSUPPORTED_MISSION_CMD
             if rpc_enum_value == mission_pb2.MissionResult.RESULT_TRANSFER_CANCELLED:
@@ -964,43 +948,3 @@ class Mission(AsyncBase):
         if result.result is not MissionResult.Result.SUCCESS:
             raise MissionError(result, "set_return_to_launch_after_mission()", enable)
         
-
-    async def import_qgroundcontrol_mission(self, qgc_plan_path):
-        """
-         Import a QGroundControl (QGC) mission plan.
-
-         The method will fail if any of the imported mission items are not supported
-         by the MAVSDK API.
-
-         Parameters
-         ----------
-         qgc_plan_path : std::string
-              File path of the QGC plan
-
-         Returns
-         -------
-         mission_plan : MissionPlan
-              The mission plan
-
-         Raises
-         ------
-         MissionError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = mission_pb2.ImportQgroundcontrolMissionRequest()
-        
-            
-        request.qgc_plan_path = qgc_plan_path
-            
-        response = await self._stub.ImportQgroundcontrolMission(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not MissionResult.Result.SUCCESS:
-            raise MissionError(result, "import_qgroundcontrol_mission()", qgc_plan_path)
-        
-
-        return MissionPlan.translate_from_rpc(response.mission_plan)
-            

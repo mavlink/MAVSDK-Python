@@ -75,11 +75,6 @@ class MissionServiceStub(object):
                 request_serializer=mission_dot_mission__pb2.SetReturnToLaunchAfterMissionRequest.SerializeToString,
                 response_deserializer=mission_dot_mission__pb2.SetReturnToLaunchAfterMissionResponse.FromString,
                 )
-        self.ImportQgroundcontrolMission = channel.unary_unary(
-                '/mavsdk.rpc.mission.MissionService/ImportQgroundcontrolMission',
-                request_serializer=mission_dot_mission__pb2.ImportQgroundcontrolMissionRequest.SerializeToString,
-                response_deserializer=mission_dot_mission__pb2.ImportQgroundcontrolMissionResponse.FromString,
-                )
 
 
 class MissionServiceServicer(object):
@@ -207,17 +202,6 @@ class MissionServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ImportQgroundcontrolMission(self, request, context):
-        """
-        Import a QGroundControl (QGC) mission plan.
-
-        The method will fail if any of the imported mission items are not supported
-        by the MAVSDK API.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_MissionServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -280,11 +264,6 @@ def add_MissionServiceServicer_to_server(servicer, server):
                     servicer.SetReturnToLaunchAfterMission,
                     request_deserializer=mission_dot_mission__pb2.SetReturnToLaunchAfterMissionRequest.FromString,
                     response_serializer=mission_dot_mission__pb2.SetReturnToLaunchAfterMissionResponse.SerializeToString,
-            ),
-            'ImportQgroundcontrolMission': grpc.unary_unary_rpc_method_handler(
-                    servicer.ImportQgroundcontrolMission,
-                    request_deserializer=mission_dot_mission__pb2.ImportQgroundcontrolMissionRequest.FromString,
-                    response_serializer=mission_dot_mission__pb2.ImportQgroundcontrolMissionResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -498,22 +477,5 @@ class MissionService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission.MissionService/SetReturnToLaunchAfterMission',
             mission_dot_mission__pb2.SetReturnToLaunchAfterMissionRequest.SerializeToString,
             mission_dot_mission__pb2.SetReturnToLaunchAfterMissionResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def ImportQgroundcontrolMission(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission.MissionService/ImportQgroundcontrolMission',
-            mission_dot_mission__pb2.ImportQgroundcontrolMissionRequest.SerializeToString,
-            mission_dot_mission__pb2.ImportQgroundcontrolMissionResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -123,7 +123,7 @@ class MissionItem:
           PARAM7 / local: Z coordinate, global: altitude (relative or absolute, depending on frame)
 
      mission_type : uint32_t
-          @brief Mission type (actually uint8_t)
+          Mission type (actually uint8_t)
 
      """
 
@@ -330,6 +330,117 @@ class MissionItem:
         
 
 
+class MissionImportData:
+    """
+     Mission import data
+
+     Parameters
+     ----------
+     mission_items : [MissionItem]
+          Mission items
+
+     geofence_items : [MissionItem]
+          Geofence items
+
+     rally_items : [MissionItem]
+          Rally items
+
+     """
+
+    
+
+    def __init__(
+            self,
+            mission_items,
+            geofence_items,
+            rally_items):
+        """ Initializes the MissionImportData object """
+        self.mission_items = mission_items
+        self.geofence_items = geofence_items
+        self.rally_items = rally_items
+
+    def __equals__(self, to_compare):
+        """ Checks if two MissionImportData are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # MissionImportData object
+            return \
+                (self.mission_items == to_compare.mission_items) and \
+                (self.geofence_items == to_compare.geofence_items) and \
+                (self.rally_items == to_compare.rally_items)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ MissionImportData in string representation """
+        struct_repr = ", ".join([
+                "mission_items: " + str(self.mission_items),
+                "geofence_items: " + str(self.geofence_items),
+                "rally_items: " + str(self.rally_items)
+                ])
+
+        return f"MissionImportData: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcMissionImportData):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return MissionImportData(
+                
+                list(map(lambda elem: MissionItem.translate_from_rpc(elem), rpcMissionImportData.mission_items)),
+                
+                
+                list(map(lambda elem: MissionItem.translate_from_rpc(elem), rpcMissionImportData.geofence_items)),
+                
+                
+                list(map(lambda elem: MissionItem.translate_from_rpc(elem), rpcMissionImportData.rally_items))
+                )
+
+    def translate_to_rpc(self, rpcMissionImportData):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpc_elems_list = []
+        for elem in self.mission_items:
+                
+            rpc_elem = mission_raw_pb2.MissionItem()
+            elem.translate_to_rpc(rpc_elem)
+            rpc_elems_list.append(rpc_elem)
+                
+        rpcMissionImportData.mission_items.extend(rpc_elems_list)
+            
+        
+        
+        
+            
+        rpc_elems_list = []
+        for elem in self.geofence_items:
+                
+            rpc_elem = mission_raw_pb2.MissionItem()
+            elem.translate_to_rpc(rpc_elem)
+            rpc_elems_list.append(rpc_elem)
+                
+        rpcMissionImportData.geofence_items.extend(rpc_elems_list)
+            
+        
+        
+        
+            
+        rpc_elems_list = []
+        for elem in self.rally_items:
+                
+            rpc_elem = mission_raw_pb2.MissionItem()
+            elem.translate_to_rpc(rpc_elem)
+            rpc_elems_list.append(rpc_elem)
+                
+        rpcMissionImportData.rally_items.extend(rpc_elems_list)
+            
+        
+        
+
+
 class MissionRawResult:
     """
      Result type.
@@ -382,6 +493,12 @@ class MissionRawResult:
          TRANSFER_CANCELLED
               Mission transfer (upload or download) has been cancelled
 
+         FAILED_TO_OPEN_QGC_PLAN
+              Failed to open the QGroundControl plan
+
+         FAILED_TO_PARSE_QGC_PLAN
+              Failed to parse the QGroundControl plan
+
          """
 
         
@@ -395,6 +512,8 @@ class MissionRawResult:
         UNSUPPORTED = 7
         NO_MISSION_AVAILABLE = 8
         TRANSFER_CANCELLED = 9
+        FAILED_TO_OPEN_QGC_PLAN = 10
+        FAILED_TO_PARSE_QGC_PLAN = 11
 
         def translate_to_rpc(self):
             if self == MissionRawResult.Result.UNKNOWN:
@@ -417,6 +536,10 @@ class MissionRawResult:
                 return mission_raw_pb2.MissionRawResult.RESULT_NO_MISSION_AVAILABLE
             if self == MissionRawResult.Result.TRANSFER_CANCELLED:
                 return mission_raw_pb2.MissionRawResult.RESULT_TRANSFER_CANCELLED
+            if self == MissionRawResult.Result.FAILED_TO_OPEN_QGC_PLAN:
+                return mission_raw_pb2.MissionRawResult.RESULT_FAILED_TO_OPEN_QGC_PLAN
+            if self == MissionRawResult.Result.FAILED_TO_PARSE_QGC_PLAN:
+                return mission_raw_pb2.MissionRawResult.RESULT_FAILED_TO_PARSE_QGC_PLAN
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -441,6 +564,10 @@ class MissionRawResult:
                 return MissionRawResult.Result.NO_MISSION_AVAILABLE
             if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_TRANSFER_CANCELLED:
                 return MissionRawResult.Result.TRANSFER_CANCELLED
+            if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_FAILED_TO_OPEN_QGC_PLAN:
+                return MissionRawResult.Result.FAILED_TO_OPEN_QGC_PLAN
+            if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_FAILED_TO_PARSE_QGC_PLAN:
+                return MissionRawResult.Result.FAILED_TO_PARSE_QGC_PLAN
 
         def __str__(self):
             return self.name
@@ -797,3 +924,46 @@ class MissionRaw(AsyncBase):
                 yield response.mission_changed
         finally:
             mission_changed_stream.cancel()
+
+    async def import_qgroundcontrol_mission(self, qgc_plan_path):
+        """
+         Import a QGroundControl missions in JSON .plan format.
+
+         Supported:
+         - Waypoints
+         - Survey
+         Not supported:
+         - Structure Scan
+
+         Parameters
+         ----------
+         qgc_plan_path : std::string
+              File path of the QGC plan
+
+         Returns
+         -------
+         mission_import_data : MissionImportData
+              The imported mission data
+
+         Raises
+         ------
+         MissionRawError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = mission_raw_pb2.ImportQgroundcontrolMissionRequest()
+        
+            
+        request.qgc_plan_path = qgc_plan_path
+            
+        response = await self._stub.ImportQgroundcontrolMission(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not MissionRawResult.Result.SUCCESS:
+            raise MissionRawError(result, "import_qgroundcontrol_mission()", qgc_plan_path)
+        
+
+        return MissionImportData.translate_from_rpc(response.mission_import_data)
+            

@@ -65,6 +65,11 @@ class MissionRawServiceStub(object):
                 request_serializer=mission__raw_dot_mission__raw__pb2.SubscribeMissionChangedRequest.SerializeToString,
                 response_deserializer=mission__raw_dot_mission__raw__pb2.MissionChangedResponse.FromString,
                 )
+        self.ImportQgroundcontrolMission = channel.unary_unary(
+                '/mavsdk.rpc.mission_raw.MissionRawService/ImportQgroundcontrolMission',
+                request_serializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionRequest.SerializeToString,
+                response_deserializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionResponse.FromString,
+                )
 
 
 class MissionRawServiceServicer(object):
@@ -169,6 +174,20 @@ class MissionRawServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ImportQgroundcontrolMission(self, request, context):
+        """
+        Import a QGroundControl missions in JSON .plan format.
+
+        Supported:
+        - Waypoints
+        - Survey
+        Not supported:
+        - Structure Scan
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_MissionRawServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -221,6 +240,11 @@ def add_MissionRawServiceServicer_to_server(servicer, server):
                     servicer.SubscribeMissionChanged,
                     request_deserializer=mission__raw_dot_mission__raw__pb2.SubscribeMissionChangedRequest.FromString,
                     response_serializer=mission__raw_dot_mission__raw__pb2.MissionChangedResponse.SerializeToString,
+            ),
+            'ImportQgroundcontrolMission': grpc.unary_unary_rpc_method_handler(
+                    servicer.ImportQgroundcontrolMission,
+                    request_deserializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionRequest.FromString,
+                    response_serializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -400,5 +424,22 @@ class MissionRawService(object):
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.mission_raw.MissionRawService/SubscribeMissionChanged',
             mission__raw_dot_mission__raw__pb2.SubscribeMissionChangedRequest.SerializeToString,
             mission__raw_dot_mission__raw__pb2.MissionChangedResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ImportQgroundcontrolMission(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission_raw.MissionRawService/ImportQgroundcontrolMission',
+            mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionRequest.SerializeToString,
+            mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
