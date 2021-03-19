@@ -533,10 +533,18 @@ class Calibration(AsyncBase):
         """
          Cancel ongoing calibration process.
 
-         
+         Raises
+         ------
+         CalibrationError
+             If the request fails. The error contains the reason for the failure.
         """
 
         request = calibration_pb2.CancelRequest()
         response = await self._stub.Cancel(request)
 
+        
+        result = self._extract_result(response)
+
+        if result.result is not CalibrationResult.Result.SUCCESS:
+            raise CalibrationError(result, "cancel()")
         

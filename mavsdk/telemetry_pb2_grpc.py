@@ -77,6 +77,11 @@ class TelemetryServiceStub(object):
                 request_serializer=telemetry_dot_telemetry__pb2.SubscribeGpsInfoRequest.SerializeToString,
                 response_deserializer=telemetry_dot_telemetry__pb2.GpsInfoResponse.FromString,
                 )
+        self.SubscribeRawGps = channel.unary_stream(
+                '/mavsdk.rpc.telemetry.TelemetryService/SubscribeRawGps',
+                request_serializer=telemetry_dot_telemetry__pb2.SubscribeRawGpsRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.RawGpsResponse.FromString,
+                )
         self.SubscribeBattery = channel.unary_stream(
                 '/mavsdk.rpc.telemetry.TelemetryService/SubscribeBattery',
                 request_serializer=telemetry_dot_telemetry__pb2.SubscribeBatteryRequest.SerializeToString,
@@ -137,6 +142,16 @@ class TelemetryServiceStub(object):
                 request_serializer=telemetry_dot_telemetry__pb2.SubscribeImuRequest.SerializeToString,
                 response_deserializer=telemetry_dot_telemetry__pb2.ImuResponse.FromString,
                 )
+        self.SubscribeScaledImu = channel.unary_stream(
+                '/mavsdk.rpc.telemetry.TelemetryService/SubscribeScaledImu',
+                request_serializer=telemetry_dot_telemetry__pb2.SubscribeScaledImuRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.ScaledImuResponse.FromString,
+                )
+        self.SubscribeRawImu = channel.unary_stream(
+                '/mavsdk.rpc.telemetry.TelemetryService/SubscribeRawImu',
+                request_serializer=telemetry_dot_telemetry__pb2.SubscribeRawImuRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.RawImuResponse.FromString,
+                )
         self.SubscribeHealthAllOk = channel.unary_stream(
                 '/mavsdk.rpc.telemetry.TelemetryService/SubscribeHealthAllOk',
                 request_serializer=telemetry_dot_telemetry__pb2.SubscribeHealthAllOkRequest.SerializeToString,
@@ -151,6 +166,11 @@ class TelemetryServiceStub(object):
                 '/mavsdk.rpc.telemetry.TelemetryService/SubscribeDistanceSensor',
                 request_serializer=telemetry_dot_telemetry__pb2.SubscribeDistanceSensorRequest.SerializeToString,
                 response_deserializer=telemetry_dot_telemetry__pb2.DistanceSensorResponse.FromString,
+                )
+        self.SubscribeScaledPressure = channel.unary_stream(
+                '/mavsdk.rpc.telemetry.TelemetryService/SubscribeScaledPressure',
+                request_serializer=telemetry_dot_telemetry__pb2.SubscribeScaledPressureRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.ScaledPressureResponse.FromString,
                 )
         self.SetRatePosition = channel.unary_unary(
                 '/mavsdk.rpc.telemetry.TelemetryService/SetRatePosition',
@@ -236,6 +256,16 @@ class TelemetryServiceStub(object):
                 '/mavsdk.rpc.telemetry.TelemetryService/SetRateImu',
                 request_serializer=telemetry_dot_telemetry__pb2.SetRateImuRequest.SerializeToString,
                 response_deserializer=telemetry_dot_telemetry__pb2.SetRateImuResponse.FromString,
+                )
+        self.SetRateScaledImu = channel.unary_unary(
+                '/mavsdk.rpc.telemetry.TelemetryService/SetRateScaledImu',
+                request_serializer=telemetry_dot_telemetry__pb2.SetRateScaledImuRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.SetRateScaledImuResponse.FromString,
+                )
+        self.SetRateRawImu = channel.unary_unary(
+                '/mavsdk.rpc.telemetry.TelemetryService/SetRateRawImu',
+                request_serializer=telemetry_dot_telemetry__pb2.SetRateRawImuRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.SetRateRawImuResponse.FromString,
                 )
         self.SetRateUnixEpochTime = channel.unary_unary(
                 '/mavsdk.rpc.telemetry.TelemetryService/SetRateUnixEpochTime',
@@ -344,6 +374,13 @@ class TelemetryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SubscribeRawGps(self, request, context):
+        """Subscribe to 'Raw GPS' updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SubscribeBattery(self, request, context):
         """Subscribe to 'battery' updates.
         """
@@ -422,7 +459,21 @@ class TelemetryServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SubscribeImu(self, request, context):
-        """Subscribe to 'IMU' updates.
+        """Subscribe to 'IMU' updates (in SI units in NED body frame).
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeScaledImu(self, request, context):
+        """Subscribe to 'Scaled IMU' updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeRawImu(self, request, context):
+        """Subscribe to 'Raw IMU' updates.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -444,6 +495,13 @@ class TelemetryServiceServicer(object):
 
     def SubscribeDistanceSensor(self, request, context):
         """Subscribe to 'Distance Sensor' updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeScaledPressure(self, request, context):
+        """Subscribe to 'Scaled Pressure' updates.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -568,6 +626,20 @@ class TelemetryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetRateScaledImu(self, request, context):
+        """Set rate to 'Scaled IMU' updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetRateRawImu(self, request, context):
+        """Set rate to 'Raw IMU' updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetRateUnixEpochTime(self, request, context):
         """Set rate to 'unix epoch time' updates.
         """
@@ -652,6 +724,11 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     request_deserializer=telemetry_dot_telemetry__pb2.SubscribeGpsInfoRequest.FromString,
                     response_serializer=telemetry_dot_telemetry__pb2.GpsInfoResponse.SerializeToString,
             ),
+            'SubscribeRawGps': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeRawGps,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SubscribeRawGpsRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.RawGpsResponse.SerializeToString,
+            ),
             'SubscribeBattery': grpc.unary_stream_rpc_method_handler(
                     servicer.SubscribeBattery,
                     request_deserializer=telemetry_dot_telemetry__pb2.SubscribeBatteryRequest.FromString,
@@ -712,6 +789,16 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     request_deserializer=telemetry_dot_telemetry__pb2.SubscribeImuRequest.FromString,
                     response_serializer=telemetry_dot_telemetry__pb2.ImuResponse.SerializeToString,
             ),
+            'SubscribeScaledImu': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeScaledImu,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SubscribeScaledImuRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.ScaledImuResponse.SerializeToString,
+            ),
+            'SubscribeRawImu': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeRawImu,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SubscribeRawImuRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.RawImuResponse.SerializeToString,
+            ),
             'SubscribeHealthAllOk': grpc.unary_stream_rpc_method_handler(
                     servicer.SubscribeHealthAllOk,
                     request_deserializer=telemetry_dot_telemetry__pb2.SubscribeHealthAllOkRequest.FromString,
@@ -726,6 +813,11 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     servicer.SubscribeDistanceSensor,
                     request_deserializer=telemetry_dot_telemetry__pb2.SubscribeDistanceSensorRequest.FromString,
                     response_serializer=telemetry_dot_telemetry__pb2.DistanceSensorResponse.SerializeToString,
+            ),
+            'SubscribeScaledPressure': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeScaledPressure,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SubscribeScaledPressureRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.ScaledPressureResponse.SerializeToString,
             ),
             'SetRatePosition': grpc.unary_unary_rpc_method_handler(
                     servicer.SetRatePosition,
@@ -811,6 +903,16 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     servicer.SetRateImu,
                     request_deserializer=telemetry_dot_telemetry__pb2.SetRateImuRequest.FromString,
                     response_serializer=telemetry_dot_telemetry__pb2.SetRateImuResponse.SerializeToString,
+            ),
+            'SetRateScaledImu': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetRateScaledImu,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SetRateScaledImuRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.SetRateScaledImuResponse.SerializeToString,
+            ),
+            'SetRateRawImu': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetRateRawImu,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SetRateRawImuRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.SetRateRawImuResponse.SerializeToString,
             ),
             'SetRateUnixEpochTime': grpc.unary_unary_rpc_method_handler(
                     servicer.SetRateUnixEpochTime,
@@ -1045,6 +1147,23 @@ class TelemetryService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def SubscribeRawGps(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SubscribeRawGps',
+            telemetry_dot_telemetry__pb2.SubscribeRawGpsRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.RawGpsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def SubscribeBattery(request,
             target,
             options=(),
@@ -1249,6 +1368,40 @@ class TelemetryService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def SubscribeScaledImu(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SubscribeScaledImu',
+            telemetry_dot_telemetry__pb2.SubscribeScaledImuRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.ScaledImuResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeRawImu(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SubscribeRawImu',
+            telemetry_dot_telemetry__pb2.SubscribeRawImuRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.RawImuResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def SubscribeHealthAllOk(request,
             target,
             options=(),
@@ -1296,6 +1449,23 @@ class TelemetryService(object):
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SubscribeDistanceSensor',
             telemetry_dot_telemetry__pb2.SubscribeDistanceSensorRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.DistanceSensorResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeScaledPressure(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SubscribeScaledPressure',
+            telemetry_dot_telemetry__pb2.SubscribeScaledPressureRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.ScaledPressureResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -1585,6 +1755,40 @@ class TelemetryService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SetRateImu',
             telemetry_dot_telemetry__pb2.SetRateImuRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateImuResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetRateScaledImu(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SetRateScaledImu',
+            telemetry_dot_telemetry__pb2.SetRateScaledImuRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.SetRateScaledImuResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetRateRawImu(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SetRateRawImu',
+            telemetry_dot_telemetry__pb2.SetRateRawImuRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.SetRateRawImuResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

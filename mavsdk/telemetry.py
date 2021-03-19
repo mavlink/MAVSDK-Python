@@ -879,6 +879,275 @@ class GpsInfo:
         
 
 
+class RawGps:
+    """
+     Raw GPS information type.
+
+     Warning: this is an advanced type! If you want the location of the drone, use
+     the position instead. This message exposes the raw values of the GNSS sensor.
+
+     Parameters
+     ----------
+     timestamp_us : uint64_t
+          Timestamp in microseconds (UNIX Epoch time or time since system boot, to be inferred)
+
+     latitude_deg : double
+          Latitude in degrees (WGS84, EGM96 ellipsoid)
+
+     longitude_deg : double
+          Longitude in degrees (WGS84, EGM96 ellipsoid)
+
+     absolute_altitude_m : float
+          Altitude AMSL (above mean sea level) in metres
+
+     hdop : float
+          GPS HDOP horizontal dilution of position (unitless). If unknown, set to NaN
+
+     vdop : float
+          GPS VDOP vertical dilution of position (unitless). If unknown, set to NaN
+
+     velocity_m_s : float
+          Ground velocity in metres per second
+
+     cog_deg : float
+          Course over ground (NOT heading, but direction of movement) in degrees. If unknown, set to NaN
+
+     altitude_ellipsoid_m : float
+          Altitude in metres (above WGS84, EGM96 ellipsoid)
+
+     horizontal_uncertainty_m : float
+          Position uncertainty in metres
+
+     vertical_uncertainty_m : float
+          Altitude uncertainty in metres
+
+     velocity_uncertainty_m_s : float
+          Velocity uncertainty in metres per second
+
+     heading_uncertainty_deg : float
+          Heading uncertainty in degrees
+
+     yaw_deg : float
+          Yaw in earth frame from north.
+
+     """
+
+    
+
+    def __init__(
+            self,
+            timestamp_us,
+            latitude_deg,
+            longitude_deg,
+            absolute_altitude_m,
+            hdop,
+            vdop,
+            velocity_m_s,
+            cog_deg,
+            altitude_ellipsoid_m,
+            horizontal_uncertainty_m,
+            vertical_uncertainty_m,
+            velocity_uncertainty_m_s,
+            heading_uncertainty_deg,
+            yaw_deg):
+        """ Initializes the RawGps object """
+        self.timestamp_us = timestamp_us
+        self.latitude_deg = latitude_deg
+        self.longitude_deg = longitude_deg
+        self.absolute_altitude_m = absolute_altitude_m
+        self.hdop = hdop
+        self.vdop = vdop
+        self.velocity_m_s = velocity_m_s
+        self.cog_deg = cog_deg
+        self.altitude_ellipsoid_m = altitude_ellipsoid_m
+        self.horizontal_uncertainty_m = horizontal_uncertainty_m
+        self.vertical_uncertainty_m = vertical_uncertainty_m
+        self.velocity_uncertainty_m_s = velocity_uncertainty_m_s
+        self.heading_uncertainty_deg = heading_uncertainty_deg
+        self.yaw_deg = yaw_deg
+
+    def __equals__(self, to_compare):
+        """ Checks if two RawGps are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # RawGps object
+            return \
+                (self.timestamp_us == to_compare.timestamp_us) and \
+                (self.latitude_deg == to_compare.latitude_deg) and \
+                (self.longitude_deg == to_compare.longitude_deg) and \
+                (self.absolute_altitude_m == to_compare.absolute_altitude_m) and \
+                (self.hdop == to_compare.hdop) and \
+                (self.vdop == to_compare.vdop) and \
+                (self.velocity_m_s == to_compare.velocity_m_s) and \
+                (self.cog_deg == to_compare.cog_deg) and \
+                (self.altitude_ellipsoid_m == to_compare.altitude_ellipsoid_m) and \
+                (self.horizontal_uncertainty_m == to_compare.horizontal_uncertainty_m) and \
+                (self.vertical_uncertainty_m == to_compare.vertical_uncertainty_m) and \
+                (self.velocity_uncertainty_m_s == to_compare.velocity_uncertainty_m_s) and \
+                (self.heading_uncertainty_deg == to_compare.heading_uncertainty_deg) and \
+                (self.yaw_deg == to_compare.yaw_deg)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ RawGps in string representation """
+        struct_repr = ", ".join([
+                "timestamp_us: " + str(self.timestamp_us),
+                "latitude_deg: " + str(self.latitude_deg),
+                "longitude_deg: " + str(self.longitude_deg),
+                "absolute_altitude_m: " + str(self.absolute_altitude_m),
+                "hdop: " + str(self.hdop),
+                "vdop: " + str(self.vdop),
+                "velocity_m_s: " + str(self.velocity_m_s),
+                "cog_deg: " + str(self.cog_deg),
+                "altitude_ellipsoid_m: " + str(self.altitude_ellipsoid_m),
+                "horizontal_uncertainty_m: " + str(self.horizontal_uncertainty_m),
+                "vertical_uncertainty_m: " + str(self.vertical_uncertainty_m),
+                "velocity_uncertainty_m_s: " + str(self.velocity_uncertainty_m_s),
+                "heading_uncertainty_deg: " + str(self.heading_uncertainty_deg),
+                "yaw_deg: " + str(self.yaw_deg)
+                ])
+
+        return f"RawGps: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcRawGps):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return RawGps(
+                
+                rpcRawGps.timestamp_us,
+                
+                
+                rpcRawGps.latitude_deg,
+                
+                
+                rpcRawGps.longitude_deg,
+                
+                
+                rpcRawGps.absolute_altitude_m,
+                
+                
+                rpcRawGps.hdop,
+                
+                
+                rpcRawGps.vdop,
+                
+                
+                rpcRawGps.velocity_m_s,
+                
+                
+                rpcRawGps.cog_deg,
+                
+                
+                rpcRawGps.altitude_ellipsoid_m,
+                
+                
+                rpcRawGps.horizontal_uncertainty_m,
+                
+                
+                rpcRawGps.vertical_uncertainty_m,
+                
+                
+                rpcRawGps.velocity_uncertainty_m_s,
+                
+                
+                rpcRawGps.heading_uncertainty_deg,
+                
+                
+                rpcRawGps.yaw_deg
+                )
+
+    def translate_to_rpc(self, rpcRawGps):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcRawGps.timestamp_us = self.timestamp_us
+            
+        
+        
+        
+            
+        rpcRawGps.latitude_deg = self.latitude_deg
+            
+        
+        
+        
+            
+        rpcRawGps.longitude_deg = self.longitude_deg
+            
+        
+        
+        
+            
+        rpcRawGps.absolute_altitude_m = self.absolute_altitude_m
+            
+        
+        
+        
+            
+        rpcRawGps.hdop = self.hdop
+            
+        
+        
+        
+            
+        rpcRawGps.vdop = self.vdop
+            
+        
+        
+        
+            
+        rpcRawGps.velocity_m_s = self.velocity_m_s
+            
+        
+        
+        
+            
+        rpcRawGps.cog_deg = self.cog_deg
+            
+        
+        
+        
+            
+        rpcRawGps.altitude_ellipsoid_m = self.altitude_ellipsoid_m
+            
+        
+        
+        
+            
+        rpcRawGps.horizontal_uncertainty_m = self.horizontal_uncertainty_m
+            
+        
+        
+        
+            
+        rpcRawGps.vertical_uncertainty_m = self.vertical_uncertainty_m
+            
+        
+        
+        
+            
+        rpcRawGps.velocity_uncertainty_m_s = self.velocity_uncertainty_m_s
+            
+        
+        
+        
+            
+        rpcRawGps.heading_uncertainty_deg = self.heading_uncertainty_deg
+            
+        
+        
+        
+            
+        rpcRawGps.yaw_deg = self.yaw_deg
+            
+        
+        
+
+
 class Battery:
     """
      Battery type.
@@ -1992,6 +2261,128 @@ class DistanceSensor:
         
 
 
+class ScaledPressure:
+    """
+     Scaled Pressure message type.
+
+     Parameters
+     ----------
+     timestamp_us : uint64_t
+          Timestamp (time since system boot)
+
+     absolute_pressure_hpa : float
+          Absolute pressure in hPa
+
+     differential_pressure_hpa : float
+          Differential pressure 1 in hPa
+
+     temperature_deg : float
+          Absolute pressure temperature (in celcius)
+
+     differential_pressure_temperature_deg : float
+          Differential pressure temperature (in celcius, 0 if not available)
+
+     """
+
+    
+
+    def __init__(
+            self,
+            timestamp_us,
+            absolute_pressure_hpa,
+            differential_pressure_hpa,
+            temperature_deg,
+            differential_pressure_temperature_deg):
+        """ Initializes the ScaledPressure object """
+        self.timestamp_us = timestamp_us
+        self.absolute_pressure_hpa = absolute_pressure_hpa
+        self.differential_pressure_hpa = differential_pressure_hpa
+        self.temperature_deg = temperature_deg
+        self.differential_pressure_temperature_deg = differential_pressure_temperature_deg
+
+    def __equals__(self, to_compare):
+        """ Checks if two ScaledPressure are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # ScaledPressure object
+            return \
+                (self.timestamp_us == to_compare.timestamp_us) and \
+                (self.absolute_pressure_hpa == to_compare.absolute_pressure_hpa) and \
+                (self.differential_pressure_hpa == to_compare.differential_pressure_hpa) and \
+                (self.temperature_deg == to_compare.temperature_deg) and \
+                (self.differential_pressure_temperature_deg == to_compare.differential_pressure_temperature_deg)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ ScaledPressure in string representation """
+        struct_repr = ", ".join([
+                "timestamp_us: " + str(self.timestamp_us),
+                "absolute_pressure_hpa: " + str(self.absolute_pressure_hpa),
+                "differential_pressure_hpa: " + str(self.differential_pressure_hpa),
+                "temperature_deg: " + str(self.temperature_deg),
+                "differential_pressure_temperature_deg: " + str(self.differential_pressure_temperature_deg)
+                ])
+
+        return f"ScaledPressure: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcScaledPressure):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return ScaledPressure(
+                
+                rpcScaledPressure.timestamp_us,
+                
+                
+                rpcScaledPressure.absolute_pressure_hpa,
+                
+                
+                rpcScaledPressure.differential_pressure_hpa,
+                
+                
+                rpcScaledPressure.temperature_deg,
+                
+                
+                rpcScaledPressure.differential_pressure_temperature_deg
+                )
+
+    def translate_to_rpc(self, rpcScaledPressure):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcScaledPressure.timestamp_us = self.timestamp_us
+            
+        
+        
+        
+            
+        rpcScaledPressure.absolute_pressure_hpa = self.absolute_pressure_hpa
+            
+        
+        
+        
+            
+        rpcScaledPressure.differential_pressure_hpa = self.differential_pressure_hpa
+            
+        
+        
+        
+            
+        rpcScaledPressure.temperature_deg = self.temperature_deg
+            
+        
+        
+        
+            
+        rpcScaledPressure.differential_pressure_temperature_deg = self.differential_pressure_temperature_deg
+            
+        
+        
+
+
 class PositionNed:
     """
      PositionNed message type.
@@ -2714,6 +3105,9 @@ class Imu:
      temperature_degc : float
           Temperature
 
+     timestamp_us : uint64_t
+          Timestamp in microseconds
+
      """
 
     
@@ -2723,12 +3117,14 @@ class Imu:
             acceleration_frd,
             angular_velocity_frd,
             magnetic_field_frd,
-            temperature_degc):
+            temperature_degc,
+            timestamp_us):
         """ Initializes the Imu object """
         self.acceleration_frd = acceleration_frd
         self.angular_velocity_frd = angular_velocity_frd
         self.magnetic_field_frd = magnetic_field_frd
         self.temperature_degc = temperature_degc
+        self.timestamp_us = timestamp_us
 
     def __equals__(self, to_compare):
         """ Checks if two Imu are the same """
@@ -2739,7 +3135,8 @@ class Imu:
                 (self.acceleration_frd == to_compare.acceleration_frd) and \
                 (self.angular_velocity_frd == to_compare.angular_velocity_frd) and \
                 (self.magnetic_field_frd == to_compare.magnetic_field_frd) and \
-                (self.temperature_degc == to_compare.temperature_degc)
+                (self.temperature_degc == to_compare.temperature_degc) and \
+                (self.timestamp_us == to_compare.timestamp_us)
 
         except AttributeError:
             return False
@@ -2750,7 +3147,8 @@ class Imu:
                 "acceleration_frd: " + str(self.acceleration_frd),
                 "angular_velocity_frd: " + str(self.angular_velocity_frd),
                 "magnetic_field_frd: " + str(self.magnetic_field_frd),
-                "temperature_degc: " + str(self.temperature_degc)
+                "temperature_degc: " + str(self.temperature_degc),
+                "timestamp_us: " + str(self.timestamp_us)
                 ])
 
         return f"Imu: [{struct_repr}]"
@@ -2769,7 +3167,10 @@ class Imu:
                 MagneticFieldFrd.translate_from_rpc(rpcImu.magnetic_field_frd),
                 
                 
-                rpcImu.temperature_degc
+                rpcImu.temperature_degc,
+                
+                
+                rpcImu.timestamp_us
                 )
 
     def translate_to_rpc(self, rpcImu):
@@ -2797,6 +3198,12 @@ class Imu:
         
             
         rpcImu.temperature_degc = self.temperature_degc
+            
+        
+        
+        
+            
+        rpcImu.timestamp_us = self.timestamp_us
             
         
         
@@ -3364,6 +3771,30 @@ class Telemetry(AsyncBase):
         finally:
             gps_info_stream.cancel()
 
+    async def raw_gps(self):
+        """
+         Subscribe to 'Raw GPS' updates.
+
+         Yields
+         -------
+         raw_gps : RawGps
+              The next 'Raw GPS' state. Warning: this is an advanced feature, use `Position` updates to get the location of the drone!
+
+         
+        """
+
+        request = telemetry_pb2.SubscribeRawGpsRequest()
+        raw_gps_stream = self._stub.SubscribeRawGps(request)
+
+        try:
+            async for response in raw_gps_stream:
+                
+
+            
+                yield RawGps.translate_from_rpc(response.raw_gps)
+        finally:
+            raw_gps_stream.cancel()
+
     async def battery(self):
         """
          Subscribe to 'battery' updates.
@@ -3630,7 +4061,7 @@ class Telemetry(AsyncBase):
 
     async def imu(self):
         """
-         Subscribe to 'IMU' updates.
+         Subscribe to 'IMU' updates (in SI units in NED body frame).
 
          Yields
          -------
@@ -3651,6 +4082,54 @@ class Telemetry(AsyncBase):
                 yield Imu.translate_from_rpc(response.imu)
         finally:
             imu_stream.cancel()
+
+    async def scaled_imu(self):
+        """
+         Subscribe to 'Scaled IMU' updates.
+
+         Yields
+         -------
+         imu : Imu
+              The next scaled IMU status
+
+         
+        """
+
+        request = telemetry_pb2.SubscribeScaledImuRequest()
+        scaled_imu_stream = self._stub.SubscribeScaledImu(request)
+
+        try:
+            async for response in scaled_imu_stream:
+                
+
+            
+                yield Imu.translate_from_rpc(response.imu)
+        finally:
+            scaled_imu_stream.cancel()
+
+    async def raw_imu(self):
+        """
+         Subscribe to 'Raw IMU' updates.
+
+         Yields
+         -------
+         imu : Imu
+              The next raw IMU status
+
+         
+        """
+
+        request = telemetry_pb2.SubscribeRawImuRequest()
+        raw_imu_stream = self._stub.SubscribeRawImu(request)
+
+        try:
+            async for response in raw_imu_stream:
+                
+
+            
+                yield Imu.translate_from_rpc(response.imu)
+        finally:
+            raw_imu_stream.cancel()
 
     async def health_all_ok(self):
         """
@@ -3723,6 +4202,30 @@ class Telemetry(AsyncBase):
                 yield DistanceSensor.translate_from_rpc(response.distance_sensor)
         finally:
             distance_sensor_stream.cancel()
+
+    async def scaled_pressure(self):
+        """
+         Subscribe to 'Scaled Pressure' updates.
+
+         Yields
+         -------
+         scaled_pressure : ScaledPressure
+              The next Scaled Pressure status
+
+         
+        """
+
+        request = telemetry_pb2.SubscribeScaledPressureRequest()
+        scaled_pressure_stream = self._stub.SubscribeScaledPressure(request)
+
+        try:
+            async for response in scaled_pressure_stream:
+                
+
+            
+                yield ScaledPressure.translate_from_rpc(response.scaled_pressure)
+        finally:
+            scaled_pressure_stream.cancel()
 
     async def set_rate_position(self, rate_hz):
         """
@@ -4164,6 +4667,58 @@ class Telemetry(AsyncBase):
 
         if result.result is not TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_imu()", rate_hz)
+        
+
+    async def set_rate_scaled_imu(self, rate_hz):
+        """
+         Set rate to 'Scaled IMU' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateScaledImuRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateScaledImu(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_scaled_imu()", rate_hz)
+        
+
+    async def set_rate_raw_imu(self, rate_hz):
+        """
+         Set rate to 'Raw IMU' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateRawImuRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateRawImu(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_raw_imu()", rate_hz)
         
 
     async def set_rate_unix_epoch_time(self, rate_hz):

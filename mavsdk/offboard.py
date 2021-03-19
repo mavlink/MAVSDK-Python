@@ -675,6 +675,96 @@ class VelocityNedYaw:
         
 
 
+class AccelerationNed:
+    """
+     Type for acceleration commands in NED (North East Down) coordinates.
+
+     Parameters
+     ----------
+     north_m_s2 : float
+          Acceleration North (in metres/second^2)
+
+     east_m_s2 : float
+          Acceleration East (in metres/second^2)
+
+     down_m_s2 : float
+          Acceleration Down (in metres/second^2)
+
+     """
+
+    
+
+    def __init__(
+            self,
+            north_m_s2,
+            east_m_s2,
+            down_m_s2):
+        """ Initializes the AccelerationNed object """
+        self.north_m_s2 = north_m_s2
+        self.east_m_s2 = east_m_s2
+        self.down_m_s2 = down_m_s2
+
+    def __equals__(self, to_compare):
+        """ Checks if two AccelerationNed are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # AccelerationNed object
+            return \
+                (self.north_m_s2 == to_compare.north_m_s2) and \
+                (self.east_m_s2 == to_compare.east_m_s2) and \
+                (self.down_m_s2 == to_compare.down_m_s2)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ AccelerationNed in string representation """
+        struct_repr = ", ".join([
+                "north_m_s2: " + str(self.north_m_s2),
+                "east_m_s2: " + str(self.east_m_s2),
+                "down_m_s2: " + str(self.down_m_s2)
+                ])
+
+        return f"AccelerationNed: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcAccelerationNed):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return AccelerationNed(
+                
+                rpcAccelerationNed.north_m_s2,
+                
+                
+                rpcAccelerationNed.east_m_s2,
+                
+                
+                rpcAccelerationNed.down_m_s2
+                )
+
+    def translate_to_rpc(self, rpcAccelerationNed):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcAccelerationNed.north_m_s2 = self.north_m_s2
+            
+        
+        
+        
+            
+        rpcAccelerationNed.east_m_s2 = self.east_m_s2
+            
+        
+        
+        
+            
+        rpcAccelerationNed.down_m_s2 = self.down_m_s2
+            
+        
+        
+
+
 class OffboardResult:
     """
      Result type.
@@ -1150,4 +1240,33 @@ class Offboard(AsyncBase):
 
         if result.result is not OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_position_velocity_ned()", position_ned_yaw, velocity_ned_yaw)
+        
+
+    async def set_acceleration_ned(self, acceleration_ned):
+        """
+         Set the acceleration in NED coordinates.
+
+         Parameters
+         ----------
+         acceleration_ned : AccelerationNed
+              Acceleration
+
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = offboard_pb2.SetAccelerationNedRequest()
+        
+        acceleration_ned.translate_to_rpc(request.acceleration_ned)
+                
+            
+        response = await self._stub.SetAccelerationNed(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_acceleration_ned()", acceleration_ned)
         
