@@ -370,14 +370,14 @@ class LogFiles(AsyncBase):
         return entries
             
 
-    async def download_log_file(self, id, path):
+    async def download_log_file(self, entry, path):
         """
          Download log file.
 
          Parameters
          ----------
-         id : uint32_t
-              ID of the log file to download
+         entry : Entry
+              Entry of the log file to download.
 
          path : std::string
               Path of where to download log file to.
@@ -394,7 +394,10 @@ class LogFiles(AsyncBase):
         """
 
         request = log_files_pb2.SubscribeDownloadLogFileRequest()
-        request.id = id
+        
+        entry.translate_to_rpc(request.entry)
+                
+            
         request.path = path
         download_log_file_stream = self._stub.SubscribeDownloadLogFile(request)
 
@@ -408,7 +411,7 @@ class LogFiles(AsyncBase):
                     success_codes.append(LogFilesResult.Result.NEXT)
 
                 if result.result not in success_codes:
-                    raise LogFilesError(result, "download_log_file()", id, path)
+                    raise LogFilesError(result, "download_log_file()", entry, path)
 
                 if result.result is LogFilesResult.Result.SUCCESS:
                     download_log_file_stream.cancel();

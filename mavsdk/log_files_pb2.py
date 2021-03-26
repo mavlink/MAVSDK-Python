@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\023io.mavsdk.log_filesB\rLogFilesProto',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x19log_files/log_files.proto\x12\x14mavsdk.rpc.log_files\x1a\x14mavsdk_options.proto\"\x13\n\x11GetEntriesRequest\"\x82\x01\n\x12GetEntriesResponse\x12>\n\x10log_files_result\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.log_files.LogFilesResult\x12,\n\x07\x65ntries\x18\x02 \x03(\x0b\x32\x1b.mavsdk.rpc.log_files.Entry\";\n\x1fSubscribeDownloadLogFileRequest\x12\n\n\x02id\x18\x01 \x01(\r\x12\x0c\n\x04path\x18\x02 \x01(\t\"\x8f\x01\n\x17\x44ownloadLogFileResponse\x12>\n\x10log_files_result\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.log_files.LogFilesResult\x12\x34\n\x08progress\x18\x02 \x01(\x0b\x32\".mavsdk.rpc.log_files.ProgressData\")\n\x0cProgressData\x12\x19\n\x08progress\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"5\n\x05\x45ntry\x12\n\n\x02id\x18\x01 \x01(\r\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12\x12\n\nsize_bytes\x18\x03 \x01(\r\"\x8b\x02\n\x0eLogFilesResult\x12;\n\x06result\x18\x01 \x01(\x0e\x32+.mavsdk.rpc.log_files.LogFilesResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xa7\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x0f\n\x0bRESULT_NEXT\x10\x02\x12\x16\n\x12RESULT_NO_LOGFILES\x10\x03\x12\x12\n\x0eRESULT_TIMEOUT\x10\x04\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x05\x12\x1b\n\x17RESULT_FILE_OPEN_FAILED\x10\x06\x32\x83\x02\n\x0fLogFilesService\x12\x61\n\nGetEntries\x12\'.mavsdk.rpc.log_files.GetEntriesRequest\x1a(.mavsdk.rpc.log_files.GetEntriesResponse\"\x00\x12\x8c\x01\n\x18SubscribeDownloadLogFile\x12\x35.mavsdk.rpc.log_files.SubscribeDownloadLogFileRequest\x1a-.mavsdk.rpc.log_files.DownloadLogFileResponse\"\x08\x80\xb5\x18\x00\x88\xb5\x18\x01\x30\x01\x42$\n\x13io.mavsdk.log_filesB\rLogFilesProtob\x06proto3'
+  serialized_pb=b'\n\x19log_files/log_files.proto\x12\x14mavsdk.rpc.log_files\x1a\x14mavsdk_options.proto\"\x13\n\x11GetEntriesRequest\"\x82\x01\n\x12GetEntriesResponse\x12>\n\x10log_files_result\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.log_files.LogFilesResult\x12,\n\x07\x65ntries\x18\x02 \x03(\x0b\x32\x1b.mavsdk.rpc.log_files.Entry\"[\n\x1fSubscribeDownloadLogFileRequest\x12*\n\x05\x65ntry\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.log_files.Entry\x12\x0c\n\x04path\x18\x02 \x01(\t\"\x8f\x01\n\x17\x44ownloadLogFileResponse\x12>\n\x10log_files_result\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.log_files.LogFilesResult\x12\x34\n\x08progress\x18\x02 \x01(\x0b\x32\".mavsdk.rpc.log_files.ProgressData\")\n\x0cProgressData\x12\x19\n\x08progress\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"5\n\x05\x45ntry\x12\n\n\x02id\x18\x01 \x01(\r\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12\x12\n\nsize_bytes\x18\x03 \x01(\r\"\x8b\x02\n\x0eLogFilesResult\x12;\n\x06result\x18\x01 \x01(\x0e\x32+.mavsdk.rpc.log_files.LogFilesResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xa7\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x0f\n\x0bRESULT_NEXT\x10\x02\x12\x16\n\x12RESULT_NO_LOGFILES\x10\x03\x12\x12\n\x0eRESULT_TIMEOUT\x10\x04\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x05\x12\x1b\n\x17RESULT_FILE_OPEN_FAILED\x10\x06\x32\x83\x02\n\x0fLogFilesService\x12\x61\n\nGetEntries\x12\'.mavsdk.rpc.log_files.GetEntriesRequest\x1a(.mavsdk.rpc.log_files.GetEntriesResponse\"\x00\x12\x8c\x01\n\x18SubscribeDownloadLogFile\x12\x35.mavsdk.rpc.log_files.SubscribeDownloadLogFileRequest\x1a-.mavsdk.rpc.log_files.DownloadLogFileResponse\"\x08\x80\xb5\x18\x00\x88\xb5\x18\x01\x30\x01\x42$\n\x13io.mavsdk.log_filesB\rLogFilesProtob\x06proto3'
   ,
   dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
 
@@ -71,8 +71,8 @@ _LOGFILESRESULT_RESULT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=633,
-  serialized_end=800,
+  serialized_start=665,
+  serialized_end=832,
 )
 _sym_db.RegisterEnumDescriptor(_LOGFILESRESULT_RESULT)
 
@@ -150,9 +150,9 @@ _SUBSCRIBEDOWNLOADLOGFILEREQUEST = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='mavsdk.rpc.log_files.SubscribeDownloadLogFileRequest.id', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
+      name='entry', full_name='mavsdk.rpc.log_files.SubscribeDownloadLogFileRequest.entry', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -176,7 +176,7 @@ _SUBSCRIBEDOWNLOADLOGFILEREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=227,
-  serialized_end=286,
+  serialized_end=318,
 )
 
 
@@ -214,8 +214,8 @@ _DOWNLOADLOGFILERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=289,
-  serialized_end=432,
+  serialized_start=321,
+  serialized_end=464,
 )
 
 
@@ -246,8 +246,8 @@ _PROGRESSDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=434,
-  serialized_end=475,
+  serialized_start=466,
+  serialized_end=507,
 )
 
 
@@ -292,8 +292,8 @@ _ENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=477,
-  serialized_end=530,
+  serialized_start=509,
+  serialized_end=562,
 )
 
 
@@ -332,12 +332,13 @@ _LOGFILESRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=533,
-  serialized_end=800,
+  serialized_start=565,
+  serialized_end=832,
 )
 
 _GETENTRIESRESPONSE.fields_by_name['log_files_result'].message_type = _LOGFILESRESULT
 _GETENTRIESRESPONSE.fields_by_name['entries'].message_type = _ENTRY
+_SUBSCRIBEDOWNLOADLOGFILEREQUEST.fields_by_name['entry'].message_type = _ENTRY
 _DOWNLOADLOGFILERESPONSE.fields_by_name['log_files_result'].message_type = _LOGFILESRESULT
 _DOWNLOADLOGFILERESPONSE.fields_by_name['progress'].message_type = _PROGRESSDATA
 _LOGFILESRESULT.fields_by_name['result'].enum_type = _LOGFILESRESULT_RESULT
@@ -411,8 +412,8 @@ _LOGFILESSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=803,
-  serialized_end=1062,
+  serialized_start=835,
+  serialized_end=1094,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetEntries',

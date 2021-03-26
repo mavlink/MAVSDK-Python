@@ -1563,6 +1563,21 @@ class Information:
      model_name : std::string
           Name of the camera model
 
+     focal_length_mm : float
+          Focal length
+
+     horizontal_sensor_size_mm : float
+          Horizontal sensor size
+
+     vertical_sensor_size_mm : float
+          Vertical sensor size
+
+     horizontal_resolution_px : uint32_t
+          Horizontal image resolution in pixels
+
+     vertical_resolution_px : uint32_t
+          Vertical image resolution in pixels
+
      """
 
     
@@ -1570,10 +1585,20 @@ class Information:
     def __init__(
             self,
             vendor_name,
-            model_name):
+            model_name,
+            focal_length_mm,
+            horizontal_sensor_size_mm,
+            vertical_sensor_size_mm,
+            horizontal_resolution_px,
+            vertical_resolution_px):
         """ Initializes the Information object """
         self.vendor_name = vendor_name
         self.model_name = model_name
+        self.focal_length_mm = focal_length_mm
+        self.horizontal_sensor_size_mm = horizontal_sensor_size_mm
+        self.vertical_sensor_size_mm = vertical_sensor_size_mm
+        self.horizontal_resolution_px = horizontal_resolution_px
+        self.vertical_resolution_px = vertical_resolution_px
 
     def __equals__(self, to_compare):
         """ Checks if two Information are the same """
@@ -1582,7 +1607,12 @@ class Information:
             # Information object
             return \
                 (self.vendor_name == to_compare.vendor_name) and \
-                (self.model_name == to_compare.model_name)
+                (self.model_name == to_compare.model_name) and \
+                (self.focal_length_mm == to_compare.focal_length_mm) and \
+                (self.horizontal_sensor_size_mm == to_compare.horizontal_sensor_size_mm) and \
+                (self.vertical_sensor_size_mm == to_compare.vertical_sensor_size_mm) and \
+                (self.horizontal_resolution_px == to_compare.horizontal_resolution_px) and \
+                (self.vertical_resolution_px == to_compare.vertical_resolution_px)
 
         except AttributeError:
             return False
@@ -1591,7 +1621,12 @@ class Information:
         """ Information in string representation """
         struct_repr = ", ".join([
                 "vendor_name: " + str(self.vendor_name),
-                "model_name: " + str(self.model_name)
+                "model_name: " + str(self.model_name),
+                "focal_length_mm: " + str(self.focal_length_mm),
+                "horizontal_sensor_size_mm: " + str(self.horizontal_sensor_size_mm),
+                "vertical_sensor_size_mm: " + str(self.vertical_sensor_size_mm),
+                "horizontal_resolution_px: " + str(self.horizontal_resolution_px),
+                "vertical_resolution_px: " + str(self.vertical_resolution_px)
                 ])
 
         return f"Information: [{struct_repr}]"
@@ -1604,7 +1639,22 @@ class Information:
                 rpcInformation.vendor_name,
                 
                 
-                rpcInformation.model_name
+                rpcInformation.model_name,
+                
+                
+                rpcInformation.focal_length_mm,
+                
+                
+                rpcInformation.horizontal_sensor_size_mm,
+                
+                
+                rpcInformation.vertical_sensor_size_mm,
+                
+                
+                rpcInformation.horizontal_resolution_px,
+                
+                
+                rpcInformation.vertical_resolution_px
                 )
 
     def translate_to_rpc(self, rpcInformation):
@@ -1620,6 +1670,36 @@ class Information:
         
             
         rpcInformation.model_name = self.model_name
+            
+        
+        
+        
+            
+        rpcInformation.focal_length_mm = self.focal_length_mm
+            
+        
+        
+        
+            
+        rpcInformation.horizontal_sensor_size_mm = self.horizontal_sensor_size_mm
+            
+        
+        
+        
+            
+        rpcInformation.vertical_sensor_size_mm = self.vertical_sensor_size_mm
+            
+        
+        
+        
+            
+        rpcInformation.horizontal_resolution_px = self.horizontal_resolution_px
+            
+        
+        
+        
+            
+        rpcInformation.vertical_resolution_px = self.vertical_resolution_px
             
         
         
