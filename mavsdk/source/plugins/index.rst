@@ -25,3 +25,4 @@ Plugins
    tune
    failure
    tracking_server
+   server_utility
