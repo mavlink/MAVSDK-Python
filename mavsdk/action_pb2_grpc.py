@@ -70,6 +70,11 @@ class ActionServiceStub(object):
                 request_serializer=action_dot_action__pb2.DoOrbitRequest.SerializeToString,
                 response_deserializer=action_dot_action__pb2.DoOrbitResponse.FromString,
                 )
+        self.Hold = channel.unary_unary(
+                '/mavsdk.rpc.action.ActionService/Hold',
+                request_serializer=action_dot_action__pb2.HoldRequest.SerializeToString,
+                response_deserializer=action_dot_action__pb2.HoldResponse.FromString,
+                )
         self.TransitionToFixedwing = channel.unary_unary(
                 '/mavsdk.rpc.action.ActionService/TransitionToFixedwing',
                 request_serializer=action_dot_action__pb2.TransitionToFixedwingRequest.SerializeToString,
@@ -239,6 +244,20 @@ class ActionServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def Hold(self, request, context):
+        """
+        Send command to hold position (a.k.a. "Loiter").
+
+        Sends a command to drone to change to Hold flight mode, causing the
+        vehicle to stop and maintain its current GPS position and altitude.
+
+        Note: this command is specific to the PX4 Autopilot flight stack as
+        it implies a change to a PX4-specific mode.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def TransitionToFixedwing(self, request, context):
         """
         Send command to transition the drone to fixedwing.
@@ -368,6 +387,11 @@ def add_ActionServiceServicer_to_server(servicer, server):
                     servicer.DoOrbit,
                     request_deserializer=action_dot_action__pb2.DoOrbitRequest.FromString,
                     response_serializer=action_dot_action__pb2.DoOrbitResponse.SerializeToString,
+            ),
+            'Hold': grpc.unary_unary_rpc_method_handler(
+                    servicer.Hold,
+                    request_deserializer=action_dot_action__pb2.HoldRequest.FromString,
+                    response_serializer=action_dot_action__pb2.HoldResponse.SerializeToString,
             ),
             'TransitionToFixedwing': grpc.unary_unary_rpc_method_handler(
                     servicer.TransitionToFixedwing,
@@ -604,6 +628,23 @@ class ActionService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.action.ActionService/DoOrbit',
             action_dot_action__pb2.DoOrbitRequest.SerializeToString,
             action_dot_action__pb2.DoOrbitResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Hold(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.action.ActionService/Hold',
+            action_dot_action__pb2.HoldRequest.SerializeToString,
+            action_dot_action__pb2.HoldResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

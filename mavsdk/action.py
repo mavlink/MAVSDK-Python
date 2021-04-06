@@ -591,6 +591,32 @@ class Action(AsyncBase):
             raise ActionError(result, "do_orbit()", radius_m, velocity_ms, yaw_behavior, latitude_deg, longitude_deg, absolute_altitude_m)
         
 
+    async def hold(self):
+        """
+         Send command to hold position (a.k.a. "Loiter").
+
+         Sends a command to drone to change to Hold flight mode, causing the
+         vehicle to stop and maintain its current GPS position and altitude.
+
+         Note: this command is specific to the PX4 Autopilot flight stack as
+         it implies a change to a PX4-specific mode.
+
+         Raises
+         ------
+         ActionError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = action_pb2.HoldRequest()
+        response = await self._stub.Hold(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not ActionResult.Result.SUCCESS:
+            raise ActionError(result, "hold()")
+        
+
     async def transition_to_fixedwing(self):
         """
          Send command to transition the drone to fixedwing.
