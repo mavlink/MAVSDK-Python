@@ -26,3 +26,4 @@ Plugins
    failure
    tracking_server
    server_utility
+   transponder

@@ -22,6 +22,7 @@ from . import param
 from . import shell
 from . import telemetry
 from . import tracking_server
+from . import transponder
 from . import tune
 
 from . import bin
@@ -117,6 +118,7 @@ class System:
         self._plugins["shell"] = shell.Shell(plugin_manager)
         self._plugins["telemetry"] = telemetry.Telemetry(plugin_manager)
         self._plugins["tracking_server"] = tracking_server.TrackingServer(plugin_manager)
+        self._plugins["transponder"] = transponder.Transponder(plugin_manager)
         self._plugins["tune"] = tune.Tune(plugin_manager)
 
     @staticmethod
@@ -243,6 +245,12 @@ class System:
         if "tracking_server" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("TrackingServer"))
         return self._plugins["tracking_server"]
+
+    @property
+    def transponder(self) -> transponder.Transponder:
+        if "transponder" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("Transponder"))
+        return self._plugins["transponder"]
 
     @property
     def tune(self) -> tune.Tune:
