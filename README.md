@@ -95,8 +95,13 @@ Run the following helper script. It will generate the Python wrappers for each p
 
 ### Build and install the package locally
 
-After generating the wrapper you can install a development (editable) version of the package using:
+After generating the wrapper and only in ARM architectures with linux, defines a variable `MAVSDK_SERVER_ARCH`:
+```
+export MAVSDK_SERVER_ARCH=<ARM embedded architecture>
+```
+Supported architectures: armv6l, armv7l and aarch64. For example in Raspberry PI it is armv7l.
 
+Then you can install a development (editable) version of the package using:
 ```
 python3 setup.py build
 pip3 install -e .
