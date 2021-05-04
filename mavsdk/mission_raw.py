@@ -13,7 +13,7 @@ class MissionProgress:
      Parameters
      ----------
      current : int32_t
-          Current mission item index (0-based)
+          Current mission item index (0-based), if equal to total, the mission is finished
 
      total : int32_t
           Total number of mission items
