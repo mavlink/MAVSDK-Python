@@ -12,7 +12,6 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -21,9 +20,8 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\025io.mavsdk.transponderB\020TransponderProto',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x1dtransponder/transponder.proto\x12\x16mavsdk.rpc.transponder\x1a\x14mavsdk_options.proto\"\x1d\n\x1bSubscribeTransponderRequest\"O\n\x13TransponderResponse\x12\x38\n\x0btransponder\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.transponder.AdsbVehicle\",\n\x19SetRateTransponderRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"c\n\x1aSetRateTransponderResponse\x12\x45\n\x12transponder_result\x18\x01 \x01(\x0b\x32).mavsdk.rpc.transponder.TransponderResult\"\xa3\x02\n\x0b\x41\x64sbVehicle\x12\x14\n\x0cicao_address\x18\x01 \x01(\r\x12\x14\n\x0clatitude_deg\x18\x02 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x03 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x05 \x01(\x02\x12\x13\n\x0bheading_deg\x18\x06 \x01(\x02\x12\x1f\n\x17horizontal_velocity_m_s\x18\x07 \x01(\x02\x12\x1d\n\x15vertical_velocity_m_s\x18\x08 \x01(\x02\x12\x10\n\x08\x63\x61llsign\x18\t \x01(\t\x12=\n\x0c\x65mitter_type\x18\n \x01(\x0e\x32\'.mavsdk.rpc.transponder.AdsbEmitterType\x12\x0e\n\x06squawk\x18\r \x01(\r\"\x8f\x02\n\x11TransponderResult\x12@\n\x06result\x18\x01 \x01(\x0e\x32\x30.mavsdk.rpc.transponder.TransponderResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xa3\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06*\xad\x05\n\x0f\x41\x64sbEmitterType\x12\x1d\n\x19\x41\x44SB_EMITTER_TYPE_NO_INFO\x10\x00\x12\x1b\n\x17\x41\x44SB_EMITTER_TYPE_LIGHT\x10\x01\x12\x1b\n\x17\x41\x44SB_EMITTER_TYPE_SMALL\x10\x02\x12\x1b\n\x17\x41\x44SB_EMITTER_TYPE_LARGE\x10\x03\x12\'\n#ADSB_EMITTER_TYPE_HIGH_VORTEX_LARGE\x10\x04\x12\x1b\n\x17\x41\x44SB_EMITTER_TYPE_HEAVY\x10\x05\x12\"\n\x1e\x41\x44SB_EMITTER_TYPE_HIGHLY_MANUV\x10\x06\x12\x1f\n\x1b\x41\x44SB_EMITTER_TYPE_ROTOCRAFT\x10\x07\x12 \n\x1c\x41\x44SB_EMITTER_TYPE_UNASSIGNED\x10\x08\x12\x1c\n\x18\x41\x44SB_EMITTER_TYPE_GLIDER\x10\t\x12!\n\x1d\x41\x44SB_EMITTER_TYPE_LIGHTER_AIR\x10\n\x12\x1f\n\x1b\x41\x44SB_EMITTER_TYPE_PARACHUTE\x10\x0b\x12!\n\x1d\x41\x44SB_EMITTER_TYPE_ULTRA_LIGHT\x10\x0c\x12!\n\x1d\x41\x44SB_EMITTER_TYPE_UNASSIGNED2\x10\r\x12\x19\n\x15\x41\x44SB_EMITTER_TYPE_UAV\x10\x0e\x12\x1b\n\x17\x41\x44SB_EMITTER_TYPE_SPACE\x10\x0f\x12!\n\x1d\x41\x44SB_EMITTER_TYPE_UNASSGINED3\x10\x10\x12\'\n#ADSB_EMITTER_TYPE_EMERGENCY_SURFACE\x10\x11\x12%\n!ADSB_EMITTER_TYPE_SERVICE_SURFACE\x10\x12\x12$\n ADSB_EMITTER_TYPE_POINT_OBSTACLE\x10\x13\x32\x91\x02\n\x12TransponderService\x12|\n\x14SubscribeTransponder\x12\x33.mavsdk.rpc.transponder.SubscribeTransponderRequest\x1a+.mavsdk.rpc.transponder.TransponderResponse\"\x00\x30\x01\x12}\n\x12SetRateTransponder\x12\x31.mavsdk.rpc.transponder.SetRateTransponderRequest\x1a\x32.mavsdk.rpc.transponder.SetRateTransponderResponse\"\x00\x42)\n\x15io.mavsdk.transponderB\x10TransponderProtob\x06proto3'
-  ,
-  dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
+  serialized_pb=b'\n\x1dtransponder/transponder.proto\x12\x16mavsdk.rpc.transponder\"\x1d\n\x1bSubscribeTransponderRequest\"O\n\x13TransponderResponse\x12\x38\n\x0btransponder\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.transponder.AdsbVehicle\",\n\x19SetRateTransponderRequest\x12\x0f\n\x07rate_hz\x18\x01 \x01(\x01\"c\n\x1aSetRateTransponderResponse\x12\x45\n\x12transponder_result\x18\x01 \x01(\x0b\x32).mavsdk.rpc.transponder.TransponderResult\"\xa3\x02\n\x0b\x41\x64sbVehicle\x12\x14\n\x0cicao_address\x18\x01 \x01(\r\x12\x14\n\x0clatitude_deg\x18\x02 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x03 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x05 \x01(\x02\x12\x13\n\x0bheading_deg\x18\x06 \x01(\x02\x12\x1f\n\x17horizontal_velocity_m_s\x18\x07 \x01(\x02\x12\x1d\n\x15vertical_velocity_m_s\x18\x08 \x01(\x02\x12\x10\n\x08\x63\x61llsign\x18\t \x01(\t\x12=\n\x0c\x65mitter_type\x18\n \x01(\x0e\x32\'.mavsdk.rpc.transponder.AdsbEmitterType\x12\x0e\n\x06squawk\x18\r \x01(\r\"\x8f\x02\n\x11TransponderResult\x12@\n\x06result\x18\x01 \x01(\x0e\x32\x30.mavsdk.rpc.transponder.TransponderResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xa3\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06*\xad\x05\n\x0f\x41\x64sbEmitterType\x12\x1d\n\x19\x41\x44SB_EMITTER_TYPE_NO_INFO\x10\x00\x12\x1b\n\x17\x41\x44SB_EMITTER_TYPE_LIGHT\x10\x01\x12\x1b\n\x17\x41\x44SB_EMITTER_TYPE_SMALL\x10\x02\x12\x1b\n\x17\x41\x44SB_EMITTER_TYPE_LARGE\x10\x03\x12\'\n#ADSB_EMITTER_TYPE_HIGH_VORTEX_LARGE\x10\x04\x12\x1b\n\x17\x41\x44SB_EMITTER_TYPE_HEAVY\x10\x05\x12\"\n\x1e\x41\x44SB_EMITTER_TYPE_HIGHLY_MANUV\x10\x06\x12\x1f\n\x1b\x41\x44SB_EMITTER_TYPE_ROTOCRAFT\x10\x07\x12 \n\x1c\x41\x44SB_EMITTER_TYPE_UNASSIGNED\x10\x08\x12\x1c\n\x18\x41\x44SB_EMITTER_TYPE_GLIDER\x10\t\x12!\n\x1d\x41\x44SB_EMITTER_TYPE_LIGHTER_AIR\x10\n\x12\x1f\n\x1b\x41\x44SB_EMITTER_TYPE_PARACHUTE\x10\x0b\x12!\n\x1d\x41\x44SB_EMITTER_TYPE_ULTRA_LIGHT\x10\x0c\x12!\n\x1d\x41\x44SB_EMITTER_TYPE_UNASSIGNED2\x10\r\x12\x19\n\x15\x41\x44SB_EMITTER_TYPE_UAV\x10\x0e\x12\x1b\n\x17\x41\x44SB_EMITTER_TYPE_SPACE\x10\x0f\x12!\n\x1d\x41\x44SB_EMITTER_TYPE_UNASSGINED3\x10\x10\x12\'\n#ADSB_EMITTER_TYPE_EMERGENCY_SURFACE\x10\x11\x12%\n!ADSB_EMITTER_TYPE_SERVICE_SURFACE\x10\x12\x12$\n ADSB_EMITTER_TYPE_POINT_OBSTACLE\x10\x13\x32\x91\x02\n\x12TransponderService\x12|\n\x14SubscribeTransponder\x12\x33.mavsdk.rpc.transponder.SubscribeTransponderRequest\x1a+.mavsdk.rpc.transponder.TransponderResponse\"\x00\x30\x01\x12}\n\x12SetRateTransponder\x12\x31.mavsdk.rpc.transponder.SetRateTransponderRequest\x1a\x32.mavsdk.rpc.transponder.SetRateTransponderResponse\"\x00\x42)\n\x15io.mavsdk.transponderB\x10TransponderProtob\x06proto3'
+)
 
 _ADSBEMITTERTYPE = _descriptor.EnumDescriptor(
   name='AdsbEmitterType',
@@ -135,8 +133,8 @@ _ADSBEMITTERTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=907,
-  serialized_end=1592,
+  serialized_start=885,
+  serialized_end=1570,
 )
 _sym_db.RegisterEnumDescriptor(_ADSBEMITTERTYPE)
 
@@ -208,8 +206,8 @@ _TRANSPONDERRESULT_RESULT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=741,
-  serialized_end=904,
+  serialized_start=719,
+  serialized_end=882,
 )
 _sym_db.RegisterEnumDescriptor(_TRANSPONDERRESULT_RESULT)
 
@@ -234,8 +232,8 @@ _SUBSCRIBETRANSPONDERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=79,
-  serialized_end=108,
+  serialized_start=57,
+  serialized_end=86,
 )
 
 
@@ -266,8 +264,8 @@ _TRANSPONDERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=110,
-  serialized_end=189,
+  serialized_start=88,
+  serialized_end=167,
 )
 
 
@@ -298,8 +296,8 @@ _SETRATETRANSPONDERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=191,
-  serialized_end=235,
+  serialized_start=169,
+  serialized_end=213,
 )
 
 
@@ -330,8 +328,8 @@ _SETRATETRANSPONDERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=237,
-  serialized_end=336,
+  serialized_start=215,
+  serialized_end=314,
 )
 
 
@@ -425,8 +423,8 @@ _ADSBVEHICLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=339,
-  serialized_end=630,
+  serialized_start=317,
+  serialized_end=608,
 )
 
 
@@ -465,8 +463,8 @@ _TRANSPONDERRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=633,
-  serialized_end=904,
+  serialized_start=611,
+  serialized_end=882,
 )
 
 _TRANSPONDERRESPONSE.fields_by_name['transponder'].message_type = _ADSBVEHICLE
@@ -535,8 +533,8 @@ _TRANSPONDERSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=1595,
-  serialized_end=1868,
+  serialized_start=1573,
+  serialized_end=1846,
   methods=[
   _descriptor.MethodDescriptor(
     name='SubscribeTransponder',

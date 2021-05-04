@@ -579,7 +579,7 @@ class Transponder(AsyncBase):
          Yields
          -------
          transponder : AdsbVehicle
-              The next detection 
+              The next detection
 
          
         """
