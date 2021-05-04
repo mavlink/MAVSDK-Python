@@ -99,7 +99,7 @@ After generating the wrapper and only in ARM architectures with linux, defines a
 ```
 export MAVSDK_SERVER_ARCH=<ARM embedded architecture>
 ```
-Supported architectures: armv6l, armv7l and aarch64. For example in Raspberry PI it is armv7l.
+Supported architectures: `armv6l`, `armv7l` and `aarch64`. For example for Raspberry Pi it is `armv7`, or `aarch64` (if a 64 bit distribution is used).
 
 Then you can install a development (editable) version of the package using:
 ```
