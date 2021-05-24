@@ -65,14 +65,14 @@ cd MAVSDK-Python
 
 ### Install prerequisites
 
-First install the protoc plugin (`protoc-gen-dcsdk`):
+First install the protoc plugin (`protoc-gen-mavsdk`):
 
 ```
 cd proto/pb_plugins
 pip3 install -r requirements.txt
 ```
 
-You can check that the plugin was installed with `$ which protoc-gen-dcsdk`, as it should now be in the PATH.
+You can check that the plugin was installed with `$ which protoc-gen-mavsdk`, as it should now be in the PATH.
 
 Then go back to the root of the repo and install the dependencies of the SDK:
 
@@ -99,7 +99,7 @@ After generating the wrapper and only in ARM architectures with linux, defines a
 ```
 export MAVSDK_SERVER_ARCH=<ARM embedded architecture>
 ```
-Supported architectures: `armv6l`, `armv7l` and `aarch64`. For example for Raspberry Pi it is `armv7`, or `aarch64` (if a 64 bit distribution is used).
+Supported architectures: `armv6l`, `armv7l` and `aarch64`. For example for Raspberry Pi it is `armv7l`, or `aarch64` (if a 64 bit distribution is used).
 
 Then you can install a development (editable) version of the package using:
 ```
