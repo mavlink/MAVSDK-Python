@@ -37,7 +37,7 @@ async def manual_controls():
     # This waits till a mavlink based drone is connected
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print(f"-- Connected to drone with UUID: {state.uuid}")
+            print(f"-- Connected to drone!")
             break
 
     # Checking if Global Position Estimate is ok
