@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\016io.mavsdk.coreB\tCoreProto',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0f\x63ore/core.proto\x12\x0fmavsdk.rpc.core\"!\n\x1fSubscribeConnectionStateRequest\"U\n\x17\x43onnectionStateResponse\x12:\n\x10\x63onnection_state\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.core.ConnectionState\"\x1b\n\x19ListRunningPluginsRequest\"N\n\x1aListRunningPluginsResponse\x12\x30\n\x0bplugin_info\x18\x01 \x03(\x0b\x32\x1b.mavsdk.rpc.core.PluginInfo\"5\n\x0f\x43onnectionState\x12\x0c\n\x04uuid\x18\x01 \x01(\x04\x12\x14\n\x0cis_connected\x18\x02 \x01(\x08\"9\n\nPluginInfo\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07\x61\x64\x64ress\x18\x02 \x01(\t\x12\x0c\n\x04port\x18\x03 \x01(\x05\x32\xfa\x01\n\x0b\x43oreService\x12z\n\x18SubscribeConnectionState\x12\x30.mavsdk.rpc.core.SubscribeConnectionStateRequest\x1a(.mavsdk.rpc.core.ConnectionStateResponse\"\x00\x30\x01\x12o\n\x12ListRunningPlugins\x12*.mavsdk.rpc.core.ListRunningPluginsRequest\x1a+.mavsdk.rpc.core.ListRunningPluginsResponse\"\x00\x42\x1b\n\x0eio.mavsdk.coreB\tCoreProtob\x06proto3'
+  serialized_pb=b'\n\x0f\x63ore/core.proto\x12\x0fmavsdk.rpc.core\"!\n\x1fSubscribeConnectionStateRequest\"U\n\x17\x43onnectionStateResponse\x12:\n\x10\x63onnection_state\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.core.ConnectionState\"\x1b\n\x19ListRunningPluginsRequest\"N\n\x1aListRunningPluginsResponse\x12\x30\n\x0bplugin_info\x18\x01 \x03(\x0b\x32\x1b.mavsdk.rpc.core.PluginInfo\"\'\n\x0f\x43onnectionState\x12\x14\n\x0cis_connected\x18\x02 \x01(\x08\"9\n\nPluginInfo\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07\x61\x64\x64ress\x18\x02 \x01(\t\x12\x0c\n\x04port\x18\x03 \x01(\x05\x32\xfa\x01\n\x0b\x43oreService\x12z\n\x18SubscribeConnectionState\x12\x30.mavsdk.rpc.core.SubscribeConnectionStateRequest\x1a(.mavsdk.rpc.core.ConnectionStateResponse\"\x00\x30\x01\x12o\n\x12ListRunningPlugins\x12*.mavsdk.rpc.core.ListRunningPluginsRequest\x1a+.mavsdk.rpc.core.ListRunningPluginsResponse\"\x00\x42\x1b\n\x0eio.mavsdk.coreB\tCoreProtob\x06proto3'
 )
 
 
@@ -148,14 +148,7 @@ _CONNECTIONSTATE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='uuid', full_name='mavsdk.rpc.core.ConnectionState.uuid', index=0,
-      number=1, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='is_connected', full_name='mavsdk.rpc.core.ConnectionState.is_connected', index=1,
+      name='is_connected', full_name='mavsdk.rpc.core.ConnectionState.is_connected', index=0,
       number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -174,7 +167,7 @@ _CONNECTIONSTATE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=267,
-  serialized_end=320,
+  serialized_end=306,
 )
 
 
@@ -219,8 +212,8 @@ _PLUGININFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=322,
-  serialized_end=379,
+  serialized_start=308,
+  serialized_end=365,
 )
 
 _CONNECTIONSTATERESPONSE.fields_by_name['connection_state'].message_type = _CONNECTIONSTATE
@@ -285,8 +278,8 @@ _CORESERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=382,
-  serialized_end=632,
+  serialized_start=368,
+  serialized_end=618,
   methods=[
   _descriptor.MethodDescriptor(
     name='SubscribeConnectionState',

@@ -12,9 +12,6 @@ class ConnectionState:
 
      Parameters
      ----------
-     uuid : uint64_t
-          UUID of the vehicle
-
      is_connected : bool
           Whether the vehicle got connected or disconnected
 
@@ -24,10 +21,8 @@ class ConnectionState:
 
     def __init__(
             self,
-            uuid,
             is_connected):
         """ Initializes the ConnectionState object """
-        self.uuid = uuid
         self.is_connected = is_connected
 
     def __equals__(self, to_compare):
@@ -36,7 +31,6 @@ class ConnectionState:
             # Try to compare - this likely fails when it is compared to a non
             # ConnectionState object
             return \
-                (self.uuid == to_compare.uuid) and \
                 (self.is_connected == to_compare.is_connected)
 
         except AttributeError:
@@ -45,7 +39,6 @@ class ConnectionState:
     def __str__(self):
         """ ConnectionState in string representation """
         struct_repr = ", ".join([
-                "uuid: " + str(self.uuid),
                 "is_connected: " + str(self.is_connected)
                 ])
 
@@ -56,21 +49,12 @@ class ConnectionState:
         """ Translates a gRPC struct to the SDK equivalent """
         return ConnectionState(
                 
-                rpcConnectionState.uuid,
-                
-                
                 rpcConnectionState.is_connected
                 )
 
     def translate_to_rpc(self, rpcConnectionState):
         """ Translates this SDK object into its gRPC equivalent """
 
-        
-        
-            
-        rpcConnectionState.uuid = self.uuid
-            
-        
         
         
             

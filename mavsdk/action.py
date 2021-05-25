@@ -617,6 +617,36 @@ class Action(AsyncBase):
             raise ActionError(result, "hold()")
         
 
+    async def set_actuator(self, index, value):
+        """
+         Send command to set the value of an actuator.
+
+         Parameters
+         ----------
+         index : int32_t
+              Index of actuator (starting with 1)
+
+         value : float
+              Value to set the actuator to (normalized from [-1..1])
+
+         Raises
+         ------
+         ActionError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = action_pb2.SetActuatorRequest()
+        request.index = index
+        request.value = value
+        response = await self._stub.SetActuator(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not ActionResult.Result.SUCCESS:
+            raise ActionError(result, "set_actuator()", index, value)
+        
+
     async def transition_to_fixedwing(self):
         """
          Send command to transition the drone to fixedwing.
