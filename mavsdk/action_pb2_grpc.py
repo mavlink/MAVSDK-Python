@@ -75,6 +75,11 @@ class ActionServiceStub(object):
                 request_serializer=action_dot_action__pb2.HoldRequest.SerializeToString,
                 response_deserializer=action_dot_action__pb2.HoldResponse.FromString,
                 )
+        self.SetActuator = channel.unary_unary(
+                '/mavsdk.rpc.action.ActionService/SetActuator',
+                request_serializer=action_dot_action__pb2.SetActuatorRequest.SerializeToString,
+                response_deserializer=action_dot_action__pb2.SetActuatorResponse.FromString,
+                )
         self.TransitionToFixedwing = channel.unary_unary(
                 '/mavsdk.rpc.action.ActionService/TransitionToFixedwing',
                 request_serializer=action_dot_action__pb2.TransitionToFixedwingRequest.SerializeToString,
@@ -258,6 +263,14 @@ class ActionServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetActuator(self, request, context):
+        """
+        Send command to set the value of an actuator.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def TransitionToFixedwing(self, request, context):
         """
         Send command to transition the drone to fixedwing.
@@ -392,6 +405,11 @@ def add_ActionServiceServicer_to_server(servicer, server):
                     servicer.Hold,
                     request_deserializer=action_dot_action__pb2.HoldRequest.FromString,
                     response_serializer=action_dot_action__pb2.HoldResponse.SerializeToString,
+            ),
+            'SetActuator': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetActuator,
+                    request_deserializer=action_dot_action__pb2.SetActuatorRequest.FromString,
+                    response_serializer=action_dot_action__pb2.SetActuatorResponse.SerializeToString,
             ),
             'TransitionToFixedwing': grpc.unary_unary_rpc_method_handler(
                     servicer.TransitionToFixedwing,
@@ -645,6 +663,23 @@ class ActionService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.action.ActionService/Hold',
             action_dot_action__pb2.HoldRequest.SerializeToString,
             action_dot_action__pb2.HoldResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetActuator(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.action.ActionService/SetActuator',
+            action_dot_action__pb2.SetActuatorRequest.SerializeToString,
+            action_dot_action__pb2.SetActuatorResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

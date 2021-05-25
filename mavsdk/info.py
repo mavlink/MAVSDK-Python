@@ -89,15 +89,20 @@ class Identification:
      hardware_uid : std::string
           UID of the hardware. This refers to uid2 of MAVLink. If the system does not support uid2 yet, this is all zeros.
 
+     legacy_uid : uint64_t
+          Legacy UID of the hardware, referred to as uid in MAVLink (formerly exposed during system discovery as UUID).
+
      """
 
     
 
     def __init__(
             self,
-            hardware_uid):
+            hardware_uid,
+            legacy_uid):
         """ Initializes the Identification object """
         self.hardware_uid = hardware_uid
+        self.legacy_uid = legacy_uid
 
     def __equals__(self, to_compare):
         """ Checks if two Identification are the same """
@@ -105,7 +110,8 @@ class Identification:
             # Try to compare - this likely fails when it is compared to a non
             # Identification object
             return \
-                (self.hardware_uid == to_compare.hardware_uid)
+                (self.hardware_uid == to_compare.hardware_uid) and \
+                (self.legacy_uid == to_compare.legacy_uid)
 
         except AttributeError:
             return False
@@ -113,7 +119,8 @@ class Identification:
     def __str__(self):
         """ Identification in string representation """
         struct_repr = ", ".join([
-                "hardware_uid: " + str(self.hardware_uid)
+                "hardware_uid: " + str(self.hardware_uid),
+                "legacy_uid: " + str(self.legacy_uid)
                 ])
 
         return f"Identification: [{struct_repr}]"
@@ -123,7 +130,10 @@ class Identification:
         """ Translates a gRPC struct to the SDK equivalent """
         return Identification(
                 
-                rpcIdentification.hardware_uid
+                rpcIdentification.hardware_uid,
+                
+                
+                rpcIdentification.legacy_uid
                 )
 
     def translate_to_rpc(self, rpcIdentification):
@@ -133,6 +143,12 @@ class Identification:
         
             
         rpcIdentification.hardware_uid = self.hardware_uid
+            
+        
+        
+        
+            
+        rpcIdentification.legacy_uid = self.legacy_uid
             
         
         
