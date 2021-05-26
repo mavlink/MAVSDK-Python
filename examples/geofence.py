@@ -22,7 +22,7 @@ async def run():
     print("Waiting for drone...")
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print(f"Drone discovered with UUID: {state.uuid}")
+            print(f"Drone discovered!")
             break
 
     # Fetch the home location coordinates, in order to set a boundary around the home location

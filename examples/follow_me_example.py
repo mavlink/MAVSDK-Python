@@ -7,8 +7,8 @@ from mavsdk import System
 from mavsdk.follow_me import (Config, FollowMeError, TargetLocation)
 
 default_height = 8.0 #in Meters
-follow_distance = 2.0 #in Meters, this is the distance that the drone will remain away from Target while following it 
-#Direction relative to the Target 
+follow_distance = 2.0 #in Meters, this is the distance that the drone will remain away from Target while following it
+#Direction relative to the Target
 #Options are NONE, FRONT, FRONT_LEFT, FRONT_RIGHT, BEHIND
 direction = Config.FollowDirection.BEHIND
 responsiveness =  0.02
@@ -19,27 +19,27 @@ fake_location = [[47.398039859999997,8.5455725400000002],[47.398036222362471,8.5
 async def fly_drone():
     drone = System()
     await drone.connect(system_address="udp://:14540")
-    
+
     #This waits till a mavlink based drone is connected
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print(f"-- Connected to drone with UUID: {state.uuid}")
+            print(f"-- Connected to drone!")
             break
-    
+
     #Checking if Global Position Estimate is ok
     async for global_lock in drone.telemetry.health():
         if global_lock.is_global_position_ok:
             print("-- Global position state is good enough for flying.")
             break
-    
+
     #Arming the drone
     print ("-- Arming")
     await drone.action.arm()
-    
+
     #Follow me Mode requires some configuration to be done before starting the mode
     conf = Config(default_height, follow_distance, direction, responsiveness)
     await drone.follow_me.set_config(conf)
-    
+
     print ("-- Taking Off")
     await drone.action.takeoff()
     await asyncio.sleep(8)
@@ -54,12 +54,12 @@ async def fly_drone():
         print ("-- Following Target")
         await drone.follow_me.set_target_location(target)
         await asyncio.sleep(2)
-    
+
     #Stopping the follow me mode
     print ("-- Stopping Follow Me Mode")
     await drone.follow_me.stop()
     await asyncio.sleep(5)
-    
+
     print ("-- Landing")
     await drone.action.land()
 
