@@ -28,7 +28,7 @@ async def fly_drone():
 
     #Checking if Global Position Estimate is ok
     async for global_lock in drone.telemetry.health():
-        if global_lock.is_global_position_ok:
+        if global_lock.is_global_position_ok and global_lock.is_home_position_ok:
             print("-- Global position state is good enough for flying.")
             break
 
