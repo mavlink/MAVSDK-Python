@@ -197,6 +197,9 @@ class LogFilesResult:
          FILE_OPEN_FAILED
               File open failed
 
+         NO_SYSTEM
+              No system is connected
+
          """
 
         
@@ -207,6 +210,7 @@ class LogFilesResult:
         TIMEOUT = 4
         INVALID_ARGUMENT = 5
         FILE_OPEN_FAILED = 6
+        NO_SYSTEM = 7
 
         def translate_to_rpc(self):
             if self == LogFilesResult.Result.UNKNOWN:
@@ -223,6 +227,8 @@ class LogFilesResult:
                 return log_files_pb2.LogFilesResult.RESULT_INVALID_ARGUMENT
             if self == LogFilesResult.Result.FILE_OPEN_FAILED:
                 return log_files_pb2.LogFilesResult.RESULT_FILE_OPEN_FAILED
+            if self == LogFilesResult.Result.NO_SYSTEM:
+                return log_files_pb2.LogFilesResult.RESULT_NO_SYSTEM
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -241,6 +247,8 @@ class LogFilesResult:
                 return LogFilesResult.Result.INVALID_ARGUMENT
             if rpc_enum_value == log_files_pb2.LogFilesResult.RESULT_FILE_OPEN_FAILED:
                 return LogFilesResult.Result.FILE_OPEN_FAILED
+            if rpc_enum_value == log_files_pb2.LogFilesResult.RESULT_NO_SYSTEM:
+                return LogFilesResult.Result.NO_SYSTEM
 
         def __str__(self):
             return self.name

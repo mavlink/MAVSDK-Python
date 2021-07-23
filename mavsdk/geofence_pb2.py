@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\022io.mavsdk.geofenceB\rGeofenceProto',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x17geofence/geofence.proto\x12\x13mavsdk.rpc.geofence\"4\n\x05Point\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\"\xb2\x01\n\x07Polygon\x12*\n\x06points\x18\x01 \x03(\x0b\x32\x1a.mavsdk.rpc.geofence.Point\x12:\n\nfence_type\x18\x02 \x01(\x0e\x32&.mavsdk.rpc.geofence.Polygon.FenceType\"?\n\tFenceType\x12\x18\n\x14\x46\x45NCE_TYPE_INCLUSION\x10\x00\x12\x18\n\x14\x46\x45NCE_TYPE_EXCLUSION\x10\x01\"G\n\x15UploadGeofenceRequest\x12.\n\x08polygons\x18\x01 \x03(\x0b\x32\x1c.mavsdk.rpc.geofence.Polygon\"V\n\x16UploadGeofenceResponse\x12<\n\x0fgeofence_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.geofence.GeofenceResult\"\x8b\x02\n\x0eGeofenceResult\x12:\n\x06result\x18\x01 \x01(\x0e\x32*.mavsdk.rpc.geofence.GeofenceResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xa8\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x10\n\x0cRESULT_ERROR\x10\x02\x12\"\n\x1eRESULT_TOO_MANY_GEOFENCE_ITEMS\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x12\n\x0eRESULT_TIMEOUT\x10\x05\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x06\x32~\n\x0fGeofenceService\x12k\n\x0eUploadGeofence\x12*.mavsdk.rpc.geofence.UploadGeofenceRequest\x1a+.mavsdk.rpc.geofence.UploadGeofenceResponse\"\x00\x42#\n\x12io.mavsdk.geofenceB\rGeofenceProtob\x06proto3'
+  serialized_pb=b'\n\x17geofence/geofence.proto\x12\x13mavsdk.rpc.geofence\"4\n\x05Point\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\"\xb2\x01\n\x07Polygon\x12*\n\x06points\x18\x01 \x03(\x0b\x32\x1a.mavsdk.rpc.geofence.Point\x12:\n\nfence_type\x18\x02 \x01(\x0e\x32&.mavsdk.rpc.geofence.Polygon.FenceType\"?\n\tFenceType\x12\x18\n\x14\x46\x45NCE_TYPE_INCLUSION\x10\x00\x12\x18\n\x14\x46\x45NCE_TYPE_EXCLUSION\x10\x01\"G\n\x15UploadGeofenceRequest\x12.\n\x08polygons\x18\x01 \x03(\x0b\x32\x1c.mavsdk.rpc.geofence.Polygon\"V\n\x16UploadGeofenceResponse\x12<\n\x0fgeofence_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.geofence.GeofenceResult\"\xa1\x02\n\x0eGeofenceResult\x12:\n\x06result\x18\x01 \x01(\x0e\x32*.mavsdk.rpc.geofence.GeofenceResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xbe\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x10\n\x0cRESULT_ERROR\x10\x02\x12\"\n\x1eRESULT_TOO_MANY_GEOFENCE_ITEMS\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x12\n\x0eRESULT_TIMEOUT\x10\x05\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x06\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x07\x32~\n\x0fGeofenceService\x12k\n\x0eUploadGeofence\x12*.mavsdk.rpc.geofence.UploadGeofenceRequest\x1a+.mavsdk.rpc.geofence.UploadGeofenceResponse\"\x00\x42#\n\x12io.mavsdk.geofenceB\rGeofenceProtob\x06proto3'
 )
 
 
@@ -91,11 +91,16 @@ _GEOFENCERESULT_RESULT = _descriptor.EnumDescriptor(
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='RESULT_NO_SYSTEM', index=7, number=7,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
   serialized_start=544,
-  serialized_end=712,
+  serialized_end=734,
 )
 _sym_db.RegisterEnumDescriptor(_GEOFENCERESULT_RESULT)
 
@@ -279,7 +284,7 @@ _GEOFENCERESULT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=445,
-  serialized_end=712,
+  serialized_end=734,
 )
 
 _POLYGON.fields_by_name['points'].message_type = _POINT
@@ -341,8 +346,8 @@ _GEOFENCESERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=714,
-  serialized_end=840,
+  serialized_start=736,
+  serialized_end=862,
   methods=[
   _descriptor.MethodDescriptor(
     name='UploadGeofence',

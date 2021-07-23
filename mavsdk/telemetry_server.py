@@ -2,7 +2,7 @@
 # DO NOT EDIT! This file is auto-generated from
 # https://github.com/mavlink/MAVSDK-Python/tree/main/other/templates/py
 from ._base import AsyncBase
-from . import telemetry_pb2, telemetry_pb2_grpc
+from . import telemetry_server_pb2, telemetry_server_pb2_grpc
 from enum import Enum
 
 
@@ -46,36 +46,36 @@ class FixType(Enum):
 
     def translate_to_rpc(self):
         if self == FixType.NO_GPS:
-            return telemetry_pb2.FIX_TYPE_NO_GPS
+            return telemetry_server_pb2.FIX_TYPE_NO_GPS
         if self == FixType.NO_FIX:
-            return telemetry_pb2.FIX_TYPE_NO_FIX
+            return telemetry_server_pb2.FIX_TYPE_NO_FIX
         if self == FixType.FIX_2D:
-            return telemetry_pb2.FIX_TYPE_FIX_2D
+            return telemetry_server_pb2.FIX_TYPE_FIX_2D
         if self == FixType.FIX_3D:
-            return telemetry_pb2.FIX_TYPE_FIX_3D
+            return telemetry_server_pb2.FIX_TYPE_FIX_3D
         if self == FixType.FIX_DGPS:
-            return telemetry_pb2.FIX_TYPE_FIX_DGPS
+            return telemetry_server_pb2.FIX_TYPE_FIX_DGPS
         if self == FixType.RTK_FLOAT:
-            return telemetry_pb2.FIX_TYPE_RTK_FLOAT
+            return telemetry_server_pb2.FIX_TYPE_RTK_FLOAT
         if self == FixType.RTK_FIXED:
-            return telemetry_pb2.FIX_TYPE_RTK_FIXED
+            return telemetry_server_pb2.FIX_TYPE_RTK_FIXED
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        if rpc_enum_value == telemetry_pb2.FIX_TYPE_NO_GPS:
+        if rpc_enum_value == telemetry_server_pb2.FIX_TYPE_NO_GPS:
             return FixType.NO_GPS
-        if rpc_enum_value == telemetry_pb2.FIX_TYPE_NO_FIX:
+        if rpc_enum_value == telemetry_server_pb2.FIX_TYPE_NO_FIX:
             return FixType.NO_FIX
-        if rpc_enum_value == telemetry_pb2.FIX_TYPE_FIX_2D:
+        if rpc_enum_value == telemetry_server_pb2.FIX_TYPE_FIX_2D:
             return FixType.FIX_2D
-        if rpc_enum_value == telemetry_pb2.FIX_TYPE_FIX_3D:
+        if rpc_enum_value == telemetry_server_pb2.FIX_TYPE_FIX_3D:
             return FixType.FIX_3D
-        if rpc_enum_value == telemetry_pb2.FIX_TYPE_FIX_DGPS:
+        if rpc_enum_value == telemetry_server_pb2.FIX_TYPE_FIX_DGPS:
             return FixType.FIX_DGPS
-        if rpc_enum_value == telemetry_pb2.FIX_TYPE_RTK_FLOAT:
+        if rpc_enum_value == telemetry_server_pb2.FIX_TYPE_RTK_FLOAT:
             return FixType.RTK_FLOAT
-        if rpc_enum_value == telemetry_pb2.FIX_TYPE_RTK_FIXED:
+        if rpc_enum_value == telemetry_server_pb2.FIX_TYPE_RTK_FIXED:
             return FixType.RTK_FIXED
 
     def __str__(self):
@@ -157,68 +157,68 @@ class FlightMode(Enum):
 
     def translate_to_rpc(self):
         if self == FlightMode.UNKNOWN:
-            return telemetry_pb2.FLIGHT_MODE_UNKNOWN
+            return telemetry_server_pb2.FLIGHT_MODE_UNKNOWN
         if self == FlightMode.READY:
-            return telemetry_pb2.FLIGHT_MODE_READY
+            return telemetry_server_pb2.FLIGHT_MODE_READY
         if self == FlightMode.TAKEOFF:
-            return telemetry_pb2.FLIGHT_MODE_TAKEOFF
+            return telemetry_server_pb2.FLIGHT_MODE_TAKEOFF
         if self == FlightMode.HOLD:
-            return telemetry_pb2.FLIGHT_MODE_HOLD
+            return telemetry_server_pb2.FLIGHT_MODE_HOLD
         if self == FlightMode.MISSION:
-            return telemetry_pb2.FLIGHT_MODE_MISSION
+            return telemetry_server_pb2.FLIGHT_MODE_MISSION
         if self == FlightMode.RETURN_TO_LAUNCH:
-            return telemetry_pb2.FLIGHT_MODE_RETURN_TO_LAUNCH
+            return telemetry_server_pb2.FLIGHT_MODE_RETURN_TO_LAUNCH
         if self == FlightMode.LAND:
-            return telemetry_pb2.FLIGHT_MODE_LAND
+            return telemetry_server_pb2.FLIGHT_MODE_LAND
         if self == FlightMode.OFFBOARD:
-            return telemetry_pb2.FLIGHT_MODE_OFFBOARD
+            return telemetry_server_pb2.FLIGHT_MODE_OFFBOARD
         if self == FlightMode.FOLLOW_ME:
-            return telemetry_pb2.FLIGHT_MODE_FOLLOW_ME
+            return telemetry_server_pb2.FLIGHT_MODE_FOLLOW_ME
         if self == FlightMode.MANUAL:
-            return telemetry_pb2.FLIGHT_MODE_MANUAL
+            return telemetry_server_pb2.FLIGHT_MODE_MANUAL
         if self == FlightMode.ALTCTL:
-            return telemetry_pb2.FLIGHT_MODE_ALTCTL
+            return telemetry_server_pb2.FLIGHT_MODE_ALTCTL
         if self == FlightMode.POSCTL:
-            return telemetry_pb2.FLIGHT_MODE_POSCTL
+            return telemetry_server_pb2.FLIGHT_MODE_POSCTL
         if self == FlightMode.ACRO:
-            return telemetry_pb2.FLIGHT_MODE_ACRO
+            return telemetry_server_pb2.FLIGHT_MODE_ACRO
         if self == FlightMode.STABILIZED:
-            return telemetry_pb2.FLIGHT_MODE_STABILIZED
+            return telemetry_server_pb2.FLIGHT_MODE_STABILIZED
         if self == FlightMode.RATTITUDE:
-            return telemetry_pb2.FLIGHT_MODE_RATTITUDE
+            return telemetry_server_pb2.FLIGHT_MODE_RATTITUDE
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_UNKNOWN:
+        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_UNKNOWN:
             return FlightMode.UNKNOWN
-        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_READY:
+        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_READY:
             return FlightMode.READY
-        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_TAKEOFF:
+        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_TAKEOFF:
             return FlightMode.TAKEOFF
-        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_HOLD:
+        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_HOLD:
             return FlightMode.HOLD
-        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_MISSION:
+        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_MISSION:
             return FlightMode.MISSION
-        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_RETURN_TO_LAUNCH:
+        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_RETURN_TO_LAUNCH:
             return FlightMode.RETURN_TO_LAUNCH
-        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_LAND:
+        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_LAND:
             return FlightMode.LAND
-        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_OFFBOARD:
+        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_OFFBOARD:
             return FlightMode.OFFBOARD
-        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_FOLLOW_ME:
+        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_FOLLOW_ME:
             return FlightMode.FOLLOW_ME
-        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_MANUAL:
+        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_MANUAL:
             return FlightMode.MANUAL
-        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_ALTCTL:
+        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_ALTCTL:
             return FlightMode.ALTCTL
-        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_POSCTL:
+        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_POSCTL:
             return FlightMode.POSCTL
-        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_ACRO:
+        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_ACRO:
             return FlightMode.ACRO
-        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_STABILIZED:
+        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_STABILIZED:
             return FlightMode.STABILIZED
-        if rpc_enum_value == telemetry_pb2.FLIGHT_MODE_RATTITUDE:
+        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_RATTITUDE:
             return FlightMode.RATTITUDE
 
     def __str__(self):
@@ -269,40 +269,40 @@ class StatusTextType(Enum):
 
     def translate_to_rpc(self):
         if self == StatusTextType.DEBUG:
-            return telemetry_pb2.STATUS_TEXT_TYPE_DEBUG
+            return telemetry_server_pb2.STATUS_TEXT_TYPE_DEBUG
         if self == StatusTextType.INFO:
-            return telemetry_pb2.STATUS_TEXT_TYPE_INFO
+            return telemetry_server_pb2.STATUS_TEXT_TYPE_INFO
         if self == StatusTextType.NOTICE:
-            return telemetry_pb2.STATUS_TEXT_TYPE_NOTICE
+            return telemetry_server_pb2.STATUS_TEXT_TYPE_NOTICE
         if self == StatusTextType.WARNING:
-            return telemetry_pb2.STATUS_TEXT_TYPE_WARNING
+            return telemetry_server_pb2.STATUS_TEXT_TYPE_WARNING
         if self == StatusTextType.ERROR:
-            return telemetry_pb2.STATUS_TEXT_TYPE_ERROR
+            return telemetry_server_pb2.STATUS_TEXT_TYPE_ERROR
         if self == StatusTextType.CRITICAL:
-            return telemetry_pb2.STATUS_TEXT_TYPE_CRITICAL
+            return telemetry_server_pb2.STATUS_TEXT_TYPE_CRITICAL
         if self == StatusTextType.ALERT:
-            return telemetry_pb2.STATUS_TEXT_TYPE_ALERT
+            return telemetry_server_pb2.STATUS_TEXT_TYPE_ALERT
         if self == StatusTextType.EMERGENCY:
-            return telemetry_pb2.STATUS_TEXT_TYPE_EMERGENCY
+            return telemetry_server_pb2.STATUS_TEXT_TYPE_EMERGENCY
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_DEBUG:
+        if rpc_enum_value == telemetry_server_pb2.STATUS_TEXT_TYPE_DEBUG:
             return StatusTextType.DEBUG
-        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_INFO:
+        if rpc_enum_value == telemetry_server_pb2.STATUS_TEXT_TYPE_INFO:
             return StatusTextType.INFO
-        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_NOTICE:
+        if rpc_enum_value == telemetry_server_pb2.STATUS_TEXT_TYPE_NOTICE:
             return StatusTextType.NOTICE
-        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_WARNING:
+        if rpc_enum_value == telemetry_server_pb2.STATUS_TEXT_TYPE_WARNING:
             return StatusTextType.WARNING
-        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_ERROR:
+        if rpc_enum_value == telemetry_server_pb2.STATUS_TEXT_TYPE_ERROR:
             return StatusTextType.ERROR
-        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_CRITICAL:
+        if rpc_enum_value == telemetry_server_pb2.STATUS_TEXT_TYPE_CRITICAL:
             return StatusTextType.CRITICAL
-        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_ALERT:
+        if rpc_enum_value == telemetry_server_pb2.STATUS_TEXT_TYPE_ALERT:
             return StatusTextType.ALERT
-        if rpc_enum_value == telemetry_pb2.STATUS_TEXT_TYPE_EMERGENCY:
+        if rpc_enum_value == telemetry_server_pb2.STATUS_TEXT_TYPE_EMERGENCY:
             return StatusTextType.EMERGENCY
 
     def __str__(self):
@@ -341,28 +341,28 @@ class LandedState(Enum):
 
     def translate_to_rpc(self):
         if self == LandedState.UNKNOWN:
-            return telemetry_pb2.LANDED_STATE_UNKNOWN
+            return telemetry_server_pb2.LANDED_STATE_UNKNOWN
         if self == LandedState.ON_GROUND:
-            return telemetry_pb2.LANDED_STATE_ON_GROUND
+            return telemetry_server_pb2.LANDED_STATE_ON_GROUND
         if self == LandedState.IN_AIR:
-            return telemetry_pb2.LANDED_STATE_IN_AIR
+            return telemetry_server_pb2.LANDED_STATE_IN_AIR
         if self == LandedState.TAKING_OFF:
-            return telemetry_pb2.LANDED_STATE_TAKING_OFF
+            return telemetry_server_pb2.LANDED_STATE_TAKING_OFF
         if self == LandedState.LANDING:
-            return telemetry_pb2.LANDED_STATE_LANDING
+            return telemetry_server_pb2.LANDED_STATE_LANDING
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        if rpc_enum_value == telemetry_pb2.LANDED_STATE_UNKNOWN:
+        if rpc_enum_value == telemetry_server_pb2.LANDED_STATE_UNKNOWN:
             return LandedState.UNKNOWN
-        if rpc_enum_value == telemetry_pb2.LANDED_STATE_ON_GROUND:
+        if rpc_enum_value == telemetry_server_pb2.LANDED_STATE_ON_GROUND:
             return LandedState.ON_GROUND
-        if rpc_enum_value == telemetry_pb2.LANDED_STATE_IN_AIR:
+        if rpc_enum_value == telemetry_server_pb2.LANDED_STATE_IN_AIR:
             return LandedState.IN_AIR
-        if rpc_enum_value == telemetry_pb2.LANDED_STATE_TAKING_OFF:
+        if rpc_enum_value == telemetry_server_pb2.LANDED_STATE_TAKING_OFF:
             return LandedState.TAKING_OFF
-        if rpc_enum_value == telemetry_pb2.LANDED_STATE_LANDING:
+        if rpc_enum_value == telemetry_server_pb2.LANDED_STATE_LANDING:
             return LandedState.LANDING
 
     def __str__(self):
@@ -1154,9 +1154,6 @@ class Battery:
 
      Parameters
      ----------
-     id : uint32_t
-          Battery ID, for systems with multiple batteries
-
      voltage_v : float
           Voltage in volts
 
@@ -1169,11 +1166,9 @@ class Battery:
 
     def __init__(
             self,
-            id,
             voltage_v,
             remaining_percent):
         """ Initializes the Battery object """
-        self.id = id
         self.voltage_v = voltage_v
         self.remaining_percent = remaining_percent
 
@@ -1183,7 +1178,6 @@ class Battery:
             # Try to compare - this likely fails when it is compared to a non
             # Battery object
             return \
-                (self.id == to_compare.id) and \
                 (self.voltage_v == to_compare.voltage_v) and \
                 (self.remaining_percent == to_compare.remaining_percent)
 
@@ -1193,7 +1187,6 @@ class Battery:
     def __str__(self):
         """ Battery in string representation """
         struct_repr = ", ".join([
-                "id: " + str(self.id),
                 "voltage_v: " + str(self.voltage_v),
                 "remaining_percent: " + str(self.remaining_percent)
                 ])
@@ -1205,9 +1198,6 @@ class Battery:
         """ Translates a gRPC struct to the SDK equivalent """
         return Battery(
                 
-                rpcBattery.id,
-                
-                
                 rpcBattery.voltage_v,
                 
                 
@@ -1217,12 +1207,6 @@ class Battery:
     def translate_to_rpc(self, rpcBattery):
         """ Translates this SDK object into its gRPC equivalent """
 
-        
-        
-            
-        rpcBattery.id = self.id
-            
-        
         
         
             
@@ -2014,24 +1998,24 @@ class Odometry:
 
         def translate_to_rpc(self):
             if self == Odometry.MavFrame.UNDEF:
-                return telemetry_pb2.Odometry.MAV_FRAME_UNDEF
+                return telemetry_server_pb2.Odometry.MAV_FRAME_UNDEF
             if self == Odometry.MavFrame.BODY_NED:
-                return telemetry_pb2.Odometry.MAV_FRAME_BODY_NED
+                return telemetry_server_pb2.Odometry.MAV_FRAME_BODY_NED
             if self == Odometry.MavFrame.VISION_NED:
-                return telemetry_pb2.Odometry.MAV_FRAME_VISION_NED
+                return telemetry_server_pb2.Odometry.MAV_FRAME_VISION_NED
             if self == Odometry.MavFrame.ESTIM_NED:
-                return telemetry_pb2.Odometry.MAV_FRAME_ESTIM_NED
+                return telemetry_server_pb2.Odometry.MAV_FRAME_ESTIM_NED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value == telemetry_pb2.Odometry.MAV_FRAME_UNDEF:
+            if rpc_enum_value == telemetry_server_pb2.Odometry.MAV_FRAME_UNDEF:
                 return Odometry.MavFrame.UNDEF
-            if rpc_enum_value == telemetry_pb2.Odometry.MAV_FRAME_BODY_NED:
+            if rpc_enum_value == telemetry_server_pb2.Odometry.MAV_FRAME_BODY_NED:
                 return Odometry.MavFrame.BODY_NED
-            if rpc_enum_value == telemetry_pb2.Odometry.MAV_FRAME_VISION_NED:
+            if rpc_enum_value == telemetry_server_pb2.Odometry.MAV_FRAME_VISION_NED:
                 return Odometry.MavFrame.VISION_NED
-            if rpc_enum_value == telemetry_pb2.Odometry.MAV_FRAME_ESTIM_NED:
+            if rpc_enum_value == telemetry_server_pb2.Odometry.MAV_FRAME_ESTIM_NED:
                 return Odometry.MavFrame.ESTIM_NED
 
         def __str__(self):
@@ -3225,97 +3209,7 @@ class Imu:
         
 
 
-class GpsGlobalOrigin:
-    """
-     Gps global origin type.
-
-     Parameters
-     ----------
-     latitude_deg : double
-          Latitude of the origin
-
-     longitude_deg : double
-          Longitude of the origin
-
-     altitude_m : float
-          Altitude AMSL (above mean sea level) in metres
-
-     """
-
-    
-
-    def __init__(
-            self,
-            latitude_deg,
-            longitude_deg,
-            altitude_m):
-        """ Initializes the GpsGlobalOrigin object """
-        self.latitude_deg = latitude_deg
-        self.longitude_deg = longitude_deg
-        self.altitude_m = altitude_m
-
-    def __equals__(self, to_compare):
-        """ Checks if two GpsGlobalOrigin are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # GpsGlobalOrigin object
-            return \
-                (self.latitude_deg == to_compare.latitude_deg) and \
-                (self.longitude_deg == to_compare.longitude_deg) and \
-                (self.altitude_m == to_compare.altitude_m)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ GpsGlobalOrigin in string representation """
-        struct_repr = ", ".join([
-                "latitude_deg: " + str(self.latitude_deg),
-                "longitude_deg: " + str(self.longitude_deg),
-                "altitude_m: " + str(self.altitude_m)
-                ])
-
-        return f"GpsGlobalOrigin: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcGpsGlobalOrigin):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return GpsGlobalOrigin(
-                
-                rpcGpsGlobalOrigin.latitude_deg,
-                
-                
-                rpcGpsGlobalOrigin.longitude_deg,
-                
-                
-                rpcGpsGlobalOrigin.altitude_m
-                )
-
-    def translate_to_rpc(self, rpcGpsGlobalOrigin):
-        """ Translates this SDK object into its gRPC equivalent """
-
-        
-        
-            
-        rpcGpsGlobalOrigin.latitude_deg = self.latitude_deg
-            
-        
-        
-        
-            
-        rpcGpsGlobalOrigin.longitude_deg = self.longitude_deg
-            
-        
-        
-        
-            
-        rpcGpsGlobalOrigin.altitude_m = self.altitude_m
-            
-        
-        
-
-
-class TelemetryResult:
+class TelemetryServerResult:
     """
      Result type.
 
@@ -3374,42 +3268,42 @@ class TelemetryResult:
         UNSUPPORTED = 7
 
         def translate_to_rpc(self):
-            if self == TelemetryResult.Result.UNKNOWN:
-                return telemetry_pb2.TelemetryResult.RESULT_UNKNOWN
-            if self == TelemetryResult.Result.SUCCESS:
-                return telemetry_pb2.TelemetryResult.RESULT_SUCCESS
-            if self == TelemetryResult.Result.NO_SYSTEM:
-                return telemetry_pb2.TelemetryResult.RESULT_NO_SYSTEM
-            if self == TelemetryResult.Result.CONNECTION_ERROR:
-                return telemetry_pb2.TelemetryResult.RESULT_CONNECTION_ERROR
-            if self == TelemetryResult.Result.BUSY:
-                return telemetry_pb2.TelemetryResult.RESULT_BUSY
-            if self == TelemetryResult.Result.COMMAND_DENIED:
-                return telemetry_pb2.TelemetryResult.RESULT_COMMAND_DENIED
-            if self == TelemetryResult.Result.TIMEOUT:
-                return telemetry_pb2.TelemetryResult.RESULT_TIMEOUT
-            if self == TelemetryResult.Result.UNSUPPORTED:
-                return telemetry_pb2.TelemetryResult.RESULT_UNSUPPORTED
+            if self == TelemetryServerResult.Result.UNKNOWN:
+                return telemetry_server_pb2.TelemetryServerResult.RESULT_UNKNOWN
+            if self == TelemetryServerResult.Result.SUCCESS:
+                return telemetry_server_pb2.TelemetryServerResult.RESULT_SUCCESS
+            if self == TelemetryServerResult.Result.NO_SYSTEM:
+                return telemetry_server_pb2.TelemetryServerResult.RESULT_NO_SYSTEM
+            if self == TelemetryServerResult.Result.CONNECTION_ERROR:
+                return telemetry_server_pb2.TelemetryServerResult.RESULT_CONNECTION_ERROR
+            if self == TelemetryServerResult.Result.BUSY:
+                return telemetry_server_pb2.TelemetryServerResult.RESULT_BUSY
+            if self == TelemetryServerResult.Result.COMMAND_DENIED:
+                return telemetry_server_pb2.TelemetryServerResult.RESULT_COMMAND_DENIED
+            if self == TelemetryServerResult.Result.TIMEOUT:
+                return telemetry_server_pb2.TelemetryServerResult.RESULT_TIMEOUT
+            if self == TelemetryServerResult.Result.UNSUPPORTED:
+                return telemetry_server_pb2.TelemetryServerResult.RESULT_UNSUPPORTED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value == telemetry_pb2.TelemetryResult.RESULT_UNKNOWN:
-                return TelemetryResult.Result.UNKNOWN
-            if rpc_enum_value == telemetry_pb2.TelemetryResult.RESULT_SUCCESS:
-                return TelemetryResult.Result.SUCCESS
-            if rpc_enum_value == telemetry_pb2.TelemetryResult.RESULT_NO_SYSTEM:
-                return TelemetryResult.Result.NO_SYSTEM
-            if rpc_enum_value == telemetry_pb2.TelemetryResult.RESULT_CONNECTION_ERROR:
-                return TelemetryResult.Result.CONNECTION_ERROR
-            if rpc_enum_value == telemetry_pb2.TelemetryResult.RESULT_BUSY:
-                return TelemetryResult.Result.BUSY
-            if rpc_enum_value == telemetry_pb2.TelemetryResult.RESULT_COMMAND_DENIED:
-                return TelemetryResult.Result.COMMAND_DENIED
-            if rpc_enum_value == telemetry_pb2.TelemetryResult.RESULT_TIMEOUT:
-                return TelemetryResult.Result.TIMEOUT
-            if rpc_enum_value == telemetry_pb2.TelemetryResult.RESULT_UNSUPPORTED:
-                return TelemetryResult.Result.UNSUPPORTED
+            if rpc_enum_value == telemetry_server_pb2.TelemetryServerResult.RESULT_UNKNOWN:
+                return TelemetryServerResult.Result.UNKNOWN
+            if rpc_enum_value == telemetry_server_pb2.TelemetryServerResult.RESULT_SUCCESS:
+                return TelemetryServerResult.Result.SUCCESS
+            if rpc_enum_value == telemetry_server_pb2.TelemetryServerResult.RESULT_NO_SYSTEM:
+                return TelemetryServerResult.Result.NO_SYSTEM
+            if rpc_enum_value == telemetry_server_pb2.TelemetryServerResult.RESULT_CONNECTION_ERROR:
+                return TelemetryServerResult.Result.CONNECTION_ERROR
+            if rpc_enum_value == telemetry_server_pb2.TelemetryServerResult.RESULT_BUSY:
+                return TelemetryServerResult.Result.BUSY
+            if rpc_enum_value == telemetry_server_pb2.TelemetryServerResult.RESULT_COMMAND_DENIED:
+                return TelemetryServerResult.Result.COMMAND_DENIED
+            if rpc_enum_value == telemetry_server_pb2.TelemetryServerResult.RESULT_TIMEOUT:
+                return TelemetryServerResult.Result.TIMEOUT
+            if rpc_enum_value == telemetry_server_pb2.TelemetryServerResult.RESULT_UNSUPPORTED:
+                return TelemetryServerResult.Result.UNSUPPORTED
 
         def __str__(self):
             return self.name
@@ -3419,15 +3313,15 @@ class TelemetryResult:
             self,
             result,
             result_str):
-        """ Initializes the TelemetryResult object """
+        """ Initializes the TelemetryServerResult object """
         self.result = result
         self.result_str = result_str
 
     def __equals__(self, to_compare):
-        """ Checks if two TelemetryResult are the same """
+        """ Checks if two TelemetryServerResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
-            # TelemetryResult object
+            # TelemetryServerResult object
             return \
                 (self.result == to_compare.result) and \
                 (self.result_str == to_compare.result_str)
@@ -3436,46 +3330,46 @@ class TelemetryResult:
             return False
 
     def __str__(self):
-        """ TelemetryResult in string representation """
+        """ TelemetryServerResult in string representation """
         struct_repr = ", ".join([
                 "result: " + str(self.result),
                 "result_str: " + str(self.result_str)
                 ])
 
-        return f"TelemetryResult: [{struct_repr}]"
+        return f"TelemetryServerResult: [{struct_repr}]"
 
     @staticmethod
-    def translate_from_rpc(rpcTelemetryResult):
+    def translate_from_rpc(rpcTelemetryServerResult):
         """ Translates a gRPC struct to the SDK equivalent """
-        return TelemetryResult(
+        return TelemetryServerResult(
                 
-                TelemetryResult.Result.translate_from_rpc(rpcTelemetryResult.result),
+                TelemetryServerResult.Result.translate_from_rpc(rpcTelemetryServerResult.result),
                 
                 
-                rpcTelemetryResult.result_str
+                rpcTelemetryServerResult.result_str
                 )
 
-    def translate_to_rpc(self, rpcTelemetryResult):
+    def translate_to_rpc(self, rpcTelemetryServerResult):
         """ Translates this SDK object into its gRPC equivalent """
 
         
         
             
-        rpcTelemetryResult.result = self.result.translate_to_rpc()
+        rpcTelemetryServerResult.result = self.result.translate_to_rpc()
             
         
         
         
             
-        rpcTelemetryResult.result_str = self.result_str
+        rpcTelemetryServerResult.result_str = self.result_str
             
         
         
 
 
 
-class TelemetryError(Exception):
-    """ Raised when a TelemetryResult is a fail code """
+class TelemetryServerError(Exception):
+    """ Raised when a TelemetryServerResult is a fail code """
 
     def __init__(self, result, origin, *params):
         self._result = result
@@ -3486,1340 +3380,492 @@ class TelemetryError(Exception):
         return f"{self._result.result}: '{self._result.result_str}'; origin: {self._origin}; params: {self._params}"
 
 
-class Telemetry(AsyncBase):
+class TelemetryServer(AsyncBase):
     """
-     Allow users to get vehicle telemetry and state information
+     Allow users to provide vehicle telemetry and state information
      (e.g. battery, GPS, RC connection, flight mode etc.) and set telemetry update rates.
 
-     Generated by dcsdkgen - MAVSDK Telemetry API
+     Generated by dcsdkgen - MAVSDK TelemetryServer API
     """
 
     # Plugin name
-    name = "Telemetry"
+    name = "TelemetryServer"
 
     def _setup_stub(self, channel):
         """ Setups the api stub """
-        self._stub = telemetry_pb2_grpc.TelemetryServiceStub(channel)
+        self._stub = telemetry_server_pb2_grpc.TelemetryServerServiceStub(channel)
 
     
     def _extract_result(self, response):
         """ Returns the response status and description """
-        return TelemetryResult.translate_from_rpc(response.telemetry_result)
+        return TelemetryServerResult.translate_from_rpc(response.telemetry_server_result)
     
 
-    async def position(self):
+    async def publish_position(self, position, velocity_ned):
         """
-         Subscribe to 'position' updates.
+         Publish to 'position' updates.
 
-         Yields
-         -------
+         Parameters
+         ----------
          position : Position
               The next position
 
-         
-        """
-
-        request = telemetry_pb2.SubscribePositionRequest()
-        position_stream = self._stub.SubscribePosition(request)
-
-        try:
-            async for response in position_stream:
-                
-
-            
-                yield Position.translate_from_rpc(response.position)
-        finally:
-            position_stream.cancel()
-
-    async def home(self):
-        """
-         Subscribe to 'home position' updates.
-
-         Yields
-         -------
-         home : Position
-              The next home position
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeHomeRequest()
-        home_stream = self._stub.SubscribeHome(request)
-
-        try:
-            async for response in home_stream:
-                
-
-            
-                yield Position.translate_from_rpc(response.home)
-        finally:
-            home_stream.cancel()
-
-    async def in_air(self):
-        """
-         Subscribe to in-air updates.
-
-         Yields
-         -------
-         is_in_air : bool
-              The next 'in-air' state
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeInAirRequest()
-        in_air_stream = self._stub.SubscribeInAir(request)
-
-        try:
-            async for response in in_air_stream:
-                
-
-            
-                yield response.is_in_air
-        finally:
-            in_air_stream.cancel()
-
-    async def landed_state(self):
-        """
-         Subscribe to landed state updates
-
-         Yields
-         -------
-         landed_state : LandedState
-              The next 'landed' state
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeLandedStateRequest()
-        landed_state_stream = self._stub.SubscribeLandedState(request)
-
-        try:
-            async for response in landed_state_stream:
-                
-
-            
-                yield LandedState.translate_from_rpc(response.landed_state)
-        finally:
-            landed_state_stream.cancel()
-
-    async def armed(self):
-        """
-         Subscribe to armed updates.
-
-         Yields
-         -------
-         is_armed : bool
-              The next 'armed' state
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeArmedRequest()
-        armed_stream = self._stub.SubscribeArmed(request)
-
-        try:
-            async for response in armed_stream:
-                
-
-            
-                yield response.is_armed
-        finally:
-            armed_stream.cancel()
-
-    async def attitude_quaternion(self):
-        """
-         Subscribe to 'attitude' updates (quaternion).
-
-         Yields
-         -------
-         attitude_quaternion : Quaternion
-              The next attitude (quaternion)
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeAttitudeQuaternionRequest()
-        attitude_quaternion_stream = self._stub.SubscribeAttitudeQuaternion(request)
-
-        try:
-            async for response in attitude_quaternion_stream:
-                
-
-            
-                yield Quaternion.translate_from_rpc(response.attitude_quaternion)
-        finally:
-            attitude_quaternion_stream.cancel()
-
-    async def attitude_euler(self):
-        """
-         Subscribe to 'attitude' updates (Euler).
-
-         Yields
-         -------
-         attitude_euler : EulerAngle
-              The next attitude (Euler)
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeAttitudeEulerRequest()
-        attitude_euler_stream = self._stub.SubscribeAttitudeEuler(request)
-
-        try:
-            async for response in attitude_euler_stream:
-                
-
-            
-                yield EulerAngle.translate_from_rpc(response.attitude_euler)
-        finally:
-            attitude_euler_stream.cancel()
-
-    async def attitude_angular_velocity_body(self):
-        """
-         Subscribe to 'attitude' updates (angular velocity)
-
-         Yields
-         -------
-         attitude_angular_velocity_body : AngularVelocityBody
-              The next angular velocity (rad/s)
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeAttitudeAngularVelocityBodyRequest()
-        attitude_angular_velocity_body_stream = self._stub.SubscribeAttitudeAngularVelocityBody(request)
-
-        try:
-            async for response in attitude_angular_velocity_body_stream:
-                
-
-            
-                yield AngularVelocityBody.translate_from_rpc(response.attitude_angular_velocity_body)
-        finally:
-            attitude_angular_velocity_body_stream.cancel()
-
-    async def camera_attitude_quaternion(self):
-        """
-         Subscribe to 'camera attitude' updates (quaternion).
-
-         Yields
-         -------
-         attitude_quaternion : Quaternion
-              The next camera attitude (quaternion)
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeCameraAttitudeQuaternionRequest()
-        camera_attitude_quaternion_stream = self._stub.SubscribeCameraAttitudeQuaternion(request)
-
-        try:
-            async for response in camera_attitude_quaternion_stream:
-                
-
-            
-                yield Quaternion.translate_from_rpc(response.attitude_quaternion)
-        finally:
-            camera_attitude_quaternion_stream.cancel()
-
-    async def camera_attitude_euler(self):
-        """
-         Subscribe to 'camera attitude' updates (Euler).
-
-         Yields
-         -------
-         attitude_euler : EulerAngle
-              The next camera attitude (Euler)
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeCameraAttitudeEulerRequest()
-        camera_attitude_euler_stream = self._stub.SubscribeCameraAttitudeEuler(request)
-
-        try:
-            async for response in camera_attitude_euler_stream:
-                
-
-            
-                yield EulerAngle.translate_from_rpc(response.attitude_euler)
-        finally:
-            camera_attitude_euler_stream.cancel()
-
-    async def velocity_ned(self):
-        """
-         Subscribe to 'ground speed' updates (NED).
-
-         Yields
-         -------
          velocity_ned : VelocityNed
               The next velocity (NED)
 
-         
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SubscribeVelocityNedRequest()
-        velocity_ned_stream = self._stub.SubscribeVelocityNed(request)
-
-        try:
-            async for response in velocity_ned_stream:
+        request = telemetry_server_pb2.PublishPositionRequest()
+        
+        position.translate_to_rpc(request.position)
                 
-
             
-                yield VelocityNed.translate_from_rpc(response.velocity_ned)
-        finally:
-            velocity_ned_stream.cancel()
-
-    async def gps_info(self):
-        """
-         Subscribe to 'GPS info' updates.
-
-         Yields
-         -------
-         gps_info : GpsInfo
-              The next 'GPS info' state
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeGpsInfoRequest()
-        gps_info_stream = self._stub.SubscribeGpsInfo(request)
-
-        try:
-            async for response in gps_info_stream:
+        
+        velocity_ned.translate_to_rpc(request.velocity_ned)
                 
-
             
-                yield GpsInfo.translate_from_rpc(response.gps_info)
-        finally:
-            gps_info_stream.cancel()
+        response = await self._stub.PublishPosition(request)
 
-    async def raw_gps(self):
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_position()", position, velocity_ned)
+        
+
+    async def publish_home(self, home):
         """
-         Subscribe to 'Raw GPS' updates.
+         Publish to 'home position' updates.
 
-         Yields
-         -------
+         Parameters
+         ----------
+         home : Position
+              The next home position
+
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_server_pb2.PublishHomeRequest()
+        
+        home.translate_to_rpc(request.home)
+                
+            
+        response = await self._stub.PublishHome(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_home()", home)
+        
+
+    async def publish_armed(self, is_armed):
+        """
+         Publish to armed updates.
+
+         Parameters
+         ----------
+         is_armed : bool
+              The next 'armed' state
+
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_server_pb2.PublishArmedRequest()
+        request.is_armed = is_armed
+        response = await self._stub.PublishArmed(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_armed()", is_armed)
+        
+
+    async def publish_raw_gps(self, raw_gps, gps_info):
+        """
+         Publish to 'Raw GPS' updates.
+
+         Parameters
+         ----------
          raw_gps : RawGps
               The next 'Raw GPS' state. Warning: this is an advanced feature, use `Position` updates to get the location of the drone!
 
-         
+         gps_info : GpsInfo
+              The next 'GPS info' state
+
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SubscribeRawGpsRequest()
-        raw_gps_stream = self._stub.SubscribeRawGps(request)
-
-        try:
-            async for response in raw_gps_stream:
+        request = telemetry_server_pb2.PublishRawGpsRequest()
+        
+        raw_gps.translate_to_rpc(request.raw_gps)
                 
-
             
-                yield RawGps.translate_from_rpc(response.raw_gps)
-        finally:
-            raw_gps_stream.cancel()
+        
+        gps_info.translate_to_rpc(request.gps_info)
+                
+            
+        response = await self._stub.PublishRawGps(request)
 
-    async def battery(self):
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_raw_gps()", raw_gps, gps_info)
+        
+
+    async def publish_battery(self, battery):
         """
-         Subscribe to 'battery' updates.
+         Publish to 'battery' updates.
 
-         Yields
-         -------
+         Parameters
+         ----------
          battery : Battery
               The next 'battery' state
 
-         
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SubscribeBatteryRequest()
-        battery_stream = self._stub.SubscribeBattery(request)
-
-        try:
-            async for response in battery_stream:
+        request = telemetry_server_pb2.PublishBatteryRequest()
+        
+        battery.translate_to_rpc(request.battery)
                 
-
             
-                yield Battery.translate_from_rpc(response.battery)
-        finally:
-            battery_stream.cancel()
+        response = await self._stub.PublishBattery(request)
 
-    async def flight_mode(self):
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_battery()", battery)
+        
+
+    async def publish_flight_mode(self, flight_mode):
         """
-         Subscribe to 'flight mode' updates.
+         Publish to 'flight mode' updates.
 
-         Yields
-         -------
+         Parameters
+         ----------
          flight_mode : FlightMode
               The next flight mode
 
-         
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SubscribeFlightModeRequest()
-        flight_mode_stream = self._stub.SubscribeFlightMode(request)
-
-        try:
-            async for response in flight_mode_stream:
+        request = telemetry_server_pb2.PublishFlightModeRequest()
+        
+        request.flight_mode = flight_mode.translate_to_rpc()
                 
-
             
-                yield FlightMode.translate_from_rpc(response.flight_mode)
-        finally:
-            flight_mode_stream.cancel()
+        response = await self._stub.PublishFlightMode(request)
 
-    async def health(self):
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_flight_mode()", flight_mode)
+        
+
+    async def publish_health(self, health):
         """
-         Subscribe to 'health' updates.
+         Publish to 'health' updates.
 
-         Yields
-         -------
+         Parameters
+         ----------
          health : Health
               The next 'health' state
 
-         
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SubscribeHealthRequest()
-        health_stream = self._stub.SubscribeHealth(request)
-
-        try:
-            async for response in health_stream:
+        request = telemetry_server_pb2.PublishHealthRequest()
+        
+        health.translate_to_rpc(request.health)
                 
-
             
-                yield Health.translate_from_rpc(response.health)
-        finally:
-            health_stream.cancel()
+        response = await self._stub.PublishHealth(request)
 
-    async def rc_status(self):
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_health()", health)
+        
+
+    async def publish_status_text(self, status_text):
         """
-         Subscribe to 'RC status' updates.
+         Publish to 'status text' updates.
 
-         Yields
-         -------
-         rc_status : RcStatus
-              The next RC status
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeRcStatusRequest()
-        rc_status_stream = self._stub.SubscribeRcStatus(request)
-
-        try:
-            async for response in rc_status_stream:
-                
-
-            
-                yield RcStatus.translate_from_rpc(response.rc_status)
-        finally:
-            rc_status_stream.cancel()
-
-    async def status_text(self):
-        """
-         Subscribe to 'status text' updates.
-
-         Yields
-         -------
+         Parameters
+         ----------
          status_text : StatusText
               The next 'status text'
 
-         
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SubscribeStatusTextRequest()
-        status_text_stream = self._stub.SubscribeStatusText(request)
-
-        try:
-            async for response in status_text_stream:
+        request = telemetry_server_pb2.PublishStatusTextRequest()
+        
+        status_text.translate_to_rpc(request.status_text)
                 
-
             
-                yield StatusText.translate_from_rpc(response.status_text)
-        finally:
-            status_text_stream.cancel()
+        response = await self._stub.PublishStatusText(request)
 
-    async def actuator_control_target(self):
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_status_text()", status_text)
+        
+
+    async def publish_odometry(self, odometry):
         """
-         Subscribe to 'actuator control target' updates.
+         Publish to 'odometry' updates.
 
-         Yields
-         -------
-         actuator_control_target : ActuatorControlTarget
-              The next actuator control target
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeActuatorControlTargetRequest()
-        actuator_control_target_stream = self._stub.SubscribeActuatorControlTarget(request)
-
-        try:
-            async for response in actuator_control_target_stream:
-                
-
-            
-                yield ActuatorControlTarget.translate_from_rpc(response.actuator_control_target)
-        finally:
-            actuator_control_target_stream.cancel()
-
-    async def actuator_output_status(self):
-        """
-         Subscribe to 'actuator output status' updates.
-
-         Yields
-         -------
-         actuator_output_status : ActuatorOutputStatus
-              The next actuator output status
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeActuatorOutputStatusRequest()
-        actuator_output_status_stream = self._stub.SubscribeActuatorOutputStatus(request)
-
-        try:
-            async for response in actuator_output_status_stream:
-                
-
-            
-                yield ActuatorOutputStatus.translate_from_rpc(response.actuator_output_status)
-        finally:
-            actuator_output_status_stream.cancel()
-
-    async def odometry(self):
-        """
-         Subscribe to 'odometry' updates.
-
-         Yields
-         -------
+         Parameters
+         ----------
          odometry : Odometry
               The next odometry status
 
-         
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SubscribeOdometryRequest()
-        odometry_stream = self._stub.SubscribeOdometry(request)
-
-        try:
-            async for response in odometry_stream:
+        request = telemetry_server_pb2.PublishOdometryRequest()
+        
+        odometry.translate_to_rpc(request.odometry)
                 
-
             
-                yield Odometry.translate_from_rpc(response.odometry)
-        finally:
-            odometry_stream.cancel()
+        response = await self._stub.PublishOdometry(request)
 
-    async def position_velocity_ned(self):
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_odometry()", odometry)
+        
+
+    async def publish_position_velocity_ned(self, position_velocity_ned):
         """
-         Subscribe to 'position velocity' updates.
+         Publish to 'position velocity' updates.
 
-         Yields
-         -------
+         Parameters
+         ----------
          position_velocity_ned : PositionVelocityNed
               The next position and velocity status
 
-         
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SubscribePositionVelocityNedRequest()
-        position_velocity_ned_stream = self._stub.SubscribePositionVelocityNed(request)
-
-        try:
-            async for response in position_velocity_ned_stream:
+        request = telemetry_server_pb2.PublishPositionVelocityNedRequest()
+        
+        position_velocity_ned.translate_to_rpc(request.position_velocity_ned)
                 
-
             
-                yield PositionVelocityNed.translate_from_rpc(response.position_velocity_ned)
-        finally:
-            position_velocity_ned_stream.cancel()
+        response = await self._stub.PublishPositionVelocityNed(request)
 
-    async def ground_truth(self):
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_position_velocity_ned()", position_velocity_ned)
+        
+
+    async def publish_ground_truth(self, ground_truth):
         """
-         Subscribe to 'ground truth' updates.
+         Publish to 'ground truth' updates.
 
-         Yields
-         -------
+         Parameters
+         ----------
          ground_truth : GroundTruth
               Ground truth position information available in simulation
 
-         
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SubscribeGroundTruthRequest()
-        ground_truth_stream = self._stub.SubscribeGroundTruth(request)
-
-        try:
-            async for response in ground_truth_stream:
+        request = telemetry_server_pb2.PublishGroundTruthRequest()
+        
+        ground_truth.translate_to_rpc(request.ground_truth)
                 
-
             
-                yield GroundTruth.translate_from_rpc(response.ground_truth)
-        finally:
-            ground_truth_stream.cancel()
+        response = await self._stub.PublishGroundTruth(request)
 
-    async def fixedwing_metrics(self):
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_ground_truth()", ground_truth)
+        
+
+    async def publish_imu(self, imu):
         """
-         Subscribe to 'fixedwing metrics' updates.
+         Publish to 'IMU' updates (in SI units in NED body frame).
 
-         Yields
-         -------
-         fixedwing_metrics : FixedwingMetrics
-              The next fixedwing metrics
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeFixedwingMetricsRequest()
-        fixedwing_metrics_stream = self._stub.SubscribeFixedwingMetrics(request)
-
-        try:
-            async for response in fixedwing_metrics_stream:
-                
-
-            
-                yield FixedwingMetrics.translate_from_rpc(response.fixedwing_metrics)
-        finally:
-            fixedwing_metrics_stream.cancel()
-
-    async def imu(self):
-        """
-         Subscribe to 'IMU' updates (in SI units in NED body frame).
-
-         Yields
-         -------
+         Parameters
+         ----------
          imu : Imu
               The next IMU status
 
-         
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SubscribeImuRequest()
-        imu_stream = self._stub.SubscribeImu(request)
-
-        try:
-            async for response in imu_stream:
+        request = telemetry_server_pb2.PublishImuRequest()
+        
+        imu.translate_to_rpc(request.imu)
                 
-
             
-                yield Imu.translate_from_rpc(response.imu)
-        finally:
-            imu_stream.cancel()
+        response = await self._stub.PublishImu(request)
 
-    async def scaled_imu(self):
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_imu()", imu)
+        
+
+    async def publish_scaled_imu(self, imu):
         """
-         Subscribe to 'Scaled IMU' updates.
+         Publish to 'Scaled IMU' updates.
 
-         Yields
-         -------
+         Parameters
+         ----------
          imu : Imu
               The next scaled IMU status
 
-         
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SubscribeScaledImuRequest()
-        scaled_imu_stream = self._stub.SubscribeScaledImu(request)
-
-        try:
-            async for response in scaled_imu_stream:
+        request = telemetry_server_pb2.PublishScaledImuRequest()
+        
+        imu.translate_to_rpc(request.imu)
                 
-
             
-                yield Imu.translate_from_rpc(response.imu)
-        finally:
-            scaled_imu_stream.cancel()
+        response = await self._stub.PublishScaledImu(request)
 
-    async def raw_imu(self):
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_scaled_imu()", imu)
+        
+
+    async def publish_raw_imu(self, imu):
         """
-         Subscribe to 'Raw IMU' updates.
+         Publish to 'Raw IMU' updates.
 
-         Yields
-         -------
+         Parameters
+         ----------
          imu : Imu
               The next raw IMU status
 
-         
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SubscribeRawImuRequest()
-        raw_imu_stream = self._stub.SubscribeRawImu(request)
-
-        try:
-            async for response in raw_imu_stream:
+        request = telemetry_server_pb2.PublishRawImuRequest()
+        
+        imu.translate_to_rpc(request.imu)
                 
-
             
-                yield Imu.translate_from_rpc(response.imu)
-        finally:
-            raw_imu_stream.cancel()
+        response = await self._stub.PublishRawImu(request)
 
-    async def health_all_ok(self):
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_raw_imu()", imu)
+        
+
+    async def publish_health_all_ok(self, is_health_all_ok):
         """
-         Subscribe to 'HealthAllOk' updates.
+         Publish to 'HealthAllOk' updates.
 
-         Yields
-         -------
+         Parameters
+         ----------
          is_health_all_ok : bool
               The next 'health all ok' status
 
-         
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SubscribeHealthAllOkRequest()
-        health_all_ok_stream = self._stub.SubscribeHealthAllOk(request)
+        request = telemetry_server_pb2.PublishHealthAllOkRequest()
+        request.is_health_all_ok = is_health_all_ok
+        response = await self._stub.PublishHealthAllOk(request)
 
-        try:
-            async for response in health_all_ok_stream:
-                
+        
+        result = self._extract_result(response)
 
-            
-                yield response.is_health_all_ok
-        finally:
-            health_all_ok_stream.cancel()
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_health_all_ok()", is_health_all_ok)
+        
 
-    async def unix_epoch_time(self):
+    async def publish_unix_epoch_time(self, time_us):
         """
-         Subscribe to 'unix epoch time' updates.
+         Publish to 'unix epoch time' updates.
 
-         Yields
-         -------
+         Parameters
+         ----------
          time_us : uint64_t
               The next 'unix epoch time' status
 
-         
-        """
-
-        request = telemetry_pb2.SubscribeUnixEpochTimeRequest()
-        unix_epoch_time_stream = self._stub.SubscribeUnixEpochTime(request)
-
-        try:
-            async for response in unix_epoch_time_stream:
-                
-
-            
-                yield response.time_us
-        finally:
-            unix_epoch_time_stream.cancel()
-
-    async def distance_sensor(self):
-        """
-         Subscribe to 'Distance Sensor' updates.
-
-         Yields
-         -------
-         distance_sensor : DistanceSensor
-              The next Distance Sensor status
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeDistanceSensorRequest()
-        distance_sensor_stream = self._stub.SubscribeDistanceSensor(request)
-
-        try:
-            async for response in distance_sensor_stream:
-                
-
-            
-                yield DistanceSensor.translate_from_rpc(response.distance_sensor)
-        finally:
-            distance_sensor_stream.cancel()
-
-    async def scaled_pressure(self):
-        """
-         Subscribe to 'Scaled Pressure' updates.
-
-         Yields
-         -------
-         scaled_pressure : ScaledPressure
-              The next Scaled Pressure status
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeScaledPressureRequest()
-        scaled_pressure_stream = self._stub.SubscribeScaledPressure(request)
-
-        try:
-            async for response in scaled_pressure_stream:
-                
-
-            
-                yield ScaledPressure.translate_from_rpc(response.scaled_pressure)
-        finally:
-            scaled_pressure_stream.cancel()
-
-    async def set_rate_position(self, rate_hz):
-        """
-         Set rate to 'position' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
          Raises
          ------
-         TelemetryError
+         TelemetryServerError
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SetRatePositionRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRatePosition(request)
+        request = telemetry_server_pb2.PublishUnixEpochTimeRequest()
+        request.time_us = time_us
+        response = await self._stub.PublishUnixEpochTime(request)
 
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_position()", rate_hz)
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_unix_epoch_time()", time_us)
         
-
-    async def set_rate_home(self, rate_hz):
-        """
-         Set rate to 'home position' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateHomeRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateHome(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_home()", rate_hz)
-        
-
-    async def set_rate_in_air(self, rate_hz):
-        """
-         Set rate to in-air updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateInAirRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateInAir(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_in_air()", rate_hz)
-        
-
-    async def set_rate_landed_state(self, rate_hz):
-        """
-         Set rate to landed state updates
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateLandedStateRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateLandedState(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_landed_state()", rate_hz)
-        
-
-    async def set_rate_attitude(self, rate_hz):
-        """
-         Set rate to 'attitude' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateAttitudeRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateAttitude(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_attitude()", rate_hz)
-        
-
-    async def set_rate_camera_attitude(self, rate_hz):
-        """
-         Set rate of camera attitude updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateCameraAttitudeRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateCameraAttitude(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_camera_attitude()", rate_hz)
-        
-
-    async def set_rate_velocity_ned(self, rate_hz):
-        """
-         Set rate to 'ground speed' updates (NED).
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateVelocityNedRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateVelocityNed(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_velocity_ned()", rate_hz)
-        
-
-    async def set_rate_gps_info(self, rate_hz):
-        """
-         Set rate to 'GPS info' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateGpsInfoRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateGpsInfo(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_gps_info()", rate_hz)
-        
-
-    async def set_rate_battery(self, rate_hz):
-        """
-         Set rate to 'battery' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateBatteryRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateBattery(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_battery()", rate_hz)
-        
-
-    async def set_rate_rc_status(self, rate_hz):
-        """
-         Set rate to 'RC status' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateRcStatusRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateRcStatus(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_rc_status()", rate_hz)
-        
-
-    async def set_rate_actuator_control_target(self, rate_hz):
-        """
-         Set rate to 'actuator control target' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateActuatorControlTargetRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateActuatorControlTarget(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_actuator_control_target()", rate_hz)
-        
-
-    async def set_rate_actuator_output_status(self, rate_hz):
-        """
-         Set rate to 'actuator output status' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateActuatorOutputStatusRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateActuatorOutputStatus(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_actuator_output_status()", rate_hz)
-        
-
-    async def set_rate_odometry(self, rate_hz):
-        """
-         Set rate to 'odometry' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateOdometryRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateOdometry(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_odometry()", rate_hz)
-        
-
-    async def set_rate_position_velocity_ned(self, rate_hz):
-        """
-         Set rate to 'position velocity' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRatePositionVelocityNedRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRatePositionVelocityNed(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_position_velocity_ned()", rate_hz)
-        
-
-    async def set_rate_ground_truth(self, rate_hz):
-        """
-         Set rate to 'ground truth' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateGroundTruthRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateGroundTruth(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_ground_truth()", rate_hz)
-        
-
-    async def set_rate_fixedwing_metrics(self, rate_hz):
-        """
-         Set rate to 'fixedwing metrics' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateFixedwingMetricsRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateFixedwingMetrics(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_fixedwing_metrics()", rate_hz)
-        
-
-    async def set_rate_imu(self, rate_hz):
-        """
-         Set rate to 'IMU' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateImuRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateImu(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_imu()", rate_hz)
-        
-
-    async def set_rate_scaled_imu(self, rate_hz):
-        """
-         Set rate to 'Scaled IMU' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateScaledImuRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateScaledImu(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_scaled_imu()", rate_hz)
-        
-
-    async def set_rate_raw_imu(self, rate_hz):
-        """
-         Set rate to 'Raw IMU' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateRawImuRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateRawImu(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_raw_imu()", rate_hz)
-        
-
-    async def set_rate_unix_epoch_time(self, rate_hz):
-        """
-         Set rate to 'unix epoch time' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateUnixEpochTimeRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateUnixEpochTime(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_unix_epoch_time()", rate_hz)
-        
-
-    async def set_rate_distance_sensor(self, rate_hz):
-        """
-         Set rate to 'Distance Sensor' updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateDistanceSensorRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateDistanceSensor(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_distance_sensor()", rate_hz)
-        
-
-    async def get_gps_global_origin(self):
-        """
-         Get the GPS location of where the estimator has been initialized.
-
-         Returns
-         -------
-         gps_global_origin : GpsGlobalOrigin
-             
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.GetGpsGlobalOriginRequest()
-        response = await self._stub.GetGpsGlobalOrigin(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "get_gps_global_origin()")
-        
-
-        return GpsGlobalOrigin.translate_from_rpc(response.gps_global_origin)
-            

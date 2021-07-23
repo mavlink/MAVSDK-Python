@@ -333,7 +333,7 @@ class FollowMeResult:
          Values
          ------
          UNKNOWN
-              Unkown result
+              Unknown result
 
          SUCCESS
               Request succeeded

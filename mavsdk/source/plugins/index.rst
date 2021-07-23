@@ -27,3 +27,5 @@ Plugins
    tracking_server
    server_utility
    transponder
+   param_server
+   telemetry_server

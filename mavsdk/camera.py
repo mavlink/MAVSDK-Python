@@ -124,13 +124,16 @@ class CameraResult:
               Camera denied the command
 
          ERROR
-              An error has occured while executing the command
+              An error has occurred while executing the command
 
          TIMEOUT
               Command timed out
 
          WRONG_ARGUMENT
               Command has wrong argument(s)
+
+         NO_SYSTEM
+              No system connected
 
          """
 
@@ -143,6 +146,7 @@ class CameraResult:
         ERROR = 5
         TIMEOUT = 6
         WRONG_ARGUMENT = 7
+        NO_SYSTEM = 8
 
         def translate_to_rpc(self):
             if self == CameraResult.Result.UNKNOWN:
@@ -161,6 +165,8 @@ class CameraResult:
                 return camera_pb2.CameraResult.RESULT_TIMEOUT
             if self == CameraResult.Result.WRONG_ARGUMENT:
                 return camera_pb2.CameraResult.RESULT_WRONG_ARGUMENT
+            if self == CameraResult.Result.NO_SYSTEM:
+                return camera_pb2.CameraResult.RESULT_NO_SYSTEM
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -181,6 +187,8 @@ class CameraResult:
                 return CameraResult.Result.TIMEOUT
             if rpc_enum_value == camera_pb2.CameraResult.RESULT_WRONG_ARGUMENT:
                 return CameraResult.Result.WRONG_ARGUMENT
+            if rpc_enum_value == camera_pb2.CameraResult.RESULT_NO_SYSTEM:
+                return CameraResult.Result.NO_SYSTEM
 
         def __str__(self):
             return self.name

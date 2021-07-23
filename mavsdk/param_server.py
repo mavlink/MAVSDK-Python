@@ -2,7 +2,7 @@
 # DO NOT EDIT! This file is auto-generated from
 # https://github.com/mavlink/MAVSDK-Python/tree/main/other/templates/py
 from ._base import AsyncBase
-from . import param_pb2, param_pb2_grpc
+from . import param_server_pb2, param_server_pb2_grpc
 from enum import Enum
 
 
@@ -219,7 +219,7 @@ class AllParams:
         rpc_elems_list = []
         for elem in self.int_params:
                 
-            rpc_elem = param_pb2.IntParam()
+            rpc_elem = param_server_pb2.IntParam()
             elem.translate_to_rpc(rpc_elem)
             rpc_elems_list.append(rpc_elem)
                 
@@ -232,7 +232,7 @@ class AllParams:
         rpc_elems_list = []
         for elem in self.float_params:
                 
-            rpc_elem = param_pb2.FloatParam()
+            rpc_elem = param_server_pb2.FloatParam()
             elem.translate_to_rpc(rpc_elem)
             rpc_elems_list.append(rpc_elem)
                 
@@ -242,7 +242,7 @@ class AllParams:
         
 
 
-class ParamResult:
+class ParamServerResult:
     """
      Result type.
 
@@ -270,11 +270,8 @@ class ParamResult:
          SUCCESS
               Request succeeded
 
-         TIMEOUT
-              Request timed out
-
-         CONNECTION_ERROR
-              Connection error
+         NOT_FOUND
+              Not Found
 
          WRONG_TYPE
               Wrong type
@@ -282,53 +279,40 @@ class ParamResult:
          PARAM_NAME_TOO_LONG
               Parameter name too long (> 16)
 
-         NO_SYSTEM
-              No system connected
-
          """
 
         
         UNKNOWN = 0
         SUCCESS = 1
-        TIMEOUT = 2
-        CONNECTION_ERROR = 3
-        WRONG_TYPE = 4
-        PARAM_NAME_TOO_LONG = 5
-        NO_SYSTEM = 6
+        NOT_FOUND = 2
+        WRONG_TYPE = 3
+        PARAM_NAME_TOO_LONG = 4
 
         def translate_to_rpc(self):
-            if self == ParamResult.Result.UNKNOWN:
-                return param_pb2.ParamResult.RESULT_UNKNOWN
-            if self == ParamResult.Result.SUCCESS:
-                return param_pb2.ParamResult.RESULT_SUCCESS
-            if self == ParamResult.Result.TIMEOUT:
-                return param_pb2.ParamResult.RESULT_TIMEOUT
-            if self == ParamResult.Result.CONNECTION_ERROR:
-                return param_pb2.ParamResult.RESULT_CONNECTION_ERROR
-            if self == ParamResult.Result.WRONG_TYPE:
-                return param_pb2.ParamResult.RESULT_WRONG_TYPE
-            if self == ParamResult.Result.PARAM_NAME_TOO_LONG:
-                return param_pb2.ParamResult.RESULT_PARAM_NAME_TOO_LONG
-            if self == ParamResult.Result.NO_SYSTEM:
-                return param_pb2.ParamResult.RESULT_NO_SYSTEM
+            if self == ParamServerResult.Result.UNKNOWN:
+                return param_server_pb2.ParamServerResult.RESULT_UNKNOWN
+            if self == ParamServerResult.Result.SUCCESS:
+                return param_server_pb2.ParamServerResult.RESULT_SUCCESS
+            if self == ParamServerResult.Result.NOT_FOUND:
+                return param_server_pb2.ParamServerResult.RESULT_NOT_FOUND
+            if self == ParamServerResult.Result.WRONG_TYPE:
+                return param_server_pb2.ParamServerResult.RESULT_WRONG_TYPE
+            if self == ParamServerResult.Result.PARAM_NAME_TOO_LONG:
+                return param_server_pb2.ParamServerResult.RESULT_PARAM_NAME_TOO_LONG
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value == param_pb2.ParamResult.RESULT_UNKNOWN:
-                return ParamResult.Result.UNKNOWN
-            if rpc_enum_value == param_pb2.ParamResult.RESULT_SUCCESS:
-                return ParamResult.Result.SUCCESS
-            if rpc_enum_value == param_pb2.ParamResult.RESULT_TIMEOUT:
-                return ParamResult.Result.TIMEOUT
-            if rpc_enum_value == param_pb2.ParamResult.RESULT_CONNECTION_ERROR:
-                return ParamResult.Result.CONNECTION_ERROR
-            if rpc_enum_value == param_pb2.ParamResult.RESULT_WRONG_TYPE:
-                return ParamResult.Result.WRONG_TYPE
-            if rpc_enum_value == param_pb2.ParamResult.RESULT_PARAM_NAME_TOO_LONG:
-                return ParamResult.Result.PARAM_NAME_TOO_LONG
-            if rpc_enum_value == param_pb2.ParamResult.RESULT_NO_SYSTEM:
-                return ParamResult.Result.NO_SYSTEM
+            if rpc_enum_value == param_server_pb2.ParamServerResult.RESULT_UNKNOWN:
+                return ParamServerResult.Result.UNKNOWN
+            if rpc_enum_value == param_server_pb2.ParamServerResult.RESULT_SUCCESS:
+                return ParamServerResult.Result.SUCCESS
+            if rpc_enum_value == param_server_pb2.ParamServerResult.RESULT_NOT_FOUND:
+                return ParamServerResult.Result.NOT_FOUND
+            if rpc_enum_value == param_server_pb2.ParamServerResult.RESULT_WRONG_TYPE:
+                return ParamServerResult.Result.WRONG_TYPE
+            if rpc_enum_value == param_server_pb2.ParamServerResult.RESULT_PARAM_NAME_TOO_LONG:
+                return ParamServerResult.Result.PARAM_NAME_TOO_LONG
 
         def __str__(self):
             return self.name
@@ -338,15 +322,15 @@ class ParamResult:
             self,
             result,
             result_str):
-        """ Initializes the ParamResult object """
+        """ Initializes the ParamServerResult object """
         self.result = result
         self.result_str = result_str
 
     def __equals__(self, to_compare):
-        """ Checks if two ParamResult are the same """
+        """ Checks if two ParamServerResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
-            # ParamResult object
+            # ParamServerResult object
             return \
                 (self.result == to_compare.result) and \
                 (self.result_str == to_compare.result_str)
@@ -355,46 +339,46 @@ class ParamResult:
             return False
 
     def __str__(self):
-        """ ParamResult in string representation """
+        """ ParamServerResult in string representation """
         struct_repr = ", ".join([
                 "result: " + str(self.result),
                 "result_str: " + str(self.result_str)
                 ])
 
-        return f"ParamResult: [{struct_repr}]"
+        return f"ParamServerResult: [{struct_repr}]"
 
     @staticmethod
-    def translate_from_rpc(rpcParamResult):
+    def translate_from_rpc(rpcParamServerResult):
         """ Translates a gRPC struct to the SDK equivalent """
-        return ParamResult(
+        return ParamServerResult(
                 
-                ParamResult.Result.translate_from_rpc(rpcParamResult.result),
+                ParamServerResult.Result.translate_from_rpc(rpcParamServerResult.result),
                 
                 
-                rpcParamResult.result_str
+                rpcParamServerResult.result_str
                 )
 
-    def translate_to_rpc(self, rpcParamResult):
+    def translate_to_rpc(self, rpcParamServerResult):
         """ Translates this SDK object into its gRPC equivalent """
 
         
         
             
-        rpcParamResult.result = self.result.translate_to_rpc()
+        rpcParamServerResult.result = self.result.translate_to_rpc()
             
         
         
         
             
-        rpcParamResult.result_str = self.result_str
+        rpcParamServerResult.result_str = self.result_str
             
         
         
 
 
 
-class ParamError(Exception):
-    """ Raised when a ParamResult is a fail code """
+class ParamServerError(Exception):
+    """ Raised when a ParamServerResult is a fail code """
 
     def __init__(self, result, origin, *params):
         self._result = result
@@ -405,29 +389,29 @@ class ParamError(Exception):
         return f"{self._result.result}: '{self._result.result_str}'; origin: {self._origin}; params: {self._params}"
 
 
-class Param(AsyncBase):
+class ParamServer(AsyncBase):
     """
-     Provide raw access to get and set parameters.
+     Provide raw access to retrieve and provide server parameters.
 
-     Generated by dcsdkgen - MAVSDK Param API
+     Generated by dcsdkgen - MAVSDK ParamServer API
     """
 
     # Plugin name
-    name = "Param"
+    name = "ParamServer"
 
     def _setup_stub(self, channel):
         """ Setups the api stub """
-        self._stub = param_pb2_grpc.ParamServiceStub(channel)
+        self._stub = param_server_pb2_grpc.ParamServerServiceStub(channel)
 
     
     def _extract_result(self, response):
         """ Returns the response status and description """
-        return ParamResult.translate_from_rpc(response.param_result)
+        return ParamServerResult.translate_from_rpc(response.param_server_result)
     
 
-    async def get_param_int(self, name):
+    async def retrieve_param_int(self, name):
         """
-         Get an int parameter.
+         Retrieve an int parameter.
 
          If the type is wrong, the result will be `WRONG_TYPE`.
 
@@ -443,62 +427,62 @@ class Param(AsyncBase):
 
          Raises
          ------
-         ParamError
+         ParamServerError
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = param_pb2.GetParamIntRequest()
+        request = param_server_pb2.RetrieveParamIntRequest()
         
             
         request.name = name
             
-        response = await self._stub.GetParamInt(request)
+        response = await self._stub.RetrieveParamInt(request)
 
         
         result = self._extract_result(response)
 
-        if result.result is not ParamResult.Result.SUCCESS:
-            raise ParamError(result, "get_param_int()", name)
+        if result.result is not ParamServerResult.Result.SUCCESS:
+            raise ParamServerError(result, "retrieve_param_int()", name)
         
 
         return response.value
         
 
-    async def set_param_int(self, name, value):
+    async def provide_param_int(self, name, value):
         """
-         Set an int parameter.
+         Provide an int parameter.
 
          If the type is wrong, the result will be `WRONG_TYPE`.
 
          Parameters
          ----------
          name : std::string
-              Name of the parameter to set
+              Name of the parameter to provide
 
          value : int32_t
               Value the parameter should be set to
 
          Raises
          ------
-         ParamError
+         ParamServerError
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = param_pb2.SetParamIntRequest()
+        request = param_server_pb2.ProvideParamIntRequest()
         request.name = name
         request.value = value
-        response = await self._stub.SetParamInt(request)
+        response = await self._stub.ProvideParamInt(request)
 
         
         result = self._extract_result(response)
 
-        if result.result is not ParamResult.Result.SUCCESS:
-            raise ParamError(result, "set_param_int()", name, value)
+        if result.result is not ParamServerResult.Result.SUCCESS:
+            raise ParamServerError(result, "provide_param_int()", name, value)
         
 
-    async def get_param_float(self, name):
+    async def retrieve_param_float(self, name):
         """
-         Get a float parameter.
+         Retrieve a float parameter.
 
          If the type is wrong, the result will be `WRONG_TYPE`.
 
@@ -514,62 +498,62 @@ class Param(AsyncBase):
 
          Raises
          ------
-         ParamError
+         ParamServerError
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = param_pb2.GetParamFloatRequest()
+        request = param_server_pb2.RetrieveParamFloatRequest()
         
             
         request.name = name
             
-        response = await self._stub.GetParamFloat(request)
+        response = await self._stub.RetrieveParamFloat(request)
 
         
         result = self._extract_result(response)
 
-        if result.result is not ParamResult.Result.SUCCESS:
-            raise ParamError(result, "get_param_float()", name)
+        if result.result is not ParamServerResult.Result.SUCCESS:
+            raise ParamServerError(result, "retrieve_param_float()", name)
         
 
         return response.value
         
 
-    async def set_param_float(self, name, value):
+    async def provide_param_float(self, name, value):
         """
-         Set a float parameter.
+         Provide a float parameter.
 
          If the type is wrong, the result will be `WRONG_TYPE`.
 
          Parameters
          ----------
          name : std::string
-              Name of the parameter to set
+              Name of the parameter to provide
 
          value : float
               Value the parameter should be set to
 
          Raises
          ------
-         ParamError
+         ParamServerError
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = param_pb2.SetParamFloatRequest()
+        request = param_server_pb2.ProvideParamFloatRequest()
         request.name = name
         request.value = value
-        response = await self._stub.SetParamFloat(request)
+        response = await self._stub.ProvideParamFloat(request)
 
         
         result = self._extract_result(response)
 
-        if result.result is not ParamResult.Result.SUCCESS:
-            raise ParamError(result, "set_param_float()", name, value)
+        if result.result is not ParamServerResult.Result.SUCCESS:
+            raise ParamServerError(result, "provide_param_float()", name, value)
         
 
-    async def get_all_params(self):
+    async def retrieve_all_params(self):
         """
-         Get all parameters.
+         Retrieve all parameters.
 
          Returns
          -------
@@ -579,8 +563,8 @@ class Param(AsyncBase):
          
         """
 
-        request = param_pb2.GetAllParamsRequest()
-        response = await self._stub.GetAllParams(request)
+        request = param_server_pb2.RetrieveAllParamsRequest()
+        response = await self._stub.RetrieveAllParams(request)
 
         
 

@@ -310,6 +310,9 @@ class TuneResult:
          ERROR
               Failed to send the request
 
+         NO_SYSTEM
+              No system connected
+
          """
 
         
@@ -318,6 +321,7 @@ class TuneResult:
         INVALID_TEMPO = 2
         TUNE_TOO_LONG = 3
         ERROR = 4
+        NO_SYSTEM = 5
 
         def translate_to_rpc(self):
             if self == TuneResult.Result.UNKNOWN:
@@ -330,6 +334,8 @@ class TuneResult:
                 return tune_pb2.TuneResult.RESULT_TUNE_TOO_LONG
             if self == TuneResult.Result.ERROR:
                 return tune_pb2.TuneResult.RESULT_ERROR
+            if self == TuneResult.Result.NO_SYSTEM:
+                return tune_pb2.TuneResult.RESULT_NO_SYSTEM
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -344,6 +350,8 @@ class TuneResult:
                 return TuneResult.Result.TUNE_TOO_LONG
             if rpc_enum_value == tune_pb2.TuneResult.RESULT_ERROR:
                 return TuneResult.Result.ERROR
+            if rpc_enum_value == tune_pb2.TuneResult.RESULT_NO_SYSTEM:
+                return TuneResult.Result.NO_SYSTEM
 
         def __str__(self):
             return self.name

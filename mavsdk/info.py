@@ -509,12 +509,16 @@ class InfoResult:
          INFORMATION_NOT_RECEIVED_YET
               Information has not been received yet
 
+         NO_SYSTEM
+              No system is connected
+
          """
 
         
         UNKNOWN = 0
         SUCCESS = 1
         INFORMATION_NOT_RECEIVED_YET = 2
+        NO_SYSTEM = 3
 
         def translate_to_rpc(self):
             if self == InfoResult.Result.UNKNOWN:
@@ -523,6 +527,8 @@ class InfoResult:
                 return info_pb2.InfoResult.RESULT_SUCCESS
             if self == InfoResult.Result.INFORMATION_NOT_RECEIVED_YET:
                 return info_pb2.InfoResult.RESULT_INFORMATION_NOT_RECEIVED_YET
+            if self == InfoResult.Result.NO_SYSTEM:
+                return info_pb2.InfoResult.RESULT_NO_SYSTEM
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -533,6 +539,8 @@ class InfoResult:
                 return InfoResult.Result.SUCCESS
             if rpc_enum_value == info_pb2.InfoResult.RESULT_INFORMATION_NOT_RECEIVED_YET:
                 return InfoResult.Result.INFORMATION_NOT_RECEIVED_YET
+            if rpc_enum_value == info_pb2.InfoResult.RESULT_NO_SYSTEM:
+                return InfoResult.Result.NO_SYSTEM
 
         def __str__(self):
             return self.name
