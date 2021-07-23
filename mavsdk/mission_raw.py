@@ -499,6 +499,9 @@ class MissionRawResult:
          FAILED_TO_PARSE_QGC_PLAN
               Failed to parse the QGroundControl plan
 
+         NO_SYSTEM
+              No system connected
+
          """
 
         
@@ -514,6 +517,7 @@ class MissionRawResult:
         TRANSFER_CANCELLED = 9
         FAILED_TO_OPEN_QGC_PLAN = 10
         FAILED_TO_PARSE_QGC_PLAN = 11
+        NO_SYSTEM = 12
 
         def translate_to_rpc(self):
             if self == MissionRawResult.Result.UNKNOWN:
@@ -540,6 +544,8 @@ class MissionRawResult:
                 return mission_raw_pb2.MissionRawResult.RESULT_FAILED_TO_OPEN_QGC_PLAN
             if self == MissionRawResult.Result.FAILED_TO_PARSE_QGC_PLAN:
                 return mission_raw_pb2.MissionRawResult.RESULT_FAILED_TO_PARSE_QGC_PLAN
+            if self == MissionRawResult.Result.NO_SYSTEM:
+                return mission_raw_pb2.MissionRawResult.RESULT_NO_SYSTEM
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -568,6 +574,8 @@ class MissionRawResult:
                 return MissionRawResult.Result.FAILED_TO_OPEN_QGC_PLAN
             if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_FAILED_TO_PARSE_QGC_PLAN:
                 return MissionRawResult.Result.FAILED_TO_PARSE_QGC_PLAN
+            if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_NO_SYSTEM:
+                return MissionRawResult.Result.NO_SYSTEM
 
         def __str__(self):
             return self.name

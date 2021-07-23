@@ -240,6 +240,9 @@ class GeofenceResult:
          INVALID_ARGUMENT
               Invalid argument
 
+         NO_SYSTEM
+              No system connected
+
          """
 
         
@@ -250,6 +253,7 @@ class GeofenceResult:
         BUSY = 4
         TIMEOUT = 5
         INVALID_ARGUMENT = 6
+        NO_SYSTEM = 7
 
         def translate_to_rpc(self):
             if self == GeofenceResult.Result.UNKNOWN:
@@ -266,6 +270,8 @@ class GeofenceResult:
                 return geofence_pb2.GeofenceResult.RESULT_TIMEOUT
             if self == GeofenceResult.Result.INVALID_ARGUMENT:
                 return geofence_pb2.GeofenceResult.RESULT_INVALID_ARGUMENT
+            if self == GeofenceResult.Result.NO_SYSTEM:
+                return geofence_pb2.GeofenceResult.RESULT_NO_SYSTEM
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -284,6 +290,8 @@ class GeofenceResult:
                 return GeofenceResult.Result.TIMEOUT
             if rpc_enum_value == geofence_pb2.GeofenceResult.RESULT_INVALID_ARGUMENT:
                 return GeofenceResult.Result.INVALID_ARGUMENT
+            if rpc_enum_value == geofence_pb2.GeofenceResult.RESULT_NO_SYSTEM:
+                return GeofenceResult.Result.NO_SYSTEM
 
         def __str__(self):
             return self.name

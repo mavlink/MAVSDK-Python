@@ -245,6 +245,9 @@ class GimbalResult:
          UNSUPPORTED
               Functionality not supported
 
+         NO_SYSTEM
+              No system connected
+
          """
 
         
@@ -253,6 +256,7 @@ class GimbalResult:
         ERROR = 2
         TIMEOUT = 3
         UNSUPPORTED = 4
+        NO_SYSTEM = 5
 
         def translate_to_rpc(self):
             if self == GimbalResult.Result.UNKNOWN:
@@ -265,6 +269,8 @@ class GimbalResult:
                 return gimbal_pb2.GimbalResult.RESULT_TIMEOUT
             if self == GimbalResult.Result.UNSUPPORTED:
                 return gimbal_pb2.GimbalResult.RESULT_UNSUPPORTED
+            if self == GimbalResult.Result.NO_SYSTEM:
+                return gimbal_pb2.GimbalResult.RESULT_NO_SYSTEM
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -279,6 +285,8 @@ class GimbalResult:
                 return GimbalResult.Result.TIMEOUT
             if rpc_enum_value == gimbal_pb2.GimbalResult.RESULT_UNSUPPORTED:
                 return GimbalResult.Result.UNSUPPORTED
+            if rpc_enum_value == gimbal_pb2.GimbalResult.RESULT_NO_SYSTEM:
+                return GimbalResult.Result.NO_SYSTEM
 
         def __str__(self):
             return self.name

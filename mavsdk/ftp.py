@@ -138,6 +138,9 @@ class FtpResult:
          PROTOCOL_ERROR
               General protocol error
 
+         NO_SYSTEM
+              No system connected
+
          """
 
         
@@ -153,6 +156,7 @@ class FtpResult:
         INVALID_PARAMETER = 9
         UNSUPPORTED = 10
         PROTOCOL_ERROR = 11
+        NO_SYSTEM = 12
 
         def translate_to_rpc(self):
             if self == FtpResult.Result.UNKNOWN:
@@ -179,6 +183,8 @@ class FtpResult:
                 return ftp_pb2.FtpResult.RESULT_UNSUPPORTED
             if self == FtpResult.Result.PROTOCOL_ERROR:
                 return ftp_pb2.FtpResult.RESULT_PROTOCOL_ERROR
+            if self == FtpResult.Result.NO_SYSTEM:
+                return ftp_pb2.FtpResult.RESULT_NO_SYSTEM
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -207,6 +213,8 @@ class FtpResult:
                 return FtpResult.Result.UNSUPPORTED
             if rpc_enum_value == ftp_pb2.FtpResult.RESULT_PROTOCOL_ERROR:
                 return FtpResult.Result.PROTOCOL_ERROR
+            if rpc_enum_value == ftp_pb2.FtpResult.RESULT_NO_SYSTEM:
+                return FtpResult.Result.NO_SYSTEM
 
         def __str__(self):
             return self.name

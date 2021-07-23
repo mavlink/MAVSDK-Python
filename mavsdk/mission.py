@@ -47,6 +47,12 @@ class MissionItem:
      camera_photo_interval_s : double
           Camera photo interval to use after this mission item (in seconds)
 
+     acceptance_radius_m : float
+          Radius for completing a mission item (in metres)
+
+     yaw_deg : float
+          Absolute yaw angle (in degrees)
+
      """
 
     
@@ -130,7 +136,9 @@ class MissionItem:
             gimbal_yaw_deg,
             camera_action,
             loiter_time_s,
-            camera_photo_interval_s):
+            camera_photo_interval_s,
+            acceptance_radius_m,
+            yaw_deg):
         """ Initializes the MissionItem object """
         self.latitude_deg = latitude_deg
         self.longitude_deg = longitude_deg
@@ -142,6 +150,8 @@ class MissionItem:
         self.camera_action = camera_action
         self.loiter_time_s = loiter_time_s
         self.camera_photo_interval_s = camera_photo_interval_s
+        self.acceptance_radius_m = acceptance_radius_m
+        self.yaw_deg = yaw_deg
 
     def __equals__(self, to_compare):
         """ Checks if two MissionItem are the same """
@@ -158,7 +168,9 @@ class MissionItem:
                 (self.gimbal_yaw_deg == to_compare.gimbal_yaw_deg) and \
                 (self.camera_action == to_compare.camera_action) and \
                 (self.loiter_time_s == to_compare.loiter_time_s) and \
-                (self.camera_photo_interval_s == to_compare.camera_photo_interval_s)
+                (self.camera_photo_interval_s == to_compare.camera_photo_interval_s) and \
+                (self.acceptance_radius_m == to_compare.acceptance_radius_m) and \
+                (self.yaw_deg == to_compare.yaw_deg)
 
         except AttributeError:
             return False
@@ -175,7 +187,9 @@ class MissionItem:
                 "gimbal_yaw_deg: " + str(self.gimbal_yaw_deg),
                 "camera_action: " + str(self.camera_action),
                 "loiter_time_s: " + str(self.loiter_time_s),
-                "camera_photo_interval_s: " + str(self.camera_photo_interval_s)
+                "camera_photo_interval_s: " + str(self.camera_photo_interval_s),
+                "acceptance_radius_m: " + str(self.acceptance_radius_m),
+                "yaw_deg: " + str(self.yaw_deg)
                 ])
 
         return f"MissionItem: [{struct_repr}]"
@@ -212,7 +226,13 @@ class MissionItem:
                 rpcMissionItem.loiter_time_s,
                 
                 
-                rpcMissionItem.camera_photo_interval_s
+                rpcMissionItem.camera_photo_interval_s,
+                
+                
+                rpcMissionItem.acceptance_radius_m,
+                
+                
+                rpcMissionItem.yaw_deg
                 )
 
     def translate_to_rpc(self, rpcMissionItem):
@@ -276,6 +296,18 @@ class MissionItem:
         
             
         rpcMissionItem.camera_photo_interval_s = self.camera_photo_interval_s
+            
+        
+        
+        
+            
+        rpcMissionItem.acceptance_radius_m = self.acceptance_radius_m
+            
+        
+        
+        
+            
+        rpcMissionItem.yaw_deg = self.yaw_deg
             
         
         
@@ -475,6 +507,9 @@ class MissionResult:
          TRANSFER_CANCELLED
               Mission transfer (upload or download) has been cancelled
 
+         NO_SYSTEM
+              No system connected
+
          """
 
         
@@ -489,6 +524,7 @@ class MissionResult:
         NO_MISSION_AVAILABLE = 8
         UNSUPPORTED_MISSION_CMD = 9
         TRANSFER_CANCELLED = 10
+        NO_SYSTEM = 11
 
         def translate_to_rpc(self):
             if self == MissionResult.Result.UNKNOWN:
@@ -513,6 +549,8 @@ class MissionResult:
                 return mission_pb2.MissionResult.RESULT_UNSUPPORTED_MISSION_CMD
             if self == MissionResult.Result.TRANSFER_CANCELLED:
                 return mission_pb2.MissionResult.RESULT_TRANSFER_CANCELLED
+            if self == MissionResult.Result.NO_SYSTEM:
+                return mission_pb2.MissionResult.RESULT_NO_SYSTEM
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -539,6 +577,8 @@ class MissionResult:
                 return MissionResult.Result.UNSUPPORTED_MISSION_CMD
             if rpc_enum_value == mission_pb2.MissionResult.RESULT_TRANSFER_CANCELLED:
                 return MissionResult.Result.TRANSFER_CANCELLED
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_NO_SYSTEM:
+                return MissionResult.Result.NO_SYSTEM
 
         def __str__(self):
             return self.name
