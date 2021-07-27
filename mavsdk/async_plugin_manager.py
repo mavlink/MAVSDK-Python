@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+import logging
 import aiogrpc
+
+_logger = logging.getLogger(__name__)
 
 
 class AsyncPluginManager:
@@ -29,9 +32,9 @@ class AsyncPluginManager:
             "{}:{}".format(self.host, self.port)
         )
 
-        print("Waiting for mavsdk_server to be ready...")
+        _logger.debug("Waiting for mavsdk_server to be ready...")
         await aiogrpc.channel_ready_future(self._channel)
-        print("Connected to mavsdk_server!")
+        _logger.debug("Connected to mavsdk_server!")
 
     @property
     def channel(self):
