@@ -2,8 +2,6 @@
 import logging
 import aiogrpc
 
-_logger = logging.getLogger(__name__)
-
 
 class AsyncPluginManager:
     """
@@ -32,9 +30,13 @@ class AsyncPluginManager:
             "{}:{}".format(self.host, self.port)
         )
 
-        _logger.debug("Waiting for mavsdk_server to be ready...")
+        logger = logging.getLogger(__name__)
+        logger.setLevel(logging.DEBUG)  # Enable debug messages by default
+        logger.addHandler(logging.NullHandler())  # Avoid errors when user has not configured logging
+
+        logger.debug("Waiting for mavsdk_server to be ready...")
         await aiogrpc.channel_ready_future(self._channel)
-        _logger.debug("Connected to mavsdk_server!")
+        logger.debug("Connected to mavsdk_server!")
 
     @property
     def channel(self):
