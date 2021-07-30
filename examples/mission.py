@@ -13,13 +13,15 @@ async def run():
     print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print(f"Drone discovered!")
+            print("Drone discovered!")
             break
 
-    print_mission_progress_task = asyncio.ensure_future(print_mission_progress(drone))
+    print_mission_progress_task = asyncio.ensure_future(
+        print_mission_progress(drone))
 
     running_tasks = [print_mission_progress_task]
-    termination_task = asyncio.ensure_future(observe_is_in_air(drone, running_tasks))
+    termination_task = asyncio.ensure_future(
+        observe_is_in_air(drone, running_tasks))
 
     mission_items = []
     mission_items.append(MissionItem(47.398039859999997,
@@ -31,6 +33,8 @@ async def run():
                                      float('nan'),
                                      MissionItem.CameraAction.NONE,
                                      float('nan'),
+                                     float('nan'),
+                                     float('nan'),
                                      float('nan')))
     mission_items.append(MissionItem(47.398036222362471,
                                      8.5450146439425509,
@@ -41,6 +45,8 @@ async def run():
                                      float('nan'),
                                      MissionItem.CameraAction.NONE,
                                      float('nan'),
+                                     float('nan'),
+                                     float('nan'),
                                      float('nan')))
     mission_items.append(MissionItem(47.397825620791885,
                                      8.5450092830163271,
@@ -50,6 +56,8 @@ async def run():
                                      float('nan'),
                                      float('nan'),
                                      MissionItem.CameraAction.NONE,
+                                     float('nan'),
+                                     float('nan'),
                                      float('nan'),
                                      float('nan')))
 
