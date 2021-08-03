@@ -31,7 +31,6 @@ class AsyncPluginManager:
         )
 
         logger = logging.getLogger(__name__)
-        logger.setLevel(logging.DEBUG)  # Enable debug messages by default
         logger.addHandler(logging.NullHandler())  # Avoid errors when user has not configured logging
 
         logger.debug("Waiting for mavsdk_server to be ready...")
