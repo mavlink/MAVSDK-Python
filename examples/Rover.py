@@ -136,6 +136,7 @@ async def log(drone):
         logList.append((pos.latitude_deg),(pos.longitude_deg))
         await asyncio.sleep(0.5)
 
+
 async def Record(drone):
     global recList
     recList.clear()
@@ -144,13 +145,29 @@ async def Record(drone):
                  async for pos in drone.telemetry.position():
                     recList.append((pos.latitude_deg),(pos.longitude_deg))            
            
+def getMissionItems(coords):
+    return MissionItem(coords[0],
+                        coords[1],
+                        25,
+                        10,
+                        True,
+                        float('nan'),
+                        float('nan'),
+                        MissionItem.CameraAction.NONE,
+                        float('nan'),
+                        float('nan'),
+                        float('nan'),
+                        float('nan'))
 
 async def PB():
     async for mode in telemetry.FlightMode():
         if mode==10:
             mission_items=[]
             copy_list=recList.copy()
-            # NITYODAY CHANGES HERE
+
+            for itr in copy_list:
+                mission_items.append(getMissionItems(itr))
+"""            # NITYODAY CHANGES HERE
             for index, tuple in enumerate(copy_list):
 	            lat = tuple[0]
 	            long = tuple[1]
@@ -166,14 +183,8 @@ async def PB():
                                      float('nan'),
                                      float('nan'),
                                      float('nan'),
-                                     float('nan')))
+                                     float('nan')))"""
 
-
-
-
-
-
-            
 
 async def PBL(drone): 
     global recList
