@@ -141,22 +141,22 @@ async def Record(drone):
     recList.clear()
     async for mode in telemetry.FlightMode():
         if mode==9:
-<<<<<<< Updated upstream
             async for pos in drone.telemetry.position():
-                recList.append(str(pos.latitude_deg)+" "+str(pos.longitude_deg)+"")            
-=======
-
->>>>>>> Stashed changes
+                recList.append((pos.latitude_deg),(pos.longitude_deg))            
 
 async def PB():
     async for mode in telemetry.FlightMode():
         if mode==10:
             pass
 
-async def PBL(drone):
+async def PBL(drone): 
+    global recList
     async for mode in telemetry.FlightMode():
         if mode==4:
-            pass
+            loopList=recList+recList.reverse()
+
+
+            
 """
 with open('output.txt', 'r') as f:
     lines = f.read().splitlines()
