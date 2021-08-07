@@ -66,62 +66,9 @@ async def observe_is_in_air(drone, running_tasks):  #killer function
 
 async def fly(drone):   #main function
     print_mission_progress_task = asyncio.ensure_future(print_mission_progress(drone))
-
     running_tasks = [print_mission_progress_task]
     termination_task = asyncio.ensure_future(
         observe_is_in_air(drone, running_tasks))
-    
-    mission_items = []
-    mission_items.append(MissionItem(47.398039859999997,
-                                     8.5455725400000002,
-                                     25,
-                                     10,
-                                     True,
-                                     float('nan'),
-                                     float('nan'),
-                                     MissionItem.CameraAction.NONE,
-                                     float('nan'),
-                                     float('nan'),
-                                     float('nan'),
-                                     float('nan')))
-    mission_items.append(MissionItem(47.398036222362471,
-                                     8.5450146439425509,
-                                     25,
-                                     10,
-                                     True,
-                                     float('nan'),
-                                     float('nan'),
-                                     MissionItem.CameraAction.NONE,
-                                     float('nan'),
-                                     float('nan'),
-                                     float('nan'),
-                                     float('nan')))
-    mission_items.append(MissionItem(47.397825620791885,
-                                     8.5450092830163271,
-                                     25,
-                                     10,
-                                     True,
-                                     float('nan'),
-                                     float('nan'),
-                                     MissionItem.CameraAction.NONE,
-                                     float('nan'),
-                                     float('nan'),
-                                     float('nan'),
-                                     float('nan')))
-
-    mission_plan = MissionPlan(mission_items)
-
-    await drone.mission.set_return_to_launch_after_mission(False)
-
-    print("-- Uploading mission")
-    await drone.mission.upload_mission(mission_plan)
-
-    print("-- Arming")
-    await drone.action.arm()
-
-    print("-- Starting mission")
-    await drone.mission.start_mission()
-
     await termination_task
 
 #EDITABLE CODE STARTS HERE
@@ -136,37 +83,69 @@ async def log(drone):
         logList.append((pos.latitude_deg),(pos.longitude_deg))
         await asyncio.sleep(0.5)
 
+def getMissionPlan(copiedlist):
+    mission_items=[]
+    for itr in copiedlist:
+        mission_items.append(MissionItem(itr[0],itr[1],25,10,True,float('nan'),float('nan'),
+        MissionItem.CameraAction.NONE,float('nan'),float('nan'),float('nan'),float('nan')))
+
+    return MissionPlan(mission_items)
 
 async def Record(drone):
     global recList
     recList.clear()
     async for mode in telemetry.FlightMode():
         if mode==9:
-                 async for pos in drone.telemetry.position():
-                    recList.append((pos.latitude_deg),(pos.longitude_deg))            
-           
-def getMissionItems(coords):
-    return MissionItem(coords[0],
-                        coords[1],
-                        25,
-                        10,
-                        True,
-                        float('nan'),
-                        float('nan'),
-                        MissionItem.CameraAction.NONE,
-                        float('nan'),
-                        float('nan'),
-                        float('nan'),
-                        float('nan'))
+            print("Record mode triggered")
+            async for pos in drone.telemetry.position():
+                recList.append((pos.latitude_deg),(pos.longitude_deg))            
 
 async def PB():
     async for mode in telemetry.FlightMode():
         if mode==10:
+            print("Playback mode triggered")
             mission_items=[]
             copy_list=recList.copy()
+            mission_Plan=getMissionPlan(copy_list)
+"""
+    await drone.mission.set_return_to_launch_after_mission(False)
 
-            for itr in copy_list:
-                mission_items.append(getMissionItems(itr))
+    print("-- Uploading mission")
+    await drone.mission.upload_mission(mission_plan)
+
+    print("-- Arming")
+    await drone.action.arm()
+
+    print("-- Starting mission")
+    await drone.mission.start_mission()"""
+
+async def PBL(drone): 
+    global recList
+    async for mode in telemetry.FlightMode():
+        if mode==4:
+            print("Playback Loop mode triggered")
+            copy_list=recList.copy()
+            loopList=recList.reverse()+recList
+            mission_Plan=getMissionPlan(loopList)
+
+#EDITABLE CODE ENDS HERE
+
+if __name__ == "__main__":
+    # Start the main function
+    asyncio.ensure_future(run())
+
+
+    # Runs the event loop until the program is canceled with e.g. CTRL-C
+    asyncio.get_event_loop().run_forever()
+
+
+
+
+
+
+
+
+
 """            # NITYODAY CHANGES HERE
             for index, tuple in enumerate(copy_list):
 	            lat = tuple[0]
@@ -183,34 +162,9 @@ async def PB():
                                      float('nan'),
                                      float('nan'),
                                      float('nan'),
-                                     float('nan')))"""
-
-
-async def PBL(drone): 
-    global recList
-    async for mode in telemetry.FlightMode():
-        if mode==4:
-            mission_items=[]
-            loopList=recList+recList.reverse()
-            for itr in loopList:
-                mission_items.append(getMissionItems(itr))
-            
-                
-
-
-            
-"""
+                                     float('nan')))
 with open('output.txt', 'r') as f:
     lines = f.read().splitlines()
     last_line = lines[-1]
     print last_line
 """
-#EDITABLE CODE ENDS HERE
-
-if __name__ == "__main__":
-    # Start the main function
-    asyncio.ensure_future(run())
-
-
-    # Runs the event loop until the program is canceled with e.g. CTRL-C
-    asyncio.get_event_loop().run_forever()
