@@ -43,7 +43,7 @@ async def print_mission_progress(drone):
               f"{mission_progress.current}/"
               f"{mission_progress.total}")
 
-async def observe_is_in_air(drone, running_tasks):
+async def observe_is_in_air(drone, running_tasks):  #killer function
     """ Monitors whether the drone is flying or not and
     returns after landing """
 
@@ -64,7 +64,7 @@ async def observe_is_in_air(drone, running_tasks):
 
             return
 
-async def fly(drone):
+async def fly(drone):   #main function
     print_mission_progress_task = asyncio.ensure_future(print_mission_progress(drone))
 
     running_tasks = [print_mission_progress_task]
@@ -133,7 +133,7 @@ async def print_position(drone):
 async def log(drone):
     global logList
     async for pos in drone.telemetry.position():
-        logList.append(str(pos.latitude_deg)+" "+str(pos.longitude_deg)+"")
+        logList.append((pos.latitude_deg),(pos.longitude_deg))
         await asyncio.sleep(0.5)
 
 async def Record(drone):
@@ -141,8 +141,13 @@ async def Record(drone):
     recList.clear()
     async for mode in telemetry.FlightMode():
         if mode==9:
+<<<<<<< Updated upstream
             async for pos in drone.telemetry.position():
                 recList.append(str(pos.latitude_deg)+" "+str(pos.longitude_deg)+"")            
+=======
+
+            pass
+>>>>>>> Stashed changes
 
 async def PB():
     async for mode in telemetry.FlightMode():
