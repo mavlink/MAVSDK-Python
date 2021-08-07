@@ -136,13 +136,13 @@ async def log(drone):
         logList.append(str(pos.latitude_deg)+" "+str(pos.longitude_deg)+"")
         await asyncio.sleep(0.5)
 
-async def Record():
+async def Record(drone):
     global recList
     recList.clear()
     async for mode in telemetry.FlightMode():
         if mode==9:
-            
-            pass
+            async for pos in drone.telemetry.position():
+                recList.append(str(pos.latitude_deg)+" "+str(pos.longitude_deg)+"")            
 
 async def PB():
     async for mode in telemetry.FlightMode():
