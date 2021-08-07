@@ -190,10 +190,11 @@ async def PBL(drone):
     global recList
     async for mode in telemetry.FlightMode():
         if mode==4:
+            mission_items=[]
             loopList=recList+recList.reverse()
-            for index, tuple in enumerate(loopList):
-                lat=tuple[0]
-                long=tuple[1]
+            for itr in loopList:
+                mission_items.append(getMissionItems(itr))
+            
                 
 
 
