@@ -7,6 +7,8 @@ from mavsdk import telemetry
 from mavsdk.mission import (MissionItem, MissionPlan)
 from mavsdk.telemetry import (FlightMode)
 
+logList=[] #to log all positions. 
+recList=[] #to record position when in record mode.
 
 async def run():
     # Init the drone
@@ -62,18 +64,6 @@ async def observe_is_in_air(drone, running_tasks):
 
             return
 
-#EDITABLE CODE STARTS HERE
-
-async def print_position(drone):
-    async for position in drone.telemetry.position():
-        print(position)
-
-async def log(drone):
-    with open ("a.txt" ,"w") as fileout:
-        async for pos in drone.telemetry.position():
-            fileout.write(str(pos.latitude_deg)+" "+str(pos.longitude_deg)+'\n')
-            await asyncio.sleep(0.5)
-
 async def fly(drone):
     print_mission_progress_task = asyncio.ensure_future(print_mission_progress(drone))
 
@@ -121,24 +111,7 @@ async def fly(drone):
 
     mission_plan = MissionPlan(mission_items)
 
-    async def Record():
-        async for mode in telemetry.FlightMode():
-            if mode==9:
-                pass
-
-
-    async def PB():
-        async for mode in telemetry.FlightMode():
-            if mode==10:
-                pass
-
-    async def PBL():
-        async for mode in telemetry.FlightMode():
-            if mode==4:
-                pass
-
-
-    await drone.mission.set_return_to_launch_after_mission(True)
+    await drone.mission.set_return_to_launch_after_mission(False)
 
     print("-- Uploading mission")
     await drone.mission.upload_mission(mission_plan)
@@ -151,7 +124,35 @@ async def fly(drone):
 
     await termination_task
 
+#EDITABLE CODE STARTS HERE
 
+async def print_position(drone):
+    async for position in drone.telemetry.position():
+        print(position)
+
+async def log(drone):
+    global logList
+    async for pos in drone.telemetry.position():
+        logList.append(str(pos.latitude_deg)+" "+str(pos.longitude_deg)+"")
+        await asyncio.sleep(0.5)
+
+async def Record():
+    global recList
+    recList.clear()
+    async for mode in telemetry.FlightMode():
+        if mode==9:
+            
+            pass
+
+async def PB():
+    async for mode in telemetry.FlightMode():
+        if mode==10:
+            pass
+
+async def PBL():
+    async for mode in telemetry.FlightMode():
+        if mode==4:
+            pass
 """
 with open('output.txt', 'r') as f:
     lines = f.read().splitlines()
