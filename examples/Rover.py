@@ -142,7 +142,7 @@ async def Record(drone):
     async for mode in telemetry.FlightMode():
         if mode==9:
                  async for pos in drone.telemetry.position():
-                recList.append((pos.latitude_deg),(pos.longitude_deg))            
+                    recList.append((pos.latitude_deg),(pos.longitude_deg))            
            
 
 async def PB():
@@ -180,8 +180,6 @@ async def PBL(drone):
     async for mode in telemetry.FlightMode():
         if mode==4:
             loopList=recList+recList.reverse()
-<<<<<<< Updated upstream
-=======
             for index, tuple in enumerate(loopList):
                 lat=tuple[0]
                 long=tuple[1]
@@ -189,7 +187,6 @@ async def PBL(drone):
 
 
             
->>>>>>> Stashed changes
 """
 with open('output.txt', 'r') as f:
     lines = f.read().splitlines()
