@@ -146,7 +146,6 @@ async def Record(drone):
                 recList.append(str(pos.latitude_deg)+" "+str(pos.longitude_deg)+"")            
 =======
 
-            pass
 >>>>>>> Stashed changes
 
 async def PB():
@@ -154,7 +153,7 @@ async def PB():
         if mode==10:
             pass
 
-async def PBL():
+async def PBL(drone):
     async for mode in telemetry.FlightMode():
         if mode==4:
             pass
