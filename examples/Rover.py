@@ -141,22 +141,44 @@ async def Record(drone):
     recList.clear()
     async for mode in telemetry.FlightMode():
         if mode==9:
-            async for pos in drone.telemetry.position():
+       async for pos in drone.telemetry.position():
                 recList.append((pos.latitude_deg),(pos.longitude_deg))            
+           
 
 async def PB():
     async for mode in telemetry.FlightMode():
         if mode==10:
-            pass
+            mission_items=[]
+            # NITYODAY CHANGES HERE
+            for index, tuple in enumerate(recList):
+	            lat = tuple[0]
+	            long = tuple[1]
+                
+	            mission_items.append(MissionItem(lat,
+                                     long,
+                                     25,
+                                     10,
+                                     True,
+                                     float('nan'),
+                                     float('nan'),
+                                     MissionItem.CameraAction.NONE,
+                                     float('nan'),
+                                     float('nan'),
+                                     float('nan'),
+                                     float('nan')))
+
+
+
+
+
+
+            
 
 async def PBL(drone): 
     global recList
     async for mode in telemetry.FlightMode():
         if mode==4:
             loopList=recList+recList.reverse()
-
-
-            
 """
 with open('output.txt', 'r') as f:
     lines = f.read().splitlines()
