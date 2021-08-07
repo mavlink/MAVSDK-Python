@@ -141,7 +141,7 @@ async def Record(drone):
     recList.clear()
     async for mode in telemetry.FlightMode():
         if mode==9:
-       async for pos in drone.telemetry.position():
+                 async for pos in drone.telemetry.position():
                 recList.append((pos.latitude_deg),(pos.longitude_deg))            
            
 
@@ -149,8 +149,9 @@ async def PB():
     async for mode in telemetry.FlightMode():
         if mode==10:
             mission_items=[]
+            copy_list=recList.copy()
             # NITYODAY CHANGES HERE
-            for index, tuple in enumerate(recList):
+            for index, tuple in enumerate(copy_list):
 	            lat = tuple[0]
 	            long = tuple[1]
                 
