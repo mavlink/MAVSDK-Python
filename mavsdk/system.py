@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+import logging
+import threading
+
 from .async_plugin_manager import AsyncPluginManager
 
 from . import action
@@ -27,6 +30,16 @@ from . import tune
 
 from . import bin
 
+
+class _LoggingThread(threading.Thread):
+    def __init__(self, pipe, log_fn):
+        super().__init__()
+        self.pipe = pipe
+        self.log_fn = log_fn
+
+    def run(self):
+        for line in self.pipe:
+            self.log_fn(line.decode("utf-8").replace("\n", ""))
 
 class System:
     """
@@ -281,8 +294,12 @@ class System:
                     bin_path_and_args.append(system_address)
                 p = subprocess.Popen(bin_path_and_args,
                                      shell=False,
-                                     stdout=subprocess.DEVNULL,
-                                     stderr=subprocess.DEVNULL)
+                                     stdout=subprocess.PIPE,
+                                     stderr=subprocess.STDOUT)
+
+                logger = logging.getLogger(__name__)
+                log_thread = _LoggingThread(p.stdout, logger.debug)
+                log_thread.start()
         except FileNotFoundError:
             print("""
 This installation does not provide an embedded 'mavsdk_server' binary.
