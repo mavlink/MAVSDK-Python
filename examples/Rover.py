@@ -7,7 +7,6 @@ from mavsdk import telemetry
 from mavsdk.mission import (MissionItem, MissionPlan)
 from mavsdk.telemetry import (FlightMode)
 
-logList=[] #to log all positions. 
 recList=[] #to record position when in record mode.
 
 async def run():
@@ -21,21 +20,6 @@ async def run():
     asyncio.ensure_future(print_position(drone))
     asyncio.ensure_future(log(drone))
     asyncio.ensure_future(fly(drone))
-
-async def print_battery(drone):
-    async for battery in drone.telemetry.battery():
-        print(f"Battery: {battery.remaining_percent}")
-
-
-async def print_gps_info(drone):
-    async for gps_info in drone.telemetry.gps_info():
-        print(f"GPS info: {gps_info}")
-
-
-async def print_in_air(drone):
-    async for in_air in drone.telemetry.in_air():
-        print(f"In air: {in_air}")
-
 
 async def print_mission_progress(drone):
     async for mission_progress in drone.mission.mission_progress():
@@ -61,7 +45,6 @@ async def observe_is_in_air(drone, running_tasks):  #killer function
                 except asyncio.CancelledError:
                     pass
             await asyncio.get_event_loop().shutdown_asyncgens()
-
             return
 
 async def fly(drone):   #main function
@@ -77,11 +60,26 @@ async def print_position(drone):
     async for position in drone.telemetry.position():
         print(position)
 
+async def print_battery(drone):
+    async for battery in drone.telemetry.battery():
+        print(f"Battery: {battery.remaining_percent}")
+
+
+async def print_gps_info(drone):
+    async for gps_info in drone.telemetry.gps_info():
+        print(f"GPS info: {gps_info}")
+
+
+async def print_in_air(drone):
+    async for in_air in drone.telemetry.in_air():
+        print(f"In air: {in_air}")
+
 async def log(drone):
-    global logList
-    async for pos in drone.telemetry.position():
-        logList.append((pos.latitude_deg),(pos.longitude_deg))
-        await asyncio.sleep(0.5)
+    with open('output.txt', 'w') as f:
+        async for telem in drone.telemetry():
+            f.write(str(telem.position.latitude_deg)+" | "+str(telem.position.longitude_deg)+"\n")
+            f.write("GPS Info:"+str(telem.gps_info)+" | "+str(telem.)"\n")
+            await asyncio.sleep(0.5)
 
 def getMissionPlan(copiedlist):
     mission_items=[]
