@@ -8,6 +8,7 @@ from mavsdk.mission import (MissionItem, MissionPlan)
 from mavsdk.telemetry import (FlightMode)
 
 recList=[] #to record position when in record mode.
+MissionPlan
 #EDITABLE CODE STARTS HERE
 
 async def print_Telemetry_All(drone):
@@ -43,24 +44,21 @@ async def Record(drone):
                 recList.append((pos.latitude_deg),(pos.longitude_deg))
                 await asyncio.sleep(1)
 
-async def PB(): #playback mode
+async def PB(drone): #playback mode
     async for mode in telemetry.FlightMode():
         if mode==10: # Altitude Control mode
             print("Playback mode triggered")
-            mission_items=[]
             copy_list=recList.copy()
-            mission_Plan=getMissionPlan(copy_list) 
-"""
-    await drone.mission.set_return_to_launch_after_mission(False)
-
-    print("-- Uploading mission")
-    await drone.mission.upload_mission(mission_plan)
-
-    print("-- Arming")
-    await drone.action.arm()
-
-    print("-- Starting mission")
-    await drone.mission.start_mission()"""
+            missionPlan=getMissionPlan(copy_list)
+            
+            #Feeding the mission
+            await drone.mission.set_return_to_launch_after_mission(True)
+            print("-- Uploading mission")
+            await drone.mission.upload_mission(missionPlan)
+            print("-- Arming")
+            await drone.action.arm()
+            print("-- Starting mission")
+            await drone.mission.start_mission()
 
 async def PBL(drone): 
     global recList
@@ -69,13 +67,25 @@ async def PBL(drone):
             print("Playback Loop mode triggered")
             copy_list=recList.copy()
             loopList=recList.reverse()+recList
-            mission_Plan=getMissionPlan(loopList)
+            missionPlan=getMissionPlan(loopList)
+
+            #Feeding the mission
+            await drone.mission.set_return_to_launch_after_mission(True)
+            print("-- Uploading mission")
+            await drone.mission.upload_mission(missionPlan)
+            print("-- Arming")
+            await drone.action.arm()
+            print("-- Starting mission")
+            await drone.mission.start_mission()
 
 async def run():
     drone = System() # Init the drone
     await drone.connect(system_address="udp://:14540") # Connect the drone
+    print("-- starting to print telemetry.")
     asyncio.ensure_future(print_Telemetry_All(drone)) #Print all important data
+    print("-- starting to log telemetry.")
     asyncio.ensure_future(log(drone)) #Log Position and battery.
+
 
 #EDITABLE CODE ENDS HERE
 
