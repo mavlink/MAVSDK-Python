@@ -11,7 +11,7 @@ async def run():
     print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print(f"Drone discovered!")
+            print("Drone discovered!")
             break
 
     print("Waiting for drone to have a global position estimate...")
@@ -32,9 +32,15 @@ async def run():
     await drone.action.takeoff()
 
     await asyncio.sleep(1)
-    flying_alt = absolute_altitude + 20.0 #To fly drone 20m above the ground plane
-    #goto_location() takes Absolute MSL altitude 
-    await drone.action.goto_location(47.399386, 8.535245, flying_alt, 0)
+    # To fly drone 20m above the ground plane
+    flying_alt = absolute_altitude + 20.0
+    # goto_location() takes Absolute MSL altitude
+    await drone.action.goto_location(47.397606, 8.543060, flying_alt, 0)
+
+    while True:
+        print("Staying connected, press Ctrl-C to exit")
+        await asyncio.sleep(1)
+
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
