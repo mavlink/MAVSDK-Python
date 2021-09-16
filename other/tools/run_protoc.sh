@@ -24,7 +24,11 @@ command -v protoc-gen-mavsdk > /dev/null || {
 }
 
 function snake_case_to_camel_case {
-    echo $1 | sed -r 's/(^|_)([a-z])/\U\2/g'
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        echo $1 | gsed -r 's/(^|_)([a-z])/\U\2/g'
+    else
+        echo $1 | sed -r 's/(^|_)([a-z])/\U\2/g'
+    fi
 }
 
 function generate {
