@@ -24,7 +24,7 @@ command -v protoc-gen-mavsdk > /dev/null || {
 }
 
 function snake_case_to_camel_case {
-    echo $1 | sed -r 's/(^|_)([a-z])/\U\2/g'
+    echo $1 | awk -v FS="_" -v OFS="" '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1'
 }
 
 function generate {
