@@ -42,6 +42,11 @@ class TelemetryServiceStub(object):
                 request_serializer=telemetry_dot_telemetry__pb2.SubscribeArmedRequest.SerializeToString,
                 response_deserializer=telemetry_dot_telemetry__pb2.ArmedResponse.FromString,
                 )
+        self.SubscribeVtolState = channel.unary_stream(
+                '/mavsdk.rpc.telemetry.TelemetryService/SubscribeVtolState',
+                request_serializer=telemetry_dot_telemetry__pb2.SubscribeVtolStateRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.VtolStateResponse.FromString,
+                )
         self.SubscribeAttitudeQuaternion = channel.unary_stream(
                 '/mavsdk.rpc.telemetry.TelemetryService/SubscribeAttitudeQuaternion',
                 request_serializer=telemetry_dot_telemetry__pb2.SubscribeAttitudeQuaternionRequest.SerializeToString,
@@ -172,6 +177,11 @@ class TelemetryServiceStub(object):
                 request_serializer=telemetry_dot_telemetry__pb2.SubscribeScaledPressureRequest.SerializeToString,
                 response_deserializer=telemetry_dot_telemetry__pb2.ScaledPressureResponse.FromString,
                 )
+        self.SubscribeHeading = channel.unary_stream(
+                '/mavsdk.rpc.telemetry.TelemetryService/SubscribeHeading',
+                request_serializer=telemetry_dot_telemetry__pb2.SubscribeHeadingRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.HeadingResponse.FromString,
+                )
         self.SetRatePosition = channel.unary_unary(
                 '/mavsdk.rpc.telemetry.TelemetryService/SetRatePosition',
                 request_serializer=telemetry_dot_telemetry__pb2.SetRatePositionRequest.SerializeToString,
@@ -191,6 +201,11 @@ class TelemetryServiceStub(object):
                 '/mavsdk.rpc.telemetry.TelemetryService/SetRateLandedState',
                 request_serializer=telemetry_dot_telemetry__pb2.SetRateLandedStateRequest.SerializeToString,
                 response_deserializer=telemetry_dot_telemetry__pb2.SetRateLandedStateResponse.FromString,
+                )
+        self.SetRateVtolState = channel.unary_unary(
+                '/mavsdk.rpc.telemetry.TelemetryService/SetRateVtolState',
+                request_serializer=telemetry_dot_telemetry__pb2.SetRateVtolStateRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.SetRateVtolStateResponse.FromString,
                 )
         self.SetRateAttitude = channel.unary_unary(
                 '/mavsdk.rpc.telemetry.TelemetryService/SetRateAttitude',
@@ -320,6 +335,13 @@ class TelemetryServiceServicer(object):
 
     def SubscribeArmed(self, request, context):
         """Subscribe to armed updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeVtolState(self, request, context):
+        """subscribe to vtol state Updates
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -507,6 +529,13 @@ class TelemetryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SubscribeHeading(self, request, context):
+        """Subscribe to 'Heading' updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetRatePosition(self, request, context):
         """Set rate to 'position' updates.
         """
@@ -530,6 +559,13 @@ class TelemetryServiceServicer(object):
 
     def SetRateLandedState(self, request, context):
         """Set rate to landed state updates
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetRateVtolState(self, request, context):
+        """Set rate to VTOL state updates
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -689,6 +725,11 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     request_deserializer=telemetry_dot_telemetry__pb2.SubscribeArmedRequest.FromString,
                     response_serializer=telemetry_dot_telemetry__pb2.ArmedResponse.SerializeToString,
             ),
+            'SubscribeVtolState': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeVtolState,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SubscribeVtolStateRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.VtolStateResponse.SerializeToString,
+            ),
             'SubscribeAttitudeQuaternion': grpc.unary_stream_rpc_method_handler(
                     servicer.SubscribeAttitudeQuaternion,
                     request_deserializer=telemetry_dot_telemetry__pb2.SubscribeAttitudeQuaternionRequest.FromString,
@@ -819,6 +860,11 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     request_deserializer=telemetry_dot_telemetry__pb2.SubscribeScaledPressureRequest.FromString,
                     response_serializer=telemetry_dot_telemetry__pb2.ScaledPressureResponse.SerializeToString,
             ),
+            'SubscribeHeading': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeHeading,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SubscribeHeadingRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.HeadingResponse.SerializeToString,
+            ),
             'SetRatePosition': grpc.unary_unary_rpc_method_handler(
                     servicer.SetRatePosition,
                     request_deserializer=telemetry_dot_telemetry__pb2.SetRatePositionRequest.FromString,
@@ -838,6 +884,11 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     servicer.SetRateLandedState,
                     request_deserializer=telemetry_dot_telemetry__pb2.SetRateLandedStateRequest.FromString,
                     response_serializer=telemetry_dot_telemetry__pb2.SetRateLandedStateResponse.SerializeToString,
+            ),
+            'SetRateVtolState': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetRateVtolState,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SetRateVtolStateRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.SetRateVtolStateResponse.SerializeToString,
             ),
             'SetRateAttitude': grpc.unary_unary_rpc_method_handler(
                     servicer.SetRateAttitude,
@@ -1024,6 +1075,23 @@ class TelemetryService(object):
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SubscribeArmed',
             telemetry_dot_telemetry__pb2.SubscribeArmedRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.ArmedResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeVtolState(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SubscribeVtolState',
+            telemetry_dot_telemetry__pb2.SubscribeVtolStateRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.VtolStateResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -1470,6 +1538,23 @@ class TelemetryService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def SubscribeHeading(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SubscribeHeading',
+            telemetry_dot_telemetry__pb2.SubscribeHeadingRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.HeadingResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def SetRatePosition(request,
             target,
             options=(),
@@ -1534,6 +1619,23 @@ class TelemetryService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SetRateLandedState',
             telemetry_dot_telemetry__pb2.SetRateLandedStateRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateLandedStateResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetRateVtolState(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SetRateVtolState',
+            telemetry_dot_telemetry__pb2.SetRateVtolStateRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.SetRateVtolStateResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

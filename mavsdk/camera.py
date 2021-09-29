@@ -1752,6 +1752,26 @@ class Camera(AsyncBase):
         return CameraResult.translate_from_rpc(response.camera_result)
     
 
+    async def prepare(self):
+        """
+         Prepare the camera plugin (e.g. download the camera definition, etc).
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.PrepareRequest()
+        response = await self._stub.Prepare(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not CameraResult.Result.SUCCESS:
+            raise CameraError(result, "prepare()")
+        
+
     async def take_photo(self):
         """
          Take one photo.

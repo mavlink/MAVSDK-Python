@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\026io.mavsdk.param_serverB\020ParamServerProto',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x1fparam_server/param_server.proto\x12\x17mavsdk.rpc.param_server\x1a\x14mavsdk_options.proto\"\'\n\x17RetrieveParamIntRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"k\n\x18RetrieveParamIntResponse\x12@\n\x0cparam_result\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.param_server.ParamServerResult\x12\r\n\x05value\x18\x02 \x01(\x05\"5\n\x16ProvideParamIntRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05\"[\n\x17ProvideParamIntResponse\x12@\n\x0cparam_result\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.param_server.ParamServerResult\")\n\x19RetrieveParamFloatRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"m\n\x1aRetrieveParamFloatResponse\x12@\n\x0cparam_result\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.param_server.ParamServerResult\x12\r\n\x05value\x18\x02 \x01(\x02\"7\n\x18ProvideParamFloatRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02\"]\n\x19ProvideParamFloatResponse\x12@\n\x0cparam_result\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.param_server.ParamServerResult\"\x1a\n\x18RetrieveAllParamsRequest\"O\n\x19RetrieveAllParamsResponse\x12\x32\n\x06params\x18\x01 \x01(\x0b\x32\".mavsdk.rpc.param_server.AllParams\"\'\n\x08IntParam\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05\")\n\nFloatParam\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02\"}\n\tAllParams\x12\x35\n\nint_params\x18\x01 \x03(\x0b\x32!.mavsdk.rpc.param_server.IntParam\x12\x39\n\x0c\x66loat_params\x18\x02 \x03(\x0b\x32#.mavsdk.rpc.param_server.FloatParam\"\xe9\x01\n\x11ParamServerResult\x12\x41\n\x06result\x18\x01 \x01(\x0e\x32\x31.mavsdk.rpc.param_server.ParamServerResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"}\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NOT_FOUND\x10\x02\x12\x15\n\x11RESULT_WRONG_TYPE\x10\x03\x12\x1e\n\x1aRESULT_PARAM_NAME_TOO_LONG\x10\x04\x32\x9b\x05\n\x12ParamServerService\x12}\n\x10RetrieveParamInt\x12\x30.mavsdk.rpc.param_server.RetrieveParamIntRequest\x1a\x31.mavsdk.rpc.param_server.RetrieveParamIntResponse\"\x04\x80\xb5\x18\x01\x12z\n\x0fProvideParamInt\x12/.mavsdk.rpc.param_server.ProvideParamIntRequest\x1a\x30.mavsdk.rpc.param_server.ProvideParamIntResponse\"\x04\x80\xb5\x18\x01\x12\x83\x01\n\x12RetrieveParamFloat\x12\x32.mavsdk.rpc.param_server.RetrieveParamFloatRequest\x1a\x33.mavsdk.rpc.param_server.RetrieveParamFloatResponse\"\x04\x80\xb5\x18\x01\x12\x80\x01\n\x11ProvideParamFloat\x12\x31.mavsdk.rpc.param_server.ProvideParamFloatRequest\x1a\x32.mavsdk.rpc.param_server.ProvideParamFloatResponse\"\x04\x80\xb5\x18\x01\x12\x80\x01\n\x11RetrieveAllParams\x12\x31.mavsdk.rpc.param_server.RetrieveAllParamsRequest\x1a\x32.mavsdk.rpc.param_server.RetrieveAllParamsResponse\"\x04\x80\xb5\x18\x01\x42*\n\x16io.mavsdk.param_serverB\x10ParamServerProtob\x06proto3'
+  serialized_pb=b'\n\x1fparam_server/param_server.proto\x12\x17mavsdk.rpc.param_server\x1a\x14mavsdk_options.proto\"\'\n\x17RetrieveParamIntRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"r\n\x18RetrieveParamIntResponse\x12G\n\x13param_server_result\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.param_server.ParamServerResult\x12\r\n\x05value\x18\x02 \x01(\x05\"5\n\x16ProvideParamIntRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05\"b\n\x17ProvideParamIntResponse\x12G\n\x13param_server_result\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.param_server.ParamServerResult\")\n\x19RetrieveParamFloatRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"t\n\x1aRetrieveParamFloatResponse\x12G\n\x13param_server_result\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.param_server.ParamServerResult\x12\r\n\x05value\x18\x02 \x01(\x02\"7\n\x18ProvideParamFloatRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02\"d\n\x19ProvideParamFloatResponse\x12G\n\x13param_server_result\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.param_server.ParamServerResult\"\x1a\n\x18RetrieveAllParamsRequest\"O\n\x19RetrieveAllParamsResponse\x12\x32\n\x06params\x18\x01 \x01(\x0b\x32\".mavsdk.rpc.param_server.AllParams\"\'\n\x08IntParam\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05\")\n\nFloatParam\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02\"}\n\tAllParams\x12\x35\n\nint_params\x18\x01 \x03(\x0b\x32!.mavsdk.rpc.param_server.IntParam\x12\x39\n\x0c\x66loat_params\x18\x02 \x03(\x0b\x32#.mavsdk.rpc.param_server.FloatParam\"\xe9\x01\n\x11ParamServerResult\x12\x41\n\x06result\x18\x01 \x01(\x0e\x32\x31.mavsdk.rpc.param_server.ParamServerResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"}\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NOT_FOUND\x10\x02\x12\x15\n\x11RESULT_WRONG_TYPE\x10\x03\x12\x1e\n\x1aRESULT_PARAM_NAME_TOO_LONG\x10\x04\x32\x9b\x05\n\x12ParamServerService\x12}\n\x10RetrieveParamInt\x12\x30.mavsdk.rpc.param_server.RetrieveParamIntRequest\x1a\x31.mavsdk.rpc.param_server.RetrieveParamIntResponse\"\x04\x80\xb5\x18\x01\x12z\n\x0fProvideParamInt\x12/.mavsdk.rpc.param_server.ProvideParamIntRequest\x1a\x30.mavsdk.rpc.param_server.ProvideParamIntResponse\"\x04\x80\xb5\x18\x01\x12\x83\x01\n\x12RetrieveParamFloat\x12\x32.mavsdk.rpc.param_server.RetrieveParamFloatRequest\x1a\x33.mavsdk.rpc.param_server.RetrieveParamFloatResponse\"\x04\x80\xb5\x18\x01\x12\x80\x01\n\x11ProvideParamFloat\x12\x31.mavsdk.rpc.param_server.ProvideParamFloatRequest\x1a\x32.mavsdk.rpc.param_server.ProvideParamFloatResponse\"\x04\x80\xb5\x18\x01\x12\x80\x01\n\x11RetrieveAllParams\x12\x31.mavsdk.rpc.param_server.RetrieveAllParamsRequest\x1a\x32.mavsdk.rpc.param_server.RetrieveAllParamsResponse\"\x04\x80\xb5\x18\x01\x42*\n\x16io.mavsdk.param_serverB\x10ParamServerProtob\x06proto3'
   ,
   dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
 
@@ -61,8 +61,8 @@ _PARAMSERVERRESULT_RESULT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1115,
-  serialized_end=1240,
+  serialized_start=1143,
+  serialized_end=1268,
 )
 _sym_db.RegisterEnumDescriptor(_PARAMSERVERRESULT_RESULT)
 
@@ -108,7 +108,7 @@ _RETRIEVEPARAMINTRESPONSE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='param_result', full_name='mavsdk.rpc.param_server.RetrieveParamIntResponse.param_result', index=0,
+      name='param_server_result', full_name='mavsdk.rpc.param_server.RetrieveParamIntResponse.param_server_result', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -134,7 +134,7 @@ _RETRIEVEPARAMINTRESPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=123,
-  serialized_end=230,
+  serialized_end=237,
 )
 
 
@@ -172,8 +172,8 @@ _PROVIDEPARAMINTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=232,
-  serialized_end=285,
+  serialized_start=239,
+  serialized_end=292,
 )
 
 
@@ -186,7 +186,7 @@ _PROVIDEPARAMINTRESPONSE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='param_result', full_name='mavsdk.rpc.param_server.ProvideParamIntResponse.param_result', index=0,
+      name='param_server_result', full_name='mavsdk.rpc.param_server.ProvideParamIntResponse.param_server_result', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -204,8 +204,8 @@ _PROVIDEPARAMINTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=287,
-  serialized_end=378,
+  serialized_start=294,
+  serialized_end=392,
 )
 
 
@@ -236,8 +236,8 @@ _RETRIEVEPARAMFLOATREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=380,
-  serialized_end=421,
+  serialized_start=394,
+  serialized_end=435,
 )
 
 
@@ -250,7 +250,7 @@ _RETRIEVEPARAMFLOATRESPONSE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='param_result', full_name='mavsdk.rpc.param_server.RetrieveParamFloatResponse.param_result', index=0,
+      name='param_server_result', full_name='mavsdk.rpc.param_server.RetrieveParamFloatResponse.param_server_result', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -275,8 +275,8 @@ _RETRIEVEPARAMFLOATRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=423,
-  serialized_end=532,
+  serialized_start=437,
+  serialized_end=553,
 )
 
 
@@ -314,8 +314,8 @@ _PROVIDEPARAMFLOATREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=534,
-  serialized_end=589,
+  serialized_start=555,
+  serialized_end=610,
 )
 
 
@@ -328,7 +328,7 @@ _PROVIDEPARAMFLOATRESPONSE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='param_result', full_name='mavsdk.rpc.param_server.ProvideParamFloatResponse.param_result', index=0,
+      name='param_server_result', full_name='mavsdk.rpc.param_server.ProvideParamFloatResponse.param_server_result', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -346,8 +346,8 @@ _PROVIDEPARAMFLOATRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=591,
-  serialized_end=684,
+  serialized_start=612,
+  serialized_end=712,
 )
 
 
@@ -371,8 +371,8 @@ _RETRIEVEALLPARAMSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=686,
-  serialized_end=712,
+  serialized_start=714,
+  serialized_end=740,
 )
 
 
@@ -403,8 +403,8 @@ _RETRIEVEALLPARAMSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=714,
-  serialized_end=793,
+  serialized_start=742,
+  serialized_end=821,
 )
 
 
@@ -442,8 +442,8 @@ _INTPARAM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=795,
-  serialized_end=834,
+  serialized_start=823,
+  serialized_end=862,
 )
 
 
@@ -481,8 +481,8 @@ _FLOATPARAM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=836,
-  serialized_end=877,
+  serialized_start=864,
+  serialized_end=905,
 )
 
 
@@ -520,8 +520,8 @@ _ALLPARAMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=879,
-  serialized_end=1004,
+  serialized_start=907,
+  serialized_end=1032,
 )
 
 
@@ -560,14 +560,14 @@ _PARAMSERVERRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1007,
-  serialized_end=1240,
+  serialized_start=1035,
+  serialized_end=1268,
 )
 
-_RETRIEVEPARAMINTRESPONSE.fields_by_name['param_result'].message_type = _PARAMSERVERRESULT
-_PROVIDEPARAMINTRESPONSE.fields_by_name['param_result'].message_type = _PARAMSERVERRESULT
-_RETRIEVEPARAMFLOATRESPONSE.fields_by_name['param_result'].message_type = _PARAMSERVERRESULT
-_PROVIDEPARAMFLOATRESPONSE.fields_by_name['param_result'].message_type = _PARAMSERVERRESULT
+_RETRIEVEPARAMINTRESPONSE.fields_by_name['param_server_result'].message_type = _PARAMSERVERRESULT
+_PROVIDEPARAMINTRESPONSE.fields_by_name['param_server_result'].message_type = _PARAMSERVERRESULT
+_RETRIEVEPARAMFLOATRESPONSE.fields_by_name['param_server_result'].message_type = _PARAMSERVERRESULT
+_PROVIDEPARAMFLOATRESPONSE.fields_by_name['param_server_result'].message_type = _PARAMSERVERRESULT
 _RETRIEVEALLPARAMSRESPONSE.fields_by_name['params'].message_type = _ALLPARAMS
 _ALLPARAMS.fields_by_name['int_params'].message_type = _INTPARAM
 _ALLPARAMS.fields_by_name['float_params'].message_type = _FLOATPARAM
@@ -697,8 +697,8 @@ _PARAMSERVERSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=1243,
-  serialized_end=1910,
+  serialized_start=1271,
+  serialized_end=1938,
   methods=[
   _descriptor.MethodDescriptor(
     name='RetrieveParamInt',

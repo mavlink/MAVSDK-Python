@@ -369,6 +369,66 @@ class LandedState(Enum):
         return self.name
 
 
+class VtolState(Enum):
+    """
+     VTOL State enumeration
+
+     Values
+     ------
+     UNDEFINED
+          MAV is not configured as VTOL
+
+     TRANSITION_TO_FW
+          VTOL is in transition from multicopter to fixed-wing
+
+     TRANSITION_TO_MC
+          VTOL is in transition from fixed-wing to multicopter
+
+     MC
+          VTOL is in multicopter state
+
+     FW
+          VTOL is in fixed-wing state
+
+     """
+
+    
+    UNDEFINED = 0
+    TRANSITION_TO_FW = 1
+    TRANSITION_TO_MC = 2
+    MC = 3
+    FW = 4
+
+    def translate_to_rpc(self):
+        if self == VtolState.UNDEFINED:
+            return telemetry_pb2.VTOL_STATE_UNDEFINED
+        if self == VtolState.TRANSITION_TO_FW:
+            return telemetry_pb2.VTOL_STATE_TRANSITION_TO_FW
+        if self == VtolState.TRANSITION_TO_MC:
+            return telemetry_pb2.VTOL_STATE_TRANSITION_TO_MC
+        if self == VtolState.MC:
+            return telemetry_pb2.VTOL_STATE_MC
+        if self == VtolState.FW:
+            return telemetry_pb2.VTOL_STATE_FW
+
+    @staticmethod
+    def translate_from_rpc(rpc_enum_value):
+        """ Parses a gRPC response """
+        if rpc_enum_value == telemetry_pb2.VTOL_STATE_UNDEFINED:
+            return VtolState.UNDEFINED
+        if rpc_enum_value == telemetry_pb2.VTOL_STATE_TRANSITION_TO_FW:
+            return VtolState.TRANSITION_TO_FW
+        if rpc_enum_value == telemetry_pb2.VTOL_STATE_TRANSITION_TO_MC:
+            return VtolState.TRANSITION_TO_MC
+        if rpc_enum_value == telemetry_pb2.VTOL_STATE_MC:
+            return VtolState.MC
+        if rpc_enum_value == telemetry_pb2.VTOL_STATE_FW:
+            return VtolState.FW
+
+    def __str__(self):
+        return self.name
+
+
 class Position:
     """
      Position type in global coordinates.
@@ -470,6 +530,64 @@ class Position:
         
             
         rpcPosition.relative_altitude_m = self.relative_altitude_m
+            
+        
+        
+
+
+class Heading:
+    """
+     Heading type used for global position
+
+     Parameters
+     ----------
+     heading_deg : double
+          Heading in degrees (range: 0 to +360)
+
+     """
+
+    
+
+    def __init__(
+            self,
+            heading_deg):
+        """ Initializes the Heading object """
+        self.heading_deg = heading_deg
+
+    def __equals__(self, to_compare):
+        """ Checks if two Heading are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Heading object
+            return \
+                (self.heading_deg == to_compare.heading_deg)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Heading in string representation """
+        struct_repr = ", ".join([
+                "heading_deg: " + str(self.heading_deg)
+                ])
+
+        return f"Heading: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcHeading):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Heading(
+                
+                rpcHeading.heading_deg
+                )
+
+    def translate_to_rpc(self, rpcHeading):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcHeading.heading_deg = self.heading_deg
             
         
         
@@ -3627,6 +3745,30 @@ class Telemetry(AsyncBase):
         finally:
             armed_stream.cancel()
 
+    async def vtol_state(self):
+        """
+         subscribe to vtol state Updates
+
+         Yields
+         -------
+         vtol_state : VtolState
+              The next 'vtol' state
+
+         
+        """
+
+        request = telemetry_pb2.SubscribeVtolStateRequest()
+        vtol_state_stream = self._stub.SubscribeVtolState(request)
+
+        try:
+            async for response in vtol_state_stream:
+                
+
+            
+                yield VtolState.translate_from_rpc(response.vtol_state)
+        finally:
+            vtol_state_stream.cancel()
+
     async def attitude_quaternion(self):
         """
          Subscribe to 'attitude' updates (quaternion).
@@ -4251,6 +4393,30 @@ class Telemetry(AsyncBase):
         finally:
             scaled_pressure_stream.cancel()
 
+    async def heading(self):
+        """
+         Subscribe to 'Heading' updates.
+
+         Yields
+         -------
+         heading_deg : Heading
+              The next heading (yaw) in degrees
+
+         
+        """
+
+        request = telemetry_pb2.SubscribeHeadingRequest()
+        heading_stream = self._stub.SubscribeHeading(request)
+
+        try:
+            async for response in heading_stream:
+                
+
+            
+                yield Heading.translate_from_rpc(response.heading_deg)
+        finally:
+            heading_stream.cancel()
+
     async def set_rate_position(self, rate_hz):
         """
          Set rate to 'position' updates.
@@ -4353,6 +4519,32 @@ class Telemetry(AsyncBase):
 
         if result.result is not TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_landed_state()", rate_hz)
+        
+
+    async def set_rate_vtol_state(self, rate_hz):
+        """
+         Set rate to VTOL state updates
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateVtolStateRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateVtolState(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_vtol_state()", rate_hz)
         
 
     async def set_rate_attitude(self, rate_hz):

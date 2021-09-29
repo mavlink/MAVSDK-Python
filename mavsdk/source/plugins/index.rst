@@ -29,3 +29,5 @@ Plugins
    transponder
    param_server
    telemetry_server
+   action_server
+   mission_raw_server

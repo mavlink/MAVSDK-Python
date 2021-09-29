@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\020io.mavsdk.cameraB\013CameraProto',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x13\x63\x61mera/camera.proto\x12\x11mavsdk.rpc.camera\x1a\x14mavsdk_options.proto\"\x12\n\x10TakePhotoRequest\"K\n\x11TakePhotoResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"/\n\x19StartPhotoIntervalRequest\x12\x12\n\ninterval_s\x18\x01 \x01(\x02\"T\n\x1aStartPhotoIntervalResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x1a\n\x18StopPhotoIntervalRequest\"S\n\x19StopPhotoIntervalResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x13\n\x11StartVideoRequest\"L\n\x12StartVideoResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x12\n\x10StopVideoRequest\"K\n\x11StopVideoResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x1c\n\x1aStartVideoStreamingRequest\"U\n\x1bStartVideoStreamingResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x1b\n\x19StopVideoStreamingRequest\"T\n\x1aStopVideoStreamingResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"7\n\x0eSetModeRequest\x12%\n\x04mode\x18\x01 \x01(\x0e\x32\x17.mavsdk.rpc.camera.Mode\"I\n\x0fSetModeResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"I\n\x11ListPhotosRequest\x12\x34\n\x0cphotos_range\x18\x01 \x01(\x0e\x32\x1e.mavsdk.rpc.camera.PhotosRange\"\x83\x01\n\x12ListPhotosResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\x12\x35\n\rcapture_infos\x18\x02 \x03(\x0b\x32\x1e.mavsdk.rpc.camera.CaptureInfo\"\x1d\n\x1bSubscribeInformationRequest\"J\n\x13InformationResponse\x12\x33\n\x0binformation\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.camera.Information\"\x16\n\x14SubscribeModeRequest\"5\n\x0cModeResponse\x12%\n\x04mode\x18\x01 \x01(\x0e\x32\x17.mavsdk.rpc.camera.Mode\"!\n\x1fSubscribeVideoStreamInfoRequest\"X\n\x17VideoStreamInfoResponse\x12=\n\x11video_stream_info\x18\x01 \x01(\x0b\x32\".mavsdk.rpc.camera.VideoStreamInfo\"\x1d\n\x1bSubscribeCaptureInfoRequest\"K\n\x13\x43\x61ptureInfoResponse\x12\x34\n\x0c\x63\x61pture_info\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.camera.CaptureInfo\"\x18\n\x16SubscribeStatusRequest\"B\n\x0eStatusResponse\x12\x30\n\rcamera_status\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.camera.Status\"!\n\x1fSubscribeCurrentSettingsRequest\"O\n\x17\x43urrentSettingsResponse\x12\x34\n\x10\x63urrent_settings\x18\x01 \x03(\x0b\x32\x1a.mavsdk.rpc.camera.Setting\"(\n&SubscribePossibleSettingOptionsRequest\"\\\n\x1ePossibleSettingOptionsResponse\x12:\n\x0fsetting_options\x18\x01 \x03(\x0b\x32!.mavsdk.rpc.camera.SettingOptions\"@\n\x11SetSettingRequest\x12+\n\x07setting\x18\x01 \x01(\x0b\x32\x1a.mavsdk.rpc.camera.Setting\"L\n\x12SetSettingResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"@\n\x11GetSettingRequest\x12+\n\x07setting\x18\x01 \x01(\x0b\x32\x1a.mavsdk.rpc.camera.Setting\"y\n\x12GetSettingResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\x12+\n\x07setting\x18\x02 \x01(\x0b\x32\x1a.mavsdk.rpc.camera.Setting\"\x16\n\x14\x46ormatStorageRequest\"O\n\x15\x46ormatStorageResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\xa0\x02\n\x0c\x43\x61meraResult\x12\x36\n\x06result\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.camera.CameraResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xc3\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x16\n\x12RESULT_IN_PROGRESS\x10\x02\x12\x0f\n\x0bRESULT_BUSY\x10\x03\x12\x11\n\rRESULT_DENIED\x10\x04\x12\x10\n\x0cRESULT_ERROR\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x19\n\x15RESULT_WRONG_ARGUMENT\x10\x07\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x08\"q\n\x08Position\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x12\x1b\n\x13relative_altitude_m\x18\x04 \x01(\x02\"8\n\nQuaternion\x12\t\n\x01w\x18\x01 \x01(\x02\x12\t\n\x01x\x18\x02 \x01(\x02\x12\t\n\x01y\x18\x03 \x01(\x02\x12\t\n\x01z\x18\x04 \x01(\x02\"B\n\nEulerAngle\x12\x10\n\x08roll_deg\x18\x01 \x01(\x02\x12\x11\n\tpitch_deg\x18\x02 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x03 \x01(\x02\"\xff\x01\n\x0b\x43\x61ptureInfo\x12-\n\x08position\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.camera.Position\x12:\n\x13\x61ttitude_quaternion\x18\x02 \x01(\x0b\x32\x1d.mavsdk.rpc.camera.Quaternion\x12;\n\x14\x61ttitude_euler_angle\x18\x03 \x01(\x0b\x32\x1d.mavsdk.rpc.camera.EulerAngle\x12\x13\n\x0btime_utc_us\x18\x04 \x01(\x04\x12\x12\n\nis_success\x18\x05 \x01(\x08\x12\r\n\x05index\x18\x06 \x01(\x05\x12\x10\n\x08\x66ile_url\x18\x07 \x01(\t\"\xc5\x01\n\x13VideoStreamSettings\x12\x15\n\rframe_rate_hz\x18\x01 \x01(\x02\x12!\n\x19horizontal_resolution_pix\x18\x02 \x01(\r\x12\x1f\n\x17vertical_resolution_pix\x18\x03 \x01(\r\x12\x14\n\x0c\x62it_rate_b_s\x18\x04 \x01(\r\x12\x14\n\x0crotation_deg\x18\x05 \x01(\r\x12\x0b\n\x03uri\x18\x06 \x01(\t\x12\x1a\n\x12horizontal_fov_deg\x18\x07 \x01(\x02\"\xc2\x03\n\x0fVideoStreamInfo\x12\x38\n\x08settings\x18\x01 \x01(\x0b\x32&.mavsdk.rpc.camera.VideoStreamSettings\x12\x44\n\x06status\x18\x02 \x01(\x0e\x32\x34.mavsdk.rpc.camera.VideoStreamInfo.VideoStreamStatus\x12H\n\x08spectrum\x18\x03 \x01(\x0e\x32\x36.mavsdk.rpc.camera.VideoStreamInfo.VideoStreamSpectrum\"]\n\x11VideoStreamStatus\x12#\n\x1fVIDEO_STREAM_STATUS_NOT_RUNNING\x10\x00\x12#\n\x1fVIDEO_STREAM_STATUS_IN_PROGRESS\x10\x01\"\x85\x01\n\x13VideoStreamSpectrum\x12!\n\x1dVIDEO_STREAM_SPECTRUM_UNKNOWN\x10\x00\x12\'\n#VIDEO_STREAM_SPECTRUM_VISIBLE_LIGHT\x10\x01\x12\"\n\x1eVIDEO_STREAM_SPECTRUM_INFRARED\x10\x02\"\x93\x03\n\x06Status\x12\x10\n\x08video_on\x18\x01 \x01(\x08\x12\x19\n\x11photo_interval_on\x18\x02 \x01(\x08\x12\x18\n\x10used_storage_mib\x18\x03 \x01(\x02\x12\x1d\n\x15\x61vailable_storage_mib\x18\x04 \x01(\x02\x12\x19\n\x11total_storage_mib\x18\x05 \x01(\x02\x12\x18\n\x10recording_time_s\x18\x06 \x01(\x02\x12\x19\n\x11media_folder_name\x18\x07 \x01(\t\x12?\n\x0estorage_status\x18\x08 \x01(\x0e\x32\'.mavsdk.rpc.camera.Status.StorageStatus\"\x91\x01\n\rStorageStatus\x12 \n\x1cSTORAGE_STATUS_NOT_AVAILABLE\x10\x00\x12\x1e\n\x1aSTORAGE_STATUS_UNFORMATTED\x10\x01\x12\x1c\n\x18STORAGE_STATUS_FORMATTED\x10\x02\x12 \n\x1cSTORAGE_STATUS_NOT_SUPPORTED\x10\x03\"7\n\x06Option\x12\x11\n\toption_id\x18\x01 \x01(\t\x12\x1a\n\x12option_description\x18\x02 \x01(\t\"w\n\x07Setting\x12\x12\n\nsetting_id\x18\x01 \x01(\t\x12\x1b\n\x13setting_description\x18\x02 \x01(\t\x12)\n\x06option\x18\x03 \x01(\x0b\x32\x19.mavsdk.rpc.camera.Option\x12\x10\n\x08is_range\x18\x04 \x01(\x08\"\x7f\n\x0eSettingOptions\x12\x12\n\nsetting_id\x18\x01 \x01(\t\x12\x1b\n\x13setting_description\x18\x02 \x01(\t\x12*\n\x07options\x18\x03 \x03(\x0b\x32\x19.mavsdk.rpc.camera.Option\x12\x10\n\x08is_range\x18\x04 \x01(\x08\"\xd5\x01\n\x0bInformation\x12\x13\n\x0bvendor_name\x18\x01 \x01(\t\x12\x12\n\nmodel_name\x18\x02 \x01(\t\x12\x17\n\x0f\x66ocal_length_mm\x18\x03 \x01(\x02\x12!\n\x19horizontal_sensor_size_mm\x18\x04 \x01(\x02\x12\x1f\n\x17vertical_sensor_size_mm\x18\x05 \x01(\x02\x12 \n\x18horizontal_resolution_px\x18\x06 \x01(\r\x12\x1e\n\x16vertical_resolution_px\x18\x07 \x01(\r*8\n\x04Mode\x12\x10\n\x0cMODE_UNKNOWN\x10\x00\x12\x0e\n\nMODE_PHOTO\x10\x01\x12\x0e\n\nMODE_VIDEO\x10\x02*F\n\x0bPhotosRange\x12\x14\n\x10PHOTOS_RANGE_ALL\x10\x00\x12!\n\x1dPHOTOS_RANGE_SINCE_CONNECTION\x10\x01\x32\x98\x10\n\rCameraService\x12X\n\tTakePhoto\x12#.mavsdk.rpc.camera.TakePhotoRequest\x1a$.mavsdk.rpc.camera.TakePhotoResponse\"\x00\x12s\n\x12StartPhotoInterval\x12,.mavsdk.rpc.camera.StartPhotoIntervalRequest\x1a-.mavsdk.rpc.camera.StartPhotoIntervalResponse\"\x00\x12p\n\x11StopPhotoInterval\x12+.mavsdk.rpc.camera.StopPhotoIntervalRequest\x1a,.mavsdk.rpc.camera.StopPhotoIntervalResponse\"\x00\x12[\n\nStartVideo\x12$.mavsdk.rpc.camera.StartVideoRequest\x1a%.mavsdk.rpc.camera.StartVideoResponse\"\x00\x12X\n\tStopVideo\x12#.mavsdk.rpc.camera.StopVideoRequest\x1a$.mavsdk.rpc.camera.StopVideoResponse\"\x00\x12z\n\x13StartVideoStreaming\x12-.mavsdk.rpc.camera.StartVideoStreamingRequest\x1a..mavsdk.rpc.camera.StartVideoStreamingResponse\"\x04\x80\xb5\x18\x01\x12w\n\x12StopVideoStreaming\x12,.mavsdk.rpc.camera.StopVideoStreamingRequest\x1a-.mavsdk.rpc.camera.StopVideoStreamingResponse\"\x04\x80\xb5\x18\x01\x12R\n\x07SetMode\x12!.mavsdk.rpc.camera.SetModeRequest\x1a\".mavsdk.rpc.camera.SetModeResponse\"\x00\x12[\n\nListPhotos\x12$.mavsdk.rpc.camera.ListPhotosRequest\x1a%.mavsdk.rpc.camera.ListPhotosResponse\"\x00\x12]\n\rSubscribeMode\x12\'.mavsdk.rpc.camera.SubscribeModeRequest\x1a\x1f.mavsdk.rpc.camera.ModeResponse\"\x00\x30\x01\x12r\n\x14SubscribeInformation\x12..mavsdk.rpc.camera.SubscribeInformationRequest\x1a&.mavsdk.rpc.camera.InformationResponse\"\x00\x30\x01\x12~\n\x18SubscribeVideoStreamInfo\x12\x32.mavsdk.rpc.camera.SubscribeVideoStreamInfoRequest\x1a*.mavsdk.rpc.camera.VideoStreamInfoResponse\"\x00\x30\x01\x12v\n\x14SubscribeCaptureInfo\x12..mavsdk.rpc.camera.SubscribeCaptureInfoRequest\x1a&.mavsdk.rpc.camera.CaptureInfoResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x63\n\x0fSubscribeStatus\x12).mavsdk.rpc.camera.SubscribeStatusRequest\x1a!.mavsdk.rpc.camera.StatusResponse\"\x00\x30\x01\x12\x82\x01\n\x18SubscribeCurrentSettings\x12\x32.mavsdk.rpc.camera.SubscribeCurrentSettingsRequest\x1a*.mavsdk.rpc.camera.CurrentSettingsResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x93\x01\n\x1fSubscribePossibleSettingOptions\x12\x39.mavsdk.rpc.camera.SubscribePossibleSettingOptionsRequest\x1a\x31.mavsdk.rpc.camera.PossibleSettingOptionsResponse\"\x00\x30\x01\x12[\n\nSetSetting\x12$.mavsdk.rpc.camera.SetSettingRequest\x1a%.mavsdk.rpc.camera.SetSettingResponse\"\x00\x12[\n\nGetSetting\x12$.mavsdk.rpc.camera.GetSettingRequest\x1a%.mavsdk.rpc.camera.GetSettingResponse\"\x00\x12\x64\n\rFormatStorage\x12\'.mavsdk.rpc.camera.FormatStorageRequest\x1a(.mavsdk.rpc.camera.FormatStorageResponse\"\x00\x42\x1f\n\x10io.mavsdk.cameraB\x0b\x43\x61meraProtob\x06proto3'
+  serialized_pb=b'\n\x13\x63\x61mera/camera.proto\x12\x11mavsdk.rpc.camera\x1a\x14mavsdk_options.proto\"\x10\n\x0ePrepareRequest\"I\n\x0fPrepareResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x12\n\x10TakePhotoRequest\"K\n\x11TakePhotoResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"/\n\x19StartPhotoIntervalRequest\x12\x12\n\ninterval_s\x18\x01 \x01(\x02\"T\n\x1aStartPhotoIntervalResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x1a\n\x18StopPhotoIntervalRequest\"S\n\x19StopPhotoIntervalResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x13\n\x11StartVideoRequest\"L\n\x12StartVideoResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x12\n\x10StopVideoRequest\"K\n\x11StopVideoResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x1c\n\x1aStartVideoStreamingRequest\"U\n\x1bStartVideoStreamingResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\x1b\n\x19StopVideoStreamingRequest\"T\n\x1aStopVideoStreamingResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"7\n\x0eSetModeRequest\x12%\n\x04mode\x18\x01 \x01(\x0e\x32\x17.mavsdk.rpc.camera.Mode\"I\n\x0fSetModeResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"I\n\x11ListPhotosRequest\x12\x34\n\x0cphotos_range\x18\x01 \x01(\x0e\x32\x1e.mavsdk.rpc.camera.PhotosRange\"\x83\x01\n\x12ListPhotosResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\x12\x35\n\rcapture_infos\x18\x02 \x03(\x0b\x32\x1e.mavsdk.rpc.camera.CaptureInfo\"\x1d\n\x1bSubscribeInformationRequest\"J\n\x13InformationResponse\x12\x33\n\x0binformation\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.camera.Information\"\x16\n\x14SubscribeModeRequest\"5\n\x0cModeResponse\x12%\n\x04mode\x18\x01 \x01(\x0e\x32\x17.mavsdk.rpc.camera.Mode\"!\n\x1fSubscribeVideoStreamInfoRequest\"X\n\x17VideoStreamInfoResponse\x12=\n\x11video_stream_info\x18\x01 \x01(\x0b\x32\".mavsdk.rpc.camera.VideoStreamInfo\"\x1d\n\x1bSubscribeCaptureInfoRequest\"K\n\x13\x43\x61ptureInfoResponse\x12\x34\n\x0c\x63\x61pture_info\x18\x01 \x01(\x0b\x32\x1e.mavsdk.rpc.camera.CaptureInfo\"\x18\n\x16SubscribeStatusRequest\"B\n\x0eStatusResponse\x12\x30\n\rcamera_status\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.camera.Status\"!\n\x1fSubscribeCurrentSettingsRequest\"O\n\x17\x43urrentSettingsResponse\x12\x34\n\x10\x63urrent_settings\x18\x01 \x03(\x0b\x32\x1a.mavsdk.rpc.camera.Setting\"(\n&SubscribePossibleSettingOptionsRequest\"\\\n\x1ePossibleSettingOptionsResponse\x12:\n\x0fsetting_options\x18\x01 \x03(\x0b\x32!.mavsdk.rpc.camera.SettingOptions\"@\n\x11SetSettingRequest\x12+\n\x07setting\x18\x01 \x01(\x0b\x32\x1a.mavsdk.rpc.camera.Setting\"L\n\x12SetSettingResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"@\n\x11GetSettingRequest\x12+\n\x07setting\x18\x01 \x01(\x0b\x32\x1a.mavsdk.rpc.camera.Setting\"y\n\x12GetSettingResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\x12+\n\x07setting\x18\x02 \x01(\x0b\x32\x1a.mavsdk.rpc.camera.Setting\"\x16\n\x14\x46ormatStorageRequest\"O\n\x15\x46ormatStorageResponse\x12\x36\n\rcamera_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.camera.CameraResult\"\xa0\x02\n\x0c\x43\x61meraResult\x12\x36\n\x06result\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.camera.CameraResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xc3\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x16\n\x12RESULT_IN_PROGRESS\x10\x02\x12\x0f\n\x0bRESULT_BUSY\x10\x03\x12\x11\n\rRESULT_DENIED\x10\x04\x12\x10\n\x0cRESULT_ERROR\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x19\n\x15RESULT_WRONG_ARGUMENT\x10\x07\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x08\"q\n\x08Position\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x12\x1b\n\x13relative_altitude_m\x18\x04 \x01(\x02\"8\n\nQuaternion\x12\t\n\x01w\x18\x01 \x01(\x02\x12\t\n\x01x\x18\x02 \x01(\x02\x12\t\n\x01y\x18\x03 \x01(\x02\x12\t\n\x01z\x18\x04 \x01(\x02\"B\n\nEulerAngle\x12\x10\n\x08roll_deg\x18\x01 \x01(\x02\x12\x11\n\tpitch_deg\x18\x02 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x03 \x01(\x02\"\xff\x01\n\x0b\x43\x61ptureInfo\x12-\n\x08position\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.camera.Position\x12:\n\x13\x61ttitude_quaternion\x18\x02 \x01(\x0b\x32\x1d.mavsdk.rpc.camera.Quaternion\x12;\n\x14\x61ttitude_euler_angle\x18\x03 \x01(\x0b\x32\x1d.mavsdk.rpc.camera.EulerAngle\x12\x13\n\x0btime_utc_us\x18\x04 \x01(\x04\x12\x12\n\nis_success\x18\x05 \x01(\x08\x12\r\n\x05index\x18\x06 \x01(\x05\x12\x10\n\x08\x66ile_url\x18\x07 \x01(\t\"\xc5\x01\n\x13VideoStreamSettings\x12\x15\n\rframe_rate_hz\x18\x01 \x01(\x02\x12!\n\x19horizontal_resolution_pix\x18\x02 \x01(\r\x12\x1f\n\x17vertical_resolution_pix\x18\x03 \x01(\r\x12\x14\n\x0c\x62it_rate_b_s\x18\x04 \x01(\r\x12\x14\n\x0crotation_deg\x18\x05 \x01(\r\x12\x0b\n\x03uri\x18\x06 \x01(\t\x12\x1a\n\x12horizontal_fov_deg\x18\x07 \x01(\x02\"\xc2\x03\n\x0fVideoStreamInfo\x12\x38\n\x08settings\x18\x01 \x01(\x0b\x32&.mavsdk.rpc.camera.VideoStreamSettings\x12\x44\n\x06status\x18\x02 \x01(\x0e\x32\x34.mavsdk.rpc.camera.VideoStreamInfo.VideoStreamStatus\x12H\n\x08spectrum\x18\x03 \x01(\x0e\x32\x36.mavsdk.rpc.camera.VideoStreamInfo.VideoStreamSpectrum\"]\n\x11VideoStreamStatus\x12#\n\x1fVIDEO_STREAM_STATUS_NOT_RUNNING\x10\x00\x12#\n\x1fVIDEO_STREAM_STATUS_IN_PROGRESS\x10\x01\"\x85\x01\n\x13VideoStreamSpectrum\x12!\n\x1dVIDEO_STREAM_SPECTRUM_UNKNOWN\x10\x00\x12\'\n#VIDEO_STREAM_SPECTRUM_VISIBLE_LIGHT\x10\x01\x12\"\n\x1eVIDEO_STREAM_SPECTRUM_INFRARED\x10\x02\"\x93\x03\n\x06Status\x12\x10\n\x08video_on\x18\x01 \x01(\x08\x12\x19\n\x11photo_interval_on\x18\x02 \x01(\x08\x12\x18\n\x10used_storage_mib\x18\x03 \x01(\x02\x12\x1d\n\x15\x61vailable_storage_mib\x18\x04 \x01(\x02\x12\x19\n\x11total_storage_mib\x18\x05 \x01(\x02\x12\x18\n\x10recording_time_s\x18\x06 \x01(\x02\x12\x19\n\x11media_folder_name\x18\x07 \x01(\t\x12?\n\x0estorage_status\x18\x08 \x01(\x0e\x32\'.mavsdk.rpc.camera.Status.StorageStatus\"\x91\x01\n\rStorageStatus\x12 \n\x1cSTORAGE_STATUS_NOT_AVAILABLE\x10\x00\x12\x1e\n\x1aSTORAGE_STATUS_UNFORMATTED\x10\x01\x12\x1c\n\x18STORAGE_STATUS_FORMATTED\x10\x02\x12 \n\x1cSTORAGE_STATUS_NOT_SUPPORTED\x10\x03\"7\n\x06Option\x12\x11\n\toption_id\x18\x01 \x01(\t\x12\x1a\n\x12option_description\x18\x02 \x01(\t\"w\n\x07Setting\x12\x12\n\nsetting_id\x18\x01 \x01(\t\x12\x1b\n\x13setting_description\x18\x02 \x01(\t\x12)\n\x06option\x18\x03 \x01(\x0b\x32\x19.mavsdk.rpc.camera.Option\x12\x10\n\x08is_range\x18\x04 \x01(\x08\"\x7f\n\x0eSettingOptions\x12\x12\n\nsetting_id\x18\x01 \x01(\t\x12\x1b\n\x13setting_description\x18\x02 \x01(\t\x12*\n\x07options\x18\x03 \x03(\x0b\x32\x19.mavsdk.rpc.camera.Option\x12\x10\n\x08is_range\x18\x04 \x01(\x08\"\xd5\x01\n\x0bInformation\x12\x13\n\x0bvendor_name\x18\x01 \x01(\t\x12\x12\n\nmodel_name\x18\x02 \x01(\t\x12\x17\n\x0f\x66ocal_length_mm\x18\x03 \x01(\x02\x12!\n\x19horizontal_sensor_size_mm\x18\x04 \x01(\x02\x12\x1f\n\x17vertical_sensor_size_mm\x18\x05 \x01(\x02\x12 \n\x18horizontal_resolution_px\x18\x06 \x01(\r\x12\x1e\n\x16vertical_resolution_px\x18\x07 \x01(\r*8\n\x04Mode\x12\x10\n\x0cMODE_UNKNOWN\x10\x00\x12\x0e\n\nMODE_PHOTO\x10\x01\x12\x0e\n\nMODE_VIDEO\x10\x02*F\n\x0bPhotosRange\x12\x14\n\x10PHOTOS_RANGE_ALL\x10\x00\x12!\n\x1dPHOTOS_RANGE_SINCE_CONNECTION\x10\x01\x32\xec\x10\n\rCameraService\x12R\n\x07Prepare\x12!.mavsdk.rpc.camera.PrepareRequest\x1a\".mavsdk.rpc.camera.PrepareResponse\"\x00\x12X\n\tTakePhoto\x12#.mavsdk.rpc.camera.TakePhotoRequest\x1a$.mavsdk.rpc.camera.TakePhotoResponse\"\x00\x12s\n\x12StartPhotoInterval\x12,.mavsdk.rpc.camera.StartPhotoIntervalRequest\x1a-.mavsdk.rpc.camera.StartPhotoIntervalResponse\"\x00\x12p\n\x11StopPhotoInterval\x12+.mavsdk.rpc.camera.StopPhotoIntervalRequest\x1a,.mavsdk.rpc.camera.StopPhotoIntervalResponse\"\x00\x12[\n\nStartVideo\x12$.mavsdk.rpc.camera.StartVideoRequest\x1a%.mavsdk.rpc.camera.StartVideoResponse\"\x00\x12X\n\tStopVideo\x12#.mavsdk.rpc.camera.StopVideoRequest\x1a$.mavsdk.rpc.camera.StopVideoResponse\"\x00\x12z\n\x13StartVideoStreaming\x12-.mavsdk.rpc.camera.StartVideoStreamingRequest\x1a..mavsdk.rpc.camera.StartVideoStreamingResponse\"\x04\x80\xb5\x18\x01\x12w\n\x12StopVideoStreaming\x12,.mavsdk.rpc.camera.StopVideoStreamingRequest\x1a-.mavsdk.rpc.camera.StopVideoStreamingResponse\"\x04\x80\xb5\x18\x01\x12R\n\x07SetMode\x12!.mavsdk.rpc.camera.SetModeRequest\x1a\".mavsdk.rpc.camera.SetModeResponse\"\x00\x12[\n\nListPhotos\x12$.mavsdk.rpc.camera.ListPhotosRequest\x1a%.mavsdk.rpc.camera.ListPhotosResponse\"\x00\x12]\n\rSubscribeMode\x12\'.mavsdk.rpc.camera.SubscribeModeRequest\x1a\x1f.mavsdk.rpc.camera.ModeResponse\"\x00\x30\x01\x12r\n\x14SubscribeInformation\x12..mavsdk.rpc.camera.SubscribeInformationRequest\x1a&.mavsdk.rpc.camera.InformationResponse\"\x00\x30\x01\x12~\n\x18SubscribeVideoStreamInfo\x12\x32.mavsdk.rpc.camera.SubscribeVideoStreamInfoRequest\x1a*.mavsdk.rpc.camera.VideoStreamInfoResponse\"\x00\x30\x01\x12v\n\x14SubscribeCaptureInfo\x12..mavsdk.rpc.camera.SubscribeCaptureInfoRequest\x1a&.mavsdk.rpc.camera.CaptureInfoResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x63\n\x0fSubscribeStatus\x12).mavsdk.rpc.camera.SubscribeStatusRequest\x1a!.mavsdk.rpc.camera.StatusResponse\"\x00\x30\x01\x12\x82\x01\n\x18SubscribeCurrentSettings\x12\x32.mavsdk.rpc.camera.SubscribeCurrentSettingsRequest\x1a*.mavsdk.rpc.camera.CurrentSettingsResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x93\x01\n\x1fSubscribePossibleSettingOptions\x12\x39.mavsdk.rpc.camera.SubscribePossibleSettingOptionsRequest\x1a\x31.mavsdk.rpc.camera.PossibleSettingOptionsResponse\"\x00\x30\x01\x12[\n\nSetSetting\x12$.mavsdk.rpc.camera.SetSettingRequest\x1a%.mavsdk.rpc.camera.SetSettingResponse\"\x00\x12[\n\nGetSetting\x12$.mavsdk.rpc.camera.GetSettingRequest\x1a%.mavsdk.rpc.camera.GetSettingResponse\"\x00\x12\x64\n\rFormatStorage\x12\'.mavsdk.rpc.camera.FormatStorageRequest\x1a(.mavsdk.rpc.camera.FormatStorageResponse\"\x00\x42\x1f\n\x10io.mavsdk.cameraB\x0b\x43\x61meraProtob\x06proto3'
   ,
   dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
 
@@ -50,8 +50,8 @@ _MODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4753,
-  serialized_end=4809,
+  serialized_start=4846,
+  serialized_end=4902,
 )
 _sym_db.RegisterEnumDescriptor(_MODE)
 
@@ -76,8 +76,8 @@ _PHOTOSRANGE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4811,
-  serialized_end=4881,
+  serialized_start=4904,
+  serialized_end=4974,
 )
 _sym_db.RegisterEnumDescriptor(_PHOTOSRANGE)
 
@@ -144,8 +144,8 @@ _CAMERARESULT_RESULT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2475,
-  serialized_end=2670,
+  serialized_start=2568,
+  serialized_end=2763,
 )
 _sym_db.RegisterEnumDescriptor(_CAMERARESULT_RESULT)
 
@@ -169,8 +169,8 @@ _VIDEOSTREAMINFO_VIDEOSTREAMSTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3593,
-  serialized_end=3686,
+  serialized_start=3686,
+  serialized_end=3779,
 )
 _sym_db.RegisterEnumDescriptor(_VIDEOSTREAMINFO_VIDEOSTREAMSTATUS)
 
@@ -199,8 +199,8 @@ _VIDEOSTREAMINFO_VIDEOSTREAMSPECTRUM = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3689,
-  serialized_end=3822,
+  serialized_start=3782,
+  serialized_end=3915,
 )
 _sym_db.RegisterEnumDescriptor(_VIDEOSTREAMINFO_VIDEOSTREAMSPECTRUM)
 
@@ -234,10 +234,67 @@ _STATUS_STORAGESTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4083,
-  serialized_end=4228,
+  serialized_start=4176,
+  serialized_end=4321,
 )
 _sym_db.RegisterEnumDescriptor(_STATUS_STORAGESTATUS)
+
+
+_PREPAREREQUEST = _descriptor.Descriptor(
+  name='PrepareRequest',
+  full_name='mavsdk.rpc.camera.PrepareRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=64,
+  serialized_end=80,
+)
+
+
+_PREPARERESPONSE = _descriptor.Descriptor(
+  name='PrepareResponse',
+  full_name='mavsdk.rpc.camera.PrepareResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='camera_result', full_name='mavsdk.rpc.camera.PrepareResponse.camera_result', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=82,
+  serialized_end=155,
+)
 
 
 _TAKEPHOTOREQUEST = _descriptor.Descriptor(
@@ -260,8 +317,8 @@ _TAKEPHOTOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=64,
-  serialized_end=82,
+  serialized_start=157,
+  serialized_end=175,
 )
 
 
@@ -292,8 +349,8 @@ _TAKEPHOTORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=84,
-  serialized_end=159,
+  serialized_start=177,
+  serialized_end=252,
 )
 
 
@@ -324,8 +381,8 @@ _STARTPHOTOINTERVALREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=161,
-  serialized_end=208,
+  serialized_start=254,
+  serialized_end=301,
 )
 
 
@@ -356,8 +413,8 @@ _STARTPHOTOINTERVALRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=210,
-  serialized_end=294,
+  serialized_start=303,
+  serialized_end=387,
 )
 
 
@@ -381,8 +438,8 @@ _STOPPHOTOINTERVALREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=296,
-  serialized_end=322,
+  serialized_start=389,
+  serialized_end=415,
 )
 
 
@@ -413,8 +470,8 @@ _STOPPHOTOINTERVALRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=324,
-  serialized_end=407,
+  serialized_start=417,
+  serialized_end=500,
 )
 
 
@@ -438,8 +495,8 @@ _STARTVIDEOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=409,
-  serialized_end=428,
+  serialized_start=502,
+  serialized_end=521,
 )
 
 
@@ -470,8 +527,8 @@ _STARTVIDEORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=430,
-  serialized_end=506,
+  serialized_start=523,
+  serialized_end=599,
 )
 
 
@@ -495,8 +552,8 @@ _STOPVIDEOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=508,
-  serialized_end=526,
+  serialized_start=601,
+  serialized_end=619,
 )
 
 
@@ -527,8 +584,8 @@ _STOPVIDEORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=528,
-  serialized_end=603,
+  serialized_start=621,
+  serialized_end=696,
 )
 
 
@@ -552,8 +609,8 @@ _STARTVIDEOSTREAMINGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=605,
-  serialized_end=633,
+  serialized_start=698,
+  serialized_end=726,
 )
 
 
@@ -584,8 +641,8 @@ _STARTVIDEOSTREAMINGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=635,
-  serialized_end=720,
+  serialized_start=728,
+  serialized_end=813,
 )
 
 
@@ -609,8 +666,8 @@ _STOPVIDEOSTREAMINGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=722,
-  serialized_end=749,
+  serialized_start=815,
+  serialized_end=842,
 )
 
 
@@ -641,8 +698,8 @@ _STOPVIDEOSTREAMINGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=751,
-  serialized_end=835,
+  serialized_start=844,
+  serialized_end=928,
 )
 
 
@@ -673,8 +730,8 @@ _SETMODEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=837,
-  serialized_end=892,
+  serialized_start=930,
+  serialized_end=985,
 )
 
 
@@ -705,8 +762,8 @@ _SETMODERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=894,
-  serialized_end=967,
+  serialized_start=987,
+  serialized_end=1060,
 )
 
 
@@ -737,8 +794,8 @@ _LISTPHOTOSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=969,
-  serialized_end=1042,
+  serialized_start=1062,
+  serialized_end=1135,
 )
 
 
@@ -776,8 +833,8 @@ _LISTPHOTOSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1045,
-  serialized_end=1176,
+  serialized_start=1138,
+  serialized_end=1269,
 )
 
 
@@ -801,8 +858,8 @@ _SUBSCRIBEINFORMATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1178,
-  serialized_end=1207,
+  serialized_start=1271,
+  serialized_end=1300,
 )
 
 
@@ -833,8 +890,8 @@ _INFORMATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1209,
-  serialized_end=1283,
+  serialized_start=1302,
+  serialized_end=1376,
 )
 
 
@@ -858,8 +915,8 @@ _SUBSCRIBEMODEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1285,
-  serialized_end=1307,
+  serialized_start=1378,
+  serialized_end=1400,
 )
 
 
@@ -890,8 +947,8 @@ _MODERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1309,
-  serialized_end=1362,
+  serialized_start=1402,
+  serialized_end=1455,
 )
 
 
@@ -915,8 +972,8 @@ _SUBSCRIBEVIDEOSTREAMINFOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1364,
-  serialized_end=1397,
+  serialized_start=1457,
+  serialized_end=1490,
 )
 
 
@@ -947,8 +1004,8 @@ _VIDEOSTREAMINFORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1399,
-  serialized_end=1487,
+  serialized_start=1492,
+  serialized_end=1580,
 )
 
 
@@ -972,8 +1029,8 @@ _SUBSCRIBECAPTUREINFOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1489,
-  serialized_end=1518,
+  serialized_start=1582,
+  serialized_end=1611,
 )
 
 
@@ -1004,8 +1061,8 @@ _CAPTUREINFORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1520,
-  serialized_end=1595,
+  serialized_start=1613,
+  serialized_end=1688,
 )
 
 
@@ -1029,8 +1086,8 @@ _SUBSCRIBESTATUSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1597,
-  serialized_end=1621,
+  serialized_start=1690,
+  serialized_end=1714,
 )
 
 
@@ -1061,8 +1118,8 @@ _STATUSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1623,
-  serialized_end=1689,
+  serialized_start=1716,
+  serialized_end=1782,
 )
 
 
@@ -1086,8 +1143,8 @@ _SUBSCRIBECURRENTSETTINGSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1691,
-  serialized_end=1724,
+  serialized_start=1784,
+  serialized_end=1817,
 )
 
 
@@ -1118,8 +1175,8 @@ _CURRENTSETTINGSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1726,
-  serialized_end=1805,
+  serialized_start=1819,
+  serialized_end=1898,
 )
 
 
@@ -1143,8 +1200,8 @@ _SUBSCRIBEPOSSIBLESETTINGOPTIONSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1807,
-  serialized_end=1847,
+  serialized_start=1900,
+  serialized_end=1940,
 )
 
 
@@ -1175,8 +1232,8 @@ _POSSIBLESETTINGOPTIONSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1849,
-  serialized_end=1941,
+  serialized_start=1942,
+  serialized_end=2034,
 )
 
 
@@ -1207,8 +1264,8 @@ _SETSETTINGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1943,
-  serialized_end=2007,
+  serialized_start=2036,
+  serialized_end=2100,
 )
 
 
@@ -1239,8 +1296,8 @@ _SETSETTINGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2009,
-  serialized_end=2085,
+  serialized_start=2102,
+  serialized_end=2178,
 )
 
 
@@ -1271,8 +1328,8 @@ _GETSETTINGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2087,
-  serialized_end=2151,
+  serialized_start=2180,
+  serialized_end=2244,
 )
 
 
@@ -1310,8 +1367,8 @@ _GETSETTINGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2153,
-  serialized_end=2274,
+  serialized_start=2246,
+  serialized_end=2367,
 )
 
 
@@ -1335,8 +1392,8 @@ _FORMATSTORAGEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2276,
-  serialized_end=2298,
+  serialized_start=2369,
+  serialized_end=2391,
 )
 
 
@@ -1367,8 +1424,8 @@ _FORMATSTORAGERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2300,
-  serialized_end=2379,
+  serialized_start=2393,
+  serialized_end=2472,
 )
 
 
@@ -1407,8 +1464,8 @@ _CAMERARESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2382,
-  serialized_end=2670,
+  serialized_start=2475,
+  serialized_end=2763,
 )
 
 
@@ -1460,8 +1517,8 @@ _POSITION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2672,
-  serialized_end=2785,
+  serialized_start=2765,
+  serialized_end=2878,
 )
 
 
@@ -1513,8 +1570,8 @@ _QUATERNION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2787,
-  serialized_end=2843,
+  serialized_start=2880,
+  serialized_end=2936,
 )
 
 
@@ -1559,8 +1616,8 @@ _EULERANGLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2845,
-  serialized_end=2911,
+  serialized_start=2938,
+  serialized_end=3004,
 )
 
 
@@ -1633,8 +1690,8 @@ _CAPTUREINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2914,
-  serialized_end=3169,
+  serialized_start=3007,
+  serialized_end=3262,
 )
 
 
@@ -1707,8 +1764,8 @@ _VIDEOSTREAMSETTINGS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3172,
-  serialized_end=3369,
+  serialized_start=3265,
+  serialized_end=3462,
 )
 
 
@@ -1755,8 +1812,8 @@ _VIDEOSTREAMINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3372,
-  serialized_end=3822,
+  serialized_start=3465,
+  serialized_end=3915,
 )
 
 
@@ -1837,8 +1894,8 @@ _STATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3825,
-  serialized_end=4228,
+  serialized_start=3918,
+  serialized_end=4321,
 )
 
 
@@ -1876,8 +1933,8 @@ _OPTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4230,
-  serialized_end=4285,
+  serialized_start=4323,
+  serialized_end=4378,
 )
 
 
@@ -1929,8 +1986,8 @@ _SETTING = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4287,
-  serialized_end=4406,
+  serialized_start=4380,
+  serialized_end=4499,
 )
 
 
@@ -1982,8 +2039,8 @@ _SETTINGOPTIONS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4408,
-  serialized_end=4535,
+  serialized_start=4501,
+  serialized_end=4628,
 )
 
 
@@ -2056,10 +2113,11 @@ _INFORMATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4538,
-  serialized_end=4751,
+  serialized_start=4631,
+  serialized_end=4844,
 )
 
+_PREPARERESPONSE.fields_by_name['camera_result'].message_type = _CAMERARESULT
 _TAKEPHOTORESPONSE.fields_by_name['camera_result'].message_type = _CAMERARESULT
 _STARTPHOTOINTERVALRESPONSE.fields_by_name['camera_result'].message_type = _CAMERARESULT
 _STOPPHOTOINTERVALRESPONSE.fields_by_name['camera_result'].message_type = _CAMERARESULT
@@ -2099,6 +2157,8 @@ _STATUS.fields_by_name['storage_status'].enum_type = _STATUS_STORAGESTATUS
 _STATUS_STORAGESTATUS.containing_type = _STATUS
 _SETTING.fields_by_name['option'].message_type = _OPTION
 _SETTINGOPTIONS.fields_by_name['options'].message_type = _OPTION
+DESCRIPTOR.message_types_by_name['PrepareRequest'] = _PREPAREREQUEST
+DESCRIPTOR.message_types_by_name['PrepareResponse'] = _PREPARERESPONSE
 DESCRIPTOR.message_types_by_name['TakePhotoRequest'] = _TAKEPHOTOREQUEST
 DESCRIPTOR.message_types_by_name['TakePhotoResponse'] = _TAKEPHOTORESPONSE
 DESCRIPTOR.message_types_by_name['StartPhotoIntervalRequest'] = _STARTPHOTOINTERVALREQUEST
@@ -2152,6 +2212,20 @@ DESCRIPTOR.message_types_by_name['Information'] = _INFORMATION
 DESCRIPTOR.enum_types_by_name['Mode'] = _MODE
 DESCRIPTOR.enum_types_by_name['PhotosRange'] = _PHOTOSRANGE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+PrepareRequest = _reflection.GeneratedProtocolMessageType('PrepareRequest', (_message.Message,), {
+  'DESCRIPTOR' : _PREPAREREQUEST,
+  '__module__' : 'camera.camera_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.PrepareRequest)
+  })
+_sym_db.RegisterMessage(PrepareRequest)
+
+PrepareResponse = _reflection.GeneratedProtocolMessageType('PrepareResponse', (_message.Message,), {
+  'DESCRIPTOR' : _PREPARERESPONSE,
+  '__module__' : 'camera.camera_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.PrepareResponse)
+  })
+_sym_db.RegisterMessage(PrepareResponse)
 
 TakePhotoRequest = _reflection.GeneratedProtocolMessageType('TakePhotoRequest', (_message.Message,), {
   'DESCRIPTOR' : _TAKEPHOTOREQUEST,
@@ -2513,13 +2587,23 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=4884,
-  serialized_end=6956,
+  serialized_start=4977,
+  serialized_end=7133,
   methods=[
+  _descriptor.MethodDescriptor(
+    name='Prepare',
+    full_name='mavsdk.rpc.camera.CameraService.Prepare',
+    index=0,
+    containing_service=None,
+    input_type=_PREPAREREQUEST,
+    output_type=_PREPARERESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
   _descriptor.MethodDescriptor(
     name='TakePhoto',
     full_name='mavsdk.rpc.camera.CameraService.TakePhoto',
-    index=0,
+    index=1,
     containing_service=None,
     input_type=_TAKEPHOTOREQUEST,
     output_type=_TAKEPHOTORESPONSE,
@@ -2529,7 +2613,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='StartPhotoInterval',
     full_name='mavsdk.rpc.camera.CameraService.StartPhotoInterval',
-    index=1,
+    index=2,
     containing_service=None,
     input_type=_STARTPHOTOINTERVALREQUEST,
     output_type=_STARTPHOTOINTERVALRESPONSE,
@@ -2539,7 +2623,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='StopPhotoInterval',
     full_name='mavsdk.rpc.camera.CameraService.StopPhotoInterval',
-    index=2,
+    index=3,
     containing_service=None,
     input_type=_STOPPHOTOINTERVALREQUEST,
     output_type=_STOPPHOTOINTERVALRESPONSE,
@@ -2549,7 +2633,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='StartVideo',
     full_name='mavsdk.rpc.camera.CameraService.StartVideo',
-    index=3,
+    index=4,
     containing_service=None,
     input_type=_STARTVIDEOREQUEST,
     output_type=_STARTVIDEORESPONSE,
@@ -2559,7 +2643,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='StopVideo',
     full_name='mavsdk.rpc.camera.CameraService.StopVideo',
-    index=4,
+    index=5,
     containing_service=None,
     input_type=_STOPVIDEOREQUEST,
     output_type=_STOPVIDEORESPONSE,
@@ -2569,7 +2653,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='StartVideoStreaming',
     full_name='mavsdk.rpc.camera.CameraService.StartVideoStreaming',
-    index=5,
+    index=6,
     containing_service=None,
     input_type=_STARTVIDEOSTREAMINGREQUEST,
     output_type=_STARTVIDEOSTREAMINGRESPONSE,
@@ -2579,7 +2663,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='StopVideoStreaming',
     full_name='mavsdk.rpc.camera.CameraService.StopVideoStreaming',
-    index=6,
+    index=7,
     containing_service=None,
     input_type=_STOPVIDEOSTREAMINGREQUEST,
     output_type=_STOPVIDEOSTREAMINGRESPONSE,
@@ -2589,7 +2673,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetMode',
     full_name='mavsdk.rpc.camera.CameraService.SetMode',
-    index=7,
+    index=8,
     containing_service=None,
     input_type=_SETMODEREQUEST,
     output_type=_SETMODERESPONSE,
@@ -2599,7 +2683,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='ListPhotos',
     full_name='mavsdk.rpc.camera.CameraService.ListPhotos',
-    index=8,
+    index=9,
     containing_service=None,
     input_type=_LISTPHOTOSREQUEST,
     output_type=_LISTPHOTOSRESPONSE,
@@ -2609,7 +2693,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeMode',
     full_name='mavsdk.rpc.camera.CameraService.SubscribeMode',
-    index=9,
+    index=10,
     containing_service=None,
     input_type=_SUBSCRIBEMODEREQUEST,
     output_type=_MODERESPONSE,
@@ -2619,7 +2703,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeInformation',
     full_name='mavsdk.rpc.camera.CameraService.SubscribeInformation',
-    index=10,
+    index=11,
     containing_service=None,
     input_type=_SUBSCRIBEINFORMATIONREQUEST,
     output_type=_INFORMATIONRESPONSE,
@@ -2629,7 +2713,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeVideoStreamInfo',
     full_name='mavsdk.rpc.camera.CameraService.SubscribeVideoStreamInfo',
-    index=11,
+    index=12,
     containing_service=None,
     input_type=_SUBSCRIBEVIDEOSTREAMINFOREQUEST,
     output_type=_VIDEOSTREAMINFORESPONSE,
@@ -2639,7 +2723,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeCaptureInfo',
     full_name='mavsdk.rpc.camera.CameraService.SubscribeCaptureInfo',
-    index=12,
+    index=13,
     containing_service=None,
     input_type=_SUBSCRIBECAPTUREINFOREQUEST,
     output_type=_CAPTUREINFORESPONSE,
@@ -2649,7 +2733,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeStatus',
     full_name='mavsdk.rpc.camera.CameraService.SubscribeStatus',
-    index=13,
+    index=14,
     containing_service=None,
     input_type=_SUBSCRIBESTATUSREQUEST,
     output_type=_STATUSRESPONSE,
@@ -2659,7 +2743,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeCurrentSettings',
     full_name='mavsdk.rpc.camera.CameraService.SubscribeCurrentSettings',
-    index=14,
+    index=15,
     containing_service=None,
     input_type=_SUBSCRIBECURRENTSETTINGSREQUEST,
     output_type=_CURRENTSETTINGSRESPONSE,
@@ -2669,7 +2753,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribePossibleSettingOptions',
     full_name='mavsdk.rpc.camera.CameraService.SubscribePossibleSettingOptions',
-    index=15,
+    index=16,
     containing_service=None,
     input_type=_SUBSCRIBEPOSSIBLESETTINGOPTIONSREQUEST,
     output_type=_POSSIBLESETTINGOPTIONSRESPONSE,
@@ -2679,7 +2763,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetSetting',
     full_name='mavsdk.rpc.camera.CameraService.SetSetting',
-    index=16,
+    index=17,
     containing_service=None,
     input_type=_SETSETTINGREQUEST,
     output_type=_SETSETTINGRESPONSE,
@@ -2689,7 +2773,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetSetting',
     full_name='mavsdk.rpc.camera.CameraService.GetSetting',
-    index=17,
+    index=18,
     containing_service=None,
     input_type=_GETSETTINGREQUEST,
     output_type=_GETSETTINGRESPONSE,
@@ -2699,7 +2783,7 @@ _CAMERASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='FormatStorage',
     full_name='mavsdk.rpc.camera.CameraService.FormatStorage',
-    index=18,
+    index=19,
     containing_service=None,
     input_type=_FORMATSTORAGEREQUEST,
     output_type=_FORMATSTORAGERESPONSE,

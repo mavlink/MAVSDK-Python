@@ -82,144 +82,61 @@ class FixType(Enum):
         return self.name
 
 
-class FlightMode(Enum):
+class VtolState(Enum):
     """
-     Flight modes.
-
-     For more information about flight modes, check out
-     https://docs.px4.io/master/en/config/flight_mode.html.
+     Maps to MAV_VTOL_STATE
 
      Values
      ------
-     UNKNOWN
-          Mode not known
+     UNDEFINED
+          Not VTOL
 
-     READY
-          Armed and ready to take off
+     TRANSITION_TO_FW
+          Transitioning to fixed-wing
 
-     TAKEOFF
-          Taking off
+     TRANSITION_TO_MC
+          Transitioning to multi-copter
 
-     HOLD
-          Holding (hovering in place (or circling for fixed-wing vehicles)
+     MC
+          Multi-copter
 
-     MISSION
-          In mission
-
-     RETURN_TO_LAUNCH
-          Returning to launch position (then landing)
-
-     LAND
-          Landing
-
-     OFFBOARD
-          In 'offboard' mode
-
-     FOLLOW_ME
-          In 'follow-me' mode
-
-     MANUAL
-          In 'Manual' mode
-
-     ALTCTL
-          In 'Altitude Control' mode
-
-     POSCTL
-          In 'Position Control' mode
-
-     ACRO
-          In 'Acro' mode
-
-     STABILIZED
-          In 'Stabilize' mode
-
-     RATTITUDE
-          In 'Rattitude' mode
+     FW
+          Fixed-wing
 
      """
 
     
-    UNKNOWN = 0
-    READY = 1
-    TAKEOFF = 2
-    HOLD = 3
-    MISSION = 4
-    RETURN_TO_LAUNCH = 5
-    LAND = 6
-    OFFBOARD = 7
-    FOLLOW_ME = 8
-    MANUAL = 9
-    ALTCTL = 10
-    POSCTL = 11
-    ACRO = 12
-    STABILIZED = 13
-    RATTITUDE = 14
+    UNDEFINED = 0
+    TRANSITION_TO_FW = 1
+    TRANSITION_TO_MC = 2
+    MC = 3
+    FW = 4
 
     def translate_to_rpc(self):
-        if self == FlightMode.UNKNOWN:
-            return telemetry_server_pb2.FLIGHT_MODE_UNKNOWN
-        if self == FlightMode.READY:
-            return telemetry_server_pb2.FLIGHT_MODE_READY
-        if self == FlightMode.TAKEOFF:
-            return telemetry_server_pb2.FLIGHT_MODE_TAKEOFF
-        if self == FlightMode.HOLD:
-            return telemetry_server_pb2.FLIGHT_MODE_HOLD
-        if self == FlightMode.MISSION:
-            return telemetry_server_pb2.FLIGHT_MODE_MISSION
-        if self == FlightMode.RETURN_TO_LAUNCH:
-            return telemetry_server_pb2.FLIGHT_MODE_RETURN_TO_LAUNCH
-        if self == FlightMode.LAND:
-            return telemetry_server_pb2.FLIGHT_MODE_LAND
-        if self == FlightMode.OFFBOARD:
-            return telemetry_server_pb2.FLIGHT_MODE_OFFBOARD
-        if self == FlightMode.FOLLOW_ME:
-            return telemetry_server_pb2.FLIGHT_MODE_FOLLOW_ME
-        if self == FlightMode.MANUAL:
-            return telemetry_server_pb2.FLIGHT_MODE_MANUAL
-        if self == FlightMode.ALTCTL:
-            return telemetry_server_pb2.FLIGHT_MODE_ALTCTL
-        if self == FlightMode.POSCTL:
-            return telemetry_server_pb2.FLIGHT_MODE_POSCTL
-        if self == FlightMode.ACRO:
-            return telemetry_server_pb2.FLIGHT_MODE_ACRO
-        if self == FlightMode.STABILIZED:
-            return telemetry_server_pb2.FLIGHT_MODE_STABILIZED
-        if self == FlightMode.RATTITUDE:
-            return telemetry_server_pb2.FLIGHT_MODE_RATTITUDE
+        if self == VtolState.UNDEFINED:
+            return telemetry_server_pb2.VTOL_STATE_UNDEFINED
+        if self == VtolState.TRANSITION_TO_FW:
+            return telemetry_server_pb2.VTOL_STATE_TRANSITION_TO_FW
+        if self == VtolState.TRANSITION_TO_MC:
+            return telemetry_server_pb2.VTOL_STATE_TRANSITION_TO_MC
+        if self == VtolState.MC:
+            return telemetry_server_pb2.VTOL_STATE_MC
+        if self == VtolState.FW:
+            return telemetry_server_pb2.VTOL_STATE_FW
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_UNKNOWN:
-            return FlightMode.UNKNOWN
-        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_READY:
-            return FlightMode.READY
-        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_TAKEOFF:
-            return FlightMode.TAKEOFF
-        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_HOLD:
-            return FlightMode.HOLD
-        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_MISSION:
-            return FlightMode.MISSION
-        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_RETURN_TO_LAUNCH:
-            return FlightMode.RETURN_TO_LAUNCH
-        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_LAND:
-            return FlightMode.LAND
-        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_OFFBOARD:
-            return FlightMode.OFFBOARD
-        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_FOLLOW_ME:
-            return FlightMode.FOLLOW_ME
-        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_MANUAL:
-            return FlightMode.MANUAL
-        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_ALTCTL:
-            return FlightMode.ALTCTL
-        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_POSCTL:
-            return FlightMode.POSCTL
-        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_ACRO:
-            return FlightMode.ACRO
-        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_STABILIZED:
-            return FlightMode.STABILIZED
-        if rpc_enum_value == telemetry_server_pb2.FLIGHT_MODE_RATTITUDE:
-            return FlightMode.RATTITUDE
+        if rpc_enum_value == telemetry_server_pb2.VTOL_STATE_UNDEFINED:
+            return VtolState.UNDEFINED
+        if rpc_enum_value == telemetry_server_pb2.VTOL_STATE_TRANSITION_TO_FW:
+            return VtolState.TRANSITION_TO_FW
+        if rpc_enum_value == telemetry_server_pb2.VTOL_STATE_TRANSITION_TO_MC:
+            return VtolState.TRANSITION_TO_MC
+        if rpc_enum_value == telemetry_server_pb2.VTOL_STATE_MC:
+            return VtolState.MC
+        if rpc_enum_value == telemetry_server_pb2.VTOL_STATE_FW:
+            return VtolState.FW
 
     def __str__(self):
         return self.name
@@ -470,6 +387,64 @@ class Position:
         
             
         rpcPosition.relative_altitude_m = self.relative_altitude_m
+            
+        
+        
+
+
+class Heading:
+    """
+     Heading type used for global position
+
+     Parameters
+     ----------
+     heading_deg : double
+          Heading in degrees (range: 0 to +360)
+
+     """
+
+    
+
+    def __init__(
+            self,
+            heading_deg):
+        """ Initializes the Heading object """
+        self.heading_deg = heading_deg
+
+    def __equals__(self, to_compare):
+        """ Checks if two Heading are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Heading object
+            return \
+                (self.heading_deg == to_compare.heading_deg)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Heading in string representation """
+        struct_repr = ", ".join([
+                "heading_deg: " + str(self.heading_deg)
+                ])
+
+        return f"Heading: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcHeading):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Heading(
+                
+                rpcHeading.heading_deg
+                )
+
+    def translate_to_rpc(self, rpcHeading):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcHeading.heading_deg = self.heading_deg
             
         
         
@@ -1217,160 +1192,6 @@ class Battery:
         
             
         rpcBattery.remaining_percent = self.remaining_percent
-            
-        
-        
-
-
-class Health:
-    """
-     Health type.
-
-     Parameters
-     ----------
-     is_gyrometer_calibration_ok : bool
-          True if the gyrometer is calibrated
-
-     is_accelerometer_calibration_ok : bool
-          True if the accelerometer is calibrated
-
-     is_magnetometer_calibration_ok : bool
-          True if the magnetometer is calibrated
-
-     is_local_position_ok : bool
-          True if the local position estimate is good enough to fly in 'position control' mode
-
-     is_global_position_ok : bool
-          True if the global position estimate is good enough to fly in 'position control' mode
-
-     is_home_position_ok : bool
-          True if the home position has been initialized properly
-
-     is_armable : bool
-          True if system can be armed
-
-     """
-
-    
-
-    def __init__(
-            self,
-            is_gyrometer_calibration_ok,
-            is_accelerometer_calibration_ok,
-            is_magnetometer_calibration_ok,
-            is_local_position_ok,
-            is_global_position_ok,
-            is_home_position_ok,
-            is_armable):
-        """ Initializes the Health object """
-        self.is_gyrometer_calibration_ok = is_gyrometer_calibration_ok
-        self.is_accelerometer_calibration_ok = is_accelerometer_calibration_ok
-        self.is_magnetometer_calibration_ok = is_magnetometer_calibration_ok
-        self.is_local_position_ok = is_local_position_ok
-        self.is_global_position_ok = is_global_position_ok
-        self.is_home_position_ok = is_home_position_ok
-        self.is_armable = is_armable
-
-    def __equals__(self, to_compare):
-        """ Checks if two Health are the same """
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # Health object
-            return \
-                (self.is_gyrometer_calibration_ok == to_compare.is_gyrometer_calibration_ok) and \
-                (self.is_accelerometer_calibration_ok == to_compare.is_accelerometer_calibration_ok) and \
-                (self.is_magnetometer_calibration_ok == to_compare.is_magnetometer_calibration_ok) and \
-                (self.is_local_position_ok == to_compare.is_local_position_ok) and \
-                (self.is_global_position_ok == to_compare.is_global_position_ok) and \
-                (self.is_home_position_ok == to_compare.is_home_position_ok) and \
-                (self.is_armable == to_compare.is_armable)
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """ Health in string representation """
-        struct_repr = ", ".join([
-                "is_gyrometer_calibration_ok: " + str(self.is_gyrometer_calibration_ok),
-                "is_accelerometer_calibration_ok: " + str(self.is_accelerometer_calibration_ok),
-                "is_magnetometer_calibration_ok: " + str(self.is_magnetometer_calibration_ok),
-                "is_local_position_ok: " + str(self.is_local_position_ok),
-                "is_global_position_ok: " + str(self.is_global_position_ok),
-                "is_home_position_ok: " + str(self.is_home_position_ok),
-                "is_armable: " + str(self.is_armable)
-                ])
-
-        return f"Health: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcHealth):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return Health(
-                
-                rpcHealth.is_gyrometer_calibration_ok,
-                
-                
-                rpcHealth.is_accelerometer_calibration_ok,
-                
-                
-                rpcHealth.is_magnetometer_calibration_ok,
-                
-                
-                rpcHealth.is_local_position_ok,
-                
-                
-                rpcHealth.is_global_position_ok,
-                
-                
-                rpcHealth.is_home_position_ok,
-                
-                
-                rpcHealth.is_armable
-                )
-
-    def translate_to_rpc(self, rpcHealth):
-        """ Translates this SDK object into its gRPC equivalent """
-
-        
-        
-            
-        rpcHealth.is_gyrometer_calibration_ok = self.is_gyrometer_calibration_ok
-            
-        
-        
-        
-            
-        rpcHealth.is_accelerometer_calibration_ok = self.is_accelerometer_calibration_ok
-            
-        
-        
-        
-            
-        rpcHealth.is_magnetometer_calibration_ok = self.is_magnetometer_calibration_ok
-            
-        
-        
-        
-            
-        rpcHealth.is_local_position_ok = self.is_local_position_ok
-            
-        
-        
-        
-            
-        rpcHealth.is_global_position_ok = self.is_global_position_ok
-            
-        
-        
-        
-            
-        rpcHealth.is_home_position_ok = self.is_home_position_ok
-            
-        
-        
-        
-            
-        rpcHealth.is_armable = self.is_armable
             
         
         
@@ -3401,7 +3222,7 @@ class TelemetryServer(AsyncBase):
         return TelemetryServerResult.translate_from_rpc(response.telemetry_server_result)
     
 
-    async def publish_position(self, position, velocity_ned):
+    async def publish_position(self, position, velocity_ned, heading):
         """
          Publish to 'position' updates.
 
@@ -3412,6 +3233,9 @@ class TelemetryServer(AsyncBase):
 
          velocity_ned : VelocityNed
               The next velocity (NED)
+
+         heading : Heading
+              Heading (yaw) in degrees
 
          Raises
          ------
@@ -3428,13 +3252,17 @@ class TelemetryServer(AsyncBase):
         velocity_ned.translate_to_rpc(request.velocity_ned)
                 
             
+        
+        heading.translate_to_rpc(request.heading)
+                
+            
         response = await self._stub.PublishPosition(request)
 
         
         result = self._extract_result(response)
 
         if result.result is not TelemetryServerResult.Result.SUCCESS:
-            raise TelemetryServerError(result, "publish_position()", position, velocity_ned)
+            raise TelemetryServerError(result, "publish_position()", position, velocity_ned, heading)
         
 
     async def publish_home(self, home):
@@ -3466,30 +3294,83 @@ class TelemetryServer(AsyncBase):
             raise TelemetryServerError(result, "publish_home()", home)
         
 
-    async def publish_armed(self, is_armed):
+    async def publish_sys_status(self, battery, rc_receiver_status, gyro_status, accel_status, mag_status, gps_status):
         """
-         Publish to armed updates.
+         Publish 'sys status' updates.
 
          Parameters
          ----------
-         is_armed : bool
-              The next 'armed' state
+         battery : Battery
+              The next 'battery' state
 
+         rc_receiver_status : bool
+              rc receiver status
+
+         gyro_status : bool
+             
+         accel_status : bool
+             
+         mag_status : bool
+             
+         gps_status : bool
+             
          Raises
          ------
          TelemetryServerError
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_server_pb2.PublishArmedRequest()
-        request.is_armed = is_armed
-        response = await self._stub.PublishArmed(request)
+        request = telemetry_server_pb2.PublishSysStatusRequest()
+        
+        battery.translate_to_rpc(request.battery)
+                
+            
+        request.rc_receiver_status = rc_receiver_status
+        request.gyro_status = gyro_status
+        request.accel_status = accel_status
+        request.mag_status = mag_status
+        request.gps_status = gps_status
+        response = await self._stub.PublishSysStatus(request)
 
         
         result = self._extract_result(response)
 
         if result.result is not TelemetryServerResult.Result.SUCCESS:
-            raise TelemetryServerError(result, "publish_armed()", is_armed)
+            raise TelemetryServerError(result, "publish_sys_status()", battery, rc_receiver_status, gyro_status, accel_status, mag_status, gps_status)
+        
+
+    async def publish_extended_sys_state(self, vtol_state, landed_state):
+        """
+         Publish 'extended sys state' updates.
+
+         Parameters
+         ----------
+         vtol_state : VtolState
+             
+         landed_state : LandedState
+             
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_server_pb2.PublishExtendedSysStateRequest()
+        
+        request.vtol_state = vtol_state.translate_to_rpc()
+                
+            
+        
+        request.landed_state = landed_state.translate_to_rpc()
+                
+            
+        response = await self._stub.PublishExtendedSysState(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_extended_sys_state()", vtol_state, landed_state)
         
 
     async def publish_raw_gps(self, raw_gps, gps_info):
@@ -3555,64 +3436,6 @@ class TelemetryServer(AsyncBase):
 
         if result.result is not TelemetryServerResult.Result.SUCCESS:
             raise TelemetryServerError(result, "publish_battery()", battery)
-        
-
-    async def publish_flight_mode(self, flight_mode):
-        """
-         Publish to 'flight mode' updates.
-
-         Parameters
-         ----------
-         flight_mode : FlightMode
-              The next flight mode
-
-         Raises
-         ------
-         TelemetryServerError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_server_pb2.PublishFlightModeRequest()
-        
-        request.flight_mode = flight_mode.translate_to_rpc()
-                
-            
-        response = await self._stub.PublishFlightMode(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryServerResult.Result.SUCCESS:
-            raise TelemetryServerError(result, "publish_flight_mode()", flight_mode)
-        
-
-    async def publish_health(self, health):
-        """
-         Publish to 'health' updates.
-
-         Parameters
-         ----------
-         health : Health
-              The next 'health' state
-
-         Raises
-         ------
-         TelemetryServerError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_server_pb2.PublishHealthRequest()
-        
-        health.translate_to_rpc(request.health)
-                
-            
-        response = await self._stub.PublishHealth(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryServerResult.Result.SUCCESS:
-            raise TelemetryServerError(result, "publish_health()", health)
         
 
     async def publish_status_text(self, status_text):
@@ -3816,32 +3639,6 @@ class TelemetryServer(AsyncBase):
 
         if result.result is not TelemetryServerResult.Result.SUCCESS:
             raise TelemetryServerError(result, "publish_raw_imu()", imu)
-        
-
-    async def publish_health_all_ok(self, is_health_all_ok):
-        """
-         Publish to 'HealthAllOk' updates.
-
-         Parameters
-         ----------
-         is_health_all_ok : bool
-              The next 'health all ok' status
-
-         Raises
-         ------
-         TelemetryServerError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_server_pb2.PublishHealthAllOkRequest()
-        request.is_health_all_ok = is_health_all_ok
-        response = await self._stub.PublishHealthAllOk(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result is not TelemetryServerResult.Result.SUCCESS:
-            raise TelemetryServerError(result, "publish_health_all_ok()", is_health_all_ok)
         
 
     async def publish_unix_epoch_time(self, time_us):
