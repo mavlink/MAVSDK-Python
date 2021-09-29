@@ -22,6 +22,11 @@ class CameraServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.Prepare = channel.unary_unary(
+                '/mavsdk.rpc.camera.CameraService/Prepare',
+                request_serializer=camera_dot_camera__pb2.PrepareRequest.SerializeToString,
+                response_deserializer=camera_dot_camera__pb2.PrepareResponse.FromString,
+                )
         self.TakePhoto = channel.unary_unary(
                 '/mavsdk.rpc.camera.CameraService/TakePhoto',
                 request_serializer=camera_dot_camera__pb2.TakePhotoRequest.SerializeToString,
@@ -129,6 +134,14 @@ class CameraServiceServicer(object):
     instantiated separately for every camera and the camera selected using
     `select_camera`.
     """
+
+    def Prepare(self, request, context):
+        """
+        Prepare the camera plugin (e.g. download the camera definition, etc).
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def TakePhoto(self, request, context):
         """
@@ -291,6 +304,11 @@ class CameraServiceServicer(object):
 
 def add_CameraServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'Prepare': grpc.unary_unary_rpc_method_handler(
+                    servicer.Prepare,
+                    request_deserializer=camera_dot_camera__pb2.PrepareRequest.FromString,
+                    response_serializer=camera_dot_camera__pb2.PrepareResponse.SerializeToString,
+            ),
             'TakePhoto': grpc.unary_unary_rpc_method_handler(
                     servicer.TakePhoto,
                     request_deserializer=camera_dot_camera__pb2.TakePhotoRequest.FromString,
@@ -403,6 +421,23 @@ class CameraService(object):
     instantiated separately for every camera and the camera selected using
     `select_camera`.
     """
+
+    @staticmethod
+    def Prepare(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/Prepare',
+            camera_dot_camera__pb2.PrepareRequest.SerializeToString,
+            camera_dot_camera__pb2.PrepareResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def TakePhoto(request,

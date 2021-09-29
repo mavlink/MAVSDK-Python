@@ -426,3 +426,23 @@ class Geofence(AsyncBase):
         if result.result is not GeofenceResult.Result.SUCCESS:
             raise GeofenceError(result, "upload_geofence()", polygons)
         
+
+    async def clear_geofence(self):
+        """
+         Clear all geofences saved on the vehicle.
+
+         Raises
+         ------
+         GeofenceError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = geofence_pb2.ClearGeofenceRequest()
+        response = await self._stub.ClearGeofence(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result is not GeofenceResult.Result.SUCCESS:
+            raise GeofenceError(result, "clear_geofence()")
+        

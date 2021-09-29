@@ -27,10 +27,15 @@ class TelemetryServerServiceStub(object):
                 request_serializer=telemetry__server_dot_telemetry__server__pb2.PublishHomeRequest.SerializeToString,
                 response_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishHomeResponse.FromString,
                 )
-        self.PublishArmed = channel.unary_unary(
-                '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishArmed',
-                request_serializer=telemetry__server_dot_telemetry__server__pb2.PublishArmedRequest.SerializeToString,
-                response_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishArmedResponse.FromString,
+        self.PublishSysStatus = channel.unary_unary(
+                '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishSysStatus',
+                request_serializer=telemetry__server_dot_telemetry__server__pb2.PublishSysStatusRequest.SerializeToString,
+                response_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishSysStatusResponse.FromString,
+                )
+        self.PublishExtendedSysState = channel.unary_unary(
+                '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishExtendedSysState',
+                request_serializer=telemetry__server_dot_telemetry__server__pb2.PublishExtendedSysStateRequest.SerializeToString,
+                response_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishExtendedSysStateResponse.FromString,
                 )
         self.PublishRawGps = channel.unary_unary(
                 '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishRawGps',
@@ -41,16 +46,6 @@ class TelemetryServerServiceStub(object):
                 '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishBattery',
                 request_serializer=telemetry__server_dot_telemetry__server__pb2.PublishBatteryRequest.SerializeToString,
                 response_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishBatteryResponse.FromString,
-                )
-        self.PublishFlightMode = channel.unary_unary(
-                '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishFlightMode',
-                request_serializer=telemetry__server_dot_telemetry__server__pb2.PublishFlightModeRequest.SerializeToString,
-                response_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishFlightModeResponse.FromString,
-                )
-        self.PublishHealth = channel.unary_unary(
-                '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishHealth',
-                request_serializer=telemetry__server_dot_telemetry__server__pb2.PublishHealthRequest.SerializeToString,
-                response_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishHealthResponse.FromString,
                 )
         self.PublishStatusText = channel.unary_unary(
                 '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishStatusText',
@@ -87,11 +82,6 @@ class TelemetryServerServiceStub(object):
                 request_serializer=telemetry__server_dot_telemetry__server__pb2.PublishRawImuRequest.SerializeToString,
                 response_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishRawImuResponse.FromString,
                 )
-        self.PublishHealthAllOk = channel.unary_unary(
-                '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishHealthAllOk',
-                request_serializer=telemetry__server_dot_telemetry__server__pb2.PublishHealthAllOkRequest.SerializeToString,
-                response_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishHealthAllOkResponse.FromString,
-                )
         self.PublishUnixEpochTime = channel.unary_unary(
                 '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishUnixEpochTime',
                 request_serializer=telemetry__server_dot_telemetry__server__pb2.PublishUnixEpochTimeRequest.SerializeToString,
@@ -119,8 +109,15 @@ class TelemetryServerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def PublishArmed(self, request, context):
-        """Publish to armed updates.
+    def PublishSysStatus(self, request, context):
+        """Publish 'sys status' updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def PublishExtendedSysState(self, request, context):
+        """Publish 'extended sys state' updates.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -135,20 +132,6 @@ class TelemetryServerServiceServicer(object):
 
     def PublishBattery(self, request, context):
         """Publish to 'battery' updates.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def PublishFlightMode(self, request, context):
-        """Publish to 'flight mode' updates.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def PublishHealth(self, request, context):
-        """Publish to 'health' updates.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -203,13 +186,6 @@ class TelemetryServerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def PublishHealthAllOk(self, request, context):
-        """Publish to 'HealthAllOk' updates.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def PublishUnixEpochTime(self, request, context):
         """Publish to 'unix epoch time' updates.
         """
@@ -230,10 +206,15 @@ def add_TelemetryServerServiceServicer_to_server(servicer, server):
                     request_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishHomeRequest.FromString,
                     response_serializer=telemetry__server_dot_telemetry__server__pb2.PublishHomeResponse.SerializeToString,
             ),
-            'PublishArmed': grpc.unary_unary_rpc_method_handler(
-                    servicer.PublishArmed,
-                    request_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishArmedRequest.FromString,
-                    response_serializer=telemetry__server_dot_telemetry__server__pb2.PublishArmedResponse.SerializeToString,
+            'PublishSysStatus': grpc.unary_unary_rpc_method_handler(
+                    servicer.PublishSysStatus,
+                    request_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishSysStatusRequest.FromString,
+                    response_serializer=telemetry__server_dot_telemetry__server__pb2.PublishSysStatusResponse.SerializeToString,
+            ),
+            'PublishExtendedSysState': grpc.unary_unary_rpc_method_handler(
+                    servicer.PublishExtendedSysState,
+                    request_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishExtendedSysStateRequest.FromString,
+                    response_serializer=telemetry__server_dot_telemetry__server__pb2.PublishExtendedSysStateResponse.SerializeToString,
             ),
             'PublishRawGps': grpc.unary_unary_rpc_method_handler(
                     servicer.PublishRawGps,
@@ -244,16 +225,6 @@ def add_TelemetryServerServiceServicer_to_server(servicer, server):
                     servicer.PublishBattery,
                     request_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishBatteryRequest.FromString,
                     response_serializer=telemetry__server_dot_telemetry__server__pb2.PublishBatteryResponse.SerializeToString,
-            ),
-            'PublishFlightMode': grpc.unary_unary_rpc_method_handler(
-                    servicer.PublishFlightMode,
-                    request_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishFlightModeRequest.FromString,
-                    response_serializer=telemetry__server_dot_telemetry__server__pb2.PublishFlightModeResponse.SerializeToString,
-            ),
-            'PublishHealth': grpc.unary_unary_rpc_method_handler(
-                    servicer.PublishHealth,
-                    request_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishHealthRequest.FromString,
-                    response_serializer=telemetry__server_dot_telemetry__server__pb2.PublishHealthResponse.SerializeToString,
             ),
             'PublishStatusText': grpc.unary_unary_rpc_method_handler(
                     servicer.PublishStatusText,
@@ -289,11 +260,6 @@ def add_TelemetryServerServiceServicer_to_server(servicer, server):
                     servicer.PublishRawImu,
                     request_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishRawImuRequest.FromString,
                     response_serializer=telemetry__server_dot_telemetry__server__pb2.PublishRawImuResponse.SerializeToString,
-            ),
-            'PublishHealthAllOk': grpc.unary_unary_rpc_method_handler(
-                    servicer.PublishHealthAllOk,
-                    request_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishHealthAllOkRequest.FromString,
-                    response_serializer=telemetry__server_dot_telemetry__server__pb2.PublishHealthAllOkResponse.SerializeToString,
             ),
             'PublishUnixEpochTime': grpc.unary_unary_rpc_method_handler(
                     servicer.PublishUnixEpochTime,
@@ -348,7 +314,7 @@ class TelemetryServerService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def PublishArmed(request,
+    def PublishSysStatus(request,
             target,
             options=(),
             channel_credentials=None,
@@ -358,9 +324,26 @@ class TelemetryServerService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishArmed',
-            telemetry__server_dot_telemetry__server__pb2.PublishArmedRequest.SerializeToString,
-            telemetry__server_dot_telemetry__server__pb2.PublishArmedResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishSysStatus',
+            telemetry__server_dot_telemetry__server__pb2.PublishSysStatusRequest.SerializeToString,
+            telemetry__server_dot_telemetry__server__pb2.PublishSysStatusResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def PublishExtendedSysState(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishExtendedSysState',
+            telemetry__server_dot_telemetry__server__pb2.PublishExtendedSysStateRequest.SerializeToString,
+            telemetry__server_dot_telemetry__server__pb2.PublishExtendedSysStateResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -395,40 +378,6 @@ class TelemetryServerService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishBattery',
             telemetry__server_dot_telemetry__server__pb2.PublishBatteryRequest.SerializeToString,
             telemetry__server_dot_telemetry__server__pb2.PublishBatteryResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def PublishFlightMode(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishFlightMode',
-            telemetry__server_dot_telemetry__server__pb2.PublishFlightModeRequest.SerializeToString,
-            telemetry__server_dot_telemetry__server__pb2.PublishFlightModeResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def PublishHealth(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishHealth',
-            telemetry__server_dot_telemetry__server__pb2.PublishHealthRequest.SerializeToString,
-            telemetry__server_dot_telemetry__server__pb2.PublishHealthResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -548,23 +497,6 @@ class TelemetryServerService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishRawImu',
             telemetry__server_dot_telemetry__server__pb2.PublishRawImuRequest.SerializeToString,
             telemetry__server_dot_telemetry__server__pb2.PublishRawImuResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def PublishHealthAllOk(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishHealthAllOk',
-            telemetry__server_dot_telemetry__server__pb2.PublishHealthAllOkRequest.SerializeToString,
-            telemetry__server_dot_telemetry__server__pb2.PublishHealthAllOkResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
