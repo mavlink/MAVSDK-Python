@@ -61,7 +61,7 @@ async def {{ name.lower_snake_case }}(self{% for param in params %}, {{ param.na
             if result.result not in success_codes:
                 raise {{ plugin_name.upper_camel_case }}Error(result, "{{ name.lower_snake_case }}()"{% for param in params %}, {{ param.name.lower_snake_case }}{% endfor %})
 
-            if result.result is {{ plugin_name.upper_camel_case }}Result.Result.SUCCESS:
+            if result.result == {{ plugin_name.upper_camel_case }}Result.Result.SUCCESS:
                 {{ name.lower_snake_case }}_stream.cancel();
                 return
             {% endif %}

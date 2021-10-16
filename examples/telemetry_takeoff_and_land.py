@@ -75,7 +75,7 @@ async def print_flight_mode(drone):
     previous_flight_mode = None
 
     async for flight_mode in drone.telemetry.flight_mode():
-        if flight_mode is not previous_flight_mode:
+        if flight_mode != previous_flight_mode:
             previous_flight_mode = flight_mode
             print(f"Flight mode: {flight_mode}")
 
