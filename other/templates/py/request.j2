@@ -52,7 +52,7 @@ async def {{ name.lower_snake_case }}(self{% for param in params %}, {{ param.na
     {% if has_result %}
     result = self._extract_result(response)
 
-    if result.result is not {{ plugin_name.upper_camel_case }}Result.Result.SUCCESS:
+    if result.result != {{ plugin_name.upper_camel_case }}Result.Result.SUCCESS:
         raise {{ plugin_name.upper_camel_case }}Error(result, "{{ name.lower_snake_case }}()"{% for param in params %}, {{ param.name.lower_snake_case }}{% endfor %})
     {% endif %}
 
