@@ -24,7 +24,7 @@ class {{ name.upper_camel_case }}:
         self.{{ field.name.lower_snake_case }} = {{ field.name.lower_snake_case }}
         {%- endfor %}
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two {{ name.upper_camel_case }} are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
