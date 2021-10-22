@@ -27,7 +27,8 @@ class AsyncPluginManager:
 
         #: gRPC channel
         self._channel = aiogrpc.insecure_channel(
-            "{}:{}".format(self.host, self.port)
+            "{}:{}".format(self.host, self.port),
+            standalone_pool_for_streaming=True
         )
 
         logger = logging.getLogger(__name__)
