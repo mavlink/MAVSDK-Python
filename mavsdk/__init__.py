@@ -7,7 +7,8 @@ import sys
 from .system import System
 
 # Check for compatibility
-if float(".".join(platform.python_version_tuple()[0:-1])) < 3.6:
+(major, minor, _) = platform.python_version_tuple()
+if not ((int(major) >= 3 and int(minor) >= 6) or (int(major) >= 4)):
     print("[!] MAVSDK-Python is only available on Python >= 3.6")
     sys.exit(1)
 
