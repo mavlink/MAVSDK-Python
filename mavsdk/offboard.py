@@ -40,7 +40,7 @@ class Attitude:
         self.yaw_deg = yaw_deg
         self.thrust_value = thrust_value
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Attitude are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -132,7 +132,7 @@ class ActuatorControlGroup:
         """ Initializes the ActuatorControlGroup object """
         self.controls = controls
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ActuatorControlGroup are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -205,7 +205,7 @@ class ActuatorControl:
         """ Initializes the ActuatorControl object """
         self.groups = groups
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ActuatorControl are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -285,7 +285,7 @@ class AttitudeRate:
         self.yaw_deg_s = yaw_deg_s
         self.thrust_value = thrust_value
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two AttitudeRate are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -391,7 +391,7 @@ class PositionNedYaw:
         self.down_m = down_m
         self.yaw_deg = yaw_deg
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two PositionNedYaw are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -497,7 +497,7 @@ class VelocityBodyYawspeed:
         self.down_m_s = down_m_s
         self.yawspeed_deg_s = yawspeed_deg_s
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two VelocityBodyYawspeed are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -603,7 +603,7 @@ class VelocityNedYaw:
         self.down_m_s = down_m_s
         self.yaw_deg = yaw_deg
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two VelocityNedYaw are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -704,7 +704,7 @@ class AccelerationNed:
         self.east_m_s2 = east_m_s2
         self.down_m_s2 = down_m_s2
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two AccelerationNed are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -873,7 +873,7 @@ class OffboardResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two OffboardResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -980,7 +980,7 @@ class Offboard(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not OffboardResult.Result.SUCCESS:
+        if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "start()")
         
 
@@ -1002,7 +1002,7 @@ class Offboard(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not OffboardResult.Result.SUCCESS:
+        if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "stop()")
         
 
@@ -1054,7 +1054,7 @@ class Offboard(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not OffboardResult.Result.SUCCESS:
+        if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_attitude()", attitude)
         
 
@@ -1086,7 +1086,7 @@ class Offboard(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not OffboardResult.Result.SUCCESS:
+        if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_actuator_control()", actuator_control)
         
 
@@ -1115,7 +1115,7 @@ class Offboard(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not OffboardResult.Result.SUCCESS:
+        if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_attitude_rate()", attitude_rate)
         
 
@@ -1144,7 +1144,7 @@ class Offboard(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not OffboardResult.Result.SUCCESS:
+        if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_position_ned()", position_ned_yaw)
         
 
@@ -1173,7 +1173,7 @@ class Offboard(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not OffboardResult.Result.SUCCESS:
+        if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_velocity_body()", velocity_body_yawspeed)
         
 
@@ -1202,7 +1202,7 @@ class Offboard(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not OffboardResult.Result.SUCCESS:
+        if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_velocity_ned()", velocity_ned_yaw)
         
 
@@ -1238,7 +1238,7 @@ class Offboard(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not OffboardResult.Result.SUCCESS:
+        if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_position_velocity_ned()", position_ned_yaw, velocity_ned_yaw)
         
 
@@ -1267,6 +1267,6 @@ class Offboard(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not OffboardResult.Result.SUCCESS:
+        if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_acceleration_ned()", acceleration_ned)
         

@@ -30,7 +30,7 @@ class FlightInfo:
         self.time_boot_ms = time_boot_ms
         self.flight_uid = flight_uid
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two FlightInfo are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -104,7 +104,7 @@ class Identification:
         self.hardware_uid = hardware_uid
         self.legacy_uid = legacy_uid
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Identification are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -188,7 +188,7 @@ class Product:
         self.product_id = product_id
         self.product_name = product_name
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Product are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -329,7 +329,7 @@ class Version:
         self.flight_sw_git_hash = flight_sw_git_hash
         self.os_sw_git_hash = os_sw_git_hash
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Version are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -554,7 +554,7 @@ class InfoResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two InfoResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -658,7 +658,7 @@ class Info(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not InfoResult.Result.SUCCESS:
+        if result.result != InfoResult.Result.SUCCESS:
             raise InfoError(result, "get_flight_information()")
         
 
@@ -686,7 +686,7 @@ class Info(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not InfoResult.Result.SUCCESS:
+        if result.result != InfoResult.Result.SUCCESS:
             raise InfoError(result, "get_identification()")
         
 
@@ -714,7 +714,7 @@ class Info(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not InfoResult.Result.SUCCESS:
+        if result.result != InfoResult.Result.SUCCESS:
             raise InfoError(result, "get_product()")
         
 
@@ -742,7 +742,7 @@ class Info(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not InfoResult.Result.SUCCESS:
+        if result.result != InfoResult.Result.SUCCESS:
             raise InfoError(result, "get_version()")
         
 
@@ -770,7 +770,7 @@ class Info(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not InfoResult.Result.SUCCESS:
+        if result.result != InfoResult.Result.SUCCESS:
             raise InfoError(result, "get_speed_factor()")
         
 

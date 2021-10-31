@@ -30,7 +30,7 @@ class ProgressData:
         self.bytes_transferred = bytes_transferred
         self.total_bytes = total_bytes
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ProgressData are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -228,7 +228,7 @@ class FtpResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two FtpResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -327,7 +327,7 @@ class Ftp(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not FtpResult.Result.SUCCESS:
+        if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "reset()")
         
 
@@ -371,7 +371,7 @@ class Ftp(AsyncBase):
                 if result.result not in success_codes:
                     raise FtpError(result, "download()", remote_file_path, local_dir)
 
-                if result.result is FtpResult.Result.SUCCESS:
+                if result.result == FtpResult.Result.SUCCESS:
                     download_stream.cancel();
                     return
                 
@@ -421,7 +421,7 @@ class Ftp(AsyncBase):
                 if result.result not in success_codes:
                     raise FtpError(result, "upload()", local_file_path, remote_dir)
 
-                if result.result is FtpResult.Result.SUCCESS:
+                if result.result == FtpResult.Result.SUCCESS:
                     upload_stream.cancel();
                     return
                 
@@ -461,7 +461,7 @@ class Ftp(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not FtpResult.Result.SUCCESS:
+        if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "list_directory()", remote_dir)
         
 
@@ -490,7 +490,7 @@ class Ftp(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not FtpResult.Result.SUCCESS:
+        if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "create_directory()", remote_dir)
         
 
@@ -516,7 +516,7 @@ class Ftp(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not FtpResult.Result.SUCCESS:
+        if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "remove_directory()", remote_dir)
         
 
@@ -542,7 +542,7 @@ class Ftp(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not FtpResult.Result.SUCCESS:
+        if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "remove_file()", remote_file_path)
         
 
@@ -572,7 +572,7 @@ class Ftp(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not FtpResult.Result.SUCCESS:
+        if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "rename()", remote_from_path, remote_to_path)
         
 
@@ -613,7 +613,7 @@ class Ftp(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not FtpResult.Result.SUCCESS:
+        if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "are_files_identical()", local_file_path, remote_file_path)
         
 
@@ -642,7 +642,7 @@ class Ftp(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not FtpResult.Result.SUCCESS:
+        if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "set_root_directory()", root_dir)
         
 
@@ -668,7 +668,7 @@ class Ftp(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not FtpResult.Result.SUCCESS:
+        if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "set_target_compid()", compid)
         
 

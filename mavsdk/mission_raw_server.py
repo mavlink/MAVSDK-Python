@@ -85,7 +85,7 @@ class MissionItem:
         self.z = z
         self.mission_type = mission_type
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two MissionItem are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -275,7 +275,7 @@ class MissionPlan:
         """ Initializes the MissionPlan object """
         self.mission_items = mission_items
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two MissionPlan are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -345,7 +345,7 @@ class MissionProgress:
         self.current = current
         self.total = total
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two MissionProgress are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -543,7 +543,7 @@ class MissionRawServerResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two MissionRawServerResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -657,7 +657,7 @@ class MissionRawServer(AsyncBase):
                 if result.result not in success_codes:
                     raise MissionRawServerError(result, "incoming_mission()")
 
-                if result.result is MissionRawServerResult.Result.SUCCESS:
+                if result.result == MissionRawServerResult.Result.SUCCESS:
                     incoming_mission_stream.cancel();
                     return
                 

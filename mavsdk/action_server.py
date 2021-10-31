@@ -171,7 +171,7 @@ class AllowableFlightModes:
         self.can_guided_mode = can_guided_mode
         self.can_stabilize_mode = can_stabilize_mode
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two AllowableFlightModes are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -256,7 +256,7 @@ class ArmDisarm:
         self.arm = arm
         self.force = force
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ArmDisarm are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -454,7 +454,7 @@ class ActionServerResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ActionServerResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -566,7 +566,7 @@ class ActionServer(AsyncBase):
                 if result.result not in success_codes:
                     raise ActionServerError(result, "arm_disarm()")
 
-                if result.result is ActionServerResult.Result.SUCCESS:
+                if result.result == ActionServerResult.Result.SUCCESS:
                     arm_disarm_stream.cancel();
                     return
                 
@@ -605,7 +605,7 @@ class ActionServer(AsyncBase):
                 if result.result not in success_codes:
                     raise ActionServerError(result, "flight_mode_change()")
 
-                if result.result is ActionServerResult.Result.SUCCESS:
+                if result.result == ActionServerResult.Result.SUCCESS:
                     flight_mode_change_stream.cancel();
                     return
                 
@@ -644,7 +644,7 @@ class ActionServer(AsyncBase):
                 if result.result not in success_codes:
                     raise ActionServerError(result, "takeoff()")
 
-                if result.result is ActionServerResult.Result.SUCCESS:
+                if result.result == ActionServerResult.Result.SUCCESS:
                     takeoff_stream.cancel();
                     return
                 
@@ -683,7 +683,7 @@ class ActionServer(AsyncBase):
                 if result.result not in success_codes:
                     raise ActionServerError(result, "land()")
 
-                if result.result is ActionServerResult.Result.SUCCESS:
+                if result.result == ActionServerResult.Result.SUCCESS:
                     land_stream.cancel();
                     return
                 
@@ -722,7 +722,7 @@ class ActionServer(AsyncBase):
                 if result.result not in success_codes:
                     raise ActionServerError(result, "reboot()")
 
-                if result.result is ActionServerResult.Result.SUCCESS:
+                if result.result == ActionServerResult.Result.SUCCESS:
                     reboot_stream.cancel();
                     return
                 
@@ -761,7 +761,7 @@ class ActionServer(AsyncBase):
                 if result.result not in success_codes:
                     raise ActionServerError(result, "shutdown()")
 
-                if result.result is ActionServerResult.Result.SUCCESS:
+                if result.result == ActionServerResult.Result.SUCCESS:
                     shutdown_stream.cancel();
                     return
                 
@@ -800,7 +800,7 @@ class ActionServer(AsyncBase):
                 if result.result not in success_codes:
                     raise ActionServerError(result, "terminate()")
 
-                if result.result is ActionServerResult.Result.SUCCESS:
+                if result.result == ActionServerResult.Result.SUCCESS:
                     terminate_stream.cancel();
                     return
                 
@@ -832,7 +832,7 @@ class ActionServer(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionServerResult.Result.SUCCESS:
+        if result.result != ActionServerResult.Result.SUCCESS:
             raise ActionServerError(result, "set_allow_takeoff()", allow_takeoff)
         
 
@@ -862,7 +862,7 @@ class ActionServer(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionServerResult.Result.SUCCESS:
+        if result.result != ActionServerResult.Result.SUCCESS:
             raise ActionServerError(result, "set_armable()", armable, force_armable)
         
 
@@ -892,7 +892,7 @@ class ActionServer(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionServerResult.Result.SUCCESS:
+        if result.result != ActionServerResult.Result.SUCCESS:
             raise ActionServerError(result, "set_disarmable()", disarmable, force_disarmable)
         
 
@@ -920,7 +920,7 @@ class ActionServer(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionServerResult.Result.SUCCESS:
+        if result.result != ActionServerResult.Result.SUCCESS:
             raise ActionServerError(result, "set_allowable_flight_modes()", flight_modes)
         
 

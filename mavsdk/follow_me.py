@@ -100,7 +100,7 @@ class Config:
         self.follow_direction = follow_direction
         self.responsiveness = responsiveness
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Config are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -216,7 +216,7 @@ class TargetLocation:
         self.velocity_y_m_s = velocity_y_m_s
         self.velocity_z_m_s = velocity_z_m_s
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two TargetLocation are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -426,7 +426,7 @@ class FollowMeResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two FollowMeResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -555,7 +555,7 @@ class FollowMe(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not FollowMeResult.Result.SUCCESS:
+        if result.result != FollowMeResult.Result.SUCCESS:
             raise FollowMeError(result, "set_config()", config)
         
 
@@ -604,7 +604,7 @@ class FollowMe(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not FollowMeResult.Result.SUCCESS:
+        if result.result != FollowMeResult.Result.SUCCESS:
             raise FollowMeError(result, "set_target_location()", location)
         
 
@@ -644,7 +644,7 @@ class FollowMe(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not FollowMeResult.Result.SUCCESS:
+        if result.result != FollowMeResult.Result.SUCCESS:
             raise FollowMeError(result, "start()")
         
 
@@ -664,6 +664,6 @@ class FollowMe(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not FollowMeResult.Result.SUCCESS:
+        if result.result != FollowMeResult.Result.SUCCESS:
             raise FollowMeError(result, "stop()")
         

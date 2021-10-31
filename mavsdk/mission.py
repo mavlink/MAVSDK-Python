@@ -81,6 +81,12 @@ class MissionItem:
          STOP_VIDEO
               Stop capturing video
 
+         START_PHOTO_DISTANCE
+              Start capturing photos at regular distance
+
+         STOP_PHOTO_DISTANCE
+              Stop capturing photos at regular distance
+
          """
 
         
@@ -90,6 +96,8 @@ class MissionItem:
         STOP_PHOTO_INTERVAL = 3
         START_VIDEO = 4
         STOP_VIDEO = 5
+        START_PHOTO_DISTANCE = 6
+        STOP_PHOTO_DISTANCE = 7
 
         def translate_to_rpc(self):
             if self == MissionItem.CameraAction.NONE:
@@ -104,6 +112,10 @@ class MissionItem:
                 return mission_pb2.MissionItem.CAMERA_ACTION_START_VIDEO
             if self == MissionItem.CameraAction.STOP_VIDEO:
                 return mission_pb2.MissionItem.CAMERA_ACTION_STOP_VIDEO
+            if self == MissionItem.CameraAction.START_PHOTO_DISTANCE:
+                return mission_pb2.MissionItem.CAMERA_ACTION_START_PHOTO_DISTANCE
+            if self == MissionItem.CameraAction.STOP_PHOTO_DISTANCE:
+                return mission_pb2.MissionItem.CAMERA_ACTION_STOP_PHOTO_DISTANCE
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -120,6 +132,10 @@ class MissionItem:
                 return MissionItem.CameraAction.START_VIDEO
             if rpc_enum_value == mission_pb2.MissionItem.CAMERA_ACTION_STOP_VIDEO:
                 return MissionItem.CameraAction.STOP_VIDEO
+            if rpc_enum_value == mission_pb2.MissionItem.CAMERA_ACTION_START_PHOTO_DISTANCE:
+                return MissionItem.CameraAction.START_PHOTO_DISTANCE
+            if rpc_enum_value == mission_pb2.MissionItem.CAMERA_ACTION_STOP_PHOTO_DISTANCE:
+                return MissionItem.CameraAction.STOP_PHOTO_DISTANCE
 
         def __str__(self):
             return self.name
@@ -153,7 +169,7 @@ class MissionItem:
         self.acceptance_radius_m = acceptance_radius_m
         self.yaw_deg = yaw_deg
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two MissionItem are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -332,7 +348,7 @@ class MissionPlan:
         """ Initializes the MissionPlan object """
         self.mission_items = mission_items
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two MissionPlan are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -402,7 +418,7 @@ class MissionProgress:
         self.current = current
         self.total = total
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two MissionProgress are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -592,7 +608,7 @@ class MissionResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two MissionResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -703,7 +719,7 @@ class Mission(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionResult.Result.SUCCESS:
+        if result.result != MissionResult.Result.SUCCESS:
             raise MissionError(result, "upload_mission()", mission_plan)
         
 
@@ -723,7 +739,7 @@ class Mission(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionResult.Result.SUCCESS:
+        if result.result != MissionResult.Result.SUCCESS:
             raise MissionError(result, "cancel_mission_upload()")
         
 
@@ -751,7 +767,7 @@ class Mission(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionResult.Result.SUCCESS:
+        if result.result != MissionResult.Result.SUCCESS:
             raise MissionError(result, "download_mission()")
         
 
@@ -774,7 +790,7 @@ class Mission(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionResult.Result.SUCCESS:
+        if result.result != MissionResult.Result.SUCCESS:
             raise MissionError(result, "cancel_mission_download()")
         
 
@@ -796,7 +812,7 @@ class Mission(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionResult.Result.SUCCESS:
+        if result.result != MissionResult.Result.SUCCESS:
             raise MissionError(result, "start_mission()")
         
 
@@ -821,7 +837,7 @@ class Mission(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionResult.Result.SUCCESS:
+        if result.result != MissionResult.Result.SUCCESS:
             raise MissionError(result, "pause_mission()")
         
 
@@ -841,7 +857,7 @@ class Mission(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionResult.Result.SUCCESS:
+        if result.result != MissionResult.Result.SUCCESS:
             raise MissionError(result, "clear_mission()")
         
 
@@ -873,7 +889,7 @@ class Mission(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionResult.Result.SUCCESS:
+        if result.result != MissionResult.Result.SUCCESS:
             raise MissionError(result, "set_current_mission_item()", index)
         
 
@@ -898,7 +914,7 @@ class Mission(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionResult.Result.SUCCESS:
+        if result.result != MissionResult.Result.SUCCESS:
             raise MissionError(result, "is_mission_finished()")
         
 
@@ -953,7 +969,7 @@ class Mission(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionResult.Result.SUCCESS:
+        if result.result != MissionResult.Result.SUCCESS:
             raise MissionError(result, "get_return_to_launch_after_mission()")
         
 
@@ -985,6 +1001,6 @@ class Mission(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionResult.Result.SUCCESS:
+        if result.result != MissionResult.Result.SUCCESS:
             raise MissionError(result, "set_return_to_launch_after_mission()", enable)
         

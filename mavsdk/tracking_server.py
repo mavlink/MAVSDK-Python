@@ -95,7 +95,7 @@ class TrackPoint:
         self.point_y = point_y
         self.radius = radius
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two TrackPoint are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -190,7 +190,7 @@ class TrackRectangle:
         self.bottom_right_corner_x = bottom_right_corner_x
         self.bottom_right_corner_y = bottom_right_corner_y
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two TrackRectangle are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -338,7 +338,7 @@ class TrackingServerResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two TrackingServerResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -572,7 +572,7 @@ class TrackingServer(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TrackingServerResult.Result.SUCCESS:
+        if result.result != TrackingServerResult.Result.SUCCESS:
             raise TrackingServerError(result, "respond_tracking_point_command()", command_answer)
         
 
@@ -601,7 +601,7 @@ class TrackingServer(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TrackingServerResult.Result.SUCCESS:
+        if result.result != TrackingServerResult.Result.SUCCESS:
             raise TrackingServerError(result, "respond_tracking_rectangle_command()", command_answer)
         
 
@@ -630,6 +630,6 @@ class TrackingServer(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TrackingServerResult.Result.SUCCESS:
+        if result.result != TrackingServerResult.Result.SUCCESS:
             raise TrackingServerError(result, "respond_tracking_off_command()", command_answer)
         

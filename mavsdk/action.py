@@ -206,7 +206,7 @@ class ActionResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ActionResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -308,7 +308,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "arm()")
         
 
@@ -331,7 +331,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "disarm()")
         
 
@@ -356,7 +356,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "takeoff()")
         
 
@@ -378,7 +378,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "land()")
         
 
@@ -400,7 +400,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "reboot()")
         
 
@@ -424,7 +424,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "shutdown()")
         
 
@@ -446,7 +446,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "terminate()")
         
 
@@ -469,7 +469,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "kill()")
         
 
@@ -493,7 +493,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "return_to_launch()")
         
 
@@ -536,7 +536,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "goto_location()", latitude_deg, longitude_deg, absolute_altitude_m, yaw_deg)
         
 
@@ -587,7 +587,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "do_orbit()", radius_m, velocity_ms, yaw_behavior, latitude_deg, longitude_deg, absolute_altitude_m)
         
 
@@ -613,7 +613,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "hold()")
         
 
@@ -643,7 +643,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "set_actuator()", index, value)
         
 
@@ -667,7 +667,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "transition_to_fixedwing()")
         
 
@@ -691,7 +691,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "transition_to_multicopter()")
         
 
@@ -716,7 +716,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "get_takeoff_altitude()")
         
 
@@ -745,7 +745,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "set_takeoff_altitude()", altitude)
         
 
@@ -770,7 +770,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "get_maximum_speed()")
         
 
@@ -799,7 +799,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "set_maximum_speed()", speed)
         
 
@@ -824,7 +824,7 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "get_return_to_launch_altitude()")
         
 
@@ -853,6 +853,6 @@ class Action(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ActionResult.Result.SUCCESS:
+        if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "set_return_to_launch_altitude()", relative_altitude_m)
         

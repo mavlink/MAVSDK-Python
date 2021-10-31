@@ -125,7 +125,7 @@ class ControlStatus:
         self.sysid_secondary_control = sysid_secondary_control
         self.compid_secondary_control = compid_secondary_control
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ControlStatus are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -300,7 +300,7 @@ class GimbalResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two GimbalResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -413,7 +413,7 @@ class Gimbal(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not GimbalResult.Result.SUCCESS:
+        if result.result != GimbalResult.Result.SUCCESS:
             raise GimbalError(result, "set_pitch_and_yaw()", pitch_deg, yaw_deg)
         
 
@@ -447,7 +447,7 @@ class Gimbal(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not GimbalResult.Result.SUCCESS:
+        if result.result != GimbalResult.Result.SUCCESS:
             raise GimbalError(result, "set_pitch_rate_and_yaw_rate()", pitch_rate_deg_s, yaw_rate_deg_s)
         
 
@@ -480,7 +480,7 @@ class Gimbal(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not GimbalResult.Result.SUCCESS:
+        if result.result != GimbalResult.Result.SUCCESS:
             raise GimbalError(result, "set_mode()", gimbal_mode)
         
 
@@ -520,7 +520,7 @@ class Gimbal(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not GimbalResult.Result.SUCCESS:
+        if result.result != GimbalResult.Result.SUCCESS:
             raise GimbalError(result, "set_roi_location()", latitude_deg, longitude_deg, altitude_m)
         
 
@@ -557,7 +557,7 @@ class Gimbal(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not GimbalResult.Result.SUCCESS:
+        if result.result != GimbalResult.Result.SUCCESS:
             raise GimbalError(result, "take_control()", control_mode)
         
 
@@ -579,7 +579,7 @@ class Gimbal(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not GimbalResult.Result.SUCCESS:
+        if result.result != GimbalResult.Result.SUCCESS:
             raise GimbalError(result, "release_control()")
         
 

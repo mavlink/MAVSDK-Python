@@ -138,7 +138,7 @@ class CalibrationResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two CalibrationResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -224,7 +224,7 @@ class ProgressData:
         self.has_status_text = has_status_text
         self.status_text = status_text
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ProgressData are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -359,7 +359,7 @@ class Calibration(AsyncBase):
                 if result.result not in success_codes:
                     raise CalibrationError(result, "calibrate_gyro()")
 
-                if result.result is CalibrationResult.Result.SUCCESS:
+                if result.result == CalibrationResult.Result.SUCCESS:
                     calibrate_gyro_stream.cancel();
                     return
                 
@@ -399,7 +399,7 @@ class Calibration(AsyncBase):
                 if result.result not in success_codes:
                     raise CalibrationError(result, "calibrate_accelerometer()")
 
-                if result.result is CalibrationResult.Result.SUCCESS:
+                if result.result == CalibrationResult.Result.SUCCESS:
                     calibrate_accelerometer_stream.cancel();
                     return
                 
@@ -439,7 +439,7 @@ class Calibration(AsyncBase):
                 if result.result not in success_codes:
                     raise CalibrationError(result, "calibrate_magnetometer()")
 
-                if result.result is CalibrationResult.Result.SUCCESS:
+                if result.result == CalibrationResult.Result.SUCCESS:
                     calibrate_magnetometer_stream.cancel();
                     return
                 
@@ -479,7 +479,7 @@ class Calibration(AsyncBase):
                 if result.result not in success_codes:
                     raise CalibrationError(result, "calibrate_level_horizon()")
 
-                if result.result is CalibrationResult.Result.SUCCESS:
+                if result.result == CalibrationResult.Result.SUCCESS:
                     calibrate_level_horizon_stream.cancel();
                     return
                 
@@ -519,7 +519,7 @@ class Calibration(AsyncBase):
                 if result.result not in success_codes:
                     raise CalibrationError(result, "calibrate_gimbal_accelerometer()")
 
-                if result.result is CalibrationResult.Result.SUCCESS:
+                if result.result == CalibrationResult.Result.SUCCESS:
                     calibrate_gimbal_accelerometer_stream.cancel();
                     return
                 
@@ -545,6 +545,6 @@ class Calibration(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not CalibrationResult.Result.SUCCESS:
+        if result.result != CalibrationResult.Result.SUCCESS:
             raise CalibrationError(result, "cancel()")
         

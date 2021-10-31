@@ -30,7 +30,7 @@ class Point:
         self.latitude_deg = latitude_deg
         self.longitude_deg = longitude_deg
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Point are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -140,7 +140,7 @@ class Polygon:
         self.points = points
         self.fence_type = fence_type
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Polygon are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -305,7 +305,7 @@ class GeofenceResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two GeofenceResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -423,7 +423,7 @@ class Geofence(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not GeofenceResult.Result.SUCCESS:
+        if result.result != GeofenceResult.Result.SUCCESS:
             raise GeofenceError(result, "upload_geofence()", polygons)
         
 
@@ -443,6 +443,6 @@ class Geofence(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not GeofenceResult.Result.SUCCESS:
+        if result.result != GeofenceResult.Result.SUCCESS:
             raise GeofenceError(result, "clear_geofence()")
         

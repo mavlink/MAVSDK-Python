@@ -174,7 +174,7 @@ class ServerUtilityResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ServerUtilityResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -286,6 +286,6 @@ class ServerUtility(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ServerUtilityResult.Result.SUCCESS:
+        if result.result != ServerUtilityResult.Result.SUCCESS:
             raise ServerUtilityError(result, "send_status_text()", type, text)
         
