@@ -30,7 +30,7 @@ class IntParam:
         self.name = name
         self.value = value
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two IntParam are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -104,7 +104,7 @@ class FloatParam:
         self.name = name
         self.value = value
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two FloatParam are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -178,7 +178,7 @@ class AllParams:
         self.int_params = int_params
         self.float_params = float_params
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two AllParams are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -342,7 +342,7 @@ class ParamResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ParamResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -457,7 +457,7 @@ class Param(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ParamResult.Result.SUCCESS:
+        if result.result != ParamResult.Result.SUCCESS:
             raise ParamError(result, "get_param_int()", name)
         
 
@@ -492,7 +492,7 @@ class Param(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ParamResult.Result.SUCCESS:
+        if result.result != ParamResult.Result.SUCCESS:
             raise ParamError(result, "set_param_int()", name, value)
         
 
@@ -528,7 +528,7 @@ class Param(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ParamResult.Result.SUCCESS:
+        if result.result != ParamResult.Result.SUCCESS:
             raise ParamError(result, "get_param_float()", name)
         
 
@@ -563,7 +563,7 @@ class Param(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ParamResult.Result.SUCCESS:
+        if result.result != ParamResult.Result.SUCCESS:
             raise ParamError(result, "set_param_float()", name, value)
         
 

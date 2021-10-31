@@ -25,7 +25,7 @@ class ProgressData:
         """ Initializes the ProgressData object """
         self.progress = progress
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ProgressData are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -93,7 +93,7 @@ class Entry:
         self.date = date
         self.size_bytes = size_bytes
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Entry are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -262,7 +262,7 @@ class LogFilesResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two LogFilesResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -367,7 +367,7 @@ class LogFiles(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not LogFilesResult.Result.SUCCESS:
+        if result.result != LogFilesResult.Result.SUCCESS:
             raise LogFilesError(result, "get_entries()")
         
 
@@ -421,7 +421,7 @@ class LogFiles(AsyncBase):
                 if result.result not in success_codes:
                     raise LogFilesError(result, "download_log_file()", entry, path)
 
-                if result.result is LogFilesResult.Result.SUCCESS:
+                if result.result == LogFilesResult.Result.SUCCESS:
                     download_log_file_stream.cancel();
                     return
                 

@@ -25,7 +25,7 @@ class ConnectionState:
         """ Initializes the ConnectionState object """
         self.is_connected = is_connected
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ConnectionState are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non

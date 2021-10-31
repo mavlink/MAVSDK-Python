@@ -30,7 +30,7 @@ class MissionProgress:
         self.current = current
         self.total = total
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two MissionProgress are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -159,7 +159,7 @@ class MissionItem:
         self.z = z
         self.mission_type = mission_type
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two MissionItem are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -359,7 +359,7 @@ class MissionImportData:
         self.geofence_items = geofence_items
         self.rally_items = rally_items
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two MissionImportData are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -589,7 +589,7 @@ class MissionRawResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two MissionRawResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -707,7 +707,7 @@ class MissionRaw(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionRawResult.Result.SUCCESS:
+        if result.result != MissionRawResult.Result.SUCCESS:
             raise MissionRawError(result, "upload_mission()", mission_items)
         
 
@@ -727,7 +727,7 @@ class MissionRaw(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionRawResult.Result.SUCCESS:
+        if result.result != MissionRawResult.Result.SUCCESS:
             raise MissionRawError(result, "cancel_mission_upload()")
         
 
@@ -752,7 +752,7 @@ class MissionRaw(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionRawResult.Result.SUCCESS:
+        if result.result != MissionRawResult.Result.SUCCESS:
             raise MissionRawError(result, "download_mission()")
         
 
@@ -779,7 +779,7 @@ class MissionRaw(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionRawResult.Result.SUCCESS:
+        if result.result != MissionRawResult.Result.SUCCESS:
             raise MissionRawError(result, "cancel_mission_download()")
         
 
@@ -801,7 +801,7 @@ class MissionRaw(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionRawResult.Result.SUCCESS:
+        if result.result != MissionRawResult.Result.SUCCESS:
             raise MissionRawError(result, "start_mission()")
         
 
@@ -826,7 +826,7 @@ class MissionRaw(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionRawResult.Result.SUCCESS:
+        if result.result != MissionRawResult.Result.SUCCESS:
             raise MissionRawError(result, "pause_mission()")
         
 
@@ -846,7 +846,7 @@ class MissionRaw(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionRawResult.Result.SUCCESS:
+        if result.result != MissionRawResult.Result.SUCCESS:
             raise MissionRawError(result, "clear_mission()")
         
 
@@ -875,7 +875,7 @@ class MissionRaw(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionRawResult.Result.SUCCESS:
+        if result.result != MissionRawResult.Result.SUCCESS:
             raise MissionRawError(result, "set_current_mission_item()", index)
         
 
@@ -969,7 +969,7 @@ class MissionRaw(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MissionRawResult.Result.SUCCESS:
+        if result.result != MissionRawResult.Result.SUCCESS:
             raise MissionRawError(result, "import_qgroundcontrol_mission()", qgc_plan_path)
         
 

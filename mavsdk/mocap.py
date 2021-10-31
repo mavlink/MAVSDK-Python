@@ -35,7 +35,7 @@ class PositionBody:
         self.y_m = y_m
         self.z_m = z_m
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two PositionBody are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -125,7 +125,7 @@ class AngleBody:
         self.pitch_rad = pitch_rad
         self.yaw_rad = yaw_rad
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two AngleBody are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -215,7 +215,7 @@ class SpeedBody:
         self.y_m_s = y_m_s
         self.z_m_s = z_m_s
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two SpeedBody are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -305,7 +305,7 @@ class AngularVelocityBody:
         self.pitch_rad_s = pitch_rad_s
         self.yaw_rad_s = yaw_rad_s
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two AngularVelocityBody are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -388,7 +388,7 @@ class Covariance:
         """ Initializes the Covariance object """
         self.covariance_matrix = covariance_matrix
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Covariance are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -469,7 +469,7 @@ class Quaternion:
         self.y = y
         self.z = z
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Quaternion are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -575,7 +575,7 @@ class VisionPositionEstimate:
         self.angle_body = angle_body
         self.pose_covariance = pose_covariance
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two VisionPositionEstimate are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -681,7 +681,7 @@ class AttitudePositionMocap:
         self.position_body = position_body
         self.pose_covariance = pose_covariance
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two AttitudePositionMocap are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -843,7 +843,7 @@ class Odometry:
         self.pose_covariance = pose_covariance
         self.velocity_covariance = velocity_covariance
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Odometry are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1043,7 +1043,7 @@ class MocapResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two MocapResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1154,7 +1154,7 @@ class Mocap(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MocapResult.Result.SUCCESS:
+        if result.result != MocapResult.Result.SUCCESS:
             raise MocapError(result, "set_vision_position_estimate()", vision_position_estimate)
         
 
@@ -1183,7 +1183,7 @@ class Mocap(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MocapResult.Result.SUCCESS:
+        if result.result != MocapResult.Result.SUCCESS:
             raise MocapError(result, "set_attitude_position_mocap()", attitude_position_mocap)
         
 
@@ -1212,6 +1212,6 @@ class Mocap(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not MocapResult.Result.SUCCESS:
+        if result.result != MocapResult.Result.SUCCESS:
             raise MocapError(result, "set_odometry()", odometry)
         

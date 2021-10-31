@@ -30,7 +30,7 @@ class IntParam:
         self.name = name
         self.value = value
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two IntParam are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -104,7 +104,7 @@ class FloatParam:
         self.name = name
         self.value = value
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two FloatParam are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -178,7 +178,7 @@ class AllParams:
         self.int_params = int_params
         self.float_params = float_params
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two AllParams are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -279,6 +279,9 @@ class ParamServerResult:
          PARAM_NAME_TOO_LONG
               Parameter name too long (> 16)
 
+         NO_SYSTEM
+              No system available
+
          """
 
         
@@ -287,6 +290,7 @@ class ParamServerResult:
         NOT_FOUND = 2
         WRONG_TYPE = 3
         PARAM_NAME_TOO_LONG = 4
+        NO_SYSTEM = 5
 
         def translate_to_rpc(self):
             if self == ParamServerResult.Result.UNKNOWN:
@@ -299,6 +303,8 @@ class ParamServerResult:
                 return param_server_pb2.ParamServerResult.RESULT_WRONG_TYPE
             if self == ParamServerResult.Result.PARAM_NAME_TOO_LONG:
                 return param_server_pb2.ParamServerResult.RESULT_PARAM_NAME_TOO_LONG
+            if self == ParamServerResult.Result.NO_SYSTEM:
+                return param_server_pb2.ParamServerResult.RESULT_NO_SYSTEM
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -313,6 +319,8 @@ class ParamServerResult:
                 return ParamServerResult.Result.WRONG_TYPE
             if rpc_enum_value == param_server_pb2.ParamServerResult.RESULT_PARAM_NAME_TOO_LONG:
                 return ParamServerResult.Result.PARAM_NAME_TOO_LONG
+            if rpc_enum_value == param_server_pb2.ParamServerResult.RESULT_NO_SYSTEM:
+                return ParamServerResult.Result.NO_SYSTEM
 
         def __str__(self):
             return self.name
@@ -326,7 +334,7 @@ class ParamServerResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ParamServerResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -441,7 +449,7 @@ class ParamServer(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ParamServerResult.Result.SUCCESS:
+        if result.result != ParamServerResult.Result.SUCCESS:
             raise ParamServerError(result, "retrieve_param_int()", name)
         
 
@@ -476,7 +484,7 @@ class ParamServer(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ParamServerResult.Result.SUCCESS:
+        if result.result != ParamServerResult.Result.SUCCESS:
             raise ParamServerError(result, "provide_param_int()", name, value)
         
 
@@ -512,7 +520,7 @@ class ParamServer(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ParamServerResult.Result.SUCCESS:
+        if result.result != ParamServerResult.Result.SUCCESS:
             raise ParamServerError(result, "retrieve_param_float()", name)
         
 
@@ -547,7 +555,7 @@ class ParamServer(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not ParamServerResult.Result.SUCCESS:
+        if result.result != ParamServerResult.Result.SUCCESS:
             raise ParamServerError(result, "provide_param_float()", name, value)
         
 

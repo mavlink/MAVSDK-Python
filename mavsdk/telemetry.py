@@ -463,7 +463,7 @@ class Position:
         self.absolute_altitude_m = absolute_altitude_m
         self.relative_altitude_m = relative_altitude_m
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Position are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -554,7 +554,7 @@ class Heading:
         """ Initializes the Heading object """
         self.heading_deg = heading_deg
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Heading are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -639,7 +639,7 @@ class Quaternion:
         self.z = z
         self.timestamp_us = timestamp_us
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Quaternion are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -761,7 +761,7 @@ class EulerAngle:
         self.yaw_deg = yaw_deg
         self.timestamp_us = timestamp_us
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two EulerAngle are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -862,7 +862,7 @@ class AngularVelocityBody:
         self.pitch_rad_s = pitch_rad_s
         self.yaw_rad_s = yaw_rad_s
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two AngularVelocityBody are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -947,7 +947,7 @@ class GpsInfo:
         self.num_satellites = num_satellites
         self.fix_type = fix_type
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two GpsInfo are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1084,7 +1084,7 @@ class RawGps:
         self.heading_uncertainty_deg = heading_uncertainty_deg
         self.yaw_deg = yaw_deg
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two RawGps are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1295,7 +1295,7 @@ class Battery:
         self.voltage_v = voltage_v
         self.remaining_percent = remaining_percent
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Battery are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1405,7 +1405,7 @@ class Health:
         self.is_home_position_ok = is_home_position_ok
         self.is_armable = is_armable
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Health are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1539,7 +1539,7 @@ class RcStatus:
         self.is_available = is_available
         self.signal_strength_percent = signal_strength_percent
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two RcStatus are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1624,7 +1624,7 @@ class StatusText:
         self.type = type
         self.text = text
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two StatusText are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1698,7 +1698,7 @@ class ActuatorControlTarget:
         self.group = group
         self.controls = controls
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ActuatorControlTarget are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1773,7 +1773,7 @@ class ActuatorOutputStatus:
         self.active = active
         self.actuator = actuator
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ActuatorOutputStatus are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1847,7 +1847,7 @@ class Covariance:
         """ Initializes the Covariance object """
         self.covariance_matrix = covariance_matrix
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Covariance are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1916,7 +1916,7 @@ class VelocityBody:
         self.y_m_s = y_m_s
         self.z_m_s = z_m_s
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two VelocityBody are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -2006,7 +2006,7 @@ class PositionBody:
         self.y_m = y_m
         self.z_m = z_m
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two PositionBody are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -2178,7 +2178,7 @@ class Odometry:
         self.pose_covariance = pose_covariance
         self.velocity_covariance = velocity_covariance
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Odometry are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -2334,7 +2334,7 @@ class DistanceSensor:
         self.maximum_distance_m = maximum_distance_m
         self.current_distance_m = current_distance_m
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two DistanceSensor are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -2434,7 +2434,7 @@ class ScaledPressure:
         self.temperature_deg = temperature_deg
         self.differential_pressure_temperature_deg = differential_pressure_temperature_deg
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two ScaledPressure are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -2546,7 +2546,7 @@ class PositionNed:
         self.east_m = east_m
         self.down_m = down_m
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two PositionNed are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -2636,7 +2636,7 @@ class VelocityNed:
         self.east_m_s = east_m_s
         self.down_m_s = down_m_s
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two VelocityNed are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -2721,7 +2721,7 @@ class PositionVelocityNed:
         self.position = position
         self.velocity = velocity
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two PositionVelocityNed are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -2800,7 +2800,7 @@ class GroundTruth:
         self.longitude_deg = longitude_deg
         self.absolute_altitude_m = absolute_altitude_m
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two GroundTruth are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -2890,7 +2890,7 @@ class FixedwingMetrics:
         self.throttle_percentage = throttle_percentage
         self.climb_rate_m_s = climb_rate_m_s
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two FixedwingMetrics are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -2980,7 +2980,7 @@ class AccelerationFrd:
         self.right_m_s2 = right_m_s2
         self.down_m_s2 = down_m_s2
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two AccelerationFrd are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -3070,7 +3070,7 @@ class AngularVelocityFrd:
         self.right_rad_s = right_rad_s
         self.down_rad_s = down_rad_s
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two AngularVelocityFrd are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -3160,7 +3160,7 @@ class MagneticFieldFrd:
         self.right_gauss = right_gauss
         self.down_gauss = down_gauss
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two MagneticFieldFrd are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -3260,7 +3260,7 @@ class Imu:
         self.temperature_degc = temperature_degc
         self.timestamp_us = timestamp_us
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Imu are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -3372,7 +3372,7 @@ class GpsGlobalOrigin:
         self.longitude_deg = longitude_deg
         self.altitude_m = altitude_m
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two GpsGlobalOrigin are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -3541,7 +3541,7 @@ class TelemetryResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two TelemetryResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -4439,7 +4439,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_position()", rate_hz)
         
 
@@ -4465,7 +4465,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_home()", rate_hz)
         
 
@@ -4491,7 +4491,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_in_air()", rate_hz)
         
 
@@ -4517,7 +4517,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_landed_state()", rate_hz)
         
 
@@ -4543,7 +4543,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_vtol_state()", rate_hz)
         
 
@@ -4569,7 +4569,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_attitude()", rate_hz)
         
 
@@ -4595,7 +4595,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_camera_attitude()", rate_hz)
         
 
@@ -4621,7 +4621,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_velocity_ned()", rate_hz)
         
 
@@ -4647,7 +4647,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_gps_info()", rate_hz)
         
 
@@ -4673,7 +4673,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_battery()", rate_hz)
         
 
@@ -4699,7 +4699,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_rc_status()", rate_hz)
         
 
@@ -4725,7 +4725,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_actuator_control_target()", rate_hz)
         
 
@@ -4751,7 +4751,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_actuator_output_status()", rate_hz)
         
 
@@ -4777,7 +4777,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_odometry()", rate_hz)
         
 
@@ -4803,7 +4803,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_position_velocity_ned()", rate_hz)
         
 
@@ -4829,7 +4829,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_ground_truth()", rate_hz)
         
 
@@ -4855,7 +4855,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_fixedwing_metrics()", rate_hz)
         
 
@@ -4881,7 +4881,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_imu()", rate_hz)
         
 
@@ -4907,7 +4907,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_scaled_imu()", rate_hz)
         
 
@@ -4933,7 +4933,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_raw_imu()", rate_hz)
         
 
@@ -4959,7 +4959,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_unix_epoch_time()", rate_hz)
         
 
@@ -4985,7 +4985,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_distance_sensor()", rate_hz)
         
 
@@ -5009,7 +5009,7 @@ class Telemetry(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TelemetryResult.Result.SUCCESS:
+        if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "get_gps_global_origin()")
         
 

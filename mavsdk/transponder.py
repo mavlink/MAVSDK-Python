@@ -250,7 +250,7 @@ class AdsbVehicle:
         self.emitter_type = emitter_type
         self.squawk = squawk
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two AdsbVehicle are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -488,7 +488,7 @@ class TransponderResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two TransponderResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -618,6 +618,6 @@ class Transponder(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TransponderResult.Result.SUCCESS:
+        if result.result != TransponderResult.Result.SUCCESS:
             raise TransponderError(result, "set_rate_transponder()", rate_hz)
         

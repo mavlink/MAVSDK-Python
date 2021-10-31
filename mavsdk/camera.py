@@ -202,7 +202,7 @@ class CameraResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two CameraResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -286,7 +286,7 @@ class Position:
         self.absolute_altitude_m = absolute_altitude_m
         self.relative_altitude_m = relative_altitude_m
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Position are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -399,7 +399,7 @@ class Quaternion:
         self.y = y
         self.z = z
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Quaternion are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -505,7 +505,7 @@ class EulerAngle:
         self.pitch_deg = pitch_deg
         self.yaw_deg = yaw_deg
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two EulerAngle are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -615,7 +615,7 @@ class CaptureInfo:
         self.index = index
         self.file_url = file_url
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two CaptureInfo are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -769,7 +769,7 @@ class VideoStreamSettings:
         self.uri = uri
         self.horizontal_fov_deg = horizontal_fov_deg
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two VideoStreamSettings are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -983,7 +983,7 @@ class VideoStreamInfo:
         self.status = status
         self.spectrum = spectrum
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two VideoStreamInfo are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1150,7 +1150,7 @@ class Status:
         self.media_folder_name = media_folder_name
         self.storage_status = storage_status
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Status are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1290,7 +1290,7 @@ class Option:
         self.option_id = option_id
         self.option_description = option_description
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Option are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1374,7 +1374,7 @@ class Setting:
         self.option = option
         self.is_range = is_range
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Setting are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1480,7 +1480,7 @@ class SettingOptions:
         self.options = options
         self.is_range = is_range
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two SettingOptions are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1608,7 +1608,7 @@ class Information:
         self.horizontal_resolution_px = horizontal_resolution_px
         self.vertical_resolution_px = vertical_resolution_px
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two Information are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -1768,7 +1768,7 @@ class Camera(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not CameraResult.Result.SUCCESS:
+        if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "prepare()")
         
 
@@ -1788,7 +1788,7 @@ class Camera(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not CameraResult.Result.SUCCESS:
+        if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "take_photo()")
         
 
@@ -1814,7 +1814,7 @@ class Camera(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not CameraResult.Result.SUCCESS:
+        if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "start_photo_interval()", interval_s)
         
 
@@ -1834,7 +1834,7 @@ class Camera(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not CameraResult.Result.SUCCESS:
+        if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "stop_photo_interval()")
         
 
@@ -1854,7 +1854,7 @@ class Camera(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not CameraResult.Result.SUCCESS:
+        if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "start_video()")
         
 
@@ -1874,7 +1874,7 @@ class Camera(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not CameraResult.Result.SUCCESS:
+        if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "stop_video()")
         
 
@@ -1894,7 +1894,7 @@ class Camera(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not CameraResult.Result.SUCCESS:
+        if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "start_video_streaming()")
         
 
@@ -1914,7 +1914,7 @@ class Camera(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not CameraResult.Result.SUCCESS:
+        if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "stop_video_streaming()")
         
 
@@ -1943,7 +1943,7 @@ class Camera(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not CameraResult.Result.SUCCESS:
+        if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "set_mode()", mode)
         
 
@@ -1979,7 +1979,7 @@ class Camera(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not CameraResult.Result.SUCCESS:
+        if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "list_photos()", photos_range)
         
 
@@ -2185,7 +2185,7 @@ class Camera(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not CameraResult.Result.SUCCESS:
+        if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "set_setting()", setting)
         
 
@@ -2223,7 +2223,7 @@ class Camera(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not CameraResult.Result.SUCCESS:
+        if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "get_setting()", setting)
         
 
@@ -2248,6 +2248,6 @@ class Camera(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not CameraResult.Result.SUCCESS:
+        if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "format_storage()")
         

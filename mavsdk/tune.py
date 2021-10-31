@@ -218,7 +218,7 @@ class TuneDescription:
         self.song_elements = song_elements
         self.tempo = tempo
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two TuneDescription are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -365,7 +365,7 @@ class TuneResult:
         self.result = result
         self.result_str = result_str
 
-    def __equals__(self, to_compare):
+    def __eq__(self, to_compare):
         """ Checks if two TuneResult are the same """
         try:
             # Try to compare - this likely fails when it is compared to a non
@@ -473,6 +473,6 @@ class Tune(AsyncBase):
         
         result = self._extract_result(response)
 
-        if result.result is not TuneResult.Result.SUCCESS:
+        if result.result != TuneResult.Result.SUCCESS:
             raise TuneError(result, "play_tune()", tune_description)
         
