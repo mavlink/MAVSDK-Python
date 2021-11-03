@@ -50,7 +50,7 @@ The examples assume that the embedded `mavsdk_server` binary can be run. In some
 
 ## Contribute
 
-Note: this is more involved and targetted at contributors.
+Note: this is more involved and targeted at contributors.
 
 Most of the code is auto-generated from the [proto definitions](https://github.com/mavlink/mavsdk-proto), using our [templates](./other/templates). The generated files can be found in the [generated](./mavsdk/generated) folder. As a result, contributions are generally made in the templates or on the build system. Regularly, there is a need to update MAVSDK-Python to include the latest features defined in the proto definitions. This is described [below](#generate-the-code).
 
