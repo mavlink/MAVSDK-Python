@@ -57,10 +57,18 @@ class System:
         Port of the running mavsdk_server instance specified by
         mavsdk_server_address.
 
+    sysid: int
+        MAVLink system ID of the mavsdk_server (1..255).
+
+    compid: int
+        MAVLink component ID of the mavsdk_server (1..255).
+
     """
-    def __init__(self, mavsdk_server_address=None, port=50051):
+    def __init__(self, mavsdk_server_address=None, port=50051, sysid=245, compid=190):
         self._mavsdk_server_address = mavsdk_server_address
         self._port = port
+        self._sysid = sysid
+        self._compid = compid
 
         self._plugins = {}
         self._server_process = None
@@ -94,7 +102,7 @@ class System:
 
         if self._mavsdk_server_address is None:
             self._mavsdk_server_address = 'localhost'
-            self._server_process = self._start_mavsdk_server(system_address,self._port)
+            self._server_process = self._start_mavsdk_server(system_address,self._port, self._sysid, self._compid)
 
         await self._init_plugins(self._mavsdk_server_address, self._port)
 
@@ -168,7 +176,7 @@ class System:
         if "failure" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Failure"))
         return self._plugins["failure"]
-    
+
     @property
     def follow_me(self) -> follow_me.FollowMe:
         if "follow_me" not in self._plugins:
@@ -272,7 +280,7 @@ class System:
         return self._plugins["tune"]
 
     @staticmethod
-    def _start_mavsdk_server(system_address=None,port=50051):
+    def _start_mavsdk_server(system_address, port, sysid, compid):
         """
         Starts the gRPC server in a subprocess, listening on localhost:port
         port parameter can be specified now to allow multiple mavsdk servers to be spawned via code
@@ -289,7 +297,10 @@ class System:
 
         try:
             with path(bin, 'mavsdk_server') as backend:
-                bin_path_and_args = [os.fspath(backend), "-p", str(port)]
+                bin_path_and_args = [os.fspath(backend),
+                                     "-p", str(port),
+                                     "--sysid", str(sysid),
+                                     "--compid", str(compid)]
                 if system_address:
                     bin_path_and_args.append(system_address)
                 p = subprocess.Popen(bin_path_and_args,
