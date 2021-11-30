@@ -463,6 +463,172 @@ class PositionNedYaw:
         
 
 
+class PositionGlobalYaw:
+    """
+     Type for position commands in Global (Latitude, Longitude, Altitude) coordinates and yaw.
+
+     Parameters
+     ----------
+     lat_deg : double
+          Latitude (in degrees)
+
+     lon_deg : double
+          Longitude (in degrees)
+
+     alt_m : float
+          altitude (in metres)
+
+     yaw_deg : float
+          Yaw in degrees (0 North, positive is clock-wise looking from above)
+
+     altitude_type : AltitudeType
+          altitude type for this position 
+
+     """
+
+    
+    
+    class AltitudeType(Enum):
+        """
+         Possible altitude options
+
+         Values
+         ------
+         REL_HOME
+              Altitude relative to the Home position
+
+         AMSL
+              Altitude above mean sea level (AMSL)
+
+         AGL
+              Altitude above ground level (AGL)
+
+         """
+
+        
+        REL_HOME = 0
+        AMSL = 1
+        AGL = 2
+
+        def translate_to_rpc(self):
+            if self == PositionGlobalYaw.AltitudeType.REL_HOME:
+                return offboard_pb2.PositionGlobalYaw.ALTITUDE_TYPE_REL_HOME
+            if self == PositionGlobalYaw.AltitudeType.AMSL:
+                return offboard_pb2.PositionGlobalYaw.ALTITUDE_TYPE_AMSL
+            if self == PositionGlobalYaw.AltitudeType.AGL:
+                return offboard_pb2.PositionGlobalYaw.ALTITUDE_TYPE_AGL
+
+        @staticmethod
+        def translate_from_rpc(rpc_enum_value):
+            """ Parses a gRPC response """
+            if rpc_enum_value == offboard_pb2.PositionGlobalYaw.ALTITUDE_TYPE_REL_HOME:
+                return PositionGlobalYaw.AltitudeType.REL_HOME
+            if rpc_enum_value == offboard_pb2.PositionGlobalYaw.ALTITUDE_TYPE_AMSL:
+                return PositionGlobalYaw.AltitudeType.AMSL
+            if rpc_enum_value == offboard_pb2.PositionGlobalYaw.ALTITUDE_TYPE_AGL:
+                return PositionGlobalYaw.AltitudeType.AGL
+
+        def __str__(self):
+            return self.name
+    
+
+    def __init__(
+            self,
+            lat_deg,
+            lon_deg,
+            alt_m,
+            yaw_deg,
+            altitude_type):
+        """ Initializes the PositionGlobalYaw object """
+        self.lat_deg = lat_deg
+        self.lon_deg = lon_deg
+        self.alt_m = alt_m
+        self.yaw_deg = yaw_deg
+        self.altitude_type = altitude_type
+
+    def __eq__(self, to_compare):
+        """ Checks if two PositionGlobalYaw are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # PositionGlobalYaw object
+            return \
+                (self.lat_deg == to_compare.lat_deg) and \
+                (self.lon_deg == to_compare.lon_deg) and \
+                (self.alt_m == to_compare.alt_m) and \
+                (self.yaw_deg == to_compare.yaw_deg) and \
+                (self.altitude_type == to_compare.altitude_type)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ PositionGlobalYaw in string representation """
+        struct_repr = ", ".join([
+                "lat_deg: " + str(self.lat_deg),
+                "lon_deg: " + str(self.lon_deg),
+                "alt_m: " + str(self.alt_m),
+                "yaw_deg: " + str(self.yaw_deg),
+                "altitude_type: " + str(self.altitude_type)
+                ])
+
+        return f"PositionGlobalYaw: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcPositionGlobalYaw):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return PositionGlobalYaw(
+                
+                rpcPositionGlobalYaw.lat_deg,
+                
+                
+                rpcPositionGlobalYaw.lon_deg,
+                
+                
+                rpcPositionGlobalYaw.alt_m,
+                
+                
+                rpcPositionGlobalYaw.yaw_deg,
+                
+                
+                PositionGlobalYaw.AltitudeType.translate_from_rpc(rpcPositionGlobalYaw.altitude_type)
+                )
+
+    def translate_to_rpc(self, rpcPositionGlobalYaw):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcPositionGlobalYaw.lat_deg = self.lat_deg
+            
+        
+        
+        
+            
+        rpcPositionGlobalYaw.lon_deg = self.lon_deg
+            
+        
+        
+        
+            
+        rpcPositionGlobalYaw.alt_m = self.alt_m
+            
+        
+        
+        
+            
+        rpcPositionGlobalYaw.yaw_deg = self.yaw_deg
+            
+        
+        
+        
+            
+        rpcPositionGlobalYaw.altitude_type = self.altitude_type.translate_to_rpc()
+            
+        
+        
+
+
 class VelocityBodyYawspeed:
     """
      Type for velocity commands in body coordinates.
@@ -1146,6 +1312,35 @@ class Offboard(AsyncBase):
 
         if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_position_ned()", position_ned_yaw)
+        
+
+    async def set_position_global(self, position_global_yaw):
+        """
+         Set the position in Global coordinates (latitude, longitude, altitude) and yaw
+
+         Parameters
+         ----------
+         position_global_yaw : PositionGlobalYaw
+              Position and yaw
+
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = offboard_pb2.SetPositionGlobalRequest()
+        
+        position_global_yaw.translate_to_rpc(request.position_global_yaw)
+                
+            
+        response = await self._stub.SetPositionGlobal(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_position_global()", position_global_yaw)
         
 
     async def set_velocity_body(self, velocity_body_yawspeed):

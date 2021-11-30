@@ -20,11 +20,41 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\022io.mavsdk.offboardB\rOffboardProto',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x17offboard/offboard.proto\x12\x13mavsdk.rpc.offboard\x1a\x14mavsdk_options.proto\"\x0e\n\x0cStartRequest\"M\n\rStartResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"\r\n\x0bStopRequest\"L\n\x0cStopResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"\x11\n\x0fIsActiveRequest\"%\n\x10IsActiveResponse\x12\x11\n\tis_active\x18\x01 \x01(\x08\"E\n\x12SetAttitudeRequest\x12/\n\x08\x61ttitude\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.offboard.Attitude\"S\n\x13SetAttitudeResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"[\n\x19SetActuatorControlRequest\x12>\n\x10\x61\x63tuator_control\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.offboard.ActuatorControl\"Z\n\x1aSetActuatorControlResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"R\n\x16SetAttitudeRateRequest\x12\x38\n\rattitude_rate\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.offboard.AttitudeRate\"W\n\x17SetAttitudeRateResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"V\n\x15SetPositionNedRequest\x12=\n\x10position_ned_yaw\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.PositionNedYaw\"V\n\x16SetPositionNedResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"c\n\x16SetVelocityBodyRequest\x12I\n\x16velocity_body_yawspeed\x18\x01 \x01(\x0b\x32).mavsdk.rpc.offboard.VelocityBodyYawspeed\"W\n\x17SetVelocityBodyResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"V\n\x15SetVelocityNedRequest\x12=\n\x10velocity_ned_yaw\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.VelocityNedYaw\"V\n\x16SetVelocityNedResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"\x9d\x01\n\x1dSetPositionVelocityNedRequest\x12=\n\x10position_ned_yaw\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.PositionNedYaw\x12=\n\x10velocity_ned_yaw\x18\x02 \x01(\x0b\x32#.mavsdk.rpc.offboard.VelocityNedYaw\"^\n\x1eSetPositionVelocityNedResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"[\n\x19SetAccelerationNedRequest\x12>\n\x10\x61\x63\x63\x65leration_ned\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.offboard.AccelerationNed\"Z\n\x1aSetAccelerationNedResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"V\n\x08\x41ttitude\x12\x10\n\x08roll_deg\x18\x01 \x01(\x02\x12\x11\n\tpitch_deg\x18\x02 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x03 \x01(\x02\x12\x14\n\x0cthrust_value\x18\x04 \x01(\x02\"(\n\x14\x41\x63tuatorControlGroup\x12\x10\n\x08\x63ontrols\x18\x01 \x03(\x02\"L\n\x0f\x41\x63tuatorControl\x12\x39\n\x06groups\x18\x01 \x03(\x0b\x32).mavsdk.rpc.offboard.ActuatorControlGroup\"`\n\x0c\x41ttitudeRate\x12\x12\n\nroll_deg_s\x18\x01 \x01(\x02\x12\x13\n\x0bpitch_deg_s\x18\x02 \x01(\x02\x12\x11\n\tyaw_deg_s\x18\x03 \x01(\x02\x12\x14\n\x0cthrust_value\x18\x04 \x01(\x02\"R\n\x0ePositionNedYaw\x12\x0f\n\x07north_m\x18\x01 \x01(\x02\x12\x0e\n\x06\x65\x61st_m\x18\x02 \x01(\x02\x12\x0e\n\x06\x64own_m\x18\x03 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x04 \x01(\x02\"h\n\x14VelocityBodyYawspeed\x12\x13\n\x0b\x66orward_m_s\x18\x01 \x01(\x02\x12\x11\n\tright_m_s\x18\x02 \x01(\x02\x12\x10\n\x08\x64own_m_s\x18\x03 \x01(\x02\x12\x16\n\x0eyawspeed_deg_s\x18\x04 \x01(\x02\"X\n\x0eVelocityNedYaw\x12\x11\n\tnorth_m_s\x18\x01 \x01(\x02\x12\x10\n\x08\x65\x61st_m_s\x18\x02 \x01(\x02\x12\x10\n\x08\x64own_m_s\x18\x03 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x04 \x01(\x02\"K\n\x0f\x41\x63\x63\x65lerationNed\x12\x12\n\nnorth_m_s2\x18\x01 \x01(\x02\x12\x11\n\teast_m_s2\x18\x02 \x01(\x02\x12\x11\n\tdown_m_s2\x18\x03 \x01(\x02\"\xa2\x02\n\x0eOffboardResult\x12:\n\x06result\x18\x01 \x01(\x0e\x32*.mavsdk.rpc.offboard.OffboardResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xbf\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x1a\n\x16RESULT_NO_SETPOINT_SET\x10\x07\x32\xc7\t\n\x0fOffboardService\x12P\n\x05Start\x12!.mavsdk.rpc.offboard.StartRequest\x1a\".mavsdk.rpc.offboard.StartResponse\"\x00\x12M\n\x04Stop\x12 .mavsdk.rpc.offboard.StopRequest\x1a!.mavsdk.rpc.offboard.StopResponse\"\x00\x12]\n\x08IsActive\x12$.mavsdk.rpc.offboard.IsActiveRequest\x1a%.mavsdk.rpc.offboard.IsActiveResponse\"\x04\x80\xb5\x18\x01\x12\x66\n\x0bSetAttitude\x12\'.mavsdk.rpc.offboard.SetAttitudeRequest\x1a(.mavsdk.rpc.offboard.SetAttitudeResponse\"\x04\x80\xb5\x18\x01\x12{\n\x12SetActuatorControl\x12..mavsdk.rpc.offboard.SetActuatorControlRequest\x1a/.mavsdk.rpc.offboard.SetActuatorControlResponse\"\x04\x80\xb5\x18\x01\x12r\n\x0fSetAttitudeRate\x12+.mavsdk.rpc.offboard.SetAttitudeRateRequest\x1a,.mavsdk.rpc.offboard.SetAttitudeRateResponse\"\x04\x80\xb5\x18\x01\x12o\n\x0eSetPositionNed\x12*.mavsdk.rpc.offboard.SetPositionNedRequest\x1a+.mavsdk.rpc.offboard.SetPositionNedResponse\"\x04\x80\xb5\x18\x01\x12r\n\x0fSetVelocityBody\x12+.mavsdk.rpc.offboard.SetVelocityBodyRequest\x1a,.mavsdk.rpc.offboard.SetVelocityBodyResponse\"\x04\x80\xb5\x18\x01\x12o\n\x0eSetVelocityNed\x12*.mavsdk.rpc.offboard.SetVelocityNedRequest\x1a+.mavsdk.rpc.offboard.SetVelocityNedResponse\"\x04\x80\xb5\x18\x01\x12\x87\x01\n\x16SetPositionVelocityNed\x12\x32.mavsdk.rpc.offboard.SetPositionVelocityNedRequest\x1a\x33.mavsdk.rpc.offboard.SetPositionVelocityNedResponse\"\x04\x80\xb5\x18\x01\x12{\n\x12SetAccelerationNed\x12..mavsdk.rpc.offboard.SetAccelerationNedRequest\x1a/.mavsdk.rpc.offboard.SetAccelerationNedResponse\"\x04\x80\xb5\x18\x01\x42#\n\x12io.mavsdk.offboardB\rOffboardProtob\x06proto3'
+  serialized_pb=b'\n\x17offboard/offboard.proto\x12\x13mavsdk.rpc.offboard\x1a\x14mavsdk_options.proto\"\x0e\n\x0cStartRequest\"M\n\rStartResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"\r\n\x0bStopRequest\"L\n\x0cStopResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"\x11\n\x0fIsActiveRequest\"%\n\x10IsActiveResponse\x12\x11\n\tis_active\x18\x01 \x01(\x08\"E\n\x12SetAttitudeRequest\x12/\n\x08\x61ttitude\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.offboard.Attitude\"S\n\x13SetAttitudeResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"[\n\x19SetActuatorControlRequest\x12>\n\x10\x61\x63tuator_control\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.offboard.ActuatorControl\"Z\n\x1aSetActuatorControlResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"R\n\x16SetAttitudeRateRequest\x12\x38\n\rattitude_rate\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.offboard.AttitudeRate\"W\n\x17SetAttitudeRateResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"V\n\x15SetPositionNedRequest\x12=\n\x10position_ned_yaw\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.PositionNedYaw\"V\n\x16SetPositionNedResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"_\n\x18SetPositionGlobalRequest\x12\x43\n\x13position_global_yaw\x18\x01 \x01(\x0b\x32&.mavsdk.rpc.offboard.PositionGlobalYaw\"Y\n\x19SetPositionGlobalResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"c\n\x16SetVelocityBodyRequest\x12I\n\x16velocity_body_yawspeed\x18\x01 \x01(\x0b\x32).mavsdk.rpc.offboard.VelocityBodyYawspeed\"W\n\x17SetVelocityBodyResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"V\n\x15SetVelocityNedRequest\x12=\n\x10velocity_ned_yaw\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.VelocityNedYaw\"V\n\x16SetVelocityNedResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"\x9d\x01\n\x1dSetPositionVelocityNedRequest\x12=\n\x10position_ned_yaw\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.PositionNedYaw\x12=\n\x10velocity_ned_yaw\x18\x02 \x01(\x0b\x32#.mavsdk.rpc.offboard.VelocityNedYaw\"^\n\x1eSetPositionVelocityNedResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"[\n\x19SetAccelerationNedRequest\x12>\n\x10\x61\x63\x63\x65leration_ned\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.offboard.AccelerationNed\"Z\n\x1aSetAccelerationNedResponse\x12<\n\x0foffboard_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.offboard.OffboardResult\"V\n\x08\x41ttitude\x12\x10\n\x08roll_deg\x18\x01 \x01(\x02\x12\x11\n\tpitch_deg\x18\x02 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x03 \x01(\x02\x12\x14\n\x0cthrust_value\x18\x04 \x01(\x02\"(\n\x14\x41\x63tuatorControlGroup\x12\x10\n\x08\x63ontrols\x18\x01 \x03(\x02\"L\n\x0f\x41\x63tuatorControl\x12\x39\n\x06groups\x18\x01 \x03(\x0b\x32).mavsdk.rpc.offboard.ActuatorControlGroup\"`\n\x0c\x41ttitudeRate\x12\x12\n\nroll_deg_s\x18\x01 \x01(\x02\x12\x13\n\x0bpitch_deg_s\x18\x02 \x01(\x02\x12\x11\n\tyaw_deg_s\x18\x03 \x01(\x02\x12\x14\n\x0cthrust_value\x18\x04 \x01(\x02\"R\n\x0ePositionNedYaw\x12\x0f\n\x07north_m\x18\x01 \x01(\x02\x12\x0e\n\x06\x65\x61st_m\x18\x02 \x01(\x02\x12\x0e\n\x06\x64own_m\x18\x03 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x04 \x01(\x02\"\xfc\x01\n\x11PositionGlobalYaw\x12\x0f\n\x07lat_deg\x18\x01 \x01(\x01\x12\x0f\n\x07lon_deg\x18\x02 \x01(\x01\x12\r\n\x05\x61lt_m\x18\x03 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x04 \x01(\x02\x12J\n\raltitude_type\x18\x05 \x01(\x0e\x32\x33.mavsdk.rpc.offboard.PositionGlobalYaw.AltitudeType\"Y\n\x0c\x41ltitudeType\x12\x1a\n\x16\x41LTITUDE_TYPE_REL_HOME\x10\x00\x12\x16\n\x12\x41LTITUDE_TYPE_AMSL\x10\x01\x12\x15\n\x11\x41LTITUDE_TYPE_AGL\x10\x02\"h\n\x14VelocityBodyYawspeed\x12\x13\n\x0b\x66orward_m_s\x18\x01 \x01(\x02\x12\x11\n\tright_m_s\x18\x02 \x01(\x02\x12\x10\n\x08\x64own_m_s\x18\x03 \x01(\x02\x12\x16\n\x0eyawspeed_deg_s\x18\x04 \x01(\x02\"X\n\x0eVelocityNedYaw\x12\x11\n\tnorth_m_s\x18\x01 \x01(\x02\x12\x10\n\x08\x65\x61st_m_s\x18\x02 \x01(\x02\x12\x10\n\x08\x64own_m_s\x18\x03 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x04 \x01(\x02\"K\n\x0f\x41\x63\x63\x65lerationNed\x12\x12\n\nnorth_m_s2\x18\x01 \x01(\x02\x12\x11\n\teast_m_s2\x18\x02 \x01(\x02\x12\x11\n\tdown_m_s2\x18\x03 \x01(\x02\"\xa2\x02\n\x0eOffboardResult\x12:\n\x06result\x18\x01 \x01(\x0e\x32*.mavsdk.rpc.offboard.OffboardResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xbf\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x1a\n\x16RESULT_NO_SETPOINT_SET\x10\x07\x32\xc1\n\n\x0fOffboardService\x12P\n\x05Start\x12!.mavsdk.rpc.offboard.StartRequest\x1a\".mavsdk.rpc.offboard.StartResponse\"\x00\x12M\n\x04Stop\x12 .mavsdk.rpc.offboard.StopRequest\x1a!.mavsdk.rpc.offboard.StopResponse\"\x00\x12]\n\x08IsActive\x12$.mavsdk.rpc.offboard.IsActiveRequest\x1a%.mavsdk.rpc.offboard.IsActiveResponse\"\x04\x80\xb5\x18\x01\x12\x66\n\x0bSetAttitude\x12\'.mavsdk.rpc.offboard.SetAttitudeRequest\x1a(.mavsdk.rpc.offboard.SetAttitudeResponse\"\x04\x80\xb5\x18\x01\x12{\n\x12SetActuatorControl\x12..mavsdk.rpc.offboard.SetActuatorControlRequest\x1a/.mavsdk.rpc.offboard.SetActuatorControlResponse\"\x04\x80\xb5\x18\x01\x12r\n\x0fSetAttitudeRate\x12+.mavsdk.rpc.offboard.SetAttitudeRateRequest\x1a,.mavsdk.rpc.offboard.SetAttitudeRateResponse\"\x04\x80\xb5\x18\x01\x12o\n\x0eSetPositionNed\x12*.mavsdk.rpc.offboard.SetPositionNedRequest\x1a+.mavsdk.rpc.offboard.SetPositionNedResponse\"\x04\x80\xb5\x18\x01\x12x\n\x11SetPositionGlobal\x12-.mavsdk.rpc.offboard.SetPositionGlobalRequest\x1a..mavsdk.rpc.offboard.SetPositionGlobalResponse\"\x04\x80\xb5\x18\x01\x12r\n\x0fSetVelocityBody\x12+.mavsdk.rpc.offboard.SetVelocityBodyRequest\x1a,.mavsdk.rpc.offboard.SetVelocityBodyResponse\"\x04\x80\xb5\x18\x01\x12o\n\x0eSetVelocityNed\x12*.mavsdk.rpc.offboard.SetVelocityNedRequest\x1a+.mavsdk.rpc.offboard.SetVelocityNedResponse\"\x04\x80\xb5\x18\x01\x12\x87\x01\n\x16SetPositionVelocityNed\x12\x32.mavsdk.rpc.offboard.SetPositionVelocityNedRequest\x1a\x33.mavsdk.rpc.offboard.SetPositionVelocityNedResponse\"\x04\x80\xb5\x18\x01\x12{\n\x12SetAccelerationNed\x12..mavsdk.rpc.offboard.SetAccelerationNedRequest\x1a/.mavsdk.rpc.offboard.SetAccelerationNedResponse\"\x04\x80\xb5\x18\x01\x42#\n\x12io.mavsdk.offboardB\rOffboardProtob\x06proto3'
   ,
   dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
 
 
+
+_POSITIONGLOBALYAW_ALTITUDETYPE = _descriptor.EnumDescriptor(
+  name='AltitudeType',
+  full_name='mavsdk.rpc.offboard.PositionGlobalYaw.AltitudeType',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='ALTITUDE_TYPE_REL_HOME', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='ALTITUDE_TYPE_AMSL', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='ALTITUDE_TYPE_AGL', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=2555,
+  serialized_end=2644,
+)
+_sym_db.RegisterEnumDescriptor(_POSITIONGLOBALYAW_ALTITUDETYPE)
 
 _OFFBOARDRESULT_RESULT = _descriptor.EnumDescriptor(
   name='Result',
@@ -76,8 +106,8 @@ _OFFBOARDRESULT_RESULT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2576,
-  serialized_end=2767,
+  serialized_start=3019,
+  serialized_end=3210,
 )
 _sym_db.RegisterEnumDescriptor(_OFFBOARDRESULT_RESULT)
 
@@ -509,6 +539,70 @@ _SETPOSITIONNEDRESPONSE = _descriptor.Descriptor(
 )
 
 
+_SETPOSITIONGLOBALREQUEST = _descriptor.Descriptor(
+  name='SetPositionGlobalRequest',
+  full_name='mavsdk.rpc.offboard.SetPositionGlobalRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='position_global_yaw', full_name='mavsdk.rpc.offboard.SetPositionGlobalRequest.position_global_yaw', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1006,
+  serialized_end=1101,
+)
+
+
+_SETPOSITIONGLOBALRESPONSE = _descriptor.Descriptor(
+  name='SetPositionGlobalResponse',
+  full_name='mavsdk.rpc.offboard.SetPositionGlobalResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='offboard_result', full_name='mavsdk.rpc.offboard.SetPositionGlobalResponse.offboard_result', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1103,
+  serialized_end=1192,
+)
+
+
 _SETVELOCITYBODYREQUEST = _descriptor.Descriptor(
   name='SetVelocityBodyRequest',
   full_name='mavsdk.rpc.offboard.SetVelocityBodyRequest',
@@ -536,8 +630,8 @@ _SETVELOCITYBODYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1006,
-  serialized_end=1105,
+  serialized_start=1194,
+  serialized_end=1293,
 )
 
 
@@ -568,8 +662,8 @@ _SETVELOCITYBODYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1107,
-  serialized_end=1194,
+  serialized_start=1295,
+  serialized_end=1382,
 )
 
 
@@ -600,8 +694,8 @@ _SETVELOCITYNEDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1196,
-  serialized_end=1282,
+  serialized_start=1384,
+  serialized_end=1470,
 )
 
 
@@ -632,8 +726,8 @@ _SETVELOCITYNEDRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1284,
-  serialized_end=1370,
+  serialized_start=1472,
+  serialized_end=1558,
 )
 
 
@@ -671,8 +765,8 @@ _SETPOSITIONVELOCITYNEDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1373,
-  serialized_end=1530,
+  serialized_start=1561,
+  serialized_end=1718,
 )
 
 
@@ -703,8 +797,8 @@ _SETPOSITIONVELOCITYNEDRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1532,
-  serialized_end=1626,
+  serialized_start=1720,
+  serialized_end=1814,
 )
 
 
@@ -735,8 +829,8 @@ _SETACCELERATIONNEDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1628,
-  serialized_end=1719,
+  serialized_start=1816,
+  serialized_end=1907,
 )
 
 
@@ -767,8 +861,8 @@ _SETACCELERATIONNEDRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1721,
-  serialized_end=1811,
+  serialized_start=1909,
+  serialized_end=1999,
 )
 
 
@@ -820,8 +914,8 @@ _ATTITUDE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1813,
-  serialized_end=1899,
+  serialized_start=2001,
+  serialized_end=2087,
 )
 
 
@@ -852,8 +946,8 @@ _ACTUATORCONTROLGROUP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1901,
-  serialized_end=1941,
+  serialized_start=2089,
+  serialized_end=2129,
 )
 
 
@@ -884,8 +978,8 @@ _ACTUATORCONTROL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1943,
-  serialized_end=2019,
+  serialized_start=2131,
+  serialized_end=2207,
 )
 
 
@@ -937,8 +1031,8 @@ _ATTITUDERATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2021,
-  serialized_end=2117,
+  serialized_start=2209,
+  serialized_end=2305,
 )
 
 
@@ -990,8 +1084,69 @@ _POSITIONNEDYAW = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2119,
-  serialized_end=2201,
+  serialized_start=2307,
+  serialized_end=2389,
+)
+
+
+_POSITIONGLOBALYAW = _descriptor.Descriptor(
+  name='PositionGlobalYaw',
+  full_name='mavsdk.rpc.offboard.PositionGlobalYaw',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='lat_deg', full_name='mavsdk.rpc.offboard.PositionGlobalYaw.lat_deg', index=0,
+      number=1, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='lon_deg', full_name='mavsdk.rpc.offboard.PositionGlobalYaw.lon_deg', index=1,
+      number=2, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='alt_m', full_name='mavsdk.rpc.offboard.PositionGlobalYaw.alt_m', index=2,
+      number=3, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='yaw_deg', full_name='mavsdk.rpc.offboard.PositionGlobalYaw.yaw_deg', index=3,
+      number=4, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='altitude_type', full_name='mavsdk.rpc.offboard.PositionGlobalYaw.altitude_type', index=4,
+      number=5, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _POSITIONGLOBALYAW_ALTITUDETYPE,
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2392,
+  serialized_end=2644,
 )
 
 
@@ -1043,8 +1198,8 @@ _VELOCITYBODYYAWSPEED = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2203,
-  serialized_end=2307,
+  serialized_start=2646,
+  serialized_end=2750,
 )
 
 
@@ -1096,8 +1251,8 @@ _VELOCITYNEDYAW = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2309,
-  serialized_end=2397,
+  serialized_start=2752,
+  serialized_end=2840,
 )
 
 
@@ -1142,8 +1297,8 @@ _ACCELERATIONNED = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2399,
-  serialized_end=2474,
+  serialized_start=2842,
+  serialized_end=2917,
 )
 
 
@@ -1182,8 +1337,8 @@ _OFFBOARDRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2477,
-  serialized_end=2767,
+  serialized_start=2920,
+  serialized_end=3210,
 )
 
 _STARTRESPONSE.fields_by_name['offboard_result'].message_type = _OFFBOARDRESULT
@@ -1196,6 +1351,8 @@ _SETATTITUDERATEREQUEST.fields_by_name['attitude_rate'].message_type = _ATTITUDE
 _SETATTITUDERATERESPONSE.fields_by_name['offboard_result'].message_type = _OFFBOARDRESULT
 _SETPOSITIONNEDREQUEST.fields_by_name['position_ned_yaw'].message_type = _POSITIONNEDYAW
 _SETPOSITIONNEDRESPONSE.fields_by_name['offboard_result'].message_type = _OFFBOARDRESULT
+_SETPOSITIONGLOBALREQUEST.fields_by_name['position_global_yaw'].message_type = _POSITIONGLOBALYAW
+_SETPOSITIONGLOBALRESPONSE.fields_by_name['offboard_result'].message_type = _OFFBOARDRESULT
 _SETVELOCITYBODYREQUEST.fields_by_name['velocity_body_yawspeed'].message_type = _VELOCITYBODYYAWSPEED
 _SETVELOCITYBODYRESPONSE.fields_by_name['offboard_result'].message_type = _OFFBOARDRESULT
 _SETVELOCITYNEDREQUEST.fields_by_name['velocity_ned_yaw'].message_type = _VELOCITYNEDYAW
@@ -1206,6 +1363,8 @@ _SETPOSITIONVELOCITYNEDRESPONSE.fields_by_name['offboard_result'].message_type =
 _SETACCELERATIONNEDREQUEST.fields_by_name['acceleration_ned'].message_type = _ACCELERATIONNED
 _SETACCELERATIONNEDRESPONSE.fields_by_name['offboard_result'].message_type = _OFFBOARDRESULT
 _ACTUATORCONTROL.fields_by_name['groups'].message_type = _ACTUATORCONTROLGROUP
+_POSITIONGLOBALYAW.fields_by_name['altitude_type'].enum_type = _POSITIONGLOBALYAW_ALTITUDETYPE
+_POSITIONGLOBALYAW_ALTITUDETYPE.containing_type = _POSITIONGLOBALYAW
 _OFFBOARDRESULT.fields_by_name['result'].enum_type = _OFFBOARDRESULT_RESULT
 _OFFBOARDRESULT_RESULT.containing_type = _OFFBOARDRESULT
 DESCRIPTOR.message_types_by_name['StartRequest'] = _STARTREQUEST
@@ -1222,6 +1381,8 @@ DESCRIPTOR.message_types_by_name['SetAttitudeRateRequest'] = _SETATTITUDERATEREQ
 DESCRIPTOR.message_types_by_name['SetAttitudeRateResponse'] = _SETATTITUDERATERESPONSE
 DESCRIPTOR.message_types_by_name['SetPositionNedRequest'] = _SETPOSITIONNEDREQUEST
 DESCRIPTOR.message_types_by_name['SetPositionNedResponse'] = _SETPOSITIONNEDRESPONSE
+DESCRIPTOR.message_types_by_name['SetPositionGlobalRequest'] = _SETPOSITIONGLOBALREQUEST
+DESCRIPTOR.message_types_by_name['SetPositionGlobalResponse'] = _SETPOSITIONGLOBALRESPONSE
 DESCRIPTOR.message_types_by_name['SetVelocityBodyRequest'] = _SETVELOCITYBODYREQUEST
 DESCRIPTOR.message_types_by_name['SetVelocityBodyResponse'] = _SETVELOCITYBODYRESPONSE
 DESCRIPTOR.message_types_by_name['SetVelocityNedRequest'] = _SETVELOCITYNEDREQUEST
@@ -1235,6 +1396,7 @@ DESCRIPTOR.message_types_by_name['ActuatorControlGroup'] = _ACTUATORCONTROLGROUP
 DESCRIPTOR.message_types_by_name['ActuatorControl'] = _ACTUATORCONTROL
 DESCRIPTOR.message_types_by_name['AttitudeRate'] = _ATTITUDERATE
 DESCRIPTOR.message_types_by_name['PositionNedYaw'] = _POSITIONNEDYAW
+DESCRIPTOR.message_types_by_name['PositionGlobalYaw'] = _POSITIONGLOBALYAW
 DESCRIPTOR.message_types_by_name['VelocityBodyYawspeed'] = _VELOCITYBODYYAWSPEED
 DESCRIPTOR.message_types_by_name['VelocityNedYaw'] = _VELOCITYNEDYAW
 DESCRIPTOR.message_types_by_name['AccelerationNed'] = _ACCELERATIONNED
@@ -1339,6 +1501,20 @@ SetPositionNedResponse = _reflection.GeneratedProtocolMessageType('SetPositionNe
   })
 _sym_db.RegisterMessage(SetPositionNedResponse)
 
+SetPositionGlobalRequest = _reflection.GeneratedProtocolMessageType('SetPositionGlobalRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SETPOSITIONGLOBALREQUEST,
+  '__module__' : 'offboard.offboard_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.offboard.SetPositionGlobalRequest)
+  })
+_sym_db.RegisterMessage(SetPositionGlobalRequest)
+
+SetPositionGlobalResponse = _reflection.GeneratedProtocolMessageType('SetPositionGlobalResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SETPOSITIONGLOBALRESPONSE,
+  '__module__' : 'offboard.offboard_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.offboard.SetPositionGlobalResponse)
+  })
+_sym_db.RegisterMessage(SetPositionGlobalResponse)
+
 SetVelocityBodyRequest = _reflection.GeneratedProtocolMessageType('SetVelocityBodyRequest', (_message.Message,), {
   'DESCRIPTOR' : _SETVELOCITYBODYREQUEST,
   '__module__' : 'offboard.offboard_pb2'
@@ -1430,6 +1606,13 @@ PositionNedYaw = _reflection.GeneratedProtocolMessageType('PositionNedYaw', (_me
   })
 _sym_db.RegisterMessage(PositionNedYaw)
 
+PositionGlobalYaw = _reflection.GeneratedProtocolMessageType('PositionGlobalYaw', (_message.Message,), {
+  'DESCRIPTOR' : _POSITIONGLOBALYAW,
+  '__module__' : 'offboard.offboard_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.offboard.PositionGlobalYaw)
+  })
+_sym_db.RegisterMessage(PositionGlobalYaw)
+
 VelocityBodyYawspeed = _reflection.GeneratedProtocolMessageType('VelocityBodyYawspeed', (_message.Message,), {
   'DESCRIPTOR' : _VELOCITYBODYYAWSPEED,
   '__module__' : 'offboard.offboard_pb2'
@@ -1468,8 +1651,8 @@ _OFFBOARDSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=2770,
-  serialized_end=3993,
+  serialized_start=3213,
+  serialized_end=4558,
   methods=[
   _descriptor.MethodDescriptor(
     name='Start',
@@ -1542,9 +1725,19 @@ _OFFBOARDSERVICE = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='SetPositionGlobal',
+    full_name='mavsdk.rpc.offboard.OffboardService.SetPositionGlobal',
+    index=7,
+    containing_service=None,
+    input_type=_SETPOSITIONGLOBALREQUEST,
+    output_type=_SETPOSITIONGLOBALRESPONSE,
+    serialized_options=b'\200\265\030\001',
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='SetVelocityBody',
     full_name='mavsdk.rpc.offboard.OffboardService.SetVelocityBody',
-    index=7,
+    index=8,
     containing_service=None,
     input_type=_SETVELOCITYBODYREQUEST,
     output_type=_SETVELOCITYBODYRESPONSE,
@@ -1554,7 +1747,7 @@ _OFFBOARDSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetVelocityNed',
     full_name='mavsdk.rpc.offboard.OffboardService.SetVelocityNed',
-    index=8,
+    index=9,
     containing_service=None,
     input_type=_SETVELOCITYNEDREQUEST,
     output_type=_SETVELOCITYNEDRESPONSE,
@@ -1564,7 +1757,7 @@ _OFFBOARDSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetPositionVelocityNed',
     full_name='mavsdk.rpc.offboard.OffboardService.SetPositionVelocityNed',
-    index=9,
+    index=10,
     containing_service=None,
     input_type=_SETPOSITIONVELOCITYNEDREQUEST,
     output_type=_SETPOSITIONVELOCITYNEDRESPONSE,
@@ -1574,7 +1767,7 @@ _OFFBOARDSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetAccelerationNed',
     full_name='mavsdk.rpc.offboard.OffboardService.SetAccelerationNed',
-    index=10,
+    index=11,
     containing_service=None,
     input_type=_SETACCELERATIONNEDREQUEST,
     output_type=_SETACCELERATIONNEDRESPONSE,
