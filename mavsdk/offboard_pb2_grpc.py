@@ -58,6 +58,11 @@ class OffboardServiceStub(object):
                 request_serializer=offboard_dot_offboard__pb2.SetPositionNedRequest.SerializeToString,
                 response_deserializer=offboard_dot_offboard__pb2.SetPositionNedResponse.FromString,
                 )
+        self.SetPositionGlobal = channel.unary_unary(
+                '/mavsdk.rpc.offboard.OffboardService/SetPositionGlobal',
+                request_serializer=offboard_dot_offboard__pb2.SetPositionGlobalRequest.SerializeToString,
+                response_deserializer=offboard_dot_offboard__pb2.SetPositionGlobalResponse.FromString,
+                )
         self.SetVelocityBody = channel.unary_unary(
                 '/mavsdk.rpc.offboard.OffboardService/SetVelocityBody',
                 request_serializer=offboard_dot_offboard__pb2.SetVelocityBodyRequest.SerializeToString,
@@ -156,6 +161,14 @@ class OffboardServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetPositionGlobal(self, request, context):
+        """
+        Set the position in Global coordinates (latitude, longitude, altitude) and yaw
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetVelocityBody(self, request, context):
         """
         Set the velocity in body coordinates and yaw angular rate. Not available for fixed-wing aircraft.
@@ -225,6 +238,11 @@ def add_OffboardServiceServicer_to_server(servicer, server):
                     servicer.SetPositionNed,
                     request_deserializer=offboard_dot_offboard__pb2.SetPositionNedRequest.FromString,
                     response_serializer=offboard_dot_offboard__pb2.SetPositionNedResponse.SerializeToString,
+            ),
+            'SetPositionGlobal': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetPositionGlobal,
+                    request_deserializer=offboard_dot_offboard__pb2.SetPositionGlobalRequest.FromString,
+                    response_serializer=offboard_dot_offboard__pb2.SetPositionGlobalResponse.SerializeToString,
             ),
             'SetVelocityBody': grpc.unary_unary_rpc_method_handler(
                     servicer.SetVelocityBody,
@@ -381,6 +399,23 @@ class OffboardService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.offboard.OffboardService/SetPositionNed',
             offboard_dot_offboard__pb2.SetPositionNedRequest.SerializeToString,
             offboard_dot_offboard__pb2.SetPositionNedResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetPositionGlobal(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.offboard.OffboardService/SetPositionGlobal',
+            offboard_dot_offboard__pb2.SetPositionGlobalRequest.SerializeToString,
+            offboard_dot_offboard__pb2.SetPositionGlobalResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

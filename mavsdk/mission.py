@@ -53,6 +53,9 @@ class MissionItem:
      yaw_deg : float
           Absolute yaw angle (in degrees)
 
+     camera_photo_distance_m : float
+          Camera photo distance to use after this mission item (in meters)
+
      """
 
     
@@ -154,7 +157,8 @@ class MissionItem:
             loiter_time_s,
             camera_photo_interval_s,
             acceptance_radius_m,
-            yaw_deg):
+            yaw_deg,
+            camera_photo_distance_m):
         """ Initializes the MissionItem object """
         self.latitude_deg = latitude_deg
         self.longitude_deg = longitude_deg
@@ -168,6 +172,7 @@ class MissionItem:
         self.camera_photo_interval_s = camera_photo_interval_s
         self.acceptance_radius_m = acceptance_radius_m
         self.yaw_deg = yaw_deg
+        self.camera_photo_distance_m = camera_photo_distance_m
 
     def __eq__(self, to_compare):
         """ Checks if two MissionItem are the same """
@@ -186,7 +191,8 @@ class MissionItem:
                 (self.loiter_time_s == to_compare.loiter_time_s) and \
                 (self.camera_photo_interval_s == to_compare.camera_photo_interval_s) and \
                 (self.acceptance_radius_m == to_compare.acceptance_radius_m) and \
-                (self.yaw_deg == to_compare.yaw_deg)
+                (self.yaw_deg == to_compare.yaw_deg) and \
+                (self.camera_photo_distance_m == to_compare.camera_photo_distance_m)
 
         except AttributeError:
             return False
@@ -205,7 +211,8 @@ class MissionItem:
                 "loiter_time_s: " + str(self.loiter_time_s),
                 "camera_photo_interval_s: " + str(self.camera_photo_interval_s),
                 "acceptance_radius_m: " + str(self.acceptance_radius_m),
-                "yaw_deg: " + str(self.yaw_deg)
+                "yaw_deg: " + str(self.yaw_deg),
+                "camera_photo_distance_m: " + str(self.camera_photo_distance_m)
                 ])
 
         return f"MissionItem: [{struct_repr}]"
@@ -248,7 +255,10 @@ class MissionItem:
                 rpcMissionItem.acceptance_radius_m,
                 
                 
-                rpcMissionItem.yaw_deg
+                rpcMissionItem.yaw_deg,
+                
+                
+                rpcMissionItem.camera_photo_distance_m
                 )
 
     def translate_to_rpc(self, rpcMissionItem):
@@ -324,6 +334,12 @@ class MissionItem:
         
             
         rpcMissionItem.yaw_deg = self.yaw_deg
+            
+        
+        
+        
+            
+        rpcMissionItem.camera_photo_distance_m = self.camera_photo_distance_m
             
         
         
