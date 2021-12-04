@@ -35,6 +35,7 @@ async def run():
                                      float('nan'),
                                      float('nan'),
                                      float('nan'),
+                                     float('nan'),
                                      float('nan')))
     mission_items.append(MissionItem(47.398036222362471,
                                      8.5450146439425509,
@@ -47,6 +48,7 @@ async def run():
                                      float('nan'),
                                      float('nan'),
                                      float('nan'),
+                                     float('nan'),
                                      float('nan')))
     mission_items.append(MissionItem(47.397825620791885,
                                      8.5450092830163271,
@@ -56,6 +58,7 @@ async def run():
                                      float('nan'),
                                      float('nan'),
                                      MissionItem.CameraAction.NONE,
+                                     float('nan'),
                                      float('nan'),
                                      float('nan'),
                                      float('nan'),
