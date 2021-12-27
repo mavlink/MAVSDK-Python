@@ -32,12 +32,15 @@ Install using pip from PyPi
 
 To install simply run:
 
+.. code:: bash
+
   pip3 install mavsdk
 
 
 The package contains ``mavsdk_server`` already (previously called "backend"), which is started automatically when connecting (e.g. ``await drone.connect()``). Have a look at the examples to see it used in practice. It will be something like:
 
 .. code:: python
+
   python
   from mavsdk import System
   ...
@@ -53,6 +56,7 @@ Run the examples
 Once the package has been installed, the examples can be run:
 
 .. code:: bash
+
   examples/takeoff_and_land.py
 
 The examples assume that the embedded ``mavsdk_server`` binary can be run. In some cases (e.g. on Raspberry Pi), it may be necessary to run ``mavsdk_server`` manually, and therefore to set ``mavsdk_server_address='localhost'`` as described above.
@@ -65,6 +69,7 @@ In order to get more debugging information, it is possible to run the mavsdk_ser
 For this case, let's assume the example was like this:
 
 .. code:: python
+
   drone = System()
   await drone.connect(system_address="udp://:14540")
 
@@ -74,17 +79,20 @@ The mavsdk_server binary is installed using ``pip3``. If installed with ``pip3 -
 It can then be run in a separate console with the ``system_address`` as an argument:
 
 .. code:: bash
+
   ~/.local/lib/python3.9/site-packages/mavsdk/bin/mavsdk_server udp://:14540
 
 Without an autopilot connecting, the output will look something like:
 
 .. code:: bash
+
   [02:36:31|Info ] MAVSDK version: v0.50.0 (mavsdk_impl.cpp:28)
   [02:36:31|Info ] Waiting to discover system on udp://:14540... (connection_initiator.h:20)
 
 Once an autopilot is discovered, something like this should be printed:
 
 .. code:: bash
+
   [02:38:12|Info ] MAVSDK version: v0.50.0 (mavsdk_impl.cpp:28)
   [02:38:12|Info ] Waiting to discover system on udp://:14540... (connection_initiator.h:20)
   [02:39:01|Info ] New system on: 127.0.0.1:14580 (with sysid: 1) (udp_connection.cpp:194)
