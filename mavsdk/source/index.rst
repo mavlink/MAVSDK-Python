@@ -57,6 +57,45 @@ Once the package has been installed, the examples can be run:
 
 The examples assume that the embedded ``mavsdk_server`` binary can be run. In some cases (e.g. on Raspberry Pi), it may be necessary to run ``mavsdk_server`` manually, and therefore to set ``mavsdk_server_address='localhost'`` as described above.
 
+Debug connection issues
+-----------------------
+
+In order to get more debugging information, it is possible to run the mavsdk_server binary separately.
+
+For this case, let's assume the example was like this:
+
+  drone = System()
+  await drone.connect(system_address="udp://:14540")
+
+
+The mavsdk_server binary is installed using ``pip3``. If installed with ``pip3 --user`` it is usually (at least for Linux) to be found in ``~/.local/lib/python3.9/site-packages/mavsdk/bin/`` (of course depending on the Python version used).
+
+It can then be run in a separate console with the ``system_address`` as an argument:
+
+  ~/.local/lib/python3.9/site-packages/mavsdk/bin/mavsdk_server udp://:14540
+
+Without an autopilot connecting, the output will look something like:
+
+  [02:36:31|Info ] MAVSDK version: v0.50.0 (mavsdk_impl.cpp:28)
+  [02:36:31|Info ] Waiting to discover system on udp://:14540... (connection_initiator.h:20)
+
+Once an autopilot is discovered, something like this should be printed:
+
+  [02:38:12|Info ] MAVSDK version: v0.50.0 (mavsdk_impl.cpp:28)
+  [02:38:12|Info ] Waiting to discover system on udp://:14540... (connection_initiator.h:20)
+  [02:39:01|Info ] New system on: 127.0.0.1:14580 (with sysid: 1) (udp_connection.cpp:194)
+  [02:39:01|Debug] New: System ID: 1 Comp ID: 1 (mavsdk_impl.cpp:484)
+  [02:39:01|Debug] Component Autopilot (1) added. (system_impl.cpp:355)
+  [02:39:02|Debug] Discovered 1 component(s) (system_impl.cpp:523)
+  [02:39:02|Info ] System discovered (connection_initiator.h:63)
+  [02:39:02|Info ] Server started (grpc_server.cpp:52)
+  [02:39:02|Info ] Server set to listen on 0.0.0.0:50051 (grpc_server.cpp:53)
+
+This would look promising, and the example can now be run against this server, however, without ``system_address``:
+
+  drone = System()
+  await drone.connect()
+
 
 Indices and tables
 ==================
