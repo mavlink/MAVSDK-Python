@@ -15,14 +15,14 @@ async def run():
             print(f"Drone discovered with UUID: {state.uuid}")
             break
 
-    print("Enabling failure injection")
-    await drone.param.set_param_int('SYS_FAILURE_EN', 1)
-
     print("Waiting for drone to have a global position estimate...")
     async for health in drone.telemetry.health():
         if health.is_global_position_ok and health.is_home_position_ok:
             print("Global position estimate ok")
             break
+
+    print("-- Enabling failure injection")
+    await drone.param.set_param_int('SYS_FAILURE_EN', 1)
 
     print("-- Arming")
     await drone.action.arm()
@@ -55,6 +55,8 @@ async def run():
     print("-- Waiting 20s before exiting script...")
     await asyncio.sleep(20)
 
+    print("-- Disabling failure injection")
+    await drone.param.set_param_int('SYS_FAILURE_EN', 0)
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
