@@ -25,6 +25,7 @@ from . import param
 from . import server_utility
 from . import shell
 from . import telemetry
+from . import telemetry_server
 from . import tracking_server
 from . import transponder
 from . import tune
@@ -137,9 +138,10 @@ class System:
         self._plugins["mocap"] = mocap.Mocap(plugin_manager)
         self._plugins["offboard"] = offboard.Offboard(plugin_manager)
         self._plugins["param"] = param.Param(plugin_manager)
-        self._plugins["server_utility"] = server_utility.Shell(plugin_manager)
+        self._plugins["server_utility"] = server_utility.ServerUtility(plugin_manager)
         self._plugins["shell"] = shell.Shell(plugin_manager)
         self._plugins["telemetry"] = telemetry.Telemetry(plugin_manager)
+        self._plugins["telemetry_server"] = telemetry_server.TelemetryServer(plugin_manager)
         self._plugins["tracking_server"] = tracking_server.TrackingServer(plugin_manager)
         self._plugins["transponder"] = transponder.Transponder(plugin_manager)
         self._plugins["tune"] = tune.Tune(plugin_manager)
@@ -252,7 +254,7 @@ class System:
         return self._plugins["param"]
 
     @property
-    def server_utility(self) -> server_utility.Shell:
+    def server_utility(self) -> server_utility.ServerUtility:
         if "server_utility" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("ServerUtility"))
         return self._plugins["server_utility"]
@@ -268,6 +270,12 @@ class System:
         if "telemetry" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Telemetry"))
         return self._plugins["telemetry"]
+
+    @property
+    def telemetry_server(self) -> telemetry_server.TelemetryServer:
+        if "telemetry_server" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("TelemetryServer"))
+        return self._plugins["telemetry_server"]
 
     @property
     def tracking_server(self) -> tracking_server.TrackingServer:
