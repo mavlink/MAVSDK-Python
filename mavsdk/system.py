@@ -22,6 +22,7 @@ from . import mission_raw
 from . import mocap
 from . import offboard
 from . import param
+from . import server_utility
 from . import shell
 from . import telemetry
 from . import tracking_server
@@ -136,6 +137,7 @@ class System:
         self._plugins["mocap"] = mocap.Mocap(plugin_manager)
         self._plugins["offboard"] = offboard.Offboard(plugin_manager)
         self._plugins["param"] = param.Param(plugin_manager)
+        self._plugins["server_utility"] = server_utility.Shell(plugin_manager)
         self._plugins["shell"] = shell.Shell(plugin_manager)
         self._plugins["telemetry"] = telemetry.Telemetry(plugin_manager)
         self._plugins["tracking_server"] = tracking_server.TrackingServer(plugin_manager)
@@ -248,6 +250,12 @@ class System:
         if "param" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Param"))
         return self._plugins["param"]
+
+    @property
+    def server_utility(self) -> server_utility.Shell:
+        if "server_utility" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("ServerUtility"))
+        return self._plugins["server_utility"]
 
     @property
     def shell(self) -> shell.Shell:
