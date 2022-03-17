@@ -27,7 +27,7 @@ async def run():
     print("-- Taking off")
     await drone.action.takeoff()
 
-    await asyncio.sleep(5)
+    await asyncio.sleep(10)
 
     print("-- Landing")
     await drone.action.land()
