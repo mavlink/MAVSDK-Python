@@ -168,7 +168,7 @@ class System:
         return self._plugins["action"]
 
     @property
-    def action_server(self) -> action_server.Action:
+    def action_server(self) -> action_server.ActionServer:
         if "action_server" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("ActionServer"))
         return self._plugins["action_server"]
