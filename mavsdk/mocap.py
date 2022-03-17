@@ -996,6 +996,9 @@ class MocapResult:
          INVALID_REQUEST_DATA
               Invalid request data
 
+         UNSUPPORTED
+              Function unsupported
+
          """
 
         
@@ -1004,6 +1007,7 @@ class MocapResult:
         NO_SYSTEM = 2
         CONNECTION_ERROR = 3
         INVALID_REQUEST_DATA = 4
+        UNSUPPORTED = 5
 
         def translate_to_rpc(self):
             if self == MocapResult.Result.UNKNOWN:
@@ -1016,6 +1020,8 @@ class MocapResult:
                 return mocap_pb2.MocapResult.RESULT_CONNECTION_ERROR
             if self == MocapResult.Result.INVALID_REQUEST_DATA:
                 return mocap_pb2.MocapResult.RESULT_INVALID_REQUEST_DATA
+            if self == MocapResult.Result.UNSUPPORTED:
+                return mocap_pb2.MocapResult.RESULT_UNSUPPORTED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -1030,6 +1036,8 @@ class MocapResult:
                 return MocapResult.Result.CONNECTION_ERROR
             if rpc_enum_value == mocap_pb2.MocapResult.RESULT_INVALID_REQUEST_DATA:
                 return MocapResult.Result.INVALID_REQUEST_DATA
+            if rpc_enum_value == mocap_pb2.MocapResult.RESULT_UNSUPPORTED:
+                return MocapResult.Result.UNSUPPORTED
 
         def __str__(self):
             return self.name

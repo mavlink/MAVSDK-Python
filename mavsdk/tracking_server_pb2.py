@@ -4,6 +4,7 @@
 """Generated protocol buffer code."""
 from google.protobuf.internal import enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
+from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
@@ -15,56 +16,9 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor.FileDescriptor(
-  name='tracking_server/tracking_server.proto',
-  package='mavsdk.rpc.tracking_server',
-  syntax='proto3',
-  serialized_options=b'\n\031io.mavsdk.tracking_serverB\023TrackingServerProto',
-  create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n%tracking_server/tracking_server.proto\x12\x1amavsdk.rpc.tracking_server\x1a\x14mavsdk_options.proto\"^\n\x1dSetTrackingPointStatusRequest\x12=\n\rtracked_point\x18\x01 \x01(\x0b\x32&.mavsdk.rpc.tracking_server.TrackPoint\" \n\x1eSetTrackingPointStatusResponse\"j\n!SetTrackingRectangleStatusRequest\x12\x45\n\x11tracked_rectangle\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.tracking_server.TrackRectangle\"$\n\"SetTrackingRectangleStatusResponse\"\x1d\n\x1bSetTrackingOffStatusRequest\"\x1e\n\x1cSetTrackingOffStatusResponse\"&\n$SubscribeTrackingPointCommandRequest\"[\n\x1cTrackingPointCommandResponse\x12;\n\x0btrack_point\x18\x01 \x01(\x0b\x32&.mavsdk.rpc.tracking_server.TrackPoint\"*\n(SubscribeTrackingRectangleCommandRequest\"g\n TrackingRectangleCommandResponse\x12\x43\n\x0ftrack_rectangle\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.tracking_server.TrackRectangle\"$\n\"SubscribeTrackingOffCommandRequest\"+\n\x1aTrackingOffCommandResponse\x12\r\n\x05\x64ummy\x18\x01 \x01(\x05\"g\n\"RespondTrackingPointCommandRequest\x12\x41\n\x0e\x63ommand_answer\x18\x01 \x01(\x0e\x32).mavsdk.rpc.tracking_server.CommandAnswer\"w\n#RespondTrackingPointCommandResponse\x12P\n\x16tracking_server_result\x18\x01 \x01(\x0b\x32\x30.mavsdk.rpc.tracking_server.TrackingServerResult\"k\n&RespondTrackingRectangleCommandRequest\x12\x41\n\x0e\x63ommand_answer\x18\x01 \x01(\x0e\x32).mavsdk.rpc.tracking_server.CommandAnswer\"{\n\'RespondTrackingRectangleCommandResponse\x12P\n\x16tracking_server_result\x18\x01 \x01(\x0b\x32\x30.mavsdk.rpc.tracking_server.TrackingServerResult\"e\n RespondTrackingOffCommandRequest\x12\x41\n\x0e\x63ommand_answer\x18\x01 \x01(\x0e\x32).mavsdk.rpc.tracking_server.CommandAnswer\"u\n!RespondTrackingOffCommandResponse\x12P\n\x16tracking_server_result\x18\x01 \x01(\x0b\x32\x30.mavsdk.rpc.tracking_server.TrackingServerResult\">\n\nTrackPoint\x12\x0f\n\x07point_x\x18\x01 \x01(\x02\x12\x0f\n\x07point_y\x18\x02 \x01(\x02\x12\x0e\n\x06radius\x18\x03 \x01(\x02\"\x84\x01\n\x0eTrackRectangle\x12\x19\n\x11top_left_corner_x\x18\x01 \x01(\x02\x12\x19\n\x11top_left_corner_y\x18\x02 \x01(\x02\x12\x1d\n\x15\x62ottom_right_corner_x\x18\x03 \x01(\x02\x12\x1d\n\x15\x62ottom_right_corner_y\x18\x04 \x01(\x02\"\xd8\x01\n\x14TrackingServerResult\x12G\n\x06result\x18\x01 \x01(\x0e\x32\x37.mavsdk.rpc.tracking_server.TrackingServerResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"c\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03*\xab\x01\n\rCommandAnswer\x12\x1b\n\x17\x43OMMAND_ANSWER_ACCEPTED\x10\x00\x12\'\n#COMMAND_ANSWER_TEMPORARILY_REJECTED\x10\x01\x12\x19\n\x15\x43OMMAND_ANSWER_DENIED\x10\x02\x12\x1e\n\x1a\x43OMMAND_ANSWER_UNSUPPORTED\x10\x03\x12\x19\n\x15\x43OMMAND_ANSWER_FAILED\x10\x04\x32\xd8\x0b\n\x15TrackingServerService\x12\x95\x01\n\x16SetTrackingPointStatus\x12\x39.mavsdk.rpc.tracking_server.SetTrackingPointStatusRequest\x1a:.mavsdk.rpc.tracking_server.SetTrackingPointStatusResponse\"\x04\x80\xb5\x18\x01\x12\xa1\x01\n\x1aSetTrackingRectangleStatus\x12=.mavsdk.rpc.tracking_server.SetTrackingRectangleStatusRequest\x1a>.mavsdk.rpc.tracking_server.SetTrackingRectangleStatusResponse\"\x04\x80\xb5\x18\x01\x12\x8f\x01\n\x14SetTrackingOffStatus\x12\x37.mavsdk.rpc.tracking_server.SetTrackingOffStatusRequest\x1a\x38.mavsdk.rpc.tracking_server.SetTrackingOffStatusResponse\"\x04\x80\xb5\x18\x01\x12\xa3\x01\n\x1dSubscribeTrackingPointCommand\x12@.mavsdk.rpc.tracking_server.SubscribeTrackingPointCommandRequest\x1a\x38.mavsdk.rpc.tracking_server.TrackingPointCommandResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\xaf\x01\n!SubscribeTrackingRectangleCommand\x12\x44.mavsdk.rpc.tracking_server.SubscribeTrackingRectangleCommandRequest\x1a<.mavsdk.rpc.tracking_server.TrackingRectangleCommandResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x9d\x01\n\x1bSubscribeTrackingOffCommand\x12>.mavsdk.rpc.tracking_server.SubscribeTrackingOffCommandRequest\x1a\x36.mavsdk.rpc.tracking_server.TrackingOffCommandResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\xa4\x01\n\x1bRespondTrackingPointCommand\x12>.mavsdk.rpc.tracking_server.RespondTrackingPointCommandRequest\x1a?.mavsdk.rpc.tracking_server.RespondTrackingPointCommandResponse\"\x04\x80\xb5\x18\x01\x12\xb0\x01\n\x1fRespondTrackingRectangleCommand\x12\x42.mavsdk.rpc.tracking_server.RespondTrackingRectangleCommandRequest\x1a\x43.mavsdk.rpc.tracking_server.RespondTrackingRectangleCommandResponse\"\x04\x80\xb5\x18\x01\x12\x9e\x01\n\x19RespondTrackingOffCommand\x12<.mavsdk.rpc.tracking_server.RespondTrackingOffCommandRequest\x1a=.mavsdk.rpc.tracking_server.RespondTrackingOffCommandResponse\"\x04\x80\xb5\x18\x01\x42\x30\n\x19io.mavsdk.tracking_serverB\x13TrackingServerProtob\x06proto3'
-  ,
-  dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n%tracking_server/tracking_server.proto\x12\x1amavsdk.rpc.tracking_server\x1a\x14mavsdk_options.proto\"^\n\x1dSetTrackingPointStatusRequest\x12=\n\rtracked_point\x18\x01 \x01(\x0b\x32&.mavsdk.rpc.tracking_server.TrackPoint\" \n\x1eSetTrackingPointStatusResponse\"j\n!SetTrackingRectangleStatusRequest\x12\x45\n\x11tracked_rectangle\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.tracking_server.TrackRectangle\"$\n\"SetTrackingRectangleStatusResponse\"\x1d\n\x1bSetTrackingOffStatusRequest\"\x1e\n\x1cSetTrackingOffStatusResponse\"&\n$SubscribeTrackingPointCommandRequest\"[\n\x1cTrackingPointCommandResponse\x12;\n\x0btrack_point\x18\x01 \x01(\x0b\x32&.mavsdk.rpc.tracking_server.TrackPoint\"*\n(SubscribeTrackingRectangleCommandRequest\"g\n TrackingRectangleCommandResponse\x12\x43\n\x0ftrack_rectangle\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.tracking_server.TrackRectangle\"$\n\"SubscribeTrackingOffCommandRequest\"+\n\x1aTrackingOffCommandResponse\x12\r\n\x05\x64ummy\x18\x01 \x01(\x05\"g\n\"RespondTrackingPointCommandRequest\x12\x41\n\x0e\x63ommand_answer\x18\x01 \x01(\x0e\x32).mavsdk.rpc.tracking_server.CommandAnswer\"w\n#RespondTrackingPointCommandResponse\x12P\n\x16tracking_server_result\x18\x01 \x01(\x0b\x32\x30.mavsdk.rpc.tracking_server.TrackingServerResult\"k\n&RespondTrackingRectangleCommandRequest\x12\x41\n\x0e\x63ommand_answer\x18\x01 \x01(\x0e\x32).mavsdk.rpc.tracking_server.CommandAnswer\"{\n\'RespondTrackingRectangleCommandResponse\x12P\n\x16tracking_server_result\x18\x01 \x01(\x0b\x32\x30.mavsdk.rpc.tracking_server.TrackingServerResult\"e\n RespondTrackingOffCommandRequest\x12\x41\n\x0e\x63ommand_answer\x18\x01 \x01(\x0e\x32).mavsdk.rpc.tracking_server.CommandAnswer\"u\n!RespondTrackingOffCommandResponse\x12P\n\x16tracking_server_result\x18\x01 \x01(\x0b\x32\x30.mavsdk.rpc.tracking_server.TrackingServerResult\">\n\nTrackPoint\x12\x0f\n\x07point_x\x18\x01 \x01(\x02\x12\x0f\n\x07point_y\x18\x02 \x01(\x02\x12\x0e\n\x06radius\x18\x03 \x01(\x02\"\x84\x01\n\x0eTrackRectangle\x12\x19\n\x11top_left_corner_x\x18\x01 \x01(\x02\x12\x19\n\x11top_left_corner_y\x18\x02 \x01(\x02\x12\x1d\n\x15\x62ottom_right_corner_x\x18\x03 \x01(\x02\x12\x1d\n\x15\x62ottom_right_corner_y\x18\x04 \x01(\x02\"\xd8\x01\n\x14TrackingServerResult\x12G\n\x06result\x18\x01 \x01(\x0e\x32\x37.mavsdk.rpc.tracking_server.TrackingServerResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"c\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03*\xab\x01\n\rCommandAnswer\x12\x1b\n\x17\x43OMMAND_ANSWER_ACCEPTED\x10\x00\x12\'\n#COMMAND_ANSWER_TEMPORARILY_REJECTED\x10\x01\x12\x19\n\x15\x43OMMAND_ANSWER_DENIED\x10\x02\x12\x1e\n\x1a\x43OMMAND_ANSWER_UNSUPPORTED\x10\x03\x12\x19\n\x15\x43OMMAND_ANSWER_FAILED\x10\x04\x32\xd8\x0b\n\x15TrackingServerService\x12\x95\x01\n\x16SetTrackingPointStatus\x12\x39.mavsdk.rpc.tracking_server.SetTrackingPointStatusRequest\x1a:.mavsdk.rpc.tracking_server.SetTrackingPointStatusResponse\"\x04\x80\xb5\x18\x01\x12\xa1\x01\n\x1aSetTrackingRectangleStatus\x12=.mavsdk.rpc.tracking_server.SetTrackingRectangleStatusRequest\x1a>.mavsdk.rpc.tracking_server.SetTrackingRectangleStatusResponse\"\x04\x80\xb5\x18\x01\x12\x8f\x01\n\x14SetTrackingOffStatus\x12\x37.mavsdk.rpc.tracking_server.SetTrackingOffStatusRequest\x1a\x38.mavsdk.rpc.tracking_server.SetTrackingOffStatusResponse\"\x04\x80\xb5\x18\x01\x12\xa3\x01\n\x1dSubscribeTrackingPointCommand\x12@.mavsdk.rpc.tracking_server.SubscribeTrackingPointCommandRequest\x1a\x38.mavsdk.rpc.tracking_server.TrackingPointCommandResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\xaf\x01\n!SubscribeTrackingRectangleCommand\x12\x44.mavsdk.rpc.tracking_server.SubscribeTrackingRectangleCommandRequest\x1a<.mavsdk.rpc.tracking_server.TrackingRectangleCommandResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x9d\x01\n\x1bSubscribeTrackingOffCommand\x12>.mavsdk.rpc.tracking_server.SubscribeTrackingOffCommandRequest\x1a\x36.mavsdk.rpc.tracking_server.TrackingOffCommandResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\xa4\x01\n\x1bRespondTrackingPointCommand\x12>.mavsdk.rpc.tracking_server.RespondTrackingPointCommandRequest\x1a?.mavsdk.rpc.tracking_server.RespondTrackingPointCommandResponse\"\x04\x80\xb5\x18\x01\x12\xb0\x01\n\x1fRespondTrackingRectangleCommand\x12\x42.mavsdk.rpc.tracking_server.RespondTrackingRectangleCommandRequest\x1a\x43.mavsdk.rpc.tracking_server.RespondTrackingRectangleCommandResponse\"\x04\x80\xb5\x18\x01\x12\x9e\x01\n\x19RespondTrackingOffCommand\x12<.mavsdk.rpc.tracking_server.RespondTrackingOffCommandRequest\x1a=.mavsdk.rpc.tracking_server.RespondTrackingOffCommandResponse\"\x04\x80\xb5\x18\x01\x42\x30\n\x19io.mavsdk.tracking_serverB\x13TrackingServerProtob\x06proto3')
 
-_COMMANDANSWER = _descriptor.EnumDescriptor(
-  name='CommandAnswer',
-  full_name='mavsdk.rpc.tracking_server.CommandAnswer',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='COMMAND_ANSWER_ACCEPTED', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='COMMAND_ANSWER_TEMPORARILY_REJECTED', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='COMMAND_ANSWER_DENIED', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='COMMAND_ANSWER_UNSUPPORTED', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='COMMAND_ANSWER_FAILED', index=4, number=4,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=1896,
-  serialized_end=2067,
-)
-_sym_db.RegisterEnumDescriptor(_COMMANDANSWER)
-
+_COMMANDANSWER = DESCRIPTOR.enum_types_by_name['CommandAnswer']
 CommandAnswer = enum_type_wrapper.EnumTypeWrapper(_COMMANDANSWER)
 COMMAND_ANSWER_ACCEPTED = 0
 COMMAND_ANSWER_TEMPORARILY_REJECTED = 1
@@ -73,743 +27,28 @@ COMMAND_ANSWER_UNSUPPORTED = 3
 COMMAND_ANSWER_FAILED = 4
 
 
-_TRACKINGSERVERRESULT_RESULT = _descriptor.EnumDescriptor(
-  name='Result',
-  full_name='mavsdk.rpc.tracking_server.TrackingServerResult.Result',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_UNKNOWN', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_SUCCESS', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_NO_SYSTEM', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_CONNECTION_ERROR', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=1794,
-  serialized_end=1893,
-)
-_sym_db.RegisterEnumDescriptor(_TRACKINGSERVERRESULT_RESULT)
-
-
-_SETTRACKINGPOINTSTATUSREQUEST = _descriptor.Descriptor(
-  name='SetTrackingPointStatusRequest',
-  full_name='mavsdk.rpc.tracking_server.SetTrackingPointStatusRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='tracked_point', full_name='mavsdk.rpc.tracking_server.SetTrackingPointStatusRequest.tracked_point', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=91,
-  serialized_end=185,
-)
-
-
-_SETTRACKINGPOINTSTATUSRESPONSE = _descriptor.Descriptor(
-  name='SetTrackingPointStatusResponse',
-  full_name='mavsdk.rpc.tracking_server.SetTrackingPointStatusResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=187,
-  serialized_end=219,
-)
-
-
-_SETTRACKINGRECTANGLESTATUSREQUEST = _descriptor.Descriptor(
-  name='SetTrackingRectangleStatusRequest',
-  full_name='mavsdk.rpc.tracking_server.SetTrackingRectangleStatusRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='tracked_rectangle', full_name='mavsdk.rpc.tracking_server.SetTrackingRectangleStatusRequest.tracked_rectangle', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=221,
-  serialized_end=327,
-)
-
-
-_SETTRACKINGRECTANGLESTATUSRESPONSE = _descriptor.Descriptor(
-  name='SetTrackingRectangleStatusResponse',
-  full_name='mavsdk.rpc.tracking_server.SetTrackingRectangleStatusResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=329,
-  serialized_end=365,
-)
-
-
-_SETTRACKINGOFFSTATUSREQUEST = _descriptor.Descriptor(
-  name='SetTrackingOffStatusRequest',
-  full_name='mavsdk.rpc.tracking_server.SetTrackingOffStatusRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=367,
-  serialized_end=396,
-)
-
-
-_SETTRACKINGOFFSTATUSRESPONSE = _descriptor.Descriptor(
-  name='SetTrackingOffStatusResponse',
-  full_name='mavsdk.rpc.tracking_server.SetTrackingOffStatusResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=398,
-  serialized_end=428,
-)
-
-
-_SUBSCRIBETRACKINGPOINTCOMMANDREQUEST = _descriptor.Descriptor(
-  name='SubscribeTrackingPointCommandRequest',
-  full_name='mavsdk.rpc.tracking_server.SubscribeTrackingPointCommandRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=430,
-  serialized_end=468,
-)
-
-
-_TRACKINGPOINTCOMMANDRESPONSE = _descriptor.Descriptor(
-  name='TrackingPointCommandResponse',
-  full_name='mavsdk.rpc.tracking_server.TrackingPointCommandResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='track_point', full_name='mavsdk.rpc.tracking_server.TrackingPointCommandResponse.track_point', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=470,
-  serialized_end=561,
-)
-
-
-_SUBSCRIBETRACKINGRECTANGLECOMMANDREQUEST = _descriptor.Descriptor(
-  name='SubscribeTrackingRectangleCommandRequest',
-  full_name='mavsdk.rpc.tracking_server.SubscribeTrackingRectangleCommandRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=563,
-  serialized_end=605,
-)
-
-
-_TRACKINGRECTANGLECOMMANDRESPONSE = _descriptor.Descriptor(
-  name='TrackingRectangleCommandResponse',
-  full_name='mavsdk.rpc.tracking_server.TrackingRectangleCommandResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='track_rectangle', full_name='mavsdk.rpc.tracking_server.TrackingRectangleCommandResponse.track_rectangle', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=607,
-  serialized_end=710,
-)
-
-
-_SUBSCRIBETRACKINGOFFCOMMANDREQUEST = _descriptor.Descriptor(
-  name='SubscribeTrackingOffCommandRequest',
-  full_name='mavsdk.rpc.tracking_server.SubscribeTrackingOffCommandRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=712,
-  serialized_end=748,
-)
-
-
-_TRACKINGOFFCOMMANDRESPONSE = _descriptor.Descriptor(
-  name='TrackingOffCommandResponse',
-  full_name='mavsdk.rpc.tracking_server.TrackingOffCommandResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='dummy', full_name='mavsdk.rpc.tracking_server.TrackingOffCommandResponse.dummy', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=750,
-  serialized_end=793,
-)
-
-
-_RESPONDTRACKINGPOINTCOMMANDREQUEST = _descriptor.Descriptor(
-  name='RespondTrackingPointCommandRequest',
-  full_name='mavsdk.rpc.tracking_server.RespondTrackingPointCommandRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='command_answer', full_name='mavsdk.rpc.tracking_server.RespondTrackingPointCommandRequest.command_answer', index=0,
-      number=1, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=795,
-  serialized_end=898,
-)
-
-
-_RESPONDTRACKINGPOINTCOMMANDRESPONSE = _descriptor.Descriptor(
-  name='RespondTrackingPointCommandResponse',
-  full_name='mavsdk.rpc.tracking_server.RespondTrackingPointCommandResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='tracking_server_result', full_name='mavsdk.rpc.tracking_server.RespondTrackingPointCommandResponse.tracking_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=900,
-  serialized_end=1019,
-)
-
-
-_RESPONDTRACKINGRECTANGLECOMMANDREQUEST = _descriptor.Descriptor(
-  name='RespondTrackingRectangleCommandRequest',
-  full_name='mavsdk.rpc.tracking_server.RespondTrackingRectangleCommandRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='command_answer', full_name='mavsdk.rpc.tracking_server.RespondTrackingRectangleCommandRequest.command_answer', index=0,
-      number=1, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1021,
-  serialized_end=1128,
-)
-
-
-_RESPONDTRACKINGRECTANGLECOMMANDRESPONSE = _descriptor.Descriptor(
-  name='RespondTrackingRectangleCommandResponse',
-  full_name='mavsdk.rpc.tracking_server.RespondTrackingRectangleCommandResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='tracking_server_result', full_name='mavsdk.rpc.tracking_server.RespondTrackingRectangleCommandResponse.tracking_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1130,
-  serialized_end=1253,
-)
-
-
-_RESPONDTRACKINGOFFCOMMANDREQUEST = _descriptor.Descriptor(
-  name='RespondTrackingOffCommandRequest',
-  full_name='mavsdk.rpc.tracking_server.RespondTrackingOffCommandRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='command_answer', full_name='mavsdk.rpc.tracking_server.RespondTrackingOffCommandRequest.command_answer', index=0,
-      number=1, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1255,
-  serialized_end=1356,
-)
-
-
-_RESPONDTRACKINGOFFCOMMANDRESPONSE = _descriptor.Descriptor(
-  name='RespondTrackingOffCommandResponse',
-  full_name='mavsdk.rpc.tracking_server.RespondTrackingOffCommandResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='tracking_server_result', full_name='mavsdk.rpc.tracking_server.RespondTrackingOffCommandResponse.tracking_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1358,
-  serialized_end=1475,
-)
-
-
-_TRACKPOINT = _descriptor.Descriptor(
-  name='TrackPoint',
-  full_name='mavsdk.rpc.tracking_server.TrackPoint',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='point_x', full_name='mavsdk.rpc.tracking_server.TrackPoint.point_x', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='point_y', full_name='mavsdk.rpc.tracking_server.TrackPoint.point_y', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='radius', full_name='mavsdk.rpc.tracking_server.TrackPoint.radius', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1477,
-  serialized_end=1539,
-)
-
-
-_TRACKRECTANGLE = _descriptor.Descriptor(
-  name='TrackRectangle',
-  full_name='mavsdk.rpc.tracking_server.TrackRectangle',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='top_left_corner_x', full_name='mavsdk.rpc.tracking_server.TrackRectangle.top_left_corner_x', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='top_left_corner_y', full_name='mavsdk.rpc.tracking_server.TrackRectangle.top_left_corner_y', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='bottom_right_corner_x', full_name='mavsdk.rpc.tracking_server.TrackRectangle.bottom_right_corner_x', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='bottom_right_corner_y', full_name='mavsdk.rpc.tracking_server.TrackRectangle.bottom_right_corner_y', index=3,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1542,
-  serialized_end=1674,
-)
-
-
-_TRACKINGSERVERRESULT = _descriptor.Descriptor(
-  name='TrackingServerResult',
-  full_name='mavsdk.rpc.tracking_server.TrackingServerResult',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='result', full_name='mavsdk.rpc.tracking_server.TrackingServerResult.result', index=0,
-      number=1, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='result_str', full_name='mavsdk.rpc.tracking_server.TrackingServerResult.result_str', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-    _TRACKINGSERVERRESULT_RESULT,
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1677,
-  serialized_end=1893,
-)
-
-_SETTRACKINGPOINTSTATUSREQUEST.fields_by_name['tracked_point'].message_type = _TRACKPOINT
-_SETTRACKINGRECTANGLESTATUSREQUEST.fields_by_name['tracked_rectangle'].message_type = _TRACKRECTANGLE
-_TRACKINGPOINTCOMMANDRESPONSE.fields_by_name['track_point'].message_type = _TRACKPOINT
-_TRACKINGRECTANGLECOMMANDRESPONSE.fields_by_name['track_rectangle'].message_type = _TRACKRECTANGLE
-_RESPONDTRACKINGPOINTCOMMANDREQUEST.fields_by_name['command_answer'].enum_type = _COMMANDANSWER
-_RESPONDTRACKINGPOINTCOMMANDRESPONSE.fields_by_name['tracking_server_result'].message_type = _TRACKINGSERVERRESULT
-_RESPONDTRACKINGRECTANGLECOMMANDREQUEST.fields_by_name['command_answer'].enum_type = _COMMANDANSWER
-_RESPONDTRACKINGRECTANGLECOMMANDRESPONSE.fields_by_name['tracking_server_result'].message_type = _TRACKINGSERVERRESULT
-_RESPONDTRACKINGOFFCOMMANDREQUEST.fields_by_name['command_answer'].enum_type = _COMMANDANSWER
-_RESPONDTRACKINGOFFCOMMANDRESPONSE.fields_by_name['tracking_server_result'].message_type = _TRACKINGSERVERRESULT
-_TRACKINGSERVERRESULT.fields_by_name['result'].enum_type = _TRACKINGSERVERRESULT_RESULT
-_TRACKINGSERVERRESULT_RESULT.containing_type = _TRACKINGSERVERRESULT
-DESCRIPTOR.message_types_by_name['SetTrackingPointStatusRequest'] = _SETTRACKINGPOINTSTATUSREQUEST
-DESCRIPTOR.message_types_by_name['SetTrackingPointStatusResponse'] = _SETTRACKINGPOINTSTATUSRESPONSE
-DESCRIPTOR.message_types_by_name['SetTrackingRectangleStatusRequest'] = _SETTRACKINGRECTANGLESTATUSREQUEST
-DESCRIPTOR.message_types_by_name['SetTrackingRectangleStatusResponse'] = _SETTRACKINGRECTANGLESTATUSRESPONSE
-DESCRIPTOR.message_types_by_name['SetTrackingOffStatusRequest'] = _SETTRACKINGOFFSTATUSREQUEST
-DESCRIPTOR.message_types_by_name['SetTrackingOffStatusResponse'] = _SETTRACKINGOFFSTATUSRESPONSE
-DESCRIPTOR.message_types_by_name['SubscribeTrackingPointCommandRequest'] = _SUBSCRIBETRACKINGPOINTCOMMANDREQUEST
-DESCRIPTOR.message_types_by_name['TrackingPointCommandResponse'] = _TRACKINGPOINTCOMMANDRESPONSE
-DESCRIPTOR.message_types_by_name['SubscribeTrackingRectangleCommandRequest'] = _SUBSCRIBETRACKINGRECTANGLECOMMANDREQUEST
-DESCRIPTOR.message_types_by_name['TrackingRectangleCommandResponse'] = _TRACKINGRECTANGLECOMMANDRESPONSE
-DESCRIPTOR.message_types_by_name['SubscribeTrackingOffCommandRequest'] = _SUBSCRIBETRACKINGOFFCOMMANDREQUEST
-DESCRIPTOR.message_types_by_name['TrackingOffCommandResponse'] = _TRACKINGOFFCOMMANDRESPONSE
-DESCRIPTOR.message_types_by_name['RespondTrackingPointCommandRequest'] = _RESPONDTRACKINGPOINTCOMMANDREQUEST
-DESCRIPTOR.message_types_by_name['RespondTrackingPointCommandResponse'] = _RESPONDTRACKINGPOINTCOMMANDRESPONSE
-DESCRIPTOR.message_types_by_name['RespondTrackingRectangleCommandRequest'] = _RESPONDTRACKINGRECTANGLECOMMANDREQUEST
-DESCRIPTOR.message_types_by_name['RespondTrackingRectangleCommandResponse'] = _RESPONDTRACKINGRECTANGLECOMMANDRESPONSE
-DESCRIPTOR.message_types_by_name['RespondTrackingOffCommandRequest'] = _RESPONDTRACKINGOFFCOMMANDREQUEST
-DESCRIPTOR.message_types_by_name['RespondTrackingOffCommandResponse'] = _RESPONDTRACKINGOFFCOMMANDRESPONSE
-DESCRIPTOR.message_types_by_name['TrackPoint'] = _TRACKPOINT
-DESCRIPTOR.message_types_by_name['TrackRectangle'] = _TRACKRECTANGLE
-DESCRIPTOR.message_types_by_name['TrackingServerResult'] = _TRACKINGSERVERRESULT
-DESCRIPTOR.enum_types_by_name['CommandAnswer'] = _COMMANDANSWER
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
-
+_SETTRACKINGPOINTSTATUSREQUEST = DESCRIPTOR.message_types_by_name['SetTrackingPointStatusRequest']
+_SETTRACKINGPOINTSTATUSRESPONSE = DESCRIPTOR.message_types_by_name['SetTrackingPointStatusResponse']
+_SETTRACKINGRECTANGLESTATUSREQUEST = DESCRIPTOR.message_types_by_name['SetTrackingRectangleStatusRequest']
+_SETTRACKINGRECTANGLESTATUSRESPONSE = DESCRIPTOR.message_types_by_name['SetTrackingRectangleStatusResponse']
+_SETTRACKINGOFFSTATUSREQUEST = DESCRIPTOR.message_types_by_name['SetTrackingOffStatusRequest']
+_SETTRACKINGOFFSTATUSRESPONSE = DESCRIPTOR.message_types_by_name['SetTrackingOffStatusResponse']
+_SUBSCRIBETRACKINGPOINTCOMMANDREQUEST = DESCRIPTOR.message_types_by_name['SubscribeTrackingPointCommandRequest']
+_TRACKINGPOINTCOMMANDRESPONSE = DESCRIPTOR.message_types_by_name['TrackingPointCommandResponse']
+_SUBSCRIBETRACKINGRECTANGLECOMMANDREQUEST = DESCRIPTOR.message_types_by_name['SubscribeTrackingRectangleCommandRequest']
+_TRACKINGRECTANGLECOMMANDRESPONSE = DESCRIPTOR.message_types_by_name['TrackingRectangleCommandResponse']
+_SUBSCRIBETRACKINGOFFCOMMANDREQUEST = DESCRIPTOR.message_types_by_name['SubscribeTrackingOffCommandRequest']
+_TRACKINGOFFCOMMANDRESPONSE = DESCRIPTOR.message_types_by_name['TrackingOffCommandResponse']
+_RESPONDTRACKINGPOINTCOMMANDREQUEST = DESCRIPTOR.message_types_by_name['RespondTrackingPointCommandRequest']
+_RESPONDTRACKINGPOINTCOMMANDRESPONSE = DESCRIPTOR.message_types_by_name['RespondTrackingPointCommandResponse']
+_RESPONDTRACKINGRECTANGLECOMMANDREQUEST = DESCRIPTOR.message_types_by_name['RespondTrackingRectangleCommandRequest']
+_RESPONDTRACKINGRECTANGLECOMMANDRESPONSE = DESCRIPTOR.message_types_by_name['RespondTrackingRectangleCommandResponse']
+_RESPONDTRACKINGOFFCOMMANDREQUEST = DESCRIPTOR.message_types_by_name['RespondTrackingOffCommandRequest']
+_RESPONDTRACKINGOFFCOMMANDRESPONSE = DESCRIPTOR.message_types_by_name['RespondTrackingOffCommandResponse']
+_TRACKPOINT = DESCRIPTOR.message_types_by_name['TrackPoint']
+_TRACKRECTANGLE = DESCRIPTOR.message_types_by_name['TrackRectangle']
+_TRACKINGSERVERRESULT = DESCRIPTOR.message_types_by_name['TrackingServerResult']
+_TRACKINGSERVERRESULT_RESULT = _TRACKINGSERVERRESULT.enum_types_by_name['Result']
 SetTrackingPointStatusRequest = _reflection.GeneratedProtocolMessageType('SetTrackingPointStatusRequest', (_message.Message,), {
   'DESCRIPTOR' : _SETTRACKINGPOINTSTATUSREQUEST,
   '__module__' : 'tracking_server.tracking_server_pb2'
@@ -957,112 +196,75 @@ TrackingServerResult = _reflection.GeneratedProtocolMessageType('TrackingServerR
   })
 _sym_db.RegisterMessage(TrackingServerResult)
 
+_TRACKINGSERVERSERVICE = DESCRIPTOR.services_by_name['TrackingServerService']
+if _descriptor._USE_C_DESCRIPTORS == False:
 
-DESCRIPTOR._options = None
-
-_TRACKINGSERVERSERVICE = _descriptor.ServiceDescriptor(
-  name='TrackingServerService',
-  full_name='mavsdk.rpc.tracking_server.TrackingServerService',
-  file=DESCRIPTOR,
-  index=0,
-  serialized_options=None,
-  create_key=_descriptor._internal_create_key,
-  serialized_start=2070,
-  serialized_end=3566,
-  methods=[
-  _descriptor.MethodDescriptor(
-    name='SetTrackingPointStatus',
-    full_name='mavsdk.rpc.tracking_server.TrackingServerService.SetTrackingPointStatus',
-    index=0,
-    containing_service=None,
-    input_type=_SETTRACKINGPOINTSTATUSREQUEST,
-    output_type=_SETTRACKINGPOINTSTATUSRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SetTrackingRectangleStatus',
-    full_name='mavsdk.rpc.tracking_server.TrackingServerService.SetTrackingRectangleStatus',
-    index=1,
-    containing_service=None,
-    input_type=_SETTRACKINGRECTANGLESTATUSREQUEST,
-    output_type=_SETTRACKINGRECTANGLESTATUSRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SetTrackingOffStatus',
-    full_name='mavsdk.rpc.tracking_server.TrackingServerService.SetTrackingOffStatus',
-    index=2,
-    containing_service=None,
-    input_type=_SETTRACKINGOFFSTATUSREQUEST,
-    output_type=_SETTRACKINGOFFSTATUSRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SubscribeTrackingPointCommand',
-    full_name='mavsdk.rpc.tracking_server.TrackingServerService.SubscribeTrackingPointCommand',
-    index=3,
-    containing_service=None,
-    input_type=_SUBSCRIBETRACKINGPOINTCOMMANDREQUEST,
-    output_type=_TRACKINGPOINTCOMMANDRESPONSE,
-    serialized_options=b'\200\265\030\000',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SubscribeTrackingRectangleCommand',
-    full_name='mavsdk.rpc.tracking_server.TrackingServerService.SubscribeTrackingRectangleCommand',
-    index=4,
-    containing_service=None,
-    input_type=_SUBSCRIBETRACKINGRECTANGLECOMMANDREQUEST,
-    output_type=_TRACKINGRECTANGLECOMMANDRESPONSE,
-    serialized_options=b'\200\265\030\000',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SubscribeTrackingOffCommand',
-    full_name='mavsdk.rpc.tracking_server.TrackingServerService.SubscribeTrackingOffCommand',
-    index=5,
-    containing_service=None,
-    input_type=_SUBSCRIBETRACKINGOFFCOMMANDREQUEST,
-    output_type=_TRACKINGOFFCOMMANDRESPONSE,
-    serialized_options=b'\200\265\030\000',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='RespondTrackingPointCommand',
-    full_name='mavsdk.rpc.tracking_server.TrackingServerService.RespondTrackingPointCommand',
-    index=6,
-    containing_service=None,
-    input_type=_RESPONDTRACKINGPOINTCOMMANDREQUEST,
-    output_type=_RESPONDTRACKINGPOINTCOMMANDRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='RespondTrackingRectangleCommand',
-    full_name='mavsdk.rpc.tracking_server.TrackingServerService.RespondTrackingRectangleCommand',
-    index=7,
-    containing_service=None,
-    input_type=_RESPONDTRACKINGRECTANGLECOMMANDREQUEST,
-    output_type=_RESPONDTRACKINGRECTANGLECOMMANDRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='RespondTrackingOffCommand',
-    full_name='mavsdk.rpc.tracking_server.TrackingServerService.RespondTrackingOffCommand',
-    index=8,
-    containing_service=None,
-    input_type=_RESPONDTRACKINGOFFCOMMANDREQUEST,
-    output_type=_RESPONDTRACKINGOFFCOMMANDRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-])
-_sym_db.RegisterServiceDescriptor(_TRACKINGSERVERSERVICE)
-
-DESCRIPTOR.services_by_name['TrackingServerService'] = _TRACKINGSERVERSERVICE
-
+  DESCRIPTOR._options = None
+  DESCRIPTOR._serialized_options = b'\n\031io.mavsdk.tracking_serverB\023TrackingServerProto'
+  _TRACKINGSERVERSERVICE.methods_by_name['SetTrackingPointStatus']._options = None
+  _TRACKINGSERVERSERVICE.methods_by_name['SetTrackingPointStatus']._serialized_options = b'\200\265\030\001'
+  _TRACKINGSERVERSERVICE.methods_by_name['SetTrackingRectangleStatus']._options = None
+  _TRACKINGSERVERSERVICE.methods_by_name['SetTrackingRectangleStatus']._serialized_options = b'\200\265\030\001'
+  _TRACKINGSERVERSERVICE.methods_by_name['SetTrackingOffStatus']._options = None
+  _TRACKINGSERVERSERVICE.methods_by_name['SetTrackingOffStatus']._serialized_options = b'\200\265\030\001'
+  _TRACKINGSERVERSERVICE.methods_by_name['SubscribeTrackingPointCommand']._options = None
+  _TRACKINGSERVERSERVICE.methods_by_name['SubscribeTrackingPointCommand']._serialized_options = b'\200\265\030\000'
+  _TRACKINGSERVERSERVICE.methods_by_name['SubscribeTrackingRectangleCommand']._options = None
+  _TRACKINGSERVERSERVICE.methods_by_name['SubscribeTrackingRectangleCommand']._serialized_options = b'\200\265\030\000'
+  _TRACKINGSERVERSERVICE.methods_by_name['SubscribeTrackingOffCommand']._options = None
+  _TRACKINGSERVERSERVICE.methods_by_name['SubscribeTrackingOffCommand']._serialized_options = b'\200\265\030\000'
+  _TRACKINGSERVERSERVICE.methods_by_name['RespondTrackingPointCommand']._options = None
+  _TRACKINGSERVERSERVICE.methods_by_name['RespondTrackingPointCommand']._serialized_options = b'\200\265\030\001'
+  _TRACKINGSERVERSERVICE.methods_by_name['RespondTrackingRectangleCommand']._options = None
+  _TRACKINGSERVERSERVICE.methods_by_name['RespondTrackingRectangleCommand']._serialized_options = b'\200\265\030\001'
+  _TRACKINGSERVERSERVICE.methods_by_name['RespondTrackingOffCommand']._options = None
+  _TRACKINGSERVERSERVICE.methods_by_name['RespondTrackingOffCommand']._serialized_options = b'\200\265\030\001'
+  _COMMANDANSWER._serialized_start=1896
+  _COMMANDANSWER._serialized_end=2067
+  _SETTRACKINGPOINTSTATUSREQUEST._serialized_start=91
+  _SETTRACKINGPOINTSTATUSREQUEST._serialized_end=185
+  _SETTRACKINGPOINTSTATUSRESPONSE._serialized_start=187
+  _SETTRACKINGPOINTSTATUSRESPONSE._serialized_end=219
+  _SETTRACKINGRECTANGLESTATUSREQUEST._serialized_start=221
+  _SETTRACKINGRECTANGLESTATUSREQUEST._serialized_end=327
+  _SETTRACKINGRECTANGLESTATUSRESPONSE._serialized_start=329
+  _SETTRACKINGRECTANGLESTATUSRESPONSE._serialized_end=365
+  _SETTRACKINGOFFSTATUSREQUEST._serialized_start=367
+  _SETTRACKINGOFFSTATUSREQUEST._serialized_end=396
+  _SETTRACKINGOFFSTATUSRESPONSE._serialized_start=398
+  _SETTRACKINGOFFSTATUSRESPONSE._serialized_end=428
+  _SUBSCRIBETRACKINGPOINTCOMMANDREQUEST._serialized_start=430
+  _SUBSCRIBETRACKINGPOINTCOMMANDREQUEST._serialized_end=468
+  _TRACKINGPOINTCOMMANDRESPONSE._serialized_start=470
+  _TRACKINGPOINTCOMMANDRESPONSE._serialized_end=561
+  _SUBSCRIBETRACKINGRECTANGLECOMMANDREQUEST._serialized_start=563
+  _SUBSCRIBETRACKINGRECTANGLECOMMANDREQUEST._serialized_end=605
+  _TRACKINGRECTANGLECOMMANDRESPONSE._serialized_start=607
+  _TRACKINGRECTANGLECOMMANDRESPONSE._serialized_end=710
+  _SUBSCRIBETRACKINGOFFCOMMANDREQUEST._serialized_start=712
+  _SUBSCRIBETRACKINGOFFCOMMANDREQUEST._serialized_end=748
+  _TRACKINGOFFCOMMANDRESPONSE._serialized_start=750
+  _TRACKINGOFFCOMMANDRESPONSE._serialized_end=793
+  _RESPONDTRACKINGPOINTCOMMANDREQUEST._serialized_start=795
+  _RESPONDTRACKINGPOINTCOMMANDREQUEST._serialized_end=898
+  _RESPONDTRACKINGPOINTCOMMANDRESPONSE._serialized_start=900
+  _RESPONDTRACKINGPOINTCOMMANDRESPONSE._serialized_end=1019
+  _RESPONDTRACKINGRECTANGLECOMMANDREQUEST._serialized_start=1021
+  _RESPONDTRACKINGRECTANGLECOMMANDREQUEST._serialized_end=1128
+  _RESPONDTRACKINGRECTANGLECOMMANDRESPONSE._serialized_start=1130
+  _RESPONDTRACKINGRECTANGLECOMMANDRESPONSE._serialized_end=1253
+  _RESPONDTRACKINGOFFCOMMANDREQUEST._serialized_start=1255
+  _RESPONDTRACKINGOFFCOMMANDREQUEST._serialized_end=1356
+  _RESPONDTRACKINGOFFCOMMANDRESPONSE._serialized_start=1358
+  _RESPONDTRACKINGOFFCOMMANDRESPONSE._serialized_end=1475
+  _TRACKPOINT._serialized_start=1477
+  _TRACKPOINT._serialized_end=1539
+  _TRACKRECTANGLE._serialized_start=1542
+  _TRACKRECTANGLE._serialized_end=1674
+  _TRACKINGSERVERRESULT._serialized_start=1677
+  _TRACKINGSERVERRESULT._serialized_end=1893
+  _TRACKINGSERVERRESULT_RESULT._serialized_start=1794
+  _TRACKINGSERVERRESULT_RESULT._serialized_end=1893
+  _TRACKINGSERVERSERVICE._serialized_start=2070
+  _TRACKINGSERVERSERVICE._serialized_end=3566
 # @@protoc_insertion_point(module_scope)

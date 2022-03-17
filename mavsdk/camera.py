@@ -1074,6 +1074,12 @@ class Status:
      storage_status : StorageStatus
           Storage status
 
+     storage_id : uint32_t
+          Storage ID starting at 1
+
+     storage_type : StorageType
+          Storage type
+
      """
 
     
@@ -1129,6 +1135,74 @@ class Status:
         def __str__(self):
             return self.name
     
+    
+    class StorageType(Enum):
+        """
+         Storage type.
+
+         Values
+         ------
+         UNKNOWN
+              Storage type unknown
+
+         USB_STICK
+              Storage type USB stick
+
+         SD
+              Storage type SD card
+
+         MICROSD
+              Storage type MicroSD card
+
+         HD
+              Storage type HD mass storage
+
+         OTHER
+              Storage type other, not listed
+
+         """
+
+        
+        UNKNOWN = 0
+        USB_STICK = 1
+        SD = 2
+        MICROSD = 3
+        HD = 4
+        OTHER = 5
+
+        def translate_to_rpc(self):
+            if self == Status.StorageType.UNKNOWN:
+                return camera_pb2.Status.STORAGE_TYPE_UNKNOWN
+            if self == Status.StorageType.USB_STICK:
+                return camera_pb2.Status.STORAGE_TYPE_USB_STICK
+            if self == Status.StorageType.SD:
+                return camera_pb2.Status.STORAGE_TYPE_SD
+            if self == Status.StorageType.MICROSD:
+                return camera_pb2.Status.STORAGE_TYPE_MICROSD
+            if self == Status.StorageType.HD:
+                return camera_pb2.Status.STORAGE_TYPE_HD
+            if self == Status.StorageType.OTHER:
+                return camera_pb2.Status.STORAGE_TYPE_OTHER
+
+        @staticmethod
+        def translate_from_rpc(rpc_enum_value):
+            """ Parses a gRPC response """
+            if rpc_enum_value == camera_pb2.Status.STORAGE_TYPE_UNKNOWN:
+                return Status.StorageType.UNKNOWN
+            if rpc_enum_value == camera_pb2.Status.STORAGE_TYPE_USB_STICK:
+                return Status.StorageType.USB_STICK
+            if rpc_enum_value == camera_pb2.Status.STORAGE_TYPE_SD:
+                return Status.StorageType.SD
+            if rpc_enum_value == camera_pb2.Status.STORAGE_TYPE_MICROSD:
+                return Status.StorageType.MICROSD
+            if rpc_enum_value == camera_pb2.Status.STORAGE_TYPE_HD:
+                return Status.StorageType.HD
+            if rpc_enum_value == camera_pb2.Status.STORAGE_TYPE_OTHER:
+                return Status.StorageType.OTHER
+
+        def __str__(self):
+            return self.name
+    
 
     def __init__(
             self,
@@ -1139,7 +1213,9 @@ class Status:
             total_storage_mib,
             recording_time_s,
             media_folder_name,
-            storage_status):
+            storage_status,
+            storage_id,
+            storage_type):
         """ Initializes the Status object """
         self.video_on = video_on
         self.photo_interval_on = photo_interval_on
@@ -1149,6 +1225,8 @@ class Status:
         self.recording_time_s = recording_time_s
         self.media_folder_name = media_folder_name
         self.storage_status = storage_status
+        self.storage_id = storage_id
+        self.storage_type = storage_type
 
     def __eq__(self, to_compare):
         """ Checks if two Status are the same """
@@ -1163,7 +1241,9 @@ class Status:
                 (self.total_storage_mib == to_compare.total_storage_mib) and \
                 (self.recording_time_s == to_compare.recording_time_s) and \
                 (self.media_folder_name == to_compare.media_folder_name) and \
-                (self.storage_status == to_compare.storage_status)
+                (self.storage_status == to_compare.storage_status) and \
+                (self.storage_id == to_compare.storage_id) and \
+                (self.storage_type == to_compare.storage_type)
 
         except AttributeError:
             return False
@@ -1178,7 +1258,9 @@ class Status:
                 "total_storage_mib: " + str(self.total_storage_mib),
                 "recording_time_s: " + str(self.recording_time_s),
                 "media_folder_name: " + str(self.media_folder_name),
-                "storage_status: " + str(self.storage_status)
+                "storage_status: " + str(self.storage_status),
+                "storage_id: " + str(self.storage_id),
+                "storage_type: " + str(self.storage_type)
                 ])
 
         return f"Status: [{struct_repr}]"
@@ -1209,7 +1291,13 @@ class Status:
                 rpcStatus.media_folder_name,
                 
                 
-                Status.StorageStatus.translate_from_rpc(rpcStatus.storage_status)
+                Status.StorageStatus.translate_from_rpc(rpcStatus.storage_status),
+                
+                
+                rpcStatus.storage_id,
+                
+                
+                Status.StorageType.translate_from_rpc(rpcStatus.storage_type)
                 )
 
     def translate_to_rpc(self, rpcStatus):
@@ -1261,6 +1349,18 @@ class Status:
         
             
         rpcStatus.storage_status = self.storage_status.translate_to_rpc()
+            
+        
+        
+        
+            
+        rpcStatus.storage_id = self.storage_id
+            
+        
+        
+        
+            
+        rpcStatus.storage_type = self.storage_type.translate_to_rpc()
             
         
         
