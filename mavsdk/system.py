@@ -6,9 +6,12 @@ import threading
 from .async_plugin_manager import AsyncPluginManager
 
 from . import action
+from . import action_server
 from . import calibration
 from . import camera
 from . import core
+from . import component_information
+from . import component_information_server
 from . import failure
 from . import follow_me
 from . import ftp
@@ -19,9 +22,11 @@ from . import log_files
 from . import manual_control
 from . import mission
 from . import mission_raw
+from . import mission_raw_server
 from . import mocap
 from . import offboard
 from . import param
+from . import param_server
 from . import server_utility
 from . import shell
 from . import telemetry
@@ -122,9 +127,12 @@ class System:
 
         self._plugins = {}
         self._plugins["action"] = action.Action(plugin_manager)
+        self._plugins["action_server"] = action_server.ActionServer(plugin_manager)
         self._plugins["calibration"] = calibration.Calibration(plugin_manager)
         self._plugins["camera"] = camera.Camera(plugin_manager)
         self._plugins["core"] = core.Core(plugin_manager)
+        self._plugins["component_information"] = component_information.ComponentInformation(plugin_manager)
+        self._plugins["component_information_server"] = component_information_server.ComponentInformationServer(plugin_manager)
         self._plugins["failure"] = failure.Failure(plugin_manager)
         self._plugins["follow_me"] = follow_me.FollowMe(plugin_manager)
         self._plugins["ftp"] = ftp.Ftp(plugin_manager)
@@ -135,9 +143,11 @@ class System:
         self._plugins["manual_control"] = manual_control.ManualControl(plugin_manager)
         self._plugins["mission"] = mission.Mission(plugin_manager)
         self._plugins["mission_raw"] = mission_raw.MissionRaw(plugin_manager)
+        self._plugins["mission_raw_server"] = mission_raw_server.MissionRawServer(plugin_manager)
         self._plugins["mocap"] = mocap.Mocap(plugin_manager)
         self._plugins["offboard"] = offboard.Offboard(plugin_manager)
         self._plugins["param"] = param.Param(plugin_manager)
+        self._plugins["param_server"] = param_server.ParamServer(plugin_manager)
         self._plugins["server_utility"] = server_utility.ServerUtility(plugin_manager)
         self._plugins["shell"] = shell.Shell(plugin_manager)
         self._plugins["telemetry"] = telemetry.Telemetry(plugin_manager)
@@ -158,6 +168,12 @@ class System:
         return self._plugins["action"]
 
     @property
+    def action_server(self) -> action_server.ActionServer:
+        if "action_server" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("ActionServer"))
+        return self._plugins["action_server"]
+
+    @property
     def calibration(self) -> calibration.Calibration:
         if "calibration" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Calibration"))
@@ -174,6 +190,18 @@ class System:
         if "core" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Core"))
         return self._plugins["core"]
+
+    @property
+    def component_information(self) -> component_information.ComponentInformation:
+        if "component_information" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("ComponentInformation"))
+        return self._plugins["component_information"]
+
+    @property
+    def component_information_server(self) -> component_information_server.ComponentInformationServer:
+        if "component_information_server" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("ComponentInformationServer"))
+        return self._plugins["component_informationServer"]
 
     @property
     def failure(self) -> failure.Failure:
@@ -236,6 +264,12 @@ class System:
         return self._plugins["mission_raw"]
 
     @property
+    def mission_raw_server(self) -> mission_raw_server.MissionRawServer:
+        if "mission_raw_server" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("MissionRawServer"))
+        return self._plugins["mission_raw_server"]
+
+    @property
     def mocap(self) -> mocap.Mocap:
         if "mocap" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Mocap"))
@@ -252,6 +286,12 @@ class System:
         if "param" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Param"))
         return self._plugins["param"]
+
+    @property
+    def param_server(self) -> param_server.ParamServer:
+        if "param_server" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("ParamServer"))
+        return self._plugins["param_server"]
 
     @property
     def server_utility(self) -> server_utility.ServerUtility:

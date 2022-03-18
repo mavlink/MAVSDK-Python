@@ -61,6 +61,9 @@ class CalibrationResult:
          FAILED_ARMED
               Calibration process failed since the vehicle is armed
 
+         UNSUPPORTED
+              Functionality not supported
+
          """
 
         
@@ -75,6 +78,7 @@ class CalibrationResult:
         TIMEOUT = 8
         CANCELLED = 9
         FAILED_ARMED = 10
+        UNSUPPORTED = 11
 
         def translate_to_rpc(self):
             if self == CalibrationResult.Result.UNKNOWN:
@@ -99,6 +103,8 @@ class CalibrationResult:
                 return calibration_pb2.CalibrationResult.RESULT_CANCELLED
             if self == CalibrationResult.Result.FAILED_ARMED:
                 return calibration_pb2.CalibrationResult.RESULT_FAILED_ARMED
+            if self == CalibrationResult.Result.UNSUPPORTED:
+                return calibration_pb2.CalibrationResult.RESULT_UNSUPPORTED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -125,6 +131,8 @@ class CalibrationResult:
                 return CalibrationResult.Result.CANCELLED
             if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_FAILED_ARMED:
                 return CalibrationResult.Result.FAILED_ARMED
+            if rpc_enum_value == calibration_pb2.CalibrationResult.RESULT_UNSUPPORTED:
+                return CalibrationResult.Result.UNSUPPORTED
 
         def __str__(self):
             return self.name

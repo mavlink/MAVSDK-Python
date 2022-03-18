@@ -124,6 +124,9 @@ class ActionResult:
          PARAMETER_ERROR
               Error getting or setting parameter
 
+         UNSUPPORTED
+              Action not supported
+
          """
 
         
@@ -139,6 +142,7 @@ class ActionResult:
         VTOL_TRANSITION_SUPPORT_UNKNOWN = 9
         NO_VTOL_TRANSITION_SUPPORT = 10
         PARAMETER_ERROR = 11
+        UNSUPPORTED = 12
 
         def translate_to_rpc(self):
             if self == ActionResult.Result.UNKNOWN:
@@ -165,6 +169,8 @@ class ActionResult:
                 return action_pb2.ActionResult.RESULT_NO_VTOL_TRANSITION_SUPPORT
             if self == ActionResult.Result.PARAMETER_ERROR:
                 return action_pb2.ActionResult.RESULT_PARAMETER_ERROR
+            if self == ActionResult.Result.UNSUPPORTED:
+                return action_pb2.ActionResult.RESULT_UNSUPPORTED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -193,6 +199,8 @@ class ActionResult:
                 return ActionResult.Result.NO_VTOL_TRANSITION_SUPPORT
             if rpc_enum_value == action_pb2.ActionResult.RESULT_PARAMETER_ERROR:
                 return ActionResult.Result.PARAMETER_ERROR
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_UNSUPPORTED:
+                return ActionResult.Result.UNSUPPORTED
 
         def __str__(self):
             return self.name

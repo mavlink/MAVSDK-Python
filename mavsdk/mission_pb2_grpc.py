@@ -20,6 +20,11 @@ class MissionServiceStub(object):
                 request_serializer=mission_dot_mission__pb2.UploadMissionRequest.SerializeToString,
                 response_deserializer=mission_dot_mission__pb2.UploadMissionResponse.FromString,
                 )
+        self.SubscribeUploadMissionWithProgress = channel.unary_stream(
+                '/mavsdk.rpc.mission.MissionService/SubscribeUploadMissionWithProgress',
+                request_serializer=mission_dot_mission__pb2.SubscribeUploadMissionWithProgressRequest.SerializeToString,
+                response_deserializer=mission_dot_mission__pb2.UploadMissionWithProgressResponse.FromString,
+                )
         self.CancelMissionUpload = channel.unary_unary(
                 '/mavsdk.rpc.mission.MissionService/CancelMissionUpload',
                 request_serializer=mission_dot_mission__pb2.CancelMissionUploadRequest.SerializeToString,
@@ -29,6 +34,11 @@ class MissionServiceStub(object):
                 '/mavsdk.rpc.mission.MissionService/DownloadMission',
                 request_serializer=mission_dot_mission__pb2.DownloadMissionRequest.SerializeToString,
                 response_deserializer=mission_dot_mission__pb2.DownloadMissionResponse.FromString,
+                )
+        self.SubscribeDownloadMissionWithProgress = channel.unary_stream(
+                '/mavsdk.rpc.mission.MissionService/SubscribeDownloadMissionWithProgress',
+                request_serializer=mission_dot_mission__pb2.SubscribeDownloadMissionWithProgressRequest.SerializeToString,
+                response_deserializer=mission_dot_mission__pb2.DownloadMissionWithProgressResponse.FromString,
                 )
         self.CancelMissionDownload = channel.unary_unary(
                 '/mavsdk.rpc.mission.MissionService/CancelMissionDownload',
@@ -92,6 +102,17 @@ class MissionServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SubscribeUploadMissionWithProgress(self, request, context):
+        """
+        Upload a list of mission items to the system and report upload progress.
+
+        The mission items are uploaded to a drone. Once uploaded the mission can be started and
+        executed even if the connection is lost.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def CancelMissionUpload(self, request, context):
         """
         Cancel an ongoing mission upload.
@@ -103,6 +124,17 @@ class MissionServiceServicer(object):
     def DownloadMission(self, request, context):
         """
         Download a list of mission items from the system (asynchronous).
+
+        Will fail if any of the downloaded mission items are not supported
+        by the MAVSDK API.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeDownloadMissionWithProgress(self, request, context):
+        """
+        Download a list of mission items from the system (asynchronous) and report progress.
 
         Will fail if any of the downloaded mission items are not supported
         by the MAVSDK API.
@@ -210,6 +242,11 @@ def add_MissionServiceServicer_to_server(servicer, server):
                     request_deserializer=mission_dot_mission__pb2.UploadMissionRequest.FromString,
                     response_serializer=mission_dot_mission__pb2.UploadMissionResponse.SerializeToString,
             ),
+            'SubscribeUploadMissionWithProgress': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeUploadMissionWithProgress,
+                    request_deserializer=mission_dot_mission__pb2.SubscribeUploadMissionWithProgressRequest.FromString,
+                    response_serializer=mission_dot_mission__pb2.UploadMissionWithProgressResponse.SerializeToString,
+            ),
             'CancelMissionUpload': grpc.unary_unary_rpc_method_handler(
                     servicer.CancelMissionUpload,
                     request_deserializer=mission_dot_mission__pb2.CancelMissionUploadRequest.FromString,
@@ -219,6 +256,11 @@ def add_MissionServiceServicer_to_server(servicer, server):
                     servicer.DownloadMission,
                     request_deserializer=mission_dot_mission__pb2.DownloadMissionRequest.FromString,
                     response_serializer=mission_dot_mission__pb2.DownloadMissionResponse.SerializeToString,
+            ),
+            'SubscribeDownloadMissionWithProgress': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeDownloadMissionWithProgress,
+                    request_deserializer=mission_dot_mission__pb2.SubscribeDownloadMissionWithProgressRequest.FromString,
+                    response_serializer=mission_dot_mission__pb2.DownloadMissionWithProgressResponse.SerializeToString,
             ),
             'CancelMissionDownload': grpc.unary_unary_rpc_method_handler(
                     servicer.CancelMissionDownload,
@@ -294,6 +336,23 @@ class MissionService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def SubscribeUploadMissionWithProgress(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.mission.MissionService/SubscribeUploadMissionWithProgress',
+            mission_dot_mission__pb2.SubscribeUploadMissionWithProgressRequest.SerializeToString,
+            mission_dot_mission__pb2.UploadMissionWithProgressResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def CancelMissionUpload(request,
             target,
             options=(),
@@ -324,6 +383,23 @@ class MissionService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission.MissionService/DownloadMission',
             mission_dot_mission__pb2.DownloadMissionRequest.SerializeToString,
             mission_dot_mission__pb2.DownloadMissionResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeDownloadMissionWithProgress(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.mission.MissionService/SubscribeDownloadMissionWithProgress',
+            mission_dot_mission__pb2.SubscribeDownloadMissionWithProgressRequest.SerializeToString,
+            mission_dot_mission__pb2.DownloadMissionWithProgressResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

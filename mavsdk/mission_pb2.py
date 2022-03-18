@@ -3,6 +3,7 @@
 # source: mission/mission.proto
 """Generated protocol buffer code."""
 from google.protobuf import descriptor as _descriptor
+from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
@@ -14,1151 +15,46 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor.FileDescriptor(
-  name='mission/mission.proto',
-  package='mavsdk.rpc.mission',
-  syntax='proto3',
-  serialized_options=b'\n\021io.mavsdk.missionB\014MissionProto',
-  create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x15mission/mission.proto\x12\x12mavsdk.rpc.mission\x1a\x14mavsdk_options.proto\"M\n\x14UploadMissionRequest\x12\x35\n\x0cmission_plan\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.mission.MissionPlan\"R\n\x15UploadMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x1c\n\x1a\x43\x61ncelMissionUploadRequest\"X\n\x1b\x43\x61ncelMissionUploadResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x18\n\x16\x44ownloadMissionRequest\"\x8b\x01\n\x17\x44ownloadMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\x12\x35\n\x0cmission_plan\x18\x02 \x01(\x0b\x32\x1f.mavsdk.rpc.mission.MissionPlan\"\x1e\n\x1c\x43\x61ncelMissionDownloadRequest\"Z\n\x1d\x43\x61ncelMissionDownloadResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x15\n\x13StartMissionRequest\"Q\n\x14StartMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x15\n\x13PauseMissionRequest\"Q\n\x14PauseMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x15\n\x13\x43learMissionRequest\"Q\n\x14\x43learMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"-\n\x1cSetCurrentMissionItemRequest\x12\r\n\x05index\x18\x01 \x01(\x05\"Z\n\x1dSetCurrentMissionItemResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x1a\n\x18IsMissionFinishedRequest\"k\n\x19IsMissionFinishedResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\x12\x13\n\x0bis_finished\x18\x02 \x01(\x08\"!\n\x1fSubscribeMissionProgressRequest\"X\n\x17MissionProgressResponse\x12=\n\x10mission_progress\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.mission.MissionProgress\"&\n$GetReturnToLaunchAfterMissionRequest\"r\n%GetReturnToLaunchAfterMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\x12\x0e\n\x06\x65nable\x18\x02 \x01(\x08\"6\n$SetReturnToLaunchAfterMissionRequest\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\"b\n%SetReturnToLaunchAfterMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\xbc\x06\n\x0bMissionItem\x12(\n\x0clatitude_deg\x18\x01 \x01(\x01\x42\x12\x82\xb5\x18\x03NaN\x89\xb5\x18H\xaf\xbc\x9a\xf2\xd7z>\x12)\n\rlongitude_deg\x18\x02 \x01(\x01\x42\x12\x82\xb5\x18\x03NaN\x89\xb5\x18H\xaf\xbc\x9a\xf2\xd7z>\x12$\n\x13relative_altitude_m\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1a\n\tspeed_m_s\x18\x04 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12!\n\x0eis_fly_through\x18\x05 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\x12,\n\x10gimbal_pitch_deg\x18\x06 \x01(\x02\x42\x12\x82\xb5\x18\x03NaN\x89\xb5\x18-C\x1c\xeb\xe2\x36\x1a?\x12*\n\x0egimbal_yaw_deg\x18\x07 \x01(\x02\x42\x12\x82\xb5\x18\x03NaN\x89\xb5\x18-C\x1c\xeb\xe2\x36\x1a?\x12\x43\n\rcamera_action\x18\x08 \x01(\x0e\x32,.mavsdk.rpc.mission.MissionItem.CameraAction\x12\x1e\n\rloiter_time_s\x18\t \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12(\n\x17\x63\x61mera_photo_interval_s\x18\n \x01(\x01\x42\x07\x82\xb5\x18\x03\x31.0\x12$\n\x13\x61\x63\x63\x65ptance_radius_m\x18\x0b \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x18\n\x07yaw_deg\x18\x0c \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12(\n\x17\x63\x61mera_photo_distance_m\x18\r \x01(\x02\x42\x07\x82\xb5\x18\x03NAN\"\x9f\x02\n\x0c\x43\x61meraAction\x12\x16\n\x12\x43\x41MERA_ACTION_NONE\x10\x00\x12\x1c\n\x18\x43\x41MERA_ACTION_TAKE_PHOTO\x10\x01\x12&\n\"CAMERA_ACTION_START_PHOTO_INTERVAL\x10\x02\x12%\n!CAMERA_ACTION_STOP_PHOTO_INTERVAL\x10\x03\x12\x1d\n\x19\x43\x41MERA_ACTION_START_VIDEO\x10\x04\x12\x1c\n\x18\x43\x41MERA_ACTION_STOP_VIDEO\x10\x05\x12&\n\"CAMERA_ACTION_START_PHOTO_DISTANCE\x10\x06\x12%\n!CAMERA_ACTION_STOP_PHOTO_DISTANCE\x10\x07\"E\n\x0bMissionPlan\x12\x36\n\rmission_items\x18\x01 \x03(\x0b\x32\x1f.mavsdk.rpc.mission.MissionItem\"1\n\x0fMissionProgress\x12\x0f\n\x07\x63urrent\x18\x01 \x01(\x05\x12\r\n\x05total\x18\x02 \x01(\x05\"\x99\x03\n\rMissionResult\x12\x38\n\x06result\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.mission.MissionResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xb9\x02\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x10\n\x0cRESULT_ERROR\x10\x02\x12!\n\x1dRESULT_TOO_MANY_MISSION_ITEMS\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x12\n\x0eRESULT_TIMEOUT\x10\x05\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x06\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x07\x12\x1f\n\x1bRESULT_NO_MISSION_AVAILABLE\x10\x08\x12\"\n\x1eRESULT_UNSUPPORTED_MISSION_CMD\x10\x0b\x12\x1d\n\x19RESULT_TRANSFER_CANCELLED\x10\x0c\x12\x14\n\x10RESULT_NO_SYSTEM\x10\r2\xcd\x0b\n\x0eMissionService\x12\x66\n\rUploadMission\x12(.mavsdk.rpc.mission.UploadMissionRequest\x1a).mavsdk.rpc.mission.UploadMissionResponse\"\x00\x12|\n\x13\x43\x61ncelMissionUpload\x12..mavsdk.rpc.mission.CancelMissionUploadRequest\x1a/.mavsdk.rpc.mission.CancelMissionUploadResponse\"\x04\x80\xb5\x18\x01\x12l\n\x0f\x44ownloadMission\x12*.mavsdk.rpc.mission.DownloadMissionRequest\x1a+.mavsdk.rpc.mission.DownloadMissionResponse\"\x00\x12\x82\x01\n\x15\x43\x61ncelMissionDownload\x12\x30.mavsdk.rpc.mission.CancelMissionDownloadRequest\x1a\x31.mavsdk.rpc.mission.CancelMissionDownloadResponse\"\x04\x80\xb5\x18\x01\x12\x63\n\x0cStartMission\x12\'.mavsdk.rpc.mission.StartMissionRequest\x1a(.mavsdk.rpc.mission.StartMissionResponse\"\x00\x12\x63\n\x0cPauseMission\x12\'.mavsdk.rpc.mission.PauseMissionRequest\x1a(.mavsdk.rpc.mission.PauseMissionResponse\"\x00\x12\x63\n\x0c\x43learMission\x12\'.mavsdk.rpc.mission.ClearMissionRequest\x1a(.mavsdk.rpc.mission.ClearMissionResponse\"\x00\x12~\n\x15SetCurrentMissionItem\x12\x30.mavsdk.rpc.mission.SetCurrentMissionItemRequest\x1a\x31.mavsdk.rpc.mission.SetCurrentMissionItemResponse\"\x00\x12v\n\x11IsMissionFinished\x12,.mavsdk.rpc.mission.IsMissionFinishedRequest\x1a-.mavsdk.rpc.mission.IsMissionFinishedResponse\"\x04\x80\xb5\x18\x01\x12\x80\x01\n\x18SubscribeMissionProgress\x12\x33.mavsdk.rpc.mission.SubscribeMissionProgressRequest\x1a+.mavsdk.rpc.mission.MissionProgressResponse\"\x00\x30\x01\x12\x9a\x01\n\x1dGetReturnToLaunchAfterMission\x12\x38.mavsdk.rpc.mission.GetReturnToLaunchAfterMissionRequest\x1a\x39.mavsdk.rpc.mission.GetReturnToLaunchAfterMissionResponse\"\x04\x80\xb5\x18\x01\x12\x9a\x01\n\x1dSetReturnToLaunchAfterMission\x12\x38.mavsdk.rpc.mission.SetReturnToLaunchAfterMissionRequest\x1a\x39.mavsdk.rpc.mission.SetReturnToLaunchAfterMissionResponse\"\x04\x80\xb5\x18\x01\x42!\n\x11io.mavsdk.missionB\x0cMissionProtob\x06proto3'
-  ,
-  dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15mission/mission.proto\x12\x12mavsdk.rpc.mission\x1a\x14mavsdk_options.proto\"M\n\x14UploadMissionRequest\x12\x35\n\x0cmission_plan\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.mission.MissionPlan\"R\n\x15UploadMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"b\n)SubscribeUploadMissionWithProgressRequest\x12\x35\n\x0cmission_plan\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.mission.MissionPlan\"\x97\x01\n!UploadMissionWithProgressResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\x12\x37\n\rprogress_data\x18\x02 \x01(\x0b\x32 .mavsdk.rpc.mission.ProgressData\"\x1c\n\x1a\x43\x61ncelMissionUploadRequest\"X\n\x1b\x43\x61ncelMissionUploadResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x18\n\x16\x44ownloadMissionRequest\"\x8b\x01\n\x17\x44ownloadMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\x12\x35\n\x0cmission_plan\x18\x02 \x01(\x0b\x32\x1f.mavsdk.rpc.mission.MissionPlan\"-\n+SubscribeDownloadMissionWithProgressRequest\"\xa2\x01\n#DownloadMissionWithProgressResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\x12@\n\rprogress_data\x18\x02 \x01(\x0b\x32).mavsdk.rpc.mission.ProgressDataOrMission\"\x1e\n\x1c\x43\x61ncelMissionDownloadRequest\"Z\n\x1d\x43\x61ncelMissionDownloadResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x15\n\x13StartMissionRequest\"Q\n\x14StartMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x15\n\x13PauseMissionRequest\"Q\n\x14PauseMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x15\n\x13\x43learMissionRequest\"Q\n\x14\x43learMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"-\n\x1cSetCurrentMissionItemRequest\x12\r\n\x05index\x18\x01 \x01(\x05\"Z\n\x1dSetCurrentMissionItemResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\x1a\n\x18IsMissionFinishedRequest\"k\n\x19IsMissionFinishedResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\x12\x13\n\x0bis_finished\x18\x02 \x01(\x08\"!\n\x1fSubscribeMissionProgressRequest\"X\n\x17MissionProgressResponse\x12=\n\x10mission_progress\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.mission.MissionProgress\"&\n$GetReturnToLaunchAfterMissionRequest\"r\n%GetReturnToLaunchAfterMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\x12\x0e\n\x06\x65nable\x18\x02 \x01(\x08\"6\n$SetReturnToLaunchAfterMissionRequest\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\"b\n%SetReturnToLaunchAfterMissionResponse\x12\x39\n\x0emission_result\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.mission.MissionResult\"\xbc\x06\n\x0bMissionItem\x12(\n\x0clatitude_deg\x18\x01 \x01(\x01\x42\x12\x82\xb5\x18\x03NaN\x89\xb5\x18H\xaf\xbc\x9a\xf2\xd7z>\x12)\n\rlongitude_deg\x18\x02 \x01(\x01\x42\x12\x82\xb5\x18\x03NaN\x89\xb5\x18H\xaf\xbc\x9a\xf2\xd7z>\x12$\n\x13relative_altitude_m\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1a\n\tspeed_m_s\x18\x04 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12!\n\x0eis_fly_through\x18\x05 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\x12,\n\x10gimbal_pitch_deg\x18\x06 \x01(\x02\x42\x12\x82\xb5\x18\x03NaN\x89\xb5\x18-C\x1c\xeb\xe2\x36\x1a?\x12*\n\x0egimbal_yaw_deg\x18\x07 \x01(\x02\x42\x12\x82\xb5\x18\x03NaN\x89\xb5\x18-C\x1c\xeb\xe2\x36\x1a?\x12\x43\n\rcamera_action\x18\x08 \x01(\x0e\x32,.mavsdk.rpc.mission.MissionItem.CameraAction\x12\x1e\n\rloiter_time_s\x18\t \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12(\n\x17\x63\x61mera_photo_interval_s\x18\n \x01(\x01\x42\x07\x82\xb5\x18\x03\x31.0\x12$\n\x13\x61\x63\x63\x65ptance_radius_m\x18\x0b \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x18\n\x07yaw_deg\x18\x0c \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12(\n\x17\x63\x61mera_photo_distance_m\x18\r \x01(\x02\x42\x07\x82\xb5\x18\x03NAN\"\x9f\x02\n\x0c\x43\x61meraAction\x12\x16\n\x12\x43\x41MERA_ACTION_NONE\x10\x00\x12\x1c\n\x18\x43\x41MERA_ACTION_TAKE_PHOTO\x10\x01\x12&\n\"CAMERA_ACTION_START_PHOTO_INTERVAL\x10\x02\x12%\n!CAMERA_ACTION_STOP_PHOTO_INTERVAL\x10\x03\x12\x1d\n\x19\x43\x41MERA_ACTION_START_VIDEO\x10\x04\x12\x1c\n\x18\x43\x41MERA_ACTION_STOP_VIDEO\x10\x05\x12&\n\"CAMERA_ACTION_START_PHOTO_DISTANCE\x10\x06\x12%\n!CAMERA_ACTION_STOP_PHOTO_DISTANCE\x10\x07\"E\n\x0bMissionPlan\x12\x36\n\rmission_items\x18\x01 \x03(\x0b\x32\x1f.mavsdk.rpc.mission.MissionItem\"1\n\x0fMissionProgress\x12\x0f\n\x07\x63urrent\x18\x01 \x01(\x05\x12\r\n\x05total\x18\x02 \x01(\x05\"\xaa\x03\n\rMissionResult\x12\x38\n\x06result\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.mission.MissionResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xca\x02\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x10\n\x0cRESULT_ERROR\x10\x02\x12!\n\x1dRESULT_TOO_MANY_MISSION_ITEMS\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x12\n\x0eRESULT_TIMEOUT\x10\x05\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x06\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x07\x12\x1f\n\x1bRESULT_NO_MISSION_AVAILABLE\x10\x08\x12\"\n\x1eRESULT_UNSUPPORTED_MISSION_CMD\x10\x0b\x12\x1d\n\x19RESULT_TRANSFER_CANCELLED\x10\x0c\x12\x14\n\x10RESULT_NO_SYSTEM\x10\r\x12\x0f\n\x0bRESULT_NEXT\x10\x0e\")\n\x0cProgressData\x12\x19\n\x08progress\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"\x9f\x01\n\x15ProgressDataOrMission\x12\x1f\n\x0chas_progress\x18\x01 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\x12\x19\n\x08progress\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x13\n\x0bhas_mission\x18\x03 \x01(\x08\x12\x35\n\x0cmission_plan\x18\x04 \x01(\x0b\x32\x1f.mavsdk.rpc.mission.MissionPlan2\xa5\x0e\n\x0eMissionService\x12\x66\n\rUploadMission\x12(.mavsdk.rpc.mission.UploadMissionRequest\x1a).mavsdk.rpc.mission.UploadMissionResponse\"\x00\x12\xa6\x01\n\"SubscribeUploadMissionWithProgress\x12=.mavsdk.rpc.mission.SubscribeUploadMissionWithProgressRequest\x1a\x35.mavsdk.rpc.mission.UploadMissionWithProgressResponse\"\x08\x80\xb5\x18\x00\x88\xb5\x18\x01\x30\x01\x12|\n\x13\x43\x61ncelMissionUpload\x12..mavsdk.rpc.mission.CancelMissionUploadRequest\x1a/.mavsdk.rpc.mission.CancelMissionUploadResponse\"\x04\x80\xb5\x18\x01\x12l\n\x0f\x44ownloadMission\x12*.mavsdk.rpc.mission.DownloadMissionRequest\x1a+.mavsdk.rpc.mission.DownloadMissionResponse\"\x00\x12\xac\x01\n$SubscribeDownloadMissionWithProgress\x12?.mavsdk.rpc.mission.SubscribeDownloadMissionWithProgressRequest\x1a\x37.mavsdk.rpc.mission.DownloadMissionWithProgressResponse\"\x08\x80\xb5\x18\x00\x88\xb5\x18\x01\x30\x01\x12\x82\x01\n\x15\x43\x61ncelMissionDownload\x12\x30.mavsdk.rpc.mission.CancelMissionDownloadRequest\x1a\x31.mavsdk.rpc.mission.CancelMissionDownloadResponse\"\x04\x80\xb5\x18\x01\x12\x63\n\x0cStartMission\x12\'.mavsdk.rpc.mission.StartMissionRequest\x1a(.mavsdk.rpc.mission.StartMissionResponse\"\x00\x12\x63\n\x0cPauseMission\x12\'.mavsdk.rpc.mission.PauseMissionRequest\x1a(.mavsdk.rpc.mission.PauseMissionResponse\"\x00\x12\x63\n\x0c\x43learMission\x12\'.mavsdk.rpc.mission.ClearMissionRequest\x1a(.mavsdk.rpc.mission.ClearMissionResponse\"\x00\x12~\n\x15SetCurrentMissionItem\x12\x30.mavsdk.rpc.mission.SetCurrentMissionItemRequest\x1a\x31.mavsdk.rpc.mission.SetCurrentMissionItemResponse\"\x00\x12v\n\x11IsMissionFinished\x12,.mavsdk.rpc.mission.IsMissionFinishedRequest\x1a-.mavsdk.rpc.mission.IsMissionFinishedResponse\"\x04\x80\xb5\x18\x01\x12\x80\x01\n\x18SubscribeMissionProgress\x12\x33.mavsdk.rpc.mission.SubscribeMissionProgressRequest\x1a+.mavsdk.rpc.mission.MissionProgressResponse\"\x00\x30\x01\x12\x9a\x01\n\x1dGetReturnToLaunchAfterMission\x12\x38.mavsdk.rpc.mission.GetReturnToLaunchAfterMissionRequest\x1a\x39.mavsdk.rpc.mission.GetReturnToLaunchAfterMissionResponse\"\x04\x80\xb5\x18\x01\x12\x9a\x01\n\x1dSetReturnToLaunchAfterMission\x12\x38.mavsdk.rpc.mission.SetReturnToLaunchAfterMissionRequest\x1a\x39.mavsdk.rpc.mission.SetReturnToLaunchAfterMissionResponse\"\x04\x80\xb5\x18\x01\x42!\n\x11io.mavsdk.missionB\x0cMissionProtob\x06proto3')
 
 
 
-_MISSIONITEM_CAMERAACTION = _descriptor.EnumDescriptor(
-  name='CameraAction',
-  full_name='mavsdk.rpc.mission.MissionItem.CameraAction',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='CAMERA_ACTION_NONE', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='CAMERA_ACTION_TAKE_PHOTO', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='CAMERA_ACTION_START_PHOTO_INTERVAL', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='CAMERA_ACTION_STOP_PHOTO_INTERVAL', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='CAMERA_ACTION_START_VIDEO', index=4, number=4,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='CAMERA_ACTION_STOP_VIDEO', index=5, number=5,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='CAMERA_ACTION_START_PHOTO_DISTANCE', index=6, number=6,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='CAMERA_ACTION_STOP_PHOTO_DISTANCE', index=7, number=7,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=2215,
-  serialized_end=2502,
-)
-_sym_db.RegisterEnumDescriptor(_MISSIONITEM_CAMERAACTION)
-
-_MISSIONRESULT_RESULT = _descriptor.EnumDescriptor(
-  name='Result',
-  full_name='mavsdk.rpc.mission.MissionResult.Result',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_UNKNOWN', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_SUCCESS', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_ERROR', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_TOO_MANY_MISSION_ITEMS', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_BUSY', index=4, number=4,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_TIMEOUT', index=5, number=5,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_INVALID_ARGUMENT', index=6, number=6,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_UNSUPPORTED', index=7, number=7,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_NO_MISSION_AVAILABLE', index=8, number=8,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_UNSUPPORTED_MISSION_CMD', index=9, number=11,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_TRANSFER_CANCELLED', index=10, number=12,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_NO_SYSTEM', index=11, number=13,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=2723,
-  serialized_end=3036,
-)
-_sym_db.RegisterEnumDescriptor(_MISSIONRESULT_RESULT)
-
-
-_UPLOADMISSIONREQUEST = _descriptor.Descriptor(
-  name='UploadMissionRequest',
-  full_name='mavsdk.rpc.mission.UploadMissionRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mission_plan', full_name='mavsdk.rpc.mission.UploadMissionRequest.mission_plan', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=67,
-  serialized_end=144,
-)
-
-
-_UPLOADMISSIONRESPONSE = _descriptor.Descriptor(
-  name='UploadMissionResponse',
-  full_name='mavsdk.rpc.mission.UploadMissionResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mission_result', full_name='mavsdk.rpc.mission.UploadMissionResponse.mission_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=146,
-  serialized_end=228,
-)
-
-
-_CANCELMISSIONUPLOADREQUEST = _descriptor.Descriptor(
-  name='CancelMissionUploadRequest',
-  full_name='mavsdk.rpc.mission.CancelMissionUploadRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=230,
-  serialized_end=258,
-)
-
-
-_CANCELMISSIONUPLOADRESPONSE = _descriptor.Descriptor(
-  name='CancelMissionUploadResponse',
-  full_name='mavsdk.rpc.mission.CancelMissionUploadResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mission_result', full_name='mavsdk.rpc.mission.CancelMissionUploadResponse.mission_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=260,
-  serialized_end=348,
-)
-
-
-_DOWNLOADMISSIONREQUEST = _descriptor.Descriptor(
-  name='DownloadMissionRequest',
-  full_name='mavsdk.rpc.mission.DownloadMissionRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=350,
-  serialized_end=374,
-)
-
-
-_DOWNLOADMISSIONRESPONSE = _descriptor.Descriptor(
-  name='DownloadMissionResponse',
-  full_name='mavsdk.rpc.mission.DownloadMissionResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mission_result', full_name='mavsdk.rpc.mission.DownloadMissionResponse.mission_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='mission_plan', full_name='mavsdk.rpc.mission.DownloadMissionResponse.mission_plan', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=377,
-  serialized_end=516,
-)
-
-
-_CANCELMISSIONDOWNLOADREQUEST = _descriptor.Descriptor(
-  name='CancelMissionDownloadRequest',
-  full_name='mavsdk.rpc.mission.CancelMissionDownloadRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=518,
-  serialized_end=548,
-)
-
-
-_CANCELMISSIONDOWNLOADRESPONSE = _descriptor.Descriptor(
-  name='CancelMissionDownloadResponse',
-  full_name='mavsdk.rpc.mission.CancelMissionDownloadResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mission_result', full_name='mavsdk.rpc.mission.CancelMissionDownloadResponse.mission_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=550,
-  serialized_end=640,
-)
-
-
-_STARTMISSIONREQUEST = _descriptor.Descriptor(
-  name='StartMissionRequest',
-  full_name='mavsdk.rpc.mission.StartMissionRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=642,
-  serialized_end=663,
-)
-
-
-_STARTMISSIONRESPONSE = _descriptor.Descriptor(
-  name='StartMissionResponse',
-  full_name='mavsdk.rpc.mission.StartMissionResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mission_result', full_name='mavsdk.rpc.mission.StartMissionResponse.mission_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=665,
-  serialized_end=746,
-)
-
-
-_PAUSEMISSIONREQUEST = _descriptor.Descriptor(
-  name='PauseMissionRequest',
-  full_name='mavsdk.rpc.mission.PauseMissionRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=748,
-  serialized_end=769,
-)
-
-
-_PAUSEMISSIONRESPONSE = _descriptor.Descriptor(
-  name='PauseMissionResponse',
-  full_name='mavsdk.rpc.mission.PauseMissionResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mission_result', full_name='mavsdk.rpc.mission.PauseMissionResponse.mission_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=771,
-  serialized_end=852,
-)
-
-
-_CLEARMISSIONREQUEST = _descriptor.Descriptor(
-  name='ClearMissionRequest',
-  full_name='mavsdk.rpc.mission.ClearMissionRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=854,
-  serialized_end=875,
-)
-
-
-_CLEARMISSIONRESPONSE = _descriptor.Descriptor(
-  name='ClearMissionResponse',
-  full_name='mavsdk.rpc.mission.ClearMissionResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mission_result', full_name='mavsdk.rpc.mission.ClearMissionResponse.mission_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=877,
-  serialized_end=958,
-)
-
-
-_SETCURRENTMISSIONITEMREQUEST = _descriptor.Descriptor(
-  name='SetCurrentMissionItemRequest',
-  full_name='mavsdk.rpc.mission.SetCurrentMissionItemRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='index', full_name='mavsdk.rpc.mission.SetCurrentMissionItemRequest.index', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=960,
-  serialized_end=1005,
-)
-
-
-_SETCURRENTMISSIONITEMRESPONSE = _descriptor.Descriptor(
-  name='SetCurrentMissionItemResponse',
-  full_name='mavsdk.rpc.mission.SetCurrentMissionItemResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mission_result', full_name='mavsdk.rpc.mission.SetCurrentMissionItemResponse.mission_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1007,
-  serialized_end=1097,
-)
-
-
-_ISMISSIONFINISHEDREQUEST = _descriptor.Descriptor(
-  name='IsMissionFinishedRequest',
-  full_name='mavsdk.rpc.mission.IsMissionFinishedRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1099,
-  serialized_end=1125,
-)
-
-
-_ISMISSIONFINISHEDRESPONSE = _descriptor.Descriptor(
-  name='IsMissionFinishedResponse',
-  full_name='mavsdk.rpc.mission.IsMissionFinishedResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mission_result', full_name='mavsdk.rpc.mission.IsMissionFinishedResponse.mission_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='is_finished', full_name='mavsdk.rpc.mission.IsMissionFinishedResponse.is_finished', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1127,
-  serialized_end=1234,
-)
-
-
-_SUBSCRIBEMISSIONPROGRESSREQUEST = _descriptor.Descriptor(
-  name='SubscribeMissionProgressRequest',
-  full_name='mavsdk.rpc.mission.SubscribeMissionProgressRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1236,
-  serialized_end=1269,
-)
-
-
-_MISSIONPROGRESSRESPONSE = _descriptor.Descriptor(
-  name='MissionProgressResponse',
-  full_name='mavsdk.rpc.mission.MissionProgressResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mission_progress', full_name='mavsdk.rpc.mission.MissionProgressResponse.mission_progress', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1271,
-  serialized_end=1359,
-)
-
-
-_GETRETURNTOLAUNCHAFTERMISSIONREQUEST = _descriptor.Descriptor(
-  name='GetReturnToLaunchAfterMissionRequest',
-  full_name='mavsdk.rpc.mission.GetReturnToLaunchAfterMissionRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1361,
-  serialized_end=1399,
-)
-
-
-_GETRETURNTOLAUNCHAFTERMISSIONRESPONSE = _descriptor.Descriptor(
-  name='GetReturnToLaunchAfterMissionResponse',
-  full_name='mavsdk.rpc.mission.GetReturnToLaunchAfterMissionResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mission_result', full_name='mavsdk.rpc.mission.GetReturnToLaunchAfterMissionResponse.mission_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='enable', full_name='mavsdk.rpc.mission.GetReturnToLaunchAfterMissionResponse.enable', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1401,
-  serialized_end=1515,
-)
-
-
-_SETRETURNTOLAUNCHAFTERMISSIONREQUEST = _descriptor.Descriptor(
-  name='SetReturnToLaunchAfterMissionRequest',
-  full_name='mavsdk.rpc.mission.SetReturnToLaunchAfterMissionRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='enable', full_name='mavsdk.rpc.mission.SetReturnToLaunchAfterMissionRequest.enable', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1517,
-  serialized_end=1571,
-)
-
-
-_SETRETURNTOLAUNCHAFTERMISSIONRESPONSE = _descriptor.Descriptor(
-  name='SetReturnToLaunchAfterMissionResponse',
-  full_name='mavsdk.rpc.mission.SetReturnToLaunchAfterMissionResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mission_result', full_name='mavsdk.rpc.mission.SetReturnToLaunchAfterMissionResponse.mission_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1573,
-  serialized_end=1671,
-)
-
-
-_MISSIONITEM = _descriptor.Descriptor(
-  name='MissionItem',
-  full_name='mavsdk.rpc.mission.MissionItem',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='latitude_deg', full_name='mavsdk.rpc.mission.MissionItem.latitude_deg', index=0,
-      number=1, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN\211\265\030H\257\274\232\362\327z>', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='longitude_deg', full_name='mavsdk.rpc.mission.MissionItem.longitude_deg', index=1,
-      number=2, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN\211\265\030H\257\274\232\362\327z>', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='relative_altitude_m', full_name='mavsdk.rpc.mission.MissionItem.relative_altitude_m', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='speed_m_s', full_name='mavsdk.rpc.mission.MissionItem.speed_m_s', index=3,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='is_fly_through', full_name='mavsdk.rpc.mission.MissionItem.is_fly_through', index=4,
-      number=5, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='gimbal_pitch_deg', full_name='mavsdk.rpc.mission.MissionItem.gimbal_pitch_deg', index=5,
-      number=6, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN\211\265\030-C\034\353\3426\032?', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='gimbal_yaw_deg', full_name='mavsdk.rpc.mission.MissionItem.gimbal_yaw_deg', index=6,
-      number=7, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN\211\265\030-C\034\353\3426\032?', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='camera_action', full_name='mavsdk.rpc.mission.MissionItem.camera_action', index=7,
-      number=8, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='loiter_time_s', full_name='mavsdk.rpc.mission.MissionItem.loiter_time_s', index=8,
-      number=9, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='camera_photo_interval_s', full_name='mavsdk.rpc.mission.MissionItem.camera_photo_interval_s', index=9,
-      number=10, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\0031.0', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='acceptance_radius_m', full_name='mavsdk.rpc.mission.MissionItem.acceptance_radius_m', index=10,
-      number=11, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='yaw_deg', full_name='mavsdk.rpc.mission.MissionItem.yaw_deg', index=11,
-      number=12, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='camera_photo_distance_m', full_name='mavsdk.rpc.mission.MissionItem.camera_photo_distance_m', index=12,
-      number=13, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NAN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-    _MISSIONITEM_CAMERAACTION,
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1674,
-  serialized_end=2502,
-)
-
-
-_MISSIONPLAN = _descriptor.Descriptor(
-  name='MissionPlan',
-  full_name='mavsdk.rpc.mission.MissionPlan',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mission_items', full_name='mavsdk.rpc.mission.MissionPlan.mission_items', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2504,
-  serialized_end=2573,
-)
-
-
-_MISSIONPROGRESS = _descriptor.Descriptor(
-  name='MissionProgress',
-  full_name='mavsdk.rpc.mission.MissionProgress',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='current', full_name='mavsdk.rpc.mission.MissionProgress.current', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='total', full_name='mavsdk.rpc.mission.MissionProgress.total', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2575,
-  serialized_end=2624,
-)
-
-
-_MISSIONRESULT = _descriptor.Descriptor(
-  name='MissionResult',
-  full_name='mavsdk.rpc.mission.MissionResult',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='result', full_name='mavsdk.rpc.mission.MissionResult.result', index=0,
-      number=1, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='result_str', full_name='mavsdk.rpc.mission.MissionResult.result_str', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-    _MISSIONRESULT_RESULT,
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2627,
-  serialized_end=3036,
-)
-
-_UPLOADMISSIONREQUEST.fields_by_name['mission_plan'].message_type = _MISSIONPLAN
-_UPLOADMISSIONRESPONSE.fields_by_name['mission_result'].message_type = _MISSIONRESULT
-_CANCELMISSIONUPLOADRESPONSE.fields_by_name['mission_result'].message_type = _MISSIONRESULT
-_DOWNLOADMISSIONRESPONSE.fields_by_name['mission_result'].message_type = _MISSIONRESULT
-_DOWNLOADMISSIONRESPONSE.fields_by_name['mission_plan'].message_type = _MISSIONPLAN
-_CANCELMISSIONDOWNLOADRESPONSE.fields_by_name['mission_result'].message_type = _MISSIONRESULT
-_STARTMISSIONRESPONSE.fields_by_name['mission_result'].message_type = _MISSIONRESULT
-_PAUSEMISSIONRESPONSE.fields_by_name['mission_result'].message_type = _MISSIONRESULT
-_CLEARMISSIONRESPONSE.fields_by_name['mission_result'].message_type = _MISSIONRESULT
-_SETCURRENTMISSIONITEMRESPONSE.fields_by_name['mission_result'].message_type = _MISSIONRESULT
-_ISMISSIONFINISHEDRESPONSE.fields_by_name['mission_result'].message_type = _MISSIONRESULT
-_MISSIONPROGRESSRESPONSE.fields_by_name['mission_progress'].message_type = _MISSIONPROGRESS
-_GETRETURNTOLAUNCHAFTERMISSIONRESPONSE.fields_by_name['mission_result'].message_type = _MISSIONRESULT
-_SETRETURNTOLAUNCHAFTERMISSIONRESPONSE.fields_by_name['mission_result'].message_type = _MISSIONRESULT
-_MISSIONITEM.fields_by_name['camera_action'].enum_type = _MISSIONITEM_CAMERAACTION
-_MISSIONITEM_CAMERAACTION.containing_type = _MISSIONITEM
-_MISSIONPLAN.fields_by_name['mission_items'].message_type = _MISSIONITEM
-_MISSIONRESULT.fields_by_name['result'].enum_type = _MISSIONRESULT_RESULT
-_MISSIONRESULT_RESULT.containing_type = _MISSIONRESULT
-DESCRIPTOR.message_types_by_name['UploadMissionRequest'] = _UPLOADMISSIONREQUEST
-DESCRIPTOR.message_types_by_name['UploadMissionResponse'] = _UPLOADMISSIONRESPONSE
-DESCRIPTOR.message_types_by_name['CancelMissionUploadRequest'] = _CANCELMISSIONUPLOADREQUEST
-DESCRIPTOR.message_types_by_name['CancelMissionUploadResponse'] = _CANCELMISSIONUPLOADRESPONSE
-DESCRIPTOR.message_types_by_name['DownloadMissionRequest'] = _DOWNLOADMISSIONREQUEST
-DESCRIPTOR.message_types_by_name['DownloadMissionResponse'] = _DOWNLOADMISSIONRESPONSE
-DESCRIPTOR.message_types_by_name['CancelMissionDownloadRequest'] = _CANCELMISSIONDOWNLOADREQUEST
-DESCRIPTOR.message_types_by_name['CancelMissionDownloadResponse'] = _CANCELMISSIONDOWNLOADRESPONSE
-DESCRIPTOR.message_types_by_name['StartMissionRequest'] = _STARTMISSIONREQUEST
-DESCRIPTOR.message_types_by_name['StartMissionResponse'] = _STARTMISSIONRESPONSE
-DESCRIPTOR.message_types_by_name['PauseMissionRequest'] = _PAUSEMISSIONREQUEST
-DESCRIPTOR.message_types_by_name['PauseMissionResponse'] = _PAUSEMISSIONRESPONSE
-DESCRIPTOR.message_types_by_name['ClearMissionRequest'] = _CLEARMISSIONREQUEST
-DESCRIPTOR.message_types_by_name['ClearMissionResponse'] = _CLEARMISSIONRESPONSE
-DESCRIPTOR.message_types_by_name['SetCurrentMissionItemRequest'] = _SETCURRENTMISSIONITEMREQUEST
-DESCRIPTOR.message_types_by_name['SetCurrentMissionItemResponse'] = _SETCURRENTMISSIONITEMRESPONSE
-DESCRIPTOR.message_types_by_name['IsMissionFinishedRequest'] = _ISMISSIONFINISHEDREQUEST
-DESCRIPTOR.message_types_by_name['IsMissionFinishedResponse'] = _ISMISSIONFINISHEDRESPONSE
-DESCRIPTOR.message_types_by_name['SubscribeMissionProgressRequest'] = _SUBSCRIBEMISSIONPROGRESSREQUEST
-DESCRIPTOR.message_types_by_name['MissionProgressResponse'] = _MISSIONPROGRESSRESPONSE
-DESCRIPTOR.message_types_by_name['GetReturnToLaunchAfterMissionRequest'] = _GETRETURNTOLAUNCHAFTERMISSIONREQUEST
-DESCRIPTOR.message_types_by_name['GetReturnToLaunchAfterMissionResponse'] = _GETRETURNTOLAUNCHAFTERMISSIONRESPONSE
-DESCRIPTOR.message_types_by_name['SetReturnToLaunchAfterMissionRequest'] = _SETRETURNTOLAUNCHAFTERMISSIONREQUEST
-DESCRIPTOR.message_types_by_name['SetReturnToLaunchAfterMissionResponse'] = _SETRETURNTOLAUNCHAFTERMISSIONRESPONSE
-DESCRIPTOR.message_types_by_name['MissionItem'] = _MISSIONITEM
-DESCRIPTOR.message_types_by_name['MissionPlan'] = _MISSIONPLAN
-DESCRIPTOR.message_types_by_name['MissionProgress'] = _MISSIONPROGRESS
-DESCRIPTOR.message_types_by_name['MissionResult'] = _MISSIONRESULT
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
-
+_UPLOADMISSIONREQUEST = DESCRIPTOR.message_types_by_name['UploadMissionRequest']
+_UPLOADMISSIONRESPONSE = DESCRIPTOR.message_types_by_name['UploadMissionResponse']
+_SUBSCRIBEUPLOADMISSIONWITHPROGRESSREQUEST = DESCRIPTOR.message_types_by_name['SubscribeUploadMissionWithProgressRequest']
+_UPLOADMISSIONWITHPROGRESSRESPONSE = DESCRIPTOR.message_types_by_name['UploadMissionWithProgressResponse']
+_CANCELMISSIONUPLOADREQUEST = DESCRIPTOR.message_types_by_name['CancelMissionUploadRequest']
+_CANCELMISSIONUPLOADRESPONSE = DESCRIPTOR.message_types_by_name['CancelMissionUploadResponse']
+_DOWNLOADMISSIONREQUEST = DESCRIPTOR.message_types_by_name['DownloadMissionRequest']
+_DOWNLOADMISSIONRESPONSE = DESCRIPTOR.message_types_by_name['DownloadMissionResponse']
+_SUBSCRIBEDOWNLOADMISSIONWITHPROGRESSREQUEST = DESCRIPTOR.message_types_by_name['SubscribeDownloadMissionWithProgressRequest']
+_DOWNLOADMISSIONWITHPROGRESSRESPONSE = DESCRIPTOR.message_types_by_name['DownloadMissionWithProgressResponse']
+_CANCELMISSIONDOWNLOADREQUEST = DESCRIPTOR.message_types_by_name['CancelMissionDownloadRequest']
+_CANCELMISSIONDOWNLOADRESPONSE = DESCRIPTOR.message_types_by_name['CancelMissionDownloadResponse']
+_STARTMISSIONREQUEST = DESCRIPTOR.message_types_by_name['StartMissionRequest']
+_STARTMISSIONRESPONSE = DESCRIPTOR.message_types_by_name['StartMissionResponse']
+_PAUSEMISSIONREQUEST = DESCRIPTOR.message_types_by_name['PauseMissionRequest']
+_PAUSEMISSIONRESPONSE = DESCRIPTOR.message_types_by_name['PauseMissionResponse']
+_CLEARMISSIONREQUEST = DESCRIPTOR.message_types_by_name['ClearMissionRequest']
+_CLEARMISSIONRESPONSE = DESCRIPTOR.message_types_by_name['ClearMissionResponse']
+_SETCURRENTMISSIONITEMREQUEST = DESCRIPTOR.message_types_by_name['SetCurrentMissionItemRequest']
+_SETCURRENTMISSIONITEMRESPONSE = DESCRIPTOR.message_types_by_name['SetCurrentMissionItemResponse']
+_ISMISSIONFINISHEDREQUEST = DESCRIPTOR.message_types_by_name['IsMissionFinishedRequest']
+_ISMISSIONFINISHEDRESPONSE = DESCRIPTOR.message_types_by_name['IsMissionFinishedResponse']
+_SUBSCRIBEMISSIONPROGRESSREQUEST = DESCRIPTOR.message_types_by_name['SubscribeMissionProgressRequest']
+_MISSIONPROGRESSRESPONSE = DESCRIPTOR.message_types_by_name['MissionProgressResponse']
+_GETRETURNTOLAUNCHAFTERMISSIONREQUEST = DESCRIPTOR.message_types_by_name['GetReturnToLaunchAfterMissionRequest']
+_GETRETURNTOLAUNCHAFTERMISSIONRESPONSE = DESCRIPTOR.message_types_by_name['GetReturnToLaunchAfterMissionResponse']
+_SETRETURNTOLAUNCHAFTERMISSIONREQUEST = DESCRIPTOR.message_types_by_name['SetReturnToLaunchAfterMissionRequest']
+_SETRETURNTOLAUNCHAFTERMISSIONRESPONSE = DESCRIPTOR.message_types_by_name['SetReturnToLaunchAfterMissionResponse']
+_MISSIONITEM = DESCRIPTOR.message_types_by_name['MissionItem']
+_MISSIONPLAN = DESCRIPTOR.message_types_by_name['MissionPlan']
+_MISSIONPROGRESS = DESCRIPTOR.message_types_by_name['MissionProgress']
+_MISSIONRESULT = DESCRIPTOR.message_types_by_name['MissionResult']
+_PROGRESSDATA = DESCRIPTOR.message_types_by_name['ProgressData']
+_PROGRESSDATAORMISSION = DESCRIPTOR.message_types_by_name['ProgressDataOrMission']
+_MISSIONITEM_CAMERAACTION = _MISSIONITEM.enum_types_by_name['CameraAction']
+_MISSIONRESULT_RESULT = _MISSIONRESULT.enum_types_by_name['Result']
 UploadMissionRequest = _reflection.GeneratedProtocolMessageType('UploadMissionRequest', (_message.Message,), {
   'DESCRIPTOR' : _UPLOADMISSIONREQUEST,
   '__module__' : 'mission.mission_pb2'
@@ -1172,6 +68,20 @@ UploadMissionResponse = _reflection.GeneratedProtocolMessageType('UploadMissionR
   # @@protoc_insertion_point(class_scope:mavsdk.rpc.mission.UploadMissionResponse)
   })
 _sym_db.RegisterMessage(UploadMissionResponse)
+
+SubscribeUploadMissionWithProgressRequest = _reflection.GeneratedProtocolMessageType('SubscribeUploadMissionWithProgressRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBEUPLOADMISSIONWITHPROGRESSREQUEST,
+  '__module__' : 'mission.mission_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.mission.SubscribeUploadMissionWithProgressRequest)
+  })
+_sym_db.RegisterMessage(SubscribeUploadMissionWithProgressRequest)
+
+UploadMissionWithProgressResponse = _reflection.GeneratedProtocolMessageType('UploadMissionWithProgressResponse', (_message.Message,), {
+  'DESCRIPTOR' : _UPLOADMISSIONWITHPROGRESSRESPONSE,
+  '__module__' : 'mission.mission_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.mission.UploadMissionWithProgressResponse)
+  })
+_sym_db.RegisterMessage(UploadMissionWithProgressResponse)
 
 CancelMissionUploadRequest = _reflection.GeneratedProtocolMessageType('CancelMissionUploadRequest', (_message.Message,), {
   'DESCRIPTOR' : _CANCELMISSIONUPLOADREQUEST,
@@ -1200,6 +110,20 @@ DownloadMissionResponse = _reflection.GeneratedProtocolMessageType('DownloadMiss
   # @@protoc_insertion_point(class_scope:mavsdk.rpc.mission.DownloadMissionResponse)
   })
 _sym_db.RegisterMessage(DownloadMissionResponse)
+
+SubscribeDownloadMissionWithProgressRequest = _reflection.GeneratedProtocolMessageType('SubscribeDownloadMissionWithProgressRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBEDOWNLOADMISSIONWITHPROGRESSREQUEST,
+  '__module__' : 'mission.mission_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.mission.SubscribeDownloadMissionWithProgressRequest)
+  })
+_sym_db.RegisterMessage(SubscribeDownloadMissionWithProgressRequest)
+
+DownloadMissionWithProgressResponse = _reflection.GeneratedProtocolMessageType('DownloadMissionWithProgressResponse', (_message.Message,), {
+  'DESCRIPTOR' : _DOWNLOADMISSIONWITHPROGRESSRESPONSE,
+  '__module__' : 'mission.mission_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.mission.DownloadMissionWithProgressResponse)
+  })
+_sym_db.RegisterMessage(DownloadMissionWithProgressResponse)
 
 CancelMissionDownloadRequest = _reflection.GeneratedProtocolMessageType('CancelMissionDownloadRequest', (_message.Message,), {
   'DESCRIPTOR' : _CANCELMISSIONDOWNLOADREQUEST,
@@ -1355,154 +279,141 @@ MissionResult = _reflection.GeneratedProtocolMessageType('MissionResult', (_mess
   })
 _sym_db.RegisterMessage(MissionResult)
 
+ProgressData = _reflection.GeneratedProtocolMessageType('ProgressData', (_message.Message,), {
+  'DESCRIPTOR' : _PROGRESSDATA,
+  '__module__' : 'mission.mission_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.mission.ProgressData)
+  })
+_sym_db.RegisterMessage(ProgressData)
 
-DESCRIPTOR._options = None
-_MISSIONITEM.fields_by_name['latitude_deg']._options = None
-_MISSIONITEM.fields_by_name['longitude_deg']._options = None
-_MISSIONITEM.fields_by_name['relative_altitude_m']._options = None
-_MISSIONITEM.fields_by_name['speed_m_s']._options = None
-_MISSIONITEM.fields_by_name['is_fly_through']._options = None
-_MISSIONITEM.fields_by_name['gimbal_pitch_deg']._options = None
-_MISSIONITEM.fields_by_name['gimbal_yaw_deg']._options = None
-_MISSIONITEM.fields_by_name['loiter_time_s']._options = None
-_MISSIONITEM.fields_by_name['camera_photo_interval_s']._options = None
-_MISSIONITEM.fields_by_name['acceptance_radius_m']._options = None
-_MISSIONITEM.fields_by_name['yaw_deg']._options = None
-_MISSIONITEM.fields_by_name['camera_photo_distance_m']._options = None
+ProgressDataOrMission = _reflection.GeneratedProtocolMessageType('ProgressDataOrMission', (_message.Message,), {
+  'DESCRIPTOR' : _PROGRESSDATAORMISSION,
+  '__module__' : 'mission.mission_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.mission.ProgressDataOrMission)
+  })
+_sym_db.RegisterMessage(ProgressDataOrMission)
 
-_MISSIONSERVICE = _descriptor.ServiceDescriptor(
-  name='MissionService',
-  full_name='mavsdk.rpc.mission.MissionService',
-  file=DESCRIPTOR,
-  index=0,
-  serialized_options=None,
-  create_key=_descriptor._internal_create_key,
-  serialized_start=3039,
-  serialized_end=4524,
-  methods=[
-  _descriptor.MethodDescriptor(
-    name='UploadMission',
-    full_name='mavsdk.rpc.mission.MissionService.UploadMission',
-    index=0,
-    containing_service=None,
-    input_type=_UPLOADMISSIONREQUEST,
-    output_type=_UPLOADMISSIONRESPONSE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='CancelMissionUpload',
-    full_name='mavsdk.rpc.mission.MissionService.CancelMissionUpload',
-    index=1,
-    containing_service=None,
-    input_type=_CANCELMISSIONUPLOADREQUEST,
-    output_type=_CANCELMISSIONUPLOADRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='DownloadMission',
-    full_name='mavsdk.rpc.mission.MissionService.DownloadMission',
-    index=2,
-    containing_service=None,
-    input_type=_DOWNLOADMISSIONREQUEST,
-    output_type=_DOWNLOADMISSIONRESPONSE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='CancelMissionDownload',
-    full_name='mavsdk.rpc.mission.MissionService.CancelMissionDownload',
-    index=3,
-    containing_service=None,
-    input_type=_CANCELMISSIONDOWNLOADREQUEST,
-    output_type=_CANCELMISSIONDOWNLOADRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='StartMission',
-    full_name='mavsdk.rpc.mission.MissionService.StartMission',
-    index=4,
-    containing_service=None,
-    input_type=_STARTMISSIONREQUEST,
-    output_type=_STARTMISSIONRESPONSE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='PauseMission',
-    full_name='mavsdk.rpc.mission.MissionService.PauseMission',
-    index=5,
-    containing_service=None,
-    input_type=_PAUSEMISSIONREQUEST,
-    output_type=_PAUSEMISSIONRESPONSE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='ClearMission',
-    full_name='mavsdk.rpc.mission.MissionService.ClearMission',
-    index=6,
-    containing_service=None,
-    input_type=_CLEARMISSIONREQUEST,
-    output_type=_CLEARMISSIONRESPONSE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SetCurrentMissionItem',
-    full_name='mavsdk.rpc.mission.MissionService.SetCurrentMissionItem',
-    index=7,
-    containing_service=None,
-    input_type=_SETCURRENTMISSIONITEMREQUEST,
-    output_type=_SETCURRENTMISSIONITEMRESPONSE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='IsMissionFinished',
-    full_name='mavsdk.rpc.mission.MissionService.IsMissionFinished',
-    index=8,
-    containing_service=None,
-    input_type=_ISMISSIONFINISHEDREQUEST,
-    output_type=_ISMISSIONFINISHEDRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SubscribeMissionProgress',
-    full_name='mavsdk.rpc.mission.MissionService.SubscribeMissionProgress',
-    index=9,
-    containing_service=None,
-    input_type=_SUBSCRIBEMISSIONPROGRESSREQUEST,
-    output_type=_MISSIONPROGRESSRESPONSE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='GetReturnToLaunchAfterMission',
-    full_name='mavsdk.rpc.mission.MissionService.GetReturnToLaunchAfterMission',
-    index=10,
-    containing_service=None,
-    input_type=_GETRETURNTOLAUNCHAFTERMISSIONREQUEST,
-    output_type=_GETRETURNTOLAUNCHAFTERMISSIONRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SetReturnToLaunchAfterMission',
-    full_name='mavsdk.rpc.mission.MissionService.SetReturnToLaunchAfterMission',
-    index=11,
-    containing_service=None,
-    input_type=_SETRETURNTOLAUNCHAFTERMISSIONREQUEST,
-    output_type=_SETRETURNTOLAUNCHAFTERMISSIONRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-])
-_sym_db.RegisterServiceDescriptor(_MISSIONSERVICE)
+_MISSIONSERVICE = DESCRIPTOR.services_by_name['MissionService']
+if _descriptor._USE_C_DESCRIPTORS == False:
 
-DESCRIPTOR.services_by_name['MissionService'] = _MISSIONSERVICE
-
+  DESCRIPTOR._options = None
+  DESCRIPTOR._serialized_options = b'\n\021io.mavsdk.missionB\014MissionProto'
+  _MISSIONITEM.fields_by_name['latitude_deg']._options = None
+  _MISSIONITEM.fields_by_name['latitude_deg']._serialized_options = b'\202\265\030\003NaN\211\265\030H\257\274\232\362\327z>'
+  _MISSIONITEM.fields_by_name['longitude_deg']._options = None
+  _MISSIONITEM.fields_by_name['longitude_deg']._serialized_options = b'\202\265\030\003NaN\211\265\030H\257\274\232\362\327z>'
+  _MISSIONITEM.fields_by_name['relative_altitude_m']._options = None
+  _MISSIONITEM.fields_by_name['relative_altitude_m']._serialized_options = b'\202\265\030\003NaN'
+  _MISSIONITEM.fields_by_name['speed_m_s']._options = None
+  _MISSIONITEM.fields_by_name['speed_m_s']._serialized_options = b'\202\265\030\003NaN'
+  _MISSIONITEM.fields_by_name['is_fly_through']._options = None
+  _MISSIONITEM.fields_by_name['is_fly_through']._serialized_options = b'\202\265\030\005false'
+  _MISSIONITEM.fields_by_name['gimbal_pitch_deg']._options = None
+  _MISSIONITEM.fields_by_name['gimbal_pitch_deg']._serialized_options = b'\202\265\030\003NaN\211\265\030-C\034\353\3426\032?'
+  _MISSIONITEM.fields_by_name['gimbal_yaw_deg']._options = None
+  _MISSIONITEM.fields_by_name['gimbal_yaw_deg']._serialized_options = b'\202\265\030\003NaN\211\265\030-C\034\353\3426\032?'
+  _MISSIONITEM.fields_by_name['loiter_time_s']._options = None
+  _MISSIONITEM.fields_by_name['loiter_time_s']._serialized_options = b'\202\265\030\003NaN'
+  _MISSIONITEM.fields_by_name['camera_photo_interval_s']._options = None
+  _MISSIONITEM.fields_by_name['camera_photo_interval_s']._serialized_options = b'\202\265\030\0031.0'
+  _MISSIONITEM.fields_by_name['acceptance_radius_m']._options = None
+  _MISSIONITEM.fields_by_name['acceptance_radius_m']._serialized_options = b'\202\265\030\003NaN'
+  _MISSIONITEM.fields_by_name['yaw_deg']._options = None
+  _MISSIONITEM.fields_by_name['yaw_deg']._serialized_options = b'\202\265\030\003NaN'
+  _MISSIONITEM.fields_by_name['camera_photo_distance_m']._options = None
+  _MISSIONITEM.fields_by_name['camera_photo_distance_m']._serialized_options = b'\202\265\030\003NAN'
+  _PROGRESSDATA.fields_by_name['progress']._options = None
+  _PROGRESSDATA.fields_by_name['progress']._serialized_options = b'\202\265\030\003NaN'
+  _PROGRESSDATAORMISSION.fields_by_name['has_progress']._options = None
+  _PROGRESSDATAORMISSION.fields_by_name['has_progress']._serialized_options = b'\202\265\030\005false'
+  _PROGRESSDATAORMISSION.fields_by_name['progress']._options = None
+  _PROGRESSDATAORMISSION.fields_by_name['progress']._serialized_options = b'\202\265\030\003NaN'
+  _MISSIONSERVICE.methods_by_name['SubscribeUploadMissionWithProgress']._options = None
+  _MISSIONSERVICE.methods_by_name['SubscribeUploadMissionWithProgress']._serialized_options = b'\200\265\030\000\210\265\030\001'
+  _MISSIONSERVICE.methods_by_name['CancelMissionUpload']._options = None
+  _MISSIONSERVICE.methods_by_name['CancelMissionUpload']._serialized_options = b'\200\265\030\001'
+  _MISSIONSERVICE.methods_by_name['SubscribeDownloadMissionWithProgress']._options = None
+  _MISSIONSERVICE.methods_by_name['SubscribeDownloadMissionWithProgress']._serialized_options = b'\200\265\030\000\210\265\030\001'
+  _MISSIONSERVICE.methods_by_name['CancelMissionDownload']._options = None
+  _MISSIONSERVICE.methods_by_name['CancelMissionDownload']._serialized_options = b'\200\265\030\001'
+  _MISSIONSERVICE.methods_by_name['IsMissionFinished']._options = None
+  _MISSIONSERVICE.methods_by_name['IsMissionFinished']._serialized_options = b'\200\265\030\001'
+  _MISSIONSERVICE.methods_by_name['GetReturnToLaunchAfterMission']._options = None
+  _MISSIONSERVICE.methods_by_name['GetReturnToLaunchAfterMission']._serialized_options = b'\200\265\030\001'
+  _MISSIONSERVICE.methods_by_name['SetReturnToLaunchAfterMission']._options = None
+  _MISSIONSERVICE.methods_by_name['SetReturnToLaunchAfterMission']._serialized_options = b'\200\265\030\001'
+  _UPLOADMISSIONREQUEST._serialized_start=67
+  _UPLOADMISSIONREQUEST._serialized_end=144
+  _UPLOADMISSIONRESPONSE._serialized_start=146
+  _UPLOADMISSIONRESPONSE._serialized_end=228
+  _SUBSCRIBEUPLOADMISSIONWITHPROGRESSREQUEST._serialized_start=230
+  _SUBSCRIBEUPLOADMISSIONWITHPROGRESSREQUEST._serialized_end=328
+  _UPLOADMISSIONWITHPROGRESSRESPONSE._serialized_start=331
+  _UPLOADMISSIONWITHPROGRESSRESPONSE._serialized_end=482
+  _CANCELMISSIONUPLOADREQUEST._serialized_start=484
+  _CANCELMISSIONUPLOADREQUEST._serialized_end=512
+  _CANCELMISSIONUPLOADRESPONSE._serialized_start=514
+  _CANCELMISSIONUPLOADRESPONSE._serialized_end=602
+  _DOWNLOADMISSIONREQUEST._serialized_start=604
+  _DOWNLOADMISSIONREQUEST._serialized_end=628
+  _DOWNLOADMISSIONRESPONSE._serialized_start=631
+  _DOWNLOADMISSIONRESPONSE._serialized_end=770
+  _SUBSCRIBEDOWNLOADMISSIONWITHPROGRESSREQUEST._serialized_start=772
+  _SUBSCRIBEDOWNLOADMISSIONWITHPROGRESSREQUEST._serialized_end=817
+  _DOWNLOADMISSIONWITHPROGRESSRESPONSE._serialized_start=820
+  _DOWNLOADMISSIONWITHPROGRESSRESPONSE._serialized_end=982
+  _CANCELMISSIONDOWNLOADREQUEST._serialized_start=984
+  _CANCELMISSIONDOWNLOADREQUEST._serialized_end=1014
+  _CANCELMISSIONDOWNLOADRESPONSE._serialized_start=1016
+  _CANCELMISSIONDOWNLOADRESPONSE._serialized_end=1106
+  _STARTMISSIONREQUEST._serialized_start=1108
+  _STARTMISSIONREQUEST._serialized_end=1129
+  _STARTMISSIONRESPONSE._serialized_start=1131
+  _STARTMISSIONRESPONSE._serialized_end=1212
+  _PAUSEMISSIONREQUEST._serialized_start=1214
+  _PAUSEMISSIONREQUEST._serialized_end=1235
+  _PAUSEMISSIONRESPONSE._serialized_start=1237
+  _PAUSEMISSIONRESPONSE._serialized_end=1318
+  _CLEARMISSIONREQUEST._serialized_start=1320
+  _CLEARMISSIONREQUEST._serialized_end=1341
+  _CLEARMISSIONRESPONSE._serialized_start=1343
+  _CLEARMISSIONRESPONSE._serialized_end=1424
+  _SETCURRENTMISSIONITEMREQUEST._serialized_start=1426
+  _SETCURRENTMISSIONITEMREQUEST._serialized_end=1471
+  _SETCURRENTMISSIONITEMRESPONSE._serialized_start=1473
+  _SETCURRENTMISSIONITEMRESPONSE._serialized_end=1563
+  _ISMISSIONFINISHEDREQUEST._serialized_start=1565
+  _ISMISSIONFINISHEDREQUEST._serialized_end=1591
+  _ISMISSIONFINISHEDRESPONSE._serialized_start=1593
+  _ISMISSIONFINISHEDRESPONSE._serialized_end=1700
+  _SUBSCRIBEMISSIONPROGRESSREQUEST._serialized_start=1702
+  _SUBSCRIBEMISSIONPROGRESSREQUEST._serialized_end=1735
+  _MISSIONPROGRESSRESPONSE._serialized_start=1737
+  _MISSIONPROGRESSRESPONSE._serialized_end=1825
+  _GETRETURNTOLAUNCHAFTERMISSIONREQUEST._serialized_start=1827
+  _GETRETURNTOLAUNCHAFTERMISSIONREQUEST._serialized_end=1865
+  _GETRETURNTOLAUNCHAFTERMISSIONRESPONSE._serialized_start=1867
+  _GETRETURNTOLAUNCHAFTERMISSIONRESPONSE._serialized_end=1981
+  _SETRETURNTOLAUNCHAFTERMISSIONREQUEST._serialized_start=1983
+  _SETRETURNTOLAUNCHAFTERMISSIONREQUEST._serialized_end=2037
+  _SETRETURNTOLAUNCHAFTERMISSIONRESPONSE._serialized_start=2039
+  _SETRETURNTOLAUNCHAFTERMISSIONRESPONSE._serialized_end=2137
+  _MISSIONITEM._serialized_start=2140
+  _MISSIONITEM._serialized_end=2968
+  _MISSIONITEM_CAMERAACTION._serialized_start=2681
+  _MISSIONITEM_CAMERAACTION._serialized_end=2968
+  _MISSIONPLAN._serialized_start=2970
+  _MISSIONPLAN._serialized_end=3039
+  _MISSIONPROGRESS._serialized_start=3041
+  _MISSIONPROGRESS._serialized_end=3090
+  _MISSIONRESULT._serialized_start=3093
+  _MISSIONRESULT._serialized_end=3519
+  _MISSIONRESULT_RESULT._serialized_start=3189
+  _MISSIONRESULT_RESULT._serialized_end=3519
+  _PROGRESSDATA._serialized_start=3521
+  _PROGRESSDATA._serialized_end=3562
+  _PROGRESSDATAORMISSION._serialized_start=3565
+  _PROGRESSDATAORMISSION._serialized_end=3724
+  _MISSIONSERVICE._serialized_start=3727
+  _MISSIONSERVICE._serialized_end=5556
 # @@protoc_insertion_point(module_scope)

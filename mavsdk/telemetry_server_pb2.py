@@ -4,6 +4,7 @@
 """Generated protocol buffer code."""
 from google.protobuf.internal import enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
+from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
@@ -15,204 +16,15 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor.FileDescriptor(
-  name='telemetry_server/telemetry_server.proto',
-  package='mavsdk.rpc.telemetry_server',
-  syntax='proto3',
-  serialized_options=b'\n\032io.mavsdk.telemetry_serverB\024TelemetryServerProto',
-  create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\'telemetry_server/telemetry_server.proto\x12\x1bmavsdk.rpc.telemetry_server\x1a\x14mavsdk_options.proto\"\xc8\x01\n\x16PublishPositionRequest\x12\x37\n\x08position\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry_server.Position\x12>\n\x0cvelocity_ned\x18\x02 \x01(\x0b\x32(.mavsdk.rpc.telemetry_server.VelocityNed\x12\x35\n\x07heading\x18\x03 \x01(\x0b\x32$.mavsdk.rpc.telemetry_server.Heading\"I\n\x12PublishHomeRequest\x12\x33\n\x04home\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry_server.Position\"\xbf\x01\n\x17PublishSysStatusRequest\x12\x35\n\x07\x62\x61ttery\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.telemetry_server.Battery\x12\x1a\n\x12rc_receiver_status\x18\x02 \x01(\x08\x12\x13\n\x0bgyro_status\x18\x03 \x01(\x08\x12\x14\n\x0c\x61\x63\x63\x65l_status\x18\x04 \x01(\x08\x12\x12\n\nmag_status\x18\x05 \x01(\x08\x12\x12\n\ngps_status\x18\x06 \x01(\x08\"\x9c\x01\n\x1ePublishExtendedSysStateRequest\x12:\n\nvtol_state\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.telemetry_server.VtolState\x12>\n\x0clanded_state\x18\x02 \x01(\x0e\x32(.mavsdk.rpc.telemetry_server.LandedState\"(\n\x13PublishInAirRequest\x12\x11\n\tis_in_air\x18\x01 \x01(\x08\"[\n\x19PublishLandedStateRequest\x12>\n\x0clanded_state\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.telemetry_server.LandedState\"\x84\x01\n\x14PublishRawGpsRequest\x12\x34\n\x07raw_gps\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.telemetry_server.RawGps\x12\x36\n\x08gps_info\x18\x02 \x01(\x0b\x32$.mavsdk.rpc.telemetry_server.GpsInfo\"N\n\x15PublishBatteryRequest\x12\x35\n\x07\x62\x61ttery\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.telemetry_server.Battery\"R\n\x16PublishRcStatusRequest\x12\x38\n\trc_status\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry_server.RcStatus\"X\n\x18PublishStatusTextRequest\x12<\n\x0bstatus_text\x18\x01 \x01(\x0b\x32\'.mavsdk.rpc.telemetry_server.StatusText\"Q\n\x16PublishOdometryRequest\x12\x37\n\x08odometry\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry_server.Odometry\"t\n!PublishPositionVelocityNedRequest\x12O\n\x15position_velocity_ned\x18\x01 \x01(\x0b\x32\x30.mavsdk.rpc.telemetry_server.PositionVelocityNed\"[\n\x19PublishGroundTruthRequest\x12>\n\x0cground_truth\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.telemetry_server.GroundTruth\"B\n\x11PublishImuRequest\x12-\n\x03imu\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry_server.Imu\"H\n\x17PublishScaledImuRequest\x12-\n\x03imu\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry_server.Imu\"E\n\x14PublishRawImuRequest\x12-\n\x03imu\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry_server.Imu\".\n\x1bPublishUnixEpochTimeRequest\x12\x0f\n\x07time_us\x18\x01 \x01(\x04\"n\n\x17PublishPositionResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"j\n\x13PublishHomeResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"o\n\x18PublishSysStatusResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"v\n\x1fPublishExtendedSysStateResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"l\n\x15PublishRawGpsResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"m\n\x16PublishBatteryResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"p\n\x19PublishStatusTextResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"n\n\x17PublishOdometryResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"y\n\"PublishPositionVelocityNedResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"q\n\x1aPublishGroundTruthResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"i\n\x12PublishImuResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"o\n\x18PublishScaledImuResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"l\n\x15PublishRawImuResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"s\n\x1cPublishUnixEpochTimeResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"\x95\x01\n\x08Position\x12\x1d\n\x0clatitude_deg\x18\x01 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12\x1e\n\rlongitude_deg\x18\x02 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13relative_altitude_m\x18\x04 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"\'\n\x07Heading\x12\x1c\n\x0bheading_deg\x18\x01 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\"r\n\nQuaternion\x12\x12\n\x01w\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x12\n\x01x\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x12\n\x01y\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x12\n\x01z\x18\x04 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x14\n\x0ctimestamp_us\x18\x05 \x01(\x04\"s\n\nEulerAngle\x12\x19\n\x08roll_deg\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1a\n\tpitch_deg\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x18\n\x07yaw_deg\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x14\n\x0ctimestamp_us\x18\x04 \x01(\x04\"l\n\x13\x41ngularVelocityBody\x12\x1b\n\nroll_rad_s\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1c\n\x0bpitch_rad_s\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1a\n\tyaw_rad_s\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"`\n\x07GpsInfo\x12\x1d\n\x0enum_satellites\x18\x01 \x01(\x05\x42\x05\x82\xb5\x18\x01\x30\x12\x36\n\x08\x66ix_type\x18\x02 \x01(\x0e\x32$.mavsdk.rpc.telemetry_server.FixType\"\xdf\x02\n\x06RawGps\x12\x14\n\x0ctimestamp_us\x18\x01 \x01(\x04\x12\x14\n\x0clatitude_deg\x18\x02 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x03 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x04 \x01(\x02\x12\x0c\n\x04hdop\x18\x05 \x01(\x02\x12\x0c\n\x04vdop\x18\x06 \x01(\x02\x12\x14\n\x0cvelocity_m_s\x18\x07 \x01(\x02\x12\x0f\n\x07\x63og_deg\x18\x08 \x01(\x02\x12\x1c\n\x14\x61ltitude_ellipsoid_m\x18\t \x01(\x02\x12 \n\x18horizontal_uncertainty_m\x18\n \x01(\x02\x12\x1e\n\x16vertical_uncertainty_m\x18\x0b \x01(\x02\x12 \n\x18velocity_uncertainty_m_s\x18\x0c \x01(\x02\x12\x1f\n\x17heading_uncertainty_deg\x18\r \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x0e \x01(\x02\"I\n\x07\x42\x61ttery\x12\x1a\n\tvoltage_v\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\"\n\x11remaining_percent\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"|\n\x08RcStatus\x12%\n\x12was_available_once\x18\x01 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\x12\x1f\n\x0cis_available\x18\x02 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\x12(\n\x17signal_strength_percent\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"U\n\nStatusText\x12\x39\n\x04type\x18\x01 \x01(\x0e\x32+.mavsdk.rpc.telemetry_server.StatusTextType\x12\x0c\n\x04text\x18\x02 \x01(\t\"?\n\x15\x41\x63tuatorControlTarget\x12\x14\n\x05group\x18\x01 \x01(\x05\x42\x05\x82\xb5\x18\x01\x30\x12\x10\n\x08\x63ontrols\x18\x02 \x03(\x02\"?\n\x14\x41\x63tuatorOutputStatus\x12\x15\n\x06\x61\x63tive\x18\x01 \x01(\rB\x05\x82\xb5\x18\x01\x30\x12\x10\n\x08\x61\x63tuator\x18\x02 \x03(\x02\"\'\n\nCovariance\x12\x19\n\x11\x63ovariance_matrix\x18\x01 \x03(\x02\";\n\x0cVelocityBody\x12\r\n\x05x_m_s\x18\x01 \x01(\x02\x12\r\n\x05y_m_s\x18\x02 \x01(\x02\x12\r\n\x05z_m_s\x18\x03 \x01(\x02\"5\n\x0cPositionBody\x12\x0b\n\x03x_m\x18\x01 \x01(\x02\x12\x0b\n\x03y_m\x18\x02 \x01(\x02\x12\x0b\n\x03z_m\x18\x03 \x01(\x02\"\xa4\x05\n\x08Odometry\x12\x11\n\ttime_usec\x18\x01 \x01(\x04\x12@\n\x08\x66rame_id\x18\x02 \x01(\x0e\x32..mavsdk.rpc.telemetry_server.Odometry.MavFrame\x12\x46\n\x0e\x63hild_frame_id\x18\x03 \x01(\x0e\x32..mavsdk.rpc.telemetry_server.Odometry.MavFrame\x12@\n\rposition_body\x18\x04 \x01(\x0b\x32).mavsdk.rpc.telemetry_server.PositionBody\x12\x32\n\x01q\x18\x05 \x01(\x0b\x32\'.mavsdk.rpc.telemetry_server.Quaternion\x12@\n\rvelocity_body\x18\x06 \x01(\x0b\x32).mavsdk.rpc.telemetry_server.VelocityBody\x12O\n\x15\x61ngular_velocity_body\x18\x07 \x01(\x0b\x32\x30.mavsdk.rpc.telemetry_server.AngularVelocityBody\x12@\n\x0fpose_covariance\x18\x08 \x01(\x0b\x32\'.mavsdk.rpc.telemetry_server.Covariance\x12\x44\n\x13velocity_covariance\x18\t \x01(\x0b\x32\'.mavsdk.rpc.telemetry_server.Covariance\"j\n\x08MavFrame\x12\x13\n\x0fMAV_FRAME_UNDEF\x10\x00\x12\x16\n\x12MAV_FRAME_BODY_NED\x10\x08\x12\x18\n\x14MAV_FRAME_VISION_NED\x10\x10\x12\x17\n\x13MAV_FRAME_ESTIM_NED\x10\x12\"\x7f\n\x0e\x44istanceSensor\x12#\n\x12minimum_distance_m\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12#\n\x12maximum_distance_m\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12#\n\x12\x63urrent_distance_m\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"\xb0\x01\n\x0eScaledPressure\x12\x14\n\x0ctimestamp_us\x18\x01 \x01(\x04\x12\x1d\n\x15\x61\x62solute_pressure_hpa\x18\x02 \x01(\x02\x12!\n\x19\x64ifferential_pressure_hpa\x18\x03 \x01(\x02\x12\x17\n\x0ftemperature_deg\x18\x04 \x01(\x02\x12-\n%differential_pressure_temperature_deg\x18\x05 \x01(\x02\"Y\n\x0bPositionNed\x12\x18\n\x07north_m\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x17\n\x06\x65\x61st_m\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x17\n\x06\x64own_m\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"D\n\x0bVelocityNed\x12\x11\n\tnorth_m_s\x18\x01 \x01(\x02\x12\x10\n\x08\x65\x61st_m_s\x18\x02 \x01(\x02\x12\x10\n\x08\x64own_m_s\x18\x03 \x01(\x02\"\x8d\x01\n\x13PositionVelocityNed\x12:\n\x08position\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.telemetry_server.PositionNed\x12:\n\x08velocity\x18\x02 \x01(\x0b\x32(.mavsdk.rpc.telemetry_server.VelocityNed\"r\n\x0bGroundTruth\x12\x1d\n\x0clatitude_deg\x18\x01 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12\x1e\n\rlongitude_deg\x18\x02 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"x\n\x10\x46ixedwingMetrics\x12\x1d\n\x0c\x61irspeed_m_s\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13throttle_percentage\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1f\n\x0e\x63limb_rate_m_s\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"i\n\x0f\x41\x63\x63\x65lerationFrd\x12\x1d\n\x0c\x66orward_m_s2\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1b\n\nright_m_s2\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1a\n\tdown_m_s2\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"o\n\x12\x41ngularVelocityFrd\x12\x1e\n\rforward_rad_s\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1c\n\x0bright_rad_s\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1b\n\ndown_rad_s\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"m\n\x10MagneticFieldFrd\x12\x1e\n\rforward_gauss\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1c\n\x0bright_gauss\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1b\n\ndown_gauss\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"\xa0\x02\n\x03Imu\x12\x46\n\x10\x61\x63\x63\x65leration_frd\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.telemetry_server.AccelerationFrd\x12M\n\x14\x61ngular_velocity_frd\x18\x02 \x01(\x0b\x32/.mavsdk.rpc.telemetry_server.AngularVelocityFrd\x12I\n\x12magnetic_field_frd\x18\x03 \x01(\x0b\x32-.mavsdk.rpc.telemetry_server.MagneticFieldFrd\x12!\n\x10temperature_degc\x18\x04 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x14\n\x0ctimestamp_us\x18\x05 \x01(\x04\"\xb4\x02\n\x15TelemetryServerResult\x12I\n\x06result\x18\x01 \x01(\x0e\x32\x39.mavsdk.rpc.telemetry_server.TelemetryServerResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xbb\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x07*\xa4\x01\n\x07\x46ixType\x12\x13\n\x0f\x46IX_TYPE_NO_GPS\x10\x00\x12\x13\n\x0f\x46IX_TYPE_NO_FIX\x10\x01\x12\x13\n\x0f\x46IX_TYPE_FIX_2D\x10\x02\x12\x13\n\x0f\x46IX_TYPE_FIX_3D\x10\x03\x12\x15\n\x11\x46IX_TYPE_FIX_DGPS\x10\x04\x12\x16\n\x12\x46IX_TYPE_RTK_FLOAT\x10\x05\x12\x16\n\x12\x46IX_TYPE_RTK_FIXED\x10\x06*\x8d\x01\n\tVtolState\x12\x18\n\x14VTOL_STATE_UNDEFINED\x10\x00\x12\x1f\n\x1bVTOL_STATE_TRANSITION_TO_FW\x10\x01\x12\x1f\n\x1bVTOL_STATE_TRANSITION_TO_MC\x10\x02\x12\x11\n\rVTOL_STATE_MC\x10\x03\x12\x11\n\rVTOL_STATE_FW\x10\x04*\xf9\x01\n\x0eStatusTextType\x12\x1a\n\x16STATUS_TEXT_TYPE_DEBUG\x10\x00\x12\x19\n\x15STATUS_TEXT_TYPE_INFO\x10\x01\x12\x1b\n\x17STATUS_TEXT_TYPE_NOTICE\x10\x02\x12\x1c\n\x18STATUS_TEXT_TYPE_WARNING\x10\x03\x12\x1a\n\x16STATUS_TEXT_TYPE_ERROR\x10\x04\x12\x1d\n\x19STATUS_TEXT_TYPE_CRITICAL\x10\x05\x12\x1a\n\x16STATUS_TEXT_TYPE_ALERT\x10\x06\x12\x1e\n\x1aSTATUS_TEXT_TYPE_EMERGENCY\x10\x07*\x93\x01\n\x0bLandedState\x12\x18\n\x14LANDED_STATE_UNKNOWN\x10\x00\x12\x1a\n\x16LANDED_STATE_ON_GROUND\x10\x01\x12\x17\n\x13LANDED_STATE_IN_AIR\x10\x02\x12\x1b\n\x17LANDED_STATE_TAKING_OFF\x10\x03\x12\x18\n\x14LANDED_STATE_LANDING\x10\x04\x32\x8c\x0f\n\x16TelemetryServerService\x12\x82\x01\n\x0fPublishPosition\x12\x33.mavsdk.rpc.telemetry_server.PublishPositionRequest\x1a\x34.mavsdk.rpc.telemetry_server.PublishPositionResponse\"\x04\x80\xb5\x18\x01\x12v\n\x0bPublishHome\x12/.mavsdk.rpc.telemetry_server.PublishHomeRequest\x1a\x30.mavsdk.rpc.telemetry_server.PublishHomeResponse\"\x04\x80\xb5\x18\x01\x12\x85\x01\n\x10PublishSysStatus\x12\x34.mavsdk.rpc.telemetry_server.PublishSysStatusRequest\x1a\x35.mavsdk.rpc.telemetry_server.PublishSysStatusResponse\"\x04\x80\xb5\x18\x01\x12\x9a\x01\n\x17PublishExtendedSysState\x12;.mavsdk.rpc.telemetry_server.PublishExtendedSysStateRequest\x1a<.mavsdk.rpc.telemetry_server.PublishExtendedSysStateResponse\"\x04\x80\xb5\x18\x01\x12|\n\rPublishRawGps\x12\x31.mavsdk.rpc.telemetry_server.PublishRawGpsRequest\x1a\x32.mavsdk.rpc.telemetry_server.PublishRawGpsResponse\"\x04\x80\xb5\x18\x01\x12\x7f\n\x0ePublishBattery\x12\x32.mavsdk.rpc.telemetry_server.PublishBatteryRequest\x1a\x33.mavsdk.rpc.telemetry_server.PublishBatteryResponse\"\x04\x80\xb5\x18\x01\x12\x88\x01\n\x11PublishStatusText\x12\x35.mavsdk.rpc.telemetry_server.PublishStatusTextRequest\x1a\x36.mavsdk.rpc.telemetry_server.PublishStatusTextResponse\"\x04\x80\xb5\x18\x01\x12\x82\x01\n\x0fPublishOdometry\x12\x33.mavsdk.rpc.telemetry_server.PublishOdometryRequest\x1a\x34.mavsdk.rpc.telemetry_server.PublishOdometryResponse\"\x04\x80\xb5\x18\x01\x12\xa3\x01\n\x1aPublishPositionVelocityNed\x12>.mavsdk.rpc.telemetry_server.PublishPositionVelocityNedRequest\x1a?.mavsdk.rpc.telemetry_server.PublishPositionVelocityNedResponse\"\x04\x80\xb5\x18\x01\x12\x8b\x01\n\x12PublishGroundTruth\x12\x36.mavsdk.rpc.telemetry_server.PublishGroundTruthRequest\x1a\x37.mavsdk.rpc.telemetry_server.PublishGroundTruthResponse\"\x04\x80\xb5\x18\x01\x12s\n\nPublishImu\x12..mavsdk.rpc.telemetry_server.PublishImuRequest\x1a/.mavsdk.rpc.telemetry_server.PublishImuResponse\"\x04\x80\xb5\x18\x01\x12\x85\x01\n\x10PublishScaledImu\x12\x34.mavsdk.rpc.telemetry_server.PublishScaledImuRequest\x1a\x35.mavsdk.rpc.telemetry_server.PublishScaledImuResponse\"\x04\x80\xb5\x18\x01\x12|\n\rPublishRawImu\x12\x31.mavsdk.rpc.telemetry_server.PublishRawImuRequest\x1a\x32.mavsdk.rpc.telemetry_server.PublishRawImuResponse\"\x04\x80\xb5\x18\x01\x12\x91\x01\n\x14PublishUnixEpochTime\x12\x38.mavsdk.rpc.telemetry_server.PublishUnixEpochTimeRequest\x1a\x39.mavsdk.rpc.telemetry_server.PublishUnixEpochTimeResponse\"\x04\x80\xb5\x18\x01\x42\x32\n\x1aio.mavsdk.telemetry_serverB\x14TelemetryServerProtob\x06proto3'
-  ,
-  dependencies=[mavsdk__options__pb2.DESCRIPTOR,])
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\'telemetry_server/telemetry_server.proto\x12\x1bmavsdk.rpc.telemetry_server\x1a\x14mavsdk_options.proto\"\xc8\x01\n\x16PublishPositionRequest\x12\x37\n\x08position\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry_server.Position\x12>\n\x0cvelocity_ned\x18\x02 \x01(\x0b\x32(.mavsdk.rpc.telemetry_server.VelocityNed\x12\x35\n\x07heading\x18\x03 \x01(\x0b\x32$.mavsdk.rpc.telemetry_server.Heading\"I\n\x12PublishHomeRequest\x12\x33\n\x04home\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry_server.Position\"\xbf\x01\n\x17PublishSysStatusRequest\x12\x35\n\x07\x62\x61ttery\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.telemetry_server.Battery\x12\x1a\n\x12rc_receiver_status\x18\x02 \x01(\x08\x12\x13\n\x0bgyro_status\x18\x03 \x01(\x08\x12\x14\n\x0c\x61\x63\x63\x65l_status\x18\x04 \x01(\x08\x12\x12\n\nmag_status\x18\x05 \x01(\x08\x12\x12\n\ngps_status\x18\x06 \x01(\x08\"\x9c\x01\n\x1ePublishExtendedSysStateRequest\x12:\n\nvtol_state\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.telemetry_server.VtolState\x12>\n\x0clanded_state\x18\x02 \x01(\x0e\x32(.mavsdk.rpc.telemetry_server.LandedState\"(\n\x13PublishInAirRequest\x12\x11\n\tis_in_air\x18\x01 \x01(\x08\"[\n\x19PublishLandedStateRequest\x12>\n\x0clanded_state\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.telemetry_server.LandedState\"\x84\x01\n\x14PublishRawGpsRequest\x12\x34\n\x07raw_gps\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.telemetry_server.RawGps\x12\x36\n\x08gps_info\x18\x02 \x01(\x0b\x32$.mavsdk.rpc.telemetry_server.GpsInfo\"N\n\x15PublishBatteryRequest\x12\x35\n\x07\x62\x61ttery\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.telemetry_server.Battery\"R\n\x16PublishRcStatusRequest\x12\x38\n\trc_status\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry_server.RcStatus\"X\n\x18PublishStatusTextRequest\x12<\n\x0bstatus_text\x18\x01 \x01(\x0b\x32\'.mavsdk.rpc.telemetry_server.StatusText\"Q\n\x16PublishOdometryRequest\x12\x37\n\x08odometry\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.telemetry_server.Odometry\"t\n!PublishPositionVelocityNedRequest\x12O\n\x15position_velocity_ned\x18\x01 \x01(\x0b\x32\x30.mavsdk.rpc.telemetry_server.PositionVelocityNed\"[\n\x19PublishGroundTruthRequest\x12>\n\x0cground_truth\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.telemetry_server.GroundTruth\"B\n\x11PublishImuRequest\x12-\n\x03imu\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry_server.Imu\"H\n\x17PublishScaledImuRequest\x12-\n\x03imu\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry_server.Imu\"E\n\x14PublishRawImuRequest\x12-\n\x03imu\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.telemetry_server.Imu\".\n\x1bPublishUnixEpochTimeRequest\x12\x0f\n\x07time_us\x18\x01 \x01(\x04\"n\n\x17PublishPositionResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"j\n\x13PublishHomeResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"o\n\x18PublishSysStatusResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"v\n\x1fPublishExtendedSysStateResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"l\n\x15PublishRawGpsResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"m\n\x16PublishBatteryResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"p\n\x19PublishStatusTextResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"n\n\x17PublishOdometryResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"y\n\"PublishPositionVelocityNedResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"q\n\x1aPublishGroundTruthResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"i\n\x12PublishImuResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"o\n\x18PublishScaledImuResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"l\n\x15PublishRawImuResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"s\n\x1cPublishUnixEpochTimeResponse\x12S\n\x17telemetry_server_result\x18\x01 \x01(\x0b\x32\x32.mavsdk.rpc.telemetry_server.TelemetryServerResult\"\x95\x01\n\x08Position\x12\x1d\n\x0clatitude_deg\x18\x01 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12\x1e\n\rlongitude_deg\x18\x02 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13relative_altitude_m\x18\x04 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"\'\n\x07Heading\x12\x1c\n\x0bheading_deg\x18\x01 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\"r\n\nQuaternion\x12\x12\n\x01w\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x12\n\x01x\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x12\n\x01y\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x12\n\x01z\x18\x04 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x14\n\x0ctimestamp_us\x18\x05 \x01(\x04\"s\n\nEulerAngle\x12\x19\n\x08roll_deg\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1a\n\tpitch_deg\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x18\n\x07yaw_deg\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x14\n\x0ctimestamp_us\x18\x04 \x01(\x04\"l\n\x13\x41ngularVelocityBody\x12\x1b\n\nroll_rad_s\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1c\n\x0bpitch_rad_s\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1a\n\tyaw_rad_s\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"`\n\x07GpsInfo\x12\x1d\n\x0enum_satellites\x18\x01 \x01(\x05\x42\x05\x82\xb5\x18\x01\x30\x12\x36\n\x08\x66ix_type\x18\x02 \x01(\x0e\x32$.mavsdk.rpc.telemetry_server.FixType\"\xdf\x02\n\x06RawGps\x12\x14\n\x0ctimestamp_us\x18\x01 \x01(\x04\x12\x14\n\x0clatitude_deg\x18\x02 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x03 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x04 \x01(\x02\x12\x0c\n\x04hdop\x18\x05 \x01(\x02\x12\x0c\n\x04vdop\x18\x06 \x01(\x02\x12\x14\n\x0cvelocity_m_s\x18\x07 \x01(\x02\x12\x0f\n\x07\x63og_deg\x18\x08 \x01(\x02\x12\x1c\n\x14\x61ltitude_ellipsoid_m\x18\t \x01(\x02\x12 \n\x18horizontal_uncertainty_m\x18\n \x01(\x02\x12\x1e\n\x16vertical_uncertainty_m\x18\x0b \x01(\x02\x12 \n\x18velocity_uncertainty_m_s\x18\x0c \x01(\x02\x12\x1f\n\x17heading_uncertainty_deg\x18\r \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x0e \x01(\x02\"I\n\x07\x42\x61ttery\x12\x1a\n\tvoltage_v\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\"\n\x11remaining_percent\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"|\n\x08RcStatus\x12%\n\x12was_available_once\x18\x01 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\x12\x1f\n\x0cis_available\x18\x02 \x01(\x08\x42\t\x82\xb5\x18\x05\x66\x61lse\x12(\n\x17signal_strength_percent\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"U\n\nStatusText\x12\x39\n\x04type\x18\x01 \x01(\x0e\x32+.mavsdk.rpc.telemetry_server.StatusTextType\x12\x0c\n\x04text\x18\x02 \x01(\t\"?\n\x15\x41\x63tuatorControlTarget\x12\x14\n\x05group\x18\x01 \x01(\x05\x42\x05\x82\xb5\x18\x01\x30\x12\x10\n\x08\x63ontrols\x18\x02 \x03(\x02\"?\n\x14\x41\x63tuatorOutputStatus\x12\x15\n\x06\x61\x63tive\x18\x01 \x01(\rB\x05\x82\xb5\x18\x01\x30\x12\x10\n\x08\x61\x63tuator\x18\x02 \x03(\x02\"\'\n\nCovariance\x12\x19\n\x11\x63ovariance_matrix\x18\x01 \x03(\x02\";\n\x0cVelocityBody\x12\r\n\x05x_m_s\x18\x01 \x01(\x02\x12\r\n\x05y_m_s\x18\x02 \x01(\x02\x12\r\n\x05z_m_s\x18\x03 \x01(\x02\"5\n\x0cPositionBody\x12\x0b\n\x03x_m\x18\x01 \x01(\x02\x12\x0b\n\x03y_m\x18\x02 \x01(\x02\x12\x0b\n\x03z_m\x18\x03 \x01(\x02\"\xa4\x05\n\x08Odometry\x12\x11\n\ttime_usec\x18\x01 \x01(\x04\x12@\n\x08\x66rame_id\x18\x02 \x01(\x0e\x32..mavsdk.rpc.telemetry_server.Odometry.MavFrame\x12\x46\n\x0e\x63hild_frame_id\x18\x03 \x01(\x0e\x32..mavsdk.rpc.telemetry_server.Odometry.MavFrame\x12@\n\rposition_body\x18\x04 \x01(\x0b\x32).mavsdk.rpc.telemetry_server.PositionBody\x12\x32\n\x01q\x18\x05 \x01(\x0b\x32\'.mavsdk.rpc.telemetry_server.Quaternion\x12@\n\rvelocity_body\x18\x06 \x01(\x0b\x32).mavsdk.rpc.telemetry_server.VelocityBody\x12O\n\x15\x61ngular_velocity_body\x18\x07 \x01(\x0b\x32\x30.mavsdk.rpc.telemetry_server.AngularVelocityBody\x12@\n\x0fpose_covariance\x18\x08 \x01(\x0b\x32\'.mavsdk.rpc.telemetry_server.Covariance\x12\x44\n\x13velocity_covariance\x18\t \x01(\x0b\x32\'.mavsdk.rpc.telemetry_server.Covariance\"j\n\x08MavFrame\x12\x13\n\x0fMAV_FRAME_UNDEF\x10\x00\x12\x16\n\x12MAV_FRAME_BODY_NED\x10\x08\x12\x18\n\x14MAV_FRAME_VISION_NED\x10\x10\x12\x17\n\x13MAV_FRAME_ESTIM_NED\x10\x12\"\x7f\n\x0e\x44istanceSensor\x12#\n\x12minimum_distance_m\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12#\n\x12maximum_distance_m\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12#\n\x12\x63urrent_distance_m\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"\xb0\x01\n\x0eScaledPressure\x12\x14\n\x0ctimestamp_us\x18\x01 \x01(\x04\x12\x1d\n\x15\x61\x62solute_pressure_hpa\x18\x02 \x01(\x02\x12!\n\x19\x64ifferential_pressure_hpa\x18\x03 \x01(\x02\x12\x17\n\x0ftemperature_deg\x18\x04 \x01(\x02\x12-\n%differential_pressure_temperature_deg\x18\x05 \x01(\x02\"Y\n\x0bPositionNed\x12\x18\n\x07north_m\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x17\n\x06\x65\x61st_m\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x17\n\x06\x64own_m\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"D\n\x0bVelocityNed\x12\x11\n\tnorth_m_s\x18\x01 \x01(\x02\x12\x10\n\x08\x65\x61st_m_s\x18\x02 \x01(\x02\x12\x10\n\x08\x64own_m_s\x18\x03 \x01(\x02\"\x8d\x01\n\x13PositionVelocityNed\x12:\n\x08position\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.telemetry_server.PositionNed\x12:\n\x08velocity\x18\x02 \x01(\x0b\x32(.mavsdk.rpc.telemetry_server.VelocityNed\"r\n\x0bGroundTruth\x12\x1d\n\x0clatitude_deg\x18\x01 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12\x1e\n\rlongitude_deg\x18\x02 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"x\n\x10\x46ixedwingMetrics\x12\x1d\n\x0c\x61irspeed_m_s\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13throttle_percentage\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1f\n\x0e\x63limb_rate_m_s\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"i\n\x0f\x41\x63\x63\x65lerationFrd\x12\x1d\n\x0c\x66orward_m_s2\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1b\n\nright_m_s2\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1a\n\tdown_m_s2\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"o\n\x12\x41ngularVelocityFrd\x12\x1e\n\rforward_rad_s\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1c\n\x0bright_rad_s\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1b\n\ndown_rad_s\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"m\n\x10MagneticFieldFrd\x12\x1e\n\rforward_gauss\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1c\n\x0bright_gauss\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1b\n\ndown_gauss\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"\xa0\x02\n\x03Imu\x12\x46\n\x10\x61\x63\x63\x65leration_frd\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.telemetry_server.AccelerationFrd\x12M\n\x14\x61ngular_velocity_frd\x18\x02 \x01(\x0b\x32/.mavsdk.rpc.telemetry_server.AngularVelocityFrd\x12I\n\x12magnetic_field_frd\x18\x03 \x01(\x0b\x32-.mavsdk.rpc.telemetry_server.MagneticFieldFrd\x12!\n\x10temperature_degc\x18\x04 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x14\n\x0ctimestamp_us\x18\x05 \x01(\x04\"\xb4\x02\n\x15TelemetryServerResult\x12I\n\x06result\x18\x01 \x01(\x0e\x32\x39.mavsdk.rpc.telemetry_server.TelemetryServerResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xbb\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x07*\xa4\x01\n\x07\x46ixType\x12\x13\n\x0f\x46IX_TYPE_NO_GPS\x10\x00\x12\x13\n\x0f\x46IX_TYPE_NO_FIX\x10\x01\x12\x13\n\x0f\x46IX_TYPE_FIX_2D\x10\x02\x12\x13\n\x0f\x46IX_TYPE_FIX_3D\x10\x03\x12\x15\n\x11\x46IX_TYPE_FIX_DGPS\x10\x04\x12\x16\n\x12\x46IX_TYPE_RTK_FLOAT\x10\x05\x12\x16\n\x12\x46IX_TYPE_RTK_FIXED\x10\x06*\x8d\x01\n\tVtolState\x12\x18\n\x14VTOL_STATE_UNDEFINED\x10\x00\x12\x1f\n\x1bVTOL_STATE_TRANSITION_TO_FW\x10\x01\x12\x1f\n\x1bVTOL_STATE_TRANSITION_TO_MC\x10\x02\x12\x11\n\rVTOL_STATE_MC\x10\x03\x12\x11\n\rVTOL_STATE_FW\x10\x04*\xf9\x01\n\x0eStatusTextType\x12\x1a\n\x16STATUS_TEXT_TYPE_DEBUG\x10\x00\x12\x19\n\x15STATUS_TEXT_TYPE_INFO\x10\x01\x12\x1b\n\x17STATUS_TEXT_TYPE_NOTICE\x10\x02\x12\x1c\n\x18STATUS_TEXT_TYPE_WARNING\x10\x03\x12\x1a\n\x16STATUS_TEXT_TYPE_ERROR\x10\x04\x12\x1d\n\x19STATUS_TEXT_TYPE_CRITICAL\x10\x05\x12\x1a\n\x16STATUS_TEXT_TYPE_ALERT\x10\x06\x12\x1e\n\x1aSTATUS_TEXT_TYPE_EMERGENCY\x10\x07*\x93\x01\n\x0bLandedState\x12\x18\n\x14LANDED_STATE_UNKNOWN\x10\x00\x12\x1a\n\x16LANDED_STATE_ON_GROUND\x10\x01\x12\x17\n\x13LANDED_STATE_IN_AIR\x10\x02\x12\x1b\n\x17LANDED_STATE_TAKING_OFF\x10\x03\x12\x18\n\x14LANDED_STATE_LANDING\x10\x04\x32\x8c\x0f\n\x16TelemetryServerService\x12\x82\x01\n\x0fPublishPosition\x12\x33.mavsdk.rpc.telemetry_server.PublishPositionRequest\x1a\x34.mavsdk.rpc.telemetry_server.PublishPositionResponse\"\x04\x80\xb5\x18\x01\x12v\n\x0bPublishHome\x12/.mavsdk.rpc.telemetry_server.PublishHomeRequest\x1a\x30.mavsdk.rpc.telemetry_server.PublishHomeResponse\"\x04\x80\xb5\x18\x01\x12\x85\x01\n\x10PublishSysStatus\x12\x34.mavsdk.rpc.telemetry_server.PublishSysStatusRequest\x1a\x35.mavsdk.rpc.telemetry_server.PublishSysStatusResponse\"\x04\x80\xb5\x18\x01\x12\x9a\x01\n\x17PublishExtendedSysState\x12;.mavsdk.rpc.telemetry_server.PublishExtendedSysStateRequest\x1a<.mavsdk.rpc.telemetry_server.PublishExtendedSysStateResponse\"\x04\x80\xb5\x18\x01\x12|\n\rPublishRawGps\x12\x31.mavsdk.rpc.telemetry_server.PublishRawGpsRequest\x1a\x32.mavsdk.rpc.telemetry_server.PublishRawGpsResponse\"\x04\x80\xb5\x18\x01\x12\x7f\n\x0ePublishBattery\x12\x32.mavsdk.rpc.telemetry_server.PublishBatteryRequest\x1a\x33.mavsdk.rpc.telemetry_server.PublishBatteryResponse\"\x04\x80\xb5\x18\x01\x12\x88\x01\n\x11PublishStatusText\x12\x35.mavsdk.rpc.telemetry_server.PublishStatusTextRequest\x1a\x36.mavsdk.rpc.telemetry_server.PublishStatusTextResponse\"\x04\x80\xb5\x18\x01\x12\x82\x01\n\x0fPublishOdometry\x12\x33.mavsdk.rpc.telemetry_server.PublishOdometryRequest\x1a\x34.mavsdk.rpc.telemetry_server.PublishOdometryResponse\"\x04\x80\xb5\x18\x01\x12\xa3\x01\n\x1aPublishPositionVelocityNed\x12>.mavsdk.rpc.telemetry_server.PublishPositionVelocityNedRequest\x1a?.mavsdk.rpc.telemetry_server.PublishPositionVelocityNedResponse\"\x04\x80\xb5\x18\x01\x12\x8b\x01\n\x12PublishGroundTruth\x12\x36.mavsdk.rpc.telemetry_server.PublishGroundTruthRequest\x1a\x37.mavsdk.rpc.telemetry_server.PublishGroundTruthResponse\"\x04\x80\xb5\x18\x01\x12s\n\nPublishImu\x12..mavsdk.rpc.telemetry_server.PublishImuRequest\x1a/.mavsdk.rpc.telemetry_server.PublishImuResponse\"\x04\x80\xb5\x18\x01\x12\x85\x01\n\x10PublishScaledImu\x12\x34.mavsdk.rpc.telemetry_server.PublishScaledImuRequest\x1a\x35.mavsdk.rpc.telemetry_server.PublishScaledImuResponse\"\x04\x80\xb5\x18\x01\x12|\n\rPublishRawImu\x12\x31.mavsdk.rpc.telemetry_server.PublishRawImuRequest\x1a\x32.mavsdk.rpc.telemetry_server.PublishRawImuResponse\"\x04\x80\xb5\x18\x01\x12\x91\x01\n\x14PublishUnixEpochTime\x12\x38.mavsdk.rpc.telemetry_server.PublishUnixEpochTimeRequest\x1a\x39.mavsdk.rpc.telemetry_server.PublishUnixEpochTimeResponse\"\x04\x80\xb5\x18\x01\x42\x32\n\x1aio.mavsdk.telemetry_serverB\x14TelemetryServerProtob\x06proto3')
 
-_FIXTYPE = _descriptor.EnumDescriptor(
-  name='FixType',
-  full_name='mavsdk.rpc.telemetry_server.FixType',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='FIX_TYPE_NO_GPS', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='FIX_TYPE_NO_FIX', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='FIX_TYPE_FIX_2D', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='FIX_TYPE_FIX_3D', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='FIX_TYPE_FIX_DGPS', index=4, number=4,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='FIX_TYPE_RTK_FLOAT', index=5, number=5,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='FIX_TYPE_RTK_FIXED', index=6, number=6,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=7416,
-  serialized_end=7580,
-)
-_sym_db.RegisterEnumDescriptor(_FIXTYPE)
-
+_FIXTYPE = DESCRIPTOR.enum_types_by_name['FixType']
 FixType = enum_type_wrapper.EnumTypeWrapper(_FIXTYPE)
-_VTOLSTATE = _descriptor.EnumDescriptor(
-  name='VtolState',
-  full_name='mavsdk.rpc.telemetry_server.VtolState',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='VTOL_STATE_UNDEFINED', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='VTOL_STATE_TRANSITION_TO_FW', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='VTOL_STATE_TRANSITION_TO_MC', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='VTOL_STATE_MC', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='VTOL_STATE_FW', index=4, number=4,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=7583,
-  serialized_end=7724,
-)
-_sym_db.RegisterEnumDescriptor(_VTOLSTATE)
-
+_VTOLSTATE = DESCRIPTOR.enum_types_by_name['VtolState']
 VtolState = enum_type_wrapper.EnumTypeWrapper(_VTOLSTATE)
-_STATUSTEXTTYPE = _descriptor.EnumDescriptor(
-  name='StatusTextType',
-  full_name='mavsdk.rpc.telemetry_server.StatusTextType',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='STATUS_TEXT_TYPE_DEBUG', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='STATUS_TEXT_TYPE_INFO', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='STATUS_TEXT_TYPE_NOTICE', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='STATUS_TEXT_TYPE_WARNING', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='STATUS_TEXT_TYPE_ERROR', index=4, number=4,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='STATUS_TEXT_TYPE_CRITICAL', index=5, number=5,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='STATUS_TEXT_TYPE_ALERT', index=6, number=6,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='STATUS_TEXT_TYPE_EMERGENCY', index=7, number=7,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=7727,
-  serialized_end=7976,
-)
-_sym_db.RegisterEnumDescriptor(_STATUSTEXTTYPE)
-
+_STATUSTEXTTYPE = DESCRIPTOR.enum_types_by_name['StatusTextType']
 StatusTextType = enum_type_wrapper.EnumTypeWrapper(_STATUSTEXTTYPE)
-_LANDEDSTATE = _descriptor.EnumDescriptor(
-  name='LandedState',
-  full_name='mavsdk.rpc.telemetry_server.LandedState',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='LANDED_STATE_UNKNOWN', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LANDED_STATE_ON_GROUND', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LANDED_STATE_IN_AIR', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LANDED_STATE_TAKING_OFF', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='LANDED_STATE_LANDING', index=4, number=4,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=7979,
-  serialized_end=8126,
-)
-_sym_db.RegisterEnumDescriptor(_LANDEDSTATE)
-
+_LANDEDSTATE = DESCRIPTOR.enum_types_by_name['LandedState']
 LandedState = enum_type_wrapper.EnumTypeWrapper(_LANDEDSTATE)
 FIX_TYPE_NO_GPS = 0
 FIX_TYPE_NO_FIX = 1
@@ -241,2655 +53,67 @@ LANDED_STATE_TAKING_OFF = 3
 LANDED_STATE_LANDING = 4
 
 
-_ODOMETRY_MAVFRAME = _descriptor.EnumDescriptor(
-  name='MavFrame',
-  full_name='mavsdk.rpc.telemetry_server.Odometry.MavFrame',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='MAV_FRAME_UNDEF', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='MAV_FRAME_BODY_NED', index=1, number=8,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='MAV_FRAME_VISION_NED', index=2, number=16,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='MAV_FRAME_ESTIM_NED', index=3, number=18,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=5523,
-  serialized_end=5629,
-)
-_sym_db.RegisterEnumDescriptor(_ODOMETRY_MAVFRAME)
-
-_TELEMETRYSERVERRESULT_RESULT = _descriptor.EnumDescriptor(
-  name='Result',
-  full_name='mavsdk.rpc.telemetry_server.TelemetryServerResult.Result',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_UNKNOWN', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_SUCCESS', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_NO_SYSTEM', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_CONNECTION_ERROR', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_BUSY', index=4, number=4,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_COMMAND_DENIED', index=5, number=5,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_TIMEOUT', index=6, number=6,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='RESULT_UNSUPPORTED', index=7, number=7,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=7226,
-  serialized_end=7413,
-)
-_sym_db.RegisterEnumDescriptor(_TELEMETRYSERVERRESULT_RESULT)
-
-
-_PUBLISHPOSITIONREQUEST = _descriptor.Descriptor(
-  name='PublishPositionRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishPositionRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='position', full_name='mavsdk.rpc.telemetry_server.PublishPositionRequest.position', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='velocity_ned', full_name='mavsdk.rpc.telemetry_server.PublishPositionRequest.velocity_ned', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='heading', full_name='mavsdk.rpc.telemetry_server.PublishPositionRequest.heading', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=95,
-  serialized_end=295,
-)
-
-
-_PUBLISHHOMEREQUEST = _descriptor.Descriptor(
-  name='PublishHomeRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishHomeRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='home', full_name='mavsdk.rpc.telemetry_server.PublishHomeRequest.home', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=297,
-  serialized_end=370,
-)
-
-
-_PUBLISHSYSSTATUSREQUEST = _descriptor.Descriptor(
-  name='PublishSysStatusRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishSysStatusRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='battery', full_name='mavsdk.rpc.telemetry_server.PublishSysStatusRequest.battery', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='rc_receiver_status', full_name='mavsdk.rpc.telemetry_server.PublishSysStatusRequest.rc_receiver_status', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='gyro_status', full_name='mavsdk.rpc.telemetry_server.PublishSysStatusRequest.gyro_status', index=2,
-      number=3, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='accel_status', full_name='mavsdk.rpc.telemetry_server.PublishSysStatusRequest.accel_status', index=3,
-      number=4, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='mag_status', full_name='mavsdk.rpc.telemetry_server.PublishSysStatusRequest.mag_status', index=4,
-      number=5, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='gps_status', full_name='mavsdk.rpc.telemetry_server.PublishSysStatusRequest.gps_status', index=5,
-      number=6, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=373,
-  serialized_end=564,
-)
-
-
-_PUBLISHEXTENDEDSYSSTATEREQUEST = _descriptor.Descriptor(
-  name='PublishExtendedSysStateRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishExtendedSysStateRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='vtol_state', full_name='mavsdk.rpc.telemetry_server.PublishExtendedSysStateRequest.vtol_state', index=0,
-      number=1, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='landed_state', full_name='mavsdk.rpc.telemetry_server.PublishExtendedSysStateRequest.landed_state', index=1,
-      number=2, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=567,
-  serialized_end=723,
-)
-
-
-_PUBLISHINAIRREQUEST = _descriptor.Descriptor(
-  name='PublishInAirRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishInAirRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='is_in_air', full_name='mavsdk.rpc.telemetry_server.PublishInAirRequest.is_in_air', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=725,
-  serialized_end=765,
-)
-
-
-_PUBLISHLANDEDSTATEREQUEST = _descriptor.Descriptor(
-  name='PublishLandedStateRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishLandedStateRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='landed_state', full_name='mavsdk.rpc.telemetry_server.PublishLandedStateRequest.landed_state', index=0,
-      number=1, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=767,
-  serialized_end=858,
-)
-
-
-_PUBLISHRAWGPSREQUEST = _descriptor.Descriptor(
-  name='PublishRawGpsRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishRawGpsRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='raw_gps', full_name='mavsdk.rpc.telemetry_server.PublishRawGpsRequest.raw_gps', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='gps_info', full_name='mavsdk.rpc.telemetry_server.PublishRawGpsRequest.gps_info', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=861,
-  serialized_end=993,
-)
-
-
-_PUBLISHBATTERYREQUEST = _descriptor.Descriptor(
-  name='PublishBatteryRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishBatteryRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='battery', full_name='mavsdk.rpc.telemetry_server.PublishBatteryRequest.battery', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=995,
-  serialized_end=1073,
-)
-
-
-_PUBLISHRCSTATUSREQUEST = _descriptor.Descriptor(
-  name='PublishRcStatusRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishRcStatusRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='rc_status', full_name='mavsdk.rpc.telemetry_server.PublishRcStatusRequest.rc_status', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1075,
-  serialized_end=1157,
-)
-
-
-_PUBLISHSTATUSTEXTREQUEST = _descriptor.Descriptor(
-  name='PublishStatusTextRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishStatusTextRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='status_text', full_name='mavsdk.rpc.telemetry_server.PublishStatusTextRequest.status_text', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1159,
-  serialized_end=1247,
-)
-
-
-_PUBLISHODOMETRYREQUEST = _descriptor.Descriptor(
-  name='PublishOdometryRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishOdometryRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='odometry', full_name='mavsdk.rpc.telemetry_server.PublishOdometryRequest.odometry', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1249,
-  serialized_end=1330,
-)
-
-
-_PUBLISHPOSITIONVELOCITYNEDREQUEST = _descriptor.Descriptor(
-  name='PublishPositionVelocityNedRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishPositionVelocityNedRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='position_velocity_ned', full_name='mavsdk.rpc.telemetry_server.PublishPositionVelocityNedRequest.position_velocity_ned', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1332,
-  serialized_end=1448,
-)
-
-
-_PUBLISHGROUNDTRUTHREQUEST = _descriptor.Descriptor(
-  name='PublishGroundTruthRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishGroundTruthRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='ground_truth', full_name='mavsdk.rpc.telemetry_server.PublishGroundTruthRequest.ground_truth', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1450,
-  serialized_end=1541,
-)
-
-
-_PUBLISHIMUREQUEST = _descriptor.Descriptor(
-  name='PublishImuRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishImuRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='imu', full_name='mavsdk.rpc.telemetry_server.PublishImuRequest.imu', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1543,
-  serialized_end=1609,
-)
-
-
-_PUBLISHSCALEDIMUREQUEST = _descriptor.Descriptor(
-  name='PublishScaledImuRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishScaledImuRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='imu', full_name='mavsdk.rpc.telemetry_server.PublishScaledImuRequest.imu', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1611,
-  serialized_end=1683,
-)
-
-
-_PUBLISHRAWIMUREQUEST = _descriptor.Descriptor(
-  name='PublishRawImuRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishRawImuRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='imu', full_name='mavsdk.rpc.telemetry_server.PublishRawImuRequest.imu', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1685,
-  serialized_end=1754,
-)
-
-
-_PUBLISHUNIXEPOCHTIMEREQUEST = _descriptor.Descriptor(
-  name='PublishUnixEpochTimeRequest',
-  full_name='mavsdk.rpc.telemetry_server.PublishUnixEpochTimeRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='time_us', full_name='mavsdk.rpc.telemetry_server.PublishUnixEpochTimeRequest.time_us', index=0,
-      number=1, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1756,
-  serialized_end=1802,
-)
-
-
-_PUBLISHPOSITIONRESPONSE = _descriptor.Descriptor(
-  name='PublishPositionResponse',
-  full_name='mavsdk.rpc.telemetry_server.PublishPositionResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='telemetry_server_result', full_name='mavsdk.rpc.telemetry_server.PublishPositionResponse.telemetry_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1804,
-  serialized_end=1914,
-)
-
-
-_PUBLISHHOMERESPONSE = _descriptor.Descriptor(
-  name='PublishHomeResponse',
-  full_name='mavsdk.rpc.telemetry_server.PublishHomeResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='telemetry_server_result', full_name='mavsdk.rpc.telemetry_server.PublishHomeResponse.telemetry_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1916,
-  serialized_end=2022,
-)
-
-
-_PUBLISHSYSSTATUSRESPONSE = _descriptor.Descriptor(
-  name='PublishSysStatusResponse',
-  full_name='mavsdk.rpc.telemetry_server.PublishSysStatusResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='telemetry_server_result', full_name='mavsdk.rpc.telemetry_server.PublishSysStatusResponse.telemetry_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2024,
-  serialized_end=2135,
-)
-
-
-_PUBLISHEXTENDEDSYSSTATERESPONSE = _descriptor.Descriptor(
-  name='PublishExtendedSysStateResponse',
-  full_name='mavsdk.rpc.telemetry_server.PublishExtendedSysStateResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='telemetry_server_result', full_name='mavsdk.rpc.telemetry_server.PublishExtendedSysStateResponse.telemetry_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2137,
-  serialized_end=2255,
-)
-
-
-_PUBLISHRAWGPSRESPONSE = _descriptor.Descriptor(
-  name='PublishRawGpsResponse',
-  full_name='mavsdk.rpc.telemetry_server.PublishRawGpsResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='telemetry_server_result', full_name='mavsdk.rpc.telemetry_server.PublishRawGpsResponse.telemetry_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2257,
-  serialized_end=2365,
-)
-
-
-_PUBLISHBATTERYRESPONSE = _descriptor.Descriptor(
-  name='PublishBatteryResponse',
-  full_name='mavsdk.rpc.telemetry_server.PublishBatteryResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='telemetry_server_result', full_name='mavsdk.rpc.telemetry_server.PublishBatteryResponse.telemetry_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2367,
-  serialized_end=2476,
-)
-
-
-_PUBLISHSTATUSTEXTRESPONSE = _descriptor.Descriptor(
-  name='PublishStatusTextResponse',
-  full_name='mavsdk.rpc.telemetry_server.PublishStatusTextResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='telemetry_server_result', full_name='mavsdk.rpc.telemetry_server.PublishStatusTextResponse.telemetry_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2478,
-  serialized_end=2590,
-)
-
-
-_PUBLISHODOMETRYRESPONSE = _descriptor.Descriptor(
-  name='PublishOdometryResponse',
-  full_name='mavsdk.rpc.telemetry_server.PublishOdometryResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='telemetry_server_result', full_name='mavsdk.rpc.telemetry_server.PublishOdometryResponse.telemetry_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2592,
-  serialized_end=2702,
-)
-
-
-_PUBLISHPOSITIONVELOCITYNEDRESPONSE = _descriptor.Descriptor(
-  name='PublishPositionVelocityNedResponse',
-  full_name='mavsdk.rpc.telemetry_server.PublishPositionVelocityNedResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='telemetry_server_result', full_name='mavsdk.rpc.telemetry_server.PublishPositionVelocityNedResponse.telemetry_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2704,
-  serialized_end=2825,
-)
-
-
-_PUBLISHGROUNDTRUTHRESPONSE = _descriptor.Descriptor(
-  name='PublishGroundTruthResponse',
-  full_name='mavsdk.rpc.telemetry_server.PublishGroundTruthResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='telemetry_server_result', full_name='mavsdk.rpc.telemetry_server.PublishGroundTruthResponse.telemetry_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2827,
-  serialized_end=2940,
-)
-
-
-_PUBLISHIMURESPONSE = _descriptor.Descriptor(
-  name='PublishImuResponse',
-  full_name='mavsdk.rpc.telemetry_server.PublishImuResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='telemetry_server_result', full_name='mavsdk.rpc.telemetry_server.PublishImuResponse.telemetry_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2942,
-  serialized_end=3047,
-)
-
-
-_PUBLISHSCALEDIMURESPONSE = _descriptor.Descriptor(
-  name='PublishScaledImuResponse',
-  full_name='mavsdk.rpc.telemetry_server.PublishScaledImuResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='telemetry_server_result', full_name='mavsdk.rpc.telemetry_server.PublishScaledImuResponse.telemetry_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3049,
-  serialized_end=3160,
-)
-
-
-_PUBLISHRAWIMURESPONSE = _descriptor.Descriptor(
-  name='PublishRawImuResponse',
-  full_name='mavsdk.rpc.telemetry_server.PublishRawImuResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='telemetry_server_result', full_name='mavsdk.rpc.telemetry_server.PublishRawImuResponse.telemetry_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3162,
-  serialized_end=3270,
-)
-
-
-_PUBLISHUNIXEPOCHTIMERESPONSE = _descriptor.Descriptor(
-  name='PublishUnixEpochTimeResponse',
-  full_name='mavsdk.rpc.telemetry_server.PublishUnixEpochTimeResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='telemetry_server_result', full_name='mavsdk.rpc.telemetry_server.PublishUnixEpochTimeResponse.telemetry_server_result', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3272,
-  serialized_end=3387,
-)
-
-
-_POSITION = _descriptor.Descriptor(
-  name='Position',
-  full_name='mavsdk.rpc.telemetry_server.Position',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='latitude_deg', full_name='mavsdk.rpc.telemetry_server.Position.latitude_deg', index=0,
-      number=1, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='longitude_deg', full_name='mavsdk.rpc.telemetry_server.Position.longitude_deg', index=1,
-      number=2, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='absolute_altitude_m', full_name='mavsdk.rpc.telemetry_server.Position.absolute_altitude_m', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='relative_altitude_m', full_name='mavsdk.rpc.telemetry_server.Position.relative_altitude_m', index=3,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3390,
-  serialized_end=3539,
-)
-
-
-_HEADING = _descriptor.Descriptor(
-  name='Heading',
-  full_name='mavsdk.rpc.telemetry_server.Heading',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='heading_deg', full_name='mavsdk.rpc.telemetry_server.Heading.heading_deg', index=0,
-      number=1, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3541,
-  serialized_end=3580,
-)
-
-
-_QUATERNION = _descriptor.Descriptor(
-  name='Quaternion',
-  full_name='mavsdk.rpc.telemetry_server.Quaternion',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='w', full_name='mavsdk.rpc.telemetry_server.Quaternion.w', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='x', full_name='mavsdk.rpc.telemetry_server.Quaternion.x', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='y', full_name='mavsdk.rpc.telemetry_server.Quaternion.y', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='z', full_name='mavsdk.rpc.telemetry_server.Quaternion.z', index=3,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='timestamp_us', full_name='mavsdk.rpc.telemetry_server.Quaternion.timestamp_us', index=4,
-      number=5, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3582,
-  serialized_end=3696,
-)
-
-
-_EULERANGLE = _descriptor.Descriptor(
-  name='EulerAngle',
-  full_name='mavsdk.rpc.telemetry_server.EulerAngle',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='roll_deg', full_name='mavsdk.rpc.telemetry_server.EulerAngle.roll_deg', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='pitch_deg', full_name='mavsdk.rpc.telemetry_server.EulerAngle.pitch_deg', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='yaw_deg', full_name='mavsdk.rpc.telemetry_server.EulerAngle.yaw_deg', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='timestamp_us', full_name='mavsdk.rpc.telemetry_server.EulerAngle.timestamp_us', index=3,
-      number=4, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3698,
-  serialized_end=3813,
-)
-
-
-_ANGULARVELOCITYBODY = _descriptor.Descriptor(
-  name='AngularVelocityBody',
-  full_name='mavsdk.rpc.telemetry_server.AngularVelocityBody',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='roll_rad_s', full_name='mavsdk.rpc.telemetry_server.AngularVelocityBody.roll_rad_s', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='pitch_rad_s', full_name='mavsdk.rpc.telemetry_server.AngularVelocityBody.pitch_rad_s', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='yaw_rad_s', full_name='mavsdk.rpc.telemetry_server.AngularVelocityBody.yaw_rad_s', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3815,
-  serialized_end=3923,
-)
-
-
-_GPSINFO = _descriptor.Descriptor(
-  name='GpsInfo',
-  full_name='mavsdk.rpc.telemetry_server.GpsInfo',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='num_satellites', full_name='mavsdk.rpc.telemetry_server.GpsInfo.num_satellites', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\0010', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='fix_type', full_name='mavsdk.rpc.telemetry_server.GpsInfo.fix_type', index=1,
-      number=2, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3925,
-  serialized_end=4021,
-)
-
-
-_RAWGPS = _descriptor.Descriptor(
-  name='RawGps',
-  full_name='mavsdk.rpc.telemetry_server.RawGps',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='timestamp_us', full_name='mavsdk.rpc.telemetry_server.RawGps.timestamp_us', index=0,
-      number=1, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='latitude_deg', full_name='mavsdk.rpc.telemetry_server.RawGps.latitude_deg', index=1,
-      number=2, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='longitude_deg', full_name='mavsdk.rpc.telemetry_server.RawGps.longitude_deg', index=2,
-      number=3, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='absolute_altitude_m', full_name='mavsdk.rpc.telemetry_server.RawGps.absolute_altitude_m', index=3,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='hdop', full_name='mavsdk.rpc.telemetry_server.RawGps.hdop', index=4,
-      number=5, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='vdop', full_name='mavsdk.rpc.telemetry_server.RawGps.vdop', index=5,
-      number=6, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='velocity_m_s', full_name='mavsdk.rpc.telemetry_server.RawGps.velocity_m_s', index=6,
-      number=7, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='cog_deg', full_name='mavsdk.rpc.telemetry_server.RawGps.cog_deg', index=7,
-      number=8, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='altitude_ellipsoid_m', full_name='mavsdk.rpc.telemetry_server.RawGps.altitude_ellipsoid_m', index=8,
-      number=9, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='horizontal_uncertainty_m', full_name='mavsdk.rpc.telemetry_server.RawGps.horizontal_uncertainty_m', index=9,
-      number=10, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='vertical_uncertainty_m', full_name='mavsdk.rpc.telemetry_server.RawGps.vertical_uncertainty_m', index=10,
-      number=11, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='velocity_uncertainty_m_s', full_name='mavsdk.rpc.telemetry_server.RawGps.velocity_uncertainty_m_s', index=11,
-      number=12, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='heading_uncertainty_deg', full_name='mavsdk.rpc.telemetry_server.RawGps.heading_uncertainty_deg', index=12,
-      number=13, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='yaw_deg', full_name='mavsdk.rpc.telemetry_server.RawGps.yaw_deg', index=13,
-      number=14, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4024,
-  serialized_end=4375,
-)
-
-
-_BATTERY = _descriptor.Descriptor(
-  name='Battery',
-  full_name='mavsdk.rpc.telemetry_server.Battery',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='voltage_v', full_name='mavsdk.rpc.telemetry_server.Battery.voltage_v', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='remaining_percent', full_name='mavsdk.rpc.telemetry_server.Battery.remaining_percent', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4377,
-  serialized_end=4450,
-)
-
-
-_RCSTATUS = _descriptor.Descriptor(
-  name='RcStatus',
-  full_name='mavsdk.rpc.telemetry_server.RcStatus',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='was_available_once', full_name='mavsdk.rpc.telemetry_server.RcStatus.was_available_once', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='is_available', full_name='mavsdk.rpc.telemetry_server.RcStatus.is_available', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\005false', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='signal_strength_percent', full_name='mavsdk.rpc.telemetry_server.RcStatus.signal_strength_percent', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4452,
-  serialized_end=4576,
-)
-
-
-_STATUSTEXT = _descriptor.Descriptor(
-  name='StatusText',
-  full_name='mavsdk.rpc.telemetry_server.StatusText',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='type', full_name='mavsdk.rpc.telemetry_server.StatusText.type', index=0,
-      number=1, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='text', full_name='mavsdk.rpc.telemetry_server.StatusText.text', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4578,
-  serialized_end=4663,
-)
-
-
-_ACTUATORCONTROLTARGET = _descriptor.Descriptor(
-  name='ActuatorControlTarget',
-  full_name='mavsdk.rpc.telemetry_server.ActuatorControlTarget',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='group', full_name='mavsdk.rpc.telemetry_server.ActuatorControlTarget.group', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\0010', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='controls', full_name='mavsdk.rpc.telemetry_server.ActuatorControlTarget.controls', index=1,
-      number=2, type=2, cpp_type=6, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4665,
-  serialized_end=4728,
-)
-
-
-_ACTUATOROUTPUTSTATUS = _descriptor.Descriptor(
-  name='ActuatorOutputStatus',
-  full_name='mavsdk.rpc.telemetry_server.ActuatorOutputStatus',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='active', full_name='mavsdk.rpc.telemetry_server.ActuatorOutputStatus.active', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\0010', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='actuator', full_name='mavsdk.rpc.telemetry_server.ActuatorOutputStatus.actuator', index=1,
-      number=2, type=2, cpp_type=6, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4730,
-  serialized_end=4793,
-)
-
-
-_COVARIANCE = _descriptor.Descriptor(
-  name='Covariance',
-  full_name='mavsdk.rpc.telemetry_server.Covariance',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='covariance_matrix', full_name='mavsdk.rpc.telemetry_server.Covariance.covariance_matrix', index=0,
-      number=1, type=2, cpp_type=6, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4795,
-  serialized_end=4834,
-)
-
-
-_VELOCITYBODY = _descriptor.Descriptor(
-  name='VelocityBody',
-  full_name='mavsdk.rpc.telemetry_server.VelocityBody',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='x_m_s', full_name='mavsdk.rpc.telemetry_server.VelocityBody.x_m_s', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='y_m_s', full_name='mavsdk.rpc.telemetry_server.VelocityBody.y_m_s', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='z_m_s', full_name='mavsdk.rpc.telemetry_server.VelocityBody.z_m_s', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4836,
-  serialized_end=4895,
-)
-
-
-_POSITIONBODY = _descriptor.Descriptor(
-  name='PositionBody',
-  full_name='mavsdk.rpc.telemetry_server.PositionBody',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='x_m', full_name='mavsdk.rpc.telemetry_server.PositionBody.x_m', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='y_m', full_name='mavsdk.rpc.telemetry_server.PositionBody.y_m', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='z_m', full_name='mavsdk.rpc.telemetry_server.PositionBody.z_m', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4897,
-  serialized_end=4950,
-)
-
-
-_ODOMETRY = _descriptor.Descriptor(
-  name='Odometry',
-  full_name='mavsdk.rpc.telemetry_server.Odometry',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='time_usec', full_name='mavsdk.rpc.telemetry_server.Odometry.time_usec', index=0,
-      number=1, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='frame_id', full_name='mavsdk.rpc.telemetry_server.Odometry.frame_id', index=1,
-      number=2, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='child_frame_id', full_name='mavsdk.rpc.telemetry_server.Odometry.child_frame_id', index=2,
-      number=3, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='position_body', full_name='mavsdk.rpc.telemetry_server.Odometry.position_body', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='q', full_name='mavsdk.rpc.telemetry_server.Odometry.q', index=4,
-      number=5, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='velocity_body', full_name='mavsdk.rpc.telemetry_server.Odometry.velocity_body', index=5,
-      number=6, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='angular_velocity_body', full_name='mavsdk.rpc.telemetry_server.Odometry.angular_velocity_body', index=6,
-      number=7, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='pose_covariance', full_name='mavsdk.rpc.telemetry_server.Odometry.pose_covariance', index=7,
-      number=8, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='velocity_covariance', full_name='mavsdk.rpc.telemetry_server.Odometry.velocity_covariance', index=8,
-      number=9, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-    _ODOMETRY_MAVFRAME,
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4953,
-  serialized_end=5629,
-)
-
-
-_DISTANCESENSOR = _descriptor.Descriptor(
-  name='DistanceSensor',
-  full_name='mavsdk.rpc.telemetry_server.DistanceSensor',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='minimum_distance_m', full_name='mavsdk.rpc.telemetry_server.DistanceSensor.minimum_distance_m', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='maximum_distance_m', full_name='mavsdk.rpc.telemetry_server.DistanceSensor.maximum_distance_m', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='current_distance_m', full_name='mavsdk.rpc.telemetry_server.DistanceSensor.current_distance_m', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=5631,
-  serialized_end=5758,
-)
-
-
-_SCALEDPRESSURE = _descriptor.Descriptor(
-  name='ScaledPressure',
-  full_name='mavsdk.rpc.telemetry_server.ScaledPressure',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='timestamp_us', full_name='mavsdk.rpc.telemetry_server.ScaledPressure.timestamp_us', index=0,
-      number=1, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='absolute_pressure_hpa', full_name='mavsdk.rpc.telemetry_server.ScaledPressure.absolute_pressure_hpa', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='differential_pressure_hpa', full_name='mavsdk.rpc.telemetry_server.ScaledPressure.differential_pressure_hpa', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='temperature_deg', full_name='mavsdk.rpc.telemetry_server.ScaledPressure.temperature_deg', index=3,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='differential_pressure_temperature_deg', full_name='mavsdk.rpc.telemetry_server.ScaledPressure.differential_pressure_temperature_deg', index=4,
-      number=5, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=5761,
-  serialized_end=5937,
-)
-
-
-_POSITIONNED = _descriptor.Descriptor(
-  name='PositionNed',
-  full_name='mavsdk.rpc.telemetry_server.PositionNed',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='north_m', full_name='mavsdk.rpc.telemetry_server.PositionNed.north_m', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='east_m', full_name='mavsdk.rpc.telemetry_server.PositionNed.east_m', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='down_m', full_name='mavsdk.rpc.telemetry_server.PositionNed.down_m', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=5939,
-  serialized_end=6028,
-)
-
-
-_VELOCITYNED = _descriptor.Descriptor(
-  name='VelocityNed',
-  full_name='mavsdk.rpc.telemetry_server.VelocityNed',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='north_m_s', full_name='mavsdk.rpc.telemetry_server.VelocityNed.north_m_s', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='east_m_s', full_name='mavsdk.rpc.telemetry_server.VelocityNed.east_m_s', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='down_m_s', full_name='mavsdk.rpc.telemetry_server.VelocityNed.down_m_s', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=6030,
-  serialized_end=6098,
-)
-
-
-_POSITIONVELOCITYNED = _descriptor.Descriptor(
-  name='PositionVelocityNed',
-  full_name='mavsdk.rpc.telemetry_server.PositionVelocityNed',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='position', full_name='mavsdk.rpc.telemetry_server.PositionVelocityNed.position', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='velocity', full_name='mavsdk.rpc.telemetry_server.PositionVelocityNed.velocity', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=6101,
-  serialized_end=6242,
-)
-
-
-_GROUNDTRUTH = _descriptor.Descriptor(
-  name='GroundTruth',
-  full_name='mavsdk.rpc.telemetry_server.GroundTruth',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='latitude_deg', full_name='mavsdk.rpc.telemetry_server.GroundTruth.latitude_deg', index=0,
-      number=1, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='longitude_deg', full_name='mavsdk.rpc.telemetry_server.GroundTruth.longitude_deg', index=1,
-      number=2, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='absolute_altitude_m', full_name='mavsdk.rpc.telemetry_server.GroundTruth.absolute_altitude_m', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=6244,
-  serialized_end=6358,
-)
-
-
-_FIXEDWINGMETRICS = _descriptor.Descriptor(
-  name='FixedwingMetrics',
-  full_name='mavsdk.rpc.telemetry_server.FixedwingMetrics',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='airspeed_m_s', full_name='mavsdk.rpc.telemetry_server.FixedwingMetrics.airspeed_m_s', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='throttle_percentage', full_name='mavsdk.rpc.telemetry_server.FixedwingMetrics.throttle_percentage', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='climb_rate_m_s', full_name='mavsdk.rpc.telemetry_server.FixedwingMetrics.climb_rate_m_s', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=6360,
-  serialized_end=6480,
-)
-
-
-_ACCELERATIONFRD = _descriptor.Descriptor(
-  name='AccelerationFrd',
-  full_name='mavsdk.rpc.telemetry_server.AccelerationFrd',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='forward_m_s2', full_name='mavsdk.rpc.telemetry_server.AccelerationFrd.forward_m_s2', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='right_m_s2', full_name='mavsdk.rpc.telemetry_server.AccelerationFrd.right_m_s2', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='down_m_s2', full_name='mavsdk.rpc.telemetry_server.AccelerationFrd.down_m_s2', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=6482,
-  serialized_end=6587,
-)
-
-
-_ANGULARVELOCITYFRD = _descriptor.Descriptor(
-  name='AngularVelocityFrd',
-  full_name='mavsdk.rpc.telemetry_server.AngularVelocityFrd',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='forward_rad_s', full_name='mavsdk.rpc.telemetry_server.AngularVelocityFrd.forward_rad_s', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='right_rad_s', full_name='mavsdk.rpc.telemetry_server.AngularVelocityFrd.right_rad_s', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='down_rad_s', full_name='mavsdk.rpc.telemetry_server.AngularVelocityFrd.down_rad_s', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=6589,
-  serialized_end=6700,
-)
-
-
-_MAGNETICFIELDFRD = _descriptor.Descriptor(
-  name='MagneticFieldFrd',
-  full_name='mavsdk.rpc.telemetry_server.MagneticFieldFrd',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='forward_gauss', full_name='mavsdk.rpc.telemetry_server.MagneticFieldFrd.forward_gauss', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='right_gauss', full_name='mavsdk.rpc.telemetry_server.MagneticFieldFrd.right_gauss', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='down_gauss', full_name='mavsdk.rpc.telemetry_server.MagneticFieldFrd.down_gauss', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=6702,
-  serialized_end=6811,
-)
-
-
-_IMU = _descriptor.Descriptor(
-  name='Imu',
-  full_name='mavsdk.rpc.telemetry_server.Imu',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='acceleration_frd', full_name='mavsdk.rpc.telemetry_server.Imu.acceleration_frd', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='angular_velocity_frd', full_name='mavsdk.rpc.telemetry_server.Imu.angular_velocity_frd', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='magnetic_field_frd', full_name='mavsdk.rpc.telemetry_server.Imu.magnetic_field_frd', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='temperature_degc', full_name='mavsdk.rpc.telemetry_server.Imu.temperature_degc', index=3,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\003NaN', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='timestamp_us', full_name='mavsdk.rpc.telemetry_server.Imu.timestamp_us', index=4,
-      number=5, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=6814,
-  serialized_end=7102,
-)
-
-
-_TELEMETRYSERVERRESULT = _descriptor.Descriptor(
-  name='TelemetryServerResult',
-  full_name='mavsdk.rpc.telemetry_server.TelemetryServerResult',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='result', full_name='mavsdk.rpc.telemetry_server.TelemetryServerResult.result', index=0,
-      number=1, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='result_str', full_name='mavsdk.rpc.telemetry_server.TelemetryServerResult.result_str', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-    _TELEMETRYSERVERRESULT_RESULT,
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=7105,
-  serialized_end=7413,
-)
-
-_PUBLISHPOSITIONREQUEST.fields_by_name['position'].message_type = _POSITION
-_PUBLISHPOSITIONREQUEST.fields_by_name['velocity_ned'].message_type = _VELOCITYNED
-_PUBLISHPOSITIONREQUEST.fields_by_name['heading'].message_type = _HEADING
-_PUBLISHHOMEREQUEST.fields_by_name['home'].message_type = _POSITION
-_PUBLISHSYSSTATUSREQUEST.fields_by_name['battery'].message_type = _BATTERY
-_PUBLISHEXTENDEDSYSSTATEREQUEST.fields_by_name['vtol_state'].enum_type = _VTOLSTATE
-_PUBLISHEXTENDEDSYSSTATEREQUEST.fields_by_name['landed_state'].enum_type = _LANDEDSTATE
-_PUBLISHLANDEDSTATEREQUEST.fields_by_name['landed_state'].enum_type = _LANDEDSTATE
-_PUBLISHRAWGPSREQUEST.fields_by_name['raw_gps'].message_type = _RAWGPS
-_PUBLISHRAWGPSREQUEST.fields_by_name['gps_info'].message_type = _GPSINFO
-_PUBLISHBATTERYREQUEST.fields_by_name['battery'].message_type = _BATTERY
-_PUBLISHRCSTATUSREQUEST.fields_by_name['rc_status'].message_type = _RCSTATUS
-_PUBLISHSTATUSTEXTREQUEST.fields_by_name['status_text'].message_type = _STATUSTEXT
-_PUBLISHODOMETRYREQUEST.fields_by_name['odometry'].message_type = _ODOMETRY
-_PUBLISHPOSITIONVELOCITYNEDREQUEST.fields_by_name['position_velocity_ned'].message_type = _POSITIONVELOCITYNED
-_PUBLISHGROUNDTRUTHREQUEST.fields_by_name['ground_truth'].message_type = _GROUNDTRUTH
-_PUBLISHIMUREQUEST.fields_by_name['imu'].message_type = _IMU
-_PUBLISHSCALEDIMUREQUEST.fields_by_name['imu'].message_type = _IMU
-_PUBLISHRAWIMUREQUEST.fields_by_name['imu'].message_type = _IMU
-_PUBLISHPOSITIONRESPONSE.fields_by_name['telemetry_server_result'].message_type = _TELEMETRYSERVERRESULT
-_PUBLISHHOMERESPONSE.fields_by_name['telemetry_server_result'].message_type = _TELEMETRYSERVERRESULT
-_PUBLISHSYSSTATUSRESPONSE.fields_by_name['telemetry_server_result'].message_type = _TELEMETRYSERVERRESULT
-_PUBLISHEXTENDEDSYSSTATERESPONSE.fields_by_name['telemetry_server_result'].message_type = _TELEMETRYSERVERRESULT
-_PUBLISHRAWGPSRESPONSE.fields_by_name['telemetry_server_result'].message_type = _TELEMETRYSERVERRESULT
-_PUBLISHBATTERYRESPONSE.fields_by_name['telemetry_server_result'].message_type = _TELEMETRYSERVERRESULT
-_PUBLISHSTATUSTEXTRESPONSE.fields_by_name['telemetry_server_result'].message_type = _TELEMETRYSERVERRESULT
-_PUBLISHODOMETRYRESPONSE.fields_by_name['telemetry_server_result'].message_type = _TELEMETRYSERVERRESULT
-_PUBLISHPOSITIONVELOCITYNEDRESPONSE.fields_by_name['telemetry_server_result'].message_type = _TELEMETRYSERVERRESULT
-_PUBLISHGROUNDTRUTHRESPONSE.fields_by_name['telemetry_server_result'].message_type = _TELEMETRYSERVERRESULT
-_PUBLISHIMURESPONSE.fields_by_name['telemetry_server_result'].message_type = _TELEMETRYSERVERRESULT
-_PUBLISHSCALEDIMURESPONSE.fields_by_name['telemetry_server_result'].message_type = _TELEMETRYSERVERRESULT
-_PUBLISHRAWIMURESPONSE.fields_by_name['telemetry_server_result'].message_type = _TELEMETRYSERVERRESULT
-_PUBLISHUNIXEPOCHTIMERESPONSE.fields_by_name['telemetry_server_result'].message_type = _TELEMETRYSERVERRESULT
-_GPSINFO.fields_by_name['fix_type'].enum_type = _FIXTYPE
-_STATUSTEXT.fields_by_name['type'].enum_type = _STATUSTEXTTYPE
-_ODOMETRY.fields_by_name['frame_id'].enum_type = _ODOMETRY_MAVFRAME
-_ODOMETRY.fields_by_name['child_frame_id'].enum_type = _ODOMETRY_MAVFRAME
-_ODOMETRY.fields_by_name['position_body'].message_type = _POSITIONBODY
-_ODOMETRY.fields_by_name['q'].message_type = _QUATERNION
-_ODOMETRY.fields_by_name['velocity_body'].message_type = _VELOCITYBODY
-_ODOMETRY.fields_by_name['angular_velocity_body'].message_type = _ANGULARVELOCITYBODY
-_ODOMETRY.fields_by_name['pose_covariance'].message_type = _COVARIANCE
-_ODOMETRY.fields_by_name['velocity_covariance'].message_type = _COVARIANCE
-_ODOMETRY_MAVFRAME.containing_type = _ODOMETRY
-_POSITIONVELOCITYNED.fields_by_name['position'].message_type = _POSITIONNED
-_POSITIONVELOCITYNED.fields_by_name['velocity'].message_type = _VELOCITYNED
-_IMU.fields_by_name['acceleration_frd'].message_type = _ACCELERATIONFRD
-_IMU.fields_by_name['angular_velocity_frd'].message_type = _ANGULARVELOCITYFRD
-_IMU.fields_by_name['magnetic_field_frd'].message_type = _MAGNETICFIELDFRD
-_TELEMETRYSERVERRESULT.fields_by_name['result'].enum_type = _TELEMETRYSERVERRESULT_RESULT
-_TELEMETRYSERVERRESULT_RESULT.containing_type = _TELEMETRYSERVERRESULT
-DESCRIPTOR.message_types_by_name['PublishPositionRequest'] = _PUBLISHPOSITIONREQUEST
-DESCRIPTOR.message_types_by_name['PublishHomeRequest'] = _PUBLISHHOMEREQUEST
-DESCRIPTOR.message_types_by_name['PublishSysStatusRequest'] = _PUBLISHSYSSTATUSREQUEST
-DESCRIPTOR.message_types_by_name['PublishExtendedSysStateRequest'] = _PUBLISHEXTENDEDSYSSTATEREQUEST
-DESCRIPTOR.message_types_by_name['PublishInAirRequest'] = _PUBLISHINAIRREQUEST
-DESCRIPTOR.message_types_by_name['PublishLandedStateRequest'] = _PUBLISHLANDEDSTATEREQUEST
-DESCRIPTOR.message_types_by_name['PublishRawGpsRequest'] = _PUBLISHRAWGPSREQUEST
-DESCRIPTOR.message_types_by_name['PublishBatteryRequest'] = _PUBLISHBATTERYREQUEST
-DESCRIPTOR.message_types_by_name['PublishRcStatusRequest'] = _PUBLISHRCSTATUSREQUEST
-DESCRIPTOR.message_types_by_name['PublishStatusTextRequest'] = _PUBLISHSTATUSTEXTREQUEST
-DESCRIPTOR.message_types_by_name['PublishOdometryRequest'] = _PUBLISHODOMETRYREQUEST
-DESCRIPTOR.message_types_by_name['PublishPositionVelocityNedRequest'] = _PUBLISHPOSITIONVELOCITYNEDREQUEST
-DESCRIPTOR.message_types_by_name['PublishGroundTruthRequest'] = _PUBLISHGROUNDTRUTHREQUEST
-DESCRIPTOR.message_types_by_name['PublishImuRequest'] = _PUBLISHIMUREQUEST
-DESCRIPTOR.message_types_by_name['PublishScaledImuRequest'] = _PUBLISHSCALEDIMUREQUEST
-DESCRIPTOR.message_types_by_name['PublishRawImuRequest'] = _PUBLISHRAWIMUREQUEST
-DESCRIPTOR.message_types_by_name['PublishUnixEpochTimeRequest'] = _PUBLISHUNIXEPOCHTIMEREQUEST
-DESCRIPTOR.message_types_by_name['PublishPositionResponse'] = _PUBLISHPOSITIONRESPONSE
-DESCRIPTOR.message_types_by_name['PublishHomeResponse'] = _PUBLISHHOMERESPONSE
-DESCRIPTOR.message_types_by_name['PublishSysStatusResponse'] = _PUBLISHSYSSTATUSRESPONSE
-DESCRIPTOR.message_types_by_name['PublishExtendedSysStateResponse'] = _PUBLISHEXTENDEDSYSSTATERESPONSE
-DESCRIPTOR.message_types_by_name['PublishRawGpsResponse'] = _PUBLISHRAWGPSRESPONSE
-DESCRIPTOR.message_types_by_name['PublishBatteryResponse'] = _PUBLISHBATTERYRESPONSE
-DESCRIPTOR.message_types_by_name['PublishStatusTextResponse'] = _PUBLISHSTATUSTEXTRESPONSE
-DESCRIPTOR.message_types_by_name['PublishOdometryResponse'] = _PUBLISHODOMETRYRESPONSE
-DESCRIPTOR.message_types_by_name['PublishPositionVelocityNedResponse'] = _PUBLISHPOSITIONVELOCITYNEDRESPONSE
-DESCRIPTOR.message_types_by_name['PublishGroundTruthResponse'] = _PUBLISHGROUNDTRUTHRESPONSE
-DESCRIPTOR.message_types_by_name['PublishImuResponse'] = _PUBLISHIMURESPONSE
-DESCRIPTOR.message_types_by_name['PublishScaledImuResponse'] = _PUBLISHSCALEDIMURESPONSE
-DESCRIPTOR.message_types_by_name['PublishRawImuResponse'] = _PUBLISHRAWIMURESPONSE
-DESCRIPTOR.message_types_by_name['PublishUnixEpochTimeResponse'] = _PUBLISHUNIXEPOCHTIMERESPONSE
-DESCRIPTOR.message_types_by_name['Position'] = _POSITION
-DESCRIPTOR.message_types_by_name['Heading'] = _HEADING
-DESCRIPTOR.message_types_by_name['Quaternion'] = _QUATERNION
-DESCRIPTOR.message_types_by_name['EulerAngle'] = _EULERANGLE
-DESCRIPTOR.message_types_by_name['AngularVelocityBody'] = _ANGULARVELOCITYBODY
-DESCRIPTOR.message_types_by_name['GpsInfo'] = _GPSINFO
-DESCRIPTOR.message_types_by_name['RawGps'] = _RAWGPS
-DESCRIPTOR.message_types_by_name['Battery'] = _BATTERY
-DESCRIPTOR.message_types_by_name['RcStatus'] = _RCSTATUS
-DESCRIPTOR.message_types_by_name['StatusText'] = _STATUSTEXT
-DESCRIPTOR.message_types_by_name['ActuatorControlTarget'] = _ACTUATORCONTROLTARGET
-DESCRIPTOR.message_types_by_name['ActuatorOutputStatus'] = _ACTUATOROUTPUTSTATUS
-DESCRIPTOR.message_types_by_name['Covariance'] = _COVARIANCE
-DESCRIPTOR.message_types_by_name['VelocityBody'] = _VELOCITYBODY
-DESCRIPTOR.message_types_by_name['PositionBody'] = _POSITIONBODY
-DESCRIPTOR.message_types_by_name['Odometry'] = _ODOMETRY
-DESCRIPTOR.message_types_by_name['DistanceSensor'] = _DISTANCESENSOR
-DESCRIPTOR.message_types_by_name['ScaledPressure'] = _SCALEDPRESSURE
-DESCRIPTOR.message_types_by_name['PositionNed'] = _POSITIONNED
-DESCRIPTOR.message_types_by_name['VelocityNed'] = _VELOCITYNED
-DESCRIPTOR.message_types_by_name['PositionVelocityNed'] = _POSITIONVELOCITYNED
-DESCRIPTOR.message_types_by_name['GroundTruth'] = _GROUNDTRUTH
-DESCRIPTOR.message_types_by_name['FixedwingMetrics'] = _FIXEDWINGMETRICS
-DESCRIPTOR.message_types_by_name['AccelerationFrd'] = _ACCELERATIONFRD
-DESCRIPTOR.message_types_by_name['AngularVelocityFrd'] = _ANGULARVELOCITYFRD
-DESCRIPTOR.message_types_by_name['MagneticFieldFrd'] = _MAGNETICFIELDFRD
-DESCRIPTOR.message_types_by_name['Imu'] = _IMU
-DESCRIPTOR.message_types_by_name['TelemetryServerResult'] = _TELEMETRYSERVERRESULT
-DESCRIPTOR.enum_types_by_name['FixType'] = _FIXTYPE
-DESCRIPTOR.enum_types_by_name['VtolState'] = _VTOLSTATE
-DESCRIPTOR.enum_types_by_name['StatusTextType'] = _STATUSTEXTTYPE
-DESCRIPTOR.enum_types_by_name['LandedState'] = _LANDEDSTATE
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
-
+_PUBLISHPOSITIONREQUEST = DESCRIPTOR.message_types_by_name['PublishPositionRequest']
+_PUBLISHHOMEREQUEST = DESCRIPTOR.message_types_by_name['PublishHomeRequest']
+_PUBLISHSYSSTATUSREQUEST = DESCRIPTOR.message_types_by_name['PublishSysStatusRequest']
+_PUBLISHEXTENDEDSYSSTATEREQUEST = DESCRIPTOR.message_types_by_name['PublishExtendedSysStateRequest']
+_PUBLISHINAIRREQUEST = DESCRIPTOR.message_types_by_name['PublishInAirRequest']
+_PUBLISHLANDEDSTATEREQUEST = DESCRIPTOR.message_types_by_name['PublishLandedStateRequest']
+_PUBLISHRAWGPSREQUEST = DESCRIPTOR.message_types_by_name['PublishRawGpsRequest']
+_PUBLISHBATTERYREQUEST = DESCRIPTOR.message_types_by_name['PublishBatteryRequest']
+_PUBLISHRCSTATUSREQUEST = DESCRIPTOR.message_types_by_name['PublishRcStatusRequest']
+_PUBLISHSTATUSTEXTREQUEST = DESCRIPTOR.message_types_by_name['PublishStatusTextRequest']
+_PUBLISHODOMETRYREQUEST = DESCRIPTOR.message_types_by_name['PublishOdometryRequest']
+_PUBLISHPOSITIONVELOCITYNEDREQUEST = DESCRIPTOR.message_types_by_name['PublishPositionVelocityNedRequest']
+_PUBLISHGROUNDTRUTHREQUEST = DESCRIPTOR.message_types_by_name['PublishGroundTruthRequest']
+_PUBLISHIMUREQUEST = DESCRIPTOR.message_types_by_name['PublishImuRequest']
+_PUBLISHSCALEDIMUREQUEST = DESCRIPTOR.message_types_by_name['PublishScaledImuRequest']
+_PUBLISHRAWIMUREQUEST = DESCRIPTOR.message_types_by_name['PublishRawImuRequest']
+_PUBLISHUNIXEPOCHTIMEREQUEST = DESCRIPTOR.message_types_by_name['PublishUnixEpochTimeRequest']
+_PUBLISHPOSITIONRESPONSE = DESCRIPTOR.message_types_by_name['PublishPositionResponse']
+_PUBLISHHOMERESPONSE = DESCRIPTOR.message_types_by_name['PublishHomeResponse']
+_PUBLISHSYSSTATUSRESPONSE = DESCRIPTOR.message_types_by_name['PublishSysStatusResponse']
+_PUBLISHEXTENDEDSYSSTATERESPONSE = DESCRIPTOR.message_types_by_name['PublishExtendedSysStateResponse']
+_PUBLISHRAWGPSRESPONSE = DESCRIPTOR.message_types_by_name['PublishRawGpsResponse']
+_PUBLISHBATTERYRESPONSE = DESCRIPTOR.message_types_by_name['PublishBatteryResponse']
+_PUBLISHSTATUSTEXTRESPONSE = DESCRIPTOR.message_types_by_name['PublishStatusTextResponse']
+_PUBLISHODOMETRYRESPONSE = DESCRIPTOR.message_types_by_name['PublishOdometryResponse']
+_PUBLISHPOSITIONVELOCITYNEDRESPONSE = DESCRIPTOR.message_types_by_name['PublishPositionVelocityNedResponse']
+_PUBLISHGROUNDTRUTHRESPONSE = DESCRIPTOR.message_types_by_name['PublishGroundTruthResponse']
+_PUBLISHIMURESPONSE = DESCRIPTOR.message_types_by_name['PublishImuResponse']
+_PUBLISHSCALEDIMURESPONSE = DESCRIPTOR.message_types_by_name['PublishScaledImuResponse']
+_PUBLISHRAWIMURESPONSE = DESCRIPTOR.message_types_by_name['PublishRawImuResponse']
+_PUBLISHUNIXEPOCHTIMERESPONSE = DESCRIPTOR.message_types_by_name['PublishUnixEpochTimeResponse']
+_POSITION = DESCRIPTOR.message_types_by_name['Position']
+_HEADING = DESCRIPTOR.message_types_by_name['Heading']
+_QUATERNION = DESCRIPTOR.message_types_by_name['Quaternion']
+_EULERANGLE = DESCRIPTOR.message_types_by_name['EulerAngle']
+_ANGULARVELOCITYBODY = DESCRIPTOR.message_types_by_name['AngularVelocityBody']
+_GPSINFO = DESCRIPTOR.message_types_by_name['GpsInfo']
+_RAWGPS = DESCRIPTOR.message_types_by_name['RawGps']
+_BATTERY = DESCRIPTOR.message_types_by_name['Battery']
+_RCSTATUS = DESCRIPTOR.message_types_by_name['RcStatus']
+_STATUSTEXT = DESCRIPTOR.message_types_by_name['StatusText']
+_ACTUATORCONTROLTARGET = DESCRIPTOR.message_types_by_name['ActuatorControlTarget']
+_ACTUATOROUTPUTSTATUS = DESCRIPTOR.message_types_by_name['ActuatorOutputStatus']
+_COVARIANCE = DESCRIPTOR.message_types_by_name['Covariance']
+_VELOCITYBODY = DESCRIPTOR.message_types_by_name['VelocityBody']
+_POSITIONBODY = DESCRIPTOR.message_types_by_name['PositionBody']
+_ODOMETRY = DESCRIPTOR.message_types_by_name['Odometry']
+_DISTANCESENSOR = DESCRIPTOR.message_types_by_name['DistanceSensor']
+_SCALEDPRESSURE = DESCRIPTOR.message_types_by_name['ScaledPressure']
+_POSITIONNED = DESCRIPTOR.message_types_by_name['PositionNed']
+_VELOCITYNED = DESCRIPTOR.message_types_by_name['VelocityNed']
+_POSITIONVELOCITYNED = DESCRIPTOR.message_types_by_name['PositionVelocityNed']
+_GROUNDTRUTH = DESCRIPTOR.message_types_by_name['GroundTruth']
+_FIXEDWINGMETRICS = DESCRIPTOR.message_types_by_name['FixedwingMetrics']
+_ACCELERATIONFRD = DESCRIPTOR.message_types_by_name['AccelerationFrd']
+_ANGULARVELOCITYFRD = DESCRIPTOR.message_types_by_name['AngularVelocityFrd']
+_MAGNETICFIELDFRD = DESCRIPTOR.message_types_by_name['MagneticFieldFrd']
+_IMU = DESCRIPTOR.message_types_by_name['Imu']
+_TELEMETRYSERVERRESULT = DESCRIPTOR.message_types_by_name['TelemetryServerResult']
+_ODOMETRY_MAVFRAME = _ODOMETRY.enum_types_by_name['MavFrame']
+_TELEMETRYSERVERRESULT_RESULT = _TELEMETRYSERVERRESULT.enum_types_by_name['Result']
 PublishPositionRequest = _reflection.GeneratedProtocolMessageType('PublishPositionRequest', (_message.Message,), {
   'DESCRIPTOR' : _PUBLISHPOSITIONREQUEST,
   '__module__' : 'telemetry_server.telemetry_server_pb2'
@@ -3303,207 +527,259 @@ TelemetryServerResult = _reflection.GeneratedProtocolMessageType('TelemetryServe
   })
 _sym_db.RegisterMessage(TelemetryServerResult)
 
+_TELEMETRYSERVERSERVICE = DESCRIPTOR.services_by_name['TelemetryServerService']
+if _descriptor._USE_C_DESCRIPTORS == False:
 
-DESCRIPTOR._options = None
-_POSITION.fields_by_name['latitude_deg']._options = None
-_POSITION.fields_by_name['longitude_deg']._options = None
-_POSITION.fields_by_name['absolute_altitude_m']._options = None
-_POSITION.fields_by_name['relative_altitude_m']._options = None
-_HEADING.fields_by_name['heading_deg']._options = None
-_QUATERNION.fields_by_name['w']._options = None
-_QUATERNION.fields_by_name['x']._options = None
-_QUATERNION.fields_by_name['y']._options = None
-_QUATERNION.fields_by_name['z']._options = None
-_EULERANGLE.fields_by_name['roll_deg']._options = None
-_EULERANGLE.fields_by_name['pitch_deg']._options = None
-_EULERANGLE.fields_by_name['yaw_deg']._options = None
-_ANGULARVELOCITYBODY.fields_by_name['roll_rad_s']._options = None
-_ANGULARVELOCITYBODY.fields_by_name['pitch_rad_s']._options = None
-_ANGULARVELOCITYBODY.fields_by_name['yaw_rad_s']._options = None
-_GPSINFO.fields_by_name['num_satellites']._options = None
-_BATTERY.fields_by_name['voltage_v']._options = None
-_BATTERY.fields_by_name['remaining_percent']._options = None
-_RCSTATUS.fields_by_name['was_available_once']._options = None
-_RCSTATUS.fields_by_name['is_available']._options = None
-_RCSTATUS.fields_by_name['signal_strength_percent']._options = None
-_ACTUATORCONTROLTARGET.fields_by_name['group']._options = None
-_ACTUATOROUTPUTSTATUS.fields_by_name['active']._options = None
-_DISTANCESENSOR.fields_by_name['minimum_distance_m']._options = None
-_DISTANCESENSOR.fields_by_name['maximum_distance_m']._options = None
-_DISTANCESENSOR.fields_by_name['current_distance_m']._options = None
-_POSITIONNED.fields_by_name['north_m']._options = None
-_POSITIONNED.fields_by_name['east_m']._options = None
-_POSITIONNED.fields_by_name['down_m']._options = None
-_GROUNDTRUTH.fields_by_name['latitude_deg']._options = None
-_GROUNDTRUTH.fields_by_name['longitude_deg']._options = None
-_GROUNDTRUTH.fields_by_name['absolute_altitude_m']._options = None
-_FIXEDWINGMETRICS.fields_by_name['airspeed_m_s']._options = None
-_FIXEDWINGMETRICS.fields_by_name['throttle_percentage']._options = None
-_FIXEDWINGMETRICS.fields_by_name['climb_rate_m_s']._options = None
-_ACCELERATIONFRD.fields_by_name['forward_m_s2']._options = None
-_ACCELERATIONFRD.fields_by_name['right_m_s2']._options = None
-_ACCELERATIONFRD.fields_by_name['down_m_s2']._options = None
-_ANGULARVELOCITYFRD.fields_by_name['forward_rad_s']._options = None
-_ANGULARVELOCITYFRD.fields_by_name['right_rad_s']._options = None
-_ANGULARVELOCITYFRD.fields_by_name['down_rad_s']._options = None
-_MAGNETICFIELDFRD.fields_by_name['forward_gauss']._options = None
-_MAGNETICFIELDFRD.fields_by_name['right_gauss']._options = None
-_MAGNETICFIELDFRD.fields_by_name['down_gauss']._options = None
-_IMU.fields_by_name['temperature_degc']._options = None
-
-_TELEMETRYSERVERSERVICE = _descriptor.ServiceDescriptor(
-  name='TelemetryServerService',
-  full_name='mavsdk.rpc.telemetry_server.TelemetryServerService',
-  file=DESCRIPTOR,
-  index=0,
-  serialized_options=None,
-  create_key=_descriptor._internal_create_key,
-  serialized_start=8129,
-  serialized_end=10061,
-  methods=[
-  _descriptor.MethodDescriptor(
-    name='PublishPosition',
-    full_name='mavsdk.rpc.telemetry_server.TelemetryServerService.PublishPosition',
-    index=0,
-    containing_service=None,
-    input_type=_PUBLISHPOSITIONREQUEST,
-    output_type=_PUBLISHPOSITIONRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='PublishHome',
-    full_name='mavsdk.rpc.telemetry_server.TelemetryServerService.PublishHome',
-    index=1,
-    containing_service=None,
-    input_type=_PUBLISHHOMEREQUEST,
-    output_type=_PUBLISHHOMERESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='PublishSysStatus',
-    full_name='mavsdk.rpc.telemetry_server.TelemetryServerService.PublishSysStatus',
-    index=2,
-    containing_service=None,
-    input_type=_PUBLISHSYSSTATUSREQUEST,
-    output_type=_PUBLISHSYSSTATUSRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='PublishExtendedSysState',
-    full_name='mavsdk.rpc.telemetry_server.TelemetryServerService.PublishExtendedSysState',
-    index=3,
-    containing_service=None,
-    input_type=_PUBLISHEXTENDEDSYSSTATEREQUEST,
-    output_type=_PUBLISHEXTENDEDSYSSTATERESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='PublishRawGps',
-    full_name='mavsdk.rpc.telemetry_server.TelemetryServerService.PublishRawGps',
-    index=4,
-    containing_service=None,
-    input_type=_PUBLISHRAWGPSREQUEST,
-    output_type=_PUBLISHRAWGPSRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='PublishBattery',
-    full_name='mavsdk.rpc.telemetry_server.TelemetryServerService.PublishBattery',
-    index=5,
-    containing_service=None,
-    input_type=_PUBLISHBATTERYREQUEST,
-    output_type=_PUBLISHBATTERYRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='PublishStatusText',
-    full_name='mavsdk.rpc.telemetry_server.TelemetryServerService.PublishStatusText',
-    index=6,
-    containing_service=None,
-    input_type=_PUBLISHSTATUSTEXTREQUEST,
-    output_type=_PUBLISHSTATUSTEXTRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='PublishOdometry',
-    full_name='mavsdk.rpc.telemetry_server.TelemetryServerService.PublishOdometry',
-    index=7,
-    containing_service=None,
-    input_type=_PUBLISHODOMETRYREQUEST,
-    output_type=_PUBLISHODOMETRYRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='PublishPositionVelocityNed',
-    full_name='mavsdk.rpc.telemetry_server.TelemetryServerService.PublishPositionVelocityNed',
-    index=8,
-    containing_service=None,
-    input_type=_PUBLISHPOSITIONVELOCITYNEDREQUEST,
-    output_type=_PUBLISHPOSITIONVELOCITYNEDRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='PublishGroundTruth',
-    full_name='mavsdk.rpc.telemetry_server.TelemetryServerService.PublishGroundTruth',
-    index=9,
-    containing_service=None,
-    input_type=_PUBLISHGROUNDTRUTHREQUEST,
-    output_type=_PUBLISHGROUNDTRUTHRESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='PublishImu',
-    full_name='mavsdk.rpc.telemetry_server.TelemetryServerService.PublishImu',
-    index=10,
-    containing_service=None,
-    input_type=_PUBLISHIMUREQUEST,
-    output_type=_PUBLISHIMURESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='PublishScaledImu',
-    full_name='mavsdk.rpc.telemetry_server.TelemetryServerService.PublishScaledImu',
-    index=11,
-    containing_service=None,
-    input_type=_PUBLISHSCALEDIMUREQUEST,
-    output_type=_PUBLISHSCALEDIMURESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='PublishRawImu',
-    full_name='mavsdk.rpc.telemetry_server.TelemetryServerService.PublishRawImu',
-    index=12,
-    containing_service=None,
-    input_type=_PUBLISHRAWIMUREQUEST,
-    output_type=_PUBLISHRAWIMURESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='PublishUnixEpochTime',
-    full_name='mavsdk.rpc.telemetry_server.TelemetryServerService.PublishUnixEpochTime',
-    index=13,
-    containing_service=None,
-    input_type=_PUBLISHUNIXEPOCHTIMEREQUEST,
-    output_type=_PUBLISHUNIXEPOCHTIMERESPONSE,
-    serialized_options=b'\200\265\030\001',
-    create_key=_descriptor._internal_create_key,
-  ),
-])
-_sym_db.RegisterServiceDescriptor(_TELEMETRYSERVERSERVICE)
-
-DESCRIPTOR.services_by_name['TelemetryServerService'] = _TELEMETRYSERVERSERVICE
-
+  DESCRIPTOR._options = None
+  DESCRIPTOR._serialized_options = b'\n\032io.mavsdk.telemetry_serverB\024TelemetryServerProto'
+  _POSITION.fields_by_name['latitude_deg']._options = None
+  _POSITION.fields_by_name['latitude_deg']._serialized_options = b'\202\265\030\003NaN'
+  _POSITION.fields_by_name['longitude_deg']._options = None
+  _POSITION.fields_by_name['longitude_deg']._serialized_options = b'\202\265\030\003NaN'
+  _POSITION.fields_by_name['absolute_altitude_m']._options = None
+  _POSITION.fields_by_name['absolute_altitude_m']._serialized_options = b'\202\265\030\003NaN'
+  _POSITION.fields_by_name['relative_altitude_m']._options = None
+  _POSITION.fields_by_name['relative_altitude_m']._serialized_options = b'\202\265\030\003NaN'
+  _HEADING.fields_by_name['heading_deg']._options = None
+  _HEADING.fields_by_name['heading_deg']._serialized_options = b'\202\265\030\003NaN'
+  _QUATERNION.fields_by_name['w']._options = None
+  _QUATERNION.fields_by_name['w']._serialized_options = b'\202\265\030\003NaN'
+  _QUATERNION.fields_by_name['x']._options = None
+  _QUATERNION.fields_by_name['x']._serialized_options = b'\202\265\030\003NaN'
+  _QUATERNION.fields_by_name['y']._options = None
+  _QUATERNION.fields_by_name['y']._serialized_options = b'\202\265\030\003NaN'
+  _QUATERNION.fields_by_name['z']._options = None
+  _QUATERNION.fields_by_name['z']._serialized_options = b'\202\265\030\003NaN'
+  _EULERANGLE.fields_by_name['roll_deg']._options = None
+  _EULERANGLE.fields_by_name['roll_deg']._serialized_options = b'\202\265\030\003NaN'
+  _EULERANGLE.fields_by_name['pitch_deg']._options = None
+  _EULERANGLE.fields_by_name['pitch_deg']._serialized_options = b'\202\265\030\003NaN'
+  _EULERANGLE.fields_by_name['yaw_deg']._options = None
+  _EULERANGLE.fields_by_name['yaw_deg']._serialized_options = b'\202\265\030\003NaN'
+  _ANGULARVELOCITYBODY.fields_by_name['roll_rad_s']._options = None
+  _ANGULARVELOCITYBODY.fields_by_name['roll_rad_s']._serialized_options = b'\202\265\030\003NaN'
+  _ANGULARVELOCITYBODY.fields_by_name['pitch_rad_s']._options = None
+  _ANGULARVELOCITYBODY.fields_by_name['pitch_rad_s']._serialized_options = b'\202\265\030\003NaN'
+  _ANGULARVELOCITYBODY.fields_by_name['yaw_rad_s']._options = None
+  _ANGULARVELOCITYBODY.fields_by_name['yaw_rad_s']._serialized_options = b'\202\265\030\003NaN'
+  _GPSINFO.fields_by_name['num_satellites']._options = None
+  _GPSINFO.fields_by_name['num_satellites']._serialized_options = b'\202\265\030\0010'
+  _BATTERY.fields_by_name['voltage_v']._options = None
+  _BATTERY.fields_by_name['voltage_v']._serialized_options = b'\202\265\030\003NaN'
+  _BATTERY.fields_by_name['remaining_percent']._options = None
+  _BATTERY.fields_by_name['remaining_percent']._serialized_options = b'\202\265\030\003NaN'
+  _RCSTATUS.fields_by_name['was_available_once']._options = None
+  _RCSTATUS.fields_by_name['was_available_once']._serialized_options = b'\202\265\030\005false'
+  _RCSTATUS.fields_by_name['is_available']._options = None
+  _RCSTATUS.fields_by_name['is_available']._serialized_options = b'\202\265\030\005false'
+  _RCSTATUS.fields_by_name['signal_strength_percent']._options = None
+  _RCSTATUS.fields_by_name['signal_strength_percent']._serialized_options = b'\202\265\030\003NaN'
+  _ACTUATORCONTROLTARGET.fields_by_name['group']._options = None
+  _ACTUATORCONTROLTARGET.fields_by_name['group']._serialized_options = b'\202\265\030\0010'
+  _ACTUATOROUTPUTSTATUS.fields_by_name['active']._options = None
+  _ACTUATOROUTPUTSTATUS.fields_by_name['active']._serialized_options = b'\202\265\030\0010'
+  _DISTANCESENSOR.fields_by_name['minimum_distance_m']._options = None
+  _DISTANCESENSOR.fields_by_name['minimum_distance_m']._serialized_options = b'\202\265\030\003NaN'
+  _DISTANCESENSOR.fields_by_name['maximum_distance_m']._options = None
+  _DISTANCESENSOR.fields_by_name['maximum_distance_m']._serialized_options = b'\202\265\030\003NaN'
+  _DISTANCESENSOR.fields_by_name['current_distance_m']._options = None
+  _DISTANCESENSOR.fields_by_name['current_distance_m']._serialized_options = b'\202\265\030\003NaN'
+  _POSITIONNED.fields_by_name['north_m']._options = None
+  _POSITIONNED.fields_by_name['north_m']._serialized_options = b'\202\265\030\003NaN'
+  _POSITIONNED.fields_by_name['east_m']._options = None
+  _POSITIONNED.fields_by_name['east_m']._serialized_options = b'\202\265\030\003NaN'
+  _POSITIONNED.fields_by_name['down_m']._options = None
+  _POSITIONNED.fields_by_name['down_m']._serialized_options = b'\202\265\030\003NaN'
+  _GROUNDTRUTH.fields_by_name['latitude_deg']._options = None
+  _GROUNDTRUTH.fields_by_name['latitude_deg']._serialized_options = b'\202\265\030\003NaN'
+  _GROUNDTRUTH.fields_by_name['longitude_deg']._options = None
+  _GROUNDTRUTH.fields_by_name['longitude_deg']._serialized_options = b'\202\265\030\003NaN'
+  _GROUNDTRUTH.fields_by_name['absolute_altitude_m']._options = None
+  _GROUNDTRUTH.fields_by_name['absolute_altitude_m']._serialized_options = b'\202\265\030\003NaN'
+  _FIXEDWINGMETRICS.fields_by_name['airspeed_m_s']._options = None
+  _FIXEDWINGMETRICS.fields_by_name['airspeed_m_s']._serialized_options = b'\202\265\030\003NaN'
+  _FIXEDWINGMETRICS.fields_by_name['throttle_percentage']._options = None
+  _FIXEDWINGMETRICS.fields_by_name['throttle_percentage']._serialized_options = b'\202\265\030\003NaN'
+  _FIXEDWINGMETRICS.fields_by_name['climb_rate_m_s']._options = None
+  _FIXEDWINGMETRICS.fields_by_name['climb_rate_m_s']._serialized_options = b'\202\265\030\003NaN'
+  _ACCELERATIONFRD.fields_by_name['forward_m_s2']._options = None
+  _ACCELERATIONFRD.fields_by_name['forward_m_s2']._serialized_options = b'\202\265\030\003NaN'
+  _ACCELERATIONFRD.fields_by_name['right_m_s2']._options = None
+  _ACCELERATIONFRD.fields_by_name['right_m_s2']._serialized_options = b'\202\265\030\003NaN'
+  _ACCELERATIONFRD.fields_by_name['down_m_s2']._options = None
+  _ACCELERATIONFRD.fields_by_name['down_m_s2']._serialized_options = b'\202\265\030\003NaN'
+  _ANGULARVELOCITYFRD.fields_by_name['forward_rad_s']._options = None
+  _ANGULARVELOCITYFRD.fields_by_name['forward_rad_s']._serialized_options = b'\202\265\030\003NaN'
+  _ANGULARVELOCITYFRD.fields_by_name['right_rad_s']._options = None
+  _ANGULARVELOCITYFRD.fields_by_name['right_rad_s']._serialized_options = b'\202\265\030\003NaN'
+  _ANGULARVELOCITYFRD.fields_by_name['down_rad_s']._options = None
+  _ANGULARVELOCITYFRD.fields_by_name['down_rad_s']._serialized_options = b'\202\265\030\003NaN'
+  _MAGNETICFIELDFRD.fields_by_name['forward_gauss']._options = None
+  _MAGNETICFIELDFRD.fields_by_name['forward_gauss']._serialized_options = b'\202\265\030\003NaN'
+  _MAGNETICFIELDFRD.fields_by_name['right_gauss']._options = None
+  _MAGNETICFIELDFRD.fields_by_name['right_gauss']._serialized_options = b'\202\265\030\003NaN'
+  _MAGNETICFIELDFRD.fields_by_name['down_gauss']._options = None
+  _MAGNETICFIELDFRD.fields_by_name['down_gauss']._serialized_options = b'\202\265\030\003NaN'
+  _IMU.fields_by_name['temperature_degc']._options = None
+  _IMU.fields_by_name['temperature_degc']._serialized_options = b'\202\265\030\003NaN'
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishPosition']._options = None
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishPosition']._serialized_options = b'\200\265\030\001'
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishHome']._options = None
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishHome']._serialized_options = b'\200\265\030\001'
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishSysStatus']._options = None
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishSysStatus']._serialized_options = b'\200\265\030\001'
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishExtendedSysState']._options = None
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishExtendedSysState']._serialized_options = b'\200\265\030\001'
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishRawGps']._options = None
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishRawGps']._serialized_options = b'\200\265\030\001'
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishBattery']._options = None
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishBattery']._serialized_options = b'\200\265\030\001'
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishStatusText']._options = None
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishStatusText']._serialized_options = b'\200\265\030\001'
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishOdometry']._options = None
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishOdometry']._serialized_options = b'\200\265\030\001'
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishPositionVelocityNed']._options = None
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishPositionVelocityNed']._serialized_options = b'\200\265\030\001'
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishGroundTruth']._options = None
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishGroundTruth']._serialized_options = b'\200\265\030\001'
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishImu']._options = None
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishImu']._serialized_options = b'\200\265\030\001'
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishScaledImu']._options = None
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishScaledImu']._serialized_options = b'\200\265\030\001'
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishRawImu']._options = None
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishRawImu']._serialized_options = b'\200\265\030\001'
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishUnixEpochTime']._options = None
+  _TELEMETRYSERVERSERVICE.methods_by_name['PublishUnixEpochTime']._serialized_options = b'\200\265\030\001'
+  _FIXTYPE._serialized_start=7416
+  _FIXTYPE._serialized_end=7580
+  _VTOLSTATE._serialized_start=7583
+  _VTOLSTATE._serialized_end=7724
+  _STATUSTEXTTYPE._serialized_start=7727
+  _STATUSTEXTTYPE._serialized_end=7976
+  _LANDEDSTATE._serialized_start=7979
+  _LANDEDSTATE._serialized_end=8126
+  _PUBLISHPOSITIONREQUEST._serialized_start=95
+  _PUBLISHPOSITIONREQUEST._serialized_end=295
+  _PUBLISHHOMEREQUEST._serialized_start=297
+  _PUBLISHHOMEREQUEST._serialized_end=370
+  _PUBLISHSYSSTATUSREQUEST._serialized_start=373
+  _PUBLISHSYSSTATUSREQUEST._serialized_end=564
+  _PUBLISHEXTENDEDSYSSTATEREQUEST._serialized_start=567
+  _PUBLISHEXTENDEDSYSSTATEREQUEST._serialized_end=723
+  _PUBLISHINAIRREQUEST._serialized_start=725
+  _PUBLISHINAIRREQUEST._serialized_end=765
+  _PUBLISHLANDEDSTATEREQUEST._serialized_start=767
+  _PUBLISHLANDEDSTATEREQUEST._serialized_end=858
+  _PUBLISHRAWGPSREQUEST._serialized_start=861
+  _PUBLISHRAWGPSREQUEST._serialized_end=993
+  _PUBLISHBATTERYREQUEST._serialized_start=995
+  _PUBLISHBATTERYREQUEST._serialized_end=1073
+  _PUBLISHRCSTATUSREQUEST._serialized_start=1075
+  _PUBLISHRCSTATUSREQUEST._serialized_end=1157
+  _PUBLISHSTATUSTEXTREQUEST._serialized_start=1159
+  _PUBLISHSTATUSTEXTREQUEST._serialized_end=1247
+  _PUBLISHODOMETRYREQUEST._serialized_start=1249
+  _PUBLISHODOMETRYREQUEST._serialized_end=1330
+  _PUBLISHPOSITIONVELOCITYNEDREQUEST._serialized_start=1332
+  _PUBLISHPOSITIONVELOCITYNEDREQUEST._serialized_end=1448
+  _PUBLISHGROUNDTRUTHREQUEST._serialized_start=1450
+  _PUBLISHGROUNDTRUTHREQUEST._serialized_end=1541
+  _PUBLISHIMUREQUEST._serialized_start=1543
+  _PUBLISHIMUREQUEST._serialized_end=1609
+  _PUBLISHSCALEDIMUREQUEST._serialized_start=1611
+  _PUBLISHSCALEDIMUREQUEST._serialized_end=1683
+  _PUBLISHRAWIMUREQUEST._serialized_start=1685
+  _PUBLISHRAWIMUREQUEST._serialized_end=1754
+  _PUBLISHUNIXEPOCHTIMEREQUEST._serialized_start=1756
+  _PUBLISHUNIXEPOCHTIMEREQUEST._serialized_end=1802
+  _PUBLISHPOSITIONRESPONSE._serialized_start=1804
+  _PUBLISHPOSITIONRESPONSE._serialized_end=1914
+  _PUBLISHHOMERESPONSE._serialized_start=1916
+  _PUBLISHHOMERESPONSE._serialized_end=2022
+  _PUBLISHSYSSTATUSRESPONSE._serialized_start=2024
+  _PUBLISHSYSSTATUSRESPONSE._serialized_end=2135
+  _PUBLISHEXTENDEDSYSSTATERESPONSE._serialized_start=2137
+  _PUBLISHEXTENDEDSYSSTATERESPONSE._serialized_end=2255
+  _PUBLISHRAWGPSRESPONSE._serialized_start=2257
+  _PUBLISHRAWGPSRESPONSE._serialized_end=2365
+  _PUBLISHBATTERYRESPONSE._serialized_start=2367
+  _PUBLISHBATTERYRESPONSE._serialized_end=2476
+  _PUBLISHSTATUSTEXTRESPONSE._serialized_start=2478
+  _PUBLISHSTATUSTEXTRESPONSE._serialized_end=2590
+  _PUBLISHODOMETRYRESPONSE._serialized_start=2592
+  _PUBLISHODOMETRYRESPONSE._serialized_end=2702
+  _PUBLISHPOSITIONVELOCITYNEDRESPONSE._serialized_start=2704
+  _PUBLISHPOSITIONVELOCITYNEDRESPONSE._serialized_end=2825
+  _PUBLISHGROUNDTRUTHRESPONSE._serialized_start=2827
+  _PUBLISHGROUNDTRUTHRESPONSE._serialized_end=2940
+  _PUBLISHIMURESPONSE._serialized_start=2942
+  _PUBLISHIMURESPONSE._serialized_end=3047
+  _PUBLISHSCALEDIMURESPONSE._serialized_start=3049
+  _PUBLISHSCALEDIMURESPONSE._serialized_end=3160
+  _PUBLISHRAWIMURESPONSE._serialized_start=3162
+  _PUBLISHRAWIMURESPONSE._serialized_end=3270
+  _PUBLISHUNIXEPOCHTIMERESPONSE._serialized_start=3272
+  _PUBLISHUNIXEPOCHTIMERESPONSE._serialized_end=3387
+  _POSITION._serialized_start=3390
+  _POSITION._serialized_end=3539
+  _HEADING._serialized_start=3541
+  _HEADING._serialized_end=3580
+  _QUATERNION._serialized_start=3582
+  _QUATERNION._serialized_end=3696
+  _EULERANGLE._serialized_start=3698
+  _EULERANGLE._serialized_end=3813
+  _ANGULARVELOCITYBODY._serialized_start=3815
+  _ANGULARVELOCITYBODY._serialized_end=3923
+  _GPSINFO._serialized_start=3925
+  _GPSINFO._serialized_end=4021
+  _RAWGPS._serialized_start=4024
+  _RAWGPS._serialized_end=4375
+  _BATTERY._serialized_start=4377
+  _BATTERY._serialized_end=4450
+  _RCSTATUS._serialized_start=4452
+  _RCSTATUS._serialized_end=4576
+  _STATUSTEXT._serialized_start=4578
+  _STATUSTEXT._serialized_end=4663
+  _ACTUATORCONTROLTARGET._serialized_start=4665
+  _ACTUATORCONTROLTARGET._serialized_end=4728
+  _ACTUATOROUTPUTSTATUS._serialized_start=4730
+  _ACTUATOROUTPUTSTATUS._serialized_end=4793
+  _COVARIANCE._serialized_start=4795
+  _COVARIANCE._serialized_end=4834
+  _VELOCITYBODY._serialized_start=4836
+  _VELOCITYBODY._serialized_end=4895
+  _POSITIONBODY._serialized_start=4897
+  _POSITIONBODY._serialized_end=4950
+  _ODOMETRY._serialized_start=4953
+  _ODOMETRY._serialized_end=5629
+  _ODOMETRY_MAVFRAME._serialized_start=5523
+  _ODOMETRY_MAVFRAME._serialized_end=5629
+  _DISTANCESENSOR._serialized_start=5631
+  _DISTANCESENSOR._serialized_end=5758
+  _SCALEDPRESSURE._serialized_start=5761
+  _SCALEDPRESSURE._serialized_end=5937
+  _POSITIONNED._serialized_start=5939
+  _POSITIONNED._serialized_end=6028
+  _VELOCITYNED._serialized_start=6030
+  _VELOCITYNED._serialized_end=6098
+  _POSITIONVELOCITYNED._serialized_start=6101
+  _POSITIONVELOCITYNED._serialized_end=6242
+  _GROUNDTRUTH._serialized_start=6244
+  _GROUNDTRUTH._serialized_end=6358
+  _FIXEDWINGMETRICS._serialized_start=6360
+  _FIXEDWINGMETRICS._serialized_end=6480
+  _ACCELERATIONFRD._serialized_start=6482
+  _ACCELERATIONFRD._serialized_end=6587
+  _ANGULARVELOCITYFRD._serialized_start=6589
+  _ANGULARVELOCITYFRD._serialized_end=6700
+  _MAGNETICFIELDFRD._serialized_start=6702
+  _MAGNETICFIELDFRD._serialized_end=6811
+  _IMU._serialized_start=6814
+  _IMU._serialized_end=7102
+  _TELEMETRYSERVERRESULT._serialized_start=7105
+  _TELEMETRYSERVERRESULT._serialized_end=7413
+  _TELEMETRYSERVERRESULT_RESULT._serialized_start=7226
+  _TELEMETRYSERVERRESULT_RESULT._serialized_end=7413
+  _TELEMETRYSERVERSERVICE._serialized_start=8129
+  _TELEMETRYSERVERSERVICE._serialized_end=10061
 # @@protoc_insertion_point(module_scope)
