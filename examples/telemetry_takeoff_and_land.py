@@ -31,7 +31,7 @@ async def run():
     print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print(f"Drone discovered!")
+            print(f"-- Connected to drone!")
             break
 
     # Start parallel tasks
@@ -40,6 +40,11 @@ async def run():
 
     running_tasks = [print_altitude_task, print_flight_mode_task]
     termination_task = asyncio.ensure_future(observe_is_in_air(drone, running_tasks))
+
+    async for health in drone.telemetry.health():
+        if health.is_global_position_ok and health.is_home_position_ok:
+            print("-- Global position state is good enough for flying.")
+            break
 
     # Execute the maneuvers
     print("-- Arming")

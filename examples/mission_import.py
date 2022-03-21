@@ -13,7 +13,7 @@ async def run():
     print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print("Drone discovered!")
+            print(f"-- Connected to drone!")
             break
 
     mission_import_data = await drone.mission_raw.import_qgroundcontrol_mission("example-mission.plan")

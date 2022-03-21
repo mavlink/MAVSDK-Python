@@ -13,7 +13,7 @@ async def run():
     print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print(f"Drone discovered!")
+            print(f"-- Connected to drone!")
             break
 
     song_elements = []
