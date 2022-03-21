@@ -35,15 +35,16 @@ async def manual_controls():
     await drone.connect(system_address="udp://:14540")
 
     # This waits till a mavlink based drone is connected
+    print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
         if state.is_connected:
             print(f"-- Connected to drone!")
             break
 
     # Checking if Global Position Estimate is ok
-    async for global_lock in drone.telemetry.health():
-        if global_lock.is_global_position_ok:
-            print("-- Global position state is ok")
+    async for health in drone.telemetry.health():
+        if health.is_global_position_ok and health.is_home_position_ok:
+            print("-- Global position state is good enough for flying.")
             break
 
     # set the manual control input after arming

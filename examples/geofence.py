@@ -19,10 +19,10 @@ async def run():
     await drone.connect(system_address="udp://:14540")
 
     # Wait for the drone to connect
-    print("Waiting for drone...")
+    print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print(f"Drone discovered!")
+            print(f"-- Connected to drone!")
             break
 
     # Fetch the home location coordinates, in order to set a boundary around the home location
