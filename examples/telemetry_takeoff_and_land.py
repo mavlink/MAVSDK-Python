@@ -46,15 +46,12 @@ async def run():
             print("-- Global position state is good enough for flying.")
             break
 
-    # Take the drone little bit higher during takeoff
-    print("-- Setting takeoff altitude")
-    await drone.param.set_param_float('MIS_TAKEOFF_ALT', 10.0)
-
     # Execute the maneuvers
     print("-- Arming")
     await drone.action.arm()
 
     print("-- Taking off")
+    await drone.action.set_takeoff_altitude(10.0)
     await drone.action.takeoff()
 
     await asyncio.sleep(10)
