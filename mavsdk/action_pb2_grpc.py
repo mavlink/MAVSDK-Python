@@ -120,6 +120,11 @@ class ActionServiceStub(object):
                 request_serializer=action_dot_action__pb2.SetReturnToLaunchAltitudeRequest.SerializeToString,
                 response_deserializer=action_dot_action__pb2.SetReturnToLaunchAltitudeResponse.FromString,
                 )
+        self.SetCurrentSpeed = channel.unary_unary(
+                '/mavsdk.rpc.action.ActionService/SetCurrentSpeed',
+                request_serializer=action_dot_action__pb2.SetCurrentSpeedRequest.SerializeToString,
+                response_deserializer=action_dot_action__pb2.SetCurrentSpeedResponse.FromString,
+                )
 
 
 class ActionServiceServicer(object):
@@ -343,6 +348,17 @@ class ActionServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetCurrentSpeed(self, request, context):
+        """
+        Set current speed.
+
+        This will set the speed during a mission, reposition, and similar.
+        It is ephemeral, so not stored on the drone and does not survive a reboot.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ActionServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -450,6 +466,11 @@ def add_ActionServiceServicer_to_server(servicer, server):
                     servicer.SetReturnToLaunchAltitude,
                     request_deserializer=action_dot_action__pb2.SetReturnToLaunchAltitudeRequest.FromString,
                     response_serializer=action_dot_action__pb2.SetReturnToLaunchAltitudeResponse.SerializeToString,
+            ),
+            'SetCurrentSpeed': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetCurrentSpeed,
+                    request_deserializer=action_dot_action__pb2.SetCurrentSpeedRequest.FromString,
+                    response_serializer=action_dot_action__pb2.SetCurrentSpeedResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -816,5 +837,22 @@ class ActionService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.action.ActionService/SetReturnToLaunchAltitude',
             action_dot_action__pb2.SetReturnToLaunchAltitudeRequest.SerializeToString,
             action_dot_action__pb2.SetReturnToLaunchAltitudeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetCurrentSpeed(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.action.ActionService/SetCurrentSpeed',
+            action_dot_action__pb2.SetCurrentSpeedRequest.SerializeToString,
+            action_dot_action__pb2.SetCurrentSpeedResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

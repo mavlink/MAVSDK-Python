@@ -122,6 +122,11 @@ class CameraServiceStub(object):
                 request_serializer=camera_dot_camera__pb2.FormatStorageRequest.SerializeToString,
                 response_deserializer=camera_dot_camera__pb2.FormatStorageResponse.FromString,
                 )
+        self.SelectCamera = channel.unary_unary(
+                '/mavsdk.rpc.camera.CameraService/SelectCamera',
+                request_serializer=camera_dot_camera__pb2.SelectCameraRequest.SerializeToString,
+                response_deserializer=camera_dot_camera__pb2.SelectCameraResponse.FromString,
+                )
 
 
 class CameraServiceServicer(object):
@@ -301,6 +306,16 @@ class CameraServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SelectCamera(self, request, context):
+        """
+        Select current camera .
+
+        Bind the plugin instance to a specific camera_id 
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_CameraServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -403,6 +418,11 @@ def add_CameraServiceServicer_to_server(servicer, server):
                     servicer.FormatStorage,
                     request_deserializer=camera_dot_camera__pb2.FormatStorageRequest.FromString,
                     response_serializer=camera_dot_camera__pb2.FormatStorageResponse.SerializeToString,
+            ),
+            'SelectCamera': grpc.unary_unary_rpc_method_handler(
+                    servicer.SelectCamera,
+                    request_deserializer=camera_dot_camera__pb2.SelectCameraRequest.FromString,
+                    response_serializer=camera_dot_camera__pb2.SelectCameraResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -759,5 +779,22 @@ class CameraService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/FormatStorage',
             camera_dot_camera__pb2.FormatStorageRequest.SerializeToString,
             camera_dot_camera__pb2.FormatStorageResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SelectCamera(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/SelectCamera',
+            camera_dot_camera__pb2.SelectCameraRequest.SerializeToString,
+            camera_dot_camera__pb2.SelectCameraResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

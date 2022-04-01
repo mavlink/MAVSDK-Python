@@ -2351,3 +2351,31 @@ class Camera(AsyncBase):
         if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "format_storage()")
         
+
+    async def select_camera(self, camera_id):
+        """
+         Select current camera .
+
+         Bind the plugin instance to a specific camera_id
+
+         Parameters
+         ----------
+         camera_id : int32_t
+              Id of camera to be selected
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.SelectCameraRequest()
+        request.camera_id = camera_id
+        response = await self._stub.SelectCamera(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "select_camera()", camera_id)
+        
