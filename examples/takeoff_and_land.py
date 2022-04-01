@@ -2,6 +2,7 @@
 
 import asyncio
 from mavsdk import System
+from mavsdk.server_utility import StatusTextType
 
 
 async def run():
@@ -14,6 +15,9 @@ async def run():
         if state.is_connected:
             print(f"-- Connected to drone!")
             break
+
+    print("-- Sending status text")
+    await drone.server_utility.send_status_text(StatusTextType.INFO, "Starting MAVSDK app...")
 
     print("Waiting for drone to have a global position estimate...")
     async for health in drone.telemetry.health():
