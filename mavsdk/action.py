@@ -864,3 +864,32 @@ class Action(AsyncBase):
         if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "set_return_to_launch_altitude()", relative_altitude_m)
         
+
+    async def set_current_speed(self, speed_m_s):
+        """
+         Set current speed.
+
+         This will set the speed during a mission, reposition, and similar.
+         It is ephemeral, so not stored on the drone and does not survive a reboot.
+
+         Parameters
+         ----------
+         speed_m_s : float
+              Speed in meters/second
+
+         Raises
+         ------
+         ActionError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = action_pb2.SetCurrentSpeedRequest()
+        request.speed_m_s = speed_m_s
+        response = await self._stub.SetCurrentSpeed(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != ActionResult.Result.SUCCESS:
+            raise ActionError(result, "set_current_speed()", speed_m_s)
+        
