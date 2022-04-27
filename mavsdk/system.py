@@ -352,7 +352,12 @@ class System:
             from importlib_resources import path
 
         try:
-            with path(bin, 'mavsdk_server') as backend:
+            if sys.platform.startswith('win'):
+                mavsdk_exec_name = "mavsdk_server.exe"
+            else:
+                mavsdk_exec_name = "mavsdk_server"
+
+            with path(bin, mavsdk_exec_name) as backend:
                 bin_path_and_args = [os.fspath(backend),
                                      "-p", str(port),
                                      "--sysid", str(sysid),

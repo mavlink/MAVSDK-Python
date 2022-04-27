@@ -76,8 +76,12 @@ class custom_build(build):
     def mavsdk_server_filepath(self):
         """
         The location of the downloaded `mavsdk_server` binary
+        For Windows this needs to be a .exe file
         """
-        return 'mavsdk/bin/mavsdk_server'
+        if sys.platform.startswith('win'):
+            return 'mavsdk/bin/mavsdk_server.exe'
+        else:
+            return 'mavsdk/bin/mavsdk_server'
 
     @property
     def mavsdk_server_tag(self):
