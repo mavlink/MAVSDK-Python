@@ -150,7 +150,6 @@ setup(
     packages=find_packages(exclude=["other", "docs", "tests", "examples",
                                     "proto"]),
     install_requires=parse_requirements("requirements.txt"),
-    setup_requires=parse_requirements("requirements-dev.txt"),
 
     project_urls={
         "Bug Reports": "https://github.com/mavlink/MAVSDK-Python/issues",
