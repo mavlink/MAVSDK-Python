@@ -33,3 +33,5 @@ Plugins
    tracking_server
    transponder
    tune
+   camera_server
+   rtk

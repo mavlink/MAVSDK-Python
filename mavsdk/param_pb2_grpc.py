@@ -35,6 +35,16 @@ class ParamServiceStub(object):
                 request_serializer=param_dot_param__pb2.SetParamFloatRequest.SerializeToString,
                 response_deserializer=param_dot_param__pb2.SetParamFloatResponse.FromString,
                 )
+        self.GetParamCustom = channel.unary_unary(
+                '/mavsdk.rpc.param.ParamService/GetParamCustom',
+                request_serializer=param_dot_param__pb2.GetParamCustomRequest.SerializeToString,
+                response_deserializer=param_dot_param__pb2.GetParamCustomResponse.FromString,
+                )
+        self.SetParamCustom = channel.unary_unary(
+                '/mavsdk.rpc.param.ParamService/SetParamCustom',
+                request_serializer=param_dot_param__pb2.SetParamCustomRequest.SerializeToString,
+                response_deserializer=param_dot_param__pb2.SetParamCustomResponse.FromString,
+                )
         self.GetAllParams = channel.unary_unary(
                 '/mavsdk.rpc.param.ParamService/GetAllParams',
                 request_serializer=param_dot_param__pb2.GetAllParamsRequest.SerializeToString,
@@ -86,6 +96,26 @@ class ParamServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetParamCustom(self, request, context):
+        """
+        Get a custom parameter.
+
+        If the type is wrong, the result will be `WRONG_TYPE`.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetParamCustom(self, request, context):
+        """
+        Set a custom parameter.
+
+        If the type is wrong, the result will be `WRONG_TYPE`.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetAllParams(self, request, context):
         """
         Get all parameters.
@@ -116,6 +146,16 @@ def add_ParamServiceServicer_to_server(servicer, server):
                     servicer.SetParamFloat,
                     request_deserializer=param_dot_param__pb2.SetParamFloatRequest.FromString,
                     response_serializer=param_dot_param__pb2.SetParamFloatResponse.SerializeToString,
+            ),
+            'GetParamCustom': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetParamCustom,
+                    request_deserializer=param_dot_param__pb2.GetParamCustomRequest.FromString,
+                    response_serializer=param_dot_param__pb2.GetParamCustomResponse.SerializeToString,
+            ),
+            'SetParamCustom': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetParamCustom,
+                    request_deserializer=param_dot_param__pb2.SetParamCustomRequest.FromString,
+                    response_serializer=param_dot_param__pb2.SetParamCustomResponse.SerializeToString,
             ),
             'GetAllParams': grpc.unary_unary_rpc_method_handler(
                     servicer.GetAllParams,
@@ -198,6 +238,40 @@ class ParamService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.param.ParamService/SetParamFloat',
             param_dot_param__pb2.SetParamFloatRequest.SerializeToString,
             param_dot_param__pb2.SetParamFloatResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetParamCustom(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.param.ParamService/GetParamCustom',
+            param_dot_param__pb2.GetParamCustomRequest.SerializeToString,
+            param_dot_param__pb2.GetParamCustomResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetParamCustom(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.param.ParamService/SetParamCustom',
+            param_dot_param__pb2.SetParamCustomRequest.SerializeToString,
+            param_dot_param__pb2.SetParamCustomResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
