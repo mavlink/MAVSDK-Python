@@ -154,9 +154,83 @@ class FloatParam:
         
 
 
+class CustomParam:
+    """
+     Type for float parameters.
+
+     Parameters
+     ----------
+     name : std::string
+          Name of the parameter
+
+     value : std::string
+          Value of the parameter
+
+     """
+
+    
+
+    def __init__(
+            self,
+            name,
+            value):
+        """ Initializes the CustomParam object """
+        self.name = name
+        self.value = value
+
+    def __eq__(self, to_compare):
+        """ Checks if two CustomParam are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # CustomParam object
+            return \
+                (self.name == to_compare.name) and \
+                (self.value == to_compare.value)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ CustomParam in string representation """
+        struct_repr = ", ".join([
+                "name: " + str(self.name),
+                "value: " + str(self.value)
+                ])
+
+        return f"CustomParam: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcCustomParam):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return CustomParam(
+                
+                rpcCustomParam.name,
+                
+                
+                rpcCustomParam.value
+                )
+
+    def translate_to_rpc(self, rpcCustomParam):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcCustomParam.name = self.name
+            
+        
+        
+        
+            
+        rpcCustomParam.value = self.value
+            
+        
+        
+
+
 class AllParams:
     """
-     Type collecting all integer and float parameters.
+     Type collecting all integer, float, and custom parameters.
 
      Parameters
      ----------
@@ -166,6 +240,9 @@ class AllParams:
      float_params : [FloatParam]
           Collection of all parameter names and values of type float
 
+     custom_params : [CustomParam]
+          Collection of all parameter names and values of type custom
+
      """
 
     
@@ -173,10 +250,12 @@ class AllParams:
     def __init__(
             self,
             int_params,
-            float_params):
+            float_params,
+            custom_params):
         """ Initializes the AllParams object """
         self.int_params = int_params
         self.float_params = float_params
+        self.custom_params = custom_params
 
     def __eq__(self, to_compare):
         """ Checks if two AllParams are the same """
@@ -185,7 +264,8 @@ class AllParams:
             # AllParams object
             return \
                 (self.int_params == to_compare.int_params) and \
-                (self.float_params == to_compare.float_params)
+                (self.float_params == to_compare.float_params) and \
+                (self.custom_params == to_compare.custom_params)
 
         except AttributeError:
             return False
@@ -194,7 +274,8 @@ class AllParams:
         """ AllParams in string representation """
         struct_repr = ", ".join([
                 "int_params: " + str(self.int_params),
-                "float_params: " + str(self.float_params)
+                "float_params: " + str(self.float_params),
+                "custom_params: " + str(self.custom_params)
                 ])
 
         return f"AllParams: [{struct_repr}]"
@@ -207,7 +288,10 @@ class AllParams:
                 list(map(lambda elem: IntParam.translate_from_rpc(elem), rpcAllParams.int_params)),
                 
                 
-                list(map(lambda elem: FloatParam.translate_from_rpc(elem), rpcAllParams.float_params))
+                list(map(lambda elem: FloatParam.translate_from_rpc(elem), rpcAllParams.float_params)),
+                
+                
+                list(map(lambda elem: CustomParam.translate_from_rpc(elem), rpcAllParams.custom_params))
                 )
 
     def translate_to_rpc(self, rpcAllParams):
@@ -237,6 +321,19 @@ class AllParams:
             rpc_elems_list.append(rpc_elem)
                 
         rpcAllParams.float_params.extend(rpc_elems_list)
+            
+        
+        
+        
+            
+        rpc_elems_list = []
+        for elem in self.custom_params:
+                
+            rpc_elem = param_server_pb2.CustomParam()
+            elem.translate_to_rpc(rpc_elem)
+            rpc_elems_list.append(rpc_elem)
+                
+        rpcAllParams.custom_params.extend(rpc_elems_list)
             
         
         
@@ -282,6 +379,9 @@ class ParamServerResult:
          NO_SYSTEM
               No system available
 
+         PARAM_VALUE_TOO_LONG
+              Parameter name too long (> 128)
+
          """
 
         
@@ -291,6 +391,7 @@ class ParamServerResult:
         WRONG_TYPE = 3
         PARAM_NAME_TOO_LONG = 4
         NO_SYSTEM = 5
+        PARAM_VALUE_TOO_LONG = 6
 
         def translate_to_rpc(self):
             if self == ParamServerResult.Result.UNKNOWN:
@@ -305,6 +406,8 @@ class ParamServerResult:
                 return param_server_pb2.ParamServerResult.RESULT_PARAM_NAME_TOO_LONG
             if self == ParamServerResult.Result.NO_SYSTEM:
                 return param_server_pb2.ParamServerResult.RESULT_NO_SYSTEM
+            if self == ParamServerResult.Result.PARAM_VALUE_TOO_LONG:
+                return param_server_pb2.ParamServerResult.RESULT_PARAM_VALUE_TOO_LONG
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -321,6 +424,8 @@ class ParamServerResult:
                 return ParamServerResult.Result.PARAM_NAME_TOO_LONG
             if rpc_enum_value == param_server_pb2.ParamServerResult.RESULT_NO_SYSTEM:
                 return ParamServerResult.Result.NO_SYSTEM
+            if rpc_enum_value == param_server_pb2.ParamServerResult.RESULT_PARAM_VALUE_TOO_LONG:
+                return ParamServerResult.Result.PARAM_VALUE_TOO_LONG
 
         def __str__(self):
             return self.name
@@ -557,6 +662,77 @@ class ParamServer(AsyncBase):
 
         if result.result != ParamServerResult.Result.SUCCESS:
             raise ParamServerError(result, "provide_param_float()", name, value)
+        
+
+    async def retrieve_param_custom(self, name):
+        """
+         Retrieve a custom parameter.
+
+         If the type is wrong, the result will be `WRONG_TYPE`.
+
+         Parameters
+         ----------
+         name : std::string
+              Name of the parameter
+
+         Returns
+         -------
+         value : std::string
+              Value of the requested parameter
+
+         Raises
+         ------
+         ParamServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = param_server_pb2.RetrieveParamCustomRequest()
+        
+            
+        request.name = name
+            
+        response = await self._stub.RetrieveParamCustom(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != ParamServerResult.Result.SUCCESS:
+            raise ParamServerError(result, "retrieve_param_custom()", name)
+        
+
+        return response.value
+        
+
+    async def provide_param_custom(self, name, value):
+        """
+         Provide a custom parameter.
+
+         If the type is wrong, the result will be `WRONG_TYPE`.
+
+         Parameters
+         ----------
+         name : std::string
+              Name of the parameter to provide
+
+         value : std::string
+              Value the parameter should be set to
+
+         Raises
+         ------
+         ParamServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = param_server_pb2.ProvideParamCustomRequest()
+        request.name = name
+        request.value = value
+        response = await self._stub.ProvideParamCustom(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != ParamServerResult.Result.SUCCESS:
+            raise ParamServerError(result, "provide_param_custom()", name, value)
         
 
     async def retrieve_all_params(self):

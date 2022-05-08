@@ -222,6 +222,9 @@ class AdsbVehicle:
      squawk : uint32_t
           Squawk code.
 
+     tslc_s : uint32_t
+          Time Since Last Communication in seconds.
+
      """
 
     
@@ -237,7 +240,8 @@ class AdsbVehicle:
             vertical_velocity_m_s,
             callsign,
             emitter_type,
-            squawk):
+            squawk,
+            tslc_s):
         """ Initializes the AdsbVehicle object """
         self.icao_address = icao_address
         self.latitude_deg = latitude_deg
@@ -249,6 +253,7 @@ class AdsbVehicle:
         self.callsign = callsign
         self.emitter_type = emitter_type
         self.squawk = squawk
+        self.tslc_s = tslc_s
 
     def __eq__(self, to_compare):
         """ Checks if two AdsbVehicle are the same """
@@ -265,7 +270,8 @@ class AdsbVehicle:
                 (self.vertical_velocity_m_s == to_compare.vertical_velocity_m_s) and \
                 (self.callsign == to_compare.callsign) and \
                 (self.emitter_type == to_compare.emitter_type) and \
-                (self.squawk == to_compare.squawk)
+                (self.squawk == to_compare.squawk) and \
+                (self.tslc_s == to_compare.tslc_s)
 
         except AttributeError:
             return False
@@ -282,7 +288,8 @@ class AdsbVehicle:
                 "vertical_velocity_m_s: " + str(self.vertical_velocity_m_s),
                 "callsign: " + str(self.callsign),
                 "emitter_type: " + str(self.emitter_type),
-                "squawk: " + str(self.squawk)
+                "squawk: " + str(self.squawk),
+                "tslc_s: " + str(self.tslc_s)
                 ])
 
         return f"AdsbVehicle: [{struct_repr}]"
@@ -319,7 +326,10 @@ class AdsbVehicle:
                 AdsbEmitterType.translate_from_rpc(rpcAdsbVehicle.emitter_type),
                 
                 
-                rpcAdsbVehicle.squawk
+                rpcAdsbVehicle.squawk,
+                
+                
+                rpcAdsbVehicle.tslc_s
                 )
 
     def translate_to_rpc(self, rpcAdsbVehicle):
@@ -383,6 +393,12 @@ class AdsbVehicle:
         
             
         rpcAdsbVehicle.squawk = self.squawk
+            
+        
+        
+        
+            
+        rpcAdsbVehicle.tslc_s = self.tslc_s
             
         
         
