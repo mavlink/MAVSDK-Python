@@ -9,9 +9,10 @@ from . import action
 from . import action_server
 from . import calibration
 from . import camera
-from . import core
+from . import camera_server
 from . import component_information
 from . import component_information_server
+from . import core
 from . import failure
 from . import follow_me
 from . import ftp
@@ -27,6 +28,7 @@ from . import mocap
 from . import offboard
 from . import param
 from . import param_server
+from . import rtk
 from . import server_utility
 from . import shell
 from . import telemetry
@@ -130,9 +132,10 @@ class System:
         self._plugins["action_server"] = action_server.ActionServer(plugin_manager)
         self._plugins["calibration"] = calibration.Calibration(plugin_manager)
         self._plugins["camera"] = camera.Camera(plugin_manager)
-        self._plugins["core"] = core.Core(plugin_manager)
+        self._plugins["camera_server"] = camera_server.CameraServer(plugin_manager)
         self._plugins["component_information"] = component_information.ComponentInformation(plugin_manager)
         self._plugins["component_information_server"] = component_information_server.ComponentInformationServer(plugin_manager)
+        self._plugins["core"] = core.Core(plugin_manager)
         self._plugins["failure"] = failure.Failure(plugin_manager)
         self._plugins["follow_me"] = follow_me.FollowMe(plugin_manager)
         self._plugins["ftp"] = ftp.Ftp(plugin_manager)
@@ -148,6 +151,7 @@ class System:
         self._plugins["offboard"] = offboard.Offboard(plugin_manager)
         self._plugins["param"] = param.Param(plugin_manager)
         self._plugins["param_server"] = param_server.ParamServer(plugin_manager)
+        self._plugins["rtk"] = rtk.Rtk(plugin_manager)
         self._plugins["server_utility"] = server_utility.ServerUtility(plugin_manager)
         self._plugins["shell"] = shell.Shell(plugin_manager)
         self._plugins["telemetry"] = telemetry.Telemetry(plugin_manager)
@@ -158,7 +162,7 @@ class System:
 
     @staticmethod
     def error_uninitialized(plugin_name: str) -> str:
-        return "{plugin_name} plugin has not been initialized!" \
+        return "{plugin_name} plugin has not been initialized! " \
             "Did you run `System.connect()`?"
 
     @property
@@ -186,10 +190,10 @@ class System:
         return self._plugins["camera"]
 
     @property
-    def core(self) -> core.Core:
-        if "core" not in self._plugins:
-            raise RuntimeError(self.error_uninitialized("Core"))
-        return self._plugins["core"]
+    def camera_server(self) -> camera_server.CameraServer:
+        if "camera_server" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("CameraServer"))
+        return self._plugins["camera_server"]
 
     @property
     def component_information(self) -> component_information.ComponentInformation:
@@ -202,6 +206,12 @@ class System:
         if "component_information_server" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("ComponentInformationServer"))
         return self._plugins["component_informationServer"]
+
+    @property
+    def core(self) -> core.Core:
+        if "core" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("Core"))
+        return self._plugins["core"]
 
     @property
     def failure(self) -> failure.Failure:
@@ -292,6 +302,12 @@ class System:
         if "param_server" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("ParamServer"))
         return self._plugins["param_server"]
+
+    @property
+    def rtk(self) -> rtk.Rtk:
+        if "rtk" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("Rtk"))
+        return self._plugins["rtk"]
 
     @property
     def server_utility(self) -> server_utility.ServerUtility:
