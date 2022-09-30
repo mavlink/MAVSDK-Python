@@ -205,7 +205,7 @@ class System:
     def component_information_server(self) -> component_information_server.ComponentInformationServer:
         if "component_information_server" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("ComponentInformationServer"))
-        return self._plugins["component_informationServer"]
+        return self._plugins["component_information_server"]
 
     @property
     def core(self) -> core.Core:
