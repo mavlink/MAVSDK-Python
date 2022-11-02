@@ -1,4 +1,4 @@
-name: PyPi Upload
+name: Check and PyPi Upload
 
 on:
   push:
@@ -11,9 +11,9 @@ on:
     - '*'
 
 jobs:
-  ubuntu20:
-    name: Ubuntu 20.04 x86_64
-    runs-on: ubuntu-20.04
+  ubuntu22:
+    name: Ubuntu 22.04 x86_64
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v1
         with:
@@ -25,13 +25,13 @@ jobs:
          echo $?
          git tag --list
 
-      - name: Install patchelf
-        run: sudo apt-get install -y patchelf python3-pip
+      - name: Install pip
+        run: sudo apt-get install -y python3-pip
 
       - name: Install prerequisites
         run: |
-          pip3 install -r requirements.txt -r requirements-dev.txt -r requirements-docs.txt
-          pip3 install auditwheel twine
+          python3 -m pip install -r requirements.txt -r requirements-dev.txt -r requirements-docs.txt
+          python3 -m pip install auditwheel twine
 
       - name: Create wheel
         run: |
@@ -70,9 +70,9 @@ jobs:
 
 
 
-  ubuntu20-other:
-    name: Ubuntu 20.04 ${{ matrix.arch }}
-    runs-on: ubuntu-20.04
+  ubuntu22-other:
+    name: Ubuntu 22.04 ${{ matrix.arch }}
+    runs-on: ubuntu-22.04
 
     strategy:
       matrix:
@@ -95,13 +95,13 @@ jobs:
          echo $?
          git tag --list
 
-      - name: Install patchelf
-        run: sudo apt-get install -y patchelf python3-pip
+      - name: Install pip
+        run: sudo apt-get install -y python3-pip
 
       - name: Install prerequisites
         run: |
-          pip3 install -r requirements.txt -r requirements-dev.txt
-          pip3 install twine
+          python3 -m pip install -r requirements.txt -r requirements-dev.txt
+          python3 -m pip install twine
 
       - name: Create wheel
         run: |
@@ -139,12 +139,15 @@ jobs:
 
       - name: Install prerequisites
         run: |
-          pip3 install -r requirements.txt -r requirements-dev.txt
-          pip3 install delocate twine
+          python3 -m pip install -r requirements.txt
+          python3 -m pip install twine
+          python3 -m pip install --user delocate
 
       - name: Create wheel
         run: |
           python3 setup.py bdist_wheel
+          export PATH="$(python3 -m site --user-base)/bin:$PATH"
+          echo "PATH: $PATH"
           delocate-wheel -w wheelhouse -v dist/*.whl
           ls wheelhouse/*any.whl | sed -e 'p;s/any/macosx_10_9_x86_64/' | xargs -n2 mv
 
@@ -188,17 +191,17 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7
+          python-version: 3.10
           architecture: ${{ matrix.arch }}
 
       - name: Install prerequisites
         run: |
-          pip3 install -r requirements.txt -r requirements-dev.txt
-          pip3 install twine wheel
+          python3 -m pip install -r requirements.txt -r requirements-dev.txt
+          python3 -m pip install twine wheel
 
       - name: Create wheel
         run: |
-          python setup.py bdist_wheel
+          python3 setup.py bdist_wheel
           Dir "dist/" | rename-item -NewName {$_.name -replace '-any.whl','-${{ matrix.wheel_arch }}.whl'}
 
       - name: Check the artifacts
