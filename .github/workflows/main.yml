@@ -1,4 +1,4 @@
-name: PyPi Upload
+name: Check and PyPi Upload
 
 on:
   push:
