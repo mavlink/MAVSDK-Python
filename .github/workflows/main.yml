@@ -139,13 +139,15 @@ jobs:
 
       - name: Install prerequisites
         run: |
-          brew install ninja
-          python3 -m pip install -r requirements.txt -r requirements-dev.txt
-          python3 -m pip install delocate twine
+          python3 -m pip install -r requirements.txt
+          python3 -m pip install twine
+          python3 -m pip install --user delocate
 
       - name: Create wheel
         run: |
           python3 setup.py bdist_wheel
+          export PATH="$(python3 -m site --user-base)/bin:$PATH"
+          echo "PATH: $PATH"
           delocate-wheel -w wheelhouse -v dist/*.whl
           ls wheelhouse/*any.whl | sed -e 'p;s/any/macosx_10_9_x86_64/' | xargs -n2 mv
 
