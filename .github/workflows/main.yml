@@ -139,6 +139,7 @@ jobs:
 
       - name: Install prerequisites
         run: |
+          brew install ninja
           python3 -m pip install -r requirements.txt -r requirements-dev.txt
           python3 -m pip install delocate twine
 
