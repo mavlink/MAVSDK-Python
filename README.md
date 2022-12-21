@@ -101,7 +101,7 @@ export MAVSDK_SERVER_ARCH=<ARM embedded architecture>
 ```
 Supported architectures: `armv6l`, `armv7l` and `aarch64`. For example for Raspberry Pi it is `armv7l`, or `aarch64` (if a 64 bit distribution is used).
 
-Then you can install a development (editable) version of the package using:
+Then you can install a development version of the package, which links the package to the generated code in this local directory. To do so, use:
 ```
 python3 setup.py build
 pip3 install -e .
