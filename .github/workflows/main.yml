@@ -125,7 +125,7 @@ jobs:
 
   macOS:
     name: macOS
-    runs-on: macos-latest
+    runs-on: macos-12
     steps:
       - uses: actions/checkout@v1
         with:
@@ -140,7 +140,7 @@ jobs:
       - name: Install prerequisites
         run: |
           python3 -m pip install -r requirements.txt
-          python3 -m pip install twine
+          python3 -m pip install twine wheel
           python3 -m pip install --user delocate
 
       - name: Create wheel
