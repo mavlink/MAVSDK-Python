@@ -23,7 +23,7 @@ MAVSDK-Python API reference
 Important Notes
 ---------------
 
-- Python 3.6+ is required.
+- Python 3.7+ is required.
 - You may need to run ``pip3`` instead of ``pip`` and ``python3`` instead of ``python``, depending of your system defaults.
 - Auterion has a _Getting started with MAVSDK-Python: https://auterion.com/getting-started-with-mavsdk-python/ guide if you're a beginner and not sure where to start.
 

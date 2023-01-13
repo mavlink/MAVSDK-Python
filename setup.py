@@ -136,7 +136,7 @@ setup(
     url="https://github.com/mavlink/MAVSDK-Python",
     maintainer="Jonas Vautherin, Julian Oes",
     maintainer_email="jonas@auterion.com, julian.oes@auterion.com",
-    python_requires='>=3.6',
+    python_requires='>=3.7',
     include_package_data=True,
     cmdclass={'build': custom_build},
 
@@ -144,7 +144,7 @@ setup(
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: BSD License",
-        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
     ],
 
     packages=find_packages(exclude=["other", "docs", "tests", "examples",
