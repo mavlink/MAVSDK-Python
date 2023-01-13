@@ -29,5 +29,5 @@ async def run():
             break
 
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(run())
+    # Run the asyncio loop
+    asyncio.run(run())

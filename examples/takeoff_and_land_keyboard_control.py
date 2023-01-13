@@ -1,6 +1,4 @@
-"""
-Author: @woosal1337
-"""
+#!/usr/bin/env python3
 
 import asyncio
 import pygame
@@ -148,6 +146,7 @@ async def print_position(drone=drone):
 
 if __name__ == "__main__":
 
+    # TODO: use new asyncio methods
     loop = asyncio.get_event_loop()
     loop.run_until_complete(setup())
     loop.run_until_complete(main())

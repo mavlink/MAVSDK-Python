@@ -64,5 +64,5 @@ async def fly_drone():
     await drone.action.land()
 
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(fly_drone())
+    # Run the asyncio loop
+    asyncio.run(run())
