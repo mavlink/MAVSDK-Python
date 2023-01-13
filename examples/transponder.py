@@ -9,7 +9,7 @@ async def run():
     drone = System()
     #await drone.connect(system_address="udp://:14540")
     await drone.connect()
-    
+
     # Start the tasks
     asyncio.ensure_future(print_transponders(drone))
 
@@ -19,8 +19,5 @@ async def print_transponders(drone):
 
 
 if __name__ == "__main__":
-    # Start the main function
-    asyncio.ensure_future(run())
-
-    # Runs the event loop until the program is canceled with e.g. CTRL-C
-    asyncio.get_event_loop().run_forever()
+    # Run the asyncio loop
+    asyncio.run(run())

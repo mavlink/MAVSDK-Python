@@ -7,7 +7,7 @@ from mavsdk.geofence import Point, Polygon
 """
 This example shows how to use the geofence plugin.
 
-Note: The behavior when your vehicle hits the geofence is NOT configured in this example. 
+Note: The behavior when your vehicle hits the geofence is NOT configured in this example.
 
 """
 
@@ -51,5 +51,5 @@ async def run():
 
 
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(run())
+    # Run the asyncio loop
+    asyncio.run(run())

@@ -83,6 +83,5 @@ async def print_gimbal_position(drone):
 
 
 if __name__ == "__main__":
-    # Start the main function
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(run())
+    # Run the asyncio loop
+    asyncio.run(run())

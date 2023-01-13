@@ -431,52 +431,6 @@ class LogFiles(AsyncBase):
         finally:
             download_log_file_stream.cancel()
 
-    async def download_log_file(self, entry, path):
-        """
-         Download log file synchronously.
-
-         Parameters
-         ----------
-         entry : Entry
-              Entry of the log file to download.
-
-         path : std::string
-              Path of where to download log file to.
-
-         Returns
-         -------
-         progress : ProgressData
-              Progress if result is progress
-
-         Raises
-         ------
-         LogFilesError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = log_files_pb2.DownloadLogFileRequest()
-        
-            
-                
-        entry.translate_to_rpc(request.entry)
-                
-            
-        
-            
-        request.path = path
-            
-        response = await self._stub.DownloadLogFile(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result != LogFilesResult.Result.SUCCESS:
-            raise LogFilesError(result, "download_log_file()", entry, path)
-        
-
-        return ProgressData.translate_from_rpc(response.progress)
-            
-
     async def erase_all_log_files(self):
         """
          Erase all log files.
