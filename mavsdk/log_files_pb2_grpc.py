@@ -26,11 +26,6 @@ class LogFilesServiceStub(object):
                 request_serializer=log__files_dot_log__files__pb2.SubscribeDownloadLogFileRequest.SerializeToString,
                 response_deserializer=log__files_dot_log__files__pb2.DownloadLogFileResponse.FromString,
                 )
-        self.DownloadLogFile = channel.unary_unary(
-                '/mavsdk.rpc.log_files.LogFilesService/DownloadLogFile',
-                request_serializer=log__files_dot_log__files__pb2.DownloadLogFileRequest.SerializeToString,
-                response_deserializer=log__files_dot_log__files__pb2.DownloadLogFileResponse.FromString,
-                )
         self.EraseAllLogFiles = channel.unary_unary(
                 '/mavsdk.rpc.log_files.LogFilesService/EraseAllLogFiles',
                 request_serializer=log__files_dot_log__files__pb2.EraseAllLogFilesRequest.SerializeToString,
@@ -57,13 +52,6 @@ class LogFilesServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def DownloadLogFile(self, request, context):
-        """Download log file synchronously.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def EraseAllLogFiles(self, request, context):
         """Erase all log files.
         """
@@ -82,11 +70,6 @@ def add_LogFilesServiceServicer_to_server(servicer, server):
             'SubscribeDownloadLogFile': grpc.unary_stream_rpc_method_handler(
                     servicer.SubscribeDownloadLogFile,
                     request_deserializer=log__files_dot_log__files__pb2.SubscribeDownloadLogFileRequest.FromString,
-                    response_serializer=log__files_dot_log__files__pb2.DownloadLogFileResponse.SerializeToString,
-            ),
-            'DownloadLogFile': grpc.unary_unary_rpc_method_handler(
-                    servicer.DownloadLogFile,
-                    request_deserializer=log__files_dot_log__files__pb2.DownloadLogFileRequest.FromString,
                     response_serializer=log__files_dot_log__files__pb2.DownloadLogFileResponse.SerializeToString,
             ),
             'EraseAllLogFiles': grpc.unary_unary_rpc_method_handler(
@@ -136,23 +119,6 @@ class LogFilesService(object):
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.log_files.LogFilesService/SubscribeDownloadLogFile',
             log__files_dot_log__files__pb2.SubscribeDownloadLogFileRequest.SerializeToString,
-            log__files_dot_log__files__pb2.DownloadLogFileResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def DownloadLogFile(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.log_files.LogFilesService/DownloadLogFile',
-            log__files_dot_log__files__pb2.DownloadLogFileRequest.SerializeToString,
             log__files_dot_log__files__pb2.DownloadLogFileResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
