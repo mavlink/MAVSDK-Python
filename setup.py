@@ -100,8 +100,8 @@ class custom_build(build):
         return f"https://github.com/mavlink/MAVSDK/releases/download/{self.mavsdk_server_tag}/mavsdk_server_{self.platform_suffix}"
 
     def run(self):
-        if 'MAVSDK_BUILD_PURE' not in os.environ:
-            self.download_mavsdk_server()
+        #if 'MAVSDK_BUILD_PURE' not in os.environ:
+            #self.download_mavsdk_server()
 
         build.run(self)
 
@@ -129,7 +129,7 @@ def version():
 
 setup(
     name="mavsdk",
-    version=version(),
+    #version=version(),
     description="Python wrapper for MAVSDK",
     long_description=parse_long_description(),
     long_description_content_type="text/markdown",
