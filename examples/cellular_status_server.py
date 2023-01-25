@@ -19,11 +19,10 @@ async def run():
             print(f"-- Connected to drone!")
             break
 
-    print("-- Arming")
-    await drone.action.arm()
+    # print("-- Arming")
+    # await drone.action.arm()
 
     while True:
-
         cellular_status = CellularStatus(1,1,1,1,1,2,1,1,2,1,1,1,1,"hi",1.0,1.0)
         print(cellular_status)
         if await drone.telemetry_server.publish_cellular_status(cellular_status) is not TelemetryServerError:
