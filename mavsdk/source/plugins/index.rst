@@ -2,7 +2,7 @@ Plugins
 =======
 
 .. toctree::
-   :maxdepth: 5
+   :titlesonly:
 
    action
    action_server
