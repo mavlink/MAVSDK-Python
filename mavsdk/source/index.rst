@@ -14,7 +14,7 @@ MAVSDK-Python API reference
 
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 2
    :caption: Contents:
 
    system
