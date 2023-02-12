@@ -3,15 +3,14 @@
 from mavsdk import System
 from mavsdk.telemetry_server import CellularStatus
 from mavsdk.telemetry_server import TelemetryServerError
+from mavsdk.telemetry_server import ModemInfo
 
 import asyncio
 
 async def run():
-    drone = System(mavsdk_server_address="localhost", port=50051,sysid=245,compid=190)
-    #await drone.connect('udp://:14550')
+    drone = System(mavsdk_server_address="localhost")
 
-    #drone = System()
-    await drone.connect('udp://:14550')
+    await drone.connect(system_address="udp://localhost:14550")
 
     print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
@@ -19,18 +18,48 @@ async def run():
             print(f"-- Connected to drone!")
             break
 
-    # print("-- Arming")
-    # await drone.action.arm()
-
     while True:
-        cellular_status = CellularStatus(1,1,1,1,1,2,1,1,2,1,1,1,1,"hi",1.0,1.0)
+        cellular_status = CellularStatus(1,2,3,4,5,6,7,8,9.0,10,11.0,12.0,13.0,14,15,16,1,"hi")
         print(cellular_status)
         if await drone.telemetry_server.publish_cellular_status(cellular_status) is not TelemetryServerError:
             print("OK")
         else:
             print("mavsdk ran into error")
             return "error :("
-        print("pub cellular_status 0")
+        print("pub cellular_status instance 1")
+
+        await asyncio.sleep(1)
+
+        modem_info = ModemInfo(1,2,3,4,"id","firmware","model")
+        print(modem_info)
+        if await drone.telemetry_server.publish_modem_info(modem_info) is not TelemetryServerError:
+            print("OK")
+        else:
+            print("mavsdk ran into error")
+            return "error :("
+        print("pub modem_info instance 1")
+
+        await asyncio.sleep(1)
+
+        cellular_status = CellularStatus(1,2,3,4,5,6,7,8,9.0,10,11.0,12.0,13.0,14,15,16,2,"hi")
+        print(cellular_status)
+        if await drone.telemetry_server.publish_cellular_status(cellular_status) is not TelemetryServerError:
+            print("OK")
+        else:
+            print("mavsdk ran into error")
+            return "error :("
+        print("pub cellular_status instance 2")
+
+        await asyncio.sleep(1)
+
+        modem_info = ModemInfo(2,2,3,4,"id","firmware","model")
+        print(modem_info)
+        if await drone.telemetry_server.publish_modem_info(modem_info) is not TelemetryServerError:
+            print("OK")
+        else:
+            print("mavsdk ran into error")
+            return "error :("
+        print("pub modem_info instance 2")
 
         await asyncio.sleep(1)
 
