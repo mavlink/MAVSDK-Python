@@ -18,6 +18,7 @@ from . import follow_me
 from . import ftp
 from . import geofence
 from . import gimbal
+from . import gripper
 from . import info
 from . import log_files
 from . import manual_control
@@ -36,6 +37,7 @@ from . import telemetry_server
 from . import tracking_server
 from . import transponder
 from . import tune
+from . import winch
 
 from . import bin
 
@@ -141,6 +143,7 @@ class System:
         self._plugins["ftp"] = ftp.Ftp(plugin_manager)
         self._plugins["geofence"] = geofence.Geofence(plugin_manager)
         self._plugins["gimbal"] = gimbal.Gimbal(plugin_manager)
+        self._plugins["gripper"] = gripper.Gripper(plugin_manager)
         self._plugins["info"] = info.Info(plugin_manager)
         self._plugins["log_files"] = log_files.LogFiles(plugin_manager)
         self._plugins["manual_control"] = manual_control.ManualControl(plugin_manager)
@@ -159,6 +162,7 @@ class System:
         self._plugins["tracking_server"] = tracking_server.TrackingServer(plugin_manager)
         self._plugins["transponder"] = transponder.Transponder(plugin_manager)
         self._plugins["tune"] = tune.Tune(plugin_manager)
+        self._plugins["winch"] = winch.Winch(plugin_manager)
 
     @staticmethod
     def error_uninitialized(plugin_name: str) -> str:
@@ -242,6 +246,12 @@ class System:
         if "gimbal" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Gimbal"))
         return self._plugins["gimbal"]
+
+    @property
+    def gripper(self) -> gripper.Gripper:
+        if "gripper" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("Gripper"))
+        return self._plugins["gripper"]
 
     @property
     def info(self) -> info.Info:
@@ -350,6 +360,12 @@ class System:
         if "tune" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Tune"))
         return self._plugins["tune"]
+
+    @property
+    def winch(self) -> winch.Winch:
+        if "tune" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("Winch"))
+        return self._plugins["winch"]
 
     @staticmethod
     def _start_mavsdk_server(system_address, port, sysid, compid):
