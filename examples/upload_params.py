@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+# Description: This is an example made by Ascend Engineering to provide parameters uploading capability by MAVSDK-Python and using .params file. 
+# Janitor in place: Farhang Naderi :)
+
 import asyncio,time,argparse
 from mavsdk import System
 #param_file_name = "file.params"
