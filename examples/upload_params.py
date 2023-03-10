@@ -16,10 +16,10 @@ def main():
 
     args = parser.parse_args()
 
-    asyncio.run(set_params())
+    asyncio.run(set_params(args))
 
 
-async def set_params():
+async def set_params(args):
     drone = System()
     await drone.connect(system_address=args.connection)
     print("Connected to the Vehicle")
@@ -32,12 +32,11 @@ async def set_params():
     float_param_names = [p.name for p in float_params]
     custom_param_names = [p.name for p in custom_params]
 
-    while True:
-        async for is_in_air in drone.telemetry.in_air():
-            if is_in_air:
-                print("Waiting until vehicle is landed...")
-            else:
-                break
+    async for is_in_air in drone.telemetry.in_air():
+        if is_in_air:
+            print("Waiting until vehicle is landed...")
+        else:
+            break
 
     with open(args.param_file, "r") as param_file:
         print("Uploading Parameters... Please do not arm the vehicle!")
