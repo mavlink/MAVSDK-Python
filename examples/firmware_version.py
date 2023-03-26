@@ -14,8 +14,12 @@ async def run():
             print(f"-- Connected to drone!")
             break
 
-    info = await drone.info.get_version()
-    print(info)
+    try:
+        info = await drone.info.get_version()
+    except:
+        info = await drone.info.get_version()
+        print(info)
+
 
 
 if __name__ == "__main__":
