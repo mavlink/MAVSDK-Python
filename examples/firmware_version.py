@@ -17,6 +17,7 @@ async def run():
     try:
         info = await drone.info.get_version()
     except:
+        await asyncio.sleep(2)
         info = await drone.info.get_version()
         print(info)
 
