@@ -28,7 +28,7 @@ async def run():
     asyncio.ensure_future(observe_camera_mode(drone))
     asyncio.ensure_future(observe_possible_setting_options(drone))
 
-    while(True):
+    while True:
         entered_input = await ainput(usage_str)
 
         if (entered_input == "p"):
