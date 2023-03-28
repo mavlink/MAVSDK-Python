@@ -15,6 +15,10 @@ async def run():
     asyncio.ensure_future(print_in_air(drone))
     asyncio.ensure_future(print_position(drone))
 
+    while True:
+        await asyncio.sleep(1)
+
+
 async def print_battery(drone):
     async for battery in drone.telemetry.battery():
         print(f"Battery: {battery.remaining_percent}")
@@ -36,5 +40,5 @@ async def print_position(drone):
 
 
 if __name__ == "__main__":
-    # Run the asyncio loop
+    # Start the main function
     asyncio.run(run())

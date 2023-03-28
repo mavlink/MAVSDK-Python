@@ -39,7 +39,8 @@ async def run():
     print_flight_mode_task = asyncio.ensure_future(print_flight_mode(drone))
 
     running_tasks = [print_altitude_task, print_flight_mode_task]
-    termination_task = asyncio.ensure_future(observe_is_in_air(drone, running_tasks))
+    termination_task = asyncio.ensure_future(
+        observe_is_in_air(drone, running_tasks))
 
     async for health in drone.telemetry.health():
         if health.is_global_position_ok and health.is_home_position_ok:
@@ -108,5 +109,5 @@ async def observe_is_in_air(drone, running_tasks):
 
 
 if __name__ == "__main__":
-    # Run the asyncio loop
+    # Start the main function
     asyncio.run(run())

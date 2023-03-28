@@ -4,13 +4,15 @@ import asyncio
 from mavsdk import System
 from mavsdk.gimbal import GimbalMode, ControlMode
 
+
 async def run():
     # Init the drone
     drone = System()
     await drone.connect(system_address="udp://:14540")
 
     # Start printing gimbal position updates
-    print_gimbal_position_task = asyncio.ensure_future(print_gimbal_position(drone))
+    print_gimbal_position_task = \
+        asyncio.ensure_future(print_gimbal_position(drone))
 
     print("Taking control of gimbal")
     await drone.gimbal.take_control(ControlMode.PRIMARY)
