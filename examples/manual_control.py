@@ -3,11 +3,13 @@
 """
 This example shows how to use the manual controls plugin.
 
-Note: Manual inputs are taken from a test set in this example to decrease complexity. Manual inputs
-can be received from devices such as a joystick using third-party python extensions
+Note: Manual inputs are taken from a test set in this example to decrease
+complexity. Manual inputs can be received from devices such as a joystick
+using third-party python extensions.
 
-Note: Taking off the drone is not necessary before enabling manual inputs. It is acceptable to send
-positive throttle input to leave the ground. Takeoff is used in this example to decrease complexity
+Note: Taking off the drone is not necessary before enabling manual inputs.
+It is acceptable to send positive throttle input to leave the ground.
+Takeoff is used in this example to decrease complexity
 """
 
 import asyncio
@@ -80,12 +82,14 @@ async def manual_controls():
         roll = float(input_list[0])
         # get current state of pitch axis (between -1 and 1)
         pitch = float(input_list[1])
-        # get current state of throttle axis (between -1 and 1, but between 0 and 1 is expected)
+        # get current state of throttle axis
+        # (between -1 and 1, but between 0 and 1 is expected)
         throttle = float(input_list[2])
         # get current state of yaw axis (between -1 and 1)
         yaw = float(input_list[3])
 
-        await drone.manual_control.set_manual_control_input(roll, pitch, throttle, yaw)
+        await drone.manual_control.set_manual_control_input(
+            roll, pitch, throttle, yaw)
 
         await asyncio.sleep(0.1)
 

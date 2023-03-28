@@ -14,6 +14,7 @@ async def run():
     while True:
         await asyncio.sleep(1)
 
+
 async def print_is_armed(drone):
     async for is_armed in drone.telemetry.armed():
         print("Is_armed:", is_armed)

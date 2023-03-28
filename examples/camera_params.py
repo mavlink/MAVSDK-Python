@@ -19,6 +19,7 @@ camera_mode = Mode.UNKNOWN
 current_settings = []
 possible_setting_options = []
 
+
 async def run():
     drone = System()
     await drone.connect(system_address="udp://:14540")
@@ -61,7 +62,8 @@ async def run():
             print_possible_settings(possible_setting_options)
 
             try:
-                index_setting = await make_user_choose_setting(possible_setting_options)
+                index_setting = await \
+                        make_user_choose_setting(possible_setting_options)
             except ValueError:
                 print("Invalid index")
                 continue
@@ -75,20 +77,32 @@ async def run():
                 print(f"Options:")
                 try:
                     print_possible_options(possible_options)
-                    index_option = await make_user_choose_option(possible_options)
+                    index_option = await \
+                        make_user_choose_option(possible_options)
                     selected_option = possible_options[index_option - 1]
 
-                    print(f"Setting {selected_setting.setting_id} to {selected_option.option_description}!")
-                    setting = Setting(selected_setting.setting_id, "", selected_option, selected_setting.is_range)
+                    print(f"Setting {selected_setting.setting_id} "
+                          f"to {selected_option.option_description}!")
+                    setting = Setting(
+                            selected_setting.setting_id,
+                            "",
+                            selected_option,
+                            selected_setting.is_range)
                 except ValueError:
                     print("Invalid index")
                     continue
             else:
                 try:
-                    selected_value = await make_user_choose_option_range(possible_options)
+                    selected_value = await \
+                            make_user_choose_option_range(possible_options)
 
-                    print(f"Setting {selected_setting.setting_id} to {selected_value}!")
-                    setting = Setting(selected_setting.setting_id, "", Option(selected_value, ""), selected_setting.is_range)
+                    print(f"Setting {selected_setting.setting_id}"
+                          f" to {selected_value}!")
+                    setting = Setting(
+                            selected_setting.setting_id,
+                            "",
+                            Option(selected_value, ""),
+                            selected_setting.is_range)
                 except ValueError:
                     print("Invalid value")
                     continue
@@ -102,20 +116,24 @@ async def run():
             print("Invalid input!")
             continue
 
+
 async def observe_camera_mode(drone):
     global camera_mode
     async for mode in drone.camera.mode():
         camera_mode = mode
+
 
 async def observe_current_settings(drone):
     global current_settings
     async for settings in drone.camera.current_settings():
         current_settings = settings
 
+
 async def observe_possible_setting_options(drone):
     global possible_setting_options
     async for settings in drone.camera.possible_setting_options():
         possible_setting_options = settings
+
 
 def print_current_settings():
     print(f"* CAM_MODE: {camera_mode}")
@@ -126,6 +144,7 @@ def print_current_settings():
         else:
             print(f"    -> {setting.option.option_description}")
 
+
 async def make_user_choose_camera_mode():
     index_mode_str = await ainput(f"\nWhich mode do you want? [1..2] >>> ")
     index_mode = int(index_mode_str)
@@ -134,15 +153,19 @@ async def make_user_choose_camera_mode():
 
     return index_mode
 
+
 def print_possible_settings(possible_settings):
     i = 1
     for setting in possible_settings:
         print(f"{i}. {setting.setting_id}: {setting.setting_description}")
         i += 1
 
+
 async def make_user_choose_setting(possible_settings):
     n_settings = len(possible_settings)
-    index_setting_str = await ainput(f"\nWhich setting do you want to change? [1..{n_settings}] >>> ")
+    index_setting_str = await \
+        ainput(f"\nWhich setting do you want to change?"
+               f" [1..{n_settings}] >>> ")
 
     index_setting = int(index_setting_str)
     if (index_setting < 1 or index_setting > n_settings):
@@ -150,21 +173,25 @@ async def make_user_choose_setting(possible_settings):
 
     return index_setting
 
+
 def print_possible_options(possible_options):
     i = 1
     for possible_option in possible_options:
         print(f"{i}. {possible_option.option_description}")
         i += 1
 
+
 async def make_user_choose_option(possible_options):
     n_options = len(possible_options)
-    index_option_str = await ainput(f"\nWhich option do you want? [1..{n_options}] >>> ")
+    index_option_str = await \
+        ainput(f"\nWhich option do you want? [1..{n_options}] >>> ")
 
     index_option = int(index_option_str)
     if (index_option < 1 or index_option > n_options):
         raise ValueError()
 
     return index_option
+
 
 async def make_user_choose_option_range(possible_options):
     min_value = float(possible_options[0].option_id)
@@ -175,7 +202,9 @@ async def make_user_choose_option_range(possible_options):
         interval_value = float(possible_options[2].option_id)
         interval_text = f"interval: {interval_value}"
 
-    value_str = await ainput(f"\nWhat value do you want? [{min_value}, {max_value}] {interval_text} >>> ")
+    value_str = await \
+        ainput(f"\nWhat value do you want?"
+               f" [{min_value}, {max_value}] {interval_text} >>> ")
 
     value = float(value_str)
     if (value < min_value or value > max_value):

@@ -1,20 +1,27 @@
 #!/usr/bin/env python3
 
-#This example shows how to use the follow me plugin
+# This example shows how to use the follow me plugin
 
 import asyncio
 from mavsdk import System
 from mavsdk.follow_me import (Config, FollowMeError, TargetLocation)
 
-default_height = 8.0 #in Meters
-follow_distance = 2.0 #in Meters, this is the distance that the drone will remain away from Target while following it
-#Direction relative to the Target
-#Options are NONE, FRONT, FRONT_LEFT, FRONT_RIGHT, BEHIND
-direction = Config.FollowDirection.BEHIND
-responsiveness =  0.02
 
-#This list contains fake location coordinates (These coordinates are obtained from mission.py example)
-fake_location = [[47.398039859999997,8.5455725400000002],[47.398036222362471,8.5450146439425509],[47.397825620791885,8.5450092830163271]]
+default_height = 8.0  # in meters
+# distance between drone and target
+follow_distance = 2.0  # in meters
+
+# Direction relative to the Target
+# Options are NONE, FRONT, FRONT_LEFT, FRONT_RIGHT, BEHIND
+direction = Config.FollowDirection.BEHIND
+responsiveness = 0.02
+
+# This list contains fake location coordinates
+# (These coordinates are obtained from mission.py example)
+fake_location = [[47.398039859999997, 8.5455725400000002],
+                 [47.398036222362471, 8.5450146439425509],
+                 [47.397825620791885, 8.5450092830163271]]
+
 
 async def fly_drone():
     drone = System()
@@ -32,35 +39,37 @@ async def fly_drone():
             print("-- Global position estimate OK")
             break
 
-    #Arming the drone
-    print ("-- Arming")
+    # Arming the drone
+    print("-- Arming")
     await drone.action.arm()
 
-    #Follow me Mode requires some configuration to be done before starting the mode
+    # Follow me Mode requires some configuration to be done before starting
+    # the mode
     conf = Config(default_height, follow_distance, direction, responsiveness)
     await drone.follow_me.set_config(conf)
 
-    print ("-- Taking Off")
+    print("-- Taking Off")
     await drone.action.takeoff()
     await asyncio.sleep(8)
-    print ("-- Starting Follow Me Mode")
+    print("-- Starting Follow Me Mode")
     await drone.follow_me.start()
     await asyncio.sleep(8)
 
-    #This for loop provides fake coordinates from the fake_location list for the follow me mode to work
-    #In a simulator it won't make much sense though
-    for latitude,longitude in fake_location:
+    # This for loop provides fake coordinates from the fake_location list for
+    # the follow me mode to work.
+    # In a simulator it won't make much sense though
+    for latitude, longitude in fake_location:
         target = TargetLocation(latitude, longitude, 0, 0, 0, 0)
-        print ("-- Following Target")
+        print("-- Following Target")
         await drone.follow_me.set_target_location(target)
         await asyncio.sleep(2)
 
-    #Stopping the follow me mode
-    print ("-- Stopping Follow Me Mode")
+    # Stopping the follow me mode
+    print("-- Stopping Follow Me Mode")
     await drone.follow_me.stop()
     await asyncio.sleep(5)
 
-    print ("-- Landing")
+    print("-- Landing")
     await drone.action.land()
 
 if __name__ == "__main__":

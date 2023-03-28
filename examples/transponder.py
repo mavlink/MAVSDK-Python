@@ -17,6 +17,7 @@ async def run():
         print("Waiting for transponder messages")
         await asyncio.sleep(1)
 
+
 async def print_transponders(drone):
     async for transponder in drone.transponder.transponder():
         print(transponder)

@@ -37,7 +37,6 @@ async def run():
     status_text_task.cancel()
 
 
-
 async def print_status_text(drone):
     try:
         async for status_text in drone.telemetry.status_text():

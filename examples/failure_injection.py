@@ -5,6 +5,7 @@ import asyncio
 from mavsdk import System
 from mavsdk.failure import FailureType, FailureUnit
 
+
 async def run():
     drone = System()
     await drone.connect(system_address="udp://:14540")
@@ -44,13 +45,14 @@ async def run():
             break
 
     print("-- Flying up")
-    flying_alt = goto_alt + 20.0 # To fly drone 20m above the ground plane
+    flying_alt = goto_alt + 20.0  # To fly drone 20m above the ground plane
     await drone.action.goto_location(goto_lat, goto_lon, flying_alt, 0)
 
     await asyncio.sleep(5)
 
     print("-- Injecting GPS failure")
-    await drone.failure.inject(FailureUnit.SENSOR_GPS, FailureType.OFF, instance=0)
+    await drone.failure.inject(
+        FailureUnit.SENSOR_GPS, FailureType.OFF, instance=0)
 
     print("-- Waiting 20s before exiting script...")
     await asyncio.sleep(20)

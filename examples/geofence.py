@@ -7,7 +7,8 @@ from mavsdk.geofence import Point, Polygon
 """
 This example shows how to use the geofence plugin.
 
-Note: The behavior when your vehicle hits the geofence is NOT configured in this example.
+Note: The behavior when your vehicle hits the geofence is NOT configured
+in this example.
 
 """
 
@@ -25,7 +26,8 @@ async def run():
             print(f"-- Connected to drone!")
             break
 
-    # Fetch the home location coordinates, in order to set a boundary around the home location
+    # Fetch the home location coordinates, in order to set a boundary around
+    # the home location.
     print("Fetching home location coordinates...")
     async for terrain_info in drone.telemetry.home():
         latitude = terrain_info.latitude_deg
