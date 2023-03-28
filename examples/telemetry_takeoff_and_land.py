@@ -108,5 +108,5 @@ async def observe_is_in_air(drone, running_tasks):
 
 
 if __name__ == "__main__":
-    # Run the asyncio loop
+    # Start the main function
     asyncio.run(run())
