@@ -74,7 +74,7 @@ class System:
     def __del__(self):
         self._stop_mavsdk_server()
 
-    async def connect(self, system_address=None):
+    async def connect(self, system_address=None, verbose=True):
         """
         Connect the System object to a remote system.
 
@@ -100,7 +100,7 @@ class System:
 
         if self._mavsdk_server_address is None:
             self._mavsdk_server_address = 'localhost'
-            self._server_process = self._start_mavsdk_server(system_address,self._port, self._sysid, self._compid)
+            self._server_process = self._start_mavsdk_server(system_address,self._port, self._sysid, self._compid, verbose)
 
         await self._init_plugins(self._mavsdk_server_address, self._port)
 
@@ -341,7 +341,7 @@ class System:
         return self._plugins["tune"]
 
     @staticmethod
-    def _start_mavsdk_server(system_address, port, sysid, compid):
+    def _start_mavsdk_server(system_address, port, sysid, compid, verbose=True):
         """
         Starts the gRPC server in a subprocess, listening on localhost:port
         port parameter can be specified now to allow multiple mavsdk servers to be spawned via code
@@ -370,7 +370,9 @@ class System:
                 if system_address:
                     bin_path_and_args.append(system_address)
                 p = subprocess.Popen(bin_path_and_args,
-                                     shell=False)
+                                     shell=False,
+                                     stdout=subprocess.DEVNULL if not verbose else None,
+                                     stderr=subprocess.DEVNULL if not verbose else None)
         except FileNotFoundError:
             print("""
 This installation does not provide an embedded 'mavsdk_server' binary.
