@@ -5,9 +5,14 @@ Contact: p30planets@gmail.com
 GitHub: github.com/alireza787b
 Last Updated: 31 May 2023
 
-This script controls a drone in offboard mode using a trajectory defined in a CSV file. It establishes a connection with the drone, reads the trajectory data from the CSV file, and commands the drone to follow the trajectory. At the end of the trajectory, the drone returns to its home position and lands. 
+This script controls a drone in offboard mode using a trajectory defined in a CSV file.
+It establishes a connection with the drone, reads the trajectory data from the CSV file,
+and commands the drone to follow the trajectory.
+At the end of the trajectory, the drone returns to its home position and lands. 
 
-Make sure that the drone is properly configured for offboard control before running this script. Adjust the time resolution in the script (timeStep = 0.1 seconds) if needed for your application. Also, please uncomment the lines to change the flight mode or include additional functionality as required.
+Make sure that the drone is properly configured for offboard control before running this script.
+Adjust the time resolution in the script (timeStep = 0.1 seconds) if needed for your application.
+Also, please uncomment the lines to change the flight mode or include additional functionality as required.
 
 Prerequisites:
 - MAVSDK library (Refer to the MAVSDK documentation for installation instructions)
@@ -18,16 +23,20 @@ Usage:
 python offboard_from_csv.py
 
 Inputs:
-- CSV file "active.csv" located in the same directory as this script. This file contains the trajectory data. The CSV structure is as follows:
+- CSV file "active.csv" located in the same directory as this script.
+This file contains the trajectory data. The CSV structure is as follows:
     - t: time in seconds
     - px, py, pz: position in NED (North-East-Down) coordinates
     - vx, vy, vz: velocity in NED coordinates
     - ax, ay, az: acceleration in NED coordinates
-    - mode: mode code representing different stages of the drone's movement (see Mode Codes below for more details)
-- An image "trajectory_plot.png" located in the directory named "trajectory_plot". This image provides a visual preview of the trajectory.
+    - mode: mode code representing different stages of the drone's movement 
+     (see Mode Codes below for more details)
+- An image "trajectory_plot.png" located in the directory named "trajectory_plot".
+This image provides a visual preview of the trajectory.
 
 Outputs:
-- Drone movement following the trajectory defined in the CSV file. The drone returns to its home position to land after performing the trajectory.
+- Drone movement following the trajectory defined in the CSV file.
+The drone returns to its home position to land after performing the trajectory.
 
 Example Usage:
 1. Ensure drone connection to the system and a valid global position estimate.
@@ -48,24 +57,25 @@ Mode Codes:
 100: "Landing"
 
 Additional Information:
-- For a step-by-step guide on using the MAVSDK library for controlling drones, refer to the video tutorial provided in the GitHub repository (alireza787b).
-- More sophisticated drone show projects and multiple drone simulation examples are available in the mavsdk_drone_show repo: https://github.com/alireza787b/mavsdk_drone_show
+- For a step-by-step guide on using the MAVSDK library for controlling drones,
+  refer to the video tutorial provided in the GitHub repository (alireza787b).
+- More sophisticated drone show projects and multiple drone simulation examples
+  are available in the mavsdk_drone_show repo: 
+  https://github.com/alireza787b/mavsdk_drone_show
 
 Note:
-- As of May 2023, set_position_velocity_acceleration_ned is not yet available in the default build for the mavsdk-Python Installation with pip3. If you need to input acceleration, you should build MAVSDK for yourself.
+- As of May 2023, set_position_velocity_acceleration_ned is not yet available
+  in the default build for the mavsdk-Python Installation with pip3.
+  If you need to input acceleration, you should build MAVSDK for yourself.
 """
-
-# The rest of your Python code here...
 
 
 import asyncio
 import csv
-import os
 from mavsdk import System
 from mavsdk.offboard import PositionNedYaw, VelocityNedYaw, AccelerationNed , OffboardError
 from mavsdk.telemetry import LandedState
-import subprocess
-import signal
+
 
 async def run():
     # Define a dictionary to map mode codes to their descriptions
@@ -142,18 +152,26 @@ async def run():
             # Reached the end of the trajectory
             break
 
-        position, velocity, acceleration, mode_code = current_waypoint[1:4], current_waypoint[4:7], current_waypoint[7:10], current_waypoint[-1]
+        position, velocity, acceleration, mode_code = current_waypoint[1:4], current_waypoint[4:7],
+        current_waypoint[7:10], current_waypoint[-1]
         if last_mode != mode_code:
             # Print the mode number and its description
             print(f" Mode number: {mode_code}, Description: {mode_descriptions[mode_code]}")
             last_mode = mode_code
 
-        # set_position_velocity_acceleration_ned is not yet available in the default build for MAVSDK-Python Installation with pip3
+        # set_position_velocity_acceleration_ned is not yet available in the
+        # default build for MAVSDK-Python Installation with pip3
         # If you need to input acceleration, you should build MAVSDK for yourself.
         await drone.offboard.set_position_velocity_ned(
             PositionNedYaw(*position, current_waypoint[10]),
             VelocityNedYaw(*velocity, current_waypoint[10])
         )
+        
+        # await drone.offboard.set_position_velocity_acceleration_ned(
+        #     PositionNedYaw(*position, current_waypoint[10]),
+        #     VelocityNedYaw(*velocity, current_waypoint[10]),
+        #     AccelerationNed(*acceleration, current_waypoint[10])
+        # )
 
         timeStep = 0.1
         await asyncio.sleep(timeStep)  # Time resolution of 0.1 seconds
