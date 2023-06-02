@@ -5,17 +5,24 @@ Contact: p30planets@gmail.com
 GitHub: github.com/alireza787b
 Last Updated: 31 May 2023
 
-This script controls a drone in offboard mode using a trajectory defined in a CSV file.
-It establishes a connection with the drone, reads the trajectory data from the CSV file,
-and commands the drone to follow the trajectory.
-At the end of the trajectory, the drone returns to its home position and lands. 
+This script controls a drone in offboard mode using a trajectory
+defined in a CSV file.
+It establishes a connection with the drone, reads the trajectory
+data from the CSV file, and commands the drone to 
+follow the trajectory.
+At the end of the trajectory, the drone returns to
+its home position and lands. 
 
-Make sure that the drone is properly configured for offboard control before running this script.
-Adjust the time resolution in the script (timeStep = 0.1 seconds) if needed for your application.
-Also, please uncomment the lines to change the flight mode or include additional functionality as required.
+Make sure that the drone is properly configured for offboard control
+before running this script.
+Adjust the time resolution in the script (timeStep = 0.1 seconds)
+if needed for your application.
+Also, please uncomment the lines to change the flight mode or include
+additional functionality as required.
 
 Prerequisites:
-- MAVSDK library (Refer to the MAVSDK documentation for installation instructions)
+- MAVSDK library 
+(Refer to the MAVSDK documentation for installation instructions)
 - Drone setup for offboard control
 - Valid global position estimate for the drone
 
@@ -136,9 +143,11 @@ async def run():
     with open("active.csv", newline="") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            waypoints.append((float(row["t"]), float(row["px"]), float(row["py"]), float(row["pz"]), 
-                              float(row["vx"]), float(row["vy"]), float(row["vz"]), float(row["ax"]), 
-                              float(row["ay"]), float(row["az"]), int(row["mode"])))
+            waypoints.append((float(row["t"]),
+                              float(row["px"]), float(row["py"]), float(row["pz"]), 
+                              float(row["vx"]), float(row["vy"]), float(row["vz"]),
+                              float(row["ax"]), float(row["ay"]), float(row["az"]),
+                              int(row["mode"])))
 
     print("-- Performing trajectory")
     total_duration = waypoints[-1][0]  # Total duration is the time of the last waypoint
@@ -163,7 +172,8 @@ async def run():
 
         # set_position_velocity_acceleration_ned is not yet available in the
         # default build for MAVSDK-Python Installation with pip3
-        # If you need to input acceleration, you should build MAVSDK for yourself.
+        # If you need to input acceleration, 
+        # you should build MAVSDK for yourself.
         await drone.offboard.set_position_velocity_ned(
             PositionNedYaw(*position, current_waypoint[10]),
             VelocityNedYaw(*velocity, current_waypoint[10])
