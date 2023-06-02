@@ -8,20 +8,19 @@ Last Updated: 31 May 2023
 This script controls a drone in offboard mode using a trajectory
 defined in a CSV file.
 It establishes a connection with the drone, reads the trajectory
-data from the CSV file, and commands the drone to 
+data from the CSV file, and commands the drone to
 follow the trajectory.
 At the end of the trajectory, the drone returns to
-its home position and lands. 
+its home position and lands.
 
 Make sure that the drone is properly configured for offboard control
 before running this script.
 Adjust the time resolution in the script (timeStep = 0.1 seconds)
 if needed for your application.
-Also, please uncomment the lines to change the flight mode or include
-additional functionality as required.
+
 
 Prerequisites:
-- MAVSDK library 
+- MAVSDK library
 (Refer to the MAVSDK documentation for installation instructions)
 - Drone setup for offboard control
 - Valid global position estimate for the drone
@@ -36,10 +35,11 @@ This file contains the trajectory data. The CSV structure is as follows:
     - px, py, pz: position in NED (North-East-Down) coordinates
     - vx, vy, vz: velocity in NED coordinates
     - ax, ay, az: acceleration in NED coordinates
-    - mode: mode code representing different stages of the drone's movement 
+    - mode: mode code representing different stages of the drone's movement
      (see Mode Codes below for more details)
-- An image "trajectory_plot.png" located in the directory named "trajectory_plot".
-This image provides a visual preview of the trajectory.
+- An image "trajectory_plot.png" located in the
+  directory named "trajectory_plot".
+  This image provides a visual preview of the trajectory.
 
 Outputs:
 - Drone movement following the trajectory defined in the CSV file.
@@ -67,7 +67,7 @@ Additional Information:
 - For a step-by-step guide on using the MAVSDK library for controlling drones,
   refer to the video tutorial provided in the GitHub repository (alireza787b).
 - More sophisticated drone show projects and multiple drone simulation examples
-  are available in the mavsdk_drone_show repo: 
+  are available in the mavsdk_drone_show repo:
   https://github.com/alireza787b/mavsdk_drone_show
 
 Note:
@@ -80,8 +80,14 @@ Note:
 import asyncio
 import csv
 from mavsdk import System
-from mavsdk.offboard import PositionNedYaw, VelocityNedYaw, AccelerationNed , OffboardError
+from mavsdk.offboard import PositionNedYaw, VelocityNedYaw
+from mavsdk.offboard import AccelerationNed, OffboardError
 from mavsdk.telemetry import LandedState
+
+
+# Find the current waypoint based on time
+def get_current_waypoint(waypoints, time):
+    return next((wp for wp in waypoints if time <= wp[0]), None)
 
 
 async def run():
@@ -125,14 +131,16 @@ async def run():
     # Set the```python
     # Set the initial setpoint
     print("-- Setting initial setpoint")
-    await drone.offboard.set_position_ned(PositionNedYaw(0.0, 0.0, 0.0, 0.0))
+    startSetpoint = PositionNedYaw(0.0, 0.0, 0.0, 0.0)
+    await drone.offboard.set_position_ned(startSetpoint)
 
     # Start offboard mode
     print("-- Starting offboard")
     try:
         await drone.offboard.start()
     except OffboardError as error:
-        print(f"Starting offboard mode failed with error code: {error._result.result}")
+        print(f"Starting offboard mode failed with error code:"
+              f" {error._result.result}")
         print("-- Disarming")
         await drone.action.disarm()
         return
@@ -144,41 +152,45 @@ async def run():
         reader = csv.DictReader(csvfile)
         for row in reader:
             waypoints.append((float(row["t"]),
-                              float(row["px"]), float(row["py"]), float(row["pz"]), 
-                              float(row["vx"]), float(row["vy"]), float(row["vz"]),
-                              float(row["ax"]), float(row["ay"]), float(row["az"]),
+                              float(row["px"]),
+                              float(row["py"]),
+                              float(row["pz"]),
+                              float(row["vx"]),
+                              float(row["vy"]),
+                              float(row["vz"]),
+                              float(row["ax"]),
+                              float(row["ay"]),
+                              float(row["az"]),
                               int(row["mode"])))
 
     print("-- Performing trajectory")
-    total_duration = waypoints[-1][0]  # Total duration is the time of the last waypoint
+    total_duration = waypoints[-1][0]
+    # Total duration is the time of the last waypoint
     t = 0  # Initialize time variable
     last_mode = 0
     while t <= total_duration:
-        # Find the current waypoint based on time
-        current_waypoint = next((waypoint for waypoint in waypoints if t <= waypoint[0]), None)
-
+        current_waypoint = get_current_waypoint(waypoints, t)
         if current_waypoint is None:
             # Reached the end of the trajectory
             break
 
-        position = current_waypoint[1:4] 
+        position = current_waypoint[1:4]
         velocity = current_waypoint[4:7]
         acceleration = current_waypoint[7:10]
         mode_code = current_waypoint[-1]
         if last_mode != mode_code:
             # Print the mode number and its description
-            print(f" Mode number: {mode_code}, Description: {mode_descriptions[mode_code]}")
+            print(" Mode number: " + f"{mode_code}, "
+                  f"Description: {mode_descriptions[mode_code]}")
             last_mode = mode_code
-
-        # set_position_velocity_acceleration_ned is not yet available in the
-        # default build for MAVSDK-Python Installation with pip3
-        # If you need to input acceleration, 
+        # set_position_velocity_acceleration_ned is not yet available
+        # in the default build for MAVSDK-Python Installation with pip3
+        # If you need to input acceleration,
         # you should build MAVSDK for yourself.
         await drone.offboard.set_position_velocity_ned(
             PositionNedYaw(*position, current_waypoint[10]),
             VelocityNedYaw(*velocity, current_waypoint[10])
         )
-        
         # await drone.offboard.set_position_velocity_acceleration_ned(
         #     PositionNedYaw(*position, current_waypoint[10]),
         #     VelocityNedYaw(*velocity, current_waypoint[10]),
@@ -206,7 +218,6 @@ async def run():
 
     print("-- Disarming")
     await drone.action.disarm()
-
 
 if __name__ == "__main__":
     # Run the asyncio loop
