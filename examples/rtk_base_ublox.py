@@ -82,7 +82,15 @@ class RTCMParser:
 
 
 async def run():
-    # Init the drone
+    # Init the drone.
+    # Note that connecting directly to a drone is not very useful here.
+    # You probably want to set-up some MAVLink message routing inbetween
+    # this script and the drone.
+    # Good candidates for this are
+    # 1. mavlink-router (https://github.com/mavlink-router/mavlink-router)
+    # 2. MAVSDK (https://tinyurl.com/mavsdk-forwarding)
+    # In the latter case you can use something like this here:
+    # await drone.connect("udp://<IP address of the drone here>:14540")
     drone = System()
     await drone.connect()
 
@@ -101,13 +109,23 @@ async def print_gps_info(drone):
 
 async def send_rtcm(drone):
 
-    # Connect to a ublox RTK base station via USB
+    # Connect to a ublox RTK base station via USB.
+    # Make sure that the baudrate matches the setting on the UBlox chip.
+    # If you use UART instead, you should set the correct serial device.
     ublox = serial.Serial("/dev/ttyACM0", 9600)
+
     rtcm_parser = RTCMParser()
     ubx_parser = UBXParser()
 
     while True:
         try:
+            # Depending on your configuration of the uBlox device,
+            # we might receive different kinds of messages.
+            # The first byte indicates what kind of message it is:
+            # RTCM, UBX or NMEA. In this script we only process
+            # RTCM messages, but UBX can be used to configure the
+            # chip itself, for example by setting the frequency
+            # of certain UBX/RTCM messages with UBX-CFG-MSG
             preamble = ublox.read(1)
             if len(preamble) == 0:
                 continue
@@ -131,10 +149,22 @@ async def send_rtcm(drone):
                 ubx = ubx_parser.read_packet(ublox, preamble)
                 if ubx is None:
                     continue
-                # do something with the message
+
+                # If configured properly, we might receive a lot of helpful
+                # messages here, especially for a RTK base station.
+                # For example, UBX-NAV-SVIN gives information about a
+                # survey-in: Whether it's completed, its current accuracy
+                # and its duration.
+
+                # Another useful message is UBX-RXM-RAWX here, if you are
+                # looking for Precise Point Positioning (PPP)
+
+                # Check https://github.com/semuconsulting/pyubx2#generating on
+                # how to configure the UBlox chip with a python script
 
             elif ord(preamble) == PREAMBLE_NMEA:
-                # warning: you should disable NMEA on your ublox chip!
+                # It's recommended to disable NMEA messages, so this script
+                # does not have to differentiate between 3 kinds of messages
 
                 nmea = ublox.readline()
                 # print(nmea)
