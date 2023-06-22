@@ -1,5 +1,8 @@
+#!/usr/bin/env pytho
+
 import asyncio
 from mavsdk import System
+
 
 async def set_params(system, params, announcement):
     print(announcement)
@@ -7,14 +10,11 @@ async def set_params(system, params, announcement):
     async for _ in system.telemetry.landed_state():
         break
 
-    for param, value in params:
-        await system.param.set_param_int(param, value)
-        await asyncio.sleep(5)
-
     async for state in system.telemetry.landed_state():
         break
 
     print(f"Landed state: {state}")
+
 
 async def main():
     drone = System()
@@ -71,4 +71,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-
