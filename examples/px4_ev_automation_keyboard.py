@@ -1,4 +1,4 @@
-#!/usr/bin/env pytho
+#!/usr/bin/env python
 
 import asyncio
 from mavsdk import System
