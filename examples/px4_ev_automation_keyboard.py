@@ -10,7 +10,7 @@ beginning (such that EKF2 decides which one to consume).
 
 The user can later choose between different fusion types by keyboard later. 
 
-More information can be found here: https://docs.px4.io/main/en/ros/external_position_estimation.html
+More information: https://docs.px4.io/main/en/ros/external_position_estimation.html
 
 """
 
