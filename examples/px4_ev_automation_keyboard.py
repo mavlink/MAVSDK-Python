@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 """
-
 This example can be used to switch between External Vision or MOCAP (EV) 
 fusion and GNSS data fusion in PX4 firmware (v1.14 and on) by using 
 keyboard inputs from the user.
@@ -13,7 +12,6 @@ The user can later choose between different fusion types by keyboard later.
 
 More information: 
     https://docs.px4.io/main/en/ros/external_position_estimation.html
-
 """
 
 import asyncio
@@ -47,7 +45,7 @@ async def main():
         ("EKF2_EV_CTRL", 15),
         ("EKF2_GPS_CTRL", 7)
     ]
-    await set_params(drone, params_preflight, "Setting preflight parameters...")
+    await set_params(drone, params_preflight, "Setting preflight params...")
 
     params_gps_required = [
         ("EKF2_HGT_REF", 1),
@@ -93,9 +91,9 @@ async def main():
                     )
                     break
                 else:
-                    print("Invalid mode. Please enter 'ev', 'gps', or 'multi-fusion'.")
+                    print("Invalid mode: 'ev', 'gps', or 'multi-fusion'.")
 
-    await drone.telemetry().close()
+    await drone.telemetry.close()
 
 
 if __name__ == "__main__":

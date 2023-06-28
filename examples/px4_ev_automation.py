@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 """
-
 This example can be used to switch between External Vision or 
 MOCAP (EV) fusion and GNSS data fusion in PX4 firmware (v1.14 and later) 
 with time-based switching.
@@ -10,9 +9,7 @@ The mechanism is such that it puts the flight controller to fuse both GNSS and
 EV at the beginning (such that EKF2 decides which one to consume).
 
 More information: 
-
     https://docs.px4.io/main/en/ros/external_position_estimation.html
-    
 """
 
 import asyncio
@@ -47,9 +44,11 @@ async def print_status(drone):
     async for armed in drone.telemetry.armed():
         print(f"Armed: {armed}")
 
+
 async def print_mode(drone):
     async for flight_mode in drone.telemetry.flight_mode():
         print(f"Flight Mode: {flight_mode}")
+
 
 async def main():
     drone = System()
@@ -66,8 +65,7 @@ async def main():
         ("EKF2_EV_CTRL", 15),
         ("EKF2_GPS_CTRL", 7)
     ]
-    await set_params(drone, params_preflight,
-                     "Setting preflight parameters...")
+    await set_params(drone, params_preflight, "Setting preflight params...")
 
     # Wait for 5 seconds
     await asyncio.sleep(5)
@@ -77,8 +75,7 @@ async def main():
         ("EKF2_EV_CTRL", 0),
         ("EKF2_GPS_CTRL", 7)
     ]
-    await set_params(drone, params_gps_required,
-                     "Setting airborne (GPS Required) parameters...")
+    await set_params(drone, params_gps_required, "Setting GPS params...")
 
     # Wait for 10 seconds
     await asyncio.sleep(10)
@@ -88,8 +85,7 @@ async def main():
         ("EKF2_EV_CTRL", 15),
         ("EKF2_GPS_CTRL", 0)
     ]
-    await set_params(drone, params_ev_required,
-                     "Setting airborne (EV Required) parameters...")
+    await set_params(drone, params_ev_required, "Setting EV params...")
 
     # Start the tasks to print flight mode and system status
     print_mode_task = asyncio.ensure_future(print_mode(drone))
