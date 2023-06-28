@@ -2,12 +2,13 @@
 
 """
 
-This example can be used to switch between External Vision or MOCAP (EV) fusion and GNSS data fusion in PX4 
-firmware (v1.14 and later) with time-based switching.
+This example can be used to switch between External Vision or MOCAP (EV) fusion and GNSS data fusion
+in PX4 firmware (v1.14 and later) with time-based switching.
 
-The mechanism is like that it puts the flight controller to fuse both GNSS and EV at the beginning (such that EKF2 decides which one to consume).
+The mechanism is like that it puts the flight controller to fuse both GNSS and 
+EV at the beginning (such that EKF2 decides which one to consume).
 
-More information can be found here: https://docs.px4.io/main/en/ros/external_position_estimation.html
+More information: https://docs.px4.io/main/en/ros/external_position_estimation.html
 
 """
 
