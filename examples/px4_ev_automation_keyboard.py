@@ -1,15 +1,19 @@
 #!/usr/bin/env python
 
 """
-This example can be used to switch between External Vision or MOCAP (EV) fusion and GNSS data fusion
-in PX4 firmware (v1.14 and on) by using keyboard inputs from the user.
 
-The mechanism is such that it puts the flight controller to fuse both GNSS and EV at the
-beginning (such that EKF2 decides which one to consume).
+This example can be used to switch between External Vision or MOCAP (EV) 
+fusion and GNSS data fusion in PX4 firmware (v1.14 and on) by using 
+keyboard inputs from the user.
+
+The mechanism is such that it puts the flight controller to fuse both GNSS and 
+EV at the beginning (such that EKF2 decides which one to consume).
 
 The user can later choose between different fusion types by keyboard later.
 
-More information: https://docs.px4.io/main/en/ros/external_position_estimation.html
+More information: 
+    https://docs.px4.io/main/en/ros/external_position_estimation.html
+
 """
 
 import asyncio

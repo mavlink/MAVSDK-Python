@@ -1,13 +1,18 @@
 #!/usr/bin/env python
 
 """
-This example can be used to switch between External Vision or MOCAP (EV) fusion and GNSS data fusion
-in PX4 firmware (v1.14 and later) with time-based switching.
+
+This example can be used to switch between External Vision or 
+MOCAP (EV) fusion and GNSS data fusion in PX4 firmware (v1.14 and later) 
+with time-based switching.
 
 The mechanism is such that it puts the flight controller to fuse both GNSS and
 EV at the beginning (such that EKF2 decides which one to consume).
 
-More information: https://docs.px4.io/main/en/ros/external_position_estimation.html
+More information: 
+
+    https://docs.px4.io/main/en/ros/external_position_estimation.html
+    
 """
 
 import asyncio
@@ -26,6 +31,26 @@ async def set_params(system, params, announcement):
     print(f"Landed state: {state}")
 
 
+async def print_status(drone):
+    async for flight_mode in drone.telemetry.flight_mode():
+        print(f"Flight Mode: {flight_mode}")
+
+    async for health in drone.telemetry.health():
+        print(f"System status: {health.is_gyrometer_calibration_ok}")
+
+    async for battery in drone.telemetry.battery():
+        print(f"Battery: {battery.remaining_percent}%")
+
+    async for in_air in drone.telemetry.in_air():
+        print(f"In air: {in_air}")
+
+    async for armed in drone.telemetry.armed():
+        print(f"Armed: {armed}")
+
+async def print_mode(drone):
+    async for flight_mode in drone.telemetry.flight_mode():
+        print(f"Flight Mode: {flight_mode}")
+
 async def main():
     drone = System()
     await drone.connect(system_address="udp://:14540")
@@ -41,7 +66,8 @@ async def main():
         ("EKF2_EV_CTRL", 15),
         ("EKF2_GPS_CTRL", 7)
     ]
-    await set_params(drone, params_preflight, "Setting preflight parameters...")
+    await set_params(drone, params_preflight,
+                     "Setting preflight parameters...")
 
     # Wait for 5 seconds
     await asyncio.sleep(5)
@@ -51,7 +77,8 @@ async def main():
         ("EKF2_EV_CTRL", 0),
         ("EKF2_GPS_CTRL", 7)
     ]
-    await set_params(drone, params_gps_required, "Setting airborne (GPS Required) parameters...")
+    await set_params(drone, params_gps_required,
+                     "Setting airborne (GPS Required) parameters...")
 
     # Wait for 10 seconds
     await asyncio.sleep(10)
@@ -61,7 +88,8 @@ async def main():
         ("EKF2_EV_CTRL", 15),
         ("EKF2_GPS_CTRL", 0)
     ]
-    await set_params(drone, params_ev_required, "Setting airborne (EV Required) parameters...")
+    await set_params(drone, params_ev_required,
+                     "Setting airborne (EV Required) parameters...")
 
     # Start the tasks to print flight mode and system status
     print_mode_task = asyncio.ensure_future(print_mode(drone))
