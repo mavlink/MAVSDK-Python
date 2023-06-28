@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 
 """
-
 This example can be used to switch between External Vision or MOCAP (EV) fusion and GNSS data fusion
 in PX4 firmware (v1.14 and later) with time-based switching.
 
-The mechanism is like that it puts the flight controller to fuse both GNSS and 
+The mechanism is such that it puts the flight controller to fuse both GNSS and
 EV at the beginning (such that EKF2 decides which one to consume).
 
 More information: https://docs.px4.io/main/en/ros/external_position_estimation.html
-
 """
 
 import asyncio
@@ -74,6 +72,7 @@ async def main():
     await asyncio.gather(*running_tasks)
 
     await drone.close()
+
 
 if __name__ == "__main__":
     asyncio.run(main())
