@@ -1,17 +1,15 @@
 #!/usr/bin/env python
 
 """
+This example can be used to switch between External Vision or MOCAP (EV) fusion and GNSS data fusion
+in PX4 firmware (v1.14 and on) by using keyboard inputs from the user.
 
-This example can be used to switch between Eaxternal Vision or MOCAP (EV) fusion and GNSS data fusion 
-in PX4 firmware (v1.14 and on) by using kyeboard inputs from the user. 
-
-The mechanism is like that it puts the flight controller to fuse both GNSS and EV at the 
+The mechanism is such that it puts the flight controller to fuse both GNSS and EV at the
 beginning (such that EKF2 decides which one to consume).
 
-The user can later choose between different fusion types by keyboard later. 
+The user can later choose between different fusion types by keyboard later.
 
 More information: https://docs.px4.io/main/en/ros/external_position_estimation.html
-
 """
 
 import asyncio
@@ -40,7 +38,11 @@ async def main():
             print("-- Connected to drone!")
             break
 
-    params_preflight = [("EKF2_HGT_REF", 0), ("EKF2_EV_CTRL", 15), ("EKF2_GPS_CTRL", 7)]
+    params_preflight = [
+        ("EKF2_HGT_REF", 0),
+        ("EKF2_EV_CTRL", 15),
+        ("EKF2_GPS_CTRL", 7)
+    ]
     await set_params(drone, params_preflight, "Setting preflight parameters...")
 
     params_gps_required = [
@@ -69,21 +71,21 @@ async def main():
                     await set_params(
                         drone,
                         params_ev_required,
-                        "Setting airborne (EV Required) parameters...",
+                        "Setting airborne (EV Required) parameters..."
                     )
                     break
                 elif mode.lower() == "gps":
                     await set_params(
                         drone,
                         params_gps_required,
-                        "Setting airborne (GPS Required) parameters...",
+                        "Setting airborne (GPS Required) parameters..."
                     )
                     break
                 elif mode.lower() == "multi-fusion":
                     await set_params(
                         drone,
                         params_preflight,
-                        "Setting airborne (Multi-fusion) parameters...",
+                        "Setting airborne (Multi-fusion) parameters..."
                     )
                     break
                 else:
