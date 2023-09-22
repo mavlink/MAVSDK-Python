@@ -34,7 +34,7 @@ To install simply run:
 
 .. code:: bash
 
-  pip3 install mavsdk
+  python -m pip install --upgrade mavsdk
 
 
 The package contains ``mavsdk_server`` already (previously called "backend"), which is started automatically when connecting (e.g. ``await drone.connect()``). Have a look at the examples to see it used in practice. It will be something like:
@@ -74,26 +74,26 @@ For this case, let's assume the example was like this:
   await drone.connect(system_address="udp://:14540")
 
 
-The mavsdk_server binary is installed using ``pip3``. If installed with ``pip3 --user`` it is usually (at least for Linux) to be found in ``~/.local/lib/python3.9/site-packages/mavsdk/bin/`` (of course depending on the Python version used).
+The mavsdk_server binary is installed using ``pip``. If installed with ``python -m pip install --upgrade mavsdk`` it is usually (at least for Linux) to be found in ``~/.local/lib/python3.10/site-packages/mavsdk/bin/`` (of course depending on the Python version used).
 
 It can then be run in a separate console with the ``system_address`` as an argument:
 
 .. code:: bash
 
-  ~/.local/lib/python3.9/site-packages/mavsdk/bin/mavsdk_server udp://:14540
+  ~/.local/lib/python3.10/site-packages/mavsdk/bin/mavsdk_server udp://:14540
 
 Without an autopilot connecting, the output will look something like:
 
 .. code:: bash
 
-  [02:36:31|Info ] MAVSDK version: v0.50.0 (mavsdk_impl.cpp:28)
+  [02:36:31|Info ] MAVSDK version: v1.4.16 (mavsdk_impl.cpp:28)
   [02:36:31|Info ] Waiting to discover system on udp://:14540... (connection_initiator.h:20)
 
 Once an autopilot is discovered, something like this should be printed:
 
 .. code:: bash
 
-  [02:38:12|Info ] MAVSDK version: v0.50.0 (mavsdk_impl.cpp:28)
+  [02:38:12|Info ] MAVSDK version: v1.4.16 (mavsdk_impl.cpp:28)
   [02:38:12|Info ] Waiting to discover system on udp://:14540... (connection_initiator.h:20)
   [02:39:01|Info ] New system on: 127.0.0.1:14580 (with sysid: 1) (udp_connection.cpp:194)
   [02:39:01|Debug] New: System ID: 1 Comp ID: 1 (mavsdk_impl.cpp:484)
@@ -105,7 +105,9 @@ Once an autopilot is discovered, something like this should be printed:
 
 This would look promising, and the example can now be run against this server, however, without ``system_address``:
 
+
 .. code:: python
+
   drone = System()
   await drone.connect()
 
