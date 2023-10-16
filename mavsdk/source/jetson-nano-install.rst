@@ -27,3 +27,14 @@ Now install mavsdk:
 .. code:: bash
 
    python3.8 -m pip install --upgrade mavsdk
+
+Ubuntu 20.04
+------------
+
+The normal instructions should work with Ubuntu 20.04:
+
+Install mavsdk:
+
+.. code:: bash
+
+   python3 -m pip install --upgrade mavsdk
