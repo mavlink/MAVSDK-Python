@@ -1,6 +1,6 @@
 # MAVSDK-Python
 
-[![GitHub Actions Status](https://github.com/mavlink/MAVSDK-Python/workflows/PyPi%20Upload/badge.svg?branch=main)](https://github.com/mavlink/MAVSDK-Python/actions?query=branch%3Amain)
+[![GitHub Actions Status](https://github.com/mavlink/MAVSDK-Python/workflows/Check%20and%20PyPi%20Upload/badge.svg?branch=main)](https://github.com/mavlink/MAVSDK-Python/actions/workflows/main.yml?query=branch%3Amain)
 
 This is the Python wrapper for MAVSDK.
 
