@@ -502,6 +502,24 @@ class MissionRawResult:
          NO_SYSTEM
               No system connected
 
+         DENIED
+              Request denied
+
+         MISSION_TYPE_NOT_CONSISTENT
+              Mission type is not consistent
+
+         INVALID_SEQUENCE
+              The mission item sequences are not increasing correctly
+
+         CURRENT_INVALID
+              The current item is not set correctly
+
+         PROTOCOL_ERROR
+              There was a protocol error
+
+         INT_MESSAGES_NOT_SUPPORTED
+              The system does not support the MISSION_INT protocol
+
          """
 
         
@@ -518,6 +536,12 @@ class MissionRawResult:
         FAILED_TO_OPEN_QGC_PLAN = 10
         FAILED_TO_PARSE_QGC_PLAN = 11
         NO_SYSTEM = 12
+        DENIED = 13
+        MISSION_TYPE_NOT_CONSISTENT = 14
+        INVALID_SEQUENCE = 15
+        CURRENT_INVALID = 16
+        PROTOCOL_ERROR = 17
+        INT_MESSAGES_NOT_SUPPORTED = 18
 
         def translate_to_rpc(self):
             if self == MissionRawResult.Result.UNKNOWN:
@@ -546,6 +570,18 @@ class MissionRawResult:
                 return mission_raw_pb2.MissionRawResult.RESULT_FAILED_TO_PARSE_QGC_PLAN
             if self == MissionRawResult.Result.NO_SYSTEM:
                 return mission_raw_pb2.MissionRawResult.RESULT_NO_SYSTEM
+            if self == MissionRawResult.Result.DENIED:
+                return mission_raw_pb2.MissionRawResult.RESULT_DENIED
+            if self == MissionRawResult.Result.MISSION_TYPE_NOT_CONSISTENT:
+                return mission_raw_pb2.MissionRawResult.RESULT_MISSION_TYPE_NOT_CONSISTENT
+            if self == MissionRawResult.Result.INVALID_SEQUENCE:
+                return mission_raw_pb2.MissionRawResult.RESULT_INVALID_SEQUENCE
+            if self == MissionRawResult.Result.CURRENT_INVALID:
+                return mission_raw_pb2.MissionRawResult.RESULT_CURRENT_INVALID
+            if self == MissionRawResult.Result.PROTOCOL_ERROR:
+                return mission_raw_pb2.MissionRawResult.RESULT_PROTOCOL_ERROR
+            if self == MissionRawResult.Result.INT_MESSAGES_NOT_SUPPORTED:
+                return mission_raw_pb2.MissionRawResult.RESULT_INT_MESSAGES_NOT_SUPPORTED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -576,6 +612,18 @@ class MissionRawResult:
                 return MissionRawResult.Result.FAILED_TO_PARSE_QGC_PLAN
             if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_NO_SYSTEM:
                 return MissionRawResult.Result.NO_SYSTEM
+            if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_DENIED:
+                return MissionRawResult.Result.DENIED
+            if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_MISSION_TYPE_NOT_CONSISTENT:
+                return MissionRawResult.Result.MISSION_TYPE_NOT_CONSISTENT
+            if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_INVALID_SEQUENCE:
+                return MissionRawResult.Result.INVALID_SEQUENCE
+            if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_CURRENT_INVALID:
+                return MissionRawResult.Result.CURRENT_INVALID
+            if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_PROTOCOL_ERROR:
+                return MissionRawResult.Result.PROTOCOL_ERROR
+            if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_INT_MESSAGES_NOT_SUPPORTED:
+                return MissionRawResult.Result.INT_MESSAGES_NOT_SUPPORTED
 
         def __str__(self):
             return self.name
@@ -709,6 +757,78 @@ class MissionRaw(AsyncBase):
 
         if result.result != MissionRawResult.Result.SUCCESS:
             raise MissionRawError(result, "upload_mission()", mission_items)
+        
+
+    async def upload_geofence(self, mission_items):
+        """
+         Upload a list of geofence items to the system.
+
+         Parameters
+         ----------
+         mission_items : [MissionItem]
+              The mission items
+
+         Raises
+         ------
+         MissionRawError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = mission_raw_pb2.UploadGeofenceRequest()
+        
+        rpc_elems_list = []
+        for elem in mission_items:
+                    
+            rpc_elem = mission_raw_pb2.MissionItem()
+            elem.translate_to_rpc(rpc_elem)
+            rpc_elems_list.append(rpc_elem)
+                    
+        request.mission_items.extend(rpc_elems_list)
+                
+            
+        response = await self._stub.UploadGeofence(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != MissionRawResult.Result.SUCCESS:
+            raise MissionRawError(result, "upload_geofence()", mission_items)
+        
+
+    async def upload_rally_points(self, mission_items):
+        """
+         Upload a list of rally point items to the system.
+
+         Parameters
+         ----------
+         mission_items : [MissionItem]
+              The mission items
+
+         Raises
+         ------
+         MissionRawError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = mission_raw_pb2.UploadRallyPointsRequest()
+        
+        rpc_elems_list = []
+        for elem in mission_items:
+                    
+            rpc_elem = mission_raw_pb2.MissionItem()
+            elem.translate_to_rpc(rpc_elem)
+            rpc_elems_list.append(rpc_elem)
+                    
+        request.mission_items.extend(rpc_elems_list)
+                
+            
+        response = await self._stub.UploadRallyPoints(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != MissionRawResult.Result.SUCCESS:
+            raise MissionRawError(result, "upload_rally_points()", mission_items)
         
 
     async def cancel_mission_upload(self):
@@ -935,7 +1055,7 @@ class MissionRaw(AsyncBase):
 
     async def import_qgroundcontrol_mission(self, qgc_plan_path):
         """
-         Import a QGroundControl missions in JSON .plan format.
+         Import a QGroundControl missions in JSON .plan format, from a file.
 
          Supported:
          - Waypoints
@@ -971,6 +1091,49 @@ class MissionRaw(AsyncBase):
 
         if result.result != MissionRawResult.Result.SUCCESS:
             raise MissionRawError(result, "import_qgroundcontrol_mission()", qgc_plan_path)
+        
+
+        return MissionImportData.translate_from_rpc(response.mission_import_data)
+            
+
+    async def import_qgroundcontrol_mission_from_string(self, qgc_plan):
+        """
+         Import a QGroundControl missions in JSON .plan format, from a string.
+
+         Supported:
+         - Waypoints
+         - Survey
+         Not supported:
+         - Structure Scan
+
+         Parameters
+         ----------
+         qgc_plan : std::string
+              QGC plan as string
+
+         Returns
+         -------
+         mission_import_data : MissionImportData
+              The imported mission data
+
+         Raises
+         ------
+         MissionRawError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = mission_raw_pb2.ImportQgroundcontrolMissionFromStringRequest()
+        
+            
+        request.qgc_plan = qgc_plan
+            
+        response = await self._stub.ImportQgroundcontrolMissionFromString(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != MissionRawResult.Result.SUCCESS:
+            raise MissionRawError(result, "import_qgroundcontrol_mission_from_string()", qgc_plan)
         
 
         return MissionImportData.translate_from_rpc(response.mission_import_data)

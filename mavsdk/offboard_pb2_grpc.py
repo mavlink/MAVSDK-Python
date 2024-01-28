@@ -78,6 +78,11 @@ class OffboardServiceStub(object):
                 request_serializer=offboard_dot_offboard__pb2.SetPositionVelocityNedRequest.SerializeToString,
                 response_deserializer=offboard_dot_offboard__pb2.SetPositionVelocityNedResponse.FromString,
                 )
+        self.SetPositionVelocityAccelerationNed = channel.unary_unary(
+                '/mavsdk.rpc.offboard.OffboardService/SetPositionVelocityAccelerationNed',
+                request_serializer=offboard_dot_offboard__pb2.SetPositionVelocityAccelerationNedRequest.SerializeToString,
+                response_deserializer=offboard_dot_offboard__pb2.SetPositionVelocityAccelerationNedResponse.FromString,
+                )
         self.SetAccelerationNed = channel.unary_unary(
                 '/mavsdk.rpc.offboard.OffboardService/SetAccelerationNed',
                 request_serializer=offboard_dot_offboard__pb2.SetAccelerationNedRequest.SerializeToString,
@@ -193,6 +198,14 @@ class OffboardServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetPositionVelocityAccelerationNed(self, request, context):
+        """
+        Set the position, velocity and acceleration in NED coordinates, with velocity and acceleration used as feed-forward.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetAccelerationNed(self, request, context):
         """
         Set the acceleration in NED coordinates.
@@ -258,6 +271,11 @@ def add_OffboardServiceServicer_to_server(servicer, server):
                     servicer.SetPositionVelocityNed,
                     request_deserializer=offboard_dot_offboard__pb2.SetPositionVelocityNedRequest.FromString,
                     response_serializer=offboard_dot_offboard__pb2.SetPositionVelocityNedResponse.SerializeToString,
+            ),
+            'SetPositionVelocityAccelerationNed': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetPositionVelocityAccelerationNed,
+                    request_deserializer=offboard_dot_offboard__pb2.SetPositionVelocityAccelerationNedRequest.FromString,
+                    response_serializer=offboard_dot_offboard__pb2.SetPositionVelocityAccelerationNedResponse.SerializeToString,
             ),
             'SetAccelerationNed': grpc.unary_unary_rpc_method_handler(
                     servicer.SetAccelerationNed,
@@ -467,6 +485,23 @@ class OffboardService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.offboard.OffboardService/SetPositionVelocityNed',
             offboard_dot_offboard__pb2.SetPositionVelocityNedRequest.SerializeToString,
             offboard_dot_offboard__pb2.SetPositionVelocityNedResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetPositionVelocityAccelerationNed(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.offboard.OffboardService/SetPositionVelocityAccelerationNed',
+            offboard_dot_offboard__pb2.SetPositionVelocityAccelerationNedRequest.SerializeToString,
+            offboard_dot_offboard__pb2.SetPositionVelocityAccelerationNedResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

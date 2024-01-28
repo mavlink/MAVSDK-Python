@@ -186,6 +186,42 @@ class AdsbEmitterType(Enum):
         return self.name
 
 
+class AdsbAltitudeType(Enum):
+    """
+     Altitude type used in AdsbVehicle message
+
+     Values
+     ------
+     PRESSURE_QNH
+          Altitude reported from a Baro source using QNH reference
+
+     GEOMETRIC
+          Altitude reported from a GNSS source
+
+     """
+
+    
+    PRESSURE_QNH = 0
+    GEOMETRIC = 1
+
+    def translate_to_rpc(self):
+        if self == AdsbAltitudeType.PRESSURE_QNH:
+            return transponder_pb2.ADSB_ALTITUDE_TYPE_PRESSURE_QNH
+        if self == AdsbAltitudeType.GEOMETRIC:
+            return transponder_pb2.ADSB_ALTITUDE_TYPE_GEOMETRIC
+
+    @staticmethod
+    def translate_from_rpc(rpc_enum_value):
+        """ Parses a gRPC response """
+        if rpc_enum_value == transponder_pb2.ADSB_ALTITUDE_TYPE_PRESSURE_QNH:
+            return AdsbAltitudeType.PRESSURE_QNH
+        if rpc_enum_value == transponder_pb2.ADSB_ALTITUDE_TYPE_GEOMETRIC:
+            return AdsbAltitudeType.GEOMETRIC
+
+    def __str__(self):
+        return self.name
+
+
 class AdsbVehicle:
     """
      ADSB Vehicle type.
@@ -201,8 +237,11 @@ class AdsbVehicle:
      longitude_deg : double
           Longitude in degrees (range: -180 to +180).
 
+     altitude_type : AdsbAltitudeType
+          ADSB altitude type.
+
      absolute_altitude_m : float
-          Altitude AMSL (above mean sea level) in metres
+          Altitude in metres according to altitude_type 
 
      heading_deg : float
           Course over ground, in degrees
@@ -234,6 +273,7 @@ class AdsbVehicle:
             icao_address,
             latitude_deg,
             longitude_deg,
+            altitude_type,
             absolute_altitude_m,
             heading_deg,
             horizontal_velocity_m_s,
@@ -246,6 +286,7 @@ class AdsbVehicle:
         self.icao_address = icao_address
         self.latitude_deg = latitude_deg
         self.longitude_deg = longitude_deg
+        self.altitude_type = altitude_type
         self.absolute_altitude_m = absolute_altitude_m
         self.heading_deg = heading_deg
         self.horizontal_velocity_m_s = horizontal_velocity_m_s
@@ -264,6 +305,7 @@ class AdsbVehicle:
                 (self.icao_address == to_compare.icao_address) and \
                 (self.latitude_deg == to_compare.latitude_deg) and \
                 (self.longitude_deg == to_compare.longitude_deg) and \
+                (self.altitude_type == to_compare.altitude_type) and \
                 (self.absolute_altitude_m == to_compare.absolute_altitude_m) and \
                 (self.heading_deg == to_compare.heading_deg) and \
                 (self.horizontal_velocity_m_s == to_compare.horizontal_velocity_m_s) and \
@@ -282,6 +324,7 @@ class AdsbVehicle:
                 "icao_address: " + str(self.icao_address),
                 "latitude_deg: " + str(self.latitude_deg),
                 "longitude_deg: " + str(self.longitude_deg),
+                "altitude_type: " + str(self.altitude_type),
                 "absolute_altitude_m: " + str(self.absolute_altitude_m),
                 "heading_deg: " + str(self.heading_deg),
                 "horizontal_velocity_m_s: " + str(self.horizontal_velocity_m_s),
@@ -306,6 +349,9 @@ class AdsbVehicle:
                 
                 
                 rpcAdsbVehicle.longitude_deg,
+                
+                
+                AdsbAltitudeType.translate_from_rpc(rpcAdsbVehicle.altitude_type),
                 
                 
                 rpcAdsbVehicle.absolute_altitude_m,
@@ -351,6 +397,12 @@ class AdsbVehicle:
         
             
         rpcAdsbVehicle.longitude_deg = self.longitude_deg
+            
+        
+        
+        
+            
+        rpcAdsbVehicle.altitude_type = self.altitude_type.translate_to_rpc()
             
         
         

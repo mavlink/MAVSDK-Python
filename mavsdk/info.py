@@ -299,8 +299,79 @@ class Version:
      os_sw_git_hash : std::string
           Operating system software git hash
 
+     flight_sw_version_type : FlightSoftwareVersionType
+          Flight software version type
+
      """
 
+    
+    
+    class FlightSoftwareVersionType(Enum):
+        """
+         These values define the type of firmware/flight software release
+
+         Values
+         ------
+         UNKNOWN
+              Unknown type
+
+         DEV
+              Development release
+
+         ALPHA
+              Alpha release
+
+         BETA
+              Beta release
+
+         RC
+              Release candidate
+
+         RELEASE
+              Official stable release
+
+         """
+
+        
+        UNKNOWN = 0
+        DEV = 1
+        ALPHA = 2
+        BETA = 3
+        RC = 4
+        RELEASE = 5
+
+        def translate_to_rpc(self):
+            if self == Version.FlightSoftwareVersionType.UNKNOWN:
+                return info_pb2.Version.FLIGHT_SOFTWARE_VERSION_TYPE_UNKNOWN
+            if self == Version.FlightSoftwareVersionType.DEV:
+                return info_pb2.Version.FLIGHT_SOFTWARE_VERSION_TYPE_DEV
+            if self == Version.FlightSoftwareVersionType.ALPHA:
+                return info_pb2.Version.FLIGHT_SOFTWARE_VERSION_TYPE_ALPHA
+            if self == Version.FlightSoftwareVersionType.BETA:
+                return info_pb2.Version.FLIGHT_SOFTWARE_VERSION_TYPE_BETA
+            if self == Version.FlightSoftwareVersionType.RC:
+                return info_pb2.Version.FLIGHT_SOFTWARE_VERSION_TYPE_RC
+            if self == Version.FlightSoftwareVersionType.RELEASE:
+                return info_pb2.Version.FLIGHT_SOFTWARE_VERSION_TYPE_RELEASE
+
+        @staticmethod
+        def translate_from_rpc(rpc_enum_value):
+            """ Parses a gRPC response """
+            if rpc_enum_value == info_pb2.Version.FLIGHT_SOFTWARE_VERSION_TYPE_UNKNOWN:
+                return Version.FlightSoftwareVersionType.UNKNOWN
+            if rpc_enum_value == info_pb2.Version.FLIGHT_SOFTWARE_VERSION_TYPE_DEV:
+                return Version.FlightSoftwareVersionType.DEV
+            if rpc_enum_value == info_pb2.Version.FLIGHT_SOFTWARE_VERSION_TYPE_ALPHA:
+                return Version.FlightSoftwareVersionType.ALPHA
+            if rpc_enum_value == info_pb2.Version.FLIGHT_SOFTWARE_VERSION_TYPE_BETA:
+                return Version.FlightSoftwareVersionType.BETA
+            if rpc_enum_value == info_pb2.Version.FLIGHT_SOFTWARE_VERSION_TYPE_RC:
+                return Version.FlightSoftwareVersionType.RC
+            if rpc_enum_value == info_pb2.Version.FLIGHT_SOFTWARE_VERSION_TYPE_RELEASE:
+                return Version.FlightSoftwareVersionType.RELEASE
+
+        def __str__(self):
+            return self.name
     
 
     def __init__(
@@ -315,7 +386,8 @@ class Version:
             os_sw_minor,
             os_sw_patch,
             flight_sw_git_hash,
-            os_sw_git_hash):
+            os_sw_git_hash,
+            flight_sw_version_type):
         """ Initializes the Version object """
         self.flight_sw_major = flight_sw_major
         self.flight_sw_minor = flight_sw_minor
@@ -328,6 +400,7 @@ class Version:
         self.os_sw_patch = os_sw_patch
         self.flight_sw_git_hash = flight_sw_git_hash
         self.os_sw_git_hash = os_sw_git_hash
+        self.flight_sw_version_type = flight_sw_version_type
 
     def __eq__(self, to_compare):
         """ Checks if two Version are the same """
@@ -345,7 +418,8 @@ class Version:
                 (self.os_sw_minor == to_compare.os_sw_minor) and \
                 (self.os_sw_patch == to_compare.os_sw_patch) and \
                 (self.flight_sw_git_hash == to_compare.flight_sw_git_hash) and \
-                (self.os_sw_git_hash == to_compare.os_sw_git_hash)
+                (self.os_sw_git_hash == to_compare.os_sw_git_hash) and \
+                (self.flight_sw_version_type == to_compare.flight_sw_version_type)
 
         except AttributeError:
             return False
@@ -363,7 +437,8 @@ class Version:
                 "os_sw_minor: " + str(self.os_sw_minor),
                 "os_sw_patch: " + str(self.os_sw_patch),
                 "flight_sw_git_hash: " + str(self.flight_sw_git_hash),
-                "os_sw_git_hash: " + str(self.os_sw_git_hash)
+                "os_sw_git_hash: " + str(self.os_sw_git_hash),
+                "flight_sw_version_type: " + str(self.flight_sw_version_type)
                 ])
 
         return f"Version: [{struct_repr}]"
@@ -403,7 +478,10 @@ class Version:
                 rpcVersion.flight_sw_git_hash,
                 
                 
-                rpcVersion.os_sw_git_hash
+                rpcVersion.os_sw_git_hash,
+                
+                
+                Version.FlightSoftwareVersionType.translate_from_rpc(rpcVersion.flight_sw_version_type)
                 )
 
     def translate_to_rpc(self, rpcVersion):
@@ -473,6 +551,12 @@ class Version:
         
             
         rpcVersion.os_sw_git_hash = self.os_sw_git_hash
+            
+        
+        
+        
+            
+        rpcVersion.flight_sw_version_type = self.flight_sw_version_type.translate_to_rpc()
             
         
         

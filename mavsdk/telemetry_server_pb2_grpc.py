@@ -87,6 +87,11 @@ class TelemetryServerServiceStub(object):
                 request_serializer=telemetry__server_dot_telemetry__server__pb2.PublishUnixEpochTimeRequest.SerializeToString,
                 response_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishUnixEpochTimeResponse.FromString,
                 )
+        self.PublishDistanceSensor = channel.unary_unary(
+                '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishDistanceSensor',
+                request_serializer=telemetry__server_dot_telemetry__server__pb2.PublishDistanceSensorRequest.SerializeToString,
+                response_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishDistanceSensorResponse.FromString,
+                )
 
 
 class TelemetryServerServiceServicer(object):
@@ -193,6 +198,13 @@ class TelemetryServerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def PublishDistanceSensor(self, request, context):
+        """Publish to "distance sensor" updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_TelemetryServerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -265,6 +277,11 @@ def add_TelemetryServerServiceServicer_to_server(servicer, server):
                     servicer.PublishUnixEpochTime,
                     request_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishUnixEpochTimeRequest.FromString,
                     response_serializer=telemetry__server_dot_telemetry__server__pb2.PublishUnixEpochTimeResponse.SerializeToString,
+            ),
+            'PublishDistanceSensor': grpc.unary_unary_rpc_method_handler(
+                    servicer.PublishDistanceSensor,
+                    request_deserializer=telemetry__server_dot_telemetry__server__pb2.PublishDistanceSensorRequest.FromString,
+                    response_serializer=telemetry__server_dot_telemetry__server__pb2.PublishDistanceSensorResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -514,5 +531,22 @@ class TelemetryServerService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishUnixEpochTime',
             telemetry__server_dot_telemetry__server__pb2.PublishUnixEpochTimeRequest.SerializeToString,
             telemetry__server_dot_telemetry__server__pb2.PublishUnixEpochTimeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def PublishDistanceSensor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry_server.TelemetryServerService/PublishDistanceSensor',
+            telemetry__server_dot_telemetry__server__pb2.PublishDistanceSensorRequest.SerializeToString,
+            telemetry__server_dot_telemetry__server__pb2.PublishDistanceSensorResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

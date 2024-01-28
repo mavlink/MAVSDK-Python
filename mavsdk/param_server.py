@@ -754,3 +754,75 @@ class ParamServer(AsyncBase):
 
         return AllParams.translate_from_rpc(response.params)
             
+
+    async def changed_param_int(self):
+        """
+         Subscribe to changed int param.
+
+         Yields
+         -------
+         param : IntParam
+              Param that changed
+
+         
+        """
+
+        request = param_server_pb2.SubscribeChangedParamIntRequest()
+        changed_param_int_stream = self._stub.SubscribeChangedParamInt(request)
+
+        try:
+            async for response in changed_param_int_stream:
+                
+
+            
+                yield IntParam.translate_from_rpc(response.param)
+        finally:
+            changed_param_int_stream.cancel()
+
+    async def changed_param_float(self):
+        """
+         Subscribe to changed float param.
+
+         Yields
+         -------
+         param : FloatParam
+              Param that changed
+
+         
+        """
+
+        request = param_server_pb2.SubscribeChangedParamFloatRequest()
+        changed_param_float_stream = self._stub.SubscribeChangedParamFloat(request)
+
+        try:
+            async for response in changed_param_float_stream:
+                
+
+            
+                yield FloatParam.translate_from_rpc(response.param)
+        finally:
+            changed_param_float_stream.cancel()
+
+    async def changed_param_custom(self):
+        """
+         Subscribe to changed custom param.
+
+         Yields
+         -------
+         param : CustomParam
+              Param that changed
+
+         
+        """
+
+        request = param_server_pb2.SubscribeChangedParamCustomRequest()
+        changed_param_custom_stream = self._stub.SubscribeChangedParamCustom(request)
+
+        try:
+            async for response in changed_param_custom_stream:
+                
+
+            
+                yield CustomParam.translate_from_rpc(response.param)
+        finally:
+            changed_param_custom_stream.cancel()

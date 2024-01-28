@@ -3666,3 +3666,32 @@ class TelemetryServer(AsyncBase):
         if result.result != TelemetryServerResult.Result.SUCCESS:
             raise TelemetryServerError(result, "publish_unix_epoch_time()", time_us)
         
+
+    async def publish_distance_sensor(self, distance_sensor):
+        """
+         Publish to "distance sensor" updates.
+
+         Parameters
+         ----------
+         distance_sensor : DistanceSensor
+              The next 'Distance Sensor' status
+
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_server_pb2.PublishDistanceSensorRequest()
+        
+        distance_sensor.translate_to_rpc(request.distance_sensor)
+                
+            
+        response = await self._stub.PublishDistanceSensor(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_distance_sensor()", distance_sensor)
+        

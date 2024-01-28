@@ -181,7 +181,7 @@ class ActuatorControl:
 
      One group support eight controls.
 
-     Up to 16 actuator controls can be set. To ignore an output group, set all it conrols to NaN.
+     Up to 16 actuator controls can be set. To ignore an output group, set all it controls to NaN.
      If one or more controls in group is not NaN, then all NaN controls will sent as zero.
      The first 8 actuator controls internally map to control group 0, the latter 8 actuator
      controls map to control group 1. Depending on what controls are set (instead of NaN) 1 or 2
@@ -482,7 +482,7 @@ class PositionGlobalYaw:
           Yaw in degrees (0 North, positive is clock-wise looking from above)
 
      altitude_type : AltitudeType
-          altitude type for this position 
+          altitude type for this position
 
      """
 
@@ -977,6 +977,9 @@ class OffboardResult:
          NO_SETPOINT_SET
               Cannot start without setpoint set
 
+         FAILED
+              Request failed
+
          """
 
         
@@ -988,6 +991,7 @@ class OffboardResult:
         COMMAND_DENIED = 5
         TIMEOUT = 6
         NO_SETPOINT_SET = 7
+        FAILED = 8
 
         def translate_to_rpc(self):
             if self == OffboardResult.Result.UNKNOWN:
@@ -1006,6 +1010,8 @@ class OffboardResult:
                 return offboard_pb2.OffboardResult.RESULT_TIMEOUT
             if self == OffboardResult.Result.NO_SETPOINT_SET:
                 return offboard_pb2.OffboardResult.RESULT_NO_SETPOINT_SET
+            if self == OffboardResult.Result.FAILED:
+                return offboard_pb2.OffboardResult.RESULT_FAILED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -1026,6 +1032,8 @@ class OffboardResult:
                 return OffboardResult.Result.TIMEOUT
             if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_NO_SETPOINT_SET:
                 return OffboardResult.Result.NO_SETPOINT_SET
+            if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_FAILED:
+                return OffboardResult.Result.FAILED
 
         def __str__(self):
             return self.name
@@ -1435,6 +1443,49 @@ class Offboard(AsyncBase):
 
         if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_position_velocity_ned()", position_ned_yaw, velocity_ned_yaw)
+        
+
+    async def set_position_velocity_acceleration_ned(self, position_ned_yaw, velocity_ned_yaw, acceleration_ned):
+        """
+         Set the position, velocity and acceleration in NED coordinates, with velocity and acceleration used as feed-forward.
+
+         Parameters
+         ----------
+         position_ned_yaw : PositionNedYaw
+              Position and yaw
+
+         velocity_ned_yaw : VelocityNedYaw
+              Velocity and yaw
+
+         acceleration_ned : AccelerationNed
+              Acceleration
+
+         Raises
+         ------
+         OffboardError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = offboard_pb2.SetPositionVelocityAccelerationNedRequest()
+        
+        position_ned_yaw.translate_to_rpc(request.position_ned_yaw)
+                
+            
+        
+        velocity_ned_yaw.translate_to_rpc(request.velocity_ned_yaw)
+                
+            
+        
+        acceleration_ned.translate_to_rpc(request.acceleration_ned)
+                
+            
+        response = await self._stub.SetPositionVelocityAccelerationNed(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "set_position_velocity_acceleration_ned()", position_ned_yaw, velocity_ned_yaw, acceleration_ned)
         
 
     async def set_acceleration_ned(self, acceleration_ned):

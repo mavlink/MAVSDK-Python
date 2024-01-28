@@ -6,6 +6,42 @@ from . import param_pb2, param_pb2_grpc
 from enum import Enum
 
 
+class ProtocolVersion(Enum):
+    """
+     Parameter version
+
+     Values
+     ------
+     V1
+          Original v1 version
+
+     EXT
+          Extended param version
+
+     """
+
+    
+    V1 = 0
+    EXT = 1
+
+    def translate_to_rpc(self):
+        if self == ProtocolVersion.V1:
+            return param_pb2.PROTOCOL_VERSION_V1
+        if self == ProtocolVersion.EXT:
+            return param_pb2.PROTOCOL_VERSION_EXT
+
+    @staticmethod
+    def translate_from_rpc(rpc_enum_value):
+        """ Parses a gRPC response """
+        if rpc_enum_value == param_pb2.PROTOCOL_VERSION_V1:
+            return ProtocolVersion.V1
+        if rpc_enum_value == param_pb2.PROTOCOL_VERSION_EXT:
+            return ProtocolVersion.EXT
+
+    def __str__(self):
+        return self.name
+
+
 class IntParam:
     """
      Type for integer parameters.
@@ -385,6 +421,9 @@ class ParamResult:
          PARAM_VALUE_TOO_LONG
               Param value too long (> 128)
 
+         FAILED
+              Operation failed.
+
          """
 
         
@@ -396,6 +435,7 @@ class ParamResult:
         PARAM_NAME_TOO_LONG = 5
         NO_SYSTEM = 6
         PARAM_VALUE_TOO_LONG = 7
+        FAILED = 8
 
         def translate_to_rpc(self):
             if self == ParamResult.Result.UNKNOWN:
@@ -414,6 +454,8 @@ class ParamResult:
                 return param_pb2.ParamResult.RESULT_NO_SYSTEM
             if self == ParamResult.Result.PARAM_VALUE_TOO_LONG:
                 return param_pb2.ParamResult.RESULT_PARAM_VALUE_TOO_LONG
+            if self == ParamResult.Result.FAILED:
+                return param_pb2.ParamResult.RESULT_FAILED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -434,6 +476,8 @@ class ParamResult:
                 return ParamResult.Result.NO_SYSTEM
             if rpc_enum_value == param_pb2.ParamResult.RESULT_PARAM_VALUE_TOO_LONG:
                 return ParamResult.Result.PARAM_VALUE_TOO_LONG
+            if rpc_enum_value == param_pb2.ParamResult.RESULT_FAILED:
+                return ParamResult.Result.FAILED
 
         def __str__(self):
             return self.name
@@ -762,3 +806,38 @@ class Param(AsyncBase):
 
         return AllParams.translate_from_rpc(response.params)
             
+
+    async def select_component(self, component_id, protocol_version):
+        """
+         Select component ID of parameter component to talk to and param protocol version.
+
+         Default is the autopilot component (1), and Version (0).
+
+         Parameters
+         ----------
+         component_id : int32_t
+              MAVLink component Id of component to select
+
+         protocol_version : ProtocolVersion
+              Protocol version
+
+         Raises
+         ------
+         ParamError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = param_pb2.SelectComponentRequest()
+        request.component_id = component_id
+        
+        request.protocol_version = protocol_version.translate_to_rpc()
+                
+            
+        response = await self._stub.SelectComponent(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != ParamResult.Result.SUCCESS:
+            raise ParamError(result, "select_component()", component_id, protocol_version)
+        

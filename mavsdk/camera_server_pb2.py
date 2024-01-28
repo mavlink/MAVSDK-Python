@@ -16,30 +16,80 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n!camera_server/camera_server.proto\x12\x18mavsdk.rpc.camera_server\x1a\x14mavsdk_options.proto\"S\n\x15SetInformationRequest\x12:\n\x0binformation\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.camera_server.Information\"d\n\x16SetInformationResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"+\n\x14SetInProgressRequest\x12\x13\n\x0bin_progress\x18\x01 \x01(\x08\"c\n\x15SetInProgressResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1b\n\x19SubscribeTakePhotoRequest\"\"\n\x11TakePhotoResponse\x12\r\n\x05index\x18\x01 \x01(\x05\"\xa0\x01\n\x17RespondTakePhotoRequest\x12H\n\x13take_photo_feedback\x18\x01 \x01(\x0e\x32+.mavsdk.rpc.camera_server.TakePhotoFeedback\x12;\n\x0c\x63\x61pture_info\x18\x02 \x01(\x0b\x32%.mavsdk.rpc.camera_server.CaptureInfo\"f\n\x18RespondTakePhotoResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\xbe\x02\n\x0bInformation\x12\x13\n\x0bvendor_name\x18\x01 \x01(\t\x12\x12\n\nmodel_name\x18\x02 \x01(\t\x12\x18\n\x10\x66irmware_version\x18\x03 \x01(\t\x12\x17\n\x0f\x66ocal_length_mm\x18\x04 \x01(\x02\x12!\n\x19horizontal_sensor_size_mm\x18\x05 \x01(\x02\x12\x1f\n\x17vertical_sensor_size_mm\x18\x06 \x01(\x02\x12 \n\x18horizontal_resolution_px\x18\x07 \x01(\r\x12\x1e\n\x16vertical_resolution_px\x18\x08 \x01(\r\x12\x0f\n\x07lens_id\x18\t \x01(\r\x12\x1f\n\x17\x64\x65\x66inition_file_version\x18\n \x01(\r\x12\x1b\n\x13\x64\x65\x66inition_file_uri\x18\x0b \x01(\t\"q\n\x08Position\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x12\x1b\n\x13relative_altitude_m\x18\x04 \x01(\x02\"8\n\nQuaternion\x12\t\n\x01w\x18\x01 \x01(\x02\x12\t\n\x01x\x18\x02 \x01(\x02\x12\t\n\x01y\x18\x03 \x01(\x02\x12\t\n\x01z\x18\x04 \x01(\x02\"\xd0\x01\n\x0b\x43\x61ptureInfo\x12\x34\n\x08position\x18\x01 \x01(\x0b\x32\".mavsdk.rpc.camera_server.Position\x12\x41\n\x13\x61ttitude_quaternion\x18\x02 \x01(\x0b\x32$.mavsdk.rpc.camera_server.Quaternion\x12\x13\n\x0btime_utc_us\x18\x03 \x01(\x04\x12\x12\n\nis_success\x18\x04 \x01(\x08\x12\r\n\x05index\x18\x05 \x01(\x05\x12\x10\n\x08\x66ile_url\x18\x06 \x01(\t\"\xb3\x02\n\x12\x43\x61meraServerResult\x12\x43\n\x06result\x18\x01 \x01(\x0e\x32\x33.mavsdk.rpc.camera_server.CameraServerResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xc3\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x16\n\x12RESULT_IN_PROGRESS\x10\x02\x12\x0f\n\x0bRESULT_BUSY\x10\x03\x12\x11\n\rRESULT_DENIED\x10\x04\x12\x10\n\x0cRESULT_ERROR\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x19\n\x15RESULT_WRONG_ARGUMENT\x10\x07\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x08*\x8e\x01\n\x11TakePhotoFeedback\x12\x1f\n\x1bTAKE_PHOTO_FEEDBACK_UNKNOWN\x10\x00\x12\x1a\n\x16TAKE_PHOTO_FEEDBACK_OK\x10\x01\x12\x1c\n\x18TAKE_PHOTO_FEEDBACK_BUSY\x10\x02\x12\x1e\n\x1aTAKE_PHOTO_FEEDBACK_FAILED\x10\x03\x32\x89\x04\n\x13\x43\x61meraServerService\x12y\n\x0eSetInformation\x12/.mavsdk.rpc.camera_server.SetInformationRequest\x1a\x30.mavsdk.rpc.camera_server.SetInformationResponse\"\x04\x80\xb5\x18\x01\x12v\n\rSetInProgress\x12..mavsdk.rpc.camera_server.SetInProgressRequest\x1a/.mavsdk.rpc.camera_server.SetInProgressResponse\"\x04\x80\xb5\x18\x01\x12~\n\x12SubscribeTakePhoto\x12\x33.mavsdk.rpc.camera_server.SubscribeTakePhotoRequest\x1a+.mavsdk.rpc.camera_server.TakePhotoResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x7f\n\x10RespondTakePhoto\x12\x31.mavsdk.rpc.camera_server.RespondTakePhotoRequest\x1a\x32.mavsdk.rpc.camera_server.RespondTakePhotoResponse\"\x04\x80\xb5\x18\x01\x42,\n\x17io.mavsdk.camera_serverB\x11\x43\x61meraServerProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n!camera_server/camera_server.proto\x12\x18mavsdk.rpc.camera_server\x1a\x14mavsdk_options.proto\"S\n\x15SetInformationRequest\x12:\n\x0binformation\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.camera_server.Information\"d\n\x16SetInformationResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"]\n\x18SetVideoStreamingRequest\x12\x41\n\x0fvideo_streaming\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.camera_server.VideoStreaming\"g\n\x19SetVideoStreamingResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"+\n\x14SetInProgressRequest\x12\x13\n\x0bin_progress\x18\x01 \x01(\x08\"c\n\x15SetInProgressResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1b\n\x19SubscribeTakePhotoRequest\"\"\n\x11TakePhotoResponse\x12\r\n\x05index\x18\x01 \x01(\x05\"\x9d\x01\n\x17RespondTakePhotoRequest\x12\x45\n\x13take_photo_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\x12;\n\x0c\x63\x61pture_info\x18\x02 \x01(\x0b\x32%.mavsdk.rpc.camera_server.CaptureInfo\"f\n\x18RespondTakePhotoResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1c\n\x1aSubscribeStartVideoRequest\"\'\n\x12StartVideoResponse\x12\x11\n\tstream_id\x18\x01 \x01(\x05\"b\n\x18RespondStartVideoRequest\x12\x46\n\x14start_video_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"g\n\x19RespondStartVideoResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1b\n\x19SubscribeStopVideoRequest\"&\n\x11StopVideoResponse\x12\x11\n\tstream_id\x18\x01 \x01(\x05\"`\n\x17RespondStopVideoRequest\x12\x45\n\x13stop_video_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"f\n\x18RespondStopVideoResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"%\n#SubscribeStartVideoStreamingRequest\"0\n\x1bStartVideoStreamingResponse\x12\x11\n\tstream_id\x18\x01 \x01(\x05\"u\n!RespondStartVideoStreamingRequest\x12P\n\x1estart_video_streaming_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"p\n\"RespondStartVideoStreamingResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"$\n\"SubscribeStopVideoStreamingRequest\"/\n\x1aStopVideoStreamingResponse\x12\x11\n\tstream_id\x18\x01 \x01(\x05\"s\n RespondStopVideoStreamingRequest\x12O\n\x1dstop_video_streaming_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"o\n!RespondStopVideoStreamingResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x19\n\x17SubscribeSetModeRequest\"?\n\x0fSetModeResponse\x12,\n\x04mode\x18\x01 \x01(\x0e\x32\x1e.mavsdk.rpc.camera_server.Mode\"\\\n\x15RespondSetModeRequest\x12\x43\n\x11set_mode_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"d\n\x16RespondSetModeResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"$\n\"SubscribeStorageInformationRequest\"0\n\x1aStorageInformationResponse\x12\x12\n\nstorage_id\x18\x01 \x01(\x05\"\xbd\x01\n RespondStorageInformationRequest\x12N\n\x1cstorage_information_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\x12I\n\x13storage_information\x18\x02 \x01(\x0b\x32,.mavsdk.rpc.camera_server.StorageInformation\"o\n!RespondStorageInformationResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1f\n\x1dSubscribeCaptureStatusRequest\")\n\x15\x43\x61ptureStatusResponse\x12\x10\n\x08reserved\x18\x01 \x01(\x05\"\xa9\x01\n\x1bRespondCaptureStatusRequest\x12I\n\x17\x63\x61pture_status_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\x12?\n\x0e\x63\x61pture_status\x18\x02 \x01(\x0b\x32\'.mavsdk.rpc.camera_server.CaptureStatus\"j\n\x1cRespondCaptureStatusResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1f\n\x1dSubscribeFormatStorageRequest\"+\n\x15\x46ormatStorageResponse\x12\x12\n\nstorage_id\x18\x01 \x01(\x05\"h\n\x1bRespondFormatStorageRequest\x12I\n\x17\x66ormat_storage_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"j\n\x1cRespondFormatStorageResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1f\n\x1dSubscribeResetSettingsRequest\")\n\x15ResetSettingsResponse\x12\x10\n\x08reserved\x18\x01 \x01(\x05\"h\n\x1bRespondResetSettingsRequest\x12I\n\x17reset_settings_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"j\n\x1cRespondResetSettingsResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\xbe\x02\n\x0bInformation\x12\x13\n\x0bvendor_name\x18\x01 \x01(\t\x12\x12\n\nmodel_name\x18\x02 \x01(\t\x12\x18\n\x10\x66irmware_version\x18\x03 \x01(\t\x12\x17\n\x0f\x66ocal_length_mm\x18\x04 \x01(\x02\x12!\n\x19horizontal_sensor_size_mm\x18\x05 \x01(\x02\x12\x1f\n\x17vertical_sensor_size_mm\x18\x06 \x01(\x02\x12 \n\x18horizontal_resolution_px\x18\x07 \x01(\r\x12\x1e\n\x16vertical_resolution_px\x18\x08 \x01(\r\x12\x0f\n\x07lens_id\x18\t \x01(\r\x12\x1f\n\x17\x64\x65\x66inition_file_version\x18\n \x01(\r\x12\x1b\n\x13\x64\x65\x66inition_file_uri\x18\x0b \x01(\t\";\n\x0eVideoStreaming\x12\x17\n\x0fhas_rtsp_server\x18\x01 \x01(\x08\x12\x10\n\x08rtsp_uri\x18\x02 \x01(\t\"q\n\x08Position\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x12\x1b\n\x13relative_altitude_m\x18\x04 \x01(\x02\"8\n\nQuaternion\x12\t\n\x01w\x18\x01 \x01(\x02\x12\t\n\x01x\x18\x02 \x01(\x02\x12\t\n\x01y\x18\x03 \x01(\x02\x12\t\n\x01z\x18\x04 \x01(\x02\"\xd0\x01\n\x0b\x43\x61ptureInfo\x12\x34\n\x08position\x18\x01 \x01(\x0b\x32\".mavsdk.rpc.camera_server.Position\x12\x41\n\x13\x61ttitude_quaternion\x18\x02 \x01(\x0b\x32$.mavsdk.rpc.camera_server.Quaternion\x12\x13\n\x0btime_utc_us\x18\x03 \x01(\x04\x12\x12\n\nis_success\x18\x04 \x01(\x08\x12\r\n\x05index\x18\x05 \x01(\x05\x12\x10\n\x08\x66ile_url\x18\x06 \x01(\t\"\xb3\x02\n\x12\x43\x61meraServerResult\x12\x43\n\x06result\x18\x01 \x01(\x0e\x32\x33.mavsdk.rpc.camera_server.CameraServerResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xc3\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x16\n\x12RESULT_IN_PROGRESS\x10\x02\x12\x0f\n\x0bRESULT_BUSY\x10\x03\x12\x11\n\rRESULT_DENIED\x10\x04\x12\x10\n\x0cRESULT_ERROR\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x19\n\x15RESULT_WRONG_ARGUMENT\x10\x07\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x08\"\x8c\x05\n\x12StorageInformation\x12\x18\n\x10used_storage_mib\x18\x01 \x01(\x02\x12\x1d\n\x15\x61vailable_storage_mib\x18\x02 \x01(\x02\x12\x19\n\x11total_storage_mib\x18\x03 \x01(\x02\x12R\n\x0estorage_status\x18\x04 \x01(\x0e\x32:.mavsdk.rpc.camera_server.StorageInformation.StorageStatus\x12\x12\n\nstorage_id\x18\x05 \x01(\r\x12N\n\x0cstorage_type\x18\x06 \x01(\x0e\x32\x38.mavsdk.rpc.camera_server.StorageInformation.StorageType\x12\x18\n\x10read_speed_mib_s\x18\x07 \x01(\x02\x12\x19\n\x11write_speed_mib_s\x18\x08 \x01(\x02\"\x91\x01\n\rStorageStatus\x12 \n\x1cSTORAGE_STATUS_NOT_AVAILABLE\x10\x00\x12\x1e\n\x1aSTORAGE_STATUS_UNFORMATTED\x10\x01\x12\x1c\n\x18STORAGE_STATUS_FORMATTED\x10\x02\x12 \n\x1cSTORAGE_STATUS_NOT_SUPPORTED\x10\x03\"\xa0\x01\n\x0bStorageType\x12\x18\n\x14STORAGE_TYPE_UNKNOWN\x10\x00\x12\x1a\n\x16STORAGE_TYPE_USB_STICK\x10\x01\x12\x13\n\x0fSTORAGE_TYPE_SD\x10\x02\x12\x18\n\x14STORAGE_TYPE_MICROSD\x10\x03\x12\x13\n\x0fSTORAGE_TYPE_HD\x10\x07\x12\x17\n\x12STORAGE_TYPE_OTHER\x10\xfe\x01\"\xee\x03\n\rCaptureStatus\x12\x18\n\x10image_interval_s\x18\x01 \x01(\x02\x12\x18\n\x10recording_time_s\x18\x02 \x01(\x02\x12\x1e\n\x16\x61vailable_capacity_mib\x18\x03 \x01(\x02\x12I\n\x0cimage_status\x18\x04 \x01(\x0e\x32\x33.mavsdk.rpc.camera_server.CaptureStatus.ImageStatus\x12I\n\x0cvideo_status\x18\x05 \x01(\x0e\x32\x33.mavsdk.rpc.camera_server.CaptureStatus.VideoStatus\x12\x13\n\x0bimage_count\x18\x06 \x01(\x05\"\x91\x01\n\x0bImageStatus\x12\x15\n\x11IMAGE_STATUS_IDLE\x10\x00\x12$\n IMAGE_STATUS_CAPTURE_IN_PROGRESS\x10\x01\x12\x1e\n\x1aIMAGE_STATUS_INTERVAL_IDLE\x10\x02\x12%\n!IMAGE_STATUS_INTERVAL_IN_PROGRESS\x10\x03\"J\n\x0bVideoStatus\x12\x15\n\x11VIDEO_STATUS_IDLE\x10\x00\x12$\n VIDEO_STATUS_CAPTURE_IN_PROGRESS\x10\x01*{\n\x0e\x43\x61meraFeedback\x12\x1b\n\x17\x43\x41MERA_FEEDBACK_UNKNOWN\x10\x00\x12\x16\n\x12\x43\x41MERA_FEEDBACK_OK\x10\x01\x12\x18\n\x14\x43\x41MERA_FEEDBACK_BUSY\x10\x02\x12\x1a\n\x16\x43\x41MERA_FEEDBACK_FAILED\x10\x03*8\n\x04Mode\x12\x10\n\x0cMODE_UNKNOWN\x10\x00\x12\x0e\n\nMODE_PHOTO\x10\x01\x12\x0e\n\nMODE_VIDEO\x10\x02\x32\x8f\x19\n\x13\x43\x61meraServerService\x12y\n\x0eSetInformation\x12/.mavsdk.rpc.camera_server.SetInformationRequest\x1a\x30.mavsdk.rpc.camera_server.SetInformationResponse\"\x04\x80\xb5\x18\x01\x12\x82\x01\n\x11SetVideoStreaming\x12\x32.mavsdk.rpc.camera_server.SetVideoStreamingRequest\x1a\x33.mavsdk.rpc.camera_server.SetVideoStreamingResponse\"\x04\x80\xb5\x18\x01\x12v\n\rSetInProgress\x12..mavsdk.rpc.camera_server.SetInProgressRequest\x1a/.mavsdk.rpc.camera_server.SetInProgressResponse\"\x04\x80\xb5\x18\x01\x12~\n\x12SubscribeTakePhoto\x12\x33.mavsdk.rpc.camera_server.SubscribeTakePhotoRequest\x1a+.mavsdk.rpc.camera_server.TakePhotoResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x7f\n\x10RespondTakePhoto\x12\x31.mavsdk.rpc.camera_server.RespondTakePhotoRequest\x1a\x32.mavsdk.rpc.camera_server.RespondTakePhotoResponse\"\x04\x80\xb5\x18\x01\x12\x81\x01\n\x13SubscribeStartVideo\x12\x34.mavsdk.rpc.camera_server.SubscribeStartVideoRequest\x1a,.mavsdk.rpc.camera_server.StartVideoResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x82\x01\n\x11RespondStartVideo\x12\x32.mavsdk.rpc.camera_server.RespondStartVideoRequest\x1a\x33.mavsdk.rpc.camera_server.RespondStartVideoResponse\"\x04\x80\xb5\x18\x01\x12~\n\x12SubscribeStopVideo\x12\x33.mavsdk.rpc.camera_server.SubscribeStopVideoRequest\x1a+.mavsdk.rpc.camera_server.StopVideoResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x7f\n\x10RespondStopVideo\x12\x31.mavsdk.rpc.camera_server.RespondStopVideoRequest\x1a\x32.mavsdk.rpc.camera_server.RespondStopVideoResponse\"\x04\x80\xb5\x18\x01\x12\x9c\x01\n\x1cSubscribeStartVideoStreaming\x12=.mavsdk.rpc.camera_server.SubscribeStartVideoStreamingRequest\x1a\x35.mavsdk.rpc.camera_server.StartVideoStreamingResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x9d\x01\n\x1aRespondStartVideoStreaming\x12;.mavsdk.rpc.camera_server.RespondStartVideoStreamingRequest\x1a<.mavsdk.rpc.camera_server.RespondStartVideoStreamingResponse\"\x04\x80\xb5\x18\x01\x12\x99\x01\n\x1bSubscribeStopVideoStreaming\x12<.mavsdk.rpc.camera_server.SubscribeStopVideoStreamingRequest\x1a\x34.mavsdk.rpc.camera_server.StopVideoStreamingResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x9a\x01\n\x19RespondStopVideoStreaming\x12:.mavsdk.rpc.camera_server.RespondStopVideoStreamingRequest\x1a;.mavsdk.rpc.camera_server.RespondStopVideoStreamingResponse\"\x04\x80\xb5\x18\x01\x12x\n\x10SubscribeSetMode\x12\x31.mavsdk.rpc.camera_server.SubscribeSetModeRequest\x1a).mavsdk.rpc.camera_server.SetModeResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12y\n\x0eRespondSetMode\x12/.mavsdk.rpc.camera_server.RespondSetModeRequest\x1a\x30.mavsdk.rpc.camera_server.RespondSetModeResponse\"\x04\x80\xb5\x18\x01\x12\x99\x01\n\x1bSubscribeStorageInformation\x12<.mavsdk.rpc.camera_server.SubscribeStorageInformationRequest\x1a\x34.mavsdk.rpc.camera_server.StorageInformationResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x9a\x01\n\x19RespondStorageInformation\x12:.mavsdk.rpc.camera_server.RespondStorageInformationRequest\x1a;.mavsdk.rpc.camera_server.RespondStorageInformationResponse\"\x04\x80\xb5\x18\x01\x12\x8a\x01\n\x16SubscribeCaptureStatus\x12\x37.mavsdk.rpc.camera_server.SubscribeCaptureStatusRequest\x1a/.mavsdk.rpc.camera_server.CaptureStatusResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x8b\x01\n\x14RespondCaptureStatus\x12\x35.mavsdk.rpc.camera_server.RespondCaptureStatusRequest\x1a\x36.mavsdk.rpc.camera_server.RespondCaptureStatusResponse\"\x04\x80\xb5\x18\x01\x12\x8a\x01\n\x16SubscribeFormatStorage\x12\x37.mavsdk.rpc.camera_server.SubscribeFormatStorageRequest\x1a/.mavsdk.rpc.camera_server.FormatStorageResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x8b\x01\n\x14RespondFormatStorage\x12\x35.mavsdk.rpc.camera_server.RespondFormatStorageRequest\x1a\x36.mavsdk.rpc.camera_server.RespondFormatStorageResponse\"\x04\x80\xb5\x18\x01\x12\x8a\x01\n\x16SubscribeResetSettings\x12\x37.mavsdk.rpc.camera_server.SubscribeResetSettingsRequest\x1a/.mavsdk.rpc.camera_server.ResetSettingsResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x8b\x01\n\x14RespondResetSettings\x12\x35.mavsdk.rpc.camera_server.RespondResetSettingsRequest\x1a\x36.mavsdk.rpc.camera_server.RespondResetSettingsResponse\"\x04\x80\xb5\x18\x01\x42,\n\x17io.mavsdk.camera_serverB\x11\x43\x61meraServerProtob\x06proto3')
 
-_TAKEPHOTOFEEDBACK = DESCRIPTOR.enum_types_by_name['TakePhotoFeedback']
-TakePhotoFeedback = enum_type_wrapper.EnumTypeWrapper(_TAKEPHOTOFEEDBACK)
-TAKE_PHOTO_FEEDBACK_UNKNOWN = 0
-TAKE_PHOTO_FEEDBACK_OK = 1
-TAKE_PHOTO_FEEDBACK_BUSY = 2
-TAKE_PHOTO_FEEDBACK_FAILED = 3
+_CAMERAFEEDBACK = DESCRIPTOR.enum_types_by_name['CameraFeedback']
+CameraFeedback = enum_type_wrapper.EnumTypeWrapper(_CAMERAFEEDBACK)
+_MODE = DESCRIPTOR.enum_types_by_name['Mode']
+Mode = enum_type_wrapper.EnumTypeWrapper(_MODE)
+CAMERA_FEEDBACK_UNKNOWN = 0
+CAMERA_FEEDBACK_OK = 1
+CAMERA_FEEDBACK_BUSY = 2
+CAMERA_FEEDBACK_FAILED = 3
+MODE_UNKNOWN = 0
+MODE_PHOTO = 1
+MODE_VIDEO = 2
 
 
 _SETINFORMATIONREQUEST = DESCRIPTOR.message_types_by_name['SetInformationRequest']
 _SETINFORMATIONRESPONSE = DESCRIPTOR.message_types_by_name['SetInformationResponse']
+_SETVIDEOSTREAMINGREQUEST = DESCRIPTOR.message_types_by_name['SetVideoStreamingRequest']
+_SETVIDEOSTREAMINGRESPONSE = DESCRIPTOR.message_types_by_name['SetVideoStreamingResponse']
 _SETINPROGRESSREQUEST = DESCRIPTOR.message_types_by_name['SetInProgressRequest']
 _SETINPROGRESSRESPONSE = DESCRIPTOR.message_types_by_name['SetInProgressResponse']
 _SUBSCRIBETAKEPHOTOREQUEST = DESCRIPTOR.message_types_by_name['SubscribeTakePhotoRequest']
 _TAKEPHOTORESPONSE = DESCRIPTOR.message_types_by_name['TakePhotoResponse']
 _RESPONDTAKEPHOTOREQUEST = DESCRIPTOR.message_types_by_name['RespondTakePhotoRequest']
 _RESPONDTAKEPHOTORESPONSE = DESCRIPTOR.message_types_by_name['RespondTakePhotoResponse']
+_SUBSCRIBESTARTVIDEOREQUEST = DESCRIPTOR.message_types_by_name['SubscribeStartVideoRequest']
+_STARTVIDEORESPONSE = DESCRIPTOR.message_types_by_name['StartVideoResponse']
+_RESPONDSTARTVIDEOREQUEST = DESCRIPTOR.message_types_by_name['RespondStartVideoRequest']
+_RESPONDSTARTVIDEORESPONSE = DESCRIPTOR.message_types_by_name['RespondStartVideoResponse']
+_SUBSCRIBESTOPVIDEOREQUEST = DESCRIPTOR.message_types_by_name['SubscribeStopVideoRequest']
+_STOPVIDEORESPONSE = DESCRIPTOR.message_types_by_name['StopVideoResponse']
+_RESPONDSTOPVIDEOREQUEST = DESCRIPTOR.message_types_by_name['RespondStopVideoRequest']
+_RESPONDSTOPVIDEORESPONSE = DESCRIPTOR.message_types_by_name['RespondStopVideoResponse']
+_SUBSCRIBESTARTVIDEOSTREAMINGREQUEST = DESCRIPTOR.message_types_by_name['SubscribeStartVideoStreamingRequest']
+_STARTVIDEOSTREAMINGRESPONSE = DESCRIPTOR.message_types_by_name['StartVideoStreamingResponse']
+_RESPONDSTARTVIDEOSTREAMINGREQUEST = DESCRIPTOR.message_types_by_name['RespondStartVideoStreamingRequest']
+_RESPONDSTARTVIDEOSTREAMINGRESPONSE = DESCRIPTOR.message_types_by_name['RespondStartVideoStreamingResponse']
+_SUBSCRIBESTOPVIDEOSTREAMINGREQUEST = DESCRIPTOR.message_types_by_name['SubscribeStopVideoStreamingRequest']
+_STOPVIDEOSTREAMINGRESPONSE = DESCRIPTOR.message_types_by_name['StopVideoStreamingResponse']
+_RESPONDSTOPVIDEOSTREAMINGREQUEST = DESCRIPTOR.message_types_by_name['RespondStopVideoStreamingRequest']
+_RESPONDSTOPVIDEOSTREAMINGRESPONSE = DESCRIPTOR.message_types_by_name['RespondStopVideoStreamingResponse']
+_SUBSCRIBESETMODEREQUEST = DESCRIPTOR.message_types_by_name['SubscribeSetModeRequest']
+_SETMODERESPONSE = DESCRIPTOR.message_types_by_name['SetModeResponse']
+_RESPONDSETMODEREQUEST = DESCRIPTOR.message_types_by_name['RespondSetModeRequest']
+_RESPONDSETMODERESPONSE = DESCRIPTOR.message_types_by_name['RespondSetModeResponse']
+_SUBSCRIBESTORAGEINFORMATIONREQUEST = DESCRIPTOR.message_types_by_name['SubscribeStorageInformationRequest']
+_STORAGEINFORMATIONRESPONSE = DESCRIPTOR.message_types_by_name['StorageInformationResponse']
+_RESPONDSTORAGEINFORMATIONREQUEST = DESCRIPTOR.message_types_by_name['RespondStorageInformationRequest']
+_RESPONDSTORAGEINFORMATIONRESPONSE = DESCRIPTOR.message_types_by_name['RespondStorageInformationResponse']
+_SUBSCRIBECAPTURESTATUSREQUEST = DESCRIPTOR.message_types_by_name['SubscribeCaptureStatusRequest']
+_CAPTURESTATUSRESPONSE = DESCRIPTOR.message_types_by_name['CaptureStatusResponse']
+_RESPONDCAPTURESTATUSREQUEST = DESCRIPTOR.message_types_by_name['RespondCaptureStatusRequest']
+_RESPONDCAPTURESTATUSRESPONSE = DESCRIPTOR.message_types_by_name['RespondCaptureStatusResponse']
+_SUBSCRIBEFORMATSTORAGEREQUEST = DESCRIPTOR.message_types_by_name['SubscribeFormatStorageRequest']
+_FORMATSTORAGERESPONSE = DESCRIPTOR.message_types_by_name['FormatStorageResponse']
+_RESPONDFORMATSTORAGEREQUEST = DESCRIPTOR.message_types_by_name['RespondFormatStorageRequest']
+_RESPONDFORMATSTORAGERESPONSE = DESCRIPTOR.message_types_by_name['RespondFormatStorageResponse']
+_SUBSCRIBERESETSETTINGSREQUEST = DESCRIPTOR.message_types_by_name['SubscribeResetSettingsRequest']
+_RESETSETTINGSRESPONSE = DESCRIPTOR.message_types_by_name['ResetSettingsResponse']
+_RESPONDRESETSETTINGSREQUEST = DESCRIPTOR.message_types_by_name['RespondResetSettingsRequest']
+_RESPONDRESETSETTINGSRESPONSE = DESCRIPTOR.message_types_by_name['RespondResetSettingsResponse']
 _INFORMATION = DESCRIPTOR.message_types_by_name['Information']
+_VIDEOSTREAMING = DESCRIPTOR.message_types_by_name['VideoStreaming']
 _POSITION = DESCRIPTOR.message_types_by_name['Position']
 _QUATERNION = DESCRIPTOR.message_types_by_name['Quaternion']
 _CAPTUREINFO = DESCRIPTOR.message_types_by_name['CaptureInfo']
 _CAMERASERVERRESULT = DESCRIPTOR.message_types_by_name['CameraServerResult']
+_STORAGEINFORMATION = DESCRIPTOR.message_types_by_name['StorageInformation']
+_CAPTURESTATUS = DESCRIPTOR.message_types_by_name['CaptureStatus']
 _CAMERASERVERRESULT_RESULT = _CAMERASERVERRESULT.enum_types_by_name['Result']
+_STORAGEINFORMATION_STORAGESTATUS = _STORAGEINFORMATION.enum_types_by_name['StorageStatus']
+_STORAGEINFORMATION_STORAGETYPE = _STORAGEINFORMATION.enum_types_by_name['StorageType']
+_CAPTURESTATUS_IMAGESTATUS = _CAPTURESTATUS.enum_types_by_name['ImageStatus']
+_CAPTURESTATUS_VIDEOSTATUS = _CAPTURESTATUS.enum_types_by_name['VideoStatus']
 SetInformationRequest = _reflection.GeneratedProtocolMessageType('SetInformationRequest', (_message.Message,), {
   'DESCRIPTOR' : _SETINFORMATIONREQUEST,
   '__module__' : 'camera_server.camera_server_pb2'
@@ -53,6 +103,20 @@ SetInformationResponse = _reflection.GeneratedProtocolMessageType('SetInformatio
   # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SetInformationResponse)
   })
 _sym_db.RegisterMessage(SetInformationResponse)
+
+SetVideoStreamingRequest = _reflection.GeneratedProtocolMessageType('SetVideoStreamingRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SETVIDEOSTREAMINGREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SetVideoStreamingRequest)
+  })
+_sym_db.RegisterMessage(SetVideoStreamingRequest)
+
+SetVideoStreamingResponse = _reflection.GeneratedProtocolMessageType('SetVideoStreamingResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SETVIDEOSTREAMINGRESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SetVideoStreamingResponse)
+  })
+_sym_db.RegisterMessage(SetVideoStreamingResponse)
 
 SetInProgressRequest = _reflection.GeneratedProtocolMessageType('SetInProgressRequest', (_message.Message,), {
   'DESCRIPTOR' : _SETINPROGRESSREQUEST,
@@ -96,12 +160,271 @@ RespondTakePhotoResponse = _reflection.GeneratedProtocolMessageType('RespondTake
   })
 _sym_db.RegisterMessage(RespondTakePhotoResponse)
 
+SubscribeStartVideoRequest = _reflection.GeneratedProtocolMessageType('SubscribeStartVideoRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBESTARTVIDEOREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SubscribeStartVideoRequest)
+  })
+_sym_db.RegisterMessage(SubscribeStartVideoRequest)
+
+StartVideoResponse = _reflection.GeneratedProtocolMessageType('StartVideoResponse', (_message.Message,), {
+  'DESCRIPTOR' : _STARTVIDEORESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.StartVideoResponse)
+  })
+_sym_db.RegisterMessage(StartVideoResponse)
+
+RespondStartVideoRequest = _reflection.GeneratedProtocolMessageType('RespondStartVideoRequest', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDSTARTVIDEOREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondStartVideoRequest)
+  })
+_sym_db.RegisterMessage(RespondStartVideoRequest)
+
+RespondStartVideoResponse = _reflection.GeneratedProtocolMessageType('RespondStartVideoResponse', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDSTARTVIDEORESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondStartVideoResponse)
+  })
+_sym_db.RegisterMessage(RespondStartVideoResponse)
+
+SubscribeStopVideoRequest = _reflection.GeneratedProtocolMessageType('SubscribeStopVideoRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBESTOPVIDEOREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SubscribeStopVideoRequest)
+  })
+_sym_db.RegisterMessage(SubscribeStopVideoRequest)
+
+StopVideoResponse = _reflection.GeneratedProtocolMessageType('StopVideoResponse', (_message.Message,), {
+  'DESCRIPTOR' : _STOPVIDEORESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.StopVideoResponse)
+  })
+_sym_db.RegisterMessage(StopVideoResponse)
+
+RespondStopVideoRequest = _reflection.GeneratedProtocolMessageType('RespondStopVideoRequest', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDSTOPVIDEOREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondStopVideoRequest)
+  })
+_sym_db.RegisterMessage(RespondStopVideoRequest)
+
+RespondStopVideoResponse = _reflection.GeneratedProtocolMessageType('RespondStopVideoResponse', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDSTOPVIDEORESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondStopVideoResponse)
+  })
+_sym_db.RegisterMessage(RespondStopVideoResponse)
+
+SubscribeStartVideoStreamingRequest = _reflection.GeneratedProtocolMessageType('SubscribeStartVideoStreamingRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBESTARTVIDEOSTREAMINGREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SubscribeStartVideoStreamingRequest)
+  })
+_sym_db.RegisterMessage(SubscribeStartVideoStreamingRequest)
+
+StartVideoStreamingResponse = _reflection.GeneratedProtocolMessageType('StartVideoStreamingResponse', (_message.Message,), {
+  'DESCRIPTOR' : _STARTVIDEOSTREAMINGRESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.StartVideoStreamingResponse)
+  })
+_sym_db.RegisterMessage(StartVideoStreamingResponse)
+
+RespondStartVideoStreamingRequest = _reflection.GeneratedProtocolMessageType('RespondStartVideoStreamingRequest', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDSTARTVIDEOSTREAMINGREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondStartVideoStreamingRequest)
+  })
+_sym_db.RegisterMessage(RespondStartVideoStreamingRequest)
+
+RespondStartVideoStreamingResponse = _reflection.GeneratedProtocolMessageType('RespondStartVideoStreamingResponse', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDSTARTVIDEOSTREAMINGRESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondStartVideoStreamingResponse)
+  })
+_sym_db.RegisterMessage(RespondStartVideoStreamingResponse)
+
+SubscribeStopVideoStreamingRequest = _reflection.GeneratedProtocolMessageType('SubscribeStopVideoStreamingRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBESTOPVIDEOSTREAMINGREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SubscribeStopVideoStreamingRequest)
+  })
+_sym_db.RegisterMessage(SubscribeStopVideoStreamingRequest)
+
+StopVideoStreamingResponse = _reflection.GeneratedProtocolMessageType('StopVideoStreamingResponse', (_message.Message,), {
+  'DESCRIPTOR' : _STOPVIDEOSTREAMINGRESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.StopVideoStreamingResponse)
+  })
+_sym_db.RegisterMessage(StopVideoStreamingResponse)
+
+RespondStopVideoStreamingRequest = _reflection.GeneratedProtocolMessageType('RespondStopVideoStreamingRequest', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDSTOPVIDEOSTREAMINGREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondStopVideoStreamingRequest)
+  })
+_sym_db.RegisterMessage(RespondStopVideoStreamingRequest)
+
+RespondStopVideoStreamingResponse = _reflection.GeneratedProtocolMessageType('RespondStopVideoStreamingResponse', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDSTOPVIDEOSTREAMINGRESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondStopVideoStreamingResponse)
+  })
+_sym_db.RegisterMessage(RespondStopVideoStreamingResponse)
+
+SubscribeSetModeRequest = _reflection.GeneratedProtocolMessageType('SubscribeSetModeRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBESETMODEREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SubscribeSetModeRequest)
+  })
+_sym_db.RegisterMessage(SubscribeSetModeRequest)
+
+SetModeResponse = _reflection.GeneratedProtocolMessageType('SetModeResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SETMODERESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SetModeResponse)
+  })
+_sym_db.RegisterMessage(SetModeResponse)
+
+RespondSetModeRequest = _reflection.GeneratedProtocolMessageType('RespondSetModeRequest', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDSETMODEREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondSetModeRequest)
+  })
+_sym_db.RegisterMessage(RespondSetModeRequest)
+
+RespondSetModeResponse = _reflection.GeneratedProtocolMessageType('RespondSetModeResponse', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDSETMODERESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondSetModeResponse)
+  })
+_sym_db.RegisterMessage(RespondSetModeResponse)
+
+SubscribeStorageInformationRequest = _reflection.GeneratedProtocolMessageType('SubscribeStorageInformationRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBESTORAGEINFORMATIONREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SubscribeStorageInformationRequest)
+  })
+_sym_db.RegisterMessage(SubscribeStorageInformationRequest)
+
+StorageInformationResponse = _reflection.GeneratedProtocolMessageType('StorageInformationResponse', (_message.Message,), {
+  'DESCRIPTOR' : _STORAGEINFORMATIONRESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.StorageInformationResponse)
+  })
+_sym_db.RegisterMessage(StorageInformationResponse)
+
+RespondStorageInformationRequest = _reflection.GeneratedProtocolMessageType('RespondStorageInformationRequest', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDSTORAGEINFORMATIONREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondStorageInformationRequest)
+  })
+_sym_db.RegisterMessage(RespondStorageInformationRequest)
+
+RespondStorageInformationResponse = _reflection.GeneratedProtocolMessageType('RespondStorageInformationResponse', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDSTORAGEINFORMATIONRESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondStorageInformationResponse)
+  })
+_sym_db.RegisterMessage(RespondStorageInformationResponse)
+
+SubscribeCaptureStatusRequest = _reflection.GeneratedProtocolMessageType('SubscribeCaptureStatusRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBECAPTURESTATUSREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SubscribeCaptureStatusRequest)
+  })
+_sym_db.RegisterMessage(SubscribeCaptureStatusRequest)
+
+CaptureStatusResponse = _reflection.GeneratedProtocolMessageType('CaptureStatusResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CAPTURESTATUSRESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.CaptureStatusResponse)
+  })
+_sym_db.RegisterMessage(CaptureStatusResponse)
+
+RespondCaptureStatusRequest = _reflection.GeneratedProtocolMessageType('RespondCaptureStatusRequest', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDCAPTURESTATUSREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondCaptureStatusRequest)
+  })
+_sym_db.RegisterMessage(RespondCaptureStatusRequest)
+
+RespondCaptureStatusResponse = _reflection.GeneratedProtocolMessageType('RespondCaptureStatusResponse', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDCAPTURESTATUSRESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondCaptureStatusResponse)
+  })
+_sym_db.RegisterMessage(RespondCaptureStatusResponse)
+
+SubscribeFormatStorageRequest = _reflection.GeneratedProtocolMessageType('SubscribeFormatStorageRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBEFORMATSTORAGEREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SubscribeFormatStorageRequest)
+  })
+_sym_db.RegisterMessage(SubscribeFormatStorageRequest)
+
+FormatStorageResponse = _reflection.GeneratedProtocolMessageType('FormatStorageResponse', (_message.Message,), {
+  'DESCRIPTOR' : _FORMATSTORAGERESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.FormatStorageResponse)
+  })
+_sym_db.RegisterMessage(FormatStorageResponse)
+
+RespondFormatStorageRequest = _reflection.GeneratedProtocolMessageType('RespondFormatStorageRequest', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDFORMATSTORAGEREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondFormatStorageRequest)
+  })
+_sym_db.RegisterMessage(RespondFormatStorageRequest)
+
+RespondFormatStorageResponse = _reflection.GeneratedProtocolMessageType('RespondFormatStorageResponse', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDFORMATSTORAGERESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondFormatStorageResponse)
+  })
+_sym_db.RegisterMessage(RespondFormatStorageResponse)
+
+SubscribeResetSettingsRequest = _reflection.GeneratedProtocolMessageType('SubscribeResetSettingsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBERESETSETTINGSREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SubscribeResetSettingsRequest)
+  })
+_sym_db.RegisterMessage(SubscribeResetSettingsRequest)
+
+ResetSettingsResponse = _reflection.GeneratedProtocolMessageType('ResetSettingsResponse', (_message.Message,), {
+  'DESCRIPTOR' : _RESETSETTINGSRESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.ResetSettingsResponse)
+  })
+_sym_db.RegisterMessage(ResetSettingsResponse)
+
+RespondResetSettingsRequest = _reflection.GeneratedProtocolMessageType('RespondResetSettingsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDRESETSETTINGSREQUEST,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondResetSettingsRequest)
+  })
+_sym_db.RegisterMessage(RespondResetSettingsRequest)
+
+RespondResetSettingsResponse = _reflection.GeneratedProtocolMessageType('RespondResetSettingsResponse', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONDRESETSETTINGSRESPONSE,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.RespondResetSettingsResponse)
+  })
+_sym_db.RegisterMessage(RespondResetSettingsResponse)
+
 Information = _reflection.GeneratedProtocolMessageType('Information', (_message.Message,), {
   'DESCRIPTOR' : _INFORMATION,
   '__module__' : 'camera_server.camera_server_pb2'
   # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.Information)
   })
 _sym_db.RegisterMessage(Information)
+
+VideoStreaming = _reflection.GeneratedProtocolMessageType('VideoStreaming', (_message.Message,), {
+  'DESCRIPTOR' : _VIDEOSTREAMING,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.VideoStreaming)
+  })
+_sym_db.RegisterMessage(VideoStreaming)
 
 Position = _reflection.GeneratedProtocolMessageType('Position', (_message.Message,), {
   'DESCRIPTOR' : _POSITION,
@@ -131,6 +454,20 @@ CameraServerResult = _reflection.GeneratedProtocolMessageType('CameraServerResul
   })
 _sym_db.RegisterMessage(CameraServerResult)
 
+StorageInformation = _reflection.GeneratedProtocolMessageType('StorageInformation', (_message.Message,), {
+  'DESCRIPTOR' : _STORAGEINFORMATION,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.StorageInformation)
+  })
+_sym_db.RegisterMessage(StorageInformation)
+
+CaptureStatus = _reflection.GeneratedProtocolMessageType('CaptureStatus', (_message.Message,), {
+  'DESCRIPTOR' : _CAPTURESTATUS,
+  '__module__' : 'camera_server.camera_server_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.CaptureStatus)
+  })
+_sym_db.RegisterMessage(CaptureStatus)
+
 _CAMERASERVERSERVICE = DESCRIPTOR.services_by_name['CameraServerService']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
@@ -138,42 +475,172 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._serialized_options = b'\n\027io.mavsdk.camera_serverB\021CameraServerProto'
   _CAMERASERVERSERVICE.methods_by_name['SetInformation']._options = None
   _CAMERASERVERSERVICE.methods_by_name['SetInformation']._serialized_options = b'\200\265\030\001'
+  _CAMERASERVERSERVICE.methods_by_name['SetVideoStreaming']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['SetVideoStreaming']._serialized_options = b'\200\265\030\001'
   _CAMERASERVERSERVICE.methods_by_name['SetInProgress']._options = None
   _CAMERASERVERSERVICE.methods_by_name['SetInProgress']._serialized_options = b'\200\265\030\001'
   _CAMERASERVERSERVICE.methods_by_name['SubscribeTakePhoto']._options = None
   _CAMERASERVERSERVICE.methods_by_name['SubscribeTakePhoto']._serialized_options = b'\200\265\030\000'
   _CAMERASERVERSERVICE.methods_by_name['RespondTakePhoto']._options = None
   _CAMERASERVERSERVICE.methods_by_name['RespondTakePhoto']._serialized_options = b'\200\265\030\001'
-  _TAKEPHOTOFEEDBACK._serialized_start=1766
-  _TAKEPHOTOFEEDBACK._serialized_end=1908
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeStartVideo']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeStartVideo']._serialized_options = b'\200\265\030\000'
+  _CAMERASERVERSERVICE.methods_by_name['RespondStartVideo']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['RespondStartVideo']._serialized_options = b'\200\265\030\001'
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeStopVideo']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeStopVideo']._serialized_options = b'\200\265\030\000'
+  _CAMERASERVERSERVICE.methods_by_name['RespondStopVideo']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['RespondStopVideo']._serialized_options = b'\200\265\030\001'
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeStartVideoStreaming']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeStartVideoStreaming']._serialized_options = b'\200\265\030\000'
+  _CAMERASERVERSERVICE.methods_by_name['RespondStartVideoStreaming']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['RespondStartVideoStreaming']._serialized_options = b'\200\265\030\001'
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeStopVideoStreaming']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeStopVideoStreaming']._serialized_options = b'\200\265\030\000'
+  _CAMERASERVERSERVICE.methods_by_name['RespondStopVideoStreaming']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['RespondStopVideoStreaming']._serialized_options = b'\200\265\030\001'
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeSetMode']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeSetMode']._serialized_options = b'\200\265\030\000'
+  _CAMERASERVERSERVICE.methods_by_name['RespondSetMode']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['RespondSetMode']._serialized_options = b'\200\265\030\001'
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeStorageInformation']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeStorageInformation']._serialized_options = b'\200\265\030\000'
+  _CAMERASERVERSERVICE.methods_by_name['RespondStorageInformation']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['RespondStorageInformation']._serialized_options = b'\200\265\030\001'
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeCaptureStatus']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeCaptureStatus']._serialized_options = b'\200\265\030\000'
+  _CAMERASERVERSERVICE.methods_by_name['RespondCaptureStatus']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['RespondCaptureStatus']._serialized_options = b'\200\265\030\001'
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeFormatStorage']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeFormatStorage']._serialized_options = b'\200\265\030\000'
+  _CAMERASERVERSERVICE.methods_by_name['RespondFormatStorage']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['RespondFormatStorage']._serialized_options = b'\200\265\030\001'
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeResetSettings']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['SubscribeResetSettings']._serialized_options = b'\200\265\030\000'
+  _CAMERASERVERSERVICE.methods_by_name['RespondResetSettings']._options = None
+  _CAMERASERVERSERVICE.methods_by_name['RespondResetSettings']._serialized_options = b'\200\265\030\001'
+  _CAMERAFEEDBACK._serialized_start=5980
+  _CAMERAFEEDBACK._serialized_end=6103
+  _MODE._serialized_start=6105
+  _MODE._serialized_end=6161
   _SETINFORMATIONREQUEST._serialized_start=85
   _SETINFORMATIONREQUEST._serialized_end=168
   _SETINFORMATIONRESPONSE._serialized_start=170
   _SETINFORMATIONRESPONSE._serialized_end=270
-  _SETINPROGRESSREQUEST._serialized_start=272
-  _SETINPROGRESSREQUEST._serialized_end=315
-  _SETINPROGRESSRESPONSE._serialized_start=317
-  _SETINPROGRESSRESPONSE._serialized_end=416
-  _SUBSCRIBETAKEPHOTOREQUEST._serialized_start=418
-  _SUBSCRIBETAKEPHOTOREQUEST._serialized_end=445
-  _TAKEPHOTORESPONSE._serialized_start=447
-  _TAKEPHOTORESPONSE._serialized_end=481
-  _RESPONDTAKEPHOTOREQUEST._serialized_start=484
-  _RESPONDTAKEPHOTOREQUEST._serialized_end=644
-  _RESPONDTAKEPHOTORESPONSE._serialized_start=646
-  _RESPONDTAKEPHOTORESPONSE._serialized_end=748
-  _INFORMATION._serialized_start=751
-  _INFORMATION._serialized_end=1069
-  _POSITION._serialized_start=1071
-  _POSITION._serialized_end=1184
-  _QUATERNION._serialized_start=1186
-  _QUATERNION._serialized_end=1242
-  _CAPTUREINFO._serialized_start=1245
-  _CAPTUREINFO._serialized_end=1453
-  _CAMERASERVERRESULT._serialized_start=1456
-  _CAMERASERVERRESULT._serialized_end=1763
-  _CAMERASERVERRESULT_RESULT._serialized_start=1568
-  _CAMERASERVERRESULT_RESULT._serialized_end=1763
-  _CAMERASERVERSERVICE._serialized_start=1911
-  _CAMERASERVERSERVICE._serialized_end=2432
+  _SETVIDEOSTREAMINGREQUEST._serialized_start=272
+  _SETVIDEOSTREAMINGREQUEST._serialized_end=365
+  _SETVIDEOSTREAMINGRESPONSE._serialized_start=367
+  _SETVIDEOSTREAMINGRESPONSE._serialized_end=470
+  _SETINPROGRESSREQUEST._serialized_start=472
+  _SETINPROGRESSREQUEST._serialized_end=515
+  _SETINPROGRESSRESPONSE._serialized_start=517
+  _SETINPROGRESSRESPONSE._serialized_end=616
+  _SUBSCRIBETAKEPHOTOREQUEST._serialized_start=618
+  _SUBSCRIBETAKEPHOTOREQUEST._serialized_end=645
+  _TAKEPHOTORESPONSE._serialized_start=647
+  _TAKEPHOTORESPONSE._serialized_end=681
+  _RESPONDTAKEPHOTOREQUEST._serialized_start=684
+  _RESPONDTAKEPHOTOREQUEST._serialized_end=841
+  _RESPONDTAKEPHOTORESPONSE._serialized_start=843
+  _RESPONDTAKEPHOTORESPONSE._serialized_end=945
+  _SUBSCRIBESTARTVIDEOREQUEST._serialized_start=947
+  _SUBSCRIBESTARTVIDEOREQUEST._serialized_end=975
+  _STARTVIDEORESPONSE._serialized_start=977
+  _STARTVIDEORESPONSE._serialized_end=1016
+  _RESPONDSTARTVIDEOREQUEST._serialized_start=1018
+  _RESPONDSTARTVIDEOREQUEST._serialized_end=1116
+  _RESPONDSTARTVIDEORESPONSE._serialized_start=1118
+  _RESPONDSTARTVIDEORESPONSE._serialized_end=1221
+  _SUBSCRIBESTOPVIDEOREQUEST._serialized_start=1223
+  _SUBSCRIBESTOPVIDEOREQUEST._serialized_end=1250
+  _STOPVIDEORESPONSE._serialized_start=1252
+  _STOPVIDEORESPONSE._serialized_end=1290
+  _RESPONDSTOPVIDEOREQUEST._serialized_start=1292
+  _RESPONDSTOPVIDEOREQUEST._serialized_end=1388
+  _RESPONDSTOPVIDEORESPONSE._serialized_start=1390
+  _RESPONDSTOPVIDEORESPONSE._serialized_end=1492
+  _SUBSCRIBESTARTVIDEOSTREAMINGREQUEST._serialized_start=1494
+  _SUBSCRIBESTARTVIDEOSTREAMINGREQUEST._serialized_end=1531
+  _STARTVIDEOSTREAMINGRESPONSE._serialized_start=1533
+  _STARTVIDEOSTREAMINGRESPONSE._serialized_end=1581
+  _RESPONDSTARTVIDEOSTREAMINGREQUEST._serialized_start=1583
+  _RESPONDSTARTVIDEOSTREAMINGREQUEST._serialized_end=1700
+  _RESPONDSTARTVIDEOSTREAMINGRESPONSE._serialized_start=1702
+  _RESPONDSTARTVIDEOSTREAMINGRESPONSE._serialized_end=1814
+  _SUBSCRIBESTOPVIDEOSTREAMINGREQUEST._serialized_start=1816
+  _SUBSCRIBESTOPVIDEOSTREAMINGREQUEST._serialized_end=1852
+  _STOPVIDEOSTREAMINGRESPONSE._serialized_start=1854
+  _STOPVIDEOSTREAMINGRESPONSE._serialized_end=1901
+  _RESPONDSTOPVIDEOSTREAMINGREQUEST._serialized_start=1903
+  _RESPONDSTOPVIDEOSTREAMINGREQUEST._serialized_end=2018
+  _RESPONDSTOPVIDEOSTREAMINGRESPONSE._serialized_start=2020
+  _RESPONDSTOPVIDEOSTREAMINGRESPONSE._serialized_end=2131
+  _SUBSCRIBESETMODEREQUEST._serialized_start=2133
+  _SUBSCRIBESETMODEREQUEST._serialized_end=2158
+  _SETMODERESPONSE._serialized_start=2160
+  _SETMODERESPONSE._serialized_end=2223
+  _RESPONDSETMODEREQUEST._serialized_start=2225
+  _RESPONDSETMODEREQUEST._serialized_end=2317
+  _RESPONDSETMODERESPONSE._serialized_start=2319
+  _RESPONDSETMODERESPONSE._serialized_end=2419
+  _SUBSCRIBESTORAGEINFORMATIONREQUEST._serialized_start=2421
+  _SUBSCRIBESTORAGEINFORMATIONREQUEST._serialized_end=2457
+  _STORAGEINFORMATIONRESPONSE._serialized_start=2459
+  _STORAGEINFORMATIONRESPONSE._serialized_end=2507
+  _RESPONDSTORAGEINFORMATIONREQUEST._serialized_start=2510
+  _RESPONDSTORAGEINFORMATIONREQUEST._serialized_end=2699
+  _RESPONDSTORAGEINFORMATIONRESPONSE._serialized_start=2701
+  _RESPONDSTORAGEINFORMATIONRESPONSE._serialized_end=2812
+  _SUBSCRIBECAPTURESTATUSREQUEST._serialized_start=2814
+  _SUBSCRIBECAPTURESTATUSREQUEST._serialized_end=2845
+  _CAPTURESTATUSRESPONSE._serialized_start=2847
+  _CAPTURESTATUSRESPONSE._serialized_end=2888
+  _RESPONDCAPTURESTATUSREQUEST._serialized_start=2891
+  _RESPONDCAPTURESTATUSREQUEST._serialized_end=3060
+  _RESPONDCAPTURESTATUSRESPONSE._serialized_start=3062
+  _RESPONDCAPTURESTATUSRESPONSE._serialized_end=3168
+  _SUBSCRIBEFORMATSTORAGEREQUEST._serialized_start=3170
+  _SUBSCRIBEFORMATSTORAGEREQUEST._serialized_end=3201
+  _FORMATSTORAGERESPONSE._serialized_start=3203
+  _FORMATSTORAGERESPONSE._serialized_end=3246
+  _RESPONDFORMATSTORAGEREQUEST._serialized_start=3248
+  _RESPONDFORMATSTORAGEREQUEST._serialized_end=3352
+  _RESPONDFORMATSTORAGERESPONSE._serialized_start=3354
+  _RESPONDFORMATSTORAGERESPONSE._serialized_end=3460
+  _SUBSCRIBERESETSETTINGSREQUEST._serialized_start=3462
+  _SUBSCRIBERESETSETTINGSREQUEST._serialized_end=3493
+  _RESETSETTINGSRESPONSE._serialized_start=3495
+  _RESETSETTINGSRESPONSE._serialized_end=3536
+  _RESPONDRESETSETTINGSREQUEST._serialized_start=3538
+  _RESPONDRESETSETTINGSREQUEST._serialized_end=3642
+  _RESPONDRESETSETTINGSRESPONSE._serialized_start=3644
+  _RESPONDRESETSETTINGSRESPONSE._serialized_end=3750
+  _INFORMATION._serialized_start=3753
+  _INFORMATION._serialized_end=4071
+  _VIDEOSTREAMING._serialized_start=4073
+  _VIDEOSTREAMING._serialized_end=4132
+  _POSITION._serialized_start=4134
+  _POSITION._serialized_end=4247
+  _QUATERNION._serialized_start=4249
+  _QUATERNION._serialized_end=4305
+  _CAPTUREINFO._serialized_start=4308
+  _CAPTUREINFO._serialized_end=4516
+  _CAMERASERVERRESULT._serialized_start=4519
+  _CAMERASERVERRESULT._serialized_end=4826
+  _CAMERASERVERRESULT_RESULT._serialized_start=4631
+  _CAMERASERVERRESULT_RESULT._serialized_end=4826
+  _STORAGEINFORMATION._serialized_start=4829
+  _STORAGEINFORMATION._serialized_end=5481
+  _STORAGEINFORMATION_STORAGESTATUS._serialized_start=5173
+  _STORAGEINFORMATION_STORAGESTATUS._serialized_end=5318
+  _STORAGEINFORMATION_STORAGETYPE._serialized_start=5321
+  _STORAGEINFORMATION_STORAGETYPE._serialized_end=5481
+  _CAPTURESTATUS._serialized_start=5484
+  _CAPTURESTATUS._serialized_end=5978
+  _CAPTURESTATUS_IMAGESTATUS._serialized_start=5757
+  _CAPTURESTATUS_IMAGESTATUS._serialized_end=5902
+  _CAPTURESTATUS_VIDEOSTATUS._serialized_start=5904
+  _CAPTURESTATUS_VIDEOSTATUS._serialized_end=5978
+  _CAMERASERVERSERVICE._serialized_start=6164
+  _CAMERASERVERSERVICE._serialized_end=9379
 # @@protoc_insertion_point(module_scope)

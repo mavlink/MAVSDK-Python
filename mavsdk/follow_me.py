@@ -12,77 +12,67 @@ class Config:
 
      Parameters
      ----------
-     min_height_m : float
-          Minimum height for the vehicle in meters (recommended minimum 8 meters)
+     follow_height_m : float
+          [m] Follow height in meters (recommended minimum 8 meters)
 
      follow_distance_m : float
-          Distance from target for vehicle to follow in meters (recommended minimum 1 meter)
-
-     follow_direction : FollowDirection
-          Direction to follow in
+          [m] Follow distance to target in meters (recommended minimum 4 meter)
 
      responsiveness : float
-          How responsive the vehicle is to the motion of the target (range 0.0 to 1.0)
+          How responsive the vehicle is to the motion of the target, Lower value = More responsive (range 0.0 to 1.0)
+
+     altitude_mode : FollowAltitudeMode
+          Follow Altitude control mode
+
+     max_tangential_vel_m_s : float
+          [m/s] Maximum orbit tangential velocity relative to the target, in meters per second. Higher value = More aggressive follow angle tracking.
+
+     follow_angle_deg : float
+          [deg] Follow Angle relative to the target. 0 equals following in front of the target's direction. Angle increases in Clockwise direction, so following from right would be 90 degrees, from the left is -90 degrees, and so on.
 
      """
 
     
     
-    class FollowDirection(Enum):
+    class FollowAltitudeMode(Enum):
         """
-         Direction relative to the target that the vehicle should follow
+         Altitude mode to configure which altitude the follow me will assume the target to be at.
 
          Values
          ------
-         NONE
-              Do not follow
+         CONSTANT
+              Target assumed to be mobing at a constant altitude of home position (where the vehicle armed)
 
-         BEHIND
-              Follow from behind
+         TERRAIN
+              Target assumed to be at the terrain level sensed by the distance sensor
 
-         FRONT
-              Follow from front
-
-         FRONT_RIGHT
-              Follow from front right
-
-         FRONT_LEFT
-              Follow from front left
+         TARGET_GPS
+              Target GPS altitude taken into account to do 3D tracking
 
          """
 
         
-        NONE = 0
-        BEHIND = 1
-        FRONT = 2
-        FRONT_RIGHT = 3
-        FRONT_LEFT = 4
+        CONSTANT = 0
+        TERRAIN = 1
+        TARGET_GPS = 2
 
         def translate_to_rpc(self):
-            if self == Config.FollowDirection.NONE:
-                return follow_me_pb2.Config.FOLLOW_DIRECTION_NONE
-            if self == Config.FollowDirection.BEHIND:
-                return follow_me_pb2.Config.FOLLOW_DIRECTION_BEHIND
-            if self == Config.FollowDirection.FRONT:
-                return follow_me_pb2.Config.FOLLOW_DIRECTION_FRONT
-            if self == Config.FollowDirection.FRONT_RIGHT:
-                return follow_me_pb2.Config.FOLLOW_DIRECTION_FRONT_RIGHT
-            if self == Config.FollowDirection.FRONT_LEFT:
-                return follow_me_pb2.Config.FOLLOW_DIRECTION_FRONT_LEFT
+            if self == Config.FollowAltitudeMode.CONSTANT:
+                return follow_me_pb2.Config.FOLLOW_ALTITUDE_MODE_CONSTANT
+            if self == Config.FollowAltitudeMode.TERRAIN:
+                return follow_me_pb2.Config.FOLLOW_ALTITUDE_MODE_TERRAIN
+            if self == Config.FollowAltitudeMode.TARGET_GPS:
+                return follow_me_pb2.Config.FOLLOW_ALTITUDE_MODE_TARGET_GPS
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
             """ Parses a gRPC response """
-            if rpc_enum_value == follow_me_pb2.Config.FOLLOW_DIRECTION_NONE:
-                return Config.FollowDirection.NONE
-            if rpc_enum_value == follow_me_pb2.Config.FOLLOW_DIRECTION_BEHIND:
-                return Config.FollowDirection.BEHIND
-            if rpc_enum_value == follow_me_pb2.Config.FOLLOW_DIRECTION_FRONT:
-                return Config.FollowDirection.FRONT
-            if rpc_enum_value == follow_me_pb2.Config.FOLLOW_DIRECTION_FRONT_RIGHT:
-                return Config.FollowDirection.FRONT_RIGHT
-            if rpc_enum_value == follow_me_pb2.Config.FOLLOW_DIRECTION_FRONT_LEFT:
-                return Config.FollowDirection.FRONT_LEFT
+            if rpc_enum_value == follow_me_pb2.Config.FOLLOW_ALTITUDE_MODE_CONSTANT:
+                return Config.FollowAltitudeMode.CONSTANT
+            if rpc_enum_value == follow_me_pb2.Config.FOLLOW_ALTITUDE_MODE_TERRAIN:
+                return Config.FollowAltitudeMode.TERRAIN
+            if rpc_enum_value == follow_me_pb2.Config.FOLLOW_ALTITUDE_MODE_TARGET_GPS:
+                return Config.FollowAltitudeMode.TARGET_GPS
 
         def __str__(self):
             return self.name
@@ -90,15 +80,19 @@ class Config:
 
     def __init__(
             self,
-            min_height_m,
+            follow_height_m,
             follow_distance_m,
-            follow_direction,
-            responsiveness):
+            responsiveness,
+            altitude_mode,
+            max_tangential_vel_m_s,
+            follow_angle_deg):
         """ Initializes the Config object """
-        self.min_height_m = min_height_m
+        self.follow_height_m = follow_height_m
         self.follow_distance_m = follow_distance_m
-        self.follow_direction = follow_direction
         self.responsiveness = responsiveness
+        self.altitude_mode = altitude_mode
+        self.max_tangential_vel_m_s = max_tangential_vel_m_s
+        self.follow_angle_deg = follow_angle_deg
 
     def __eq__(self, to_compare):
         """ Checks if two Config are the same """
@@ -106,10 +100,12 @@ class Config:
             # Try to compare - this likely fails when it is compared to a non
             # Config object
             return \
-                (self.min_height_m == to_compare.min_height_m) and \
+                (self.follow_height_m == to_compare.follow_height_m) and \
                 (self.follow_distance_m == to_compare.follow_distance_m) and \
-                (self.follow_direction == to_compare.follow_direction) and \
-                (self.responsiveness == to_compare.responsiveness)
+                (self.responsiveness == to_compare.responsiveness) and \
+                (self.altitude_mode == to_compare.altitude_mode) and \
+                (self.max_tangential_vel_m_s == to_compare.max_tangential_vel_m_s) and \
+                (self.follow_angle_deg == to_compare.follow_angle_deg)
 
         except AttributeError:
             return False
@@ -117,10 +113,12 @@ class Config:
     def __str__(self):
         """ Config in string representation """
         struct_repr = ", ".join([
-                "min_height_m: " + str(self.min_height_m),
+                "follow_height_m: " + str(self.follow_height_m),
                 "follow_distance_m: " + str(self.follow_distance_m),
-                "follow_direction: " + str(self.follow_direction),
-                "responsiveness: " + str(self.responsiveness)
+                "responsiveness: " + str(self.responsiveness),
+                "altitude_mode: " + str(self.altitude_mode),
+                "max_tangential_vel_m_s: " + str(self.max_tangential_vel_m_s),
+                "follow_angle_deg: " + str(self.follow_angle_deg)
                 ])
 
         return f"Config: [{struct_repr}]"
@@ -130,16 +128,22 @@ class Config:
         """ Translates a gRPC struct to the SDK equivalent """
         return Config(
                 
-                rpcConfig.min_height_m,
+                rpcConfig.follow_height_m,
                 
                 
                 rpcConfig.follow_distance_m,
                 
                 
-                Config.FollowDirection.translate_from_rpc(rpcConfig.follow_direction),
+                rpcConfig.responsiveness,
                 
                 
-                rpcConfig.responsiveness
+                Config.FollowAltitudeMode.translate_from_rpc(rpcConfig.altitude_mode),
+                
+                
+                rpcConfig.max_tangential_vel_m_s,
+                
+                
+                rpcConfig.follow_angle_deg
                 )
 
     def translate_to_rpc(self, rpcConfig):
@@ -148,7 +152,7 @@ class Config:
         
         
             
-        rpcConfig.min_height_m = self.min_height_m
+        rpcConfig.follow_height_m = self.follow_height_m
             
         
         
@@ -160,13 +164,25 @@ class Config:
         
         
             
-        rpcConfig.follow_direction = self.follow_direction.translate_to_rpc()
-            
-        
-        
-        
-            
         rpcConfig.responsiveness = self.responsiveness
+            
+        
+        
+        
+            
+        rpcConfig.altitude_mode = self.altitude_mode.translate_to_rpc()
+            
+        
+        
+        
+            
+        rpcConfig.max_tangential_vel_m_s = self.max_tangential_vel_m_s
+            
+        
+        
+        
+            
+        rpcConfig.follow_angle_deg = self.follow_angle_deg
             
         
         

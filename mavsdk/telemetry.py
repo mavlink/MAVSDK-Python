@@ -1275,11 +1275,20 @@ class Battery:
      id : uint32_t
           Battery ID, for systems with multiple batteries
 
+     temperature_degc : float
+          Temperature of the battery in degrees Celsius. NAN for unknown temperature
+
      voltage_v : float
           Voltage in volts
 
+     current_battery_a : float
+          Battery current in Amps, NAN if autopilot does not measure the current
+
+     capacity_consumed_ah : float
+          Consumed charge in Amp hours, NAN if autopilot does not provide consumption estimate
+
      remaining_percent : float
-          Estimated battery remaining (range: 0.0 to 1.0)
+          Estimated battery remaining (range: 0 to 100)
 
      """
 
@@ -1288,11 +1297,17 @@ class Battery:
     def __init__(
             self,
             id,
+            temperature_degc,
             voltage_v,
+            current_battery_a,
+            capacity_consumed_ah,
             remaining_percent):
         """ Initializes the Battery object """
         self.id = id
+        self.temperature_degc = temperature_degc
         self.voltage_v = voltage_v
+        self.current_battery_a = current_battery_a
+        self.capacity_consumed_ah = capacity_consumed_ah
         self.remaining_percent = remaining_percent
 
     def __eq__(self, to_compare):
@@ -1302,7 +1317,10 @@ class Battery:
             # Battery object
             return \
                 (self.id == to_compare.id) and \
+                (self.temperature_degc == to_compare.temperature_degc) and \
                 (self.voltage_v == to_compare.voltage_v) and \
+                (self.current_battery_a == to_compare.current_battery_a) and \
+                (self.capacity_consumed_ah == to_compare.capacity_consumed_ah) and \
                 (self.remaining_percent == to_compare.remaining_percent)
 
         except AttributeError:
@@ -1312,7 +1330,10 @@ class Battery:
         """ Battery in string representation """
         struct_repr = ", ".join([
                 "id: " + str(self.id),
+                "temperature_degc: " + str(self.temperature_degc),
                 "voltage_v: " + str(self.voltage_v),
+                "current_battery_a: " + str(self.current_battery_a),
+                "capacity_consumed_ah: " + str(self.capacity_consumed_ah),
                 "remaining_percent: " + str(self.remaining_percent)
                 ])
 
@@ -1326,7 +1347,16 @@ class Battery:
                 rpcBattery.id,
                 
                 
+                rpcBattery.temperature_degc,
+                
+                
                 rpcBattery.voltage_v,
+                
+                
+                rpcBattery.current_battery_a,
+                
+                
+                rpcBattery.capacity_consumed_ah,
                 
                 
                 rpcBattery.remaining_percent
@@ -1344,7 +1374,25 @@ class Battery:
         
         
             
+        rpcBattery.temperature_degc = self.temperature_degc
+            
+        
+        
+        
+            
         rpcBattery.voltage_v = self.voltage_v
+            
+        
+        
+        
+            
+        rpcBattery.current_battery_a = self.current_battery_a
+            
+        
+        
+        
+            
+        rpcBattery.capacity_consumed_ah = self.capacity_consumed_ah
             
         
         
@@ -2320,6 +2368,9 @@ class DistanceSensor:
      current_distance_m : float
           Current distance reading, NaN if unknown.
 
+     orientation : EulerAngle
+          Sensor Orientation reading.
+
      """
 
     
@@ -2328,11 +2379,13 @@ class DistanceSensor:
             self,
             minimum_distance_m,
             maximum_distance_m,
-            current_distance_m):
+            current_distance_m,
+            orientation):
         """ Initializes the DistanceSensor object """
         self.minimum_distance_m = minimum_distance_m
         self.maximum_distance_m = maximum_distance_m
         self.current_distance_m = current_distance_m
+        self.orientation = orientation
 
     def __eq__(self, to_compare):
         """ Checks if two DistanceSensor are the same """
@@ -2342,7 +2395,8 @@ class DistanceSensor:
             return \
                 (self.minimum_distance_m == to_compare.minimum_distance_m) and \
                 (self.maximum_distance_m == to_compare.maximum_distance_m) and \
-                (self.current_distance_m == to_compare.current_distance_m)
+                (self.current_distance_m == to_compare.current_distance_m) and \
+                (self.orientation == to_compare.orientation)
 
         except AttributeError:
             return False
@@ -2352,7 +2406,8 @@ class DistanceSensor:
         struct_repr = ", ".join([
                 "minimum_distance_m: " + str(self.minimum_distance_m),
                 "maximum_distance_m: " + str(self.maximum_distance_m),
-                "current_distance_m: " + str(self.current_distance_m)
+                "current_distance_m: " + str(self.current_distance_m),
+                "orientation: " + str(self.orientation)
                 ])
 
         return f"DistanceSensor: [{struct_repr}]"
@@ -2368,7 +2423,10 @@ class DistanceSensor:
                 rpcDistanceSensor.maximum_distance_m,
                 
                 
-                rpcDistanceSensor.current_distance_m
+                rpcDistanceSensor.current_distance_m,
+                
+                
+                EulerAngle.translate_from_rpc(rpcDistanceSensor.orientation)
                 )
 
     def translate_to_rpc(self, rpcDistanceSensor):
@@ -2390,6 +2448,12 @@ class DistanceSensor:
         
             
         rpcDistanceSensor.current_distance_m = self.current_distance_m
+            
+        
+        
+        
+            
+        self.orientation.translate_to_rpc(rpcDistanceSensor.orientation)
             
         
         
@@ -3433,6 +3497,144 @@ class GpsGlobalOrigin:
         
 
 
+class Altitude:
+    """
+     Altitude message type
+
+     Parameters
+     ----------
+     altitude_monotonic_m : float
+          Altitude in meters is initialized on system boot and monotonic
+
+     altitude_amsl_m : float
+           Altitude AMSL (above mean sea level) in meters
+
+     altitude_local_m : float
+          Local altitude in meters
+
+     altitude_relative_m : float
+          Altitude above home position in meters
+
+     altitude_terrain_m : float
+          Altitude above terrain in meters
+
+     bottom_clearance_m : float
+          This is not the altitude, but the clear space below the system according to the fused clearance estimate in meters.
+
+     """
+
+    
+
+    def __init__(
+            self,
+            altitude_monotonic_m,
+            altitude_amsl_m,
+            altitude_local_m,
+            altitude_relative_m,
+            altitude_terrain_m,
+            bottom_clearance_m):
+        """ Initializes the Altitude object """
+        self.altitude_monotonic_m = altitude_monotonic_m
+        self.altitude_amsl_m = altitude_amsl_m
+        self.altitude_local_m = altitude_local_m
+        self.altitude_relative_m = altitude_relative_m
+        self.altitude_terrain_m = altitude_terrain_m
+        self.bottom_clearance_m = bottom_clearance_m
+
+    def __eq__(self, to_compare):
+        """ Checks if two Altitude are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Altitude object
+            return \
+                (self.altitude_monotonic_m == to_compare.altitude_monotonic_m) and \
+                (self.altitude_amsl_m == to_compare.altitude_amsl_m) and \
+                (self.altitude_local_m == to_compare.altitude_local_m) and \
+                (self.altitude_relative_m == to_compare.altitude_relative_m) and \
+                (self.altitude_terrain_m == to_compare.altitude_terrain_m) and \
+                (self.bottom_clearance_m == to_compare.bottom_clearance_m)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Altitude in string representation """
+        struct_repr = ", ".join([
+                "altitude_monotonic_m: " + str(self.altitude_monotonic_m),
+                "altitude_amsl_m: " + str(self.altitude_amsl_m),
+                "altitude_local_m: " + str(self.altitude_local_m),
+                "altitude_relative_m: " + str(self.altitude_relative_m),
+                "altitude_terrain_m: " + str(self.altitude_terrain_m),
+                "bottom_clearance_m: " + str(self.bottom_clearance_m)
+                ])
+
+        return f"Altitude: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcAltitude):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Altitude(
+                
+                rpcAltitude.altitude_monotonic_m,
+                
+                
+                rpcAltitude.altitude_amsl_m,
+                
+                
+                rpcAltitude.altitude_local_m,
+                
+                
+                rpcAltitude.altitude_relative_m,
+                
+                
+                rpcAltitude.altitude_terrain_m,
+                
+                
+                rpcAltitude.bottom_clearance_m
+                )
+
+    def translate_to_rpc(self, rpcAltitude):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcAltitude.altitude_monotonic_m = self.altitude_monotonic_m
+            
+        
+        
+        
+            
+        rpcAltitude.altitude_amsl_m = self.altitude_amsl_m
+            
+        
+        
+        
+            
+        rpcAltitude.altitude_local_m = self.altitude_local_m
+            
+        
+        
+        
+            
+        rpcAltitude.altitude_relative_m = self.altitude_relative_m
+            
+        
+        
+        
+            
+        rpcAltitude.altitude_terrain_m = self.altitude_terrain_m
+            
+        
+        
+        
+            
+        rpcAltitude.bottom_clearance_m = self.bottom_clearance_m
+            
+        
+        
+
+
 class TelemetryResult:
     """
      Result type.
@@ -4417,6 +4619,30 @@ class Telemetry(AsyncBase):
         finally:
             heading_stream.cancel()
 
+    async def altitude(self):
+        """
+         Subscribe to 'Altitude' updates.
+
+         Yields
+         -------
+         altitude : Altitude
+              The next altitude
+
+         
+        """
+
+        request = telemetry_pb2.SubscribeAltitudeRequest()
+        altitude_stream = self._stub.SubscribeAltitude(request)
+
+        try:
+            async for response in altitude_stream:
+                
+
+            
+                yield Altitude.translate_from_rpc(response.altitude)
+        finally:
+            altitude_stream.cancel()
+
     async def set_rate_position(self, rate_hz):
         """
          Set rate to 'position' updates.
@@ -4547,9 +4773,9 @@ class Telemetry(AsyncBase):
             raise TelemetryError(result, "set_rate_vtol_state()", rate_hz)
         
 
-    async def set_rate_attitude(self, rate_hz):
+    async def set_rate_attitude_quaternion(self, rate_hz):
         """
-         Set rate to 'attitude' updates.
+         Set rate to 'attitude euler angle' updates.
 
          Parameters
          ----------
@@ -4562,15 +4788,41 @@ class Telemetry(AsyncBase):
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = telemetry_pb2.SetRateAttitudeRequest()
+        request = telemetry_pb2.SetRateAttitudeQuaternionRequest()
         request.rate_hz = rate_hz
-        response = await self._stub.SetRateAttitude(request)
+        response = await self._stub.SetRateAttitudeQuaternion(request)
 
         
         result = self._extract_result(response)
 
         if result.result != TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_attitude()", rate_hz)
+            raise TelemetryError(result, "set_rate_attitude_quaternion()", rate_hz)
+        
+
+    async def set_rate_attitude_euler(self, rate_hz):
+        """
+         Set rate to 'attitude quaternion' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateAttitudeEulerRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateAttitudeEuler(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_attitude_euler()", rate_hz)
         
 
     async def set_rate_camera_attitude(self, rate_hz):
@@ -4987,6 +5239,32 @@ class Telemetry(AsyncBase):
 
         if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_distance_sensor()", rate_hz)
+        
+
+    async def set_rate_altitude(self, rate_hz):
+        """
+         Set rate to 'Altitude' updates.
+
+         Parameters
+         ----------
+         rate_hz : double
+              The requested rate (in Hertz)
+
+         Raises
+         ------
+         TelemetryError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateAltitudeRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateAltitude(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_altitude()", rate_hz)
         
 
     async def get_gps_global_origin(self):

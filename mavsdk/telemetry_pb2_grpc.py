@@ -182,6 +182,11 @@ class TelemetryServiceStub(object):
                 request_serializer=telemetry_dot_telemetry__pb2.SubscribeHeadingRequest.SerializeToString,
                 response_deserializer=telemetry_dot_telemetry__pb2.HeadingResponse.FromString,
                 )
+        self.SubscribeAltitude = channel.unary_stream(
+                '/mavsdk.rpc.telemetry.TelemetryService/SubscribeAltitude',
+                request_serializer=telemetry_dot_telemetry__pb2.SubscribeAltitudeRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.AltitudeResponse.FromString,
+                )
         self.SetRatePosition = channel.unary_unary(
                 '/mavsdk.rpc.telemetry.TelemetryService/SetRatePosition',
                 request_serializer=telemetry_dot_telemetry__pb2.SetRatePositionRequest.SerializeToString,
@@ -207,10 +212,15 @@ class TelemetryServiceStub(object):
                 request_serializer=telemetry_dot_telemetry__pb2.SetRateVtolStateRequest.SerializeToString,
                 response_deserializer=telemetry_dot_telemetry__pb2.SetRateVtolStateResponse.FromString,
                 )
-        self.SetRateAttitude = channel.unary_unary(
-                '/mavsdk.rpc.telemetry.TelemetryService/SetRateAttitude',
-                request_serializer=telemetry_dot_telemetry__pb2.SetRateAttitudeRequest.SerializeToString,
-                response_deserializer=telemetry_dot_telemetry__pb2.SetRateAttitudeResponse.FromString,
+        self.SetRateAttitudeQuaternion = channel.unary_unary(
+                '/mavsdk.rpc.telemetry.TelemetryService/SetRateAttitudeQuaternion',
+                request_serializer=telemetry_dot_telemetry__pb2.SetRateAttitudeQuaternionRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.SetRateAttitudeQuaternionResponse.FromString,
+                )
+        self.SetRateAttitudeEuler = channel.unary_unary(
+                '/mavsdk.rpc.telemetry.TelemetryService/SetRateAttitudeEuler',
+                request_serializer=telemetry_dot_telemetry__pb2.SetRateAttitudeEulerRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.SetRateAttitudeEulerResponse.FromString,
                 )
         self.SetRateCameraAttitude = channel.unary_unary(
                 '/mavsdk.rpc.telemetry.TelemetryService/SetRateCameraAttitude',
@@ -291,6 +301,11 @@ class TelemetryServiceStub(object):
                 '/mavsdk.rpc.telemetry.TelemetryService/SetRateDistanceSensor',
                 request_serializer=telemetry_dot_telemetry__pb2.SetRateDistanceSensorRequest.SerializeToString,
                 response_deserializer=telemetry_dot_telemetry__pb2.SetRateDistanceSensorResponse.FromString,
+                )
+        self.SetRateAltitude = channel.unary_unary(
+                '/mavsdk.rpc.telemetry.TelemetryService/SetRateAltitude',
+                request_serializer=telemetry_dot_telemetry__pb2.SetRateAltitudeRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.SetRateAltitudeResponse.FromString,
                 )
         self.GetGpsGlobalOrigin = channel.unary_unary(
                 '/mavsdk.rpc.telemetry.TelemetryService/GetGpsGlobalOrigin',
@@ -536,6 +551,13 @@ class TelemetryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SubscribeAltitude(self, request, context):
+        """Subscribe to 'Altitude' updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetRatePosition(self, request, context):
         """Set rate to 'position' updates.
         """
@@ -571,8 +593,15 @@ class TelemetryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SetRateAttitude(self, request, context):
-        """Set rate to 'attitude' updates.
+    def SetRateAttitudeQuaternion(self, request, context):
+        """Set rate to 'attitude euler angle' updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetRateAttitudeEuler(self, request, context):
+        """Set rate to 'attitude quaternion' updates.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -685,6 +714,13 @@ class TelemetryServiceServicer(object):
 
     def SetRateDistanceSensor(self, request, context):
         """Set rate to 'Distance Sensor' updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetRateAltitude(self, request, context):
+        """Set rate to 'Altitude' updates.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -865,6 +901,11 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     request_deserializer=telemetry_dot_telemetry__pb2.SubscribeHeadingRequest.FromString,
                     response_serializer=telemetry_dot_telemetry__pb2.HeadingResponse.SerializeToString,
             ),
+            'SubscribeAltitude': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeAltitude,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SubscribeAltitudeRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.AltitudeResponse.SerializeToString,
+            ),
             'SetRatePosition': grpc.unary_unary_rpc_method_handler(
                     servicer.SetRatePosition,
                     request_deserializer=telemetry_dot_telemetry__pb2.SetRatePositionRequest.FromString,
@@ -890,10 +931,15 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     request_deserializer=telemetry_dot_telemetry__pb2.SetRateVtolStateRequest.FromString,
                     response_serializer=telemetry_dot_telemetry__pb2.SetRateVtolStateResponse.SerializeToString,
             ),
-            'SetRateAttitude': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetRateAttitude,
-                    request_deserializer=telemetry_dot_telemetry__pb2.SetRateAttitudeRequest.FromString,
-                    response_serializer=telemetry_dot_telemetry__pb2.SetRateAttitudeResponse.SerializeToString,
+            'SetRateAttitudeQuaternion': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetRateAttitudeQuaternion,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SetRateAttitudeQuaternionRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.SetRateAttitudeQuaternionResponse.SerializeToString,
+            ),
+            'SetRateAttitudeEuler': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetRateAttitudeEuler,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SetRateAttitudeEulerRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.SetRateAttitudeEulerResponse.SerializeToString,
             ),
             'SetRateCameraAttitude': grpc.unary_unary_rpc_method_handler(
                     servicer.SetRateCameraAttitude,
@@ -974,6 +1020,11 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     servicer.SetRateDistanceSensor,
                     request_deserializer=telemetry_dot_telemetry__pb2.SetRateDistanceSensorRequest.FromString,
                     response_serializer=telemetry_dot_telemetry__pb2.SetRateDistanceSensorResponse.SerializeToString,
+            ),
+            'SetRateAltitude': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetRateAltitude,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SetRateAltitudeRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.SetRateAltitudeResponse.SerializeToString,
             ),
             'GetGpsGlobalOrigin': grpc.unary_unary_rpc_method_handler(
                     servicer.GetGpsGlobalOrigin,
@@ -1555,6 +1606,23 @@ class TelemetryService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def SubscribeAltitude(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SubscribeAltitude',
+            telemetry_dot_telemetry__pb2.SubscribeAltitudeRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.AltitudeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def SetRatePosition(request,
             target,
             options=(),
@@ -1640,7 +1708,7 @@ class TelemetryService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SetRateAttitude(request,
+    def SetRateAttitudeQuaternion(request,
             target,
             options=(),
             channel_credentials=None,
@@ -1650,9 +1718,26 @@ class TelemetryService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SetRateAttitude',
-            telemetry_dot_telemetry__pb2.SetRateAttitudeRequest.SerializeToString,
-            telemetry_dot_telemetry__pb2.SetRateAttitudeResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SetRateAttitudeQuaternion',
+            telemetry_dot_telemetry__pb2.SetRateAttitudeQuaternionRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.SetRateAttitudeQuaternionResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetRateAttitudeEuler(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SetRateAttitudeEuler',
+            telemetry_dot_telemetry__pb2.SetRateAttitudeEulerRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.SetRateAttitudeEulerResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -1925,6 +2010,23 @@ class TelemetryService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SetRateDistanceSensor',
             telemetry_dot_telemetry__pb2.SetRateDistanceSensorRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateDistanceSensorResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetRateAltitude(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.telemetry.TelemetryService/SetRateAltitude',
+            telemetry_dot_telemetry__pb2.SetRateAltitudeRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.SetRateAltitudeResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

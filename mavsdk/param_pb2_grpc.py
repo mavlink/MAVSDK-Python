@@ -50,6 +50,11 @@ class ParamServiceStub(object):
                 request_serializer=param_dot_param__pb2.GetAllParamsRequest.SerializeToString,
                 response_deserializer=param_dot_param__pb2.GetAllParamsResponse.FromString,
                 )
+        self.SelectComponent = channel.unary_unary(
+                '/mavsdk.rpc.param.ParamService/SelectComponent',
+                request_serializer=param_dot_param__pb2.SelectComponentRequest.SerializeToString,
+                response_deserializer=param_dot_param__pb2.SelectComponentResponse.FromString,
+                )
 
 
 class ParamServiceServicer(object):
@@ -124,6 +129,16 @@ class ParamServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SelectComponent(self, request, context):
+        """
+        Select component ID of parameter component to talk to and param protocol version.
+
+        Default is the autopilot component (1), and Version (0).
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ParamServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -161,6 +176,11 @@ def add_ParamServiceServicer_to_server(servicer, server):
                     servicer.GetAllParams,
                     request_deserializer=param_dot_param__pb2.GetAllParamsRequest.FromString,
                     response_serializer=param_dot_param__pb2.GetAllParamsResponse.SerializeToString,
+            ),
+            'SelectComponent': grpc.unary_unary_rpc_method_handler(
+                    servicer.SelectComponent,
+                    request_deserializer=param_dot_param__pb2.SelectComponentRequest.FromString,
+                    response_serializer=param_dot_param__pb2.SelectComponentResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -289,5 +309,22 @@ class ParamService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.param.ParamService/GetAllParams',
             param_dot_param__pb2.GetAllParamsRequest.SerializeToString,
             param_dot_param__pb2.GetAllParamsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SelectComponent(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.param.ParamService/SelectComponent',
+            param_dot_param__pb2.SelectComponentRequest.SerializeToString,
+            param_dot_param__pb2.SelectComponentResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
