@@ -143,16 +143,21 @@ jobs:
          echo $?
          git tag --list
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
       - name: Install prerequisites
         run: |
-          python3 -m pip install -r requirements.txt
-          python3 -m pip install twine wheel
-          python3 -m pip install --user delocate
+          python -m pip install -r requirements.txt
+          python -m pip install twine wheel
+          python -m pip install --user delocate
 
       - name: Create wheel
         run: |
-          python3 setup.py bdist_wheel
-          export PATH="$(python3 -m site --user-base)/bin:$PATH"
+          python setup.py bdist_wheel
+          export PATH="$(python -m site --user-base)/bin:$PATH"
           echo "PATH: $PATH"
           delocate-wheel -w wheelhouse -v dist/*.whl
           ls wheelhouse/*any.whl | sed -e 'p;s/any/macosx_10_9_x86_64/' | xargs -n2 mv
@@ -195,9 +200,9 @@ jobs:
          git tag --list
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.10
+          python-version: 3.11
           architecture: ${{ matrix.arch }}
 
       - name: Install prerequisites
