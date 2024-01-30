@@ -56,6 +56,9 @@ class MissionItem:
      camera_photo_distance_m : float
           Camera photo distance to use after this mission item (in meters)
 
+     vehicle_action : VehicleAction
+          Vehicle action to trigger at this mission item.
+
      """
 
     
@@ -143,6 +146,66 @@ class MissionItem:
         def __str__(self):
             return self.name
     
+    
+    class VehicleAction(Enum):
+        """
+         Possible vehicle actions at a mission item
+
+         Values
+         ------
+         NONE
+              No action
+
+         TAKEOFF
+              Vehicle will takeoff and go to defined waypoint
+
+         LAND
+              When a waypoint is reached vehicle will land at current position
+
+         TRANSITION_TO_FW
+              When a waypoint is reached vehicle will transition to fixed-wing mode
+
+         TRANSITION_TO_MC
+              When a waypoint is reached vehicle will transition to multi-copter mode
+
+         """
+
+        
+        NONE = 0
+        TAKEOFF = 1
+        LAND = 2
+        TRANSITION_TO_FW = 3
+        TRANSITION_TO_MC = 4
+
+        def translate_to_rpc(self):
+            if self == MissionItem.VehicleAction.NONE:
+                return mission_pb2.MissionItem.VEHICLE_ACTION_NONE
+            if self == MissionItem.VehicleAction.TAKEOFF:
+                return mission_pb2.MissionItem.VEHICLE_ACTION_TAKEOFF
+            if self == MissionItem.VehicleAction.LAND:
+                return mission_pb2.MissionItem.VEHICLE_ACTION_LAND
+            if self == MissionItem.VehicleAction.TRANSITION_TO_FW:
+                return mission_pb2.MissionItem.VEHICLE_ACTION_TRANSITION_TO_FW
+            if self == MissionItem.VehicleAction.TRANSITION_TO_MC:
+                return mission_pb2.MissionItem.VEHICLE_ACTION_TRANSITION_TO_MC
+
+        @staticmethod
+        def translate_from_rpc(rpc_enum_value):
+            """ Parses a gRPC response """
+            if rpc_enum_value == mission_pb2.MissionItem.VEHICLE_ACTION_NONE:
+                return MissionItem.VehicleAction.NONE
+            if rpc_enum_value == mission_pb2.MissionItem.VEHICLE_ACTION_TAKEOFF:
+                return MissionItem.VehicleAction.TAKEOFF
+            if rpc_enum_value == mission_pb2.MissionItem.VEHICLE_ACTION_LAND:
+                return MissionItem.VehicleAction.LAND
+            if rpc_enum_value == mission_pb2.MissionItem.VEHICLE_ACTION_TRANSITION_TO_FW:
+                return MissionItem.VehicleAction.TRANSITION_TO_FW
+            if rpc_enum_value == mission_pb2.MissionItem.VEHICLE_ACTION_TRANSITION_TO_MC:
+                return MissionItem.VehicleAction.TRANSITION_TO_MC
+
+        def __str__(self):
+            return self.name
+    
 
     def __init__(
             self,
@@ -158,7 +221,8 @@ class MissionItem:
             camera_photo_interval_s,
             acceptance_radius_m,
             yaw_deg,
-            camera_photo_distance_m):
+            camera_photo_distance_m,
+            vehicle_action):
         """ Initializes the MissionItem object """
         self.latitude_deg = latitude_deg
         self.longitude_deg = longitude_deg
@@ -173,6 +237,7 @@ class MissionItem:
         self.acceptance_radius_m = acceptance_radius_m
         self.yaw_deg = yaw_deg
         self.camera_photo_distance_m = camera_photo_distance_m
+        self.vehicle_action = vehicle_action
 
     def __eq__(self, to_compare):
         """ Checks if two MissionItem are the same """
@@ -192,7 +257,8 @@ class MissionItem:
                 (self.camera_photo_interval_s == to_compare.camera_photo_interval_s) and \
                 (self.acceptance_radius_m == to_compare.acceptance_radius_m) and \
                 (self.yaw_deg == to_compare.yaw_deg) and \
-                (self.camera_photo_distance_m == to_compare.camera_photo_distance_m)
+                (self.camera_photo_distance_m == to_compare.camera_photo_distance_m) and \
+                (self.vehicle_action == to_compare.vehicle_action)
 
         except AttributeError:
             return False
@@ -212,7 +278,8 @@ class MissionItem:
                 "camera_photo_interval_s: " + str(self.camera_photo_interval_s),
                 "acceptance_radius_m: " + str(self.acceptance_radius_m),
                 "yaw_deg: " + str(self.yaw_deg),
-                "camera_photo_distance_m: " + str(self.camera_photo_distance_m)
+                "camera_photo_distance_m: " + str(self.camera_photo_distance_m),
+                "vehicle_action: " + str(self.vehicle_action)
                 ])
 
         return f"MissionItem: [{struct_repr}]"
@@ -258,7 +325,10 @@ class MissionItem:
                 rpcMissionItem.yaw_deg,
                 
                 
-                rpcMissionItem.camera_photo_distance_m
+                rpcMissionItem.camera_photo_distance_m,
+                
+                
+                MissionItem.VehicleAction.translate_from_rpc(rpcMissionItem.vehicle_action)
                 )
 
     def translate_to_rpc(self, rpcMissionItem):
@@ -340,6 +410,12 @@ class MissionItem:
         
             
         rpcMissionItem.camera_photo_distance_m = self.camera_photo_distance_m
+            
+        
+        
+        
+            
+        rpcMissionItem.vehicle_action = self.vehicle_action.translate_to_rpc()
             
         
         
@@ -545,6 +621,15 @@ class MissionResult:
          NEXT
               Intermediate message showing progress
 
+         DENIED
+              Request denied
+
+         PROTOCOL_ERROR
+              There was a protocol error
+
+         INT_MESSAGES_NOT_SUPPORTED
+              The system does not support the MISSION_INT protocol
+
          """
 
         
@@ -561,6 +646,9 @@ class MissionResult:
         TRANSFER_CANCELLED = 10
         NO_SYSTEM = 11
         NEXT = 12
+        DENIED = 13
+        PROTOCOL_ERROR = 14
+        INT_MESSAGES_NOT_SUPPORTED = 15
 
         def translate_to_rpc(self):
             if self == MissionResult.Result.UNKNOWN:
@@ -589,6 +677,12 @@ class MissionResult:
                 return mission_pb2.MissionResult.RESULT_NO_SYSTEM
             if self == MissionResult.Result.NEXT:
                 return mission_pb2.MissionResult.RESULT_NEXT
+            if self == MissionResult.Result.DENIED:
+                return mission_pb2.MissionResult.RESULT_DENIED
+            if self == MissionResult.Result.PROTOCOL_ERROR:
+                return mission_pb2.MissionResult.RESULT_PROTOCOL_ERROR
+            if self == MissionResult.Result.INT_MESSAGES_NOT_SUPPORTED:
+                return mission_pb2.MissionResult.RESULT_INT_MESSAGES_NOT_SUPPORTED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -619,6 +713,12 @@ class MissionResult:
                 return MissionResult.Result.NO_SYSTEM
             if rpc_enum_value == mission_pb2.MissionResult.RESULT_NEXT:
                 return MissionResult.Result.NEXT
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_DENIED:
+                return MissionResult.Result.DENIED
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_PROTOCOL_ERROR:
+                return MissionResult.Result.PROTOCOL_ERROR
+            if rpc_enum_value == mission_pb2.MissionResult.RESULT_INT_MESSAGES_NOT_SUPPORTED:
+                return MissionResult.Result.INT_MESSAGES_NOT_SUPPORTED
 
         def __str__(self):
             return self.name

@@ -127,6 +127,11 @@ class CameraServiceStub(object):
                 request_serializer=camera_dot_camera__pb2.SelectCameraRequest.SerializeToString,
                 response_deserializer=camera_dot_camera__pb2.SelectCameraResponse.FromString,
                 )
+        self.ResetSettings = channel.unary_unary(
+                '/mavsdk.rpc.camera.CameraService/ResetSettings',
+                request_serializer=camera_dot_camera__pb2.ResetSettingsRequest.SerializeToString,
+                response_deserializer=camera_dot_camera__pb2.ResetSettingsResponse.FromString,
+                )
 
 
 class CameraServiceServicer(object):
@@ -316,6 +321,16 @@ class CameraServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ResetSettings(self, request, context):
+        """
+        Reset all settings in camera.
+
+        This will reset all camera settings to default value
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_CameraServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -423,6 +438,11 @@ def add_CameraServiceServicer_to_server(servicer, server):
                     servicer.SelectCamera,
                     request_deserializer=camera_dot_camera__pb2.SelectCameraRequest.FromString,
                     response_serializer=camera_dot_camera__pb2.SelectCameraResponse.SerializeToString,
+            ),
+            'ResetSettings': grpc.unary_unary_rpc_method_handler(
+                    servicer.ResetSettings,
+                    request_deserializer=camera_dot_camera__pb2.ResetSettingsRequest.FromString,
+                    response_serializer=camera_dot_camera__pb2.ResetSettingsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -796,5 +816,22 @@ class CameraService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/SelectCamera',
             camera_dot_camera__pb2.SelectCameraRequest.SerializeToString,
             camera_dot_camera__pb2.SelectCameraResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ResetSettings(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/ResetSettings',
+            camera_dot_camera__pb2.ResetSettingsRequest.SerializeToString,
+            camera_dot_camera__pb2.ResetSettingsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

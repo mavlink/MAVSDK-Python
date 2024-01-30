@@ -16,7 +16,7 @@ class GimbalMode(Enum):
           Yaw follow will point the gimbal to the vehicle heading
 
      YAW_LOCK
-          Yaw lock will fix the gimbal poiting to an absolute direction
+          Yaw lock will fix the gimbal pointing to an absolute direction
 
      """
 
@@ -382,6 +382,44 @@ class Gimbal(AsyncBase):
         """ Returns the response status and description """
         return GimbalResult.translate_from_rpc(response.gimbal_result)
     
+
+    async def set_angles(self, roll_deg, pitch_deg, yaw_deg):
+        """
+         Set gimbal roll, pitch and yaw angles.
+
+         This sets the desired roll, pitch and yaw angles of a gimbal.
+         Will return when the command is accepted, however, it might
+         take the gimbal longer to actually be set to the new angles.
+
+         Parameters
+         ----------
+         roll_deg : float
+              Roll angle in degrees
+
+         pitch_deg : float
+              Pitch angle in degrees (negative points down)
+
+         yaw_deg : float
+              Yaw angle in degrees (positive is clock-wise, range: -180 to 180 or 0 to 360)
+
+         Raises
+         ------
+         GimbalError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = gimbal_pb2.SetAnglesRequest()
+        request.roll_deg = roll_deg
+        request.pitch_deg = pitch_deg
+        request.yaw_deg = yaw_deg
+        response = await self._stub.SetAngles(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != GimbalResult.Result.SUCCESS:
+            raise GimbalError(result, "set_angles()", roll_deg, pitch_deg, yaw_deg)
+        
 
     async def set_pitch_and_yaw(self, pitch_deg, yaw_deg):
         """

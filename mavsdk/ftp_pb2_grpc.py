@@ -16,11 +16,6 @@ class FtpServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.Reset = channel.unary_unary(
-                '/mavsdk.rpc.ftp.FtpService/Reset',
-                request_serializer=ftp_dot_ftp__pb2.ResetRequest.SerializeToString,
-                response_deserializer=ftp_dot_ftp__pb2.ResetResponse.FromString,
-                )
         self.SubscribeDownload = channel.unary_stream(
                 '/mavsdk.rpc.ftp.FtpService/SubscribeDownload',
                 request_serializer=ftp_dot_ftp__pb2.SubscribeDownloadRequest.SerializeToString,
@@ -61,20 +56,10 @@ class FtpServiceStub(object):
                 request_serializer=ftp_dot_ftp__pb2.AreFilesIdenticalRequest.SerializeToString,
                 response_deserializer=ftp_dot_ftp__pb2.AreFilesIdenticalResponse.FromString,
                 )
-        self.SetRootDirectory = channel.unary_unary(
-                '/mavsdk.rpc.ftp.FtpService/SetRootDirectory',
-                request_serializer=ftp_dot_ftp__pb2.SetRootDirectoryRequest.SerializeToString,
-                response_deserializer=ftp_dot_ftp__pb2.SetRootDirectoryResponse.FromString,
-                )
         self.SetTargetCompid = channel.unary_unary(
                 '/mavsdk.rpc.ftp.FtpService/SetTargetCompid',
                 request_serializer=ftp_dot_ftp__pb2.SetTargetCompidRequest.SerializeToString,
                 response_deserializer=ftp_dot_ftp__pb2.SetTargetCompidResponse.FromString,
-                )
-        self.GetOurCompid = channel.unary_unary(
-                '/mavsdk.rpc.ftp.FtpService/GetOurCompid',
-                request_serializer=ftp_dot_ftp__pb2.GetOurCompidRequest.SerializeToString,
-                response_deserializer=ftp_dot_ftp__pb2.GetOurCompidResponse.FromString,
                 )
 
 
@@ -82,14 +67,6 @@ class FtpServiceServicer(object):
     """
     Implements file transfer functionality using MAVLink FTP.
     """
-
-    def Reset(self, request, context):
-        """
-        Resets FTP server in case there are stale open sessions.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
 
     def SubscribeDownload(self, request, context):
         """
@@ -155,14 +132,6 @@ class FtpServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SetRootDirectory(self, request, context):
-        """
-        Set root directory for MAVLink FTP server.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def SetTargetCompid(self, request, context):
         """
         Set target component ID. By default it is the autopilot.
@@ -171,22 +140,9 @@ class FtpServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetOurCompid(self, request, context):
-        """
-        Get our own component ID.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_FtpServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'Reset': grpc.unary_unary_rpc_method_handler(
-                    servicer.Reset,
-                    request_deserializer=ftp_dot_ftp__pb2.ResetRequest.FromString,
-                    response_serializer=ftp_dot_ftp__pb2.ResetResponse.SerializeToString,
-            ),
             'SubscribeDownload': grpc.unary_stream_rpc_method_handler(
                     servicer.SubscribeDownload,
                     request_deserializer=ftp_dot_ftp__pb2.SubscribeDownloadRequest.FromString,
@@ -227,20 +183,10 @@ def add_FtpServiceServicer_to_server(servicer, server):
                     request_deserializer=ftp_dot_ftp__pb2.AreFilesIdenticalRequest.FromString,
                     response_serializer=ftp_dot_ftp__pb2.AreFilesIdenticalResponse.SerializeToString,
             ),
-            'SetRootDirectory': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetRootDirectory,
-                    request_deserializer=ftp_dot_ftp__pb2.SetRootDirectoryRequest.FromString,
-                    response_serializer=ftp_dot_ftp__pb2.SetRootDirectoryResponse.SerializeToString,
-            ),
             'SetTargetCompid': grpc.unary_unary_rpc_method_handler(
                     servicer.SetTargetCompid,
                     request_deserializer=ftp_dot_ftp__pb2.SetTargetCompidRequest.FromString,
                     response_serializer=ftp_dot_ftp__pb2.SetTargetCompidResponse.SerializeToString,
-            ),
-            'GetOurCompid': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetOurCompid,
-                    request_deserializer=ftp_dot_ftp__pb2.GetOurCompidRequest.FromString,
-                    response_serializer=ftp_dot_ftp__pb2.GetOurCompidResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -253,23 +199,6 @@ class FtpService(object):
     """
     Implements file transfer functionality using MAVLink FTP.
     """
-
-    @staticmethod
-    def Reset(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/Reset',
-            ftp_dot_ftp__pb2.ResetRequest.SerializeToString,
-            ftp_dot_ftp__pb2.ResetResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SubscribeDownload(request,
@@ -408,23 +337,6 @@ class FtpService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SetRootDirectory(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/SetRootDirectory',
-            ftp_dot_ftp__pb2.SetRootDirectoryRequest.SerializeToString,
-            ftp_dot_ftp__pb2.SetRootDirectoryResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
     def SetTargetCompid(request,
             target,
             options=(),
@@ -438,22 +350,5 @@ class FtpService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/SetTargetCompid',
             ftp_dot_ftp__pb2.SetTargetCompidRequest.SerializeToString,
             ftp_dot_ftp__pb2.SetTargetCompidResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def GetOurCompid(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.ftp.FtpService/GetOurCompid',
-            ftp_dot_ftp__pb2.GetOurCompidRequest.SerializeToString,
-            ftp_dot_ftp__pb2.GetOurCompidResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

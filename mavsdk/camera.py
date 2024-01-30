@@ -135,6 +135,9 @@ class CameraResult:
          NO_SYSTEM
               No system connected
 
+         PROTOCOL_UNSUPPORTED
+              Definition file protocol not supported
+
          """
 
         
@@ -147,6 +150,7 @@ class CameraResult:
         TIMEOUT = 6
         WRONG_ARGUMENT = 7
         NO_SYSTEM = 8
+        PROTOCOL_UNSUPPORTED = 9
 
         def translate_to_rpc(self):
             if self == CameraResult.Result.UNKNOWN:
@@ -167,6 +171,8 @@ class CameraResult:
                 return camera_pb2.CameraResult.RESULT_WRONG_ARGUMENT
             if self == CameraResult.Result.NO_SYSTEM:
                 return camera_pb2.CameraResult.RESULT_NO_SYSTEM
+            if self == CameraResult.Result.PROTOCOL_UNSUPPORTED:
+                return camera_pb2.CameraResult.RESULT_PROTOCOL_UNSUPPORTED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -189,6 +195,8 @@ class CameraResult:
                 return CameraResult.Result.WRONG_ARGUMENT
             if rpc_enum_value == camera_pb2.CameraResult.RESULT_NO_SYSTEM:
                 return CameraResult.Result.NO_SYSTEM
+            if rpc_enum_value == camera_pb2.CameraResult.RESULT_PROTOCOL_UNSUPPORTED:
+                return CameraResult.Result.PROTOCOL_UNSUPPORTED
 
         def __str__(self):
             return self.name
@@ -1978,9 +1986,14 @@ class Camera(AsyncBase):
             raise CameraError(result, "stop_video()")
         
 
-    async def start_video_streaming(self):
+    async def start_video_streaming(self, stream_id):
         """
          Start video streaming.
+
+         Parameters
+         ----------
+         stream_id : int32_t
+              video stream id
 
          Raises
          ------
@@ -1989,18 +2002,24 @@ class Camera(AsyncBase):
         """
 
         request = camera_pb2.StartVideoStreamingRequest()
+        request.stream_id = stream_id
         response = await self._stub.StartVideoStreaming(request)
 
         
         result = self._extract_result(response)
 
         if result.result != CameraResult.Result.SUCCESS:
-            raise CameraError(result, "start_video_streaming()")
+            raise CameraError(result, "start_video_streaming()", stream_id)
         
 
-    async def stop_video_streaming(self):
+    async def stop_video_streaming(self, stream_id):
         """
          Stop current video streaming.
+
+         Parameters
+         ----------
+         stream_id : int32_t
+              video stream id
 
          Raises
          ------
@@ -2009,13 +2028,14 @@ class Camera(AsyncBase):
         """
 
         request = camera_pb2.StopVideoStreamingRequest()
+        request.stream_id = stream_id
         response = await self._stub.StopVideoStreaming(request)
 
         
         result = self._extract_result(response)
 
         if result.result != CameraResult.Result.SUCCESS:
-            raise CameraError(result, "stop_video_streaming()")
+            raise CameraError(result, "stop_video_streaming()", stream_id)
         
 
     async def set_mode(self, mode):
@@ -2330,11 +2350,16 @@ class Camera(AsyncBase):
         return Setting.translate_from_rpc(response.setting)
             
 
-    async def format_storage(self):
+    async def format_storage(self, storage_id):
         """
          Format storage (e.g. SD card) in camera.
 
          This will delete all content of the camera storage!
+
+         Parameters
+         ----------
+         storage_id : int32_t
+             Storage identify to be format
 
          Raises
          ------
@@ -2343,13 +2368,14 @@ class Camera(AsyncBase):
         """
 
         request = camera_pb2.FormatStorageRequest()
+        request.storage_id = storage_id
         response = await self._stub.FormatStorage(request)
 
         
         result = self._extract_result(response)
 
         if result.result != CameraResult.Result.SUCCESS:
-            raise CameraError(result, "format_storage()")
+            raise CameraError(result, "format_storage()", storage_id)
         
 
     async def select_camera(self, camera_id):
@@ -2378,4 +2404,26 @@ class Camera(AsyncBase):
 
         if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "select_camera()", camera_id)
+        
+
+    async def reset_settings(self):
+        """
+         Reset all settings in camera.
+
+         This will reset all camera settings to default value
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.ResetSettingsRequest()
+        response = await self._stub.ResetSettings(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "reset_settings()")
         

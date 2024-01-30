@@ -6,9 +6,9 @@ from . import camera_server_pb2, camera_server_pb2_grpc
 from enum import Enum
 
 
-class TakePhotoFeedback(Enum):
+class CameraFeedback(Enum):
     """
-     Possible results when taking a photo.
+     Possible feedback results for camera respond command.
 
      Values
      ------
@@ -33,26 +33,70 @@ class TakePhotoFeedback(Enum):
     FAILED = 3
 
     def translate_to_rpc(self):
-        if self == TakePhotoFeedback.UNKNOWN:
-            return camera_server_pb2.TAKE_PHOTO_FEEDBACK_UNKNOWN
-        if self == TakePhotoFeedback.OK:
-            return camera_server_pb2.TAKE_PHOTO_FEEDBACK_OK
-        if self == TakePhotoFeedback.BUSY:
-            return camera_server_pb2.TAKE_PHOTO_FEEDBACK_BUSY
-        if self == TakePhotoFeedback.FAILED:
-            return camera_server_pb2.TAKE_PHOTO_FEEDBACK_FAILED
+        if self == CameraFeedback.UNKNOWN:
+            return camera_server_pb2.CAMERA_FEEDBACK_UNKNOWN
+        if self == CameraFeedback.OK:
+            return camera_server_pb2.CAMERA_FEEDBACK_OK
+        if self == CameraFeedback.BUSY:
+            return camera_server_pb2.CAMERA_FEEDBACK_BUSY
+        if self == CameraFeedback.FAILED:
+            return camera_server_pb2.CAMERA_FEEDBACK_FAILED
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
         """ Parses a gRPC response """
-        if rpc_enum_value == camera_server_pb2.TAKE_PHOTO_FEEDBACK_UNKNOWN:
-            return TakePhotoFeedback.UNKNOWN
-        if rpc_enum_value == camera_server_pb2.TAKE_PHOTO_FEEDBACK_OK:
-            return TakePhotoFeedback.OK
-        if rpc_enum_value == camera_server_pb2.TAKE_PHOTO_FEEDBACK_BUSY:
-            return TakePhotoFeedback.BUSY
-        if rpc_enum_value == camera_server_pb2.TAKE_PHOTO_FEEDBACK_FAILED:
-            return TakePhotoFeedback.FAILED
+        if rpc_enum_value == camera_server_pb2.CAMERA_FEEDBACK_UNKNOWN:
+            return CameraFeedback.UNKNOWN
+        if rpc_enum_value == camera_server_pb2.CAMERA_FEEDBACK_OK:
+            return CameraFeedback.OK
+        if rpc_enum_value == camera_server_pb2.CAMERA_FEEDBACK_BUSY:
+            return CameraFeedback.BUSY
+        if rpc_enum_value == camera_server_pb2.CAMERA_FEEDBACK_FAILED:
+            return CameraFeedback.FAILED
+
+    def __str__(self):
+        return self.name
+
+
+class Mode(Enum):
+    """
+     Camera mode type.
+
+     Values
+     ------
+     UNKNOWN
+          Unknown mode
+
+     PHOTO
+          Photo mode
+
+     VIDEO
+          Video mode
+
+     """
+
+    
+    UNKNOWN = 0
+    PHOTO = 1
+    VIDEO = 2
+
+    def translate_to_rpc(self):
+        if self == Mode.UNKNOWN:
+            return camera_server_pb2.MODE_UNKNOWN
+        if self == Mode.PHOTO:
+            return camera_server_pb2.MODE_PHOTO
+        if self == Mode.VIDEO:
+            return camera_server_pb2.MODE_VIDEO
+
+    @staticmethod
+    def translate_from_rpc(rpc_enum_value):
+        """ Parses a gRPC response """
+        if rpc_enum_value == camera_server_pb2.MODE_UNKNOWN:
+            return Mode.UNKNOWN
+        if rpc_enum_value == camera_server_pb2.MODE_PHOTO:
+            return Mode.PHOTO
+        if rpc_enum_value == camera_server_pb2.MODE_VIDEO:
+            return Mode.VIDEO
 
     def __str__(self):
         return self.name
@@ -271,6 +315,80 @@ class Information:
         
             
         rpcInformation.definition_file_uri = self.definition_file_uri
+            
+        
+        
+
+
+class VideoStreaming:
+    """
+     Type to represent video streaming settings
+
+     Parameters
+     ----------
+     has_rtsp_server : bool
+          True if the capture was successful
+
+     rtsp_uri : std::string
+          RTSP URI (e.g. rtsp://192.168.1.42:8554/live)
+
+     """
+
+    
+
+    def __init__(
+            self,
+            has_rtsp_server,
+            rtsp_uri):
+        """ Initializes the VideoStreaming object """
+        self.has_rtsp_server = has_rtsp_server
+        self.rtsp_uri = rtsp_uri
+
+    def __eq__(self, to_compare):
+        """ Checks if two VideoStreaming are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # VideoStreaming object
+            return \
+                (self.has_rtsp_server == to_compare.has_rtsp_server) and \
+                (self.rtsp_uri == to_compare.rtsp_uri)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ VideoStreaming in string representation """
+        struct_repr = ", ".join([
+                "has_rtsp_server: " + str(self.has_rtsp_server),
+                "rtsp_uri: " + str(self.rtsp_uri)
+                ])
+
+        return f"VideoStreaming: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcVideoStreaming):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return VideoStreaming(
+                
+                rpcVideoStreaming.has_rtsp_server,
+                
+                
+                rpcVideoStreaming.rtsp_uri
+                )
+
+    def translate_to_rpc(self, rpcVideoStreaming):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcVideoStreaming.has_rtsp_server = self.has_rtsp_server
+            
+        
+        
+        
+            
+        rpcVideoStreaming.rtsp_uri = self.rtsp_uri
             
         
         
@@ -799,6 +917,522 @@ class CameraServerResult:
         
 
 
+class StorageInformation:
+    """
+     Information about the camera storage.
+
+     Parameters
+     ----------
+     used_storage_mib : float
+          Used storage (in MiB)
+
+     available_storage_mib : float
+          Available storage (in MiB)
+
+     total_storage_mib : float
+          Total storage (in MiB)
+
+     storage_status : StorageStatus
+          Storage status
+
+     storage_id : uint32_t
+          Storage ID starting at 1
+
+     storage_type : StorageType
+          Storage type
+
+     read_speed_mib_s : float
+          Read speed [MiB/s]
+
+     write_speed_mib_s : float
+          Write speed [MiB/s]
+
+     """
+
+    
+    
+    class StorageStatus(Enum):
+        """
+         Storage status type.
+
+         Values
+         ------
+         NOT_AVAILABLE
+              Storage not available
+
+         UNFORMATTED
+              Storage is not formatted (i.e. has no recognized file system)
+
+         FORMATTED
+              Storage is formatted (i.e. has recognized a file system)
+
+         NOT_SUPPORTED
+              Storage status is not supported
+
+         """
+
+        
+        NOT_AVAILABLE = 0
+        UNFORMATTED = 1
+        FORMATTED = 2
+        NOT_SUPPORTED = 3
+
+        def translate_to_rpc(self):
+            if self == StorageInformation.StorageStatus.NOT_AVAILABLE:
+                return camera_server_pb2.StorageInformation.STORAGE_STATUS_NOT_AVAILABLE
+            if self == StorageInformation.StorageStatus.UNFORMATTED:
+                return camera_server_pb2.StorageInformation.STORAGE_STATUS_UNFORMATTED
+            if self == StorageInformation.StorageStatus.FORMATTED:
+                return camera_server_pb2.StorageInformation.STORAGE_STATUS_FORMATTED
+            if self == StorageInformation.StorageStatus.NOT_SUPPORTED:
+                return camera_server_pb2.StorageInformation.STORAGE_STATUS_NOT_SUPPORTED
+
+        @staticmethod
+        def translate_from_rpc(rpc_enum_value):
+            """ Parses a gRPC response """
+            if rpc_enum_value == camera_server_pb2.StorageInformation.STORAGE_STATUS_NOT_AVAILABLE:
+                return StorageInformation.StorageStatus.NOT_AVAILABLE
+            if rpc_enum_value == camera_server_pb2.StorageInformation.STORAGE_STATUS_UNFORMATTED:
+                return StorageInformation.StorageStatus.UNFORMATTED
+            if rpc_enum_value == camera_server_pb2.StorageInformation.STORAGE_STATUS_FORMATTED:
+                return StorageInformation.StorageStatus.FORMATTED
+            if rpc_enum_value == camera_server_pb2.StorageInformation.STORAGE_STATUS_NOT_SUPPORTED:
+                return StorageInformation.StorageStatus.NOT_SUPPORTED
+
+        def __str__(self):
+            return self.name
+    
+    
+    class StorageType(Enum):
+        """
+         Storage type.
+
+         Values
+         ------
+         UNKNOWN
+              Storage type unknown
+
+         USB_STICK
+              Storage type USB stick
+
+         SD
+              Storage type SD card
+
+         MICROSD
+              Storage type MicroSD card
+
+         HD
+              Storage type HD mass storage
+
+         OTHER
+              Storage type other, not listed
+
+         """
+
+        
+        UNKNOWN = 0
+        USB_STICK = 1
+        SD = 2
+        MICROSD = 3
+        HD = 4
+        OTHER = 5
+
+        def translate_to_rpc(self):
+            if self == StorageInformation.StorageType.UNKNOWN:
+                return camera_server_pb2.StorageInformation.STORAGE_TYPE_UNKNOWN
+            if self == StorageInformation.StorageType.USB_STICK:
+                return camera_server_pb2.StorageInformation.STORAGE_TYPE_USB_STICK
+            if self == StorageInformation.StorageType.SD:
+                return camera_server_pb2.StorageInformation.STORAGE_TYPE_SD
+            if self == StorageInformation.StorageType.MICROSD:
+                return camera_server_pb2.StorageInformation.STORAGE_TYPE_MICROSD
+            if self == StorageInformation.StorageType.HD:
+                return camera_server_pb2.StorageInformation.STORAGE_TYPE_HD
+            if self == StorageInformation.StorageType.OTHER:
+                return camera_server_pb2.StorageInformation.STORAGE_TYPE_OTHER
+
+        @staticmethod
+        def translate_from_rpc(rpc_enum_value):
+            """ Parses a gRPC response """
+            if rpc_enum_value == camera_server_pb2.StorageInformation.STORAGE_TYPE_UNKNOWN:
+                return StorageInformation.StorageType.UNKNOWN
+            if rpc_enum_value == camera_server_pb2.StorageInformation.STORAGE_TYPE_USB_STICK:
+                return StorageInformation.StorageType.USB_STICK
+            if rpc_enum_value == camera_server_pb2.StorageInformation.STORAGE_TYPE_SD:
+                return StorageInformation.StorageType.SD
+            if rpc_enum_value == camera_server_pb2.StorageInformation.STORAGE_TYPE_MICROSD:
+                return StorageInformation.StorageType.MICROSD
+            if rpc_enum_value == camera_server_pb2.StorageInformation.STORAGE_TYPE_HD:
+                return StorageInformation.StorageType.HD
+            if rpc_enum_value == camera_server_pb2.StorageInformation.STORAGE_TYPE_OTHER:
+                return StorageInformation.StorageType.OTHER
+
+        def __str__(self):
+            return self.name
+    
+
+    def __init__(
+            self,
+            used_storage_mib,
+            available_storage_mib,
+            total_storage_mib,
+            storage_status,
+            storage_id,
+            storage_type,
+            read_speed_mib_s,
+            write_speed_mib_s):
+        """ Initializes the StorageInformation object """
+        self.used_storage_mib = used_storage_mib
+        self.available_storage_mib = available_storage_mib
+        self.total_storage_mib = total_storage_mib
+        self.storage_status = storage_status
+        self.storage_id = storage_id
+        self.storage_type = storage_type
+        self.read_speed_mib_s = read_speed_mib_s
+        self.write_speed_mib_s = write_speed_mib_s
+
+    def __eq__(self, to_compare):
+        """ Checks if two StorageInformation are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # StorageInformation object
+            return \
+                (self.used_storage_mib == to_compare.used_storage_mib) and \
+                (self.available_storage_mib == to_compare.available_storage_mib) and \
+                (self.total_storage_mib == to_compare.total_storage_mib) and \
+                (self.storage_status == to_compare.storage_status) and \
+                (self.storage_id == to_compare.storage_id) and \
+                (self.storage_type == to_compare.storage_type) and \
+                (self.read_speed_mib_s == to_compare.read_speed_mib_s) and \
+                (self.write_speed_mib_s == to_compare.write_speed_mib_s)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ StorageInformation in string representation """
+        struct_repr = ", ".join([
+                "used_storage_mib: " + str(self.used_storage_mib),
+                "available_storage_mib: " + str(self.available_storage_mib),
+                "total_storage_mib: " + str(self.total_storage_mib),
+                "storage_status: " + str(self.storage_status),
+                "storage_id: " + str(self.storage_id),
+                "storage_type: " + str(self.storage_type),
+                "read_speed_mib_s: " + str(self.read_speed_mib_s),
+                "write_speed_mib_s: " + str(self.write_speed_mib_s)
+                ])
+
+        return f"StorageInformation: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcStorageInformation):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return StorageInformation(
+                
+                rpcStorageInformation.used_storage_mib,
+                
+                
+                rpcStorageInformation.available_storage_mib,
+                
+                
+                rpcStorageInformation.total_storage_mib,
+                
+                
+                StorageInformation.StorageStatus.translate_from_rpc(rpcStorageInformation.storage_status),
+                
+                
+                rpcStorageInformation.storage_id,
+                
+                
+                StorageInformation.StorageType.translate_from_rpc(rpcStorageInformation.storage_type),
+                
+                
+                rpcStorageInformation.read_speed_mib_s,
+                
+                
+                rpcStorageInformation.write_speed_mib_s
+                )
+
+    def translate_to_rpc(self, rpcStorageInformation):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcStorageInformation.used_storage_mib = self.used_storage_mib
+            
+        
+        
+        
+            
+        rpcStorageInformation.available_storage_mib = self.available_storage_mib
+            
+        
+        
+        
+            
+        rpcStorageInformation.total_storage_mib = self.total_storage_mib
+            
+        
+        
+        
+            
+        rpcStorageInformation.storage_status = self.storage_status.translate_to_rpc()
+            
+        
+        
+        
+            
+        rpcStorageInformation.storage_id = self.storage_id
+            
+        
+        
+        
+            
+        rpcStorageInformation.storage_type = self.storage_type.translate_to_rpc()
+            
+        
+        
+        
+            
+        rpcStorageInformation.read_speed_mib_s = self.read_speed_mib_s
+            
+        
+        
+        
+            
+        rpcStorageInformation.write_speed_mib_s = self.write_speed_mib_s
+            
+        
+        
+
+
+class CaptureStatus:
+    """
+ 
+
+     Parameters
+     ----------
+     image_interval_s : float
+          Image capture interval (in s)
+
+     recording_time_s : float
+          Elapsed time since recording started (in s)
+
+     available_capacity_mib : float
+          Available storage capacity. (in MiB)
+
+     image_status : ImageStatus
+          Current status of image capturing
+
+     video_status : VideoStatus
+          Current status of video capturing
+
+     image_count : int32_t
+          Total number of images captured ('forever', or until reset using MAV_CMD_STORAGE_FORMAT)
+
+     """
+
+    
+    
+    class ImageStatus(Enum):
+        """
+     
+
+         Values
+         ------
+         IDLE
+              idle
+
+         CAPTURE_IN_PROGRESS
+              capture in progress
+
+         INTERVAL_IDLE
+              interval set but idle
+
+         INTERVAL_IN_PROGRESS
+              interval set and capture in progress)
+
+         """
+
+        
+        IDLE = 0
+        CAPTURE_IN_PROGRESS = 1
+        INTERVAL_IDLE = 2
+        INTERVAL_IN_PROGRESS = 3
+
+        def translate_to_rpc(self):
+            if self == CaptureStatus.ImageStatus.IDLE:
+                return camera_server_pb2.CaptureStatus.IMAGE_STATUS_IDLE
+            if self == CaptureStatus.ImageStatus.CAPTURE_IN_PROGRESS:
+                return camera_server_pb2.CaptureStatus.IMAGE_STATUS_CAPTURE_IN_PROGRESS
+            if self == CaptureStatus.ImageStatus.INTERVAL_IDLE:
+                return camera_server_pb2.CaptureStatus.IMAGE_STATUS_INTERVAL_IDLE
+            if self == CaptureStatus.ImageStatus.INTERVAL_IN_PROGRESS:
+                return camera_server_pb2.CaptureStatus.IMAGE_STATUS_INTERVAL_IN_PROGRESS
+
+        @staticmethod
+        def translate_from_rpc(rpc_enum_value):
+            """ Parses a gRPC response """
+            if rpc_enum_value == camera_server_pb2.CaptureStatus.IMAGE_STATUS_IDLE:
+                return CaptureStatus.ImageStatus.IDLE
+            if rpc_enum_value == camera_server_pb2.CaptureStatus.IMAGE_STATUS_CAPTURE_IN_PROGRESS:
+                return CaptureStatus.ImageStatus.CAPTURE_IN_PROGRESS
+            if rpc_enum_value == camera_server_pb2.CaptureStatus.IMAGE_STATUS_INTERVAL_IDLE:
+                return CaptureStatus.ImageStatus.INTERVAL_IDLE
+            if rpc_enum_value == camera_server_pb2.CaptureStatus.IMAGE_STATUS_INTERVAL_IN_PROGRESS:
+                return CaptureStatus.ImageStatus.INTERVAL_IN_PROGRESS
+
+        def __str__(self):
+            return self.name
+    
+    
+    class VideoStatus(Enum):
+        """
+     
+
+         Values
+         ------
+         IDLE
+              idle
+
+         CAPTURE_IN_PROGRESS
+              capture in progress
+
+         """
+
+        
+        IDLE = 0
+        CAPTURE_IN_PROGRESS = 1
+
+        def translate_to_rpc(self):
+            if self == CaptureStatus.VideoStatus.IDLE:
+                return camera_server_pb2.CaptureStatus.VIDEO_STATUS_IDLE
+            if self == CaptureStatus.VideoStatus.CAPTURE_IN_PROGRESS:
+                return camera_server_pb2.CaptureStatus.VIDEO_STATUS_CAPTURE_IN_PROGRESS
+
+        @staticmethod
+        def translate_from_rpc(rpc_enum_value):
+            """ Parses a gRPC response """
+            if rpc_enum_value == camera_server_pb2.CaptureStatus.VIDEO_STATUS_IDLE:
+                return CaptureStatus.VideoStatus.IDLE
+            if rpc_enum_value == camera_server_pb2.CaptureStatus.VIDEO_STATUS_CAPTURE_IN_PROGRESS:
+                return CaptureStatus.VideoStatus.CAPTURE_IN_PROGRESS
+
+        def __str__(self):
+            return self.name
+    
+
+    def __init__(
+            self,
+            image_interval_s,
+            recording_time_s,
+            available_capacity_mib,
+            image_status,
+            video_status,
+            image_count):
+        """ Initializes the CaptureStatus object """
+        self.image_interval_s = image_interval_s
+        self.recording_time_s = recording_time_s
+        self.available_capacity_mib = available_capacity_mib
+        self.image_status = image_status
+        self.video_status = video_status
+        self.image_count = image_count
+
+    def __eq__(self, to_compare):
+        """ Checks if two CaptureStatus are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # CaptureStatus object
+            return \
+                (self.image_interval_s == to_compare.image_interval_s) and \
+                (self.recording_time_s == to_compare.recording_time_s) and \
+                (self.available_capacity_mib == to_compare.available_capacity_mib) and \
+                (self.image_status == to_compare.image_status) and \
+                (self.video_status == to_compare.video_status) and \
+                (self.image_count == to_compare.image_count)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ CaptureStatus in string representation """
+        struct_repr = ", ".join([
+                "image_interval_s: " + str(self.image_interval_s),
+                "recording_time_s: " + str(self.recording_time_s),
+                "available_capacity_mib: " + str(self.available_capacity_mib),
+                "image_status: " + str(self.image_status),
+                "video_status: " + str(self.video_status),
+                "image_count: " + str(self.image_count)
+                ])
+
+        return f"CaptureStatus: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcCaptureStatus):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return CaptureStatus(
+                
+                rpcCaptureStatus.image_interval_s,
+                
+                
+                rpcCaptureStatus.recording_time_s,
+                
+                
+                rpcCaptureStatus.available_capacity_mib,
+                
+                
+                CaptureStatus.ImageStatus.translate_from_rpc(rpcCaptureStatus.image_status),
+                
+                
+                CaptureStatus.VideoStatus.translate_from_rpc(rpcCaptureStatus.video_status),
+                
+                
+                rpcCaptureStatus.image_count
+                )
+
+    def translate_to_rpc(self, rpcCaptureStatus):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcCaptureStatus.image_interval_s = self.image_interval_s
+            
+        
+        
+        
+            
+        rpcCaptureStatus.recording_time_s = self.recording_time_s
+            
+        
+        
+        
+            
+        rpcCaptureStatus.available_capacity_mib = self.available_capacity_mib
+            
+        
+        
+        
+            
+        rpcCaptureStatus.image_status = self.image_status.translate_to_rpc()
+            
+        
+        
+        
+            
+        rpcCaptureStatus.video_status = self.video_status.translate_to_rpc()
+            
+        
+        
+        
+            
+        rpcCaptureStatus.image_count = self.image_count
+            
+        
+        
+
+
 
 class CameraServerError(Exception):
     """ Raised when a CameraServerResult is a fail code """
@@ -861,6 +1495,35 @@ class CameraServer(AsyncBase):
             raise CameraServerError(result, "set_information()", information)
         
 
+    async def set_video_streaming(self, video_streaming):
+        """
+         Sets video streaming settings.
+
+         Parameters
+         ----------
+         video_streaming : VideoStreaming
+              information about the video stream
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.SetVideoStreamingRequest()
+        
+        video_streaming.translate_to_rpc(request.video_streaming)
+                
+            
+        response = await self._stub.SetVideoStreaming(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "set_video_streaming()", video_streaming)
+        
+
     async def set_in_progress(self, in_progress):
         """
          Sets image capture in progress status flags. This should be set to true when the camera is busy taking a photo and false when it is done.
@@ -916,11 +1579,11 @@ class CameraServer(AsyncBase):
 
          Parameters
          ----------
-         take_photo_feedback : TakePhotoFeedback
-              The feedback
+         take_photo_feedback : CameraFeedback
+              the feedback
 
          capture_info : CaptureInfo
-              The capture information
+              the capture information
 
          Raises
          ------
@@ -944,4 +1607,493 @@ class CameraServer(AsyncBase):
 
         if result.result != CameraServerResult.Result.SUCCESS:
             raise CameraServerError(result, "respond_take_photo()", take_photo_feedback, capture_info)
+        
+
+    async def start_video(self):
+        """
+         Subscribe to start video requests. Each request received should respond to using RespondStartVideo
+
+         Yields
+         -------
+         stream_id : int32_t
+              video stream id
+
+         
+        """
+
+        request = camera_server_pb2.SubscribeStartVideoRequest()
+        start_video_stream = self._stub.SubscribeStartVideo(request)
+
+        try:
+            async for response in start_video_stream:
+                
+
+            
+                yield response.stream_id
+        finally:
+            start_video_stream.cancel()
+
+    async def respond_start_video(self, start_video_feedback):
+        """
+         Subscribe to stop video requests. Each request received should respond using StopVideoResponse
+
+         Parameters
+         ----------
+         start_video_feedback : CameraFeedback
+              the feedback
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondStartVideoRequest()
+        
+        request.start_video_feedback = start_video_feedback.translate_to_rpc()
+                
+            
+        response = await self._stub.RespondStartVideo(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_start_video()", start_video_feedback)
+        
+
+    async def stop_video(self):
+        """
+         Subscribe to stop video requests. Each request received should response to using RespondStopVideo
+
+         Yields
+         -------
+         stream_id : int32_t
+              video stream id
+
+         
+        """
+
+        request = camera_server_pb2.SubscribeStopVideoRequest()
+        stop_video_stream = self._stub.SubscribeStopVideo(request)
+
+        try:
+            async for response in stop_video_stream:
+                
+
+            
+                yield response.stream_id
+        finally:
+            stop_video_stream.cancel()
+
+    async def respond_stop_video(self, stop_video_feedback):
+        """
+         Respond to stop video request from SubscribeStopVideo.
+
+         Parameters
+         ----------
+         stop_video_feedback : CameraFeedback
+              the feedback
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondStopVideoRequest()
+        
+        request.stop_video_feedback = stop_video_feedback.translate_to_rpc()
+                
+            
+        response = await self._stub.RespondStopVideo(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_stop_video()", stop_video_feedback)
+        
+
+    async def start_video_streaming(self):
+        """
+         Subscribe to start video streaming requests. Each request received should response to using RespondStartVideoStreaming
+
+         Yields
+         -------
+         stream_id : int32_t
+              video stream id
+
+         
+        """
+
+        request = camera_server_pb2.SubscribeStartVideoStreamingRequest()
+        start_video_streaming_stream = self._stub.SubscribeStartVideoStreaming(request)
+
+        try:
+            async for response in start_video_streaming_stream:
+                
+
+            
+                yield response.stream_id
+        finally:
+            start_video_streaming_stream.cancel()
+
+    async def respond_start_video_streaming(self, start_video_streaming_feedback):
+        """
+         Respond to start video streaming from SubscribeStartVideoStreaming.
+
+         Parameters
+         ----------
+         start_video_streaming_feedback : CameraFeedback
+              the feedback
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondStartVideoStreamingRequest()
+        
+        request.start_video_streaming_feedback = start_video_streaming_feedback.translate_to_rpc()
+                
+            
+        response = await self._stub.RespondStartVideoStreaming(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_start_video_streaming()", start_video_streaming_feedback)
+        
+
+    async def stop_video_streaming(self):
+        """
+         Subscribe to stop video streaming requests. Each request received should response to using RespondStopVideoStreaming
+
+         Yields
+         -------
+         stream_id : int32_t
+              video stream id
+
+         
+        """
+
+        request = camera_server_pb2.SubscribeStopVideoStreamingRequest()
+        stop_video_streaming_stream = self._stub.SubscribeStopVideoStreaming(request)
+
+        try:
+            async for response in stop_video_streaming_stream:
+                
+
+            
+                yield response.stream_id
+        finally:
+            stop_video_streaming_stream.cancel()
+
+    async def respond_stop_video_streaming(self, stop_video_streaming_feedback):
+        """
+         Respond to stop video streaming from SubscribeStopVideoStreaming.
+
+         Parameters
+         ----------
+         stop_video_streaming_feedback : CameraFeedback
+              the feedback
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondStopVideoStreamingRequest()
+        
+        request.stop_video_streaming_feedback = stop_video_streaming_feedback.translate_to_rpc()
+                
+            
+        response = await self._stub.RespondStopVideoStreaming(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_stop_video_streaming()", stop_video_streaming_feedback)
+        
+
+    async def set_mode(self):
+        """
+         Subscribe to set camera mode requests. Each request received should response to using RespondSetMode
+
+         Yields
+         -------
+         mode : Mode
+             
+         
+        """
+
+        request = camera_server_pb2.SubscribeSetModeRequest()
+        set_mode_stream = self._stub.SubscribeSetMode(request)
+
+        try:
+            async for response in set_mode_stream:
+                
+
+            
+                yield Mode.translate_from_rpc(response.mode)
+        finally:
+            set_mode_stream.cancel()
+
+    async def respond_set_mode(self, set_mode_feedback):
+        """
+         Respond to set camera mode from SubscribeSetMode.
+
+         Parameters
+         ----------
+         set_mode_feedback : CameraFeedback
+              the feedback
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondSetModeRequest()
+        
+        request.set_mode_feedback = set_mode_feedback.translate_to_rpc()
+                
+            
+        response = await self._stub.RespondSetMode(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_set_mode()", set_mode_feedback)
+        
+
+    async def storage_information(self):
+        """
+         Subscribe to camera storage information requests. Each request received should response to using RespondStorageInformation
+
+         Yields
+         -------
+         storage_id : int32_t
+             
+         
+        """
+
+        request = camera_server_pb2.SubscribeStorageInformationRequest()
+        storage_information_stream = self._stub.SubscribeStorageInformation(request)
+
+        try:
+            async for response in storage_information_stream:
+                
+
+            
+                yield response.storage_id
+        finally:
+            storage_information_stream.cancel()
+
+    async def respond_storage_information(self, storage_information_feedback, storage_information):
+        """
+         Respond to camera storage information from SubscribeStorageInformation.
+
+         Parameters
+         ----------
+         storage_information_feedback : CameraFeedback
+              the feedback
+
+         storage_information : StorageInformation
+              the storage information
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondStorageInformationRequest()
+        
+        request.storage_information_feedback = storage_information_feedback.translate_to_rpc()
+                
+            
+        
+        storage_information.translate_to_rpc(request.storage_information)
+                
+            
+        response = await self._stub.RespondStorageInformation(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_storage_information()", storage_information_feedback, storage_information)
+        
+
+    async def capture_status(self):
+        """
+         Subscribe to camera capture status requests. Each request received should response to using RespondCaptureStatus
+
+         Yields
+         -------
+         reserved : int32_t
+              reserved, just make protoc-gen-mavsdk working
+
+         
+        """
+
+        request = camera_server_pb2.SubscribeCaptureStatusRequest()
+        capture_status_stream = self._stub.SubscribeCaptureStatus(request)
+
+        try:
+            async for response in capture_status_stream:
+                
+
+            
+                yield response.reserved
+        finally:
+            capture_status_stream.cancel()
+
+    async def respond_capture_status(self, capture_status_feedback, capture_status):
+        """
+         Respond to camera capture status from SubscribeCaptureStatus.
+
+         Parameters
+         ----------
+         capture_status_feedback : CameraFeedback
+              the feedback
+
+         capture_status : CaptureStatus
+              the capture status
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondCaptureStatusRequest()
+        
+        request.capture_status_feedback = capture_status_feedback.translate_to_rpc()
+                
+            
+        
+        capture_status.translate_to_rpc(request.capture_status)
+                
+            
+        response = await self._stub.RespondCaptureStatus(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_capture_status()", capture_status_feedback, capture_status)
+        
+
+    async def format_storage(self):
+        """
+         Subscribe to format storage requests. Each request received should response to using RespondFormatStorage
+
+         Yields
+         -------
+         storage_id : int32_t
+              the storage id to format
+
+         
+        """
+
+        request = camera_server_pb2.SubscribeFormatStorageRequest()
+        format_storage_stream = self._stub.SubscribeFormatStorage(request)
+
+        try:
+            async for response in format_storage_stream:
+                
+
+            
+                yield response.storage_id
+        finally:
+            format_storage_stream.cancel()
+
+    async def respond_format_storage(self, format_storage_feedback):
+        """
+         Respond to format storage from SubscribeFormatStorage.
+
+         Parameters
+         ----------
+         format_storage_feedback : CameraFeedback
+              the feedback
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondFormatStorageRequest()
+        
+        request.format_storage_feedback = format_storage_feedback.translate_to_rpc()
+                
+            
+        response = await self._stub.RespondFormatStorage(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_format_storage()", format_storage_feedback)
+        
+
+    async def reset_settings(self):
+        """
+         Subscribe to reset settings requests. Each request received should response to using RespondResetSettings
+
+         Yields
+         -------
+         reserved : int32_t
+              reserved, just make protoc-gen-mavsdk working
+
+         
+        """
+
+        request = camera_server_pb2.SubscribeResetSettingsRequest()
+        reset_settings_stream = self._stub.SubscribeResetSettings(request)
+
+        try:
+            async for response in reset_settings_stream:
+                
+
+            
+                yield response.reserved
+        finally:
+            reset_settings_stream.cancel()
+
+    async def respond_reset_settings(self, reset_settings_feedback):
+        """
+         Respond to reset settings from SubscribeResetSettings.
+
+         Parameters
+         ----------
+         reset_settings_feedback : CameraFeedback
+              the feedback
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondResetSettingsRequest()
+        
+        request.reset_settings_feedback = reset_settings_feedback.translate_to_rpc()
+                
+            
+        response = await self._stub.RespondResetSettings(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_reset_settings()", reset_settings_feedback)
         

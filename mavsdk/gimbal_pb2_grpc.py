@@ -15,6 +15,11 @@ class GimbalServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.SetAngles = channel.unary_unary(
+                '/mavsdk.rpc.gimbal.GimbalService/SetAngles',
+                request_serializer=gimbal_dot_gimbal__pb2.SetAnglesRequest.SerializeToString,
+                response_deserializer=gimbal_dot_gimbal__pb2.SetAnglesResponse.FromString,
+                )
         self.SetPitchAndYaw = channel.unary_unary(
                 '/mavsdk.rpc.gimbal.GimbalService/SetPitchAndYaw',
                 request_serializer=gimbal_dot_gimbal__pb2.SetPitchAndYawRequest.SerializeToString,
@@ -55,6 +60,19 @@ class GimbalServiceStub(object):
 class GimbalServiceServicer(object):
     """Provide control over a gimbal.
     """
+
+    def SetAngles(self, request, context):
+        """
+
+        Set gimbal roll, pitch and yaw angles.
+
+        This sets the desired roll, pitch and yaw angles of a gimbal.
+        Will return when the command is accepted, however, it might
+        take the gimbal longer to actually be set to the new angles.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def SetPitchAndYaw(self, request, context):
         """
@@ -149,6 +167,11 @@ class GimbalServiceServicer(object):
 
 def add_GimbalServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'SetAngles': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetAngles,
+                    request_deserializer=gimbal_dot_gimbal__pb2.SetAnglesRequest.FromString,
+                    response_serializer=gimbal_dot_gimbal__pb2.SetAnglesResponse.SerializeToString,
+            ),
             'SetPitchAndYaw': grpc.unary_unary_rpc_method_handler(
                     servicer.SetPitchAndYaw,
                     request_deserializer=gimbal_dot_gimbal__pb2.SetPitchAndYawRequest.FromString,
@@ -194,6 +217,23 @@ def add_GimbalServiceServicer_to_server(servicer, server):
 class GimbalService(object):
     """Provide control over a gimbal.
     """
+
+    @staticmethod
+    def SetAngles(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.gimbal.GimbalService/SetAngles',
+            gimbal_dot_gimbal__pb2.SetAnglesRequest.SerializeToString,
+            gimbal_dot_gimbal__pb2.SetAnglesResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetPitchAndYaw(request,

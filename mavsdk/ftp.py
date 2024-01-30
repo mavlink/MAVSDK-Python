@@ -311,27 +311,7 @@ class Ftp(AsyncBase):
         return FtpResult.translate_from_rpc(response.ftp_result)
     
 
-    async def reset(self):
-        """
-         Resets FTP server in case there are stale open sessions.
-
-         Raises
-         ------
-         FtpError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = ftp_pb2.ResetRequest()
-        response = await self._stub.Reset(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result != FtpResult.Result.SUCCESS:
-            raise FtpError(result, "reset()")
-        
-
-    async def download(self, remote_file_path, local_dir):
+    async def download(self, remote_file_path, local_dir, use_burst):
         """
          Downloads a file to local directory.
 
@@ -342,6 +322,9 @@ class Ftp(AsyncBase):
 
          local_dir : std::string
               The local directory to download to.
+
+         use_burst : bool
+              Use burst for faster downloading.
 
          Yields
          -------
@@ -357,6 +340,7 @@ class Ftp(AsyncBase):
         request = ftp_pb2.SubscribeDownloadRequest()
         request.remote_file_path = remote_file_path
         request.local_dir = local_dir
+        request.use_burst = use_burst
         download_stream = self._stub.SubscribeDownload(request)
 
         try:
@@ -369,7 +353,7 @@ class Ftp(AsyncBase):
                     success_codes.append(FtpResult.Result.NEXT)
 
                 if result.result not in success_codes:
-                    raise FtpError(result, "download()", remote_file_path, local_dir)
+                    raise FtpError(result, "download()", remote_file_path, local_dir, use_burst)
 
                 if result.result == FtpResult.Result.SUCCESS:
                     download_stream.cancel();
@@ -620,32 +604,6 @@ class Ftp(AsyncBase):
         return response.are_identical
         
 
-    async def set_root_directory(self, root_dir):
-        """
-         Set root directory for MAVLink FTP server.
-
-         Parameters
-         ----------
-         root_dir : std::string
-              The root directory to set.
-
-         Raises
-         ------
-         FtpError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = ftp_pb2.SetRootDirectoryRequest()
-        request.root_dir = root_dir
-        response = await self._stub.SetRootDirectory(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result != FtpResult.Result.SUCCESS:
-            raise FtpError(result, "set_root_directory()", root_dir)
-        
-
     async def set_target_compid(self, compid):
         """
          Set target component ID. By default it is the autopilot.
@@ -670,24 +628,4 @@ class Ftp(AsyncBase):
 
         if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "set_target_compid()", compid)
-        
-
-    async def get_our_compid(self):
-        """
-         Get our own component ID.
-
-         Returns
-         -------
-         compid : uint32_t
-              Our component ID.
-
-         
-        """
-
-        request = ftp_pb2.GetOurCompidRequest()
-        response = await self._stub.GetOurCompid(request)
-
-        
-
-        return response.compid
         

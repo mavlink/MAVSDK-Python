@@ -50,6 +50,21 @@ class ParamServerServiceStub(object):
                 request_serializer=param__server_dot_param__server__pb2.RetrieveAllParamsRequest.SerializeToString,
                 response_deserializer=param__server_dot_param__server__pb2.RetrieveAllParamsResponse.FromString,
                 )
+        self.SubscribeChangedParamInt = channel.unary_stream(
+                '/mavsdk.rpc.param_server.ParamServerService/SubscribeChangedParamInt',
+                request_serializer=param__server_dot_param__server__pb2.SubscribeChangedParamIntRequest.SerializeToString,
+                response_deserializer=param__server_dot_param__server__pb2.ChangedParamIntResponse.FromString,
+                )
+        self.SubscribeChangedParamFloat = channel.unary_stream(
+                '/mavsdk.rpc.param_server.ParamServerService/SubscribeChangedParamFloat',
+                request_serializer=param__server_dot_param__server__pb2.SubscribeChangedParamFloatRequest.SerializeToString,
+                response_deserializer=param__server_dot_param__server__pb2.ChangedParamFloatResponse.FromString,
+                )
+        self.SubscribeChangedParamCustom = channel.unary_stream(
+                '/mavsdk.rpc.param_server.ParamServerService/SubscribeChangedParamCustom',
+                request_serializer=param__server_dot_param__server__pb2.SubscribeChangedParamCustomRequest.SerializeToString,
+                response_deserializer=param__server_dot_param__server__pb2.ChangedParamCustomResponse.FromString,
+                )
 
 
 class ParamServerServiceServicer(object):
@@ -124,6 +139,27 @@ class ParamServerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SubscribeChangedParamInt(self, request, context):
+        """Subscribe to changed int param.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeChangedParamFloat(self, request, context):
+        """Subscribe to changed float param.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeChangedParamCustom(self, request, context):
+        """Subscribe to changed custom param.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ParamServerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -161,6 +197,21 @@ def add_ParamServerServiceServicer_to_server(servicer, server):
                     servicer.RetrieveAllParams,
                     request_deserializer=param__server_dot_param__server__pb2.RetrieveAllParamsRequest.FromString,
                     response_serializer=param__server_dot_param__server__pb2.RetrieveAllParamsResponse.SerializeToString,
+            ),
+            'SubscribeChangedParamInt': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeChangedParamInt,
+                    request_deserializer=param__server_dot_param__server__pb2.SubscribeChangedParamIntRequest.FromString,
+                    response_serializer=param__server_dot_param__server__pb2.ChangedParamIntResponse.SerializeToString,
+            ),
+            'SubscribeChangedParamFloat': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeChangedParamFloat,
+                    request_deserializer=param__server_dot_param__server__pb2.SubscribeChangedParamFloatRequest.FromString,
+                    response_serializer=param__server_dot_param__server__pb2.ChangedParamFloatResponse.SerializeToString,
+            ),
+            'SubscribeChangedParamCustom': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeChangedParamCustom,
+                    request_deserializer=param__server_dot_param__server__pb2.SubscribeChangedParamCustomRequest.FromString,
+                    response_serializer=param__server_dot_param__server__pb2.ChangedParamCustomResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -289,5 +340,56 @@ class ParamServerService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.param_server.ParamServerService/RetrieveAllParams',
             param__server_dot_param__server__pb2.RetrieveAllParamsRequest.SerializeToString,
             param__server_dot_param__server__pb2.RetrieveAllParamsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeChangedParamInt(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.param_server.ParamServerService/SubscribeChangedParamInt',
+            param__server_dot_param__server__pb2.SubscribeChangedParamIntRequest.SerializeToString,
+            param__server_dot_param__server__pb2.ChangedParamIntResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeChangedParamFloat(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.param_server.ParamServerService/SubscribeChangedParamFloat',
+            param__server_dot_param__server__pb2.SubscribeChangedParamFloatRequest.SerializeToString,
+            param__server_dot_param__server__pb2.ChangedParamFloatResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeChangedParamCustom(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.param_server.ParamServerService/SubscribeChangedParamCustom',
+            param__server_dot_param__server__pb2.SubscribeChangedParamCustomRequest.SerializeToString,
+            param__server_dot_param__server__pb2.ChangedParamCustomResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

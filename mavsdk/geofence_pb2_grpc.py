@@ -33,9 +33,9 @@ class GeofenceServiceServicer(object):
 
     def UploadGeofence(self, request, context):
         """
-        Upload a geofence.
+        Upload geofences.
 
-        Polygons are uploaded to a drone. Once uploaded, the geofence will remain
+        Polygon and Circular geofences are uploaded to a drone. Once uploaded, the geofence will remain
         on the drone even if a connection is lost.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)

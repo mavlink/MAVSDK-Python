@@ -20,6 +20,11 @@ class CameraServerServiceStub(object):
                 request_serializer=camera__server_dot_camera__server__pb2.SetInformationRequest.SerializeToString,
                 response_deserializer=camera__server_dot_camera__server__pb2.SetInformationResponse.FromString,
                 )
+        self.SetVideoStreaming = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/SetVideoStreaming',
+                request_serializer=camera__server_dot_camera__server__pb2.SetVideoStreamingRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.SetVideoStreamingResponse.FromString,
+                )
         self.SetInProgress = channel.unary_unary(
                 '/mavsdk.rpc.camera_server.CameraServerService/SetInProgress',
                 request_serializer=camera__server_dot_camera__server__pb2.SetInProgressRequest.SerializeToString,
@@ -35,6 +40,96 @@ class CameraServerServiceStub(object):
                 request_serializer=camera__server_dot_camera__server__pb2.RespondTakePhotoRequest.SerializeToString,
                 response_deserializer=camera__server_dot_camera__server__pb2.RespondTakePhotoResponse.FromString,
                 )
+        self.SubscribeStartVideo = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeStartVideo',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeStartVideoRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.StartVideoResponse.FromString,
+                )
+        self.RespondStartVideo = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondStartVideo',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondStartVideoRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondStartVideoResponse.FromString,
+                )
+        self.SubscribeStopVideo = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeStopVideo',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeStopVideoRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.StopVideoResponse.FromString,
+                )
+        self.RespondStopVideo = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondStopVideo',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondStopVideoRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondStopVideoResponse.FromString,
+                )
+        self.SubscribeStartVideoStreaming = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeStartVideoStreaming',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeStartVideoStreamingRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.StartVideoStreamingResponse.FromString,
+                )
+        self.RespondStartVideoStreaming = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondStartVideoStreaming',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondStartVideoStreamingRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondStartVideoStreamingResponse.FromString,
+                )
+        self.SubscribeStopVideoStreaming = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeStopVideoStreaming',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeStopVideoStreamingRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.StopVideoStreamingResponse.FromString,
+                )
+        self.RespondStopVideoStreaming = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondStopVideoStreaming',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondStopVideoStreamingRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondStopVideoStreamingResponse.FromString,
+                )
+        self.SubscribeSetMode = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeSetMode',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeSetModeRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.SetModeResponse.FromString,
+                )
+        self.RespondSetMode = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondSetMode',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondSetModeRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondSetModeResponse.FromString,
+                )
+        self.SubscribeStorageInformation = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeStorageInformation',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeStorageInformationRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.StorageInformationResponse.FromString,
+                )
+        self.RespondStorageInformation = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondStorageInformation',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondStorageInformationRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondStorageInformationResponse.FromString,
+                )
+        self.SubscribeCaptureStatus = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeCaptureStatus',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeCaptureStatusRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.CaptureStatusResponse.FromString,
+                )
+        self.RespondCaptureStatus = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondCaptureStatus',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondCaptureStatusRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondCaptureStatusResponse.FromString,
+                )
+        self.SubscribeFormatStorage = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeFormatStorage',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeFormatStorageRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.FormatStorageResponse.FromString,
+                )
+        self.RespondFormatStorage = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondFormatStorage',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondFormatStorageRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondFormatStorageResponse.FromString,
+                )
+        self.SubscribeResetSettings = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeResetSettings',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeResetSettingsRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.ResetSettingsResponse.FromString,
+                )
+        self.RespondResetSettings = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondResetSettings',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondResetSettingsRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondResetSettingsResponse.FromString,
+                )
 
 
 class CameraServerServiceServicer(object):
@@ -43,6 +138,13 @@ class CameraServerServiceServicer(object):
 
     def SetInformation(self, request, context):
         """Sets the camera information. This must be called as soon as the camera server is created.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetVideoStreaming(self, request, context):
+        """Sets video streaming settings.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -69,6 +171,132 @@ class CameraServerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SubscribeStartVideo(self, request, context):
+        """Subscribe to start video requests. Each request received should respond to using RespondStartVideo
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondStartVideo(self, request, context):
+        """Subscribe to stop video requests. Each request received should respond using StopVideoResponse
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeStopVideo(self, request, context):
+        """Subscribe to stop video requests. Each request received should response to using RespondStopVideo
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondStopVideo(self, request, context):
+        """Respond to stop video request from SubscribeStopVideo.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeStartVideoStreaming(self, request, context):
+        """Subscribe to start video streaming requests. Each request received should response to using RespondStartVideoStreaming
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondStartVideoStreaming(self, request, context):
+        """Respond to start video streaming from SubscribeStartVideoStreaming.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeStopVideoStreaming(self, request, context):
+        """Subscribe to stop video streaming requests. Each request received should response to using RespondStopVideoStreaming
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondStopVideoStreaming(self, request, context):
+        """Respond to stop video streaming from SubscribeStopVideoStreaming.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeSetMode(self, request, context):
+        """Subscribe to set camera mode requests. Each request received should response to using RespondSetMode
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondSetMode(self, request, context):
+        """Respond to set camera mode from SubscribeSetMode.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeStorageInformation(self, request, context):
+        """Subscribe to camera storage information requests. Each request received should response to using RespondStorageInformation
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondStorageInformation(self, request, context):
+        """Respond to camera storage information from SubscribeStorageInformation.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeCaptureStatus(self, request, context):
+        """Subscribe to camera capture status requests. Each request received should response to using RespondCaptureStatus
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondCaptureStatus(self, request, context):
+        """Respond to camera capture status from SubscribeCaptureStatus.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeFormatStorage(self, request, context):
+        """Subscribe to format storage requests. Each request received should response to using RespondFormatStorage
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondFormatStorage(self, request, context):
+        """Respond to format storage from SubscribeFormatStorage.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeResetSettings(self, request, context):
+        """Subscribe to reset settings requests. Each request received should response to using RespondResetSettings
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondResetSettings(self, request, context):
+        """Respond to reset settings from SubscribeResetSettings.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_CameraServerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -76,6 +304,11 @@ def add_CameraServerServiceServicer_to_server(servicer, server):
                     servicer.SetInformation,
                     request_deserializer=camera__server_dot_camera__server__pb2.SetInformationRequest.FromString,
                     response_serializer=camera__server_dot_camera__server__pb2.SetInformationResponse.SerializeToString,
+            ),
+            'SetVideoStreaming': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetVideoStreaming,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SetVideoStreamingRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.SetVideoStreamingResponse.SerializeToString,
             ),
             'SetInProgress': grpc.unary_unary_rpc_method_handler(
                     servicer.SetInProgress,
@@ -91,6 +324,96 @@ def add_CameraServerServiceServicer_to_server(servicer, server):
                     servicer.RespondTakePhoto,
                     request_deserializer=camera__server_dot_camera__server__pb2.RespondTakePhotoRequest.FromString,
                     response_serializer=camera__server_dot_camera__server__pb2.RespondTakePhotoResponse.SerializeToString,
+            ),
+            'SubscribeStartVideo': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeStartVideo,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeStartVideoRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.StartVideoResponse.SerializeToString,
+            ),
+            'RespondStartVideo': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondStartVideo,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondStartVideoRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondStartVideoResponse.SerializeToString,
+            ),
+            'SubscribeStopVideo': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeStopVideo,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeStopVideoRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.StopVideoResponse.SerializeToString,
+            ),
+            'RespondStopVideo': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondStopVideo,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondStopVideoRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondStopVideoResponse.SerializeToString,
+            ),
+            'SubscribeStartVideoStreaming': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeStartVideoStreaming,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeStartVideoStreamingRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.StartVideoStreamingResponse.SerializeToString,
+            ),
+            'RespondStartVideoStreaming': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondStartVideoStreaming,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondStartVideoStreamingRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondStartVideoStreamingResponse.SerializeToString,
+            ),
+            'SubscribeStopVideoStreaming': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeStopVideoStreaming,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeStopVideoStreamingRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.StopVideoStreamingResponse.SerializeToString,
+            ),
+            'RespondStopVideoStreaming': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondStopVideoStreaming,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondStopVideoStreamingRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondStopVideoStreamingResponse.SerializeToString,
+            ),
+            'SubscribeSetMode': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeSetMode,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeSetModeRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.SetModeResponse.SerializeToString,
+            ),
+            'RespondSetMode': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondSetMode,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondSetModeRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondSetModeResponse.SerializeToString,
+            ),
+            'SubscribeStorageInformation': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeStorageInformation,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeStorageInformationRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.StorageInformationResponse.SerializeToString,
+            ),
+            'RespondStorageInformation': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondStorageInformation,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondStorageInformationRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondStorageInformationResponse.SerializeToString,
+            ),
+            'SubscribeCaptureStatus': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeCaptureStatus,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeCaptureStatusRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.CaptureStatusResponse.SerializeToString,
+            ),
+            'RespondCaptureStatus': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondCaptureStatus,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondCaptureStatusRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondCaptureStatusResponse.SerializeToString,
+            ),
+            'SubscribeFormatStorage': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeFormatStorage,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeFormatStorageRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.FormatStorageResponse.SerializeToString,
+            ),
+            'RespondFormatStorage': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondFormatStorage,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondFormatStorageRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondFormatStorageResponse.SerializeToString,
+            ),
+            'SubscribeResetSettings': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeResetSettings,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeResetSettingsRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.ResetSettingsResponse.SerializeToString,
+            ),
+            'RespondResetSettings': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondResetSettings,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondResetSettingsRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondResetSettingsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -117,6 +440,23 @@ class CameraServerService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SetInformation',
             camera__server_dot_camera__server__pb2.SetInformationRequest.SerializeToString,
             camera__server_dot_camera__server__pb2.SetInformationResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetVideoStreaming(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SetVideoStreaming',
+            camera__server_dot_camera__server__pb2.SetVideoStreamingRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.SetVideoStreamingResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -168,5 +508,311 @@ class CameraServerService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondTakePhoto',
             camera__server_dot_camera__server__pb2.RespondTakePhotoRequest.SerializeToString,
             camera__server_dot_camera__server__pb2.RespondTakePhotoResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeStartVideo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeStartVideo',
+            camera__server_dot_camera__server__pb2.SubscribeStartVideoRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.StartVideoResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondStartVideo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondStartVideo',
+            camera__server_dot_camera__server__pb2.RespondStartVideoRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondStartVideoResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeStopVideo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeStopVideo',
+            camera__server_dot_camera__server__pb2.SubscribeStopVideoRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.StopVideoResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondStopVideo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondStopVideo',
+            camera__server_dot_camera__server__pb2.RespondStopVideoRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondStopVideoResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeStartVideoStreaming(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeStartVideoStreaming',
+            camera__server_dot_camera__server__pb2.SubscribeStartVideoStreamingRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.StartVideoStreamingResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondStartVideoStreaming(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondStartVideoStreaming',
+            camera__server_dot_camera__server__pb2.RespondStartVideoStreamingRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondStartVideoStreamingResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeStopVideoStreaming(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeStopVideoStreaming',
+            camera__server_dot_camera__server__pb2.SubscribeStopVideoStreamingRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.StopVideoStreamingResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondStopVideoStreaming(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondStopVideoStreaming',
+            camera__server_dot_camera__server__pb2.RespondStopVideoStreamingRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondStopVideoStreamingResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeSetMode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeSetMode',
+            camera__server_dot_camera__server__pb2.SubscribeSetModeRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.SetModeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondSetMode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondSetMode',
+            camera__server_dot_camera__server__pb2.RespondSetModeRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondSetModeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeStorageInformation(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeStorageInformation',
+            camera__server_dot_camera__server__pb2.SubscribeStorageInformationRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.StorageInformationResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondStorageInformation(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondStorageInformation',
+            camera__server_dot_camera__server__pb2.RespondStorageInformationRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondStorageInformationResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeCaptureStatus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeCaptureStatus',
+            camera__server_dot_camera__server__pb2.SubscribeCaptureStatusRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.CaptureStatusResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondCaptureStatus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondCaptureStatus',
+            camera__server_dot_camera__server__pb2.RespondCaptureStatusRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondCaptureStatusResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeFormatStorage(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeFormatStorage',
+            camera__server_dot_camera__server__pb2.SubscribeFormatStorageRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.FormatStorageResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondFormatStorage(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondFormatStorage',
+            camera__server_dot_camera__server__pb2.RespondFormatStorageRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondFormatStorageResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeResetSettings(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeResetSettings',
+            camera__server_dot_camera__server__pb2.SubscribeResetSettingsRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.ResetSettingsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondResetSettings(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondResetSettings',
+            camera__server_dot_camera__server__pb2.RespondResetSettingsRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondResetSettingsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

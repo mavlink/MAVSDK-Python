@@ -20,6 +20,16 @@ class MissionRawServiceStub(object):
                 request_serializer=mission__raw_dot_mission__raw__pb2.UploadMissionRequest.SerializeToString,
                 response_deserializer=mission__raw_dot_mission__raw__pb2.UploadMissionResponse.FromString,
                 )
+        self.UploadGeofence = channel.unary_unary(
+                '/mavsdk.rpc.mission_raw.MissionRawService/UploadGeofence',
+                request_serializer=mission__raw_dot_mission__raw__pb2.UploadGeofenceRequest.SerializeToString,
+                response_deserializer=mission__raw_dot_mission__raw__pb2.UploadGeofenceResponse.FromString,
+                )
+        self.UploadRallyPoints = channel.unary_unary(
+                '/mavsdk.rpc.mission_raw.MissionRawService/UploadRallyPoints',
+                request_serializer=mission__raw_dot_mission__raw__pb2.UploadRallyPointsRequest.SerializeToString,
+                response_deserializer=mission__raw_dot_mission__raw__pb2.UploadRallyPointsResponse.FromString,
+                )
         self.CancelMissionUpload = channel.unary_unary(
                 '/mavsdk.rpc.mission_raw.MissionRawService/CancelMissionUpload',
                 request_serializer=mission__raw_dot_mission__raw__pb2.CancelMissionUploadRequest.SerializeToString,
@@ -70,6 +80,11 @@ class MissionRawServiceStub(object):
                 request_serializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionRequest.SerializeToString,
                 response_deserializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionResponse.FromString,
                 )
+        self.ImportQgroundcontrolMissionFromString = channel.unary_unary(
+                '/mavsdk.rpc.mission_raw.MissionRawService/ImportQgroundcontrolMissionFromString',
+                request_serializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionFromStringRequest.SerializeToString,
+                response_deserializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionFromStringResponse.FromString,
+                )
 
 
 class MissionRawServiceServicer(object):
@@ -82,6 +97,22 @@ class MissionRawServiceServicer(object):
 
         The raw mission items are uploaded to a drone. Once uploaded the mission
         can be started and executed even if the connection is lost.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UploadGeofence(self, request, context):
+        """
+        Upload a list of geofence items to the system.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UploadRallyPoints(self, request, context):
+        """
+        Upload a list of rally point items to the system.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -176,7 +207,21 @@ class MissionRawServiceServicer(object):
 
     def ImportQgroundcontrolMission(self, request, context):
         """
-        Import a QGroundControl missions in JSON .plan format.
+        Import a QGroundControl missions in JSON .plan format, from a file.
+
+        Supported:
+        - Waypoints
+        - Survey
+        Not supported:
+        - Structure Scan
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ImportQgroundcontrolMissionFromString(self, request, context):
+        """
+        Import a QGroundControl missions in JSON .plan format, from a string.
 
         Supported:
         - Waypoints
@@ -195,6 +240,16 @@ def add_MissionRawServiceServicer_to_server(servicer, server):
                     servicer.UploadMission,
                     request_deserializer=mission__raw_dot_mission__raw__pb2.UploadMissionRequest.FromString,
                     response_serializer=mission__raw_dot_mission__raw__pb2.UploadMissionResponse.SerializeToString,
+            ),
+            'UploadGeofence': grpc.unary_unary_rpc_method_handler(
+                    servicer.UploadGeofence,
+                    request_deserializer=mission__raw_dot_mission__raw__pb2.UploadGeofenceRequest.FromString,
+                    response_serializer=mission__raw_dot_mission__raw__pb2.UploadGeofenceResponse.SerializeToString,
+            ),
+            'UploadRallyPoints': grpc.unary_unary_rpc_method_handler(
+                    servicer.UploadRallyPoints,
+                    request_deserializer=mission__raw_dot_mission__raw__pb2.UploadRallyPointsRequest.FromString,
+                    response_serializer=mission__raw_dot_mission__raw__pb2.UploadRallyPointsResponse.SerializeToString,
             ),
             'CancelMissionUpload': grpc.unary_unary_rpc_method_handler(
                     servicer.CancelMissionUpload,
@@ -246,6 +301,11 @@ def add_MissionRawServiceServicer_to_server(servicer, server):
                     request_deserializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionRequest.FromString,
                     response_serializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionResponse.SerializeToString,
             ),
+            'ImportQgroundcontrolMissionFromString': grpc.unary_unary_rpc_method_handler(
+                    servicer.ImportQgroundcontrolMissionFromString,
+                    request_deserializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionFromStringRequest.FromString,
+                    response_serializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionFromStringResponse.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
             'mavsdk.rpc.mission_raw.MissionRawService', rpc_method_handlers)
@@ -271,6 +331,40 @@ class MissionRawService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission_raw.MissionRawService/UploadMission',
             mission__raw_dot_mission__raw__pb2.UploadMissionRequest.SerializeToString,
             mission__raw_dot_mission__raw__pb2.UploadMissionResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UploadGeofence(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission_raw.MissionRawService/UploadGeofence',
+            mission__raw_dot_mission__raw__pb2.UploadGeofenceRequest.SerializeToString,
+            mission__raw_dot_mission__raw__pb2.UploadGeofenceResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UploadRallyPoints(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission_raw.MissionRawService/UploadRallyPoints',
+            mission__raw_dot_mission__raw__pb2.UploadRallyPointsRequest.SerializeToString,
+            mission__raw_dot_mission__raw__pb2.UploadRallyPointsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -441,5 +535,22 @@ class MissionRawService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission_raw.MissionRawService/ImportQgroundcontrolMission',
             mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionRequest.SerializeToString,
             mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ImportQgroundcontrolMissionFromString(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.mission_raw.MissionRawService/ImportQgroundcontrolMissionFromString',
+            mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionFromStringRequest.SerializeToString,
+            mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionFromStringResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

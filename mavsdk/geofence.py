@@ -6,6 +6,42 @@ from . import geofence_pb2, geofence_pb2_grpc
 from enum import Enum
 
 
+class FenceType(Enum):
+    """
+     Geofence types.
+
+     Values
+     ------
+     INCLUSION
+          Type representing an inclusion fence
+
+     EXCLUSION
+          Type representing an exclusion fence
+
+     """
+
+    
+    INCLUSION = 0
+    EXCLUSION = 1
+
+    def translate_to_rpc(self):
+        if self == FenceType.INCLUSION:
+            return geofence_pb2.FENCE_TYPE_INCLUSION
+        if self == FenceType.EXCLUSION:
+            return geofence_pb2.FENCE_TYPE_EXCLUSION
+
+    @staticmethod
+    def translate_from_rpc(rpc_enum_value):
+        """ Parses a gRPC response """
+        if rpc_enum_value == geofence_pb2.FENCE_TYPE_INCLUSION:
+            return FenceType.INCLUSION
+        if rpc_enum_value == geofence_pb2.FENCE_TYPE_EXCLUSION:
+            return FenceType.EXCLUSION
+
+    def __str__(self):
+        return self.name
+
+
 class Point:
     """
      Point type.
@@ -95,42 +131,6 @@ class Polygon:
      """
 
     
-    
-    class FenceType(Enum):
-        """
-         Geofence polygon types.
-
-         Values
-         ------
-         INCLUSION
-              Type representing an inclusion fence
-
-         EXCLUSION
-              Type representing an exclusion fence
-
-         """
-
-        
-        INCLUSION = 0
-        EXCLUSION = 1
-
-        def translate_to_rpc(self):
-            if self == Polygon.FenceType.INCLUSION:
-                return geofence_pb2.Polygon.FENCE_TYPE_INCLUSION
-            if self == Polygon.FenceType.EXCLUSION:
-                return geofence_pb2.Polygon.FENCE_TYPE_EXCLUSION
-
-        @staticmethod
-        def translate_from_rpc(rpc_enum_value):
-            """ Parses a gRPC response """
-            if rpc_enum_value == geofence_pb2.Polygon.FENCE_TYPE_INCLUSION:
-                return Polygon.FenceType.INCLUSION
-            if rpc_enum_value == geofence_pb2.Polygon.FENCE_TYPE_EXCLUSION:
-                return Polygon.FenceType.EXCLUSION
-
-        def __str__(self):
-            return self.name
-    
 
     def __init__(
             self,
@@ -169,7 +169,7 @@ class Polygon:
                 list(map(lambda elem: Point.translate_from_rpc(elem), rpcPolygon.points)),
                 
                 
-                Polygon.FenceType.translate_from_rpc(rpcPolygon.fence_type)
+                FenceType.translate_from_rpc(rpcPolygon.fence_type)
                 )
 
     def translate_to_rpc(self, rpcPolygon):
@@ -192,6 +192,184 @@ class Polygon:
         
             
         rpcPolygon.fence_type = self.fence_type.translate_to_rpc()
+            
+        
+        
+
+
+class Circle:
+    """
+     Circular type.
+
+     Parameters
+     ----------
+     point : Point
+          Point defining the center
+
+     radius : float
+          Radius of the circular fence
+
+     fence_type : FenceType
+          Fence type
+
+     """
+
+    
+
+    def __init__(
+            self,
+            point,
+            radius,
+            fence_type):
+        """ Initializes the Circle object """
+        self.point = point
+        self.radius = radius
+        self.fence_type = fence_type
+
+    def __eq__(self, to_compare):
+        """ Checks if two Circle are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Circle object
+            return \
+                (self.point == to_compare.point) and \
+                (self.radius == to_compare.radius) and \
+                (self.fence_type == to_compare.fence_type)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Circle in string representation """
+        struct_repr = ", ".join([
+                "point: " + str(self.point),
+                "radius: " + str(self.radius),
+                "fence_type: " + str(self.fence_type)
+                ])
+
+        return f"Circle: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcCircle):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Circle(
+                
+                Point.translate_from_rpc(rpcCircle.point),
+                
+                
+                rpcCircle.radius,
+                
+                
+                FenceType.translate_from_rpc(rpcCircle.fence_type)
+                )
+
+    def translate_to_rpc(self, rpcCircle):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        self.point.translate_to_rpc(rpcCircle.point)
+            
+        
+        
+        
+            
+        rpcCircle.radius = self.radius
+            
+        
+        
+        
+            
+        rpcCircle.fence_type = self.fence_type.translate_to_rpc()
+            
+        
+        
+
+
+class GeofenceData:
+    """
+     Geofence data type.
+
+     Parameters
+     ----------
+     polygons : [Polygon]
+          Polygon(s) representing the geofence(s)
+
+     circles : [Circle]
+          Circle(s) representing the geofence(s)
+
+     """
+
+    
+
+    def __init__(
+            self,
+            polygons,
+            circles):
+        """ Initializes the GeofenceData object """
+        self.polygons = polygons
+        self.circles = circles
+
+    def __eq__(self, to_compare):
+        """ Checks if two GeofenceData are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # GeofenceData object
+            return \
+                (self.polygons == to_compare.polygons) and \
+                (self.circles == to_compare.circles)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ GeofenceData in string representation """
+        struct_repr = ", ".join([
+                "polygons: " + str(self.polygons),
+                "circles: " + str(self.circles)
+                ])
+
+        return f"GeofenceData: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcGeofenceData):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return GeofenceData(
+                
+                list(map(lambda elem: Polygon.translate_from_rpc(elem), rpcGeofenceData.polygons)),
+                
+                
+                list(map(lambda elem: Circle.translate_from_rpc(elem), rpcGeofenceData.circles))
+                )
+
+    def translate_to_rpc(self, rpcGeofenceData):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpc_elems_list = []
+        for elem in self.polygons:
+                
+            rpc_elem = geofence_pb2.Polygon()
+            elem.translate_to_rpc(rpc_elem)
+            rpc_elems_list.append(rpc_elem)
+                
+        rpcGeofenceData.polygons.extend(rpc_elems_list)
+            
+        
+        
+        
+            
+        rpc_elems_list = []
+        for elem in self.circles:
+                
+            rpc_elem = geofence_pb2.Circle()
+            elem.translate_to_rpc(rpc_elem)
+            rpc_elems_list.append(rpc_elem)
+                
+        rpcGeofenceData.circles.extend(rpc_elems_list)
             
         
         
@@ -229,7 +407,7 @@ class GeofenceResult:
               Error
 
          TOO_MANY_GEOFENCE_ITEMS
-              Too many Polygon objects in the geofence
+              Too many objects in the geofence
 
          BUSY
               Vehicle is busy
@@ -388,17 +566,17 @@ class Geofence(AsyncBase):
         return GeofenceResult.translate_from_rpc(response.geofence_result)
     
 
-    async def upload_geofence(self, polygons):
+    async def upload_geofence(self, geofence_data):
         """
-         Upload a geofence.
+         Upload geofences.
 
-         Polygons are uploaded to a drone. Once uploaded, the geofence will remain
+         Polygon and Circular geofences are uploaded to a drone. Once uploaded, the geofence will remain
          on the drone even if a connection is lost.
 
          Parameters
          ----------
-         polygons : [Polygon]
-              Polygon(s) representing the geofence(s)
+         geofence_data : GeofenceData
+              Circle(s) and/or Polygon(s) representing the geofence(s)
 
          Raises
          ------
@@ -408,14 +586,7 @@ class Geofence(AsyncBase):
 
         request = geofence_pb2.UploadGeofenceRequest()
         
-        rpc_elems_list = []
-        for elem in polygons:
-                    
-            rpc_elem = geofence_pb2.Polygon()
-            elem.translate_to_rpc(rpc_elem)
-            rpc_elems_list.append(rpc_elem)
-                    
-        request.polygons.extend(rpc_elems_list)
+        geofence_data.translate_to_rpc(request.geofence_data)
                 
             
         response = await self._stub.UploadGeofence(request)
@@ -424,7 +595,7 @@ class Geofence(AsyncBase):
         result = self._extract_result(response)
 
         if result.result != GeofenceResult.Result.SUCCESS:
-            raise GeofenceError(result, "upload_geofence()", polygons)
+            raise GeofenceError(result, "upload_geofence()", geofence_data)
         
 
     async def clear_geofence(self):
