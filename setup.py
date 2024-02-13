@@ -120,11 +120,14 @@ class custom_build(build):
 def version():
     process = subprocess.Popen(["git", "describe", "--tags"],
                                stdout=subprocess.PIPE)
-    (output, err) = process.communicate()
+    output, _ = process.communicate()
     exit_code = process.wait()
     if exit_code != 0:
         raise RuntimeError(f"git describe command exited with: {exit_code}")
-    return output.decode("utf-8").strip()
+    git_describe_str = output.decode("utf-8").strip()
+    git_describe_str = git_describe_str.replace("-g", "+g")
+    print(git_describe_str)
+    return git_describe_str
 
 
 setup(
