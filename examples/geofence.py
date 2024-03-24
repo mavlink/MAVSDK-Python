@@ -53,7 +53,7 @@ async def run():
 
     # Sending the circle object is necessary in the geofence data, 
     # so if you don't want to set the circular geofence, send it like this.
-    circle = Circle(Point(0,0), 0, FenceType.INCLUSION)
+    circle = Circle(Point(0, 0), 0, FenceType.INCLUSION)
 
     geofenceData = GeofenceData([polygon], [circle])
 
