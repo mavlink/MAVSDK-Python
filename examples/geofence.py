@@ -51,7 +51,7 @@ async def run():
 
     # circle = Circle(p1, 10.0, FenceType.INCLUSION)
 
-    # Sending the circle object is necessary in the geofence data, 
+    # Sending the circle object is necessary in the geofence data,
     # so if you don't want to set the circular geofence, send it like this.
     circle = Circle(Point(0, 0), 0, FenceType.INCLUSION)
 
