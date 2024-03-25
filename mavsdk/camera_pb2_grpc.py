@@ -132,6 +132,61 @@ class CameraServiceStub(object):
                 request_serializer=camera_dot_camera__pb2.ResetSettingsRequest.SerializeToString,
                 response_deserializer=camera_dot_camera__pb2.ResetSettingsResponse.FromString,
                 )
+        self.ZoomInStart = channel.unary_unary(
+                '/mavsdk.rpc.camera.CameraService/ZoomInStart',
+                request_serializer=camera_dot_camera__pb2.ZoomInStartRequest.SerializeToString,
+                response_deserializer=camera_dot_camera__pb2.ZoomInStartResponse.FromString,
+                )
+        self.ZoomOutStart = channel.unary_unary(
+                '/mavsdk.rpc.camera.CameraService/ZoomOutStart',
+                request_serializer=camera_dot_camera__pb2.ZoomOutStartRequest.SerializeToString,
+                response_deserializer=camera_dot_camera__pb2.ZoomOutStartResponse.FromString,
+                )
+        self.ZoomStop = channel.unary_unary(
+                '/mavsdk.rpc.camera.CameraService/ZoomStop',
+                request_serializer=camera_dot_camera__pb2.ZoomStopRequest.SerializeToString,
+                response_deserializer=camera_dot_camera__pb2.ZoomStopResponse.FromString,
+                )
+        self.ZoomRange = channel.unary_unary(
+                '/mavsdk.rpc.camera.CameraService/ZoomRange',
+                request_serializer=camera_dot_camera__pb2.ZoomRangeRequest.SerializeToString,
+                response_deserializer=camera_dot_camera__pb2.ZoomRangeResponse.FromString,
+                )
+        self.TrackPoint = channel.unary_unary(
+                '/mavsdk.rpc.camera.CameraService/TrackPoint',
+                request_serializer=camera_dot_camera__pb2.TrackPointRequest.SerializeToString,
+                response_deserializer=camera_dot_camera__pb2.TrackPointResponse.FromString,
+                )
+        self.TrackRectangle = channel.unary_unary(
+                '/mavsdk.rpc.camera.CameraService/TrackRectangle',
+                request_serializer=camera_dot_camera__pb2.TrackRectangleRequest.SerializeToString,
+                response_deserializer=camera_dot_camera__pb2.TrackRectangleResponse.FromString,
+                )
+        self.TrackStop = channel.unary_unary(
+                '/mavsdk.rpc.camera.CameraService/TrackStop',
+                request_serializer=camera_dot_camera__pb2.TrackStopRequest.SerializeToString,
+                response_deserializer=camera_dot_camera__pb2.TrackStopResponse.FromString,
+                )
+        self.FocusInStart = channel.unary_unary(
+                '/mavsdk.rpc.camera.CameraService/FocusInStart',
+                request_serializer=camera_dot_camera__pb2.FocusInStartRequest.SerializeToString,
+                response_deserializer=camera_dot_camera__pb2.FocusInStartResponse.FromString,
+                )
+        self.FocusOutStart = channel.unary_unary(
+                '/mavsdk.rpc.camera.CameraService/FocusOutStart',
+                request_serializer=camera_dot_camera__pb2.FocusOutStartRequest.SerializeToString,
+                response_deserializer=camera_dot_camera__pb2.FocusOutStartResponse.FromString,
+                )
+        self.FocusStop = channel.unary_unary(
+                '/mavsdk.rpc.camera.CameraService/FocusStop',
+                request_serializer=camera_dot_camera__pb2.FocusStopRequest.SerializeToString,
+                response_deserializer=camera_dot_camera__pb2.FocusStopResponse.FromString,
+                )
+        self.FocusRange = channel.unary_unary(
+                '/mavsdk.rpc.camera.CameraService/FocusRange',
+                request_serializer=camera_dot_camera__pb2.FocusRangeRequest.SerializeToString,
+                response_deserializer=camera_dot_camera__pb2.FocusRangeResponse.FromString,
+                )
 
 
 class CameraServiceServicer(object):
@@ -315,7 +370,7 @@ class CameraServiceServicer(object):
         """
         Select current camera .
 
-        Bind the plugin instance to a specific camera_id 
+        Bind the plugin instance to a specific camera_id
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -326,6 +381,94 @@ class CameraServiceServicer(object):
         Reset all settings in camera.
 
         This will reset all camera settings to default value
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ZoomInStart(self, request, context):
+        """
+        Start zooming in.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ZoomOutStart(self, request, context):
+        """
+        Start zooming out.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ZoomStop(self, request, context):
+        """
+        Stop zooming.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ZoomRange(self, request, context):
+        """
+        Zoom to value as proportion of full camera range (percentage between 0.0 and 100.0).
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TrackPoint(self, request, context):
+        """
+        Track point.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TrackRectangle(self, request, context):
+        """
+        Track rectangle.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TrackStop(self, request, context):
+        """
+        Stop tracking.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def FocusInStart(self, request, context):
+        """
+        Start focusing in.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def FocusOutStart(self, request, context):
+        """
+        Start focusing out.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def FocusStop(self, request, context):
+        """
+        Stop focus.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def FocusRange(self, request, context):
+        """
+        Focus with range value of full range (value between 0.0 and 100.0).
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -443,6 +586,61 @@ def add_CameraServiceServicer_to_server(servicer, server):
                     servicer.ResetSettings,
                     request_deserializer=camera_dot_camera__pb2.ResetSettingsRequest.FromString,
                     response_serializer=camera_dot_camera__pb2.ResetSettingsResponse.SerializeToString,
+            ),
+            'ZoomInStart': grpc.unary_unary_rpc_method_handler(
+                    servicer.ZoomInStart,
+                    request_deserializer=camera_dot_camera__pb2.ZoomInStartRequest.FromString,
+                    response_serializer=camera_dot_camera__pb2.ZoomInStartResponse.SerializeToString,
+            ),
+            'ZoomOutStart': grpc.unary_unary_rpc_method_handler(
+                    servicer.ZoomOutStart,
+                    request_deserializer=camera_dot_camera__pb2.ZoomOutStartRequest.FromString,
+                    response_serializer=camera_dot_camera__pb2.ZoomOutStartResponse.SerializeToString,
+            ),
+            'ZoomStop': grpc.unary_unary_rpc_method_handler(
+                    servicer.ZoomStop,
+                    request_deserializer=camera_dot_camera__pb2.ZoomStopRequest.FromString,
+                    response_serializer=camera_dot_camera__pb2.ZoomStopResponse.SerializeToString,
+            ),
+            'ZoomRange': grpc.unary_unary_rpc_method_handler(
+                    servicer.ZoomRange,
+                    request_deserializer=camera_dot_camera__pb2.ZoomRangeRequest.FromString,
+                    response_serializer=camera_dot_camera__pb2.ZoomRangeResponse.SerializeToString,
+            ),
+            'TrackPoint': grpc.unary_unary_rpc_method_handler(
+                    servicer.TrackPoint,
+                    request_deserializer=camera_dot_camera__pb2.TrackPointRequest.FromString,
+                    response_serializer=camera_dot_camera__pb2.TrackPointResponse.SerializeToString,
+            ),
+            'TrackRectangle': grpc.unary_unary_rpc_method_handler(
+                    servicer.TrackRectangle,
+                    request_deserializer=camera_dot_camera__pb2.TrackRectangleRequest.FromString,
+                    response_serializer=camera_dot_camera__pb2.TrackRectangleResponse.SerializeToString,
+            ),
+            'TrackStop': grpc.unary_unary_rpc_method_handler(
+                    servicer.TrackStop,
+                    request_deserializer=camera_dot_camera__pb2.TrackStopRequest.FromString,
+                    response_serializer=camera_dot_camera__pb2.TrackStopResponse.SerializeToString,
+            ),
+            'FocusInStart': grpc.unary_unary_rpc_method_handler(
+                    servicer.FocusInStart,
+                    request_deserializer=camera_dot_camera__pb2.FocusInStartRequest.FromString,
+                    response_serializer=camera_dot_camera__pb2.FocusInStartResponse.SerializeToString,
+            ),
+            'FocusOutStart': grpc.unary_unary_rpc_method_handler(
+                    servicer.FocusOutStart,
+                    request_deserializer=camera_dot_camera__pb2.FocusOutStartRequest.FromString,
+                    response_serializer=camera_dot_camera__pb2.FocusOutStartResponse.SerializeToString,
+            ),
+            'FocusStop': grpc.unary_unary_rpc_method_handler(
+                    servicer.FocusStop,
+                    request_deserializer=camera_dot_camera__pb2.FocusStopRequest.FromString,
+                    response_serializer=camera_dot_camera__pb2.FocusStopResponse.SerializeToString,
+            ),
+            'FocusRange': grpc.unary_unary_rpc_method_handler(
+                    servicer.FocusRange,
+                    request_deserializer=camera_dot_camera__pb2.FocusRangeRequest.FromString,
+                    response_serializer=camera_dot_camera__pb2.FocusRangeResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -833,5 +1031,192 @@ class CameraService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/ResetSettings',
             camera_dot_camera__pb2.ResetSettingsRequest.SerializeToString,
             camera_dot_camera__pb2.ResetSettingsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ZoomInStart(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/ZoomInStart',
+            camera_dot_camera__pb2.ZoomInStartRequest.SerializeToString,
+            camera_dot_camera__pb2.ZoomInStartResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ZoomOutStart(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/ZoomOutStart',
+            camera_dot_camera__pb2.ZoomOutStartRequest.SerializeToString,
+            camera_dot_camera__pb2.ZoomOutStartResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ZoomStop(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/ZoomStop',
+            camera_dot_camera__pb2.ZoomStopRequest.SerializeToString,
+            camera_dot_camera__pb2.ZoomStopResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ZoomRange(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/ZoomRange',
+            camera_dot_camera__pb2.ZoomRangeRequest.SerializeToString,
+            camera_dot_camera__pb2.ZoomRangeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TrackPoint(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/TrackPoint',
+            camera_dot_camera__pb2.TrackPointRequest.SerializeToString,
+            camera_dot_camera__pb2.TrackPointResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TrackRectangle(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/TrackRectangle',
+            camera_dot_camera__pb2.TrackRectangleRequest.SerializeToString,
+            camera_dot_camera__pb2.TrackRectangleResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TrackStop(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/TrackStop',
+            camera_dot_camera__pb2.TrackStopRequest.SerializeToString,
+            camera_dot_camera__pb2.TrackStopResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def FocusInStart(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/FocusInStart',
+            camera_dot_camera__pb2.FocusInStartRequest.SerializeToString,
+            camera_dot_camera__pb2.FocusInStartResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def FocusOutStart(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/FocusOutStart',
+            camera_dot_camera__pb2.FocusOutStartRequest.SerializeToString,
+            camera_dot_camera__pb2.FocusOutStartResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def FocusStop(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/FocusStop',
+            camera_dot_camera__pb2.FocusStopRequest.SerializeToString,
+            camera_dot_camera__pb2.FocusStopResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def FocusRange(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera.CameraService/FocusRange',
+            camera_dot_camera__pb2.FocusRangeRequest.SerializeToString,
+            camera_dot_camera__pb2.FocusRangeResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

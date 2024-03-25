@@ -13,9 +13,10 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13gimbal/gimbal.proto\x12\x11mavsdk.rpc.gimbal\"H\n\x10SetAnglesRequest\x12\x10\n\x08roll_deg\x18\x01 \x01(\x02\x12\x11\n\tpitch_deg\x18\x02 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x03 \x01(\x02\"K\n\x11SetAnglesResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\";\n\x15SetPitchAndYawRequest\x12\x11\n\tpitch_deg\x18\x01 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x02 \x01(\x02\"P\n\x16SetPitchAndYawResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"Q\n\x1dSetPitchRateAndYawRateRequest\x12\x18\n\x10pitch_rate_deg_s\x18\x01 \x01(\x02\x12\x16\n\x0eyaw_rate_deg_s\x18\x02 \x01(\x02\"X\n\x1eSetPitchRateAndYawRateResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"D\n\x0eSetModeRequest\x12\x32\n\x0bgimbal_mode\x18\x01 \x01(\x0e\x32\x1d.mavsdk.rpc.gimbal.GimbalMode\"I\n\x0fSetModeResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"X\n\x15SetRoiLocationRequest\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x12\n\naltitude_m\x18\x03 \x01(\x02\"P\n\x16SetRoiLocationResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"J\n\x12TakeControlRequest\x12\x34\n\x0c\x63ontrol_mode\x18\x01 \x01(\x0e\x32\x1e.mavsdk.rpc.gimbal.ControlMode\"M\n\x13TakeControlResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"\x17\n\x15ReleaseControlRequest\"P\n\x16ReleaseControlResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"\x19\n\x17SubscribeControlRequest\"K\n\x0f\x43ontrolResponse\x12\x38\n\x0e\x63ontrol_status\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.gimbal.ControlStatus\"\xc7\x01\n\rControlStatus\x12\x34\n\x0c\x63ontrol_mode\x18\x01 \x01(\x0e\x32\x1e.mavsdk.rpc.gimbal.ControlMode\x12\x1d\n\x15sysid_primary_control\x18\x02 \x01(\x05\x12\x1e\n\x16\x63ompid_primary_control\x18\x03 \x01(\x05\x12\x1f\n\x17sysid_secondary_control\x18\x04 \x01(\x05\x12 \n\x18\x63ompid_secondary_control\x18\x05 \x01(\x05\"\xe1\x01\n\x0cGimbalResult\x12\x36\n\x06result\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.gimbal.GimbalResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\x84\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x10\n\x0cRESULT_ERROR\x10\x02\x12\x12\n\x0eRESULT_TIMEOUT\x10\x03\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x04\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x05*B\n\nGimbalMode\x12\x1a\n\x16GIMBAL_MODE_YAW_FOLLOW\x10\x00\x12\x18\n\x14GIMBAL_MODE_YAW_LOCK\x10\x01*Z\n\x0b\x43ontrolMode\x12\x15\n\x11\x43ONTROL_MODE_NONE\x10\x00\x12\x18\n\x14\x43ONTROL_MODE_PRIMARY\x10\x01\x12\x1a\n\x16\x43ONTROL_MODE_SECONDARY\x10\x02\x32\xc1\x06\n\rGimbalService\x12X\n\tSetAngles\x12#.mavsdk.rpc.gimbal.SetAnglesRequest\x1a$.mavsdk.rpc.gimbal.SetAnglesResponse\"\x00\x12g\n\x0eSetPitchAndYaw\x12(.mavsdk.rpc.gimbal.SetPitchAndYawRequest\x1a).mavsdk.rpc.gimbal.SetPitchAndYawResponse\"\x00\x12\x7f\n\x16SetPitchRateAndYawRate\x12\x30.mavsdk.rpc.gimbal.SetPitchRateAndYawRateRequest\x1a\x31.mavsdk.rpc.gimbal.SetPitchRateAndYawRateResponse\"\x00\x12R\n\x07SetMode\x12!.mavsdk.rpc.gimbal.SetModeRequest\x1a\".mavsdk.rpc.gimbal.SetModeResponse\"\x00\x12g\n\x0eSetRoiLocation\x12(.mavsdk.rpc.gimbal.SetRoiLocationRequest\x1a).mavsdk.rpc.gimbal.SetRoiLocationResponse\"\x00\x12^\n\x0bTakeControl\x12%.mavsdk.rpc.gimbal.TakeControlRequest\x1a&.mavsdk.rpc.gimbal.TakeControlResponse\"\x00\x12g\n\x0eReleaseControl\x12(.mavsdk.rpc.gimbal.ReleaseControlRequest\x1a).mavsdk.rpc.gimbal.ReleaseControlResponse\"\x00\x12\x66\n\x10SubscribeControl\x12*.mavsdk.rpc.gimbal.SubscribeControlRequest\x1a\".mavsdk.rpc.gimbal.ControlResponse\"\x00\x30\x01\x42\x1f\n\x10io.mavsdk.gimbalB\x0bGimbalProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13gimbal/gimbal.proto\x12\x11mavsdk.rpc.gimbal\x1a\x14mavsdk_options.proto\"H\n\x10SetAnglesRequest\x12\x10\n\x08roll_deg\x18\x01 \x01(\x02\x12\x11\n\tpitch_deg\x18\x02 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x03 \x01(\x02\"K\n\x11SetAnglesResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\";\n\x15SetPitchAndYawRequest\x12\x11\n\tpitch_deg\x18\x01 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x02 \x01(\x02\"P\n\x16SetPitchAndYawResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"Q\n\x1dSetPitchRateAndYawRateRequest\x12\x18\n\x10pitch_rate_deg_s\x18\x01 \x01(\x02\x12\x16\n\x0eyaw_rate_deg_s\x18\x02 \x01(\x02\"X\n\x1eSetPitchRateAndYawRateResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"D\n\x0eSetModeRequest\x12\x32\n\x0bgimbal_mode\x18\x01 \x01(\x0e\x32\x1d.mavsdk.rpc.gimbal.GimbalMode\"I\n\x0fSetModeResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"X\n\x15SetRoiLocationRequest\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x12\n\naltitude_m\x18\x03 \x01(\x02\"P\n\x16SetRoiLocationResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"J\n\x12TakeControlRequest\x12\x34\n\x0c\x63ontrol_mode\x18\x01 \x01(\x0e\x32\x1e.mavsdk.rpc.gimbal.ControlMode\"M\n\x13TakeControlResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"\x17\n\x15ReleaseControlRequest\"P\n\x16ReleaseControlResponse\x12\x36\n\rgimbal_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.gimbal.GimbalResult\"\x19\n\x17SubscribeControlRequest\"K\n\x0f\x43ontrolResponse\x12\x38\n\x0e\x63ontrol_status\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.gimbal.ControlStatus\"\\\n\nQuaternion\x12\x12\n\x01w\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x12\n\x01x\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x12\n\x01y\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x12\n\x01z\x18\x04 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"]\n\nEulerAngle\x12\x19\n\x08roll_deg\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1a\n\tpitch_deg\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x18\n\x07yaw_deg\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"l\n\x13\x41ngularVelocityBody\x12\x1b\n\nroll_rad_s\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1c\n\x0bpitch_rad_s\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x1a\n\tyaw_rad_s\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"\xcc\x02\n\x08\x41ttitude\x12:\n\x13\x65uler_angle_forward\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.gimbal.EulerAngle\x12\x39\n\x12quaternion_forward\x18\x02 \x01(\x0b\x32\x1d.mavsdk.rpc.gimbal.Quaternion\x12\x38\n\x11\x65uler_angle_north\x18\x03 \x01(\x0b\x32\x1d.mavsdk.rpc.gimbal.EulerAngle\x12\x37\n\x10quaternion_north\x18\x04 \x01(\x0b\x32\x1d.mavsdk.rpc.gimbal.Quaternion\x12@\n\x10\x61ngular_velocity\x18\x05 \x01(\x0b\x32&.mavsdk.rpc.gimbal.AngularVelocityBody\x12\x14\n\x0ctimestamp_us\x18\x06 \x01(\x04\"\x1a\n\x18SubscribeAttitudeRequest\"A\n\x10\x41ttitudeResponse\x12-\n\x08\x61ttitude\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.gimbal.Attitude\"\xc7\x01\n\rControlStatus\x12\x34\n\x0c\x63ontrol_mode\x18\x01 \x01(\x0e\x32\x1e.mavsdk.rpc.gimbal.ControlMode\x12\x1d\n\x15sysid_primary_control\x18\x02 \x01(\x05\x12\x1e\n\x16\x63ompid_primary_control\x18\x03 \x01(\x05\x12\x1f\n\x17sysid_secondary_control\x18\x04 \x01(\x05\x12 \n\x18\x63ompid_secondary_control\x18\x05 \x01(\x05\"\xe1\x01\n\x0cGimbalResult\x12\x36\n\x06result\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.gimbal.GimbalResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\x84\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x10\n\x0cRESULT_ERROR\x10\x02\x12\x12\n\x0eRESULT_TIMEOUT\x10\x03\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x04\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x05*B\n\nGimbalMode\x12\x1a\n\x16GIMBAL_MODE_YAW_FOLLOW\x10\x00\x12\x18\n\x14GIMBAL_MODE_YAW_LOCK\x10\x01*Z\n\x0b\x43ontrolMode\x12\x15\n\x11\x43ONTROL_MODE_NONE\x10\x00\x12\x18\n\x14\x43ONTROL_MODE_PRIMARY\x10\x01\x12\x1a\n\x16\x43ONTROL_MODE_SECONDARY\x10\x02\x32\xac\x07\n\rGimbalService\x12X\n\tSetAngles\x12#.mavsdk.rpc.gimbal.SetAnglesRequest\x1a$.mavsdk.rpc.gimbal.SetAnglesResponse\"\x00\x12g\n\x0eSetPitchAndYaw\x12(.mavsdk.rpc.gimbal.SetPitchAndYawRequest\x1a).mavsdk.rpc.gimbal.SetPitchAndYawResponse\"\x00\x12\x7f\n\x16SetPitchRateAndYawRate\x12\x30.mavsdk.rpc.gimbal.SetPitchRateAndYawRateRequest\x1a\x31.mavsdk.rpc.gimbal.SetPitchRateAndYawRateResponse\"\x00\x12R\n\x07SetMode\x12!.mavsdk.rpc.gimbal.SetModeRequest\x1a\".mavsdk.rpc.gimbal.SetModeResponse\"\x00\x12g\n\x0eSetRoiLocation\x12(.mavsdk.rpc.gimbal.SetRoiLocationRequest\x1a).mavsdk.rpc.gimbal.SetRoiLocationResponse\"\x00\x12^\n\x0bTakeControl\x12%.mavsdk.rpc.gimbal.TakeControlRequest\x1a&.mavsdk.rpc.gimbal.TakeControlResponse\"\x00\x12g\n\x0eReleaseControl\x12(.mavsdk.rpc.gimbal.ReleaseControlRequest\x1a).mavsdk.rpc.gimbal.ReleaseControlResponse\"\x00\x12\x66\n\x10SubscribeControl\x12*.mavsdk.rpc.gimbal.SubscribeControlRequest\x1a\".mavsdk.rpc.gimbal.ControlResponse\"\x00\x30\x01\x12i\n\x11SubscribeAttitude\x12+.mavsdk.rpc.gimbal.SubscribeAttitudeRequest\x1a#.mavsdk.rpc.gimbal.AttitudeResponse\"\x00\x30\x01\x42\x1f\n\x10io.mavsdk.gimbalB\x0bGimbalProtob\x06proto3')
 
 _GIMBALMODE = DESCRIPTOR.enum_types_by_name['GimbalMode']
 GimbalMode = enum_type_wrapper.EnumTypeWrapper(_GIMBALMODE)
@@ -44,6 +45,12 @@ _RELEASECONTROLREQUEST = DESCRIPTOR.message_types_by_name['ReleaseControlRequest
 _RELEASECONTROLRESPONSE = DESCRIPTOR.message_types_by_name['ReleaseControlResponse']
 _SUBSCRIBECONTROLREQUEST = DESCRIPTOR.message_types_by_name['SubscribeControlRequest']
 _CONTROLRESPONSE = DESCRIPTOR.message_types_by_name['ControlResponse']
+_QUATERNION = DESCRIPTOR.message_types_by_name['Quaternion']
+_EULERANGLE = DESCRIPTOR.message_types_by_name['EulerAngle']
+_ANGULARVELOCITYBODY = DESCRIPTOR.message_types_by_name['AngularVelocityBody']
+_ATTITUDE = DESCRIPTOR.message_types_by_name['Attitude']
+_SUBSCRIBEATTITUDEREQUEST = DESCRIPTOR.message_types_by_name['SubscribeAttitudeRequest']
+_ATTITUDERESPONSE = DESCRIPTOR.message_types_by_name['AttitudeResponse']
 _CONTROLSTATUS = DESCRIPTOR.message_types_by_name['ControlStatus']
 _GIMBALRESULT = DESCRIPTOR.message_types_by_name['GimbalResult']
 _GIMBALRESULT_RESULT = _GIMBALRESULT.enum_types_by_name['Result']
@@ -159,6 +166,48 @@ ControlResponse = _reflection.GeneratedProtocolMessageType('ControlResponse', (_
   })
 _sym_db.RegisterMessage(ControlResponse)
 
+Quaternion = _reflection.GeneratedProtocolMessageType('Quaternion', (_message.Message,), {
+  'DESCRIPTOR' : _QUATERNION,
+  '__module__' : 'gimbal.gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.Quaternion)
+  })
+_sym_db.RegisterMessage(Quaternion)
+
+EulerAngle = _reflection.GeneratedProtocolMessageType('EulerAngle', (_message.Message,), {
+  'DESCRIPTOR' : _EULERANGLE,
+  '__module__' : 'gimbal.gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.EulerAngle)
+  })
+_sym_db.RegisterMessage(EulerAngle)
+
+AngularVelocityBody = _reflection.GeneratedProtocolMessageType('AngularVelocityBody', (_message.Message,), {
+  'DESCRIPTOR' : _ANGULARVELOCITYBODY,
+  '__module__' : 'gimbal.gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.AngularVelocityBody)
+  })
+_sym_db.RegisterMessage(AngularVelocityBody)
+
+Attitude = _reflection.GeneratedProtocolMessageType('Attitude', (_message.Message,), {
+  'DESCRIPTOR' : _ATTITUDE,
+  '__module__' : 'gimbal.gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.Attitude)
+  })
+_sym_db.RegisterMessage(Attitude)
+
+SubscribeAttitudeRequest = _reflection.GeneratedProtocolMessageType('SubscribeAttitudeRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBEATTITUDEREQUEST,
+  '__module__' : 'gimbal.gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.SubscribeAttitudeRequest)
+  })
+_sym_db.RegisterMessage(SubscribeAttitudeRequest)
+
+AttitudeResponse = _reflection.GeneratedProtocolMessageType('AttitudeResponse', (_message.Message,), {
+  'DESCRIPTOR' : _ATTITUDERESPONSE,
+  '__module__' : 'gimbal.gimbal_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.gimbal.AttitudeResponse)
+  })
+_sym_db.RegisterMessage(AttitudeResponse)
+
 ControlStatus = _reflection.GeneratedProtocolMessageType('ControlStatus', (_message.Message,), {
   'DESCRIPTOR' : _CONTROLSTATUS,
   '__module__' : 'gimbal.gimbal_pb2'
@@ -178,48 +227,80 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\020io.mavsdk.gimbalB\013GimbalProto'
-  _GIMBALMODE._serialized_start=1622
-  _GIMBALMODE._serialized_end=1688
-  _CONTROLMODE._serialized_start=1690
-  _CONTROLMODE._serialized_end=1780
-  _SETANGLESREQUEST._serialized_start=42
-  _SETANGLESREQUEST._serialized_end=114
-  _SETANGLESRESPONSE._serialized_start=116
-  _SETANGLESRESPONSE._serialized_end=191
-  _SETPITCHANDYAWREQUEST._serialized_start=193
-  _SETPITCHANDYAWREQUEST._serialized_end=252
-  _SETPITCHANDYAWRESPONSE._serialized_start=254
-  _SETPITCHANDYAWRESPONSE._serialized_end=334
-  _SETPITCHRATEANDYAWRATEREQUEST._serialized_start=336
-  _SETPITCHRATEANDYAWRATEREQUEST._serialized_end=417
-  _SETPITCHRATEANDYAWRATERESPONSE._serialized_start=419
-  _SETPITCHRATEANDYAWRATERESPONSE._serialized_end=507
-  _SETMODEREQUEST._serialized_start=509
-  _SETMODEREQUEST._serialized_end=577
-  _SETMODERESPONSE._serialized_start=579
-  _SETMODERESPONSE._serialized_end=652
-  _SETROILOCATIONREQUEST._serialized_start=654
-  _SETROILOCATIONREQUEST._serialized_end=742
-  _SETROILOCATIONRESPONSE._serialized_start=744
-  _SETROILOCATIONRESPONSE._serialized_end=824
-  _TAKECONTROLREQUEST._serialized_start=826
-  _TAKECONTROLREQUEST._serialized_end=900
-  _TAKECONTROLRESPONSE._serialized_start=902
-  _TAKECONTROLRESPONSE._serialized_end=979
-  _RELEASECONTROLREQUEST._serialized_start=981
-  _RELEASECONTROLREQUEST._serialized_end=1004
-  _RELEASECONTROLRESPONSE._serialized_start=1006
-  _RELEASECONTROLRESPONSE._serialized_end=1086
-  _SUBSCRIBECONTROLREQUEST._serialized_start=1088
-  _SUBSCRIBECONTROLREQUEST._serialized_end=1113
-  _CONTROLRESPONSE._serialized_start=1115
-  _CONTROLRESPONSE._serialized_end=1190
-  _CONTROLSTATUS._serialized_start=1193
-  _CONTROLSTATUS._serialized_end=1392
-  _GIMBALRESULT._serialized_start=1395
-  _GIMBALRESULT._serialized_end=1620
-  _GIMBALRESULT_RESULT._serialized_start=1488
-  _GIMBALRESULT_RESULT._serialized_end=1620
-  _GIMBALSERVICE._serialized_start=1783
-  _GIMBALSERVICE._serialized_end=2616
+  _QUATERNION.fields_by_name['w']._options = None
+  _QUATERNION.fields_by_name['w']._serialized_options = b'\202\265\030\003NaN'
+  _QUATERNION.fields_by_name['x']._options = None
+  _QUATERNION.fields_by_name['x']._serialized_options = b'\202\265\030\003NaN'
+  _QUATERNION.fields_by_name['y']._options = None
+  _QUATERNION.fields_by_name['y']._serialized_options = b'\202\265\030\003NaN'
+  _QUATERNION.fields_by_name['z']._options = None
+  _QUATERNION.fields_by_name['z']._serialized_options = b'\202\265\030\003NaN'
+  _EULERANGLE.fields_by_name['roll_deg']._options = None
+  _EULERANGLE.fields_by_name['roll_deg']._serialized_options = b'\202\265\030\003NaN'
+  _EULERANGLE.fields_by_name['pitch_deg']._options = None
+  _EULERANGLE.fields_by_name['pitch_deg']._serialized_options = b'\202\265\030\003NaN'
+  _EULERANGLE.fields_by_name['yaw_deg']._options = None
+  _EULERANGLE.fields_by_name['yaw_deg']._serialized_options = b'\202\265\030\003NaN'
+  _ANGULARVELOCITYBODY.fields_by_name['roll_rad_s']._options = None
+  _ANGULARVELOCITYBODY.fields_by_name['roll_rad_s']._serialized_options = b'\202\265\030\003NaN'
+  _ANGULARVELOCITYBODY.fields_by_name['pitch_rad_s']._options = None
+  _ANGULARVELOCITYBODY.fields_by_name['pitch_rad_s']._serialized_options = b'\202\265\030\003NaN'
+  _ANGULARVELOCITYBODY.fields_by_name['yaw_rad_s']._options = None
+  _ANGULARVELOCITYBODY.fields_by_name['yaw_rad_s']._serialized_options = b'\202\265\030\003NaN'
+  _GIMBALMODE._serialized_start=2373
+  _GIMBALMODE._serialized_end=2439
+  _CONTROLMODE._serialized_start=2441
+  _CONTROLMODE._serialized_end=2531
+  _SETANGLESREQUEST._serialized_start=64
+  _SETANGLESREQUEST._serialized_end=136
+  _SETANGLESRESPONSE._serialized_start=138
+  _SETANGLESRESPONSE._serialized_end=213
+  _SETPITCHANDYAWREQUEST._serialized_start=215
+  _SETPITCHANDYAWREQUEST._serialized_end=274
+  _SETPITCHANDYAWRESPONSE._serialized_start=276
+  _SETPITCHANDYAWRESPONSE._serialized_end=356
+  _SETPITCHRATEANDYAWRATEREQUEST._serialized_start=358
+  _SETPITCHRATEANDYAWRATEREQUEST._serialized_end=439
+  _SETPITCHRATEANDYAWRATERESPONSE._serialized_start=441
+  _SETPITCHRATEANDYAWRATERESPONSE._serialized_end=529
+  _SETMODEREQUEST._serialized_start=531
+  _SETMODEREQUEST._serialized_end=599
+  _SETMODERESPONSE._serialized_start=601
+  _SETMODERESPONSE._serialized_end=674
+  _SETROILOCATIONREQUEST._serialized_start=676
+  _SETROILOCATIONREQUEST._serialized_end=764
+  _SETROILOCATIONRESPONSE._serialized_start=766
+  _SETROILOCATIONRESPONSE._serialized_end=846
+  _TAKECONTROLREQUEST._serialized_start=848
+  _TAKECONTROLREQUEST._serialized_end=922
+  _TAKECONTROLRESPONSE._serialized_start=924
+  _TAKECONTROLRESPONSE._serialized_end=1001
+  _RELEASECONTROLREQUEST._serialized_start=1003
+  _RELEASECONTROLREQUEST._serialized_end=1026
+  _RELEASECONTROLRESPONSE._serialized_start=1028
+  _RELEASECONTROLRESPONSE._serialized_end=1108
+  _SUBSCRIBECONTROLREQUEST._serialized_start=1110
+  _SUBSCRIBECONTROLREQUEST._serialized_end=1135
+  _CONTROLRESPONSE._serialized_start=1137
+  _CONTROLRESPONSE._serialized_end=1212
+  _QUATERNION._serialized_start=1214
+  _QUATERNION._serialized_end=1306
+  _EULERANGLE._serialized_start=1308
+  _EULERANGLE._serialized_end=1401
+  _ANGULARVELOCITYBODY._serialized_start=1403
+  _ANGULARVELOCITYBODY._serialized_end=1511
+  _ATTITUDE._serialized_start=1514
+  _ATTITUDE._serialized_end=1846
+  _SUBSCRIBEATTITUDEREQUEST._serialized_start=1848
+  _SUBSCRIBEATTITUDEREQUEST._serialized_end=1874
+  _ATTITUDERESPONSE._serialized_start=1876
+  _ATTITUDERESPONSE._serialized_end=1941
+  _CONTROLSTATUS._serialized_start=1944
+  _CONTROLSTATUS._serialized_end=2143
+  _GIMBALRESULT._serialized_start=2146
+  _GIMBALRESULT._serialized_end=2371
+  _GIMBALRESULT_RESULT._serialized_start=2239
+  _GIMBALRESULT_RESULT._serialized_end=2371
+  _GIMBALSERVICE._serialized_start=2534
+  _GIMBALSERVICE._serialized_end=3474
 # @@protoc_insertion_point(module_scope)

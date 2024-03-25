@@ -2097,3 +2097,215 @@ class CameraServer(AsyncBase):
         if result.result != CameraServerResult.Result.SUCCESS:
             raise CameraServerError(result, "respond_reset_settings()", reset_settings_feedback)
         
+
+    async def zoom_in_start(self):
+        """
+         Subscribe to zoom in start command
+
+         Yields
+         -------
+         reserved : int32_t
+              reserved, just make protoc-gen-mavsdk working
+
+         
+        """
+
+        request = camera_server_pb2.SubscribeZoomInStartRequest()
+        zoom_in_start_stream = self._stub.SubscribeZoomInStart(request)
+
+        try:
+            async for response in zoom_in_start_stream:
+                
+
+            
+                yield response.reserved
+        finally:
+            zoom_in_start_stream.cancel()
+
+    async def respond_zoom_in_start(self, zoom_in_start_feedback):
+        """
+         Respond to zoom in start.
+
+         Parameters
+         ----------
+         zoom_in_start_feedback : CameraFeedback
+              the feedback
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondZoomInStartRequest()
+        
+        request.zoom_in_start_feedback = zoom_in_start_feedback.translate_to_rpc()
+                
+            
+        response = await self._stub.RespondZoomInStart(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_zoom_in_start()", zoom_in_start_feedback)
+        
+
+    async def zoom_out_start(self):
+        """
+         Subscribe to zoom out start command
+
+         Yields
+         -------
+         reserved : int32_t
+              reserved, just make protoc-gen-mavsdk working
+
+         
+        """
+
+        request = camera_server_pb2.SubscribeZoomOutStartRequest()
+        zoom_out_start_stream = self._stub.SubscribeZoomOutStart(request)
+
+        try:
+            async for response in zoom_out_start_stream:
+                
+
+            
+                yield response.reserved
+        finally:
+            zoom_out_start_stream.cancel()
+
+    async def respond_zoom_out_start(self, zoom_out_start_feedback):
+        """
+         Respond to zoom out start.
+
+         Parameters
+         ----------
+         zoom_out_start_feedback : CameraFeedback
+              the feedback
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondZoomOutStartRequest()
+        
+        request.zoom_out_start_feedback = zoom_out_start_feedback.translate_to_rpc()
+                
+            
+        response = await self._stub.RespondZoomOutStart(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_zoom_out_start()", zoom_out_start_feedback)
+        
+
+    async def zoom_stop(self):
+        """
+         Subscribe to zoom stop command
+
+         Yields
+         -------
+         reserved : int32_t
+              reserved, just make protoc-gen-mavsdk working
+
+         
+        """
+
+        request = camera_server_pb2.SubscribeZoomStopRequest()
+        zoom_stop_stream = self._stub.SubscribeZoomStop(request)
+
+        try:
+            async for response in zoom_stop_stream:
+                
+
+            
+                yield response.reserved
+        finally:
+            zoom_stop_stream.cancel()
+
+    async def respond_zoom_stop(self, zoom_stop_feedback):
+        """
+         Respond to zoom stop.
+
+         Parameters
+         ----------
+         zoom_stop_feedback : CameraFeedback
+              the feedback
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondZoomStopRequest()
+        
+        request.zoom_stop_feedback = zoom_stop_feedback.translate_to_rpc()
+                
+            
+        response = await self._stub.RespondZoomStop(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_zoom_stop()", zoom_stop_feedback)
+        
+
+    async def zoom_range(self):
+        """
+         Subscribe to zoom range command
+
+         Yields
+         -------
+         factor : float
+              The zoom factor, starting at 1x.
+
+         
+        """
+
+        request = camera_server_pb2.SubscribeZoomRangeRequest()
+        zoom_range_stream = self._stub.SubscribeZoomRange(request)
+
+        try:
+            async for response in zoom_range_stream:
+                
+
+            
+                yield response.factor
+        finally:
+            zoom_range_stream.cancel()
+
+    async def respond_zoom_range(self, zoom_range_feedback):
+        """
+         Respond to zoom range.
+
+         Parameters
+         ----------
+         zoom_range_feedback : CameraFeedback
+              the feedback
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondZoomRangeRequest()
+        
+        request.zoom_range_feedback = zoom_range_feedback.translate_to_rpc()
+                
+            
+        response = await self._stub.RespondZoomRange(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_zoom_range()", zoom_range_feedback)
+        
