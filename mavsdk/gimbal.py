@@ -86,6 +86,443 @@ class ControlMode(Enum):
         return self.name
 
 
+class Quaternion:
+    """
+     Quaternion type.
+
+     All rotations and axis systems follow the right-hand rule.
+     The Hamilton quaternion product definition is used.
+     A zero-rotation quaternion is represented by (1,0,0,0).
+     The quaternion could also be written as w + xi + yj + zk.
+
+     For more info see: https://en.wikipedia.org/wiki/Quaternion
+
+     Parameters
+     ----------
+     w : float
+          Quaternion entry 0, also denoted as a
+
+     x : float
+          Quaternion entry 1, also denoted as b
+
+     y : float
+          Quaternion entry 2, also denoted as c
+
+     z : float
+          Quaternion entry 3, also denoted as d
+
+     """
+
+    
+
+    def __init__(
+            self,
+            w,
+            x,
+            y,
+            z):
+        """ Initializes the Quaternion object """
+        self.w = w
+        self.x = x
+        self.y = y
+        self.z = z
+
+    def __eq__(self, to_compare):
+        """ Checks if two Quaternion are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Quaternion object
+            return \
+                (self.w == to_compare.w) and \
+                (self.x == to_compare.x) and \
+                (self.y == to_compare.y) and \
+                (self.z == to_compare.z)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Quaternion in string representation """
+        struct_repr = ", ".join([
+                "w: " + str(self.w),
+                "x: " + str(self.x),
+                "y: " + str(self.y),
+                "z: " + str(self.z)
+                ])
+
+        return f"Quaternion: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcQuaternion):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Quaternion(
+                
+                rpcQuaternion.w,
+                
+                
+                rpcQuaternion.x,
+                
+                
+                rpcQuaternion.y,
+                
+                
+                rpcQuaternion.z
+                )
+
+    def translate_to_rpc(self, rpcQuaternion):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcQuaternion.w = self.w
+            
+        
+        
+        
+            
+        rpcQuaternion.x = self.x
+            
+        
+        
+        
+            
+        rpcQuaternion.y = self.y
+            
+        
+        
+        
+            
+        rpcQuaternion.z = self.z
+            
+        
+        
+
+
+class EulerAngle:
+    """
+     Euler angle type.
+
+     All rotations and axis systems follow the right-hand rule.
+     The Euler angles are converted using the 3-1-2 sequence instead of standard 3-2-1 in order
+     to avoid the gimbal lock at 90 degrees down.
+
+     For more info see https://en.wikipedia.org/wiki/Euler_angles
+
+     Parameters
+     ----------
+     roll_deg : float
+          Roll angle in degrees, positive is banking to the right
+
+     pitch_deg : float
+          Pitch angle in degrees, positive is pitching nose up
+
+     yaw_deg : float
+          Yaw angle in degrees, positive is clock-wise seen from above
+
+     """
+
+    
+
+    def __init__(
+            self,
+            roll_deg,
+            pitch_deg,
+            yaw_deg):
+        """ Initializes the EulerAngle object """
+        self.roll_deg = roll_deg
+        self.pitch_deg = pitch_deg
+        self.yaw_deg = yaw_deg
+
+    def __eq__(self, to_compare):
+        """ Checks if two EulerAngle are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # EulerAngle object
+            return \
+                (self.roll_deg == to_compare.roll_deg) and \
+                (self.pitch_deg == to_compare.pitch_deg) and \
+                (self.yaw_deg == to_compare.yaw_deg)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ EulerAngle in string representation """
+        struct_repr = ", ".join([
+                "roll_deg: " + str(self.roll_deg),
+                "pitch_deg: " + str(self.pitch_deg),
+                "yaw_deg: " + str(self.yaw_deg)
+                ])
+
+        return f"EulerAngle: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcEulerAngle):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return EulerAngle(
+                
+                rpcEulerAngle.roll_deg,
+                
+                
+                rpcEulerAngle.pitch_deg,
+                
+                
+                rpcEulerAngle.yaw_deg
+                )
+
+    def translate_to_rpc(self, rpcEulerAngle):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcEulerAngle.roll_deg = self.roll_deg
+            
+        
+        
+        
+            
+        rpcEulerAngle.pitch_deg = self.pitch_deg
+            
+        
+        
+        
+            
+        rpcEulerAngle.yaw_deg = self.yaw_deg
+            
+        
+        
+
+
+class AngularVelocityBody:
+    """
+     Gimbal angular rate type
+
+     Parameters
+     ----------
+     roll_rad_s : float
+          Roll angular velocity
+
+     pitch_rad_s : float
+          Pitch angular velocity
+
+     yaw_rad_s : float
+          Yaw angular velocity
+
+     """
+
+    
+
+    def __init__(
+            self,
+            roll_rad_s,
+            pitch_rad_s,
+            yaw_rad_s):
+        """ Initializes the AngularVelocityBody object """
+        self.roll_rad_s = roll_rad_s
+        self.pitch_rad_s = pitch_rad_s
+        self.yaw_rad_s = yaw_rad_s
+
+    def __eq__(self, to_compare):
+        """ Checks if two AngularVelocityBody are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # AngularVelocityBody object
+            return \
+                (self.roll_rad_s == to_compare.roll_rad_s) and \
+                (self.pitch_rad_s == to_compare.pitch_rad_s) and \
+                (self.yaw_rad_s == to_compare.yaw_rad_s)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ AngularVelocityBody in string representation """
+        struct_repr = ", ".join([
+                "roll_rad_s: " + str(self.roll_rad_s),
+                "pitch_rad_s: " + str(self.pitch_rad_s),
+                "yaw_rad_s: " + str(self.yaw_rad_s)
+                ])
+
+        return f"AngularVelocityBody: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcAngularVelocityBody):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return AngularVelocityBody(
+                
+                rpcAngularVelocityBody.roll_rad_s,
+                
+                
+                rpcAngularVelocityBody.pitch_rad_s,
+                
+                
+                rpcAngularVelocityBody.yaw_rad_s
+                )
+
+    def translate_to_rpc(self, rpcAngularVelocityBody):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcAngularVelocityBody.roll_rad_s = self.roll_rad_s
+            
+        
+        
+        
+            
+        rpcAngularVelocityBody.pitch_rad_s = self.pitch_rad_s
+            
+        
+        
+        
+            
+        rpcAngularVelocityBody.yaw_rad_s = self.yaw_rad_s
+            
+        
+        
+
+
+class Attitude:
+    """
+     Gimbal attitude type
+
+     Parameters
+     ----------
+     euler_angle_forward : EulerAngle
+          Euler angle relative to forward
+
+     quaternion_forward : Quaternion
+          Quaternion relative to forward
+
+     euler_angle_north : EulerAngle
+          Euler angle relative to North
+
+     quaternion_north : Quaternion
+          Quaternion relative to North
+
+     angular_velocity : AngularVelocityBody
+          The angular rate
+
+     timestamp_us : uint64_t
+          Timestamp in microseconds
+
+     """
+
+    
+
+    def __init__(
+            self,
+            euler_angle_forward,
+            quaternion_forward,
+            euler_angle_north,
+            quaternion_north,
+            angular_velocity,
+            timestamp_us):
+        """ Initializes the Attitude object """
+        self.euler_angle_forward = euler_angle_forward
+        self.quaternion_forward = quaternion_forward
+        self.euler_angle_north = euler_angle_north
+        self.quaternion_north = quaternion_north
+        self.angular_velocity = angular_velocity
+        self.timestamp_us = timestamp_us
+
+    def __eq__(self, to_compare):
+        """ Checks if two Attitude are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Attitude object
+            return \
+                (self.euler_angle_forward == to_compare.euler_angle_forward) and \
+                (self.quaternion_forward == to_compare.quaternion_forward) and \
+                (self.euler_angle_north == to_compare.euler_angle_north) and \
+                (self.quaternion_north == to_compare.quaternion_north) and \
+                (self.angular_velocity == to_compare.angular_velocity) and \
+                (self.timestamp_us == to_compare.timestamp_us)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Attitude in string representation """
+        struct_repr = ", ".join([
+                "euler_angle_forward: " + str(self.euler_angle_forward),
+                "quaternion_forward: " + str(self.quaternion_forward),
+                "euler_angle_north: " + str(self.euler_angle_north),
+                "quaternion_north: " + str(self.quaternion_north),
+                "angular_velocity: " + str(self.angular_velocity),
+                "timestamp_us: " + str(self.timestamp_us)
+                ])
+
+        return f"Attitude: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcAttitude):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Attitude(
+                
+                EulerAngle.translate_from_rpc(rpcAttitude.euler_angle_forward),
+                
+                
+                Quaternion.translate_from_rpc(rpcAttitude.quaternion_forward),
+                
+                
+                EulerAngle.translate_from_rpc(rpcAttitude.euler_angle_north),
+                
+                
+                Quaternion.translate_from_rpc(rpcAttitude.quaternion_north),
+                
+                
+                AngularVelocityBody.translate_from_rpc(rpcAttitude.angular_velocity),
+                
+                
+                rpcAttitude.timestamp_us
+                )
+
+    def translate_to_rpc(self, rpcAttitude):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        self.euler_angle_forward.translate_to_rpc(rpcAttitude.euler_angle_forward)
+            
+        
+        
+        
+            
+        self.quaternion_forward.translate_to_rpc(rpcAttitude.quaternion_forward)
+            
+        
+        
+        
+            
+        self.euler_angle_north.translate_to_rpc(rpcAttitude.euler_angle_north)
+            
+        
+        
+        
+            
+        self.quaternion_north.translate_to_rpc(rpcAttitude.quaternion_north)
+            
+        
+        
+        
+            
+        self.angular_velocity.translate_to_rpc(rpcAttitude.angular_velocity)
+            
+        
+        
+        
+            
+        rpcAttitude.timestamp_us = self.timestamp_us
+            
+        
+        
+
+
 class ControlStatus:
     """
      Control status
@@ -648,3 +1085,29 @@ class Gimbal(AsyncBase):
                 yield ControlStatus.translate_from_rpc(response.control_status)
         finally:
             control_stream.cancel()
+
+    async def attitude(self):
+        """
+         Subscribe to attitude updates.
+
+         This gets you the gimbal's attitude and angular rate.
+
+         Yields
+         -------
+         attitude : Attitude
+              The attitude
+
+         
+        """
+
+        request = gimbal_pb2.SubscribeAttitudeRequest()
+        attitude_stream = self._stub.SubscribeAttitude(request)
+
+        try:
+            async for response in attitude_stream:
+                
+
+            
+                yield Attitude.translate_from_rpc(response.attitude)
+        finally:
+            attitude_stream.cancel()

@@ -130,6 +130,46 @@ class CameraServerServiceStub(object):
                 request_serializer=camera__server_dot_camera__server__pb2.RespondResetSettingsRequest.SerializeToString,
                 response_deserializer=camera__server_dot_camera__server__pb2.RespondResetSettingsResponse.FromString,
                 )
+        self.SubscribeZoomInStart = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeZoomInStart',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeZoomInStartRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.ZoomInStartResponse.FromString,
+                )
+        self.RespondZoomInStart = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondZoomInStart',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondZoomInStartRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondZoomInStartResponse.FromString,
+                )
+        self.SubscribeZoomOutStart = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeZoomOutStart',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeZoomOutStartRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.ZoomOutStartResponse.FromString,
+                )
+        self.RespondZoomOutStart = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondZoomOutStart',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondZoomOutStartRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondZoomOutStartResponse.FromString,
+                )
+        self.SubscribeZoomStop = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeZoomStop',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeZoomStopRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.ZoomStopResponse.FromString,
+                )
+        self.RespondZoomStop = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondZoomStop',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondZoomStopRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondZoomStopResponse.FromString,
+                )
+        self.SubscribeZoomRange = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeZoomRange',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeZoomRangeRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.ZoomRangeResponse.FromString,
+                )
+        self.RespondZoomRange = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondZoomRange',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondZoomRangeRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondZoomRangeResponse.FromString,
+                )
 
 
 class CameraServerServiceServicer(object):
@@ -297,6 +337,62 @@ class CameraServerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SubscribeZoomInStart(self, request, context):
+        """Subscribe to zoom in start command
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondZoomInStart(self, request, context):
+        """Respond to zoom in start.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeZoomOutStart(self, request, context):
+        """Subscribe to zoom out start command
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondZoomOutStart(self, request, context):
+        """Respond to zoom out start.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeZoomStop(self, request, context):
+        """Subscribe to zoom stop command
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondZoomStop(self, request, context):
+        """Respond to zoom stop.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeZoomRange(self, request, context):
+        """Subscribe to zoom range command
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondZoomRange(self, request, context):
+        """Respond to zoom range.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_CameraServerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -414,6 +510,46 @@ def add_CameraServerServiceServicer_to_server(servicer, server):
                     servicer.RespondResetSettings,
                     request_deserializer=camera__server_dot_camera__server__pb2.RespondResetSettingsRequest.FromString,
                     response_serializer=camera__server_dot_camera__server__pb2.RespondResetSettingsResponse.SerializeToString,
+            ),
+            'SubscribeZoomInStart': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeZoomInStart,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeZoomInStartRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.ZoomInStartResponse.SerializeToString,
+            ),
+            'RespondZoomInStart': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondZoomInStart,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondZoomInStartRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondZoomInStartResponse.SerializeToString,
+            ),
+            'SubscribeZoomOutStart': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeZoomOutStart,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeZoomOutStartRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.ZoomOutStartResponse.SerializeToString,
+            ),
+            'RespondZoomOutStart': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondZoomOutStart,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondZoomOutStartRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondZoomOutStartResponse.SerializeToString,
+            ),
+            'SubscribeZoomStop': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeZoomStop,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeZoomStopRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.ZoomStopResponse.SerializeToString,
+            ),
+            'RespondZoomStop': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondZoomStop,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondZoomStopRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondZoomStopResponse.SerializeToString,
+            ),
+            'SubscribeZoomRange': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeZoomRange,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeZoomRangeRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.ZoomRangeResponse.SerializeToString,
+            ),
+            'RespondZoomRange': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondZoomRange,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondZoomRangeRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondZoomRangeResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -814,5 +950,141 @@ class CameraServerService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondResetSettings',
             camera__server_dot_camera__server__pb2.RespondResetSettingsRequest.SerializeToString,
             camera__server_dot_camera__server__pb2.RespondResetSettingsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeZoomInStart(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeZoomInStart',
+            camera__server_dot_camera__server__pb2.SubscribeZoomInStartRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.ZoomInStartResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondZoomInStart(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondZoomInStart',
+            camera__server_dot_camera__server__pb2.RespondZoomInStartRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondZoomInStartResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeZoomOutStart(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeZoomOutStart',
+            camera__server_dot_camera__server__pb2.SubscribeZoomOutStartRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.ZoomOutStartResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondZoomOutStart(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondZoomOutStart',
+            camera__server_dot_camera__server__pb2.RespondZoomOutStartRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondZoomOutStartResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeZoomStop(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeZoomStop',
+            camera__server_dot_camera__server__pb2.SubscribeZoomStopRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.ZoomStopResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondZoomStop(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondZoomStop',
+            camera__server_dot_camera__server__pb2.RespondZoomStopRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondZoomStopResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeZoomRange(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeZoomRange',
+            camera__server_dot_camera__server__pb2.SubscribeZoomRangeRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.ZoomRangeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondZoomRange(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondZoomRange',
+            camera__server_dot_camera__server__pb2.RespondZoomRangeRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondZoomRangeResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

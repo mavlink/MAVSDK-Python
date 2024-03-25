@@ -2427,3 +2427,267 @@ class Camera(AsyncBase):
         if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "reset_settings()")
         
+
+    async def zoom_in_start(self):
+        """
+         Start zooming in.
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.ZoomInStartRequest()
+        response = await self._stub.ZoomInStart(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "zoom_in_start()")
+        
+
+    async def zoom_out_start(self):
+        """
+         Start zooming out.
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.ZoomOutStartRequest()
+        response = await self._stub.ZoomOutStart(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "zoom_out_start()")
+        
+
+    async def zoom_stop(self):
+        """
+         Stop zooming.
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.ZoomStopRequest()
+        response = await self._stub.ZoomStop(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "zoom_stop()")
+        
+
+    async def zoom_range(self, range):
+        """
+         Zoom to value as proportion of full camera range (percentage between 0.0 and 100.0).
+
+         Parameters
+         ----------
+         range : float
+              Range must be between 0.0 and 100.0
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.ZoomRangeRequest()
+        request.range = range
+        response = await self._stub.ZoomRange(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "zoom_range()", range)
+        
+
+    async def track_point(self, point_x, point_y, radius):
+        """
+         Track point.
+
+         Parameters
+         ----------
+         point_x : float
+              Point in X axis (0..1, 0 is left, 1 is right)
+
+         point_y : float
+              Point in Y axis (0..1, 0 is top, 1 is bottom)
+
+         radius : float
+              Radius (0 is one pixel, 1 is full image width)
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.TrackPointRequest()
+        request.point_x = point_x
+        request.point_y = point_y
+        request.radius = radius
+        response = await self._stub.TrackPoint(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "track_point()", point_x, point_y, radius)
+        
+
+    async def track_rectangle(self, top_left_x, top_left_y, bottom_right_x, bottom_right_y):
+        """
+         Track rectangle.
+
+         Parameters
+         ----------
+         top_left_x : float
+              Top left corner of rectangle x value (normalized 0..1, 0 is left, 1 is right)
+
+         top_left_y : float
+              Top left corner of rectangle y value (normalized 0..1, 0 is top, 1 is bottom)
+
+         bottom_right_x : float
+              Bottom right corner of rectangle x value (normalized 0..1, 0 is left, 1 is right)
+
+         bottom_right_y : float
+              Bottom right corner of rectangle y value (normalized 0..1, 0 is top, 1 is bottom)
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.TrackRectangleRequest()
+        request.top_left_x = top_left_x
+        request.top_left_y = top_left_y
+        request.bottom_right_x = bottom_right_x
+        request.bottom_right_y = bottom_right_y
+        response = await self._stub.TrackRectangle(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "track_rectangle()", top_left_x, top_left_y, bottom_right_x, bottom_right_y)
+        
+
+    async def track_stop(self):
+        """
+         Stop tracking.
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.TrackStopRequest()
+        response = await self._stub.TrackStop(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "track_stop()")
+        
+
+    async def focus_in_start(self):
+        """
+         Start focusing in.
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.FocusInStartRequest()
+        response = await self._stub.FocusInStart(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "focus_in_start()")
+        
+
+    async def focus_out_start(self):
+        """
+         Start focusing out.
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.FocusOutStartRequest()
+        response = await self._stub.FocusOutStart(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "focus_out_start()")
+        
+
+    async def focus_stop(self):
+        """
+         Stop focus.
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.FocusStopRequest()
+        response = await self._stub.FocusStop(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "focus_stop()")
+        
+
+    async def focus_range(self, range):
+        """
+         Focus with range value of full range (value between 0.0 and 100.0).
+
+         Parameters
+         ----------
+         range : float
+              Range must be between 0.0 - 100.0
+
+         Raises
+         ------
+         CameraError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.FocusRangeRequest()
+        request.range = range
+        response = await self._stub.FocusRange(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "focus_range()", range)
+        

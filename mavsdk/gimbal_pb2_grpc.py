@@ -55,6 +55,11 @@ class GimbalServiceStub(object):
                 request_serializer=gimbal_dot_gimbal__pb2.SubscribeControlRequest.SerializeToString,
                 response_deserializer=gimbal_dot_gimbal__pb2.ControlResponse.FromString,
                 )
+        self.SubscribeAttitude = channel.unary_stream(
+                '/mavsdk.rpc.gimbal.GimbalService/SubscribeAttitude',
+                request_serializer=gimbal_dot_gimbal__pb2.SubscribeAttitudeRequest.SerializeToString,
+                response_deserializer=gimbal_dot_gimbal__pb2.AttitudeResponse.FromString,
+                )
 
 
 class GimbalServiceServicer(object):
@@ -164,6 +169,16 @@ class GimbalServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SubscribeAttitude(self, request, context):
+        """
+        Subscribe to attitude updates.
+
+        This gets you the gimbal's attitude and angular rate.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_GimbalServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -206,6 +221,11 @@ def add_GimbalServiceServicer_to_server(servicer, server):
                     servicer.SubscribeControl,
                     request_deserializer=gimbal_dot_gimbal__pb2.SubscribeControlRequest.FromString,
                     response_serializer=gimbal_dot_gimbal__pb2.ControlResponse.SerializeToString,
+            ),
+            'SubscribeAttitude': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeAttitude,
+                    request_deserializer=gimbal_dot_gimbal__pb2.SubscribeAttitudeRequest.FromString,
+                    response_serializer=gimbal_dot_gimbal__pb2.AttitudeResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -351,5 +371,22 @@ class GimbalService(object):
         return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.gimbal.GimbalService/SubscribeControl',
             gimbal_dot_gimbal__pb2.SubscribeControlRequest.SerializeToString,
             gimbal_dot_gimbal__pb2.ControlResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeAttitude(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.gimbal.GimbalService/SubscribeAttitude',
+            gimbal_dot_gimbal__pb2.SubscribeAttitudeRequest.SerializeToString,
+            gimbal_dot_gimbal__pb2.AttitudeResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
