@@ -130,6 +130,9 @@ class ActionResult:
          FAILED
               Action failed
 
+         INVALID_ARGUMENT
+              Invalid argument
+
          """
 
         
@@ -147,6 +150,7 @@ class ActionResult:
         PARAMETER_ERROR = 11
         UNSUPPORTED = 12
         FAILED = 13
+        INVALID_ARGUMENT = 14
 
         def translate_to_rpc(self):
             if self == ActionResult.Result.UNKNOWN:
@@ -177,6 +181,8 @@ class ActionResult:
                 return action_pb2.ActionResult.RESULT_UNSUPPORTED
             if self == ActionResult.Result.FAILED:
                 return action_pb2.ActionResult.RESULT_FAILED
+            if self == ActionResult.Result.INVALID_ARGUMENT:
+                return action_pb2.ActionResult.RESULT_INVALID_ARGUMENT
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -209,6 +215,8 @@ class ActionResult:
                 return ActionResult.Result.UNSUPPORTED
             if rpc_enum_value == action_pb2.ActionResult.RESULT_FAILED:
                 return ActionResult.Result.FAILED
+            if rpc_enum_value == action_pb2.ActionResult.RESULT_INVALID_ARGUMENT:
+                return ActionResult.Result.INVALID_ARGUMENT
 
         def __str__(self):
             return self.name
@@ -636,6 +644,8 @@ class Action(AsyncBase):
     async def set_actuator(self, index, value):
         """
          Send command to set the value of an actuator.
+
+         Note that the index of the actuator starts at 1 and that the value goes from -1 to 1.
 
          Parameters
          ----------

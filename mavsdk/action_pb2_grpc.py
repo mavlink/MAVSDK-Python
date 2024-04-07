@@ -271,6 +271,8 @@ class ActionServiceServicer(object):
     def SetActuator(self, request, context):
         """
         Send command to set the value of an actuator.
+
+        Note that the index of the actuator starts at 1 and that the value goes from -1 to 1.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

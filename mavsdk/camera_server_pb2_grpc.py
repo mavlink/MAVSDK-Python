@@ -6,7 +6,7 @@ from . import camera_server_pb2 as camera__server_dot_camera__server__pb2
 
 
 class CameraServerServiceStub(object):
-    """Provides handling of camera trigger commands.
+    """Provides handling of camera interface
     """
 
     def __init__(self, channel):
@@ -170,10 +170,50 @@ class CameraServerServiceStub(object):
                 request_serializer=camera__server_dot_camera__server__pb2.RespondZoomRangeRequest.SerializeToString,
                 response_deserializer=camera__server_dot_camera__server__pb2.RespondZoomRangeResponse.FromString,
                 )
+        self.SetTrackingRectangleStatus = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/SetTrackingRectangleStatus',
+                request_serializer=camera__server_dot_camera__server__pb2.SetTrackingRectangleStatusRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.SetTrackingRectangleStatusResponse.FromString,
+                )
+        self.SetTrackingOffStatus = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/SetTrackingOffStatus',
+                request_serializer=camera__server_dot_camera__server__pb2.SetTrackingOffStatusRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.SetTrackingOffStatusResponse.FromString,
+                )
+        self.SubscribeTrackingPointCommand = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeTrackingPointCommand',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeTrackingPointCommandRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.TrackingPointCommandResponse.FromString,
+                )
+        self.SubscribeTrackingRectangleCommand = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeTrackingRectangleCommand',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeTrackingRectangleCommandRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.TrackingRectangleCommandResponse.FromString,
+                )
+        self.SubscribeTrackingOffCommand = channel.unary_stream(
+                '/mavsdk.rpc.camera_server.CameraServerService/SubscribeTrackingOffCommand',
+                request_serializer=camera__server_dot_camera__server__pb2.SubscribeTrackingOffCommandRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.TrackingOffCommandResponse.FromString,
+                )
+        self.RespondTrackingPointCommand = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondTrackingPointCommand',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondTrackingPointCommandRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondTrackingPointCommandResponse.FromString,
+                )
+        self.RespondTrackingRectangleCommand = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondTrackingRectangleCommand',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondTrackingRectangleCommandRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondTrackingRectangleCommandResponse.FromString,
+                )
+        self.RespondTrackingOffCommand = channel.unary_unary(
+                '/mavsdk.rpc.camera_server.CameraServerService/RespondTrackingOffCommand',
+                request_serializer=camera__server_dot_camera__server__pb2.RespondTrackingOffCommandRequest.SerializeToString,
+                response_deserializer=camera__server_dot_camera__server__pb2.RespondTrackingOffCommandResponse.FromString,
+                )
 
 
 class CameraServerServiceServicer(object):
-    """Provides handling of camera trigger commands.
+    """Provides handling of camera interface
     """
 
     def SetInformation(self, request, context):
@@ -393,6 +433,62 @@ class CameraServerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetTrackingRectangleStatus(self, request, context):
+        """Set/update the current rectangle tracking status.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetTrackingOffStatus(self, request, context):
+        """Set the current tracking status to off.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeTrackingPointCommand(self, request, context):
+        """Subscribe to incoming tracking point command.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeTrackingRectangleCommand(self, request, context):
+        """Subscribe to incoming tracking rectangle command.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeTrackingOffCommand(self, request, context):
+        """Subscribe to incoming tracking off command.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondTrackingPointCommand(self, request, context):
+        """Respond to an incoming tracking point command.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondTrackingRectangleCommand(self, request, context):
+        """Respond to an incoming tracking rectangle command.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RespondTrackingOffCommand(self, request, context):
+        """Respond to an incoming tracking off command.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_CameraServerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -551,6 +647,46 @@ def add_CameraServerServiceServicer_to_server(servicer, server):
                     request_deserializer=camera__server_dot_camera__server__pb2.RespondZoomRangeRequest.FromString,
                     response_serializer=camera__server_dot_camera__server__pb2.RespondZoomRangeResponse.SerializeToString,
             ),
+            'SetTrackingRectangleStatus': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetTrackingRectangleStatus,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SetTrackingRectangleStatusRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.SetTrackingRectangleStatusResponse.SerializeToString,
+            ),
+            'SetTrackingOffStatus': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetTrackingOffStatus,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SetTrackingOffStatusRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.SetTrackingOffStatusResponse.SerializeToString,
+            ),
+            'SubscribeTrackingPointCommand': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeTrackingPointCommand,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeTrackingPointCommandRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.TrackingPointCommandResponse.SerializeToString,
+            ),
+            'SubscribeTrackingRectangleCommand': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeTrackingRectangleCommand,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeTrackingRectangleCommandRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.TrackingRectangleCommandResponse.SerializeToString,
+            ),
+            'SubscribeTrackingOffCommand': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeTrackingOffCommand,
+                    request_deserializer=camera__server_dot_camera__server__pb2.SubscribeTrackingOffCommandRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.TrackingOffCommandResponse.SerializeToString,
+            ),
+            'RespondTrackingPointCommand': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondTrackingPointCommand,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondTrackingPointCommandRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondTrackingPointCommandResponse.SerializeToString,
+            ),
+            'RespondTrackingRectangleCommand': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondTrackingRectangleCommand,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondTrackingRectangleCommandRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondTrackingRectangleCommandResponse.SerializeToString,
+            ),
+            'RespondTrackingOffCommand': grpc.unary_unary_rpc_method_handler(
+                    servicer.RespondTrackingOffCommand,
+                    request_deserializer=camera__server_dot_camera__server__pb2.RespondTrackingOffCommandRequest.FromString,
+                    response_serializer=camera__server_dot_camera__server__pb2.RespondTrackingOffCommandResponse.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
             'mavsdk.rpc.camera_server.CameraServerService', rpc_method_handlers)
@@ -559,7 +695,7 @@ def add_CameraServerServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class CameraServerService(object):
-    """Provides handling of camera trigger commands.
+    """Provides handling of camera interface
     """
 
     @staticmethod
@@ -1086,5 +1222,141 @@ class CameraServerService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondZoomRange',
             camera__server_dot_camera__server__pb2.RespondZoomRangeRequest.SerializeToString,
             camera__server_dot_camera__server__pb2.RespondZoomRangeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetTrackingRectangleStatus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SetTrackingRectangleStatus',
+            camera__server_dot_camera__server__pb2.SetTrackingRectangleStatusRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.SetTrackingRectangleStatusResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetTrackingOffStatus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SetTrackingOffStatus',
+            camera__server_dot_camera__server__pb2.SetTrackingOffStatusRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.SetTrackingOffStatusResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeTrackingPointCommand(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeTrackingPointCommand',
+            camera__server_dot_camera__server__pb2.SubscribeTrackingPointCommandRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.TrackingPointCommandResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeTrackingRectangleCommand(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeTrackingRectangleCommand',
+            camera__server_dot_camera__server__pb2.SubscribeTrackingRectangleCommandRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.TrackingRectangleCommandResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SubscribeTrackingOffCommand(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mavsdk.rpc.camera_server.CameraServerService/SubscribeTrackingOffCommand',
+            camera__server_dot_camera__server__pb2.SubscribeTrackingOffCommandRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.TrackingOffCommandResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondTrackingPointCommand(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondTrackingPointCommand',
+            camera__server_dot_camera__server__pb2.RespondTrackingPointCommandRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondTrackingPointCommandResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondTrackingRectangleCommand(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondTrackingRectangleCommand',
+            camera__server_dot_camera__server__pb2.RespondTrackingRectangleCommandRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondTrackingRectangleCommandResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RespondTrackingOffCommand(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.camera_server.CameraServerService/RespondTrackingOffCommand',
+            camera__server_dot_camera__server__pb2.RespondTrackingOffCommandRequest.SerializeToString,
+            camera__server_dot_camera__server__pb2.RespondTrackingOffCommandResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

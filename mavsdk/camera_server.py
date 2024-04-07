@@ -1433,6 +1433,202 @@ class CaptureStatus:
         
 
 
+class TrackPoint:
+    """
+     Point description type
+
+     Parameters
+     ----------
+     point_x : float
+          Point to track x value (normalized 0..1, 0 is left, 1 is right).
+
+     point_y : float
+          Point to track y value (normalized 0..1, 0 is top, 1 is bottom).
+
+     radius : float
+          Point to track y value (normalized 0..1, 0 is top, 1 is bottom).
+
+     """
+
+    
+
+    def __init__(
+            self,
+            point_x,
+            point_y,
+            radius):
+        """ Initializes the TrackPoint object """
+        self.point_x = point_x
+        self.point_y = point_y
+        self.radius = radius
+
+    def __eq__(self, to_compare):
+        """ Checks if two TrackPoint are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # TrackPoint object
+            return \
+                (self.point_x == to_compare.point_x) and \
+                (self.point_y == to_compare.point_y) and \
+                (self.radius == to_compare.radius)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ TrackPoint in string representation """
+        struct_repr = ", ".join([
+                "point_x: " + str(self.point_x),
+                "point_y: " + str(self.point_y),
+                "radius: " + str(self.radius)
+                ])
+
+        return f"TrackPoint: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcTrackPoint):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return TrackPoint(
+                
+                rpcTrackPoint.point_x,
+                
+                
+                rpcTrackPoint.point_y,
+                
+                
+                rpcTrackPoint.radius
+                )
+
+    def translate_to_rpc(self, rpcTrackPoint):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcTrackPoint.point_x = self.point_x
+            
+        
+        
+        
+            
+        rpcTrackPoint.point_y = self.point_y
+            
+        
+        
+        
+            
+        rpcTrackPoint.radius = self.radius
+            
+        
+        
+
+
+class TrackRectangle:
+    """
+     Rectangle description type
+
+     Parameters
+     ----------
+     top_left_corner_x : float
+          Top left corner of rectangle x value (normalized 0..1, 0 is left, 1 is right).
+
+     top_left_corner_y : float
+          Top left corner of rectangle y value (normalized 0..1, 0 is top, 1 is bottom).
+
+     bottom_right_corner_x : float
+          Bottom right corner of rectangle x value (normalized 0..1, 0 is left, 1 is right).
+
+     bottom_right_corner_y : float
+          Bottom right corner of rectangle y value (normalized 0..1, 0 is top, 1 is bottom).
+
+     """
+
+    
+
+    def __init__(
+            self,
+            top_left_corner_x,
+            top_left_corner_y,
+            bottom_right_corner_x,
+            bottom_right_corner_y):
+        """ Initializes the TrackRectangle object """
+        self.top_left_corner_x = top_left_corner_x
+        self.top_left_corner_y = top_left_corner_y
+        self.bottom_right_corner_x = bottom_right_corner_x
+        self.bottom_right_corner_y = bottom_right_corner_y
+
+    def __eq__(self, to_compare):
+        """ Checks if two TrackRectangle are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # TrackRectangle object
+            return \
+                (self.top_left_corner_x == to_compare.top_left_corner_x) and \
+                (self.top_left_corner_y == to_compare.top_left_corner_y) and \
+                (self.bottom_right_corner_x == to_compare.bottom_right_corner_x) and \
+                (self.bottom_right_corner_y == to_compare.bottom_right_corner_y)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ TrackRectangle in string representation """
+        struct_repr = ", ".join([
+                "top_left_corner_x: " + str(self.top_left_corner_x),
+                "top_left_corner_y: " + str(self.top_left_corner_y),
+                "bottom_right_corner_x: " + str(self.bottom_right_corner_x),
+                "bottom_right_corner_y: " + str(self.bottom_right_corner_y)
+                ])
+
+        return f"TrackRectangle: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcTrackRectangle):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return TrackRectangle(
+                
+                rpcTrackRectangle.top_left_corner_x,
+                
+                
+                rpcTrackRectangle.top_left_corner_y,
+                
+                
+                rpcTrackRectangle.bottom_right_corner_x,
+                
+                
+                rpcTrackRectangle.bottom_right_corner_y
+                )
+
+    def translate_to_rpc(self, rpcTrackRectangle):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcTrackRectangle.top_left_corner_x = self.top_left_corner_x
+            
+        
+        
+        
+            
+        rpcTrackRectangle.top_left_corner_y = self.top_left_corner_y
+            
+        
+        
+        
+            
+        rpcTrackRectangle.bottom_right_corner_x = self.bottom_right_corner_x
+            
+        
+        
+        
+            
+        rpcTrackRectangle.bottom_right_corner_y = self.bottom_right_corner_y
+            
+        
+        
+
+
 
 class CameraServerError(Exception):
     """ Raised when a CameraServerResult is a fail code """
@@ -1448,7 +1644,7 @@ class CameraServerError(Exception):
 
 class CameraServer(AsyncBase):
     """
-     Provides handling of camera trigger commands.
+     Provides handling of camera interface
 
      Generated by dcsdkgen - MAVSDK CameraServer API
     """
@@ -2308,4 +2504,196 @@ class CameraServer(AsyncBase):
 
         if result.result != CameraServerResult.Result.SUCCESS:
             raise CameraServerError(result, "respond_zoom_range()", zoom_range_feedback)
+        
+
+    async def set_tracking_rectangle_status(self, tracked_rectangle):
+        """
+         Set/update the current rectangle tracking status.
+
+         Parameters
+         ----------
+         tracked_rectangle : TrackRectangle
+              The tracked rectangle
+
+         
+        """
+
+        request = camera_server_pb2.SetTrackingRectangleStatusRequest()
+        
+        tracked_rectangle.translate_to_rpc(request.tracked_rectangle)
+                
+            
+        response = await self._stub.SetTrackingRectangleStatus(request)
+
+        
+
+    async def set_tracking_off_status(self):
+        """
+         Set the current tracking status to off.
+
+         
+        """
+
+        request = camera_server_pb2.SetTrackingOffStatusRequest()
+        response = await self._stub.SetTrackingOffStatus(request)
+
+        
+
+    async def tracking_point_command(self):
+        """
+         Subscribe to incoming tracking point command.
+
+         Yields
+         -------
+         track_point : TrackPoint
+              The point to track if a point is to be tracked
+
+         
+        """
+
+        request = camera_server_pb2.SubscribeTrackingPointCommandRequest()
+        tracking_point_command_stream = self._stub.SubscribeTrackingPointCommand(request)
+
+        try:
+            async for response in tracking_point_command_stream:
+                
+
+            
+                yield TrackPoint.translate_from_rpc(response.track_point)
+        finally:
+            tracking_point_command_stream.cancel()
+
+    async def tracking_rectangle_command(self):
+        """
+         Subscribe to incoming tracking rectangle command.
+
+         Yields
+         -------
+         track_rectangle : TrackRectangle
+              The point to track if a point is to be tracked
+
+         
+        """
+
+        request = camera_server_pb2.SubscribeTrackingRectangleCommandRequest()
+        tracking_rectangle_command_stream = self._stub.SubscribeTrackingRectangleCommand(request)
+
+        try:
+            async for response in tracking_rectangle_command_stream:
+                
+
+            
+                yield TrackRectangle.translate_from_rpc(response.track_rectangle)
+        finally:
+            tracking_rectangle_command_stream.cancel()
+
+    async def tracking_off_command(self):
+        """
+         Subscribe to incoming tracking off command.
+
+         Yields
+         -------
+         dummy : int32_t
+              Unused
+
+         
+        """
+
+        request = camera_server_pb2.SubscribeTrackingOffCommandRequest()
+        tracking_off_command_stream = self._stub.SubscribeTrackingOffCommand(request)
+
+        try:
+            async for response in tracking_off_command_stream:
+                
+
+            
+                yield response.dummy
+        finally:
+            tracking_off_command_stream.cancel()
+
+    async def respond_tracking_point_command(self, stop_video_feedback):
+        """
+         Respond to an incoming tracking point command.
+
+         Parameters
+         ----------
+         stop_video_feedback : CameraFeedback
+              the feedback
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondTrackingPointCommandRequest()
+        
+        request.stop_video_feedback = stop_video_feedback.translate_to_rpc()
+                
+            
+        response = await self._stub.RespondTrackingPointCommand(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_tracking_point_command()", stop_video_feedback)
+        
+
+    async def respond_tracking_rectangle_command(self, stop_video_feedback):
+        """
+         Respond to an incoming tracking rectangle command.
+
+         Parameters
+         ----------
+         stop_video_feedback : CameraFeedback
+              the feedback
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondTrackingRectangleCommandRequest()
+        
+        request.stop_video_feedback = stop_video_feedback.translate_to_rpc()
+                
+            
+        response = await self._stub.RespondTrackingRectangleCommand(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_tracking_rectangle_command()", stop_video_feedback)
+        
+
+    async def respond_tracking_off_command(self, stop_video_feedback):
+        """
+         Respond to an incoming tracking off command.
+
+         Parameters
+         ----------
+         stop_video_feedback : CameraFeedback
+              the feedback
+
+         Raises
+         ------
+         CameraServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondTrackingOffCommandRequest()
+        
+        request.stop_video_feedback = stop_video_feedback.translate_to_rpc()
+                
+            
+        response = await self._stub.RespondTrackingOffCommand(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_tracking_off_command()", stop_video_feedback)
         
