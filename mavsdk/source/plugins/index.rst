@@ -38,3 +38,4 @@ Plugins
    ftp_server
    gripper
    winch
+   arm_authorizer_server
