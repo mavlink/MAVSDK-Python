@@ -336,6 +336,31 @@ class Action(AsyncBase):
             raise ActionError(result, "arm()")
         
 
+    async def arm_force(self):
+        """
+         Send command to force-arm the drone without any checks.
+
+         Attention: this is not to be used for normal flying but only bench tests!
+
+         Arming a drone normally causes motors to spin at idle.
+         Before arming take all safety precautions and stand clear of the drone!
+
+         Raises
+         ------
+         ActionError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = action_pb2.ArmForceRequest()
+        response = await self._stub.ArmForce(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != ActionResult.Result.SUCCESS:
+            raise ActionError(result, "arm_force()")
+        
+
     async def disarm(self):
         """
          Send command to disarm the drone.

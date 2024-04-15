@@ -18,6 +18,12 @@ class FlightInfo:
      flight_uid : uint64_t
           Flight counter. Starts from zero, is incremented at every disarm and is never reset (even after reboot)
 
+     duration_since_arming_ms : uint32_t
+          Duration since arming in milliseconds
+
+     duration_since_takeoff_ms : uint32_t
+          Duration since takeoff in milliseconds
+
      """
 
     
@@ -25,10 +31,14 @@ class FlightInfo:
     def __init__(
             self,
             time_boot_ms,
-            flight_uid):
+            flight_uid,
+            duration_since_arming_ms,
+            duration_since_takeoff_ms):
         """ Initializes the FlightInfo object """
         self.time_boot_ms = time_boot_ms
         self.flight_uid = flight_uid
+        self.duration_since_arming_ms = duration_since_arming_ms
+        self.duration_since_takeoff_ms = duration_since_takeoff_ms
 
     def __eq__(self, to_compare):
         """ Checks if two FlightInfo are the same """
@@ -37,7 +47,9 @@ class FlightInfo:
             # FlightInfo object
             return \
                 (self.time_boot_ms == to_compare.time_boot_ms) and \
-                (self.flight_uid == to_compare.flight_uid)
+                (self.flight_uid == to_compare.flight_uid) and \
+                (self.duration_since_arming_ms == to_compare.duration_since_arming_ms) and \
+                (self.duration_since_takeoff_ms == to_compare.duration_since_takeoff_ms)
 
         except AttributeError:
             return False
@@ -46,7 +58,9 @@ class FlightInfo:
         """ FlightInfo in string representation """
         struct_repr = ", ".join([
                 "time_boot_ms: " + str(self.time_boot_ms),
-                "flight_uid: " + str(self.flight_uid)
+                "flight_uid: " + str(self.flight_uid),
+                "duration_since_arming_ms: " + str(self.duration_since_arming_ms),
+                "duration_since_takeoff_ms: " + str(self.duration_since_takeoff_ms)
                 ])
 
         return f"FlightInfo: [{struct_repr}]"
@@ -59,7 +73,13 @@ class FlightInfo:
                 rpcFlightInfo.time_boot_ms,
                 
                 
-                rpcFlightInfo.flight_uid
+                rpcFlightInfo.flight_uid,
+                
+                
+                rpcFlightInfo.duration_since_arming_ms,
+                
+                
+                rpcFlightInfo.duration_since_takeoff_ms
                 )
 
     def translate_to_rpc(self, rpcFlightInfo):
@@ -75,6 +95,18 @@ class FlightInfo:
         
             
         rpcFlightInfo.flight_uid = self.flight_uid
+            
+        
+        
+        
+            
+        rpcFlightInfo.duration_since_arming_ms = self.duration_since_arming_ms
+            
+        
+        
+        
+            
+        rpcFlightInfo.duration_since_takeoff_ms = self.duration_since_takeoff_ms
             
         
         
