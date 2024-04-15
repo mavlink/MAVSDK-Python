@@ -20,6 +20,11 @@ class ActionServiceStub(object):
                 request_serializer=action_dot_action__pb2.ArmRequest.SerializeToString,
                 response_deserializer=action_dot_action__pb2.ArmResponse.FromString,
                 )
+        self.ArmForce = channel.unary_unary(
+                '/mavsdk.rpc.action.ActionService/ArmForce',
+                request_serializer=action_dot_action__pb2.ArmForceRequest.SerializeToString,
+                response_deserializer=action_dot_action__pb2.ArmForceResponse.FromString,
+                )
         self.Disarm = channel.unary_unary(
                 '/mavsdk.rpc.action.ActionService/Disarm',
                 request_serializer=action_dot_action__pb2.DisarmRequest.SerializeToString,
@@ -134,6 +139,19 @@ class ActionServiceServicer(object):
     def Arm(self, request, context):
         """
         Send command to arm the drone.
+
+        Arming a drone normally causes motors to spin at idle.
+        Before arming take all safety precautions and stand clear of the drone!
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ArmForce(self, request, context):
+        """
+        Send command to force-arm the drone without any checks.
+
+        Attention: this is not to be used for normal flying but only bench tests!
 
         Arming a drone normally causes motors to spin at idle.
         Before arming take all safety precautions and stand clear of the drone!
@@ -369,6 +387,11 @@ def add_ActionServiceServicer_to_server(servicer, server):
                     request_deserializer=action_dot_action__pb2.ArmRequest.FromString,
                     response_serializer=action_dot_action__pb2.ArmResponse.SerializeToString,
             ),
+            'ArmForce': grpc.unary_unary_rpc_method_handler(
+                    servicer.ArmForce,
+                    request_deserializer=action_dot_action__pb2.ArmForceRequest.FromString,
+                    response_serializer=action_dot_action__pb2.ArmForceResponse.SerializeToString,
+            ),
             'Disarm': grpc.unary_unary_rpc_method_handler(
                     servicer.Disarm,
                     request_deserializer=action_dot_action__pb2.DisarmRequest.FromString,
@@ -499,6 +522,23 @@ class ActionService(object):
         return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.action.ActionService/Arm',
             action_dot_action__pb2.ArmRequest.SerializeToString,
             action_dot_action__pb2.ArmResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ArmForce(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mavsdk.rpc.action.ActionService/ArmForce',
+            action_dot_action__pb2.ArmForceRequest.SerializeToString,
+            action_dot_action__pb2.ArmForceResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

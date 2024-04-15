@@ -16,7 +16,7 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13\x61\x63tion/action.proto\x12\x11mavsdk.rpc.action\x1a\x14mavsdk_options.proto\"\x0c\n\nArmRequest\"E\n\x0b\x41rmResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x0f\n\rDisarmRequest\"H\n\x0e\x44isarmResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x10\n\x0eTakeoffRequest\"I\n\x0fTakeoffResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\r\n\x0bLandRequest\"F\n\x0cLandResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x0f\n\rRebootRequest\"H\n\x0eRebootResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x11\n\x0fShutdownRequest\"J\n\x10ShutdownResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x12\n\x10TerminateRequest\"K\n\x11TerminateResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\r\n\x0bKillRequest\"F\n\x0cKillResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x17\n\x15ReturnToLaunchRequest\"P\n\x16ReturnToLaunchResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"p\n\x13GotoLocationRequest\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x04 \x01(\x02\"N\n\x14GotoLocationResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\xd7\x01\n\x0e\x44oOrbitRequest\x12\x10\n\x08radius_m\x18\x01 \x01(\x02\x12\x13\n\x0bvelocity_ms\x18\x02 \x01(\x02\x12\x39\n\x0cyaw_behavior\x18\x03 \x01(\x0e\x32#.mavsdk.rpc.action.OrbitYawBehavior\x12\x1d\n\x0clatitude_deg\x18\x05 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12\x1e\n\rlongitude_deg\x18\x06 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13\x61\x62solute_altitude_m\x18\x07 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\"I\n\x0f\x44oOrbitResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\r\n\x0bHoldRequest\"F\n\x0cHoldResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"2\n\x12SetActuatorRequest\x12\r\n\x05index\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x02\"M\n\x13SetActuatorResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x1e\n\x1cTransitionToFixedwingRequest\"W\n\x1dTransitionToFixedwingResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\" \n\x1eTransitionToMulticopterRequest\"Y\n\x1fTransitionToMulticopterResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x1b\n\x19GetTakeoffAltitudeRequest\"f\n\x1aGetTakeoffAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\x12\x10\n\x08\x61ltitude\x18\x02 \x01(\x02\"-\n\x19SetTakeoffAltitudeRequest\x12\x10\n\x08\x61ltitude\x18\x01 \x01(\x02\"T\n\x1aSetTakeoffAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x18\n\x16GetMaximumSpeedRequest\"`\n\x17GetMaximumSpeedResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\x12\r\n\x05speed\x18\x02 \x01(\x02\"\'\n\x16SetMaximumSpeedRequest\x12\r\n\x05speed\x18\x01 \x01(\x02\"Q\n\x17SetMaximumSpeedResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\"\n GetReturnToLaunchAltitudeRequest\"x\n!GetReturnToLaunchAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\x12\x1b\n\x13relative_altitude_m\x18\x02 \x01(\x02\"?\n SetReturnToLaunchAltitudeRequest\x12\x1b\n\x13relative_altitude_m\x18\x01 \x01(\x02\"[\n!SetReturnToLaunchAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"+\n\x16SetCurrentSpeedRequest\x12\x11\n\tspeed_m_s\x18\x01 \x01(\x02\"Q\n\x17SetCurrentSpeedResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x8d\x04\n\x0c\x41\x63tionResult\x12\x36\n\x06result\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.action.ActionResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xb0\x03\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x05\x12.\n*RESULT_COMMAND_DENIED_LANDED_STATE_UNKNOWN\x10\x06\x12$\n RESULT_COMMAND_DENIED_NOT_LANDED\x10\x07\x12\x12\n\x0eRESULT_TIMEOUT\x10\x08\x12*\n&RESULT_VTOL_TRANSITION_SUPPORT_UNKNOWN\x10\t\x12%\n!RESULT_NO_VTOL_TRANSITION_SUPPORT\x10\n\x12\x1a\n\x16RESULT_PARAMETER_ERROR\x10\x0b\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x0c\x12\x11\n\rRESULT_FAILED\x10\r\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x0e*\xf3\x01\n\x10OrbitYawBehavior\x12\x32\n.ORBIT_YAW_BEHAVIOR_HOLD_FRONT_TO_CIRCLE_CENTER\x10\x00\x12+\n\'ORBIT_YAW_BEHAVIOR_HOLD_INITIAL_HEADING\x10\x01\x12#\n\x1fORBIT_YAW_BEHAVIOR_UNCONTROLLED\x10\x02\x12\x33\n/ORBIT_YAW_BEHAVIOR_HOLD_FRONT_TANGENT_TO_CIRCLE\x10\x03\x12$\n ORBIT_YAW_BEHAVIOR_RC_CONTROLLED\x10\x04\x32\xa6\x11\n\rActionService\x12\x46\n\x03\x41rm\x12\x1d.mavsdk.rpc.action.ArmRequest\x1a\x1e.mavsdk.rpc.action.ArmResponse\"\x00\x12O\n\x06\x44isarm\x12 .mavsdk.rpc.action.DisarmRequest\x1a!.mavsdk.rpc.action.DisarmResponse\"\x00\x12R\n\x07Takeoff\x12!.mavsdk.rpc.action.TakeoffRequest\x1a\".mavsdk.rpc.action.TakeoffResponse\"\x00\x12I\n\x04Land\x12\x1e.mavsdk.rpc.action.LandRequest\x1a\x1f.mavsdk.rpc.action.LandResponse\"\x00\x12O\n\x06Reboot\x12 .mavsdk.rpc.action.RebootRequest\x1a!.mavsdk.rpc.action.RebootResponse\"\x00\x12U\n\x08Shutdown\x12\".mavsdk.rpc.action.ShutdownRequest\x1a#.mavsdk.rpc.action.ShutdownResponse\"\x00\x12X\n\tTerminate\x12#.mavsdk.rpc.action.TerminateRequest\x1a$.mavsdk.rpc.action.TerminateResponse\"\x00\x12I\n\x04Kill\x12\x1e.mavsdk.rpc.action.KillRequest\x1a\x1f.mavsdk.rpc.action.KillResponse\"\x00\x12g\n\x0eReturnToLaunch\x12(.mavsdk.rpc.action.ReturnToLaunchRequest\x1a).mavsdk.rpc.action.ReturnToLaunchResponse\"\x00\x12\x61\n\x0cGotoLocation\x12&.mavsdk.rpc.action.GotoLocationRequest\x1a\'.mavsdk.rpc.action.GotoLocationResponse\"\x00\x12R\n\x07\x44oOrbit\x12!.mavsdk.rpc.action.DoOrbitRequest\x1a\".mavsdk.rpc.action.DoOrbitResponse\"\x00\x12I\n\x04Hold\x12\x1e.mavsdk.rpc.action.HoldRequest\x1a\x1f.mavsdk.rpc.action.HoldResponse\"\x00\x12^\n\x0bSetActuator\x12%.mavsdk.rpc.action.SetActuatorRequest\x1a&.mavsdk.rpc.action.SetActuatorResponse\"\x00\x12|\n\x15TransitionToFixedwing\x12/.mavsdk.rpc.action.TransitionToFixedwingRequest\x1a\x30.mavsdk.rpc.action.TransitionToFixedwingResponse\"\x00\x12\x82\x01\n\x17TransitionToMulticopter\x12\x31.mavsdk.rpc.action.TransitionToMulticopterRequest\x1a\x32.mavsdk.rpc.action.TransitionToMulticopterResponse\"\x00\x12s\n\x12GetTakeoffAltitude\x12,.mavsdk.rpc.action.GetTakeoffAltitudeRequest\x1a-.mavsdk.rpc.action.GetTakeoffAltitudeResponse\"\x00\x12s\n\x12SetTakeoffAltitude\x12,.mavsdk.rpc.action.SetTakeoffAltitudeRequest\x1a-.mavsdk.rpc.action.SetTakeoffAltitudeResponse\"\x00\x12j\n\x0fGetMaximumSpeed\x12).mavsdk.rpc.action.GetMaximumSpeedRequest\x1a*.mavsdk.rpc.action.GetMaximumSpeedResponse\"\x00\x12j\n\x0fSetMaximumSpeed\x12).mavsdk.rpc.action.SetMaximumSpeedRequest\x1a*.mavsdk.rpc.action.SetMaximumSpeedResponse\"\x00\x12\x88\x01\n\x19GetReturnToLaunchAltitude\x12\x33.mavsdk.rpc.action.GetReturnToLaunchAltitudeRequest\x1a\x34.mavsdk.rpc.action.GetReturnToLaunchAltitudeResponse\"\x00\x12\x88\x01\n\x19SetReturnToLaunchAltitude\x12\x33.mavsdk.rpc.action.SetReturnToLaunchAltitudeRequest\x1a\x34.mavsdk.rpc.action.SetReturnToLaunchAltitudeResponse\"\x00\x12j\n\x0fSetCurrentSpeed\x12).mavsdk.rpc.action.SetCurrentSpeedRequest\x1a*.mavsdk.rpc.action.SetCurrentSpeedResponse\"\x00\x42\x1f\n\x10io.mavsdk.actionB\x0b\x41\x63tionProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13\x61\x63tion/action.proto\x12\x11mavsdk.rpc.action\x1a\x14mavsdk_options.proto\"\x0c\n\nArmRequest\"E\n\x0b\x41rmResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x11\n\x0f\x41rmForceRequest\"J\n\x10\x41rmForceResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x0f\n\rDisarmRequest\"H\n\x0e\x44isarmResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x10\n\x0eTakeoffRequest\"I\n\x0fTakeoffResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\r\n\x0bLandRequest\"F\n\x0cLandResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x0f\n\rRebootRequest\"H\n\x0eRebootResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x11\n\x0fShutdownRequest\"J\n\x10ShutdownResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x12\n\x10TerminateRequest\"K\n\x11TerminateResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\r\n\x0bKillRequest\"F\n\x0cKillResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x17\n\x15ReturnToLaunchRequest\"P\n\x16ReturnToLaunchResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"p\n\x13GotoLocationRequest\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x04 \x01(\x02\"N\n\x14GotoLocationResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\xd7\x01\n\x0e\x44oOrbitRequest\x12\x10\n\x08radius_m\x18\x01 \x01(\x02\x12\x13\n\x0bvelocity_ms\x18\x02 \x01(\x02\x12\x39\n\x0cyaw_behavior\x18\x03 \x01(\x0e\x32#.mavsdk.rpc.action.OrbitYawBehavior\x12\x1d\n\x0clatitude_deg\x18\x05 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12\x1e\n\rlongitude_deg\x18\x06 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13\x61\x62solute_altitude_m\x18\x07 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\"I\n\x0f\x44oOrbitResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\r\n\x0bHoldRequest\"F\n\x0cHoldResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"2\n\x12SetActuatorRequest\x12\r\n\x05index\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x02\"M\n\x13SetActuatorResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x1e\n\x1cTransitionToFixedwingRequest\"W\n\x1dTransitionToFixedwingResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\" \n\x1eTransitionToMulticopterRequest\"Y\n\x1fTransitionToMulticopterResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x1b\n\x19GetTakeoffAltitudeRequest\"f\n\x1aGetTakeoffAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\x12\x10\n\x08\x61ltitude\x18\x02 \x01(\x02\"-\n\x19SetTakeoffAltitudeRequest\x12\x10\n\x08\x61ltitude\x18\x01 \x01(\x02\"T\n\x1aSetTakeoffAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x18\n\x16GetMaximumSpeedRequest\"`\n\x17GetMaximumSpeedResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\x12\r\n\x05speed\x18\x02 \x01(\x02\"\'\n\x16SetMaximumSpeedRequest\x12\r\n\x05speed\x18\x01 \x01(\x02\"Q\n\x17SetMaximumSpeedResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\"\n GetReturnToLaunchAltitudeRequest\"x\n!GetReturnToLaunchAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\x12\x1b\n\x13relative_altitude_m\x18\x02 \x01(\x02\"?\n SetReturnToLaunchAltitudeRequest\x12\x1b\n\x13relative_altitude_m\x18\x01 \x01(\x02\"[\n!SetReturnToLaunchAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"+\n\x16SetCurrentSpeedRequest\x12\x11\n\tspeed_m_s\x18\x01 \x01(\x02\"Q\n\x17SetCurrentSpeedResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x8d\x04\n\x0c\x41\x63tionResult\x12\x36\n\x06result\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.action.ActionResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xb0\x03\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x05\x12.\n*RESULT_COMMAND_DENIED_LANDED_STATE_UNKNOWN\x10\x06\x12$\n RESULT_COMMAND_DENIED_NOT_LANDED\x10\x07\x12\x12\n\x0eRESULT_TIMEOUT\x10\x08\x12*\n&RESULT_VTOL_TRANSITION_SUPPORT_UNKNOWN\x10\t\x12%\n!RESULT_NO_VTOL_TRANSITION_SUPPORT\x10\n\x12\x1a\n\x16RESULT_PARAMETER_ERROR\x10\x0b\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x0c\x12\x11\n\rRESULT_FAILED\x10\r\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x0e*\xf3\x01\n\x10OrbitYawBehavior\x12\x32\n.ORBIT_YAW_BEHAVIOR_HOLD_FRONT_TO_CIRCLE_CENTER\x10\x00\x12+\n\'ORBIT_YAW_BEHAVIOR_HOLD_INITIAL_HEADING\x10\x01\x12#\n\x1fORBIT_YAW_BEHAVIOR_UNCONTROLLED\x10\x02\x12\x33\n/ORBIT_YAW_BEHAVIOR_HOLD_FRONT_TANGENT_TO_CIRCLE\x10\x03\x12$\n ORBIT_YAW_BEHAVIOR_RC_CONTROLLED\x10\x04\x32\xfd\x11\n\rActionService\x12\x46\n\x03\x41rm\x12\x1d.mavsdk.rpc.action.ArmRequest\x1a\x1e.mavsdk.rpc.action.ArmResponse\"\x00\x12U\n\x08\x41rmForce\x12\".mavsdk.rpc.action.ArmForceRequest\x1a#.mavsdk.rpc.action.ArmForceResponse\"\x00\x12O\n\x06\x44isarm\x12 .mavsdk.rpc.action.DisarmRequest\x1a!.mavsdk.rpc.action.DisarmResponse\"\x00\x12R\n\x07Takeoff\x12!.mavsdk.rpc.action.TakeoffRequest\x1a\".mavsdk.rpc.action.TakeoffResponse\"\x00\x12I\n\x04Land\x12\x1e.mavsdk.rpc.action.LandRequest\x1a\x1f.mavsdk.rpc.action.LandResponse\"\x00\x12O\n\x06Reboot\x12 .mavsdk.rpc.action.RebootRequest\x1a!.mavsdk.rpc.action.RebootResponse\"\x00\x12U\n\x08Shutdown\x12\".mavsdk.rpc.action.ShutdownRequest\x1a#.mavsdk.rpc.action.ShutdownResponse\"\x00\x12X\n\tTerminate\x12#.mavsdk.rpc.action.TerminateRequest\x1a$.mavsdk.rpc.action.TerminateResponse\"\x00\x12I\n\x04Kill\x12\x1e.mavsdk.rpc.action.KillRequest\x1a\x1f.mavsdk.rpc.action.KillResponse\"\x00\x12g\n\x0eReturnToLaunch\x12(.mavsdk.rpc.action.ReturnToLaunchRequest\x1a).mavsdk.rpc.action.ReturnToLaunchResponse\"\x00\x12\x61\n\x0cGotoLocation\x12&.mavsdk.rpc.action.GotoLocationRequest\x1a\'.mavsdk.rpc.action.GotoLocationResponse\"\x00\x12R\n\x07\x44oOrbit\x12!.mavsdk.rpc.action.DoOrbitRequest\x1a\".mavsdk.rpc.action.DoOrbitResponse\"\x00\x12I\n\x04Hold\x12\x1e.mavsdk.rpc.action.HoldRequest\x1a\x1f.mavsdk.rpc.action.HoldResponse\"\x00\x12^\n\x0bSetActuator\x12%.mavsdk.rpc.action.SetActuatorRequest\x1a&.mavsdk.rpc.action.SetActuatorResponse\"\x00\x12|\n\x15TransitionToFixedwing\x12/.mavsdk.rpc.action.TransitionToFixedwingRequest\x1a\x30.mavsdk.rpc.action.TransitionToFixedwingResponse\"\x00\x12\x82\x01\n\x17TransitionToMulticopter\x12\x31.mavsdk.rpc.action.TransitionToMulticopterRequest\x1a\x32.mavsdk.rpc.action.TransitionToMulticopterResponse\"\x00\x12s\n\x12GetTakeoffAltitude\x12,.mavsdk.rpc.action.GetTakeoffAltitudeRequest\x1a-.mavsdk.rpc.action.GetTakeoffAltitudeResponse\"\x00\x12s\n\x12SetTakeoffAltitude\x12,.mavsdk.rpc.action.SetTakeoffAltitudeRequest\x1a-.mavsdk.rpc.action.SetTakeoffAltitudeResponse\"\x00\x12j\n\x0fGetMaximumSpeed\x12).mavsdk.rpc.action.GetMaximumSpeedRequest\x1a*.mavsdk.rpc.action.GetMaximumSpeedResponse\"\x00\x12j\n\x0fSetMaximumSpeed\x12).mavsdk.rpc.action.SetMaximumSpeedRequest\x1a*.mavsdk.rpc.action.SetMaximumSpeedResponse\"\x00\x12\x88\x01\n\x19GetReturnToLaunchAltitude\x12\x33.mavsdk.rpc.action.GetReturnToLaunchAltitudeRequest\x1a\x34.mavsdk.rpc.action.GetReturnToLaunchAltitudeResponse\"\x00\x12\x88\x01\n\x19SetReturnToLaunchAltitude\x12\x33.mavsdk.rpc.action.SetReturnToLaunchAltitudeRequest\x1a\x34.mavsdk.rpc.action.SetReturnToLaunchAltitudeResponse\"\x00\x12j\n\x0fSetCurrentSpeed\x12).mavsdk.rpc.action.SetCurrentSpeedRequest\x1a*.mavsdk.rpc.action.SetCurrentSpeedResponse\"\x00\x42\x1f\n\x10io.mavsdk.actionB\x0b\x41\x63tionProtob\x06proto3')
 
 _ORBITYAWBEHAVIOR = DESCRIPTOR.enum_types_by_name['OrbitYawBehavior']
 OrbitYawBehavior = enum_type_wrapper.EnumTypeWrapper(_ORBITYAWBEHAVIOR)
@@ -29,6 +29,8 @@ ORBIT_YAW_BEHAVIOR_RC_CONTROLLED = 4
 
 _ARMREQUEST = DESCRIPTOR.message_types_by_name['ArmRequest']
 _ARMRESPONSE = DESCRIPTOR.message_types_by_name['ArmResponse']
+_ARMFORCEREQUEST = DESCRIPTOR.message_types_by_name['ArmForceRequest']
+_ARMFORCERESPONSE = DESCRIPTOR.message_types_by_name['ArmForceResponse']
 _DISARMREQUEST = DESCRIPTOR.message_types_by_name['DisarmRequest']
 _DISARMRESPONSE = DESCRIPTOR.message_types_by_name['DisarmResponse']
 _TAKEOFFREQUEST = DESCRIPTOR.message_types_by_name['TakeoffRequest']
@@ -86,6 +88,20 @@ ArmResponse = _reflection.GeneratedProtocolMessageType('ArmResponse', (_message.
   # @@protoc_insertion_point(class_scope:mavsdk.rpc.action.ArmResponse)
   })
 _sym_db.RegisterMessage(ArmResponse)
+
+ArmForceRequest = _reflection.GeneratedProtocolMessageType('ArmForceRequest', (_message.Message,), {
+  'DESCRIPTOR' : _ARMFORCEREQUEST,
+  '__module__' : 'action.action_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.action.ArmForceRequest)
+  })
+_sym_db.RegisterMessage(ArmForceRequest)
+
+ArmForceResponse = _reflection.GeneratedProtocolMessageType('ArmForceResponse', (_message.Message,), {
+  'DESCRIPTOR' : _ARMFORCERESPONSE,
+  '__module__' : 'action.action_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.action.ArmForceResponse)
+  })
+_sym_db.RegisterMessage(ArmForceResponse)
 
 DisarmRequest = _reflection.GeneratedProtocolMessageType('DisarmRequest', (_message.Message,), {
   'DESCRIPTOR' : _DISARMREQUEST,
@@ -399,100 +415,104 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _DOORBITREQUEST.fields_by_name['longitude_deg']._serialized_options = b'\202\265\030\003NaN'
   _DOORBITREQUEST.fields_by_name['absolute_altitude_m']._options = None
   _DOORBITREQUEST.fields_by_name['absolute_altitude_m']._serialized_options = b'\202\265\030\003NaN'
-  _ORBITYAWBEHAVIOR._serialized_start=3335
-  _ORBITYAWBEHAVIOR._serialized_end=3578
+  _ORBITYAWBEHAVIOR._serialized_start=3430
+  _ORBITYAWBEHAVIOR._serialized_end=3673
   _ARMREQUEST._serialized_start=64
   _ARMREQUEST._serialized_end=76
   _ARMRESPONSE._serialized_start=78
   _ARMRESPONSE._serialized_end=147
-  _DISARMREQUEST._serialized_start=149
-  _DISARMREQUEST._serialized_end=164
-  _DISARMRESPONSE._serialized_start=166
-  _DISARMRESPONSE._serialized_end=238
-  _TAKEOFFREQUEST._serialized_start=240
-  _TAKEOFFREQUEST._serialized_end=256
-  _TAKEOFFRESPONSE._serialized_start=258
-  _TAKEOFFRESPONSE._serialized_end=331
-  _LANDREQUEST._serialized_start=333
-  _LANDREQUEST._serialized_end=346
-  _LANDRESPONSE._serialized_start=348
-  _LANDRESPONSE._serialized_end=418
-  _REBOOTREQUEST._serialized_start=420
-  _REBOOTREQUEST._serialized_end=435
-  _REBOOTRESPONSE._serialized_start=437
-  _REBOOTRESPONSE._serialized_end=509
-  _SHUTDOWNREQUEST._serialized_start=511
-  _SHUTDOWNREQUEST._serialized_end=528
-  _SHUTDOWNRESPONSE._serialized_start=530
-  _SHUTDOWNRESPONSE._serialized_end=604
-  _TERMINATEREQUEST._serialized_start=606
-  _TERMINATEREQUEST._serialized_end=624
-  _TERMINATERESPONSE._serialized_start=626
-  _TERMINATERESPONSE._serialized_end=701
-  _KILLREQUEST._serialized_start=703
-  _KILLREQUEST._serialized_end=716
-  _KILLRESPONSE._serialized_start=718
-  _KILLRESPONSE._serialized_end=788
-  _RETURNTOLAUNCHREQUEST._serialized_start=790
-  _RETURNTOLAUNCHREQUEST._serialized_end=813
-  _RETURNTOLAUNCHRESPONSE._serialized_start=815
-  _RETURNTOLAUNCHRESPONSE._serialized_end=895
-  _GOTOLOCATIONREQUEST._serialized_start=897
-  _GOTOLOCATIONREQUEST._serialized_end=1009
-  _GOTOLOCATIONRESPONSE._serialized_start=1011
-  _GOTOLOCATIONRESPONSE._serialized_end=1089
-  _DOORBITREQUEST._serialized_start=1092
-  _DOORBITREQUEST._serialized_end=1307
-  _DOORBITRESPONSE._serialized_start=1309
-  _DOORBITRESPONSE._serialized_end=1382
-  _HOLDREQUEST._serialized_start=1384
-  _HOLDREQUEST._serialized_end=1397
-  _HOLDRESPONSE._serialized_start=1399
-  _HOLDRESPONSE._serialized_end=1469
-  _SETACTUATORREQUEST._serialized_start=1471
-  _SETACTUATORREQUEST._serialized_end=1521
-  _SETACTUATORRESPONSE._serialized_start=1523
-  _SETACTUATORRESPONSE._serialized_end=1600
-  _TRANSITIONTOFIXEDWINGREQUEST._serialized_start=1602
-  _TRANSITIONTOFIXEDWINGREQUEST._serialized_end=1632
-  _TRANSITIONTOFIXEDWINGRESPONSE._serialized_start=1634
-  _TRANSITIONTOFIXEDWINGRESPONSE._serialized_end=1721
-  _TRANSITIONTOMULTICOPTERREQUEST._serialized_start=1723
-  _TRANSITIONTOMULTICOPTERREQUEST._serialized_end=1755
-  _TRANSITIONTOMULTICOPTERRESPONSE._serialized_start=1757
-  _TRANSITIONTOMULTICOPTERRESPONSE._serialized_end=1846
-  _GETTAKEOFFALTITUDEREQUEST._serialized_start=1848
-  _GETTAKEOFFALTITUDEREQUEST._serialized_end=1875
-  _GETTAKEOFFALTITUDERESPONSE._serialized_start=1877
-  _GETTAKEOFFALTITUDERESPONSE._serialized_end=1979
-  _SETTAKEOFFALTITUDEREQUEST._serialized_start=1981
-  _SETTAKEOFFALTITUDEREQUEST._serialized_end=2026
-  _SETTAKEOFFALTITUDERESPONSE._serialized_start=2028
-  _SETTAKEOFFALTITUDERESPONSE._serialized_end=2112
-  _GETMAXIMUMSPEEDREQUEST._serialized_start=2114
-  _GETMAXIMUMSPEEDREQUEST._serialized_end=2138
-  _GETMAXIMUMSPEEDRESPONSE._serialized_start=2140
-  _GETMAXIMUMSPEEDRESPONSE._serialized_end=2236
-  _SETMAXIMUMSPEEDREQUEST._serialized_start=2238
-  _SETMAXIMUMSPEEDREQUEST._serialized_end=2277
-  _SETMAXIMUMSPEEDRESPONSE._serialized_start=2279
-  _SETMAXIMUMSPEEDRESPONSE._serialized_end=2360
-  _GETRETURNTOLAUNCHALTITUDEREQUEST._serialized_start=2362
-  _GETRETURNTOLAUNCHALTITUDEREQUEST._serialized_end=2396
-  _GETRETURNTOLAUNCHALTITUDERESPONSE._serialized_start=2398
-  _GETRETURNTOLAUNCHALTITUDERESPONSE._serialized_end=2518
-  _SETRETURNTOLAUNCHALTITUDEREQUEST._serialized_start=2520
-  _SETRETURNTOLAUNCHALTITUDEREQUEST._serialized_end=2583
-  _SETRETURNTOLAUNCHALTITUDERESPONSE._serialized_start=2585
-  _SETRETURNTOLAUNCHALTITUDERESPONSE._serialized_end=2676
-  _SETCURRENTSPEEDREQUEST._serialized_start=2678
-  _SETCURRENTSPEEDREQUEST._serialized_end=2721
-  _SETCURRENTSPEEDRESPONSE._serialized_start=2723
-  _SETCURRENTSPEEDRESPONSE._serialized_end=2804
-  _ACTIONRESULT._serialized_start=2807
-  _ACTIONRESULT._serialized_end=3332
-  _ACTIONRESULT_RESULT._serialized_start=2900
-  _ACTIONRESULT_RESULT._serialized_end=3332
-  _ACTIONSERVICE._serialized_start=3581
-  _ACTIONSERVICE._serialized_end=5795
+  _ARMFORCEREQUEST._serialized_start=149
+  _ARMFORCEREQUEST._serialized_end=166
+  _ARMFORCERESPONSE._serialized_start=168
+  _ARMFORCERESPONSE._serialized_end=242
+  _DISARMREQUEST._serialized_start=244
+  _DISARMREQUEST._serialized_end=259
+  _DISARMRESPONSE._serialized_start=261
+  _DISARMRESPONSE._serialized_end=333
+  _TAKEOFFREQUEST._serialized_start=335
+  _TAKEOFFREQUEST._serialized_end=351
+  _TAKEOFFRESPONSE._serialized_start=353
+  _TAKEOFFRESPONSE._serialized_end=426
+  _LANDREQUEST._serialized_start=428
+  _LANDREQUEST._serialized_end=441
+  _LANDRESPONSE._serialized_start=443
+  _LANDRESPONSE._serialized_end=513
+  _REBOOTREQUEST._serialized_start=515
+  _REBOOTREQUEST._serialized_end=530
+  _REBOOTRESPONSE._serialized_start=532
+  _REBOOTRESPONSE._serialized_end=604
+  _SHUTDOWNREQUEST._serialized_start=606
+  _SHUTDOWNREQUEST._serialized_end=623
+  _SHUTDOWNRESPONSE._serialized_start=625
+  _SHUTDOWNRESPONSE._serialized_end=699
+  _TERMINATEREQUEST._serialized_start=701
+  _TERMINATEREQUEST._serialized_end=719
+  _TERMINATERESPONSE._serialized_start=721
+  _TERMINATERESPONSE._serialized_end=796
+  _KILLREQUEST._serialized_start=798
+  _KILLREQUEST._serialized_end=811
+  _KILLRESPONSE._serialized_start=813
+  _KILLRESPONSE._serialized_end=883
+  _RETURNTOLAUNCHREQUEST._serialized_start=885
+  _RETURNTOLAUNCHREQUEST._serialized_end=908
+  _RETURNTOLAUNCHRESPONSE._serialized_start=910
+  _RETURNTOLAUNCHRESPONSE._serialized_end=990
+  _GOTOLOCATIONREQUEST._serialized_start=992
+  _GOTOLOCATIONREQUEST._serialized_end=1104
+  _GOTOLOCATIONRESPONSE._serialized_start=1106
+  _GOTOLOCATIONRESPONSE._serialized_end=1184
+  _DOORBITREQUEST._serialized_start=1187
+  _DOORBITREQUEST._serialized_end=1402
+  _DOORBITRESPONSE._serialized_start=1404
+  _DOORBITRESPONSE._serialized_end=1477
+  _HOLDREQUEST._serialized_start=1479
+  _HOLDREQUEST._serialized_end=1492
+  _HOLDRESPONSE._serialized_start=1494
+  _HOLDRESPONSE._serialized_end=1564
+  _SETACTUATORREQUEST._serialized_start=1566
+  _SETACTUATORREQUEST._serialized_end=1616
+  _SETACTUATORRESPONSE._serialized_start=1618
+  _SETACTUATORRESPONSE._serialized_end=1695
+  _TRANSITIONTOFIXEDWINGREQUEST._serialized_start=1697
+  _TRANSITIONTOFIXEDWINGREQUEST._serialized_end=1727
+  _TRANSITIONTOFIXEDWINGRESPONSE._serialized_start=1729
+  _TRANSITIONTOFIXEDWINGRESPONSE._serialized_end=1816
+  _TRANSITIONTOMULTICOPTERREQUEST._serialized_start=1818
+  _TRANSITIONTOMULTICOPTERREQUEST._serialized_end=1850
+  _TRANSITIONTOMULTICOPTERRESPONSE._serialized_start=1852
+  _TRANSITIONTOMULTICOPTERRESPONSE._serialized_end=1941
+  _GETTAKEOFFALTITUDEREQUEST._serialized_start=1943
+  _GETTAKEOFFALTITUDEREQUEST._serialized_end=1970
+  _GETTAKEOFFALTITUDERESPONSE._serialized_start=1972
+  _GETTAKEOFFALTITUDERESPONSE._serialized_end=2074
+  _SETTAKEOFFALTITUDEREQUEST._serialized_start=2076
+  _SETTAKEOFFALTITUDEREQUEST._serialized_end=2121
+  _SETTAKEOFFALTITUDERESPONSE._serialized_start=2123
+  _SETTAKEOFFALTITUDERESPONSE._serialized_end=2207
+  _GETMAXIMUMSPEEDREQUEST._serialized_start=2209
+  _GETMAXIMUMSPEEDREQUEST._serialized_end=2233
+  _GETMAXIMUMSPEEDRESPONSE._serialized_start=2235
+  _GETMAXIMUMSPEEDRESPONSE._serialized_end=2331
+  _SETMAXIMUMSPEEDREQUEST._serialized_start=2333
+  _SETMAXIMUMSPEEDREQUEST._serialized_end=2372
+  _SETMAXIMUMSPEEDRESPONSE._serialized_start=2374
+  _SETMAXIMUMSPEEDRESPONSE._serialized_end=2455
+  _GETRETURNTOLAUNCHALTITUDEREQUEST._serialized_start=2457
+  _GETRETURNTOLAUNCHALTITUDEREQUEST._serialized_end=2491
+  _GETRETURNTOLAUNCHALTITUDERESPONSE._serialized_start=2493
+  _GETRETURNTOLAUNCHALTITUDERESPONSE._serialized_end=2613
+  _SETRETURNTOLAUNCHALTITUDEREQUEST._serialized_start=2615
+  _SETRETURNTOLAUNCHALTITUDEREQUEST._serialized_end=2678
+  _SETRETURNTOLAUNCHALTITUDERESPONSE._serialized_start=2680
+  _SETRETURNTOLAUNCHALTITUDERESPONSE._serialized_end=2771
+  _SETCURRENTSPEEDREQUEST._serialized_start=2773
+  _SETCURRENTSPEEDREQUEST._serialized_end=2816
+  _SETCURRENTSPEEDRESPONSE._serialized_start=2818
+  _SETCURRENTSPEEDRESPONSE._serialized_end=2899
+  _ACTIONRESULT._serialized_start=2902
+  _ACTIONRESULT._serialized_end=3427
+  _ACTIONRESULT_RESULT._serialized_start=2995
+  _ACTIONRESULT_RESULT._serialized_end=3427
+  _ACTIONSERVICE._serialized_start=3676
+  _ACTIONSERVICE._serialized_end=5977
 # @@protoc_insertion_point(module_scope)
