@@ -892,3 +892,27 @@ class Info(AsyncBase):
 
         return response.speed_factor
         
+
+    async def flight_information(self):
+        """
+         Subscribe to 'flight information' updates.
+
+         Yields
+         -------
+         flight_info : FlightInfo
+              The next flight information
+
+         
+        """
+
+        request = info_pb2.SubscribeFlightInformationRequest()
+        flight_information_stream = self._stub.SubscribeFlightInformation(request)
+
+        try:
+            async for response in flight_information_stream:
+                
+
+            
+                yield FlightInfo.translate_from_rpc(response.flight_info)
+        finally:
+            flight_information_stream.cancel()
