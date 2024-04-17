@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0finfo/info.proto\x12\x0fmavsdk.rpc.info\x1a\x14mavsdk_options.proto\"\x1d\n\x1bGetFlightInformationRequest\"\x82\x01\n\x1cGetFlightInformationResponse\x12\x30\n\x0binfo_result\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.info.InfoResult\x12\x30\n\x0b\x66light_info\x18\x02 \x01(\x0b\x32\x1b.mavsdk.rpc.info.FlightInfo\"\x1a\n\x18GetIdentificationRequest\"\x86\x01\n\x19GetIdentificationResponse\x12\x30\n\x0binfo_result\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.info.InfoResult\x12\x37\n\x0eidentification\x18\x02 \x01(\x0b\x32\x1f.mavsdk.rpc.info.Identification\"\x13\n\x11GetProductRequest\"q\n\x12GetProductResponse\x12\x30\n\x0binfo_result\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.info.InfoResult\x12)\n\x07product\x18\x02 \x01(\x0b\x32\x18.mavsdk.rpc.info.Product\"\x13\n\x11GetVersionRequest\"q\n\x12GetVersionResponse\x12\x30\n\x0binfo_result\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.info.InfoResult\x12)\n\x07version\x18\x02 \x01(\x0b\x32\x18.mavsdk.rpc.info.Version\"\x17\n\x15GetSpeedFactorRequest\"`\n\x16GetSpeedFactorResponse\x12\x30\n\x0binfo_result\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.info.InfoResult\x12\x14\n\x0cspeed_factor\x18\x02 \x01(\x01\"{\n\nFlightInfo\x12\x14\n\x0ctime_boot_ms\x18\x01 \x01(\r\x12\x12\n\nflight_uid\x18\x02 \x01(\x04\x12 \n\x18\x64uration_since_arming_ms\x18\x03 \x01(\r\x12!\n\x19\x64uration_since_takeoff_ms\x18\x04 \x01(\r\":\n\x0eIdentification\x12\x14\n\x0chardware_uid\x18\x01 \x01(\t\x12\x12\n\nlegacy_uid\x18\x02 \x01(\x04\"[\n\x07Product\x12\x11\n\tvendor_id\x18\x01 \x01(\x05\x12\x13\n\x0bvendor_name\x18\x02 \x01(\t\x12\x12\n\nproduct_id\x18\x03 \x01(\x05\x12\x14\n\x0cproduct_name\x18\x04 \x01(\t\"\x87\x05\n\x07Version\x12\x17\n\x0f\x66light_sw_major\x18\x01 \x01(\x05\x12\x17\n\x0f\x66light_sw_minor\x18\x02 \x01(\x05\x12\x17\n\x0f\x66light_sw_patch\x18\x03 \x01(\x05\x12\x1e\n\x16\x66light_sw_vendor_major\x18\x04 \x01(\x05\x12\x1e\n\x16\x66light_sw_vendor_minor\x18\x05 \x01(\x05\x12\x1e\n\x16\x66light_sw_vendor_patch\x18\x06 \x01(\x05\x12\x13\n\x0bos_sw_major\x18\x07 \x01(\x05\x12\x13\n\x0bos_sw_minor\x18\x08 \x01(\x05\x12\x13\n\x0bos_sw_patch\x18\t \x01(\x05\x12\x1a\n\x12\x66light_sw_git_hash\x18\n \x01(\t\x12\x16\n\x0eos_sw_git_hash\x18\x0b \x01(\t\x12R\n\x16\x66light_sw_version_type\x18\x0c \x01(\x0e\x32\x32.mavsdk.rpc.info.Version.FlightSoftwareVersionType\"\x89\x02\n\x19\x46lightSoftwareVersionType\x12(\n$FLIGHT_SOFTWARE_VERSION_TYPE_UNKNOWN\x10\x00\x12$\n FLIGHT_SOFTWARE_VERSION_TYPE_DEV\x10\x01\x12&\n\"FLIGHT_SOFTWARE_VERSION_TYPE_ALPHA\x10\x02\x12%\n!FLIGHT_SOFTWARE_VERSION_TYPE_BETA\x10\x03\x12#\n\x1f\x46LIGHT_SOFTWARE_VERSION_TYPE_RC\x10\x04\x12(\n$FLIGHT_SOFTWARE_VERSION_TYPE_RELEASE\x10\x05\"\xc5\x01\n\nInfoResult\x12\x32\n\x06result\x18\x01 \x01(\x0e\x32\".mavsdk.rpc.info.InfoResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"o\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\'\n#RESULT_INFORMATION_NOT_RECEIVED_YET\x10\x02\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x03\x32\x9d\x04\n\x0bInfoService\x12y\n\x14GetFlightInformation\x12,.mavsdk.rpc.info.GetFlightInformationRequest\x1a-.mavsdk.rpc.info.GetFlightInformationResponse\"\x04\x80\xb5\x18\x01\x12p\n\x11GetIdentification\x12).mavsdk.rpc.info.GetIdentificationRequest\x1a*.mavsdk.rpc.info.GetIdentificationResponse\"\x04\x80\xb5\x18\x01\x12[\n\nGetProduct\x12\".mavsdk.rpc.info.GetProductRequest\x1a#.mavsdk.rpc.info.GetProductResponse\"\x04\x80\xb5\x18\x01\x12[\n\nGetVersion\x12\".mavsdk.rpc.info.GetVersionRequest\x1a#.mavsdk.rpc.info.GetVersionResponse\"\x04\x80\xb5\x18\x01\x12g\n\x0eGetSpeedFactor\x12&.mavsdk.rpc.info.GetSpeedFactorRequest\x1a\'.mavsdk.rpc.info.GetSpeedFactorResponse\"\x04\x80\xb5\x18\x01\x42\x1b\n\x0eio.mavsdk.infoB\tInfoProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0finfo/info.proto\x12\x0fmavsdk.rpc.info\x1a\x14mavsdk_options.proto\"\x1d\n\x1bGetFlightInformationRequest\"\x82\x01\n\x1cGetFlightInformationResponse\x12\x30\n\x0binfo_result\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.info.InfoResult\x12\x30\n\x0b\x66light_info\x18\x02 \x01(\x0b\x32\x1b.mavsdk.rpc.info.FlightInfo\"\x1a\n\x18GetIdentificationRequest\"\x86\x01\n\x19GetIdentificationResponse\x12\x30\n\x0binfo_result\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.info.InfoResult\x12\x37\n\x0eidentification\x18\x02 \x01(\x0b\x32\x1f.mavsdk.rpc.info.Identification\"\x13\n\x11GetProductRequest\"q\n\x12GetProductResponse\x12\x30\n\x0binfo_result\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.info.InfoResult\x12)\n\x07product\x18\x02 \x01(\x0b\x32\x18.mavsdk.rpc.info.Product\"\x13\n\x11GetVersionRequest\"q\n\x12GetVersionResponse\x12\x30\n\x0binfo_result\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.info.InfoResult\x12)\n\x07version\x18\x02 \x01(\x0b\x32\x18.mavsdk.rpc.info.Version\"\x17\n\x15GetSpeedFactorRequest\"`\n\x16GetSpeedFactorResponse\x12\x30\n\x0binfo_result\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.info.InfoResult\x12\x14\n\x0cspeed_factor\x18\x02 \x01(\x01\"#\n!SubscribeFlightInformationRequest\"M\n\x19\x46lightInformationResponse\x12\x30\n\x0b\x66light_info\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.info.FlightInfo\"{\n\nFlightInfo\x12\x14\n\x0ctime_boot_ms\x18\x01 \x01(\r\x12\x12\n\nflight_uid\x18\x02 \x01(\x04\x12 \n\x18\x64uration_since_arming_ms\x18\x03 \x01(\r\x12!\n\x19\x64uration_since_takeoff_ms\x18\x04 \x01(\r\":\n\x0eIdentification\x12\x14\n\x0chardware_uid\x18\x01 \x01(\t\x12\x12\n\nlegacy_uid\x18\x02 \x01(\x04\"[\n\x07Product\x12\x11\n\tvendor_id\x18\x01 \x01(\x05\x12\x13\n\x0bvendor_name\x18\x02 \x01(\t\x12\x12\n\nproduct_id\x18\x03 \x01(\x05\x12\x14\n\x0cproduct_name\x18\x04 \x01(\t\"\x87\x05\n\x07Version\x12\x17\n\x0f\x66light_sw_major\x18\x01 \x01(\x05\x12\x17\n\x0f\x66light_sw_minor\x18\x02 \x01(\x05\x12\x17\n\x0f\x66light_sw_patch\x18\x03 \x01(\x05\x12\x1e\n\x16\x66light_sw_vendor_major\x18\x04 \x01(\x05\x12\x1e\n\x16\x66light_sw_vendor_minor\x18\x05 \x01(\x05\x12\x1e\n\x16\x66light_sw_vendor_patch\x18\x06 \x01(\x05\x12\x13\n\x0bos_sw_major\x18\x07 \x01(\x05\x12\x13\n\x0bos_sw_minor\x18\x08 \x01(\x05\x12\x13\n\x0bos_sw_patch\x18\t \x01(\x05\x12\x1a\n\x12\x66light_sw_git_hash\x18\n \x01(\t\x12\x16\n\x0eos_sw_git_hash\x18\x0b \x01(\t\x12R\n\x16\x66light_sw_version_type\x18\x0c \x01(\x0e\x32\x32.mavsdk.rpc.info.Version.FlightSoftwareVersionType\"\x89\x02\n\x19\x46lightSoftwareVersionType\x12(\n$FLIGHT_SOFTWARE_VERSION_TYPE_UNKNOWN\x10\x00\x12$\n FLIGHT_SOFTWARE_VERSION_TYPE_DEV\x10\x01\x12&\n\"FLIGHT_SOFTWARE_VERSION_TYPE_ALPHA\x10\x02\x12%\n!FLIGHT_SOFTWARE_VERSION_TYPE_BETA\x10\x03\x12#\n\x1f\x46LIGHT_SOFTWARE_VERSION_TYPE_RC\x10\x04\x12(\n$FLIGHT_SOFTWARE_VERSION_TYPE_RELEASE\x10\x05\"\xc5\x01\n\nInfoResult\x12\x32\n\x06result\x18\x01 \x01(\x0e\x32\".mavsdk.rpc.info.InfoResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"o\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\'\n#RESULT_INFORMATION_NOT_RECEIVED_YET\x10\x02\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x03\x32\xa4\x05\n\x0bInfoService\x12y\n\x14GetFlightInformation\x12,.mavsdk.rpc.info.GetFlightInformationRequest\x1a-.mavsdk.rpc.info.GetFlightInformationResponse\"\x04\x80\xb5\x18\x01\x12p\n\x11GetIdentification\x12).mavsdk.rpc.info.GetIdentificationRequest\x1a*.mavsdk.rpc.info.GetIdentificationResponse\"\x04\x80\xb5\x18\x01\x12[\n\nGetProduct\x12\".mavsdk.rpc.info.GetProductRequest\x1a#.mavsdk.rpc.info.GetProductResponse\"\x04\x80\xb5\x18\x01\x12[\n\nGetVersion\x12\".mavsdk.rpc.info.GetVersionRequest\x1a#.mavsdk.rpc.info.GetVersionResponse\"\x04\x80\xb5\x18\x01\x12g\n\x0eGetSpeedFactor\x12&.mavsdk.rpc.info.GetSpeedFactorRequest\x1a\'.mavsdk.rpc.info.GetSpeedFactorResponse\"\x04\x80\xb5\x18\x01\x12\x84\x01\n\x1aSubscribeFlightInformation\x12\x32.mavsdk.rpc.info.SubscribeFlightInformationRequest\x1a*.mavsdk.rpc.info.FlightInformationResponse\"\x04\x80\xb5\x18\x00\x30\x01\x42\x1b\n\x0eio.mavsdk.infoB\tInfoProtob\x06proto3')
 
 
 
@@ -29,6 +29,8 @@ _GETVERSIONREQUEST = DESCRIPTOR.message_types_by_name['GetVersionRequest']
 _GETVERSIONRESPONSE = DESCRIPTOR.message_types_by_name['GetVersionResponse']
 _GETSPEEDFACTORREQUEST = DESCRIPTOR.message_types_by_name['GetSpeedFactorRequest']
 _GETSPEEDFACTORRESPONSE = DESCRIPTOR.message_types_by_name['GetSpeedFactorResponse']
+_SUBSCRIBEFLIGHTINFORMATIONREQUEST = DESCRIPTOR.message_types_by_name['SubscribeFlightInformationRequest']
+_FLIGHTINFORMATIONRESPONSE = DESCRIPTOR.message_types_by_name['FlightInformationResponse']
 _FLIGHTINFO = DESCRIPTOR.message_types_by_name['FlightInfo']
 _IDENTIFICATION = DESCRIPTOR.message_types_by_name['Identification']
 _PRODUCT = DESCRIPTOR.message_types_by_name['Product']
@@ -106,6 +108,20 @@ GetSpeedFactorResponse = _reflection.GeneratedProtocolMessageType('GetSpeedFacto
   })
 _sym_db.RegisterMessage(GetSpeedFactorResponse)
 
+SubscribeFlightInformationRequest = _reflection.GeneratedProtocolMessageType('SubscribeFlightInformationRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUBSCRIBEFLIGHTINFORMATIONREQUEST,
+  '__module__' : 'info.info_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.info.SubscribeFlightInformationRequest)
+  })
+_sym_db.RegisterMessage(SubscribeFlightInformationRequest)
+
+FlightInformationResponse = _reflection.GeneratedProtocolMessageType('FlightInformationResponse', (_message.Message,), {
+  'DESCRIPTOR' : _FLIGHTINFORMATIONRESPONSE,
+  '__module__' : 'info.info_pb2'
+  # @@protoc_insertion_point(class_scope:mavsdk.rpc.info.FlightInformationResponse)
+  })
+_sym_db.RegisterMessage(FlightInformationResponse)
+
 FlightInfo = _reflection.GeneratedProtocolMessageType('FlightInfo', (_message.Message,), {
   'DESCRIPTOR' : _FLIGHTINFO,
   '__module__' : 'info.info_pb2'
@@ -156,6 +172,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _INFOSERVICE.methods_by_name['GetVersion']._serialized_options = b'\200\265\030\001'
   _INFOSERVICE.methods_by_name['GetSpeedFactor']._options = None
   _INFOSERVICE.methods_by_name['GetSpeedFactor']._serialized_options = b'\200\265\030\001'
+  _INFOSERVICE.methods_by_name['SubscribeFlightInformation']._options = None
+  _INFOSERVICE.methods_by_name['SubscribeFlightInformation']._serialized_options = b'\200\265\030\000'
   _GETFLIGHTINFORMATIONREQUEST._serialized_start=58
   _GETFLIGHTINFORMATIONREQUEST._serialized_end=87
   _GETFLIGHTINFORMATIONRESPONSE._serialized_start=90
@@ -176,20 +194,24 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _GETSPEEDFACTORREQUEST._serialized_end=682
   _GETSPEEDFACTORRESPONSE._serialized_start=684
   _GETSPEEDFACTORRESPONSE._serialized_end=780
-  _FLIGHTINFO._serialized_start=782
-  _FLIGHTINFO._serialized_end=905
-  _IDENTIFICATION._serialized_start=907
-  _IDENTIFICATION._serialized_end=965
-  _PRODUCT._serialized_start=967
-  _PRODUCT._serialized_end=1058
-  _VERSION._serialized_start=1061
-  _VERSION._serialized_end=1708
-  _VERSION_FLIGHTSOFTWAREVERSIONTYPE._serialized_start=1443
-  _VERSION_FLIGHTSOFTWAREVERSIONTYPE._serialized_end=1708
-  _INFORESULT._serialized_start=1711
-  _INFORESULT._serialized_end=1908
-  _INFORESULT_RESULT._serialized_start=1797
-  _INFORESULT_RESULT._serialized_end=1908
-  _INFOSERVICE._serialized_start=1911
-  _INFOSERVICE._serialized_end=2452
+  _SUBSCRIBEFLIGHTINFORMATIONREQUEST._serialized_start=782
+  _SUBSCRIBEFLIGHTINFORMATIONREQUEST._serialized_end=817
+  _FLIGHTINFORMATIONRESPONSE._serialized_start=819
+  _FLIGHTINFORMATIONRESPONSE._serialized_end=896
+  _FLIGHTINFO._serialized_start=898
+  _FLIGHTINFO._serialized_end=1021
+  _IDENTIFICATION._serialized_start=1023
+  _IDENTIFICATION._serialized_end=1081
+  _PRODUCT._serialized_start=1083
+  _PRODUCT._serialized_end=1174
+  _VERSION._serialized_start=1177
+  _VERSION._serialized_end=1824
+  _VERSION_FLIGHTSOFTWAREVERSIONTYPE._serialized_start=1559
+  _VERSION_FLIGHTSOFTWAREVERSIONTYPE._serialized_end=1824
+  _INFORESULT._serialized_start=1827
+  _INFORESULT._serialized_end=2024
+  _INFORESULT_RESULT._serialized_start=1913
+  _INFORESULT_RESULT._serialized_end=2024
+  _INFOSERVICE._serialized_start=2027
+  _INFOSERVICE._serialized_end=2703
 # @@protoc_insertion_point(module_scope)
