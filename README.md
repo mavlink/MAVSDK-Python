@@ -11,13 +11,19 @@ The Python wrapper is based on a gRPC client communicating with the gRPC server 
 
 - Python 3.7+ is required (because the wrapper is based on [asyncio](https://docs.python.org/3.7/library/asyncio.html)).
 - You may need to run `pip3` instead of `pip` and `python3` instead of `python`, depending of your system defaults.
-- Auterion has a [Getting started with MAVSDK-Python](https://auterion.com/getting-started-with-mavsdk-python/) guide if you're a beginner and not sure where to start.
+- Auterion used to have a [Getting started with MAVSDK-Python (web.archive.org)](https://web.archive.org/web/20201211155626/https://auterion.com/getting-started-with-mavsdk-python/) guide if you're a beginner and not sure where to start.
 
 ## API Reference docs
 
 -> [API Reference documentation](http://mavsdk-python-docs.s3-website.eu-central-1.amazonaws.com/).
 
 ## Install using pip from PyPi
+
+**Note for Raspberry Pi 1/2 and Zero:**
+
+> MAVSDK-Python requires grpcio. However, there are no binary packets of grpcio for armv6 available via pip (also see [files on pypi.org](https://pypi.org/project/grpcio/#files)).
+> In this case, install grpcio via the package manager, e.g. `sudo apt-get install python3-grpcio`.
+
 
 To install mavsdk-python, simply run:
 
