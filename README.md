@@ -19,6 +19,12 @@ The Python wrapper is based on a gRPC client communicating with the gRPC server 
 
 ## Install using pip from PyPi
 
+**Note for Raspberry Pi 1/2 and Zero:**
+
+> MAVSDK-Python requires grpcio. However, there are no binary packets of grpcio for armv6 available via pip (also see [files on pypi.org](https://pypi.org/project/grpcio/#files)).
+> In this case, install grpcio via the package manager, e.g. `sudo apt-get install python3-grpcio`.
+
+
 To install mavsdk-python, simply run:
 
 ```sh
