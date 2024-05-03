@@ -84,7 +84,7 @@ class SetpointMode(Enum):
 class ControlPacket:
     HEADER = 0xDEADBEEFDEADBEEF
     HEADER_FORMAT = ">Q"  # 8 bytes for header
-    DATA_FORMAT = ">QII3d3d3d4d4dI"  # Updated format to include all required fields
+    DATA_FORMAT = ">QIII3d3d3d4d4d"  # Updated format to include all required fields
     CRC_FORMAT = ">I"  # 4 bytes for CRC
 
     def __init__(self, mode, enable_flag, yaw_control_flag, position, velocity, acceleration, attitude, attitude_rate, timestamp=None):

@@ -34,11 +34,6 @@ flag within these packets to either initiate or halt offboard control. If enable
 handles the specified control setpoints (position, velocity, yaw, etc.) and updates the drone's
 state accordingly.
 
-Commands:
-- 's' to start listening and processing packets.
-- 'p' to pause processing (halts sending control commands to the drone).
-- 'r' to resume.
-- 'q' to stop listening and cleanly disconnect from the MAVSDK server.
 
 Author:
 -------
@@ -137,6 +132,14 @@ async def handle_packet(drone, packet):
             print(f"Sending POSITION_LOCAL_NED setpoint: North {control_packet.position[0]}, East {control_packet.position[1]}, Down {control_packet.position[2]}, Yaw {yaw}")
             await drone.offboard.set_position_ned(
                 PositionNedYaw(control_packet.position[0], control_packet.position[1], control_packet.position[2], yaw))
+            
+        if control_packet.setpoint_flags & SetpointMode.VELOCITY_BODY.value:
+            vx = control_packet.velocity[0]
+            vy = control_packet.velocity[1]
+            vz = control_packet.velocity[2]
+            yaw_rate = control_packet.attitude_rate[3]  # Assume yaw rate is the fourth element in attitude tuple
+            await drone.offboard.set_velocity_body(VelocityBodyYawspeed(vx, vy, vz, yaw_rate))
+            print(f"Setting VELOCITY_BODY setpoint: Vx={vx}, Vy={vy}, Vz={vz}, Yaw rate={yaw_rate}")
 
     else:
         is_active = await drone.offboard.is_active()
