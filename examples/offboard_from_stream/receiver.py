@@ -69,7 +69,7 @@ if __name__ == "__main__":
 import asyncio
 import socket
 from mavsdk import System
-from mavsdk.offboard import AccelerationNed, OffboardError, PositionNedYaw, VelocityBodyYawspeed, VelocityNedYaw
+from mavsdk.offboard import AccelerationNed, Attitude, OffboardError, PositionNedYaw, VelocityBodyYawspeed, VelocityNedYaw
 from control_packet import ControlPacket, SetpointMode  # Ensure this import matches your setup
 
 UDP_IP = "127.0.0.1"
@@ -140,6 +140,14 @@ async def handle_packet(drone, packet):
             yaw_rate = control_packet.attitude_rate[3]  # Assume yaw rate is the fourth element in attitude tuple
             await drone.offboard.set_velocity_body(VelocityBodyYawspeed(vx, vy, vz, yaw_rate))
             print(f"Setting VELOCITY_BODY setpoint: Vx={vx}, Vy={vy}, Vz={vz}, Yaw rate={yaw_rate}")
+            
+        if control_packet.setpoint_flags & SetpointMode.ATTITUDE_CONTROL.value:
+            roll = control_packet.attitude[0]
+            pitch = control_packet.attitude[1]
+            yaw = control_packet.attitude[2]
+            thrust = control_packet.attitude[3]  # Ensure thrust is a value between 0 and 1
+            print(f"Setting ATTITUDE setpoint: Roll={roll}°, Pitch={pitch}°, Yaw={yaw}°, Thrust={thrust}")
+            await drone.offboard.set_attitude(Attitude(roll, pitch, yaw, thrust))
 
     else:
         is_active = await drone.offboard.is_active()
