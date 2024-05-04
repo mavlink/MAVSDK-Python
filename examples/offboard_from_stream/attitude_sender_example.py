@@ -67,7 +67,7 @@ UDP_PORT = 5005
 SEND_RATE = 0.1  # Packet send rate in seconds (10 Hz)
 ROLL_PITCH_STEP = 2.0  # degrees step for roll and pitch
 YAW_RATE_STEP = 5.0  # degrees step for yaw
-THRUST_STEP = 0.05  # thrust step
+THRUST_STEP = 0.02  # thrust step
 INCREMENTAL_MODE = False  # False for instant reset, True for incremental control
 
 # Initialize Pygame and set up the display

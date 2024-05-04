@@ -55,7 +55,7 @@ packet = ControlPacket(
     mode=SetpointMode.POSITION_VELOCITY_NED | SetpointMode.YAW_CONTROL,
     enable_flag=True,
     yaw_control_flag=True,
-    position=(10.0, 20.0, -5.0),
+    position=(10.0, 20.0, -5.0), NED: North(m),East,Down(m) | Global: lat(deg),long(deg),alt(m)
     velocity=(0.5, 0.5, 0.0),
     acceleration=(0.0, 0.0, 0.0),
     attitude=(0.0, 0.0, 30.0, 0.6),  # Yaw to 30 degrees, 60% thrust
@@ -71,13 +71,13 @@ import time
 from enum import Enum
 
 class SetpointMode(Enum):
-    POSITION_GLOBAL_LATLON = 0x40
-    POSITION_LOCAL_NED = 0x20
-    VELOCITY_NED = 0x80
+    POSITION_GLOBAL_LATLON = 0x40 # Not Tested
+    POSITION_LOCAL_NED = 0x20 
+    VELOCITY_NED = 0x80 # Not Tested
     VELOCITY_BODY = 0x100
-    POSITION_VELOCITY_NED = 0x01
-    POSITION_VELOCITY_ACCELERATION_NED = 0x02
-    ACCELERATION_NED = 0x04
+    POSITION_VELOCITY_NED = 0x01 # Not Tested
+    POSITION_VELOCITY_ACCELERATION_NED = 0x02 # Not Tested
+    ACCELERATION_NED = 0x04 # Not Tested
     ATTITUDE_CONTROL = 0x08  # Direct attitude control including thrust
     YAW_CONTROL = 0x200  # Separate flag for yaw control
 
@@ -92,7 +92,7 @@ class ControlPacket:
         self.setpoint_flags = mode.value
         self.enable_flag = int(enable_flag)  # Ensure enable_flag is integer
         self.yaw_control_flag = int(yaw_control_flag)  # Ensure yaw_control_flag is integer
-        self.position = position
+        self.position = position #NED: North(m),East,Down(m) | Global: lat(deg),long(deg),alt(m)
         self.velocity = velocity
         self.acceleration = acceleration
         self.attitude = attitude

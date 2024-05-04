@@ -69,10 +69,11 @@ if __name__ == "__main__":
 import asyncio
 import socket
 from mavsdk import System
-from mavsdk.offboard import AccelerationNed, Attitude, OffboardError, PositionNedYaw, VelocityBodyYawspeed, VelocityNedYaw
+import mavsdk
+from mavsdk.offboard import AccelerationNed, Attitude, OffboardError, PositionGlobalYaw, PositionNedYaw, VelocityBodyYawspeed, VelocityNedYaw
 from control_packet import ControlPacket, SetpointMode  # Ensure this import matches your setup
 
-UDP_IP = "127.0.0.1"
+UDP_IP = "0.0.0.0"
 UDP_PORT = 5005
 BUFFER_SIZE = 1024  # Adjust based on expected packet size
 
@@ -148,6 +149,44 @@ async def handle_packet(drone, packet):
             thrust = control_packet.attitude[3]  # Ensure thrust is a value between 0 and 1
             print(f"Setting ATTITUDE setpoint: Roll={roll}°, Pitch={pitch}°, Yaw={yaw}°, Thrust={thrust}")
             await drone.offboard.set_attitude(Attitude(roll, pitch, yaw, thrust))
+        if control_packet.setpoint_flags & SetpointMode.POSITION_VELOCITY_ACCELERATION_NED.value:
+            position = PositionNedYaw(control_packet.position[0], control_packet.position[1], control_packet.position[2], control_packet.attitude[2])
+            velocity = VelocityNedYaw(control_packet.velocity[0], control_packet.velocity[1], control_packet.velocity[2], control_packet.attitude_rate[2])
+            acceleration = AccelerationNed(control_packet.acceleration[0], control_packet.acceleration[1], control_packet.acceleration[2])
+            print(f"Sending POSITION_VELOCITY_ACCELERATION_NED setpoint: Position {position}, Velocity {velocity}, Acceleration {acceleration}")
+            await drone.offboard.set_position_velocity_acceleration_ned(position, velocity, acceleration)
+        if control_packet.setpoint_flags & SetpointMode.POSITION_GLOBAL_LATLON.value:
+            lat = control_packet.position[0]
+            lon = control_packet.position[1]
+            alt = control_packet.position[2]
+            yaw = control_packet.attitude[2] 
+            altitude_type = mavsdk.offboard.AltitudeType.AMSL  # Choose based on your requirements: AGL or AMSL or REL_HOME 
+
+            print(f"Sending POSITION_GLOBAL_LATLON setpoint: Latitude {lat}, Longitude {lon}, Altitude {alt}, Yaw {yaw}")
+            await drone.offboard.set_position_global(PositionGlobalYaw(lat, lon, alt, yaw, altitude_type))
+        if control_packet.setpoint_flags & SetpointMode.ACCELERATION_NED.value:
+            # Extract acceleration values from the packet
+            north_acc = control_packet.acceleration[0]
+            east_acc = control_packet.acceleration[1]
+            down_acc = control_packet.acceleration[2]
+            print(f"Setting NED acceleration: North {north_acc} m/s², East {east_acc} m/s², Down {down_acc} m/s²")
+            await drone.offboard.set_acceleration_ned(
+                AccelerationNed(north_m_s2=north_acc, east_m_s2=east_acc, down_m_s2=down_acc)
+            )
+        # Check for velocity NED setpoint
+        if control_packet.setpoint_flags & SetpointMode.VELOCITY_NED.value:
+            north_vel = control_packet.velocity[0]
+            east_vel = control_packet.velocity[1]
+            down_vel = control_packet.velocity[2]
+            yaw = control_packet.attitude[2]  # Assuming yaw is stored in the attitude tuple
+
+            print(f"Setting NED velocity: North {north_vel}, East {east_vel}, Down {down_vel}, Yaw {yaw}")
+            await drone.offboard.set_velocity_ned(
+                VelocityNedYaw(north_m_s=north_vel, east_m_s=east_vel, down_m_s=down_vel, yaw_deg=yaw)
+            )
+            
+
+
 
     else:
         is_active = await drone.offboard.is_active()
