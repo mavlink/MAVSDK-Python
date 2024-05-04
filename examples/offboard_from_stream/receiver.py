@@ -76,10 +76,12 @@ from control_packet import ControlPacket, SetpointMode  # Ensure this import mat
 UDP_IP = "0.0.0.0"
 UDP_PORT = 5005
 BUFFER_SIZE = 1024  # Adjust based on expected packet size
+PX4_MAVLINK_NODE = "udp://:14540"
+
 
 async def setup_drone():
     drone = System()
-    await drone.connect(system_address="udp://:14540")
+    await drone.connect(system_address=PX4_MAVLINK_NODE)
 
     print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
