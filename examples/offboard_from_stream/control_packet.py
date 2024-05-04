@@ -79,7 +79,7 @@ class SetpointMode(Enum):
     POSITION_VELOCITY_ACCELERATION_NED = 0x02 # Not Tested
     ACCELERATION_NED = 0x04 # Not Tested
     ATTITUDE_CONTROL = 0x08  # Direct attitude control including thrust
-    YAW_CONTROL = 0x200  # Separate flag for yaw control
+    YAW_CONTROL = 0x200  # Separate flag for yaw control in position NED mode
 
 class ControlPacket:
     HEADER = 0xDEADBEEFDEADBEEF

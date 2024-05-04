@@ -55,17 +55,11 @@ UDP_IP = "127.0.0.1"
 UDP_PORT = 5005
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-def send_packet(packet):
-    """Sends a packed control packet over UDP. Displays packet details if debugging is enabled."""
-    packed_data = packet.pack()
-    sock.sendto(packed_data, (UDP_IP, UDP_PORT))
-    if DEBUG:
-        print("Sent Packet:")
-        packet.debug_print()
 
-def create_position_packet(n, e, d, yaw, yaw_control_flag, enabled=True):
+def send_position_ned(n, e, d, yaw, yaw_control_flag, enabled=True):
     """Creates a control packet with specified position and yaw control settings."""
-    return ControlPacket(
+    """Sends a packed control packet over UDP. Displays packet details if debugging is enabled."""
+    packet =  ControlPacket(
         mode=SetpointMode.POSITION_LOCAL_NED,
         enable_flag=enabled,
         yaw_control_flag=yaw_control_flag,
@@ -75,6 +69,8 @@ def create_position_packet(n, e, d, yaw, yaw_control_flag, enabled=True):
         attitude=(0, 0, yaw, 0.5),  
         attitude_rate=(0, 0, 0, 0)
     )
+    packed_data = packet.pack()
+    sock.sendto(packed_data, (UDP_IP, UDP_PORT))
 
 def main():
     """Main function to handle user inputs and send UDP packets with setpoints."""
@@ -107,8 +103,7 @@ def main():
             north = RADIUS * cos(angle)
             east = RADIUS * sin(angle)
             down = -10
-            packet = create_position_packet(north, east, down, 0.0, True, True)
-            send_packet(packet)
+            send_position_ned(north, east, down, 0.0, True, True)
             angle += CIRCLE_SPEED * SEND_RATE
             angle %= (2 * pi)  # Ensure the angle stays within the range 0 to 2*pi
 
