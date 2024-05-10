@@ -67,7 +67,7 @@ def send_position_ned(n, e, d, yaw, yaw_control_flag, enabled=True):
         velocity=(0, 0, 0),
         acceleration=(0, 0, 0),
         attitude=(0, 0, yaw, 0.5),  
-        attitude_rate=(0, 0, 0, 0)
+        attitude_rate=(0, 0, 0)
     )
     packed_data = packet.pack()
     sock.sendto(packed_data, (UDP_IP, UDP_PORT))

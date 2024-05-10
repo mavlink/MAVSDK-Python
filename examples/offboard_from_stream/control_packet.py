@@ -59,7 +59,7 @@ packet = ControlPacket(
     velocity=(0.5, 0.5, 0.0),
     acceleration=(0.0, 0.0, 0.0),
     attitude=(0.0, 0.0, 30.0, 0.6),  # Yaw to 30 degrees, 60% thrust
-    attitude_rate=(0, 0, 0, 0)
+    attitude_rate=(0, 0, 0)
 )
 packed_data = packet.pack()
 unpacked_packet = ControlPacket.unpack(packed_data)
@@ -79,12 +79,13 @@ class SetpointMode(Enum):
     POSITION_VELOCITY_ACCELERATION_NED = 0x02 # Not Tested
     ACCELERATION_NED = 0x04 # Not Tested
     ATTITUDE_CONTROL = 0x08  # Direct attitude control including thrust
+    ATTITUDE_RATE_CONTROL = 0x10
     YAW_CONTROL = 0x200  # Separate flag for yaw control in position NED mode
 
 class ControlPacket:
     HEADER = 0xDEADBEEFDEADBEEF
     HEADER_FORMAT = ">Q"  # 8 bytes for header
-    DATA_FORMAT = ">QIII3d3d3d4d4d"  # Updated format to include all required fields
+    DATA_FORMAT = ">QIII3d3d3d4d3d"  # Updated format to include all required fields
     CRC_FORMAT = ">I"  # 4 bytes for CRC
 
     def __init__(self, mode, enable_flag, yaw_control_flag, position, velocity, acceleration, attitude, attitude_rate, timestamp=None):
@@ -144,7 +145,7 @@ class ControlPacket:
         velocity = data[7:10]
         acceleration = data[10:13]
         attitude = data[13:17]
-        attitude_rate = data[17:21]
+        attitude_rate = data[17:20]
 
         # Convert integers back to booleans
         enable_flag = bool(enable_flag_int)

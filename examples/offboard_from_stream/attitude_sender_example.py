@@ -56,6 +56,7 @@ Dependencies:
 
 The code is designed to be clear and modifiable for different use cases, allowing adjustments to IP settings, control rates, and more directly within the script.
 """
+
 import socket
 import pygame
 import sys
@@ -96,7 +97,7 @@ def send_attitude(roll, pitch, yaw, thrust):
         velocity=(0, 0, 0),  # Not used in attitude mode
         acceleration=(0, 0, 0),  # Not used in attitude mode
         attitude=(roll, pitch, yaw, thrust),
-        attitude_rate=(0, 0, 0, 0)
+        attitude_rate=(0, 0, 0)
     )
     packed_data = packet.pack()
     sock.sendto(packed_data, (UDP_IP, UDP_PORT))
@@ -106,12 +107,145 @@ def display_text(message, position, font=FONT, color=TEXT_COLOR):
     text = font.render(message, True, color)
     screen.blit(text, position)
 
-def main():
-    """Main function to handle keyboard inputs for drone attitude control."""
-    global INCREMENTAL_MODE
-    running = True
+class Button:
+    """Button class to create interactive GUI buttons."""
+    def __init__(self, text, position, size, action, release_action=None):
+        self.text = text
+        self.position = position
+        self.size = size
+        self.action = action
+        self.release_action = release_action
+        self.color = (100, 100, 100)
+        self.active = False
+
+    def draw(self, screen):
+        color = (150, 150, 150) if self.active else self.color
+        pygame.draw.rect(screen, color, (*self.position, *self.size))
+        text_surface = SMALL_FONT.render(self.text, True, TEXT_COLOR)
+        text_rect = text_surface.get_rect(center=(self.position[0] + self.size[0] // 2, self.position[1] + self.size[1] // 2))
+        screen.blit(text_surface, text_rect)
+
+    def click(self):
+        self.active = True
+        self.action()
+
+    def release(self):
+        self.active = False
+        if self.release_action:
+            self.release_action()
+
+    def is_clicked(self, mouse_pos):
+        x, y = mouse_pos
+        return (self.position[0] <= x <= self.position[0] + self.size[0]) and (self.position[1] <= y <= self.position[1] + self.size[1])
+
+# Movement control variables
+roll, pitch, yaw, thrust = 0, 0, 0, 0.5  # Start with a neutral thrust value
+enabled = False
+
+# Button actions
+def enable_control():
+    global enabled
+    enabled = True
+
+def disable_control():
+    global enabled
     enabled = False
-    roll, pitch, yaw, thrust = 0, 0, 0, 0.5  # Start with a neutral thrust value
+    send_attitude(0, 0, 0, 0)
+
+def reset_control():
+    global roll, pitch, yaw, thrust
+    roll, pitch, yaw, thrust = 0, 0, 0, 0.5  # Reset to neutral thrust
+
+def adjust_pitch_up():
+    global pitch
+    pitch -= ROLL_PITCH_STEP if INCREMENTAL_MODE else -ROLL_PITCH_STEP
+
+def adjust_pitch_down():
+    global pitch
+    pitch -= ROLL_PITCH_STEP if INCREMENTAL_MODE else ROLL_PITCH_STEP
+
+def adjust_roll_left():
+    global roll
+    roll -= ROLL_PITCH_STEP if INCREMENTAL_MODE else -ROLL_PITCH_STEP
+
+def adjust_roll_right():
+    global roll
+    roll += ROLL_PITCH_STEP if INCREMENTAL_MODE else ROLL_PITCH_STEP
+
+def increase_thrust():
+    global thrust
+    thrust = min(thrust + THRUST_STEP, 1.0)  # Ensure thrust does not exceed 1
+
+def decrease_thrust():
+    global thrust
+    thrust = max(thrust - THRUST_STEP, 0)  # Ensure thrust does not go below 0
+
+def yaw_left():
+    global yaw
+    yaw -= YAW_RATE_STEP if not INCREMENTAL_MODE else (yaw - YAW_RATE_STEP)
+
+def yaw_right():
+    global yaw
+    yaw += YAW_RATE_STEP if not INCREMENTAL_MODE else (yaw + YAW_RATE_STEP)
+
+def toggle_mode():
+    global INCREMENTAL_MODE
+    INCREMENTAL_MODE = not INCREMENTAL_MODE
+
+# Reset movement functions for instant return mode
+def reset_roll():
+    global roll
+    roll = 0
+
+def reset_pitch():
+    global pitch
+    pitch = 0
+
+def reset_thrust():
+   #  global thrust
+   #  thrust = 0.5  # Reset to mid thrust
+   pass
+
+def reset_yaw():
+    global yaw
+    yaw = 0
+   
+# Button actions
+def check_enabled(action):
+    """Decorator-like function to execute the action only if controls are enabled."""
+    def wrapper():
+        if enabled:
+            action()
+    return wrapper
+ 
+ # Wrapper function to reset only if incremental mode is not active
+def check_and_reset(action):
+    """Decorator-like function to reset only if incremental mode is not active."""
+    def wrapper():
+        if not INCREMENTAL_MODE:
+            action()
+    return wrapper
+
+# Button initialization with joystick-style layout
+buttons = [
+    Button('Enable', (50, 150), (100, 50), enable_control),
+    Button('Disable', (50, 220), (100, 50), disable_control),
+    Button('Hold', (50, 290), (100, 50), reset_control),
+    Button('Mode', (50, 360), (100, 50), toggle_mode),  # Mode toggle button
+    Button('Pitch Up', (600, 290), (100, 50), check_enabled(adjust_pitch_up), check_and_reset(reset_pitch)),
+    Button('Pitch Down', (600, 150), (100, 50), check_enabled(adjust_pitch_down), check_and_reset(reset_pitch)),
+    Button('Roll Left', (500, 220), (100, 50), check_enabled(adjust_roll_left), check_and_reset(reset_roll)),
+    Button('Roll Right', (700, 220), (100, 50), check_enabled(adjust_roll_right), check_and_reset(reset_roll)),
+    Button('Increase Thrust', (275, 150), (150, 50), check_enabled(increase_thrust), check_and_reset(reset_thrust)),
+    Button('Decrease Thrust', (275, 290), (150, 50), check_enabled(decrease_thrust), check_and_reset(reset_thrust)),
+    Button('Yaw Left', (200, 220), (100, 50), check_enabled(yaw_left), check_and_reset(reset_yaw)),
+    Button('Yaw Right', (375, 220), (100, 50), check_enabled(yaw_right), check_and_reset(reset_yaw))
+]
+
+def main():
+    """Main function to handle keyboard and mouse inputs for drone attitude control."""
+    global INCREMENTAL_MODE, roll, pitch, yaw, thrust
+    running = True
     clock = pygame.time.Clock()
 
     while running:
@@ -124,7 +258,7 @@ def main():
             display_text("Status: Enabled", (50, 100), font=SMALL_FONT, color=GREEN)
         else:
             display_text("Status: Disabled", (50, 100), font=SMALL_FONT, color=RED)
-        display_text(f"Current Command: Roll={roll}, Pitch={pitch}, Yaw={yaw}, Thrust={thrust}", (50, 500), font=SMALL_FONT)
+        display_text(f"Current Command: Roll={roll:.2f}, Pitch={pitch:.2f}, Yaw={yaw:.2f}, Thrust={thrust:.2f}", (50, 500), font=SMALL_FONT)
         display_text(f"IP: {UDP_IP}, Port: {UDP_PORT}, Rate: {SEND_RATE}s", (50, 550), font=SMALL_FONT)
 
         for event in pygame.event.get():
@@ -135,46 +269,58 @@ def main():
                     send_attitude(0, 0, 0, 0)  # Safety stop
                     running = False
                 elif event.key == pygame.K_e:
-                    enabled = True
+                    enable_control()
                 elif event.key == pygame.K_c:
-                    send_attitude(0, 0, 0, 0)  # Safety stop
-                    enabled = False
+                    disable_control()
                 elif event.key == pygame.K_m:
-                    INCREMENTAL_MODE = not INCREMENTAL_MODE
+                    toggle_mode()
                 elif event.key == pygame.K_h:
-                    roll, pitch, yaw, thrust = 0, 0, 0, 0.5  # Reset to neutral thrust
+                    reset_control()
 
                 if enabled:
                     if event.key == pygame.K_w:
-                        pitch -= ROLL_PITCH_STEP if INCREMENTAL_MODE else -ROLL_PITCH_STEP
+                        adjust_pitch_up()
                     elif event.key == pygame.K_s:
-                        pitch += ROLL_PITCH_STEP if INCREMENTAL_MODE else ROLL_PITCH_STEP
+                        adjust_pitch_down()
                     elif event.key == pygame.K_a:
-                        roll -= ROLL_PITCH_STEP if INCREMENTAL_MODE else -ROLL_PITCH_STEP
+                        adjust_roll_left()
                     elif event.key == pygame.K_d:
-                        roll += ROLL_PITCH_STEP if INCREMENTAL_MODE else ROLL_PITCH_STEP
+                        adjust_roll_right()
                     elif event.key == pygame.K_UP:
-                        thrust = min(thrust + THRUST_STEP, 1.0)  # Ensure thrust does not exceed 1
+                        increase_thrust()
                     elif event.key == pygame.K_DOWN:
-                        thrust = max(thrust - THRUST_STEP, 0)  # Ensure thrust does not go below 0
+                        decrease_thrust()
                     elif event.key == pygame.K_LEFT:
-                        yaw -= YAW_RATE_STEP if INCREMENTAL_MODE else -YAW_RATE_STEP
+                        yaw_left()
                     elif event.key == pygame.K_RIGHT:
-                        yaw += YAW_RATE_STEP if INCREMENTAL_MODE else YAW_RATE_STEP
+                        yaw_right()
 
             elif event.type == pygame.KEYUP:
                 if not INCREMENTAL_MODE:
                     if event.key in [pygame.K_w, pygame.K_s]:
-                        pitch = 0
+                        reset_pitch()
                     elif event.key in [pygame.K_a, pygame.K_d]:
-                        roll = 0
+                        reset_roll()
                     elif event.key in [pygame.K_UP, pygame.K_DOWN]:
-                        thrust = 0.5  # Reset to mid thrust
+                        reset_thrust()
                     elif event.key in [pygame.K_LEFT, pygame.K_RIGHT]:
-                        yaw = 0
+                        reset_yaw()
+
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                for button in buttons:
+                    if button.is_clicked(mouse_pos):
+                        button.click()
+
+            elif event.type == pygame.MOUSEBUTTONUP:
+                for button in buttons:
+                    button.release()
 
         if enabled:
             send_attitude(roll, pitch, yaw, thrust)
+
+        for button in buttons:
+            button.draw(screen)
 
         pygame.display.flip()
         clock.tick(1 / SEND_RATE)

@@ -1,17 +1,16 @@
 """
-MAVSDK Offboard Control - Local Velocity Sender
-=================================================
+MAVSDK Offboard Control - Attitude Rate Control Sender
+======================================================
 
-This script provides an interface for controlling a drone's velocity and yaw through keyboard inputs,
-utilizing MAVSDK over UDP. It features an interactive GUI built with Pygame for real-time control and feedback,
-enabling dynamic adjustment of the drone's flight parameters.
+This script provides an interface for controlling a drone's attitude rates (roll, pitch, yaw rates) and thrust
+through keyboard inputs, utilizing MAVSDK over UDP. It features an interactive GUI built with Pygame
+for real-time control and feedback, enabling dynamic adjustment of the drone's flight parameters.
 
 Overview:
 ---------
-- Sends control packets to command drone movements in local body coordinates with optional yaw adjustments.
+- Sends control packets to command drone attitude rates and thrust in local body coordinates.
 - Offers two modes of operation: 'Instant Reset' and 'Incremental Control', toggled by pressing 'M'.
-- Provides a graphical interface to visualize and control the drone's movement and yaw.
-- Includes on-screen joystick-like buttons that simulate keyboard commands via mouse clicks.
+- Provides a graphical interface to visualize and control the drone's attitude rates and thrust.
 
 Setup Requirements:
 -------------------
@@ -19,42 +18,47 @@ Setup Requirements:
 - The receiver node (`receiver.py`) must be operational to handle and execute the commands sent from this script.
 - Ensure that the receiver and this sender script are configured to communicate over the specified IP and port.
 
-Features:
----------
-- **Velocity Control**: Use W, A, S, D for forward, backward, left, and right movements respectively, or use the joystick-like buttons on the GUI.
-- **Altitude Adjustment**: Use Up and Down arrow keys or GUI buttons to control altitude, with up increasing and down decreasing it.
-- **Yaw Control**: Left and Right arrow keys adjust yaw, or use the corresponding GUI buttons.
+Key Functionalities:
+--------------------
+- **Attitude Rate Control**: Use W, S, A, D for adjusting pitch and roll rates.
+   - W: Decrease pitch rate (nose down)
+   - S: Increase pitch rate (nose up)
+   - A: Decrease roll rate (left down)
+   - D: Increase roll rate (right down)
+- **Thrust Adjustment**: Up and Down arrow keys adjust thrust.
+- **Yaw Rate Control**: Left and Right arrow keys adjust yaw rate.
 - **Mode Switching**: Press 'M' to toggle between 'Instant Reset' and 'Incremental Control' modes.
-- **Control Enable/Disable**: 'E' to enable sending commands, 'C' to cancel and send a stop command. These controls are also available via GUI buttons.
-- **Emergency Hold**: Press 'H' to immediately stop all movements, with a corresponding GUI button for this action.
+- **Control Enable/Disable**: 'E' to enable sending commands, 'C' to cancel and send a stop command.
+- **Emergency Hold**: Press 'H' to immediately hold the current attitude rates and thrust, effectively stopping any adjustments.
 - **Application Exit**: Press 'Q' to safely exit the application, ensuring all movements are halted.
 
 Usage Instructions:
 -------------------
 1. Ensure your MAVSDK setup (either SITL or a real drone) is operational and that `receiver.py` is running.
 2. Start this script in a Python environment where Pygame is installed. The script's GUI will display on your screen.
-3. Use the keyboard controls or the on-screen joystick buttons to command the drone. Ensure you start command transmission by pressing 'E' or using the 'Enable' button.
+3. Use the keyboard controls as outlined to command the drone. Ensure you start command transmission by pressing 'E' and can stop it anytime with 'H' or 'C'.
 
 Safety Notice:
 --------------
 - When operating with a real drone, ensure you are in a safe, open environment to avoid any accidents.
 - Always be prepared to take manual control of the drone if necessary.
 
-Developer:
+Author:
+-------
 - Alireza Ghaderi
 - GitHub: alireza787b
-- Date: April 2024
+- Date: May 2024
 
 Dependencies:
+-------------
 - Pygame for GUI operations.
-- MAVSDK
-- PX4
+- MAVSDK for drone control interfacing.
 - Python's `socket` library for UDP communication.
 - `control_packet.py` for formatting control commands.
 
 The code is designed to be clear and modifiable for different use cases, allowing adjustments to IP settings, control rates, and more directly within the script.
-"""
 
+"""
 import socket
 import pygame
 import sys
@@ -64,14 +68,15 @@ from control_packet import ControlPacket, SetpointMode
 UDP_IP = "127.0.0.1"
 UDP_PORT = 5005
 SEND_RATE = 0.1  # Packet send rate in seconds (10 Hz)
-DEFAULT_SPEED = 1.0  # meters per second
-YAW_RATE_STEP = 5.0  # degrees per step
+ROLL_PITCH_RATE_STEP = 2.0  # degrees per second step for roll and pitch rate
+YAW_RATE_STEP = 5.0  # degrees per second step for yaw rate
+THRUST_STEP = 0.02  # thrust step
 INCREMENTAL_MODE = False  # False for instant reset, True for incremental control
 
 # Initialize Pygame and set up the display
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
-pygame.display.set_caption('MAVSDK Offboard Control - Local Velocity Sender')
+pygame.display.set_caption('MAVSDK Offboard Control - Attitude Rate Control')
 
 # Colors, fonts, and initial settings
 BACKGROUND_COLOR = (30, 30, 30)
@@ -84,17 +89,17 @@ RED = (255, 0, 0)
 # Setup UDP socket for sending commands
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-def send_velocity_body(velocity_x, velocity_y, velocity_z, yaw_rate):
-    """Send a velocity command with optional yaw rate to the drone."""
+def send_attitude_rate(roll_rate, pitch_rate, yaw_rate, thrust):
+    """Send an attitude rate command to the drone."""
     packet = ControlPacket(
-        mode=SetpointMode.VELOCITY_BODY,
+        mode=SetpointMode.ATTITUDE_RATE_CONTROL,
         enable_flag=True,
         yaw_control_flag=True,
-        position=(0, 0, 0),
-        velocity=(velocity_x, velocity_y, velocity_z),
-        acceleration=(0, 0, 0),
-        attitude=(0, 0, 0, 0),
-        attitude_rate=(0, 0, yaw_rate)
+        position=(0, 0, 0),  # Not used in attitude rate mode
+        velocity=(0, 0, 0),  # Not used in attitude rate mode
+        acceleration=(0, 0, 0),  # Not used in attitude rate mode
+        attitude=(0, 0, 0, thrust),  # Thrust only
+        attitude_rate=(roll_rate, pitch_rate, yaw_rate)
     )
     packed_data = packet.pack()
     sock.sendto(packed_data, (UDP_IP, UDP_PORT))
@@ -136,7 +141,7 @@ class Button:
         return (self.position[0] <= x <= self.position[0] + self.size[0]) and (self.position[1] <= y <= self.position[1] + self.size[1])
 
 # Movement control variables
-velocity_x, velocity_y, velocity_z, yaw_rate = 0, 0, 0, 0
+roll_rate, pitch_rate, yaw_rate, thrust = 0, 0, 0, 0.5  # Start with a neutral thrust value
 enabled = False
 
 # Button actions
@@ -147,65 +152,66 @@ def enable_control():
 def disable_control():
     global enabled
     enabled = False
-    send_velocity_body(0, 0, 0, 0)
+    send_attitude_rate(0, 0, 0, 0)
 
 def reset_control():
-    global velocity_x, velocity_y, velocity_z, yaw_rate
-    velocity_x, velocity_y, velocity_z, yaw_rate = 0, 0, 0, 0
+    global roll_rate, pitch_rate, yaw_rate, thrust
+    roll_rate, pitch_rate, yaw_rate, thrust = 0, 0, 0, 0.5  # Reset to neutral thrust
 
-def move_forward():
-    global velocity_x
-    velocity_x = velocity_x + DEFAULT_SPEED if INCREMENTAL_MODE else DEFAULT_SPEED
+def adjust_pitch_rate_up():
+    global pitch_rate
+    pitch_rate += ROLL_PITCH_RATE_STEP if INCREMENTAL_MODE else ROLL_PITCH_RATE_STEP
 
-def move_backward():
-    global velocity_x
-    velocity_x = velocity_x - DEFAULT_SPEED if INCREMENTAL_MODE else -DEFAULT_SPEED
+def adjust_pitch_rate_down():
+    global pitch_rate
+    pitch_rate -= ROLL_PITCH_RATE_STEP if INCREMENTAL_MODE else ROLL_PITCH_RATE_STEP
 
-def move_left():
-    global velocity_y
-    velocity_y = velocity_y - DEFAULT_SPEED if INCREMENTAL_MODE else -DEFAULT_SPEED
+def adjust_roll_rate_left():
+    global roll_rate
+    roll_rate -= ROLL_PITCH_RATE_STEP if INCREMENTAL_MODE else ROLL_PITCH_RATE_STEP
 
-def move_right():
-    global velocity_y
-    velocity_y = velocity_y + DEFAULT_SPEED if INCREMENTAL_MODE else DEFAULT_SPEED
+def adjust_roll_rate_right():
+    global roll_rate
+    roll_rate += ROLL_PITCH_RATE_STEP if INCREMENTAL_MODE else ROLL_PITCH_RATE_STEP
 
-def ascend():
-    global velocity_z
-    velocity_z = velocity_z - DEFAULT_SPEED if INCREMENTAL_MODE else -DEFAULT_SPEED
+def increase_thrust():
+    global thrust
+    thrust = min(thrust + THRUST_STEP, 1.0)  # Ensure thrust does not exceed 1
 
-def descend():
-    global velocity_z
-    velocity_z = velocity_z + DEFAULT_SPEED if INCREMENTAL_MODE else DEFAULT_SPEED
+def decrease_thrust():
+    global thrust
+    thrust = max(thrust - THRUST_STEP, 0)  # Ensure thrust does not go below 0
 
-def yaw_left():
+def yaw_rate_left():
     global yaw_rate
-    yaw_rate = -YAW_RATE_STEP if not INCREMENTAL_MODE else (yaw_rate - YAW_RATE_STEP)
+    yaw_rate -= YAW_RATE_STEP if not INCREMENTAL_MODE else (yaw_rate - YAW_RATE_STEP)
 
-def yaw_right():
+def yaw_rate_right():
     global yaw_rate
-    yaw_rate = YAW_RATE_STEP if not INCREMENTAL_MODE else (yaw_rate + YAW_RATE_STEP)
+    yaw_rate += YAW_RATE_STEP if not INCREMENTAL_MODE else (yaw_rate + YAW_RATE_STEP)
 
 def toggle_mode():
     global INCREMENTAL_MODE
     INCREMENTAL_MODE = not INCREMENTAL_MODE
 
-# Reset movement functions for instant return mode
-def reset_velocity_x():
-    global velocity_x
-    velocity_x = 0
+# Reset functions for instant return mode
+def reset_roll_rate():
+    global roll_rate
+    roll_rate = 0
 
-def reset_velocity_y():
-    global velocity_y
-    velocity_y = 0
+def reset_pitch_rate():
+    global pitch_rate
+    pitch_rate = 0
 
-def reset_velocity_z():
-    global velocity_z
-    velocity_z = 0
+def reset_thrust():
+    # global thrust
+    # thrust = 0.5  # Reset to mid thrust
+    pass
 
 def reset_yaw_rate():
     global yaw_rate
     yaw_rate = 0
-    
+
 # Button actions
 def check_enabled(action):
     """Decorator-like function to execute the action only if controls are enabled."""
@@ -214,7 +220,7 @@ def check_enabled(action):
             action()
     return wrapper
 
- # Wrapper function to reset only if incremental mode is not active
+# Wrapper function to reset only if incremental mode is not active
 def check_and_reset(action):
     """Decorator-like function to reset only if incremental mode is not active."""
     def wrapper():
@@ -222,31 +228,31 @@ def check_and_reset(action):
             action()
     return wrapper
 
-# Button initialization with updated joystick-style layout
+# Button initialization with joystick-style layout
 buttons = [
     Button('Enable', (50, 150), (100, 50), enable_control),
     Button('Disable', (50, 220), (100, 50), disable_control),
     Button('Hold', (50, 290), (100, 50), reset_control),
     Button('Mode', (50, 360), (100, 50), toggle_mode),  # Mode toggle button
-    Button('Forward', (600, 150), (100, 50), check_enabled(move_forward), check_and_reset(reset_velocity_x)),
-    Button('Backward', (600, 290), (100, 50), check_enabled(move_backward), check_and_reset(reset_velocity_x)),
-    Button('Left', (500, 220), (100, 50), check_enabled(move_left), check_and_reset(reset_velocity_y)),
-    Button('Right', (700, 220), (100, 50), check_enabled(move_right), check_and_reset(reset_velocity_y)),
-    Button('Ascend', (275, 150), (100, 50), check_enabled(ascend), check_and_reset(reset_velocity_z)),
-    Button('Descend', (275, 290), (100, 50), check_enabled(descend), check_and_reset(reset_velocity_z)),
-    Button('Yaw Left', (175, 220), (100, 50), check_enabled(yaw_left), check_and_reset(reset_yaw_rate)),
-    Button('Yaw Right', (375, 220), (100, 50), check_enabled(yaw_right), check_and_reset(reset_yaw_rate))
+    Button('Pitch Up', (600, 290), (100, 50), check_enabled(adjust_pitch_rate_up), check_and_reset(reset_pitch_rate)),
+    Button('Pitch Down', (600, 150), (100, 50), check_enabled(adjust_pitch_rate_down), check_and_reset(reset_pitch_rate)),
+    Button('Roll Left', (500, 220), (100, 50), check_enabled(adjust_roll_rate_left), check_and_reset(reset_roll_rate)),
+    Button('Roll Right', (700, 220), (100, 50), check_enabled(adjust_roll_rate_right), check_and_reset(reset_roll_rate)),
+    Button('Increase Thrust', (275, 150), (150, 50), check_enabled(increase_thrust), check_and_reset(reset_thrust)),
+    Button('Decrease Thrust', (275, 290), (150, 50), check_enabled(decrease_thrust), check_and_reset(reset_thrust)),
+    Button('Yaw Left', (200, 220), (100, 50), check_enabled(yaw_rate_left), check_and_reset(reset_yaw_rate)),
+    Button('Yaw Right', (375, 220), (100, 50), check_enabled(yaw_rate_right), check_and_reset(reset_yaw_rate))
 ]
 
 def main():
-    """Main function to handle keyboard and mouse inputs for drone control."""
-    global INCREMENTAL_MODE, velocity_x, velocity_y, velocity_z, yaw_rate
+    """Main function to handle keyboard and mouse inputs for drone attitude rate control."""
+    global INCREMENTAL_MODE, roll_rate, pitch_rate, yaw_rate, thrust
     running = True
     clock = pygame.time.Clock()
 
     while running:
         screen.fill(BACKGROUND_COLOR)
-        display_text("MAVSDK Offboard Control: Local Velocity Sender", (50, 20), font=FONT)
+        display_text("MAVSDK Offboard Control: Attitude Rate Control", (50, 20), font=FONT)
         display_text("Press 'E' to enable, 'C' to cancel, 'M' to toggle mode, 'H' to hold, 'Q' to quit", (50, 50), font=SMALL_FONT)
         mode_text = "Incremental" if INCREMENTAL_MODE else "Instant Reset"
         display_text(f"Mode: {mode_text}", (50, 80), font=SMALL_FONT)
@@ -254,7 +260,7 @@ def main():
             display_text("Status: Enabled", (50, 100), font=SMALL_FONT, color=GREEN)
         else:
             display_text("Status: Disabled", (50, 100), font=SMALL_FONT, color=RED)
-        display_text(f"Current Command: Vx={velocity_x:.2f}, Vy={velocity_y:.2f}, Vz={velocity_z:.2f}, Yaw Rate={yaw_rate:.2f}", (50, 500), font=SMALL_FONT)
+        display_text(f"Current Command: Roll Rate={roll_rate:.2f}, Pitch Rate={pitch_rate:.2f}, Yaw Rate={yaw_rate:.2f}, Thrust={thrust:.2f}", (50, 500), font=SMALL_FONT)
         display_text(f"IP: {UDP_IP}, Port: {UDP_PORT}, Rate: {SEND_RATE}s", (50, 550), font=SMALL_FONT)
 
         for event in pygame.event.get():
@@ -262,7 +268,7 @@ def main():
                 running = False
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
-                    send_velocity_body(0, 0, 0, 0)  # Safety stop
+                    send_attitude_rate(0, 0, 0, 0)  # Safety stop
                     running = False
                 elif event.key == pygame.K_e:
                     enable_control()
@@ -275,30 +281,30 @@ def main():
 
                 if enabled:
                     if event.key == pygame.K_w:
-                        move_forward()
+                        adjust_pitch_rate_up()
                     elif event.key == pygame.K_s:
-                        move_backward()
+                        adjust_pitch_rate_down()
                     elif event.key == pygame.K_a:
-                        move_left()
+                        adjust_roll_rate_left()
                     elif event.key == pygame.K_d:
-                        move_right()
+                        adjust_roll_rate_right()
                     elif event.key == pygame.K_UP:
-                        ascend()
+                        increase_thrust()
                     elif event.key == pygame.K_DOWN:
-                        descend()
+                        decrease_thrust()
                     elif event.key == pygame.K_LEFT:
-                        yaw_left()
+                        yaw_rate_left()
                     elif event.key == pygame.K_RIGHT:
-                        yaw_right()
+                        yaw_rate_right()
 
             elif event.type == pygame.KEYUP:
                 if not INCREMENTAL_MODE:
                     if event.key in [pygame.K_w, pygame.K_s]:
-                        reset_velocity_x()
+                        reset_pitch_rate()
                     elif event.key in [pygame.K_a, pygame.K_d]:
-                        reset_velocity_y()
+                        reset_roll_rate()
                     elif event.key in [pygame.K_UP, pygame.K_DOWN]:
-                        reset_velocity_z()
+                        reset_thrust()
                     elif event.key in [pygame.K_LEFT, pygame.K_RIGHT]:
                         reset_yaw_rate()
 
@@ -313,7 +319,7 @@ def main():
                     button.release()
 
         if enabled:
-            send_velocity_body(velocity_x, velocity_y, velocity_z, yaw_rate)
+            send_attitude_rate(roll_rate, pitch_rate, yaw_rate, thrust)
 
         for button in buttons:
             button.draw(screen)
@@ -326,5 +332,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-ضq
-
