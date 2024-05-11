@@ -67,6 +67,7 @@ has network access to the drone's telemetry and control interface, typically pro
 import asyncio
 import socket
 import argparse
+import mavsdk
 from mavsdk import System
 from mavsdk.offboard import *
 from control_packet import ControlPacket, SetpointMode
