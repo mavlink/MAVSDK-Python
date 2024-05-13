@@ -39,3 +39,6 @@ Plugins
    gripper
    winch
    arm_authorizer_server
+   component_metadata
+   component_metadata_server
+   log_streaming
