@@ -25,19 +25,32 @@ async def run_drone(drone):
     mission_items = []
 
     mission_items.append(mission_raw.MissionItem(
-         0,                         # start seq at 0
-         3,                         # MAV_FRAME command. 3 is WGS84 + relative altitude
-         16,                        # command. 16 is a basic waypoint
-         1,                         # first one is current
-         1,                         # auto-continue. 1: True, 0: False
-         0,                         # param1 - hold time
-         10,                        # param2 - Acceptance radius (if the sphere with this radius is hit, the waypoint counts as reached)
-         0,                         # param3 - 0 means it should pass through the waypoint normally
-         float('nan'),              # param4 - Desired yaw angle at waypoint. NaN to use the current system yaw heading mode
-         int(47.40271757 * 10**7),  # param5 - latitude (multiplying by 10^7 due to MAV_FRAME)
-         int(8.54285027 * 10**7),   # param6 - longitude
-         30.0,                      # param7 - altitude
-         0                          # mission_type. Specifies this item as a main command for the mission
+         # start seq at 0
+         0,
+         # MAV_FRAME command. 3 is WGS84 + relative altitude
+         3,
+         # command. 16 is a basic waypoint
+         16,
+         # first one is current
+         1,
+         # auto-continue. 1: True, 0: False
+         1,
+         # param1 - hold time
+         0,
+         # param2 - Acceptance radius (if the sphere with this radius is hit, the waypoint counts as reached)
+         10,
+         # param3 - 0 means it should pass through the waypoint normally
+         0,
+         # param4 - Desired yaw angle at waypoint. NaN to use the current system yaw heading mode
+         float('nan'),
+         # param5 - latitude (multiplying by 10^7 due to MAV_FRAME)
+         int(47.40271757 * 10**7),
+         # param6 - longitude
+         int(8.54285027 * 10**7),
+         # param7 - altitude
+         30.0,
+         # mission_type. Specifies this item as a main command for the mission
+         0
      ))
 
     mission_items.append(mission_raw.MissionItem(
