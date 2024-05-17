@@ -35,23 +35,21 @@ async def run_drone(drone):
          1,
          # auto-continue. 1: True, 0: False
          1,
-         # param1 - hold time
+         # param1
          0,
-         # param2 - Acceptance radius (if the sphere with this
-         # radius is hit, the waypoint counts as reached)
+         # param2 - Acceptance radius
          10,
-         # param3 - 0 means it should pass through the waypoint normally
+         # param3 - 0 (pass through the waypoint normally)
          0,
-         # param4 - Desired yaw angle at waypoint. NaN to use the 
-         # current system yaw heading mode
+         # param4 - Desired yaw angle at waypoint
          float('nan'),
-         # param5 - latitude (multiplying by 10^7 due to MAV_FRAME)
+         # param5 - latitude
          int(47.40271757 * 10**7),
          # param6 - longitude
          int(8.54285027 * 10**7),
          # param7 - altitude
          30.0,
-         # mission_type. Specifies this item as a main command for the mission
+         # mission_type.
          0
      ))
 
