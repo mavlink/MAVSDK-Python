@@ -27,4 +27,4 @@ async def print_is_in_air(drone):
 
 if __name__ == "__main__":
     # Start the main function
-    asyncio.run(print_flight_mode())
+    asyncio.run(run())
