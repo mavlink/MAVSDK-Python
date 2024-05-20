@@ -22,29 +22,47 @@ async def run():
 
 
 async def run_drone(drone):
-
     mission_items = []
 
     mission_items.append(mission_raw.MissionItem(
-         0,  # start seq at 0
-         6,
+         # start seq at 0
+         0,
+         # MAV_FRAME command. 3 is WGS84 + relative altitude
+         3,
+         # command. 16 is a basic waypoint
          16,
-         1,  # first one is current
+         # first one is current
          1,
-         0, 10, 0, float('nan'),
+         # auto-continue. 1: True, 0: False
+         1,
+         # param1
+         0,
+         # param2 - Acceptance radius
+         10,
+         # param3 - 0 (pass through the waypoint normally)
+         0,
+         # param4 - Desired yaw angle at waypoint
+         float('nan'),
+         # param5 - latitude
          int(47.40271757 * 10**7),
+         # param6 - longitude
          int(8.54285027 * 10**7),
+         # param7 - altitude
          30.0,
+         # mission_type.
          0
      ))
 
     mission_items.append(mission_raw.MissionItem(
         1,
-        6,
+        3,
         16,
         0,
         1,
-        0, 10, 0, float('nan'),
+        0,
+        10,
+        0,
+        float('nan'),
         int(47.40271757 * 10**7),
         int(8.54361892 * 10**7),
         30.0,
