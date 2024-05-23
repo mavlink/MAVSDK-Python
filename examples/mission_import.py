@@ -16,11 +16,15 @@ async def run():
             print(f"-- Connected to drone!")
             break
 
-    mission_import_data = await \
-        drone.mission_raw.import_qgroundcontrol_mission(
-            "example-mission.plan")
-    print(f"{len(mission_import_data.mission_items)} mission items imported")
-    await drone.mission_raw.upload_mission(mission_import_data.mission_items)
+    out = await drone.mission_raw.import_qgroundcontrol_mission(
+        "example-mission.plan")
+
+    print(f"{len(out.mission_items)} mission items and"
+          f"{len(out.rally_items)} rally items imported.")
+
+    await drone.mission_raw.upload_mission(out.mission_items)
+    await drone.mission_raw.upload_rally_points(out.rally_items)
+
     print("Mission uploaded")
 
 
