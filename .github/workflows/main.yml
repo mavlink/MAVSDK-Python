@@ -130,8 +130,17 @@ jobs:
           twine upload dist/*.whl
 
   macOS:
-    name: macOS
-    runs-on: macos-12
+    name: macOS ${{ matrix.arch }}
+    runs-on: ${{ matrix.runs_on }}
+    strategy:
+      matrix:
+        include:
+          - arch: x64
+            wheel_arch: 10_9_x86_64
+            runs_on: macos-13
+          - arch: arm64
+            wheel_arch: 11_0_arm64
+            runs_on: macos-14
     steps:
       - uses: actions/checkout@v1
         with:
@@ -158,9 +167,8 @@ jobs:
         run: |
           python setup.py bdist_wheel
           export PATH="$(python -m site --user-base)/bin:$PATH"
-          echo "PATH: $PATH"
           delocate-wheel -w wheelhouse -v dist/*.whl
-          ls wheelhouse/*any.whl | sed -e 'p;s/any/macosx_10_9_x86_64/' | xargs -n2 mv
+          ls wheelhouse/*any.whl | sed -e 'p;s/any/macosx_${{ matrix.wheel_arch }}/' | xargs -n2 mv
 
       - name: Check the artifacts
         run: |

@@ -7,7 +7,7 @@ from os import path, getcwd
 import urllib.request
 import os
 import stat
-import sys
+import platform
 import subprocess
 
 
@@ -50,9 +50,10 @@ class custom_build(build):
     @property
     def platform_suffix(self):
         """
-        Trying to detect the platform to know which `mavsdk_server` executable to download
+        Trying to detect the platform to know which `mavsdk_server` executable
+        to download
         """
-        if sys.platform.startswith('linux') and 'MAVSDK_SERVER_ARCH' in os.environ:
+        if platform.system() == 'Linux' and 'MAVSDK_SERVER_ARCH' in os.environ:
             if os.environ['MAVSDK_SERVER_ARCH'] == "armv6l":
                 return 'linux-armv6-musl'
             elif os.environ['MAVSDK_SERVER_ARCH'] == "armv7l":
@@ -61,16 +62,26 @@ class custom_build(build):
                 return 'linux-arm64-musl'
             else:
                 raise NotImplementedError(
-                    f"Error: unknown MAVSDK_SERVER_ARCH: {os.environ['MAVSDK_SERVER_ARCH']}")
-        elif sys.platform.startswith('linux'):
+                    "Error: unknown MAVSDK_SERVER_ARCH: "
+                    f"{os.environ['MAVSDK_SERVER_ARCH']}")
+        elif platform.system() == 'Linux':
             return 'musl_x86_64'
-        elif sys.platform.startswith('darwin'):
-            return 'macos'
-        elif sys.platform.startswith('win'):
+        elif platform.system() == 'Darwin':
+            if platform.processor() == 'i386':
+                return 'macos_x64'
+            elif platform.processor() == 'arm':
+                return 'macos_arm64'
+            raise NotImplementedError(
+                f"Error: unknown macOS processor: {platform.processor()}")
+        elif platform.system() == 'Windows' \
+                and platform.processor().startswith('AMD64'):
             return 'win32.exe'
         else:
             raise NotImplementedError(
-                f"Error: mavsdk_server is not distributed for platform {sys.platform} (yet)! You should set the 'MAVSDK_BUILD_PURE=ON' environment variable and get mavsdk_server manually.")
+                "Error: mavsdk_server is not distributed for platform "
+                f"{platform.system()} ({platform.processor()}) (yet)!\n\n"
+                "You should set the 'MAVSDK_BUILD_PURE=ON' environment "
+                "variable and get mavsdk_server manually.")
 
     @property
     def mavsdk_server_filepath(self):
@@ -78,7 +89,7 @@ class custom_build(build):
         The location of the downloaded `mavsdk_server` binary
         For Windows this needs to be a .exe file
         """
-        if sys.platform.startswith('win'):
+        if platform.system() == 'Windows':
             return 'mavsdk/bin/mavsdk_server.exe'
         else:
             return 'mavsdk/bin/mavsdk_server'
@@ -97,7 +108,8 @@ class custom_build(build):
         """
         Build the url of the `mavsdk_server` binary
         """
-        return f"https://github.com/mavlink/MAVSDK/releases/download/{self.mavsdk_server_tag}/mavsdk_server_{self.platform_suffix}"
+        return "https://github.com/mavlink/MAVSDK/releases/download/" \
+            f"{self.mavsdk_server_tag}/mavsdk_server_{self.platform_suffix}"
 
     def run(self):
         if 'MAVSDK_BUILD_PURE' not in os.environ:
@@ -107,7 +119,8 @@ class custom_build(build):
 
     def download_mavsdk_server(self):
         print(
-            f"downloading {self.mavsdk_server_url} into {self.mavsdk_server_filepath}")
+            f"downloading {self.mavsdk_server_url} into "
+            f"{self.mavsdk_server_filepath}")
         urllib.request.urlretrieve(
             self.mavsdk_server_url,
             filename=self.mavsdk_server_filepath)
