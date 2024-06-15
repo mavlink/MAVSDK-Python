@@ -46,7 +46,7 @@ async def run():
     # Follow me Mode requires some configuration to be done before starting
     # the mode
     conf = Config(follow_height, follow_distance, responsiveness,
-        altitude_mode, max_follow_vel, follow_angle_deg)
+                  altitude_mode, max_follow_vel, follow_angle_deg)
     await drone.follow_me.set_config(conf)
 
     print("-- Taking Off")
