@@ -7,14 +7,14 @@ from mavsdk import System
 from mavsdk.follow_me import (Config, FollowMeError, TargetLocation)
 
 
-default_height = 8.0  # in meters
+follow_height = 8.0  # in meters
 # distance between drone and target
 follow_distance = 2.0  # in meters
-
-# Direction relative to the Target
-# Options are NONE, FRONT, FRONT_LEFT, FRONT_RIGHT, BEHIND
-direction = Config.FollowDirection.BEHIND
 responsiveness = 0.02
+altitude_mode = Config.FollowAltitudeMode.TARGET_GPS
+max_follow_vel = 10
+# direction relative to the target
+follow_angle_deg = 0
 
 # This list contains fake location coordinates
 # (These coordinates are obtained from mission.py example)
@@ -45,7 +45,8 @@ async def run():
 
     # Follow me Mode requires some configuration to be done before starting
     # the mode
-    conf = Config(default_height, follow_distance, direction, responsiveness)
+    conf = Config(follow_height, follow_distance, responsiveness,
+                  altitude_mode, max_follow_vel, follow_angle_deg)
     await drone.follow_me.set_config(conf)
 
     print("-- Taking Off")
