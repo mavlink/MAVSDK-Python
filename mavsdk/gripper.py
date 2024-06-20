@@ -9,7 +9,7 @@ from enum import Enum
 class GripperAction(Enum):
     """
      Gripper Actions.
-
+    
      Available gripper actions are defined in mavlink under
      https://mavlink.io/en/messages/common.html#GRIPPER_ACTIONS
 

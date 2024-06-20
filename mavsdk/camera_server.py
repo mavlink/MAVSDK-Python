@@ -503,12 +503,12 @@ class Position:
 class Quaternion:
     """
      Quaternion type.
-
+    
      All rotations and axis systems follow the right-hand rule.
      The Hamilton quaternion product definition is used.
      A zero-rotation quaternion is represented by (1,0,0,0).
      The quaternion could also be written as w + xi + yj + zk.
-
+    
      For more info see: https://en.wikipedia.org/wiki/Quaternion
 
      Parameters

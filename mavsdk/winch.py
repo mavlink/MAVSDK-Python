@@ -109,10 +109,10 @@ class WinchAction(Enum):
 class StatusFlags:
     """
      Winch Status Flags.
-
+    
      The status flags are defined in mavlink
      https://mavlink.io/en/messages/common.html#MAV_WINCH_STATUS_FLAG.
-
+    
      Multiple status fields can be set simultaneously. Mavlink does
      not specify which states are mutually exclusive.
 
@@ -946,7 +946,7 @@ class Winch(AsyncBase):
     async def load_line(self, instance):
         """
          Load the reel with line.
-
+        
          The winch will calculate the total loaded length and stop when the tension exceeds a threshold.
 
          Parameters
