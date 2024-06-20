@@ -1,9 +1,17 @@
+Plugins
+=======
+
+.. toctree::
+   :titlesonly:
+
    action
    action_server
    arm_authorizer_server
    calibration
    camera
    camera_server
+   component_information
+   component_information_server
    component_metadata
    component_metadata_server
    core
@@ -30,6 +38,7 @@
    shell
    telemetry
    telemetry_server
+   tracking_server
    transponder
    tune
    winch
