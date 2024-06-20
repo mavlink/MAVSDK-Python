@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
-import aiogrpc
+from grpc import aio
 
 
 class AsyncPluginManager:
@@ -26,16 +26,15 @@ class AsyncPluginManager:
         """
 
         #: gRPC channel
-        self._channel = aiogrpc.insecure_channel(
-            "{}:{}".format(self.host, self.port),
-            standalone_pool_for_streaming=True
+        self._channel = aio.insecure_channel(
+            "{}:{}".format(self.host, self.port)
         )
 
         logger = logging.getLogger(__name__)
         logger.addHandler(logging.NullHandler())  # Avoid errors when user has not configured logging
 
         logger.debug("Waiting for mavsdk_server to be ready...")
-        await aiogrpc.channel_ready_future(self._channel)
+        await self._channel.channel_ready()
         logger.debug("Connected to mavsdk_server!")
 
     @property
