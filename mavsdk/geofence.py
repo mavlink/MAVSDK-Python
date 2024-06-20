@@ -569,7 +569,7 @@ class Geofence(AsyncBase):
     async def upload_geofence(self, geofence_data):
         """
          Upload geofences.
-
+        
          Polygon and Circular geofences are uploaded to a drone. Once uploaded, the geofence will remain
          on the drone even if a connection is lost.
 

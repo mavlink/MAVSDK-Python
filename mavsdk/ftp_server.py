@@ -168,7 +168,7 @@ class FtpServer(AsyncBase):
     async def set_root_dir(self, path):
         """
          Set root directory.
-
+        
          This is the directory that can then be accessed by a client.
          The directory needs to exist when this is called.
          The permissions are the same as the file permission for the user running the server.

@@ -1,2 +1,2 @@
-grpcio-tools>=1.40.0
+grpcio-tools>=1.64.1
 protoc-gen-mavsdk>=1.1.1

@@ -208,7 +208,7 @@ class ManualControl(AsyncBase):
     async def start_position_control(self):
         """
          Start position control using e.g. joystick input.
-
+        
          Requires manual control input to be sent regularly already.
          Requires a valid position using e.g. GPS, external vision, or optical flow.
 
@@ -231,7 +231,7 @@ class ManualControl(AsyncBase):
     async def start_altitude_control(self):
         """
          Start altitude control
-
+        
          Requires manual control input to be sent regularly already.
          Does not require a  valid position e.g. GPS.
 
@@ -254,7 +254,7 @@ class ManualControl(AsyncBase):
     async def set_manual_control_input(self, x, y, z, r):
         """
          Set manual control input
-
+        
          The manual control input needs to be sent at a rate high enough to prevent
          triggering of RC loss, a good minimum rate is 10 Hz.
 

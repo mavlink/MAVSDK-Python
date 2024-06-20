@@ -109,7 +109,7 @@ class Core(AsyncBase):
     async def set_mavlink_timeout(self, timeout_s):
         """
          Set timeout of MAVLink transfers.
-
+        
          The default timeout used is generally (0.5 seconds) seconds.
          If MAVSDK is used on the same host this timeout can be reduced, while
          if MAVSDK has to communicate over links with high latency it might

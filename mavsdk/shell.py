@@ -211,7 +211,7 @@ class Shell(AsyncBase):
     async def receive(self):
         """
          Receive feedback from a sent command line.
-
+        
          This subscription needs to be made before a command line is sent, otherwise, no response will be sent.
 
          Yields

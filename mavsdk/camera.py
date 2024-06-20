@@ -369,12 +369,12 @@ class Position:
 class Quaternion:
     """
      Quaternion type.
-
+    
      All rotations and axis systems follow the right-hand rule.
      The Hamilton quaternion product definition is used.
      A zero-rotation quaternion is represented by (1,0,0,0).
      The quaternion could also be written as w + xi + yj + zk.
-
+    
      For more info see: https://en.wikipedia.org/wiki/Quaternion
 
      Parameters
@@ -482,10 +482,10 @@ class Quaternion:
 class EulerAngle:
     """
      Euler angle type.
-
+    
      All rotations and axis systems follow the right-hand rule.
      The Euler angles follow the convention of a 3-2-1 intrinsic Tait-Bryan rotation sequence.
-
+    
      For more info see https://en.wikipedia.org/wiki/Euler_angles
 
      Parameters
@@ -1838,7 +1838,7 @@ class Camera(AsyncBase):
     """
      Can be used to manage cameras that implement the MAVLink
      Camera Protocol: https://mavlink.io/en/protocol/camera.html.
-
+    
      Currently only a single camera is supported.
      When multiple cameras are supported the plugin will need to be
      instantiated separately for every camera and the camera selected using
@@ -2281,7 +2281,7 @@ class Camera(AsyncBase):
     async def set_setting(self, setting):
         """
          Set a setting to some value.
-
+        
          Only setting_id of setting and option_id of option needs to be set.
 
          Parameters
@@ -2312,7 +2312,7 @@ class Camera(AsyncBase):
     async def get_setting(self, setting):
         """
          Get a setting.
-
+        
          Only setting_id of setting needs to be set.
 
          Parameters
@@ -2353,7 +2353,7 @@ class Camera(AsyncBase):
     async def format_storage(self, storage_id):
         """
          Format storage (e.g. SD card) in camera.
-
+        
          This will delete all content of the camera storage!
 
          Parameters
@@ -2381,7 +2381,7 @@ class Camera(AsyncBase):
     async def select_camera(self, camera_id):
         """
          Select current camera .
-
+        
          Bind the plugin instance to a specific camera_id
 
          Parameters
@@ -2409,7 +2409,7 @@ class Camera(AsyncBase):
     async def reset_settings(self):
         """
          Reset all settings in camera.
-
+        
          This will reset all camera settings to default value
 
          Raises
