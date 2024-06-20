@@ -1,3 +1,2 @@
-protobuf
-aiogrpc>=1.8
-grpcio>=1.50.0
+protobuf>=5.27.1
+grpcio>=1.64.1
