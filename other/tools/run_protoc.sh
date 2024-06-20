@@ -3,7 +3,7 @@
 set -e
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-WORK_DIR="${SCRIPT_DIR}/../../"
+WORK_DIR="${SCRIPT_DIR%/*/*}"
 PROTO_DIR="${WORK_DIR}/proto"
 GENERATED_DIR="${WORK_DIR}/mavsdk"
 TEMPLATE_PATH="${WORK_DIR}/other/templates/py"
@@ -11,7 +11,7 @@ TEMPLATE_PATH="${WORK_DIR}/other/templates/py"
 TEMPLATE_PATH_RST="${WORK_DIR}/other/templates/rst"
 GENERATED_DIR_RST="${WORK_DIR}/mavsdk/source/plugins"
 
-PLUGIN_LIST=$(cd ${WORK_DIR}/proto/protos && ls -d */ | sed 's:/*$::')
+PLUGIN_LIST=$(cd "${WORK_DIR}/proto/protos" && ls -d */ | sed 's:/*$::')
 
 command -v protoc-gen-mavsdk > /dev/null || {
     echo "-------------------------------"
@@ -54,7 +54,6 @@ function generate {
         mv "${GENERATED_DIR}/${plugin}/${plugin}_pb2.py" "${GENERATED_DIR}/${plugin}_pb2.py"
         mv "${GENERATED_DIR}/${plugin}/${plugin}_pb2_grpc.py" "${GENERATED_DIR}/${plugin}_pb2_grpc.py"
 
-
         echo " -> [+] Generated protobuf and gRPC bindings for ${plugin}"
 
         # Generate plugin
@@ -66,6 +65,8 @@ function generate {
 
         # protoc-gen-mavsdk capitalizes filenames, and we don't want that with python
         mv ${GENERATED_DIR}/${plugin}/$(snake_case_to_camel_case ${plugin}).py ${GENERATED_DIR}/${plugin}.py
+
+        echo " -> [+] Generated plugin for ${plugin}"
 
         # Generate plugin doc entry
         python3 -m grpc_tools.protoc -I${PROTO_DIR}/protos \
