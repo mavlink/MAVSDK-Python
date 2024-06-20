@@ -64,7 +64,7 @@ function generate {
                                      ${plugin}/${plugin}.proto
 
         # protoc-gen-mavsdk capitalizes filenames, and we don't want that with python
-        mv ${GENERATED_DIR}/${plugin}/$(snake_case_to_camel_case ${plugin}).py ${GENERATED_DIR}/${plugin}.py
+        mv -f ${GENERATED_DIR}/${plugin}/$(snake_case_to_camel_case ${plugin}).py ${GENERATED_DIR}/${plugin}.py
 
         echo " -> [+] Generated plugin for ${plugin}"
 
@@ -77,7 +77,9 @@ function generate {
                                      ${plugin}.proto
 
         # Again move generated file to its place.
-        mv ${GENERATED_DIR_RST}/$(snake_case_to_camel_case ${plugin}).rst ${GENERATED_DIR_RST}/${plugin}.rst
+        mv "${GENERATED_DIR_RST}/$(snake_case_to_camel_case ${plugin}).rst" "${GENERATED_DIR_RST}/temp.rst"
+        mv "${GENERATED_DIR_RST}/temp.rst" "${GENERATED_DIR_RST}/${plugin}.rst"
+
         echo " -> [+] Generated doc entry for ${plugin}"
 
         # Add plugin entry to docs index if not already listed.
