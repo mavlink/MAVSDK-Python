@@ -36,6 +36,7 @@ function generate {
 
     for plugin in ${PLUGIN_LIST}; do
 
+        echo " -> [+] Generating bindings for ${plugin}"
         # Generate protobuf and gRPC files
         python3 -m grpc_tools.protoc -I${PROTO_DIR}/protos \
                                      --python_out=${GENERATED_DIR} \
