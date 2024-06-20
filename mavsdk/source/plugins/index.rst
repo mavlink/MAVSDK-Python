@@ -1,23 +1,22 @@
-Plugins
-=======
-
-.. toctree::
-   :titlesonly:
-
    action
    action_server
+   arm_authorizer_server
    calibration
    camera
+   camera_server
+   component_metadata
+   component_metadata_server
    core
-   component_information
-   component_information_server
    failure
    follow_me
    ftp
+   ftp_server
    geofence
    gimbal
+   gripper
    info
    log_files
+   log_streaming
    manual_control
    mission
    mission_raw
@@ -26,17 +25,13 @@ Plugins
    offboard
    param
    param_server
+   rtk
    server_utility
    shell
    telemetry
    telemetry_server
-   tracking_server
    transponder
    tune
-   camera_server
-   rtk
-   ftp_server
-   gripper
    winch
    arm_authorizer_server
    component_metadata
