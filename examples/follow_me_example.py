@@ -59,8 +59,14 @@ async def run():
     # This for loop provides fake coordinates from the fake_location list for
     # the follow me mode to work.
     # In a simulator it won't make much sense though
+    target = TargetLocation(0,0,0,0,0,0)
     for latitude, longitude in fake_location:
-        target = TargetLocation(latitude, longitude, 0, 0, 0, 0)
+        target.latitude_deg = latitude
+        target.longitude_deg = longitude
+        target.absolute_altitude_m = 480.0
+        target.velocity_x_m_s = 0
+        target.velocity_y_m_s = 0
+        target.velocity_z_m_s = 0
         print("-- Following Target")
         await drone.follow_me.set_target_location(target)
         await asyncio.sleep(2)
