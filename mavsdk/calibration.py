@@ -199,7 +199,7 @@ class CalibrationResult:
 class ProgressData:
     """
      Progress data coming from calibration.
-
+    
      Can be a progress percentage, or an instruction text.
 
      Parameters

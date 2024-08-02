@@ -175,18 +175,18 @@ class ActuatorControlGroup:
 class ActuatorControl:
     """
      Type for actuator control.
-
+    
      Control members should be normed to -1..+1 where 0 is neutral position.
      Throttle for single rotation direction motors is 0..1, negative range for reverse direction.
-
+    
      One group support eight controls.
-
+    
      Up to 16 actuator controls can be set. To ignore an output group, set all it controls to NaN.
      If one or more controls in group is not NaN, then all NaN controls will sent as zero.
      The first 8 actuator controls internally map to control group 0, the latter 8 actuator
      controls map to control group 1. Depending on what controls are set (instead of NaN) 1 or 2
      MAVLink messages are actually sent.
-
+    
      In PX4 v1.9.0 Only first four Control Groups are supported
      (https://github.com/PX4/Firmware/blob/v1.9.0/src/modules/mavlink/mavlink_receiver.cpp#L980).
 
@@ -1114,10 +1114,10 @@ class Offboard(AsyncBase):
     """
      *
      Control a drone with position, velocity, attitude or motor commands.
-
+    
      The module is called offboard because the commands can be sent from external sources
      as opposed to onboard control right inside the autopilot "board".
-
+    
      Client code must specify a setpoint before starting offboard mode.
      Mavsdk automatically sends setpoints at 20Hz (PX4 Offboard mode requires that setpoints
      are minimally sent at 2Hz).
@@ -1161,7 +1161,7 @@ class Offboard(AsyncBase):
     async def stop(self):
         """
          Stop offboard control.
-
+        
          The vehicle will be put into Hold mode: https://docs.px4.io/en/flight_modes/hold.html
 
          Raises
@@ -1183,7 +1183,7 @@ class Offboard(AsyncBase):
     async def is_active(self):
         """
          Check if offboard control is active.
-
+        
          True means that the vehicle is in offboard mode and we are actively sending
          setpoints.
 
@@ -1235,7 +1235,7 @@ class Offboard(AsyncBase):
     async def set_actuator_control(self, actuator_control):
         """
          Set direct actuator control values to groups #0 and #1.
-
+        
          First 8 controls will go to control group 0, the following 8 controls to control group 1 (if
          actuator_control.num_controls more than 8).
 

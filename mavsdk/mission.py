@@ -9,7 +9,7 @@ from enum import Enum
 class MissionItem:
     """
      Type representing a mission item.
-
+    
      A MissionItem can contain a position and/or actions.
      Mission items are building blocks to assemble a mission,
      which can be sent to (or received from) a system.
@@ -982,7 +982,7 @@ class Mission(AsyncBase):
     async def upload_mission(self, mission_plan):
         """
          Upload a list of mission items to the system.
-
+        
          The mission items are uploaded to a drone. Once uploaded the mission can be started and
          executed even if the connection is lost.
 
@@ -1014,7 +1014,7 @@ class Mission(AsyncBase):
     async def upload_mission_with_progress(self, mission_plan):
         """
          Upload a list of mission items to the system and report upload progress.
-
+        
          The mission items are uploaded to a drone. Once uploaded the mission can be started and
          executed even if the connection is lost.
 
@@ -1086,7 +1086,7 @@ class Mission(AsyncBase):
     async def download_mission(self):
         """
          Download a list of mission items from the system (asynchronous).
-
+        
          Will fail if any of the downloaded mission items are not supported
          by the MAVSDK API.
 
@@ -1117,7 +1117,7 @@ class Mission(AsyncBase):
     async def download_mission_with_progress(self):
         """
          Download a list of mission items from the system (asynchronous) and report progress.
-
+        
          Will fail if any of the downloaded mission items are not supported
          by the MAVSDK API.
 
@@ -1180,7 +1180,7 @@ class Mission(AsyncBase):
     async def start_mission(self):
         """
          Start the mission.
-
+        
          A mission must be uploaded to the vehicle before this can be called.
 
          Raises
@@ -1202,7 +1202,7 @@ class Mission(AsyncBase):
     async def pause_mission(self):
         """
          Pause the mission.
-
+        
          Pausing the mission puts the vehicle into
          [HOLD mode](https://docs.px4.io/en/flight_modes/hold.html).
          A multicopter should just hover at the spot while a fixedwing vehicle should loiter
@@ -1247,10 +1247,10 @@ class Mission(AsyncBase):
     async def set_current_mission_item(self, index):
         """
          Sets the mission item index to go to.
-
+        
          By setting the current index to 0, the mission is restarted from the beginning. If it is set
          to a specific index of a mission item, the mission will be set to this item.
-
+        
          Note that this is not necessarily true for general missions using MAVLink if loop counters
          are used.
 
@@ -1331,7 +1331,7 @@ class Mission(AsyncBase):
     async def get_return_to_launch_after_mission(self):
         """
          Get whether to trigger Return-to-Launch (RTL) after mission is complete.
-
+        
          Before getting this option, it needs to be set, or a mission
          needs to be downloaded.
 
@@ -1362,7 +1362,7 @@ class Mission(AsyncBase):
     async def set_return_to_launch_after_mission(self, enable):
         """
          Set whether to trigger Return-to-Launch (RTL) after the mission is complete.
-
+        
          This will only take effect for the next mission upload, meaning that
          the mission may have to be uploaded again.
 

@@ -577,7 +577,7 @@ class Param(AsyncBase):
     async def get_param_int(self, name):
         """
          Get an int parameter.
-
+        
          If the type is wrong, the result will be `WRONG_TYPE`.
 
          Parameters
@@ -616,7 +616,7 @@ class Param(AsyncBase):
     async def set_param_int(self, name, value):
         """
          Set an int parameter.
-
+        
          If the type is wrong, the result will be `WRONG_TYPE`.
 
          Parameters
@@ -648,7 +648,7 @@ class Param(AsyncBase):
     async def get_param_float(self, name):
         """
          Get a float parameter.
-
+        
          If the type is wrong, the result will be `WRONG_TYPE`.
 
          Parameters
@@ -687,7 +687,7 @@ class Param(AsyncBase):
     async def set_param_float(self, name, value):
         """
          Set a float parameter.
-
+        
          If the type is wrong, the result will be `WRONG_TYPE`.
 
          Parameters
@@ -719,7 +719,7 @@ class Param(AsyncBase):
     async def get_param_custom(self, name):
         """
          Get a custom parameter.
-
+        
          If the type is wrong, the result will be `WRONG_TYPE`.
 
          Parameters
@@ -758,7 +758,7 @@ class Param(AsyncBase):
     async def set_param_custom(self, name, value):
         """
          Set a custom parameter.
-
+        
          If the type is wrong, the result will be `WRONG_TYPE`.
 
          Parameters
@@ -810,7 +810,7 @@ class Param(AsyncBase):
     async def select_component(self, component_id, protocol_version):
         """
          Select component ID of parameter component to talk to and param protocol version.
-
+        
          Default is the autopilot component (1), and Version (0).
 
          Parameters
