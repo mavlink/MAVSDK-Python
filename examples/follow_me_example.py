@@ -59,7 +59,7 @@ async def run():
     # This for loop provides fake coordinates from the fake_location list for
     # the follow me mode to work.
     # In a simulator it won't make much sense though
-    target = TargetLocation(0,0,0,0,0,0)
+    target = TargetLocation(0, 0, 0, 0, 0, 0)
     for latitude, longitude in fake_location:
         target.latitude_deg = latitude
         target.longitude_deg = longitude
