@@ -4,7 +4,7 @@ from mavsdk import System
 async def get_imu_data():
     # Connect to the drone
     drone = System()
-    await drone.connect(system_address="serial:///dev/ttyTHS0:3000000")
+    await drone.connect(system_address="udp://:14540")
 
     # Wait for the drone to connect
     print("Waiting for drone to connect...")
