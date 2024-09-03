@@ -35,7 +35,6 @@ async def get_imu_data():
         print(f"Z Mag (gauss): {imu.magnetic_field_frd.down_gauss}")
         print(f"Temperature (°C): {imu.temperature_degc}")
         print("-----------------------------------------")
-        await asyncio.sleep(1)  # Sleep for a second between each print
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
