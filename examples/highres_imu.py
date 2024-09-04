@@ -1,6 +1,7 @@
 import asyncio
 from mavsdk import System
 
+
 async def get_imu_data():
     # Connect to the drone
     drone = System()
@@ -39,4 +40,3 @@ async def get_imu_data():
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.run_until_complete(get_imu_data())
-
