@@ -316,7 +316,7 @@ class Action(AsyncBase):
     async def arm(self):
         """
          Send command to arm the drone.
-
+        
          Arming a drone normally causes motors to spin at idle.
          Before arming take all safety precautions and stand clear of the drone!
 
@@ -339,9 +339,9 @@ class Action(AsyncBase):
     async def arm_force(self):
         """
          Send command to force-arm the drone without any checks.
-
+        
          Attention: this is not to be used for normal flying but only bench tests!
-
+        
          Arming a drone normally causes motors to spin at idle.
          Before arming take all safety precautions and stand clear of the drone!
 
@@ -364,7 +364,7 @@ class Action(AsyncBase):
     async def disarm(self):
         """
          Send command to disarm the drone.
-
+        
          This will disarm a drone that considers itself landed. If flying, the drone should
          reject the disarm command. Disarming means that all motors will stop.
 
@@ -387,10 +387,10 @@ class Action(AsyncBase):
     async def takeoff(self):
         """
          Send command to take off and hover.
-
+        
          This switches the drone into position control mode and commands
          it to take off and hover at the takeoff altitude.
-
+        
          Note that the vehicle must be armed before it can take off.
 
          Raises
@@ -412,7 +412,7 @@ class Action(AsyncBase):
     async def land(self):
         """
          Send command to land at the current position.
-
+        
          This switches the drone to 'Land' flight mode.
 
          Raises
@@ -434,7 +434,7 @@ class Action(AsyncBase):
     async def reboot(self):
         """
          Send command to reboot the drone components.
-
+        
          This will reboot the autopilot, companion computer, camera and gimbal.
 
          Raises
@@ -456,7 +456,7 @@ class Action(AsyncBase):
     async def shutdown(self):
         """
          Send command to shut down the drone components.
-
+        
          This will shut down the autopilot, onboard computer, camera and gimbal.
          This command should only be used when the autopilot is disarmed and autopilots commonly
          reject it if they are not already ready to shut down.
@@ -480,7 +480,7 @@ class Action(AsyncBase):
     async def terminate(self):
         """
          Send command to terminate the drone.
-
+        
          This will run the terminate routine as configured on the drone (e.g. disarm and open the parachute).
 
          Raises
@@ -502,7 +502,7 @@ class Action(AsyncBase):
     async def kill(self):
         """
          Send command to kill the drone.
-
+        
          This will disarm a drone irrespective of whether it is landed or flying.
          Note that the drone will fall out of the sky if this command is used while flying.
 
@@ -525,7 +525,7 @@ class Action(AsyncBase):
     async def return_to_launch(self):
         """
          Send command to return to the launch (takeoff) position and land.
-
+        
          This switches the drone into [Return mode](https://docs.px4.io/master/en/flight_modes/return.html) which
          generally means it will rise up to a certain altitude to clear any obstacles before heading
          back to the launch (takeoff) position and land there.
@@ -549,10 +549,10 @@ class Action(AsyncBase):
     async def goto_location(self, latitude_deg, longitude_deg, absolute_altitude_m, yaw_deg):
         """
          Send command to move the vehicle to a specific global position.
-
+        
          The latitude and longitude are given in degrees (WGS84 frame) and the altitude
          in meters AMSL (above mean sea level).
-
+        
          The yaw angle is in degrees (frame is NED, 0 is North, positive is clockwise).
 
          Parameters
@@ -592,7 +592,7 @@ class Action(AsyncBase):
     async def do_orbit(self, radius_m, velocity_ms, yaw_behavior, latitude_deg, longitude_deg, absolute_altitude_m):
         """
          Send command do orbit to the drone.
-
+        
          This will run the orbit routine with the given parameters.
 
          Parameters
@@ -643,10 +643,10 @@ class Action(AsyncBase):
     async def hold(self):
         """
          Send command to hold position (a.k.a. "Loiter").
-
+        
          Sends a command to drone to change to Hold flight mode, causing the
          vehicle to stop and maintain its current GPS position and altitude.
-
+        
          Note: this command is specific to the PX4 Autopilot flight stack as
          it implies a change to a PX4-specific mode.
 
@@ -669,7 +669,7 @@ class Action(AsyncBase):
     async def set_actuator(self, index, value):
         """
          Send command to set the value of an actuator.
-
+        
          Note that the index of the actuator starts at 1 and that the value goes from -1 to 1.
 
          Parameters
@@ -701,7 +701,7 @@ class Action(AsyncBase):
     async def transition_to_fixedwing(self):
         """
          Send command to transition the drone to fixedwing.
-
+        
          The associated action will only be executed for VTOL vehicles (on other vehicle types the
          command will fail). The command will succeed if called when the vehicle
          is already in fixedwing mode.
@@ -725,7 +725,7 @@ class Action(AsyncBase):
     async def transition_to_multicopter(self):
         """
          Send command to transition the drone to multicopter.
-
+        
          The associated action will only be executed for VTOL vehicles (on other vehicle types the
          command will fail). The command will succeed if called when the vehicle
          is already in multicopter mode.
@@ -911,7 +911,7 @@ class Action(AsyncBase):
     async def set_current_speed(self, speed_m_s):
         """
          Set current speed.
-
+        
          This will set the speed during a mission, reposition, and similar.
          It is ephemeral, so not stored on the drone and does not survive a reboot.
 

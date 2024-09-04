@@ -723,7 +723,7 @@ class MissionRaw(AsyncBase):
     async def upload_mission(self, mission_items):
         """
          Upload a list of raw mission items to the system.
-
+        
          The raw mission items are uploaded to a drone. Once uploaded the mission
          can be started and executed even if the connection is lost.
 
@@ -906,7 +906,7 @@ class MissionRaw(AsyncBase):
     async def start_mission(self):
         """
          Start the mission.
-
+        
          A mission must be uploaded to the vehicle before this can be called.
 
          Raises
@@ -928,7 +928,7 @@ class MissionRaw(AsyncBase):
     async def pause_mission(self):
         """
          Pause the mission.
-
+        
          Pausing the mission puts the vehicle into
          [HOLD mode](https://docs.px4.io/en/flight_modes/hold.html).
          A multicopter should just hover at the spot while a fixedwing vehicle should loiter
@@ -973,7 +973,7 @@ class MissionRaw(AsyncBase):
     async def set_current_mission_item(self, index):
         """
          Sets the raw mission item index to go to.
-
+        
          By setting the current index to 0, the mission is restarted from the beginning. If it is set
          to a specific index of a raw mission item, the mission will be set to this item.
 
@@ -1027,10 +1027,10 @@ class MissionRaw(AsyncBase):
         """
          *
          Subscribes to mission changed.
-
+        
          This notification can be used to be informed if a ground station has
          been uploaded or changed by a ground station or companion computer.
-
+        
          @param callback Callback to notify about change.
 
          Yields
@@ -1056,7 +1056,7 @@ class MissionRaw(AsyncBase):
     async def import_qgroundcontrol_mission(self, qgc_plan_path):
         """
          Import a QGroundControl missions in JSON .plan format, from a file.
-
+        
          Supported:
          - Waypoints
          - Survey
@@ -1099,7 +1099,7 @@ class MissionRaw(AsyncBase):
     async def import_qgroundcontrol_mission_from_string(self, qgc_plan):
         """
          Import a QGroundControl missions in JSON .plan format, from a string.
-
+        
          Supported:
          - Waypoints
          - Survey

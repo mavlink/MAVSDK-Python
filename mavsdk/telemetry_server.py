@@ -453,12 +453,12 @@ class Heading:
 class Quaternion:
     """
      Quaternion type.
-
+    
      All rotations and axis systems follow the right-hand rule.
      The Hamilton quaternion product definition is used.
      A zero-rotation quaternion is represented by (1,0,0,0).
      The quaternion could also be written as w + xi + yj + zk.
-
+    
      For more info see: https://en.wikipedia.org/wiki/Quaternion
 
      Parameters
@@ -582,10 +582,10 @@ class Quaternion:
 class EulerAngle:
     """
      Euler angle type.
-
+    
      All rotations and axis systems follow the right-hand rule.
      The Euler angles follow the convention of a 3-2-1 intrinsic Tait-Bryan rotation sequence.
-
+    
      For more info see https://en.wikipedia.org/wiki/Euler_angles
 
      Parameters
@@ -857,7 +857,7 @@ class GpsInfo:
 class RawGps:
     """
      Raw GPS information type.
-
+    
      Warning: this is an advanced type! If you want the location of the drone, use
      the position instead. This message exposes the raw values of the GNSS sensor.
 
@@ -1514,7 +1514,7 @@ class ActuatorOutputStatus:
 class Covariance:
     """
      Covariance type.
-
+    
      Row-major representation of a 6x6 cross-covariance matrix
      upper right triangle.
      Set first to NaN if unknown.

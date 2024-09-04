@@ -89,12 +89,12 @@ class ControlMode(Enum):
 class Quaternion:
     """
      Quaternion type.
-
+    
      All rotations and axis systems follow the right-hand rule.
      The Hamilton quaternion product definition is used.
      A zero-rotation quaternion is represented by (1,0,0,0).
      The quaternion could also be written as w + xi + yj + zk.
-
+    
      For more info see: https://en.wikipedia.org/wiki/Quaternion
 
      Parameters
@@ -202,11 +202,11 @@ class Quaternion:
 class EulerAngle:
     """
      Euler angle type.
-
+    
      All rotations and axis systems follow the right-hand rule.
      The Euler angles are converted using the 3-1-2 sequence instead of standard 3-2-1 in order
      to avoid the gimbal lock at 90 degrees down.
-
+    
      For more info see https://en.wikipedia.org/wiki/Euler_angles
 
      Parameters
@@ -823,7 +823,7 @@ class Gimbal(AsyncBase):
     async def set_angles(self, roll_deg, pitch_deg, yaw_deg):
         """
          Set gimbal roll, pitch and yaw angles.
-
+        
          This sets the desired roll, pitch and yaw angles of a gimbal.
          Will return when the command is accepted, however, it might
          take the gimbal longer to actually be set to the new angles.
@@ -861,7 +861,7 @@ class Gimbal(AsyncBase):
     async def set_pitch_and_yaw(self, pitch_deg, yaw_deg):
         """
          Set gimbal pitch and yaw angles.
-
+        
          This sets the desired pitch and yaw angles of a gimbal.
          Will return when the command is accepted, however, it might
          take the gimbal longer to actually be set to the new angles.
@@ -895,7 +895,7 @@ class Gimbal(AsyncBase):
     async def set_pitch_rate_and_yaw_rate(self, pitch_rate_deg_s, yaw_rate_deg_s):
         """
          Set gimbal angular rates around pitch and yaw axes.
-
+        
          This sets the desired angular rates around pitch and yaw axes of a gimbal.
          Will return when the command is accepted, however, it might
          take the gimbal longer to actually reach the angular rate.
@@ -929,7 +929,7 @@ class Gimbal(AsyncBase):
     async def set_mode(self, gimbal_mode):
         """
          Set gimbal mode.
-
+        
          This sets the desired yaw mode of a gimbal.
          Will return when the command is accepted. However, it might
          take the gimbal longer to actually be set to the new angles.
@@ -962,7 +962,7 @@ class Gimbal(AsyncBase):
     async def set_roi_location(self, latitude_deg, longitude_deg, altitude_m):
         """
          Set gimbal region of interest (ROI).
-
+        
          This sets a region of interest that the gimbal will point to.
          The gimbal will continue to point to the specified region until it
          receives a new command.
@@ -1002,12 +1002,12 @@ class Gimbal(AsyncBase):
     async def take_control(self, control_mode):
         """
          Take control.
-
+        
          There can be only two components in control of a gimbal at any given time.
          One with "primary" control, and one with "secondary" control. The way the
          secondary control is implemented is not specified and hence depends on the
          vehicle.
-
+        
          Components are expected to be cooperative, which means that they can
          override each other and should therefore do it carefully.
 
@@ -1039,7 +1039,7 @@ class Gimbal(AsyncBase):
     async def release_control(self):
         """
          Release control.
-
+        
          Release control, such that other components can control the gimbal.
 
          Raises
@@ -1061,7 +1061,7 @@ class Gimbal(AsyncBase):
     async def control(self):
         """
          Subscribe to control status updates.
-
+        
          This allows a component to know if it has primary, secondary or
          no control over the gimbal. Also, it gives the system and component ids
          of the other components in control (if any).
@@ -1089,7 +1089,7 @@ class Gimbal(AsyncBase):
     async def attitude(self):
         """
          Subscribe to attitude updates.
-
+        
          This gets you the gimbal's attitude and angular rate.
 
          Yields
