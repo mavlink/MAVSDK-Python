@@ -12,7 +12,7 @@ class LogStreamingRaw:
 
      Parameters
      ----------
-     data : std::string
+     data_base64 : std::string
           Ulog file stream data encoded as base64
 
      """
@@ -21,9 +21,9 @@ class LogStreamingRaw:
 
     def __init__(
             self,
-            data):
+            data_base64):
         """ Initializes the LogStreamingRaw object """
-        self.data = data
+        self.data_base64 = data_base64
 
     def __eq__(self, to_compare):
         """ Checks if two LogStreamingRaw are the same """
@@ -31,7 +31,7 @@ class LogStreamingRaw:
             # Try to compare - this likely fails when it is compared to a non
             # LogStreamingRaw object
             return \
-                (self.data == to_compare.data)
+                (self.data_base64 == to_compare.data_base64)
 
         except AttributeError:
             return False
@@ -39,7 +39,7 @@ class LogStreamingRaw:
     def __str__(self):
         """ LogStreamingRaw in string representation """
         struct_repr = ", ".join([
-                "data: " + str(self.data)
+                "data_base64: " + str(self.data_base64)
                 ])
 
         return f"LogStreamingRaw: [{struct_repr}]"
@@ -49,7 +49,7 @@ class LogStreamingRaw:
         """ Translates a gRPC struct to the SDK equivalent """
         return LogStreamingRaw(
                 
-                rpcLogStreamingRaw.data
+                rpcLogStreamingRaw.data_base64
                 )
 
     def translate_to_rpc(self, rpcLogStreamingRaw):
@@ -58,7 +58,7 @@ class LogStreamingRaw:
         
         
             
-        rpcLogStreamingRaw.data = self.data
+        rpcLogStreamingRaw.data_base64 = self.data_base64
             
         
         

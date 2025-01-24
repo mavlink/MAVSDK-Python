@@ -12,8 +12,8 @@ class RtcmData:
 
      Parameters
      ----------
-     data : std::string
-          The data encoded as a string
+     data_base64 : std::string
+          The data encoded as a base64 string
 
      """
 
@@ -21,9 +21,9 @@ class RtcmData:
 
     def __init__(
             self,
-            data):
+            data_base64):
         """ Initializes the RtcmData object """
-        self.data = data
+        self.data_base64 = data_base64
 
     def __eq__(self, to_compare):
         """ Checks if two RtcmData are the same """
@@ -31,7 +31,7 @@ class RtcmData:
             # Try to compare - this likely fails when it is compared to a non
             # RtcmData object
             return \
-                (self.data == to_compare.data)
+                (self.data_base64 == to_compare.data_base64)
 
         except AttributeError:
             return False
@@ -39,7 +39,7 @@ class RtcmData:
     def __str__(self):
         """ RtcmData in string representation """
         struct_repr = ", ".join([
-                "data: " + str(self.data)
+                "data_base64: " + str(self.data_base64)
                 ])
 
         return f"RtcmData: [{struct_repr}]"
@@ -49,7 +49,7 @@ class RtcmData:
         """ Translates a gRPC struct to the SDK equivalent """
         return RtcmData(
                 
-                rpcRtcmData.data
+                rpcRtcmData.data_base64
                 )
 
     def translate_to_rpc(self, rpcRtcmData):
@@ -58,7 +58,7 @@ class RtcmData:
         
         
             
-        rpcRtcmData.data = self.data
+        rpcRtcmData.data_base64 = self.data_base64
             
         
         

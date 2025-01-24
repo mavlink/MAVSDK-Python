@@ -141,6 +141,12 @@ class Information:
      definition_file_uri : std::string
           Camera definition URI (http or mavlink ftp)
 
+     image_in_video_mode_supported : bool
+          Camera supports taking images while in video mode
+
+     video_in_image_mode_supported : bool
+          Camera supports recording video while in image mode
+
      """
 
     
@@ -157,7 +163,9 @@ class Information:
             vertical_resolution_px,
             lens_id,
             definition_file_version,
-            definition_file_uri):
+            definition_file_uri,
+            image_in_video_mode_supported,
+            video_in_image_mode_supported):
         """ Initializes the Information object """
         self.vendor_name = vendor_name
         self.model_name = model_name
@@ -170,6 +178,8 @@ class Information:
         self.lens_id = lens_id
         self.definition_file_version = definition_file_version
         self.definition_file_uri = definition_file_uri
+        self.image_in_video_mode_supported = image_in_video_mode_supported
+        self.video_in_image_mode_supported = video_in_image_mode_supported
 
     def __eq__(self, to_compare):
         """ Checks if two Information are the same """
@@ -187,7 +197,9 @@ class Information:
                 (self.vertical_resolution_px == to_compare.vertical_resolution_px) and \
                 (self.lens_id == to_compare.lens_id) and \
                 (self.definition_file_version == to_compare.definition_file_version) and \
-                (self.definition_file_uri == to_compare.definition_file_uri)
+                (self.definition_file_uri == to_compare.definition_file_uri) and \
+                (self.image_in_video_mode_supported == to_compare.image_in_video_mode_supported) and \
+                (self.video_in_image_mode_supported == to_compare.video_in_image_mode_supported)
 
         except AttributeError:
             return False
@@ -205,7 +217,9 @@ class Information:
                 "vertical_resolution_px: " + str(self.vertical_resolution_px),
                 "lens_id: " + str(self.lens_id),
                 "definition_file_version: " + str(self.definition_file_version),
-                "definition_file_uri: " + str(self.definition_file_uri)
+                "definition_file_uri: " + str(self.definition_file_uri),
+                "image_in_video_mode_supported: " + str(self.image_in_video_mode_supported),
+                "video_in_image_mode_supported: " + str(self.video_in_image_mode_supported)
                 ])
 
         return f"Information: [{struct_repr}]"
@@ -245,7 +259,13 @@ class Information:
                 rpcInformation.definition_file_version,
                 
                 
-                rpcInformation.definition_file_uri
+                rpcInformation.definition_file_uri,
+                
+                
+                rpcInformation.image_in_video_mode_supported,
+                
+                
+                rpcInformation.video_in_image_mode_supported
                 )
 
     def translate_to_rpc(self, rpcInformation):
@@ -315,6 +335,18 @@ class Information:
         
             
         rpcInformation.definition_file_uri = self.definition_file_uri
+            
+        
+        
+        
+            
+        rpcInformation.image_in_video_mode_supported = self.image_in_video_mode_supported
+            
+        
+        
+        
+            
+        rpcInformation.video_in_image_mode_supported = self.video_in_image_mode_supported
             
         
         

@@ -522,6 +522,36 @@ class ParamServer(AsyncBase):
         return ParamServerResult.translate_from_rpc(response.param_server_result)
     
 
+    async def set_protocol(self, extended_protocol):
+        """
+         Set param protocol.
+
+         The extended param protocol is used by default. This allows to use the previous/normal one.
+
+         Note that camera definition files are meant to implement/use the extended protocol.
+
+         Parameters
+         ----------
+         extended_protocol : bool
+              Use extended protocol
+
+         Raises
+         ------
+         ParamServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = param_server_pb2.SetProtocolRequest()
+        request.extended_protocol = extended_protocol
+        response = await self._stub.SetProtocol(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != ParamServerResult.Result.SUCCESS:
+            raise ParamServerError(result, "set_protocol()", extended_protocol)
+        
+
     async def retrieve_param_int(self, name):
         """
          Retrieve an int parameter.
