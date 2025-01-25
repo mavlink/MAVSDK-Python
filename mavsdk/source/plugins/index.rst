@@ -42,3 +42,4 @@ Plugins
    component_metadata
    component_metadata_server
    log_streaming
+   events

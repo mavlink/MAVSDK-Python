@@ -883,6 +883,70 @@ class MissionRaw(AsyncBase):
         return mission_items
             
 
+    async def download_geofence(self):
+        """
+         Download a list of raw geofence items from the system (asynchronous).
+
+         Returns
+         -------
+         geofence_items : [MissionItem]
+              The geofence items
+
+         Raises
+         ------
+         MissionRawError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = mission_raw_pb2.DownloadGeofenceRequest()
+        response = await self._stub.DownloadGeofence(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != MissionRawResult.Result.SUCCESS:
+            raise MissionRawError(result, "download_geofence()")
+        
+
+        geofence_items = []
+        for geofence_items_rpc in response.geofence_items:
+            geofence_items.append(MissionItem.translate_from_rpc(geofence_items_rpc))
+
+        return geofence_items
+            
+
+    async def download_rallypoints(self):
+        """
+         Download a list of raw rallypoint items from the system (asynchronous).
+
+         Returns
+         -------
+         rallypoint_items : [MissionItem]
+              The rallypoint items
+
+         Raises
+         ------
+         MissionRawError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = mission_raw_pb2.DownloadRallypointsRequest()
+        response = await self._stub.DownloadRallypoints(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != MissionRawResult.Result.SUCCESS:
+            raise MissionRawError(result, "download_rallypoints()")
+        
+
+        rallypoint_items = []
+        for rallypoint_items_rpc in response.rallypoint_items:
+            rallypoint_items.append(MissionItem.translate_from_rpc(rallypoint_items_rpc))
+
+        return rallypoint_items
+            
+
     async def cancel_mission_download(self):
         """
          Cancel an ongoing mission download.

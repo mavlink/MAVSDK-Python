@@ -4043,54 +4043,6 @@ class Telemetry(AsyncBase):
         finally:
             attitude_angular_velocity_body_stream.cancel()
 
-    async def camera_attitude_quaternion(self):
-        """
-         Subscribe to 'camera attitude' updates (quaternion).
-
-         Yields
-         -------
-         attitude_quaternion : Quaternion
-              The next camera attitude (quaternion)
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeCameraAttitudeQuaternionRequest()
-        camera_attitude_quaternion_stream = self._stub.SubscribeCameraAttitudeQuaternion(request)
-
-        try:
-            async for response in camera_attitude_quaternion_stream:
-                
-
-            
-                yield Quaternion.translate_from_rpc(response.attitude_quaternion)
-        finally:
-            camera_attitude_quaternion_stream.cancel()
-
-    async def camera_attitude_euler(self):
-        """
-         Subscribe to 'camera attitude' updates (Euler).
-
-         Yields
-         -------
-         attitude_euler : EulerAngle
-              The next camera attitude (Euler)
-
-         
-        """
-
-        request = telemetry_pb2.SubscribeCameraAttitudeEulerRequest()
-        camera_attitude_euler_stream = self._stub.SubscribeCameraAttitudeEuler(request)
-
-        try:
-            async for response in camera_attitude_euler_stream:
-                
-
-            
-                yield EulerAngle.translate_from_rpc(response.attitude_euler)
-        finally:
-            camera_attitude_euler_stream.cancel()
-
     async def velocity_ned(self):
         """
          Subscribe to 'ground speed' updates (NED).
@@ -4825,34 +4777,9 @@ class Telemetry(AsyncBase):
             raise TelemetryError(result, "set_rate_attitude_euler()", rate_hz)
         
 
-    async def set_rate_camera_attitude(self, rate_hz):
-        """
-         Set rate of camera attitude updates.
-
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
-
-         Raises
-         ------
-         TelemetryError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = telemetry_pb2.SetRateCameraAttitudeRequest()
-        request.rate_hz = rate_hz
-        response = await self._stub.SetRateCameraAttitude(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result != TelemetryResult.Result.SUCCESS:
-            raise TelemetryError(result, "set_rate_camera_attitude()", rate_hz)
-        
-
     async def set_rate_velocity_ned(self, rate_hz):
         """
+         Set rate of camera attitude updates.
          Set rate to 'ground speed' updates (NED).
 
          Parameters

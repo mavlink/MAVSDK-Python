@@ -800,60 +800,6 @@ class Action(AsyncBase):
             raise ActionError(result, "set_takeoff_altitude()", altitude)
         
 
-    async def get_maximum_speed(self):
-        """
-         Get the vehicle maximum speed (in metres/second).
-
-         Returns
-         -------
-         speed : float
-              Maximum speed (in metres/second)
-
-         Raises
-         ------
-         ActionError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = action_pb2.GetMaximumSpeedRequest()
-        response = await self._stub.GetMaximumSpeed(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result != ActionResult.Result.SUCCESS:
-            raise ActionError(result, "get_maximum_speed()")
-        
-
-        return response.speed
-        
-
-    async def set_maximum_speed(self, speed):
-        """
-         Set vehicle maximum speed (in metres/second).
-
-         Parameters
-         ----------
-         speed : float
-              Maximum speed (in metres/second)
-
-         Raises
-         ------
-         ActionError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = action_pb2.SetMaximumSpeedRequest()
-        request.speed = speed
-        response = await self._stub.SetMaximumSpeed(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result != ActionResult.Result.SUCCESS:
-            raise ActionError(result, "set_maximum_speed()", speed)
-        
-
     async def get_return_to_launch_altitude(self):
         """
          Get the return to launch minimum return altitude (in meters).

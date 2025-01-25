@@ -86,6 +86,42 @@ class ControlMode(Enum):
         return self.name
 
 
+class SendMode(Enum):
+    """
+ 
+
+     Values
+     ------
+     ONCE
+          Send command exactly once with quality of service (use for sporadic commands slower than 1 Hz)
+
+     STREAM
+          Stream setpoint without quality of service (use for setpoints faster than 1 Hz).
+
+     """
+
+    
+    ONCE = 0
+    STREAM = 1
+
+    def translate_to_rpc(self):
+        if self == SendMode.ONCE:
+            return gimbal_pb2.SEND_MODE_ONCE
+        if self == SendMode.STREAM:
+            return gimbal_pb2.SEND_MODE_STREAM
+
+    @staticmethod
+    def translate_from_rpc(rpc_enum_value):
+        """ Parses a gRPC response """
+        if rpc_enum_value == gimbal_pb2.SEND_MODE_ONCE:
+            return SendMode.ONCE
+        if rpc_enum_value == gimbal_pb2.SEND_MODE_STREAM:
+            return SendMode.STREAM
+
+    def __str__(self):
+        return self.name
+
+
 class Quaternion:
     """
      Quaternion type.
@@ -391,6 +427,9 @@ class Attitude:
 
      Parameters
      ----------
+     gimbal_id : int32_t
+          Gimbal ID
+
      euler_angle_forward : EulerAngle
           Euler angle relative to forward
 
@@ -415,6 +454,7 @@ class Attitude:
 
     def __init__(
             self,
+            gimbal_id,
             euler_angle_forward,
             quaternion_forward,
             euler_angle_north,
@@ -422,6 +462,7 @@ class Attitude:
             angular_velocity,
             timestamp_us):
         """ Initializes the Attitude object """
+        self.gimbal_id = gimbal_id
         self.euler_angle_forward = euler_angle_forward
         self.quaternion_forward = quaternion_forward
         self.euler_angle_north = euler_angle_north
@@ -435,6 +476,7 @@ class Attitude:
             # Try to compare - this likely fails when it is compared to a non
             # Attitude object
             return \
+                (self.gimbal_id == to_compare.gimbal_id) and \
                 (self.euler_angle_forward == to_compare.euler_angle_forward) and \
                 (self.quaternion_forward == to_compare.quaternion_forward) and \
                 (self.euler_angle_north == to_compare.euler_angle_north) and \
@@ -448,6 +490,7 @@ class Attitude:
     def __str__(self):
         """ Attitude in string representation """
         struct_repr = ", ".join([
+                "gimbal_id: " + str(self.gimbal_id),
                 "euler_angle_forward: " + str(self.euler_angle_forward),
                 "quaternion_forward: " + str(self.quaternion_forward),
                 "euler_angle_north: " + str(self.euler_angle_north),
@@ -462,6 +505,9 @@ class Attitude:
     def translate_from_rpc(rpcAttitude):
         """ Translates a gRPC struct to the SDK equivalent """
         return Attitude(
+                
+                rpcAttitude.gimbal_id,
+                
                 
                 EulerAngle.translate_from_rpc(rpcAttitude.euler_angle_forward),
                 
@@ -484,6 +530,12 @@ class Attitude:
     def translate_to_rpc(self, rpcAttitude):
         """ Translates this SDK object into its gRPC equivalent """
 
+        
+        
+            
+        rpcAttitude.gimbal_id = self.gimbal_id
+            
+        
         
         
             
@@ -523,12 +575,218 @@ class Attitude:
         
 
 
+class GimbalItem:
+    """
+     Gimbal list item
+
+     Parameters
+     ----------
+     gimbal_id : int32_t
+          ID to address it, starting at 1 (0 means all gimbals)
+
+     vendor_name : std::string
+          Vendor name
+
+     model_name : std::string
+          Model name
+
+     custom_name : std::string
+          Custom name name
+
+     gimbal_manager_component_id : int32_t
+          MAVLink component of gimbal manager, for debugging purposes
+
+     gimbal_device_id : int32_t
+          MAVLink component of gimbal device
+
+     """
+
+    
+
+    def __init__(
+            self,
+            gimbal_id,
+            vendor_name,
+            model_name,
+            custom_name,
+            gimbal_manager_component_id,
+            gimbal_device_id):
+        """ Initializes the GimbalItem object """
+        self.gimbal_id = gimbal_id
+        self.vendor_name = vendor_name
+        self.model_name = model_name
+        self.custom_name = custom_name
+        self.gimbal_manager_component_id = gimbal_manager_component_id
+        self.gimbal_device_id = gimbal_device_id
+
+    def __eq__(self, to_compare):
+        """ Checks if two GimbalItem are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # GimbalItem object
+            return \
+                (self.gimbal_id == to_compare.gimbal_id) and \
+                (self.vendor_name == to_compare.vendor_name) and \
+                (self.model_name == to_compare.model_name) and \
+                (self.custom_name == to_compare.custom_name) and \
+                (self.gimbal_manager_component_id == to_compare.gimbal_manager_component_id) and \
+                (self.gimbal_device_id == to_compare.gimbal_device_id)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ GimbalItem in string representation """
+        struct_repr = ", ".join([
+                "gimbal_id: " + str(self.gimbal_id),
+                "vendor_name: " + str(self.vendor_name),
+                "model_name: " + str(self.model_name),
+                "custom_name: " + str(self.custom_name),
+                "gimbal_manager_component_id: " + str(self.gimbal_manager_component_id),
+                "gimbal_device_id: " + str(self.gimbal_device_id)
+                ])
+
+        return f"GimbalItem: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcGimbalItem):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return GimbalItem(
+                
+                rpcGimbalItem.gimbal_id,
+                
+                
+                rpcGimbalItem.vendor_name,
+                
+                
+                rpcGimbalItem.model_name,
+                
+                
+                rpcGimbalItem.custom_name,
+                
+                
+                rpcGimbalItem.gimbal_manager_component_id,
+                
+                
+                rpcGimbalItem.gimbal_device_id
+                )
+
+    def translate_to_rpc(self, rpcGimbalItem):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcGimbalItem.gimbal_id = self.gimbal_id
+            
+        
+        
+        
+            
+        rpcGimbalItem.vendor_name = self.vendor_name
+            
+        
+        
+        
+            
+        rpcGimbalItem.model_name = self.model_name
+            
+        
+        
+        
+            
+        rpcGimbalItem.custom_name = self.custom_name
+            
+        
+        
+        
+            
+        rpcGimbalItem.gimbal_manager_component_id = self.gimbal_manager_component_id
+            
+        
+        
+        
+            
+        rpcGimbalItem.gimbal_device_id = self.gimbal_device_id
+            
+        
+        
+
+
+class GimbalList:
+    """
+     Gimbal list
+
+     Parameters
+     ----------
+     gimbals : [GimbalItem]
+          Gimbal items.
+
+     """
+
+    
+
+    def __init__(
+            self,
+            gimbals):
+        """ Initializes the GimbalList object """
+        self.gimbals = gimbals
+
+    def __eq__(self, to_compare):
+        """ Checks if two GimbalList are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # GimbalList object
+            return \
+                (self.gimbals == to_compare.gimbals)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ GimbalList in string representation """
+        struct_repr = ", ".join([
+                "gimbals: " + str(self.gimbals)
+                ])
+
+        return f"GimbalList: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcGimbalList):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return GimbalList(
+                
+                list(map(lambda elem: GimbalItem.translate_from_rpc(elem), rpcGimbalList.gimbals))
+                )
+
+    def translate_to_rpc(self, rpcGimbalList):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpc_elems_list = []
+        for elem in self.gimbals:
+                
+            rpc_elem = gimbal_pb2.GimbalItem()
+            elem.translate_to_rpc(rpc_elem)
+            rpc_elems_list.append(rpc_elem)
+                
+        rpcGimbalList.gimbals.extend(rpc_elems_list)
+            
+        
+        
+
+
 class ControlStatus:
     """
      Control status
 
      Parameters
      ----------
+     gimbal_id : int32_t
+          Gimbal ID
+
      control_mode : ControlMode
           Control mode (none, primary or secondary)
 
@@ -550,12 +808,14 @@ class ControlStatus:
 
     def __init__(
             self,
+            gimbal_id,
             control_mode,
             sysid_primary_control,
             compid_primary_control,
             sysid_secondary_control,
             compid_secondary_control):
         """ Initializes the ControlStatus object """
+        self.gimbal_id = gimbal_id
         self.control_mode = control_mode
         self.sysid_primary_control = sysid_primary_control
         self.compid_primary_control = compid_primary_control
@@ -568,6 +828,7 @@ class ControlStatus:
             # Try to compare - this likely fails when it is compared to a non
             # ControlStatus object
             return \
+                (self.gimbal_id == to_compare.gimbal_id) and \
                 (self.control_mode == to_compare.control_mode) and \
                 (self.sysid_primary_control == to_compare.sysid_primary_control) and \
                 (self.compid_primary_control == to_compare.compid_primary_control) and \
@@ -580,6 +841,7 @@ class ControlStatus:
     def __str__(self):
         """ ControlStatus in string representation """
         struct_repr = ", ".join([
+                "gimbal_id: " + str(self.gimbal_id),
                 "control_mode: " + str(self.control_mode),
                 "sysid_primary_control: " + str(self.sysid_primary_control),
                 "compid_primary_control: " + str(self.compid_primary_control),
@@ -593,6 +855,9 @@ class ControlStatus:
     def translate_from_rpc(rpcControlStatus):
         """ Translates a gRPC struct to the SDK equivalent """
         return ControlStatus(
+                
+                rpcControlStatus.gimbal_id,
+                
                 
                 ControlMode.translate_from_rpc(rpcControlStatus.control_mode),
                 
@@ -612,6 +877,12 @@ class ControlStatus:
     def translate_to_rpc(self, rpcControlStatus):
         """ Translates this SDK object into its gRPC equivalent """
 
+        
+        
+            
+        rpcControlStatus.gimbal_id = self.gimbal_id
+            
+        
         
         
             
@@ -685,6 +956,9 @@ class GimbalResult:
          NO_SYSTEM
               No system connected
 
+         INVALID_ARGUMENT
+              Invalid argument
+
          """
 
         
@@ -694,6 +968,7 @@ class GimbalResult:
         TIMEOUT = 3
         UNSUPPORTED = 4
         NO_SYSTEM = 5
+        INVALID_ARGUMENT = 6
 
         def translate_to_rpc(self):
             if self == GimbalResult.Result.UNKNOWN:
@@ -708,6 +983,8 @@ class GimbalResult:
                 return gimbal_pb2.GimbalResult.RESULT_UNSUPPORTED
             if self == GimbalResult.Result.NO_SYSTEM:
                 return gimbal_pb2.GimbalResult.RESULT_NO_SYSTEM
+            if self == GimbalResult.Result.INVALID_ARGUMENT:
+                return gimbal_pb2.GimbalResult.RESULT_INVALID_ARGUMENT
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -724,6 +1001,8 @@ class GimbalResult:
                 return GimbalResult.Result.UNSUPPORTED
             if rpc_enum_value == gimbal_pb2.GimbalResult.RESULT_NO_SYSTEM:
                 return GimbalResult.Result.NO_SYSTEM
+            if rpc_enum_value == gimbal_pb2.GimbalResult.RESULT_INVALID_ARGUMENT:
+                return GimbalResult.Result.INVALID_ARGUMENT
 
         def __str__(self):
             return self.name
@@ -820,7 +1099,7 @@ class Gimbal(AsyncBase):
         return GimbalResult.translate_from_rpc(response.gimbal_result)
     
 
-    async def set_angles(self, roll_deg, pitch_deg, yaw_deg):
+    async def set_angles(self, gimbal_id, roll_deg, pitch_deg, yaw_deg, gimbal_mode, send_mode):
         """
          Set gimbal roll, pitch and yaw angles.
 
@@ -828,16 +1107,27 @@ class Gimbal(AsyncBase):
          Will return when the command is accepted, however, it might
          take the gimbal longer to actually be set to the new angles.
 
+         Note that the roll angle needs to be set to 0 when send_mode is Once.
+
          Parameters
          ----------
+         gimbal_id : int32_t
+              Gimbal id to address (0 for all gimbals)
+
          roll_deg : float
-              Roll angle in degrees
+              Roll angle in degrees (negative down on the right)
 
          pitch_deg : float
               Pitch angle in degrees (negative points down)
 
          yaw_deg : float
               Yaw angle in degrees (positive is clock-wise, range: -180 to 180 or 0 to 360)
+
+         gimbal_mode : GimbalMode
+              Gimbal mode to use
+
+         send_mode : SendMode
+              Send mode of command/setpoint
 
          Raises
          ------
@@ -846,120 +1136,86 @@ class Gimbal(AsyncBase):
         """
 
         request = gimbal_pb2.SetAnglesRequest()
+        request.gimbal_id = gimbal_id
         request.roll_deg = roll_deg
         request.pitch_deg = pitch_deg
         request.yaw_deg = yaw_deg
+        
+        request.gimbal_mode = gimbal_mode.translate_to_rpc()
+                
+            
+        
+        request.send_mode = send_mode.translate_to_rpc()
+                
+            
         response = await self._stub.SetAngles(request)
 
         
         result = self._extract_result(response)
 
         if result.result != GimbalResult.Result.SUCCESS:
-            raise GimbalError(result, "set_angles()", roll_deg, pitch_deg, yaw_deg)
+            raise GimbalError(result, "set_angles()", gimbal_id, roll_deg, pitch_deg, yaw_deg, gimbal_mode, send_mode)
         
 
-    async def set_pitch_and_yaw(self, pitch_deg, yaw_deg):
+    async def set_angular_rates(self, gimbal_id, roll_rate_deg_s, pitch_rate_deg_s, yaw_rate_deg_s, gimbal_mode, send_mode):
         """
-         Set gimbal pitch and yaw angles.
+         Set gimbal angular rates.
 
-         This sets the desired pitch and yaw angles of a gimbal.
-         Will return when the command is accepted, however, it might
-         take the gimbal longer to actually be set to the new angles.
-
-         Parameters
-         ----------
-         pitch_deg : float
-              Pitch angle in degrees (negative points down)
-
-         yaw_deg : float
-              Yaw angle in degrees (positive is clock-wise, range: -180 to 180 or 0 to 360)
-
-         Raises
-         ------
-         GimbalError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = gimbal_pb2.SetPitchAndYawRequest()
-        request.pitch_deg = pitch_deg
-        request.yaw_deg = yaw_deg
-        response = await self._stub.SetPitchAndYaw(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result != GimbalResult.Result.SUCCESS:
-            raise GimbalError(result, "set_pitch_and_yaw()", pitch_deg, yaw_deg)
-        
-
-    async def set_pitch_rate_and_yaw_rate(self, pitch_rate_deg_s, yaw_rate_deg_s):
-        """
-         Set gimbal angular rates around pitch and yaw axes.
-
-         This sets the desired angular rates around pitch and yaw axes of a gimbal.
+         This sets the desired angular rates around roll, pitch and yaw axes of a gimbal.
          Will return when the command is accepted, however, it might
          take the gimbal longer to actually reach the angular rate.
 
+         Note that the roll angle needs to be set to 0 when send_mode is Once.
+
          Parameters
          ----------
+         gimbal_id : int32_t
+              Gimbal id to address (0 for all gimbals)
+
+         roll_rate_deg_s : float
+              Angular rate around roll axis in degrees/second (negative down on the right)
+
          pitch_rate_deg_s : float
               Angular rate around pitch axis in degrees/second (negative downward)
 
          yaw_rate_deg_s : float
               Angular rate around yaw axis in degrees/second (positive is clock-wise)
 
+         gimbal_mode : GimbalMode
+              Gimbal mode to use
+
+         send_mode : SendMode
+              Send mode of command/setpoint
+
          Raises
          ------
          GimbalError
              If the request fails. The error contains the reason for the failure.
         """
 
-        request = gimbal_pb2.SetPitchRateAndYawRateRequest()
+        request = gimbal_pb2.SetAngularRatesRequest()
+        request.gimbal_id = gimbal_id
+        request.roll_rate_deg_s = roll_rate_deg_s
         request.pitch_rate_deg_s = pitch_rate_deg_s
         request.yaw_rate_deg_s = yaw_rate_deg_s
-        response = await self._stub.SetPitchRateAndYawRate(request)
-
-        
-        result = self._extract_result(response)
-
-        if result.result != GimbalResult.Result.SUCCESS:
-            raise GimbalError(result, "set_pitch_rate_and_yaw_rate()", pitch_rate_deg_s, yaw_rate_deg_s)
-        
-
-    async def set_mode(self, gimbal_mode):
-        """
-         Set gimbal mode.
-
-         This sets the desired yaw mode of a gimbal.
-         Will return when the command is accepted. However, it might
-         take the gimbal longer to actually be set to the new angles.
-
-         Parameters
-         ----------
-         gimbal_mode : GimbalMode
-              The mode to be set.
-
-         Raises
-         ------
-         GimbalError
-             If the request fails. The error contains the reason for the failure.
-        """
-
-        request = gimbal_pb2.SetModeRequest()
         
         request.gimbal_mode = gimbal_mode.translate_to_rpc()
                 
             
-        response = await self._stub.SetMode(request)
+        
+        request.send_mode = send_mode.translate_to_rpc()
+                
+            
+        response = await self._stub.SetAngularRates(request)
 
         
         result = self._extract_result(response)
 
         if result.result != GimbalResult.Result.SUCCESS:
-            raise GimbalError(result, "set_mode()", gimbal_mode)
+            raise GimbalError(result, "set_angular_rates()", gimbal_id, roll_rate_deg_s, pitch_rate_deg_s, yaw_rate_deg_s, gimbal_mode, send_mode)
         
 
-    async def set_roi_location(self, latitude_deg, longitude_deg, altitude_m):
+    async def set_roi_location(self, gimbal_id, latitude_deg, longitude_deg, altitude_m):
         """
          Set gimbal region of interest (ROI).
 
@@ -971,6 +1227,9 @@ class Gimbal(AsyncBase):
 
          Parameters
          ----------
+         gimbal_id : int32_t
+              Gimbal id to address (0 for all gimbals)
+
          latitude_deg : double
               Latitude in degrees
 
@@ -987,6 +1246,7 @@ class Gimbal(AsyncBase):
         """
 
         request = gimbal_pb2.SetRoiLocationRequest()
+        request.gimbal_id = gimbal_id
         request.latitude_deg = latitude_deg
         request.longitude_deg = longitude_deg
         request.altitude_m = altitude_m
@@ -996,10 +1256,10 @@ class Gimbal(AsyncBase):
         result = self._extract_result(response)
 
         if result.result != GimbalResult.Result.SUCCESS:
-            raise GimbalError(result, "set_roi_location()", latitude_deg, longitude_deg, altitude_m)
+            raise GimbalError(result, "set_roi_location()", gimbal_id, latitude_deg, longitude_deg, altitude_m)
         
 
-    async def take_control(self, control_mode):
+    async def take_control(self, gimbal_id, control_mode):
         """
          Take control.
 
@@ -1013,6 +1273,9 @@ class Gimbal(AsyncBase):
 
          Parameters
          ----------
+         gimbal_id : int32_t
+              Gimbal id to address (0 for all gimbals)
+
          control_mode : ControlMode
               Control mode (primary or secondary)
 
@@ -1023,6 +1286,7 @@ class Gimbal(AsyncBase):
         """
 
         request = gimbal_pb2.TakeControlRequest()
+        request.gimbal_id = gimbal_id
         
         request.control_mode = control_mode.translate_to_rpc()
                 
@@ -1033,14 +1297,19 @@ class Gimbal(AsyncBase):
         result = self._extract_result(response)
 
         if result.result != GimbalResult.Result.SUCCESS:
-            raise GimbalError(result, "take_control()", control_mode)
+            raise GimbalError(result, "take_control()", gimbal_id, control_mode)
         
 
-    async def release_control(self):
+    async def release_control(self, gimbal_id):
         """
          Release control.
 
          Release control, such that other components can control the gimbal.
+
+         Parameters
+         ----------
+         gimbal_id : int32_t
+              Gimbal id to address (0 for all gimbals)
 
          Raises
          ------
@@ -1049,16 +1318,44 @@ class Gimbal(AsyncBase):
         """
 
         request = gimbal_pb2.ReleaseControlRequest()
+        request.gimbal_id = gimbal_id
         response = await self._stub.ReleaseControl(request)
 
         
         result = self._extract_result(response)
 
         if result.result != GimbalResult.Result.SUCCESS:
-            raise GimbalError(result, "release_control()")
+            raise GimbalError(result, "release_control()", gimbal_id)
         
 
-    async def control(self):
+    async def gimbal_list(self):
+        """
+         Subscribe to list of gimbals.
+
+         This allows to find out what gimbals are connected to the system.
+         Based on the gimbal ID, we can then address a specific gimbal.
+
+         Yields
+         -------
+         gimbal_list : GimbalList
+              Gimbal list
+
+         
+        """
+
+        request = gimbal_pb2.SubscribeGimbalListRequest()
+        gimbal_list_stream = self._stub.SubscribeGimbalList(request)
+
+        try:
+            async for response in gimbal_list_stream:
+                
+
+            
+                yield GimbalList.translate_from_rpc(response.gimbal_list)
+        finally:
+            gimbal_list_stream.cancel()
+
+    async def control_status(self):
         """
          Subscribe to control status updates.
 
@@ -1074,17 +1371,54 @@ class Gimbal(AsyncBase):
          
         """
 
-        request = gimbal_pb2.SubscribeControlRequest()
-        control_stream = self._stub.SubscribeControl(request)
+        request = gimbal_pb2.SubscribeControlStatusRequest()
+        control_status_stream = self._stub.SubscribeControlStatus(request)
 
         try:
-            async for response in control_stream:
+            async for response in control_status_stream:
                 
 
             
                 yield ControlStatus.translate_from_rpc(response.control_status)
         finally:
-            control_stream.cancel()
+            control_status_stream.cancel()
+
+    async def get_control_status(self, gimbal_id):
+        """
+         Get control status for specific gimbal.
+
+         Parameters
+         ----------
+         gimbal_id : int32_t
+              Gimbal ID
+
+         Returns
+         -------
+         control_status : ControlStatus
+              Control status
+
+         Raises
+         ------
+         GimbalError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = gimbal_pb2.GetControlStatusRequest()
+        
+            
+        request.gimbal_id = gimbal_id
+            
+        response = await self._stub.GetControlStatus(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != GimbalResult.Result.SUCCESS:
+            raise GimbalError(result, "get_control_status()", gimbal_id)
+        
+
+        return ControlStatus.translate_from_rpc(response.control_status)
+            
 
     async def attitude(self):
         """
@@ -1111,3 +1445,40 @@ class Gimbal(AsyncBase):
                 yield Attitude.translate_from_rpc(response.attitude)
         finally:
             attitude_stream.cancel()
+
+    async def get_attitude(self, gimbal_id):
+        """
+         Get attitude for specific gimbal.
+
+         Parameters
+         ----------
+         gimbal_id : int32_t
+              Gimbal ID
+
+         Returns
+         -------
+         attitude : Attitude
+              The attitude
+
+         Raises
+         ------
+         GimbalError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = gimbal_pb2.GetAttitudeRequest()
+        
+            
+        request.gimbal_id = gimbal_id
+            
+        response = await self._stub.GetAttitude(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != GimbalResult.Result.SUCCESS:
+            raise GimbalError(result, "get_attitude()", gimbal_id)
+        
+
+        return Attitude.translate_from_rpc(response.attitude)
+            

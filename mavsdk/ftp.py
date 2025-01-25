@@ -6,6 +6,82 @@ from . import ftp_pb2, ftp_pb2_grpc
 from enum import Enum
 
 
+class ListDirectoryData:
+    """
+ 
+
+     Parameters
+     ----------
+     dirs : [std::string]
+          The found directories.
+
+     files : [std::string]
+          The found files.
+
+     """
+
+    
+
+    def __init__(
+            self,
+            dirs,
+            files):
+        """ Initializes the ListDirectoryData object """
+        self.dirs = dirs
+        self.files = files
+
+    def __eq__(self, to_compare):
+        """ Checks if two ListDirectoryData are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # ListDirectoryData object
+            return \
+                (self.dirs == to_compare.dirs) and \
+                (self.files == to_compare.files)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ ListDirectoryData in string representation """
+        struct_repr = ", ".join([
+                "dirs: " + str(self.dirs),
+                "files: " + str(self.files)
+                ])
+
+        return f"ListDirectoryData: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcListDirectoryData):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return ListDirectoryData(
+                
+                rpcListDirectoryData.dirs,
+                
+                
+                rpcListDirectoryData.files
+                )
+
+    def translate_to_rpc(self, rpcListDirectoryData):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        for elem in self.dirs:
+          rpcListDirectoryData.dirs.append(elem)
+            
+        
+        
+        
+            
+        for elem in self.files:
+          rpcListDirectoryData.files.append(elem)
+            
+        
+        
+
+
 class ProgressData:
     """
      Progress data type for file transfer.
@@ -426,8 +502,8 @@ class Ftp(AsyncBase):
 
          Returns
          -------
-         paths : [std::string]
-              The found directory contents.
+         data : ListDirectoryData
+              The found directories and files.
 
          Raises
          ------
@@ -449,8 +525,8 @@ class Ftp(AsyncBase):
             raise FtpError(result, "list_directory()", remote_dir)
         
 
-        return response.paths
-        
+        return ListDirectoryData.translate_from_rpc(response.data)
+            
 
     async def create_directory(self, remote_dir):
         """
