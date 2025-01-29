@@ -2,86 +2,96 @@
 
 import asyncio
 from mavsdk import System
-from mavsdk.gimbal import GimbalMode, ControlMode
+from mavsdk.gimbal import GimbalMode, ControlMode, SendMode
 
+
+async def get_gimbals(drone, timeout=10):
+    gimbals_found = [] # List to store all gimbals found
+
+    async def fetch_gimbals():
+        async for gimbal_list in drone.gimbal.gimbal_list(): # gimbal_list is a GimbalList object
+            for gimbal in gimbal_list.gimbals: # gimbal_list.gimbals contains GimbalItem objects
+                print(f"Found Gimbal: ID={gimbal.gimbal_id}, Model={gimbal.model_name}, Vendor={gimbal.vendor_name}, Device ID={gimbal.gimbal_device_id}")
+                gimbals_found.append(gimbal)
+        return
+    
+    try:
+        await asyncio.wait_for(fetch_gimbals(), timeout=timeout) # Apply timeout to async loop
+        return gimbals_found
+    except asyncio.TimeoutError:
+        print("Timeout: No gimbals found.")
 
 async def run():
     # Init the drone
     drone = System()
     await drone.connect(system_address="udp://:14540")
 
-    # Start printing gimbal position updates
-    print_gimbal_position_task = \
-        asyncio.ensure_future(print_gimbal_position(drone))
+    gimbals = await get_gimbals(drone)
 
-    print("Taking control of gimbal")
-    await drone.gimbal.take_control(ControlMode.PRIMARY)
+    for gimbal in gimbals:
 
-    # Set the gimbal to YAW_LOCK (= 1) mode (see docs for the difference)
-    # Other valid values: YAW_FOLLOW (= 0)
-    # YAW_LOCK will fix the gimbal pointing to an absolute direction,
-    # whereas YAW_FOLLOW will point relative to vehicle heading.
-    print("Setting gimbal mode")
-    await drone.gimbal.set_mode(GimbalMode.YAW_FOLLOW)
+        # Start printing gimbal position updates
+        print_gimbal_position_task = asyncio.create_task(print_gimbal_attitude(gimbal.gimbal_id, drone))
 
-    print("Look forward first")
-    await drone.gimbal.set_pitch_and_yaw(0, 0)
-    await asyncio.sleep(1)
+        print("Taking control of gimbal with ID", gimbal.gimbal_id)
+        await drone.gimbal.take_control(gimbal.gimbal_id, ControlMode.PRIMARY)
 
-    print("Look down")
-    await drone.gimbal.set_pitch_and_yaw(-90, 0)
-    await asyncio.sleep(2)
+        print("Look forward with gimbal ID", gimbal.gimbal_id)
+        await drone.gimbal.set_angles(gimbal.gimbal_id, 0, 0, 0, GimbalMode.YAW_FOLLOW, SendMode.ONCE)
+        await asyncio.sleep(2)
 
-    print("Back to horizontal")
-    await drone.gimbal.set_pitch_and_yaw(0, 0)
-    await asyncio.sleep(2)
+        print("Look down with gimbal ID", gimbal.gimbal_id)
+        await drone.gimbal.set_angles(gimbal.gimbal_id, 0, -90, 0, GimbalMode.YAW_FOLLOW, SendMode.ONCE)
+        await asyncio.sleep(4)
 
-    print("Slowly look up")
-    await drone.gimbal.set_pitch_rate_and_yaw_rate(10, 0)
-    await asyncio.sleep(3)
+        print("Back to horizontal with gimbal ID", gimbal.gimbal_id)
+        await drone.gimbal.set_angles(gimbal.gimbal_id, 0, 0, 0, GimbalMode.YAW_FOLLOW, SendMode.ONCE)
+        await asyncio.sleep(4)
 
-    print("Back to horizontal")
-    await drone.gimbal.set_pitch_and_yaw(0, 0)
-    await asyncio.sleep(2)
+        print("Slowly look up with gimbal ID", gimbal.gimbal_id)
+        await drone.gimbal.set_angular_rates(gimbal.gimbal_id, 0, 5, 0, GimbalMode.YAW_FOLLOW, SendMode.STREAM)
+        await asyncio.sleep(4)
 
-    print("Look right")
-    await drone.gimbal.set_pitch_and_yaw(0, 90)
-    await asyncio.sleep(2)
+        print("Back to horizontal with gimbal ID", gimbal.gimbal_id)
+        await drone.gimbal.set_angles(gimbal.gimbal_id, 0, 0, 0, GimbalMode.YAW_FOLLOW, SendMode.ONCE)
+        await asyncio.sleep(4)
 
-    print("Look forward again")
-    await drone.gimbal.set_pitch_and_yaw(0, 0)
-    await asyncio.sleep(2)
+        print("Look right with gimbal ID", gimbal.gimbal_id)
+        await drone.gimbal.set_angles(gimbal.gimbal_id, 0, 0, 90, GimbalMode.YAW_FOLLOW, SendMode.ONCE)
+        await asyncio.sleep(4)
 
-    print("Slowly look to the left")
-    await drone.gimbal.set_pitch_rate_and_yaw_rate(0, -20)
-    await asyncio.sleep(3)
+        print("Look forward again with gimbal ID", gimbal.gimbal_id)
+        await drone.gimbal.set_angles(gimbal.gimbal_id, 0, 0, 0, GimbalMode.YAW_FOLLOW, SendMode.ONCE)
+        await asyncio.sleep(4)
 
-    print("Look forward again")
-    await drone.gimbal.set_pitch_and_yaw(0, 0)
-    await asyncio.sleep(2)
+        print("Slowly look to the left with gimbal ID", gimbal.gimbal_id)
+        await drone.gimbal.set_angular_rates(gimbal.gimbal_id, 0, 0, -5, GimbalMode.YAW_FOLLOW, SendMode.STREAM)
+        await asyncio.sleep(4)
 
-    # Set the gimbal to track a region of interest (lat, lon, altitude)
-    # Units are degrees and meters MSL respectively
-    print("Look at a ROI (region of interest)")
-    await drone.gimbal.set_roi_location(47.39743832, 8.5463316, 488)
-    await asyncio.sleep(3)
+        print("Look forward again with gimbal ID", gimbal.gimbal_id)
+        await drone.gimbal.set_angles(gimbal.gimbal_id, 0, 0, 0, GimbalMode.YAW_FOLLOW, SendMode.ONCE)
+        await asyncio.sleep(4)
 
-    print("Look forward again")
-    await drone.gimbal.set_pitch_and_yaw(0, 0)
-    await asyncio.sleep(2)
+        # Set the gimbal to track a region of interest (lat, lon, altitude)
+        # Units are degrees and meters MSL respectively
+        print("Look at a ROI (region of interest) with gimbal ID", gimbal.gimbal_id)
+        await drone.gimbal.set_roi_location(gimbal.gimbal_id, 47.39743832, 8.5463316, 488)
+        await asyncio.sleep(4)
 
-    print("Release control of gimbal again")
-    await drone.gimbal.release_control()
+        print("Back to forward again with gimbal ID", gimbal.gimbal_id)
+        await drone.gimbal.set_angles(gimbal.gimbal_id, 0, 0, 0, GimbalMode.YAW_FOLLOW, SendMode.ONCE)
+        await asyncio.sleep(4)
 
-    print_gimbal_position_task.cancel()
+        print("Release control of gimbal with ID", gimbal.gimbal_id)
+        await drone.gimbal.release_control(gimbal.gimbal_id)
 
+        print_gimbal_position_task.cancel()
 
-async def print_gimbal_position(drone):
-    # Report gimbal position updates asynchronously
-    # Note that we are getting gimbal position updates in
-    # euler angles; we can also get them as quaternions
-    async for angle in drone.telemetry.camera_attitude_euler():
-        print(f"Gimbal pitch: {angle.pitch_deg}, yaw: {angle.yaw_deg}")
+async def print_gimbal_attitude(gimbal_id, drone):
+    while True:
+        attitude = await drone.gimbal.get_attitude(gimbal_id)
+        print(f"Gimbal ID {gimbal_id} pitch: {attitude.euler_angle_forward.pitch_deg}, yaw: {attitude.euler_angle_forward.yaw_deg}")
+        await asyncio.sleep(0.5)
 
 
 if __name__ == "__main__":
