@@ -3,6 +3,7 @@
 import asyncio
 import serial
 from mavsdk import System, rtk
+import base64
 
 PREAMBLE_RTCM = 0xD3
 PREAMBLE_UBX = 0xB5
@@ -135,15 +136,13 @@ async def send_rtcm(drone):
                 if rtcm_correction_data is None:
                     continue
 
-                # We convert the data to a string here as the API wants it even
-                # though it should be raw bytes.
-                # This creates an odd Python string that gets decoded on the
-                # C++ server side.
-                # With MAVSDK v2, the API will change to a vector of bytes
-                # instead of this clunky string.
+                # Convert the rtcm data from a bytearray to a base64.
+                # In MAVSDK v3 the rtcm data is expected to be base64 encoded string .
+                base64_rtcm_data = base64.b64encode(rtcm_correction_data).decode('utf-8')
 
+                # Send RTCM
                 await drone.rtk.send_rtcm_data(
-                    rtk.RtcmData(str(rtcm_correction_data)))
+                    rtk.RtcmData(base64_rtcm_data))
 
             elif ord(preamble) == PREAMBLE_UBX:
                 ubx = ubx_parser.read_packet(ublox, preamble)
