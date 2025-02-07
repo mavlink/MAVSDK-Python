@@ -136,9 +136,11 @@ async def send_rtcm(drone):
                 if rtcm_correction_data is None:
                     continue
 
-                # Convert the rtcm data from a bytearray to a base64.
-                # In MAVSDK v3 the rtcm data is expected to be base64 encoded string .
-                base64_rtcm_data = base64.b64encode(rtcm_correction_data).decode('utf-8')
+                # Convert the rtcm data to a base64, 
+                # In MAVSDK v3 the rtcm data is expected 
+                # to be base64 encoded string .
+                base64_rtcm_data = base64.b64encode(
+                    rtcm_correction_data).decode('utf-8')
 
                 # Send RTCM
                 await drone.rtk.send_rtcm_data(
