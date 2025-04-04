@@ -942,3 +942,58 @@ class ActionServer(AsyncBase):
 
         return AllowableFlightModes.translate_from_rpc(response.flight_modes)
             
+
+    async def set_armed_state(self, is_armed):
+        """
+         Set/override the armed/disarmed state of the vehicle directly, and notify subscribers
+
+         Parameters
+         ----------
+         is_armed : bool
+              Is armed now?
+
+         Raises
+         ------
+         ActionServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = action_server_pb2.SetArmedStateRequest()
+        request.is_armed = is_armed
+        response = await self._stub.SetArmedState(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != ActionServerResult.Result.SUCCESS:
+            raise ActionServerError(result, "set_armed_state()", is_armed)
+        
+
+    async def set_flight_mode(self, flight_mode):
+        """
+         Set/override the flight mode of the vehicle directly, and notify subscribers
+
+         Parameters
+         ----------
+         flight_mode : FlightMode
+              Current vehicle flight mode, e.g. Takeoff/Mission/Land/etc.
+
+         Raises
+         ------
+         ActionServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = action_server_pb2.SetFlightModeRequest()
+        
+        request.flight_mode = flight_mode.translate_to_rpc()
+                
+            
+        response = await self._stub.SetFlightMode(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != ActionServerResult.Result.SUCCESS:
+            raise ActionServerError(result, "set_flight_mode()", flight_mode)
+        
