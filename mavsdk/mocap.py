@@ -1116,7 +1116,6 @@ class MocapError(Exception):
 
 class Mocap(AsyncBase):
     """
-     *
      Allows interfacing a vehicle with a motion capture system in
      order to allow navigation without global positioning sources available
      (e.g. indoors, or when flying under a bridge. etc.).

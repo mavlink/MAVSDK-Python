@@ -8,26 +8,34 @@ from enum import Enum
 
 class LogLevel(Enum):
     """
- 
+     Log level type
 
      Values
      ------
      EMERGENCY
-         
+          Emergency
+
      ALERT
-         
+          Alert
+
      CRITICAL
-         
+          Critical
+
      ERROR
-         
+          Error
+
      WARNING
-         
+          Warning
+
      NOTICE
-         
+          Notice
+
      INFO
-         
+          Info
+
      DEBUG
-         
+          Debug
+
      """
 
     
@@ -84,7 +92,7 @@ class LogLevel(Enum):
 
 class Event:
     """
- 
+     Event type
 
      Parameters
      ----------
@@ -98,7 +106,8 @@ class Event:
           Detailed description (optional, might be multiple lines)
 
      log_level : LogLevel
-         
+          Log level of message
+
      event_namespace : std::string
           Namespace, e.g. "px4"
 
@@ -221,7 +230,7 @@ class Event:
 
 class HealthAndArmingCheckProblem:
     """
- 
+     Health and arming check problem type
 
      Parameters
      ----------
@@ -232,7 +241,8 @@ class HealthAndArmingCheckProblem:
           Detailed description (optional, might be multiple lines)
 
      log_level : LogLevel
-         
+          Log level of message
+
      health_component : std::string
           Associated health component, e.g. "gps"
 
@@ -423,7 +433,7 @@ class HealthAndArmingCheckMode:
 
 class HealthComponentReport:
     """
- 
+     Health component report type
 
      Parameters
      ----------
@@ -545,7 +555,7 @@ class HealthComponentReport:
 
 class HealthAndArmingCheckReport:
     """
- 
+     Health and arming check report type
 
      Parameters
      ----------
@@ -665,26 +675,37 @@ class EventsResult:
     
     class Result(Enum):
         """
-     
+         Possible results returned
 
          Values
          ------
          SUCCESS
-             
+              Successful result
+
          NOT_AVAILABLE
-             
+              Not available
+
          CONNECTION_ERROR
-             
+              Connection error
+
          UNSUPPORTED
-             
+              Unsupported
+
          DENIED
-             
+              Denied
+
          FAILED
-             
+              Failed
+
          TIMEOUT
-             
+              Timeout
+
          NO_SYSTEM
-             
+              No system available
+
+         UNKNOWN
+              Unknown result
+
          """
 
         
@@ -696,6 +717,7 @@ class EventsResult:
         FAILED = 5
         TIMEOUT = 6
         NO_SYSTEM = 7
+        UNKNOWN = 8
 
         def translate_to_rpc(self):
             if self == EventsResult.Result.SUCCESS:
@@ -714,6 +736,8 @@ class EventsResult:
                 return events_pb2.EventsResult.RESULT_TIMEOUT
             if self == EventsResult.Result.NO_SYSTEM:
                 return events_pb2.EventsResult.RESULT_NO_SYSTEM
+            if self == EventsResult.Result.UNKNOWN:
+                return events_pb2.EventsResult.RESULT_UNKNOWN
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -734,6 +758,8 @@ class EventsResult:
                 return EventsResult.Result.TIMEOUT
             if rpc_enum_value == events_pb2.EventsResult.RESULT_NO_SYSTEM:
                 return EventsResult.Result.NO_SYSTEM
+            if rpc_enum_value == events_pb2.EventsResult.RESULT_UNKNOWN:
+                return EventsResult.Result.UNKNOWN
 
         def __str__(self):
             return self.name
@@ -837,7 +863,8 @@ class Events(AsyncBase):
          Yields
          -------
          event : Event
-             
+              The event
+
          
         """
 
@@ -860,7 +887,8 @@ class Events(AsyncBase):
          Yields
          -------
          report : HealthAndArmingCheckReport
-             
+              The report
+
          
         """
 
@@ -883,7 +911,8 @@ class Events(AsyncBase):
          Returns
          -------
          report : HealthAndArmingCheckReport
-             
+              The report
+
          Raises
          ------
          EventsError

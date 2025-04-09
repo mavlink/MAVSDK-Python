@@ -2563,6 +2563,15 @@ class FixedwingMetrics:
      climb_rate_m_s : float
           Current climb rate in metres per second
 
+     groundspeed_m_s : float
+          Current groundspeed metres per second
+
+     heading_deg : float
+          Current heading in compass units (0-360, 0=north)
+
+     absolute_altitude_m : float
+          Current altitude in metres (MSL)
+
      """
 
     
@@ -2571,11 +2580,17 @@ class FixedwingMetrics:
             self,
             airspeed_m_s,
             throttle_percentage,
-            climb_rate_m_s):
+            climb_rate_m_s,
+            groundspeed_m_s,
+            heading_deg,
+            absolute_altitude_m):
         """ Initializes the FixedwingMetrics object """
         self.airspeed_m_s = airspeed_m_s
         self.throttle_percentage = throttle_percentage
         self.climb_rate_m_s = climb_rate_m_s
+        self.groundspeed_m_s = groundspeed_m_s
+        self.heading_deg = heading_deg
+        self.absolute_altitude_m = absolute_altitude_m
 
     def __eq__(self, to_compare):
         """ Checks if two FixedwingMetrics are the same """
@@ -2585,7 +2600,10 @@ class FixedwingMetrics:
             return \
                 (self.airspeed_m_s == to_compare.airspeed_m_s) and \
                 (self.throttle_percentage == to_compare.throttle_percentage) and \
-                (self.climb_rate_m_s == to_compare.climb_rate_m_s)
+                (self.climb_rate_m_s == to_compare.climb_rate_m_s) and \
+                (self.groundspeed_m_s == to_compare.groundspeed_m_s) and \
+                (self.heading_deg == to_compare.heading_deg) and \
+                (self.absolute_altitude_m == to_compare.absolute_altitude_m)
 
         except AttributeError:
             return False
@@ -2595,7 +2613,10 @@ class FixedwingMetrics:
         struct_repr = ", ".join([
                 "airspeed_m_s: " + str(self.airspeed_m_s),
                 "throttle_percentage: " + str(self.throttle_percentage),
-                "climb_rate_m_s: " + str(self.climb_rate_m_s)
+                "climb_rate_m_s: " + str(self.climb_rate_m_s),
+                "groundspeed_m_s: " + str(self.groundspeed_m_s),
+                "heading_deg: " + str(self.heading_deg),
+                "absolute_altitude_m: " + str(self.absolute_altitude_m)
                 ])
 
         return f"FixedwingMetrics: [{struct_repr}]"
@@ -2611,7 +2632,16 @@ class FixedwingMetrics:
                 rpcFixedwingMetrics.throttle_percentage,
                 
                 
-                rpcFixedwingMetrics.climb_rate_m_s
+                rpcFixedwingMetrics.climb_rate_m_s,
+                
+                
+                rpcFixedwingMetrics.groundspeed_m_s,
+                
+                
+                rpcFixedwingMetrics.heading_deg,
+                
+                
+                rpcFixedwingMetrics.absolute_altitude_m
                 )
 
     def translate_to_rpc(self, rpcFixedwingMetrics):
@@ -2633,6 +2663,24 @@ class FixedwingMetrics:
         
             
         rpcFixedwingMetrics.climb_rate_m_s = self.climb_rate_m_s
+            
+        
+        
+        
+            
+        rpcFixedwingMetrics.groundspeed_m_s = self.groundspeed_m_s
+            
+        
+        
+        
+            
+        rpcFixedwingMetrics.heading_deg = self.heading_deg
+            
+        
+        
+        
+            
+        rpcFixedwingMetrics.absolute_altitude_m = self.absolute_altitude_m
             
         
         
@@ -3694,4 +3742,68 @@ class TelemetryServer(AsyncBase):
 
         if result.result != TelemetryServerResult.Result.SUCCESS:
             raise TelemetryServerError(result, "publish_distance_sensor()", distance_sensor)
+        
+
+    async def publish_attitude(self, angle, angular_velocity):
+        """
+         Publish to "attitude" updates.
+
+         Parameters
+         ----------
+         angle : EulerAngle
+              roll/pitch/yaw body angles
+
+         angular_velocity : AngularVelocityBody
+              roll/pitch/yaw angular velocities
+
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_server_pb2.PublishAttitudeRequest()
+        
+        angle.translate_to_rpc(request.angle)
+                
+            
+        
+        angular_velocity.translate_to_rpc(request.angular_velocity)
+                
+            
+        response = await self._stub.PublishAttitude(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_attitude()", angle, angular_velocity)
+        
+
+    async def publish_visual_flight_rules_hud(self, fixed_wing_metrics):
+        """
+         Publish to "Visual Flight Rules HUD" updates.
+
+         Parameters
+         ----------
+         fixed_wing_metrics : FixedwingMetrics
+             
+         Raises
+         ------
+         TelemetryServerError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_server_pb2.PublishVisualFlightRulesHudRequest()
+        
+        fixed_wing_metrics.translate_to_rpc(request.fixed_wing_metrics)
+                
+            
+        response = await self._stub.PublishVisualFlightRulesHud(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != TelemetryServerResult.Result.SUCCESS:
+            raise TelemetryServerError(result, "publish_visual_flight_rules_hud()", fixed_wing_metrics)
         

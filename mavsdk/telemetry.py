@@ -2940,6 +2940,15 @@ class FixedwingMetrics:
      climb_rate_m_s : float
           Current climb rate in metres per second
 
+     groundspeed_m_s : float
+          Current groundspeed metres per second
+
+     heading_deg : float
+          Current heading in compass units (0-360, 0=north)
+
+     absolute_altitude_m : float
+          Current altitude in metres (MSL)
+
      """
 
     
@@ -2948,11 +2957,17 @@ class FixedwingMetrics:
             self,
             airspeed_m_s,
             throttle_percentage,
-            climb_rate_m_s):
+            climb_rate_m_s,
+            groundspeed_m_s,
+            heading_deg,
+            absolute_altitude_m):
         """ Initializes the FixedwingMetrics object """
         self.airspeed_m_s = airspeed_m_s
         self.throttle_percentage = throttle_percentage
         self.climb_rate_m_s = climb_rate_m_s
+        self.groundspeed_m_s = groundspeed_m_s
+        self.heading_deg = heading_deg
+        self.absolute_altitude_m = absolute_altitude_m
 
     def __eq__(self, to_compare):
         """ Checks if two FixedwingMetrics are the same """
@@ -2962,7 +2977,10 @@ class FixedwingMetrics:
             return \
                 (self.airspeed_m_s == to_compare.airspeed_m_s) and \
                 (self.throttle_percentage == to_compare.throttle_percentage) and \
-                (self.climb_rate_m_s == to_compare.climb_rate_m_s)
+                (self.climb_rate_m_s == to_compare.climb_rate_m_s) and \
+                (self.groundspeed_m_s == to_compare.groundspeed_m_s) and \
+                (self.heading_deg == to_compare.heading_deg) and \
+                (self.absolute_altitude_m == to_compare.absolute_altitude_m)
 
         except AttributeError:
             return False
@@ -2972,7 +2990,10 @@ class FixedwingMetrics:
         struct_repr = ", ".join([
                 "airspeed_m_s: " + str(self.airspeed_m_s),
                 "throttle_percentage: " + str(self.throttle_percentage),
-                "climb_rate_m_s: " + str(self.climb_rate_m_s)
+                "climb_rate_m_s: " + str(self.climb_rate_m_s),
+                "groundspeed_m_s: " + str(self.groundspeed_m_s),
+                "heading_deg: " + str(self.heading_deg),
+                "absolute_altitude_m: " + str(self.absolute_altitude_m)
                 ])
 
         return f"FixedwingMetrics: [{struct_repr}]"
@@ -2988,7 +3009,16 @@ class FixedwingMetrics:
                 rpcFixedwingMetrics.throttle_percentage,
                 
                 
-                rpcFixedwingMetrics.climb_rate_m_s
+                rpcFixedwingMetrics.climb_rate_m_s,
+                
+                
+                rpcFixedwingMetrics.groundspeed_m_s,
+                
+                
+                rpcFixedwingMetrics.heading_deg,
+                
+                
+                rpcFixedwingMetrics.absolute_altitude_m
                 )
 
     def translate_to_rpc(self, rpcFixedwingMetrics):
@@ -3010,6 +3040,24 @@ class FixedwingMetrics:
         
             
         rpcFixedwingMetrics.climb_rate_m_s = self.climb_rate_m_s
+            
+        
+        
+        
+            
+        rpcFixedwingMetrics.groundspeed_m_s = self.groundspeed_m_s
+            
+        
+        
+        
+            
+        rpcFixedwingMetrics.heading_deg = self.heading_deg
+            
+        
+        
+        
+            
+        rpcFixedwingMetrics.absolute_altitude_m = self.absolute_altitude_m
             
         
         
@@ -3630,6 +3678,176 @@ class Altitude:
         
             
         rpcAltitude.bottom_clearance_m = self.bottom_clearance_m
+            
+        
+        
+
+
+class Wind:
+    """
+     Wind message type
+
+     Parameters
+     ----------
+     wind_x_ned_m_s : float
+          Wind in North (NED) direction
+
+     wind_y_ned_m_s : float
+           Wind in East (NED) direction
+
+     wind_z_ned_m_s : float
+          Wind in down (NED) direction
+
+     horizontal_variability_stddev_m_s : float
+          Variability of wind in XY, 1-STD estimated from a 1 Hz lowpassed wind estimate
+
+     vertical_variability_stddev_m_s : float
+          Variability of wind in Z, 1-STD estimated from a 1 Hz lowpassed wind estimate
+
+     wind_altitude_msl_m : float
+          Altitude (MSL) that this measurement was taken at
+
+     horizontal_wind_speed_accuracy_m_s : float
+          Horizontal speed 1-STD accuracy 
+
+     vertical_wind_speed_accuracy_m_s : float
+          Vertical speed 1-STD accuracy
+
+     """
+
+    
+
+    def __init__(
+            self,
+            wind_x_ned_m_s,
+            wind_y_ned_m_s,
+            wind_z_ned_m_s,
+            horizontal_variability_stddev_m_s,
+            vertical_variability_stddev_m_s,
+            wind_altitude_msl_m,
+            horizontal_wind_speed_accuracy_m_s,
+            vertical_wind_speed_accuracy_m_s):
+        """ Initializes the Wind object """
+        self.wind_x_ned_m_s = wind_x_ned_m_s
+        self.wind_y_ned_m_s = wind_y_ned_m_s
+        self.wind_z_ned_m_s = wind_z_ned_m_s
+        self.horizontal_variability_stddev_m_s = horizontal_variability_stddev_m_s
+        self.vertical_variability_stddev_m_s = vertical_variability_stddev_m_s
+        self.wind_altitude_msl_m = wind_altitude_msl_m
+        self.horizontal_wind_speed_accuracy_m_s = horizontal_wind_speed_accuracy_m_s
+        self.vertical_wind_speed_accuracy_m_s = vertical_wind_speed_accuracy_m_s
+
+    def __eq__(self, to_compare):
+        """ Checks if two Wind are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # Wind object
+            return \
+                (self.wind_x_ned_m_s == to_compare.wind_x_ned_m_s) and \
+                (self.wind_y_ned_m_s == to_compare.wind_y_ned_m_s) and \
+                (self.wind_z_ned_m_s == to_compare.wind_z_ned_m_s) and \
+                (self.horizontal_variability_stddev_m_s == to_compare.horizontal_variability_stddev_m_s) and \
+                (self.vertical_variability_stddev_m_s == to_compare.vertical_variability_stddev_m_s) and \
+                (self.wind_altitude_msl_m == to_compare.wind_altitude_msl_m) and \
+                (self.horizontal_wind_speed_accuracy_m_s == to_compare.horizontal_wind_speed_accuracy_m_s) and \
+                (self.vertical_wind_speed_accuracy_m_s == to_compare.vertical_wind_speed_accuracy_m_s)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ Wind in string representation """
+        struct_repr = ", ".join([
+                "wind_x_ned_m_s: " + str(self.wind_x_ned_m_s),
+                "wind_y_ned_m_s: " + str(self.wind_y_ned_m_s),
+                "wind_z_ned_m_s: " + str(self.wind_z_ned_m_s),
+                "horizontal_variability_stddev_m_s: " + str(self.horizontal_variability_stddev_m_s),
+                "vertical_variability_stddev_m_s: " + str(self.vertical_variability_stddev_m_s),
+                "wind_altitude_msl_m: " + str(self.wind_altitude_msl_m),
+                "horizontal_wind_speed_accuracy_m_s: " + str(self.horizontal_wind_speed_accuracy_m_s),
+                "vertical_wind_speed_accuracy_m_s: " + str(self.vertical_wind_speed_accuracy_m_s)
+                ])
+
+        return f"Wind: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcWind):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return Wind(
+                
+                rpcWind.wind_x_ned_m_s,
+                
+                
+                rpcWind.wind_y_ned_m_s,
+                
+                
+                rpcWind.wind_z_ned_m_s,
+                
+                
+                rpcWind.horizontal_variability_stddev_m_s,
+                
+                
+                rpcWind.vertical_variability_stddev_m_s,
+                
+                
+                rpcWind.wind_altitude_msl_m,
+                
+                
+                rpcWind.horizontal_wind_speed_accuracy_m_s,
+                
+                
+                rpcWind.vertical_wind_speed_accuracy_m_s
+                )
+
+    def translate_to_rpc(self, rpcWind):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcWind.wind_x_ned_m_s = self.wind_x_ned_m_s
+            
+        
+        
+        
+            
+        rpcWind.wind_y_ned_m_s = self.wind_y_ned_m_s
+            
+        
+        
+        
+            
+        rpcWind.wind_z_ned_m_s = self.wind_z_ned_m_s
+            
+        
+        
+        
+            
+        rpcWind.horizontal_variability_stddev_m_s = self.horizontal_variability_stddev_m_s
+            
+        
+        
+        
+            
+        rpcWind.vertical_variability_stddev_m_s = self.vertical_variability_stddev_m_s
+            
+        
+        
+        
+            
+        rpcWind.wind_altitude_msl_m = self.wind_altitude_msl_m
+            
+        
+        
+        
+            
+        rpcWind.horizontal_wind_speed_accuracy_m_s = self.horizontal_wind_speed_accuracy_m_s
+            
+        
+        
+        
+            
+        rpcWind.vertical_wind_speed_accuracy_m_s = self.vertical_wind_speed_accuracy_m_s
             
         
         
@@ -4594,6 +4812,30 @@ class Telemetry(AsyncBase):
                 yield Altitude.translate_from_rpc(response.altitude)
         finally:
             altitude_stream.cancel()
+
+    async def wind(self):
+        """
+         Subscribe to 'Wind Estimated' updates.
+
+         Yields
+         -------
+         wind : Wind
+              The next wind
+
+         
+        """
+
+        request = telemetry_pb2.SubscribeWindRequest()
+        wind_stream = self._stub.SubscribeWind(request)
+
+        try:
+            async for response in wind_stream:
+                
+
+            
+                yield Wind.translate_from_rpc(response.wind)
+        finally:
+            wind_stream.cancel()
 
     async def set_rate_position(self, rate_hz):
         """

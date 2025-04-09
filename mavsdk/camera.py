@@ -737,7 +737,7 @@ class VideoStreamInfo:
 
 class ModeUpdate:
     """
- 
+     An update about the current mode
 
      Parameters
      ----------
@@ -811,7 +811,7 @@ class ModeUpdate:
 
 class VideoStreamUpdate:
     """
- 
+     An update about a video stream
 
      Parameters
      ----------
@@ -1223,7 +1223,7 @@ class Storage:
 
 class StorageUpdate:
     """
- 
+     An update about storage
 
      Parameters
      ----------
@@ -1297,7 +1297,7 @@ class StorageUpdate:
 
 class CurrentSettingsUpdate:
     """
- 
+     An update about a current setting
 
      Parameters
      ----------
@@ -1378,7 +1378,7 @@ class CurrentSettingsUpdate:
 
 class PossibleSettingOptionsUpdate:
     """
- 
+     An update about possible setting options
 
      Parameters
      ----------

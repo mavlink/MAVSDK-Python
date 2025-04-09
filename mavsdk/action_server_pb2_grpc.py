@@ -5,10 +5,8 @@ import warnings
 
 from . import action_server_pb2 as action__server_dot_action__server__pb2
 
-GRPC_GENERATED_VERSION = '1.63.0'
+GRPC_GENERATED_VERSION = '1.71.0'
 GRPC_VERSION = grpc.__version__
-EXPECTED_ERROR_RELEASE = '1.65.0'
-SCHEDULED_RELEASE_DATE = 'June 25, 2024'
 _version_not_supported = False
 
 try:
@@ -18,15 +16,12 @@ except ImportError:
     _version_not_supported = True
 
 if _version_not_supported:
-    warnings.warn(
+    raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
         + f' but the generated code in action_server/action_server_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
-        + f' This warning will become an error in {EXPECTED_ERROR_RELEASE},'
-        + f' scheduled for release on {SCHEDULED_RELEASE_DATE}.',
-        RuntimeWarning
     )
 
 
@@ -99,6 +94,16 @@ class ActionServerServiceStub(object):
                 '/mavsdk.rpc.action_server.ActionServerService/GetAllowableFlightModes',
                 request_serializer=action__server_dot_action__server__pb2.GetAllowableFlightModesRequest.SerializeToString,
                 response_deserializer=action__server_dot_action__server__pb2.GetAllowableFlightModesResponse.FromString,
+                _registered_method=True)
+        self.SetArmedState = channel.unary_unary(
+                '/mavsdk.rpc.action_server.ActionServerService/SetArmedState',
+                request_serializer=action__server_dot_action__server__pb2.SetArmedStateRequest.SerializeToString,
+                response_deserializer=action__server_dot_action__server__pb2.SetArmedStateResponse.FromString,
+                _registered_method=True)
+        self.SetFlightMode = channel.unary_unary(
+                '/mavsdk.rpc.action_server.ActionServerService/SetFlightMode',
+                request_serializer=action__server_dot_action__server__pb2.SetFlightModeRequest.SerializeToString,
+                response_deserializer=action__server_dot_action__server__pb2.SetFlightModeResponse.FromString,
                 _registered_method=True)
 
 
@@ -190,6 +195,20 @@ class ActionServerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetArmedState(self, request, context):
+        """Set/override the armed/disarmed state of the vehicle directly, and notify subscribers
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetFlightMode(self, request, context):
+        """Set/override the flight mode of the vehicle directly, and notify subscribers
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ActionServerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -253,10 +272,21 @@ def add_ActionServerServiceServicer_to_server(servicer, server):
                     request_deserializer=action__server_dot_action__server__pb2.GetAllowableFlightModesRequest.FromString,
                     response_serializer=action__server_dot_action__server__pb2.GetAllowableFlightModesResponse.SerializeToString,
             ),
+            'SetArmedState': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetArmedState,
+                    request_deserializer=action__server_dot_action__server__pb2.SetArmedStateRequest.FromString,
+                    response_serializer=action__server_dot_action__server__pb2.SetArmedStateResponse.SerializeToString,
+            ),
+            'SetFlightMode': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetFlightMode,
+                    request_deserializer=action__server_dot_action__server__pb2.SetFlightModeRequest.FromString,
+                    response_serializer=action__server_dot_action__server__pb2.SetFlightModeResponse.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
             'mavsdk.rpc.action_server.ActionServerService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
+    server.add_registered_method_handlers('mavsdk.rpc.action_server.ActionServerService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -578,6 +608,60 @@ class ActionServerService(object):
             '/mavsdk.rpc.action_server.ActionServerService/GetAllowableFlightModes',
             action__server_dot_action__server__pb2.GetAllowableFlightModesRequest.SerializeToString,
             action__server_dot_action__server__pb2.GetAllowableFlightModesResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetArmedState(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/mavsdk.rpc.action_server.ActionServerService/SetArmedState',
+            action__server_dot_action__server__pb2.SetArmedStateRequest.SerializeToString,
+            action__server_dot_action__server__pb2.SetArmedStateResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetFlightMode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/mavsdk.rpc.action_server.ActionServerService/SetFlightMode',
+            action__server_dot_action__server__pb2.SetFlightModeRequest.SerializeToString,
+            action__server_dot_action__server__pb2.SetFlightModeResponse.FromString,
             options,
             channel_credentials,
             insecure,

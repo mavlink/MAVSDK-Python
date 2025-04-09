@@ -8,7 +8,7 @@ from enum import Enum
 
 class MetadataType(Enum):
     """
- 
+     The metadata type
 
      Values
      ------
@@ -52,7 +52,7 @@ class MetadataType(Enum):
 
 class Metadata:
     """
- 
+     The metadata type and content
 
      Parameters
      ----------

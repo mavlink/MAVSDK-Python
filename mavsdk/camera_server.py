@@ -1241,7 +1241,7 @@ class StorageInformation:
 
 class CaptureStatus:
     """
- 
+     Capture status
 
      Parameters
      ----------
@@ -1269,7 +1269,7 @@ class CaptureStatus:
     
     class ImageStatus(Enum):
         """
-     
+         The image status
 
          Values
          ------
@@ -1321,7 +1321,7 @@ class CaptureStatus:
     
     class VideoStatus(Enum):
         """
-     
+         The video status
 
          Values
          ------
