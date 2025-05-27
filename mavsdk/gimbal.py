@@ -88,7 +88,7 @@ class ControlMode(Enum):
 
 class SendMode(Enum):
     """
- 
+     The send mode type
 
      Values
      ------

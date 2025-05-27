@@ -5,10 +5,8 @@ import warnings
 
 from . import telemetry_pb2 as telemetry_dot_telemetry__pb2
 
-GRPC_GENERATED_VERSION = '1.63.0'
+GRPC_GENERATED_VERSION = '1.71.0'
 GRPC_VERSION = grpc.__version__
-EXPECTED_ERROR_RELEASE = '1.65.0'
-SCHEDULED_RELEASE_DATE = 'June 25, 2024'
 _version_not_supported = False
 
 try:
@@ -18,15 +16,12 @@ except ImportError:
     _version_not_supported = True
 
 if _version_not_supported:
-    warnings.warn(
+    raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
         + f' but the generated code in telemetry/telemetry_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
-        + f' This warning will become an error in {EXPECTED_ERROR_RELEASE},'
-        + f' scheduled for release on {SCHEDULED_RELEASE_DATE}.',
-        RuntimeWarning
     )
 
 
@@ -202,6 +197,11 @@ class TelemetryServiceStub(object):
                 request_serializer=telemetry_dot_telemetry__pb2.SubscribeAltitudeRequest.SerializeToString,
                 response_deserializer=telemetry_dot_telemetry__pb2.AltitudeResponse.FromString,
                 _registered_method=True)
+        self.SubscribeWind = channel.unary_stream(
+                '/mavsdk.rpc.telemetry.TelemetryService/SubscribeWind',
+                request_serializer=telemetry_dot_telemetry__pb2.SubscribeWindRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.WindResponse.FromString,
+                _registered_method=True)
         self.SetRatePosition = channel.unary_unary(
                 '/mavsdk.rpc.telemetry.TelemetryService/SetRatePosition',
                 request_serializer=telemetry_dot_telemetry__pb2.SetRatePositionRequest.SerializeToString,
@@ -316,6 +316,11 @@ class TelemetryServiceStub(object):
                 '/mavsdk.rpc.telemetry.TelemetryService/SetRateAltitude',
                 request_serializer=telemetry_dot_telemetry__pb2.SetRateAltitudeRequest.SerializeToString,
                 response_deserializer=telemetry_dot_telemetry__pb2.SetRateAltitudeResponse.FromString,
+                _registered_method=True)
+        self.SetRateHealth = channel.unary_unary(
+                '/mavsdk.rpc.telemetry.TelemetryService/SetRateHealth',
+                request_serializer=telemetry_dot_telemetry__pb2.SetRateHealthRequest.SerializeToString,
+                response_deserializer=telemetry_dot_telemetry__pb2.SetRateHealthResponse.FromString,
                 _registered_method=True)
         self.GetGpsGlobalOrigin = channel.unary_unary(
                 '/mavsdk.rpc.telemetry.TelemetryService/GetGpsGlobalOrigin',
@@ -554,6 +559,13 @@ class TelemetryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SubscribeWind(self, request, context):
+        """Subscribe to 'Wind Estimated' updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetRatePosition(self, request, context):
         """Set rate to 'position' updates.
         """
@@ -711,6 +723,13 @@ class TelemetryServiceServicer(object):
 
     def SetRateAltitude(self, request, context):
         """Set rate to 'Altitude' updates.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetRateHealth(self, request, context):
+        """Set rate to 'Health' updates.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -886,6 +905,11 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     request_deserializer=telemetry_dot_telemetry__pb2.SubscribeAltitudeRequest.FromString,
                     response_serializer=telemetry_dot_telemetry__pb2.AltitudeResponse.SerializeToString,
             ),
+            'SubscribeWind': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeWind,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SubscribeWindRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.WindResponse.SerializeToString,
+            ),
             'SetRatePosition': grpc.unary_unary_rpc_method_handler(
                     servicer.SetRatePosition,
                     request_deserializer=telemetry_dot_telemetry__pb2.SetRatePositionRequest.FromString,
@@ -1001,6 +1025,11 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
                     request_deserializer=telemetry_dot_telemetry__pb2.SetRateAltitudeRequest.FromString,
                     response_serializer=telemetry_dot_telemetry__pb2.SetRateAltitudeResponse.SerializeToString,
             ),
+            'SetRateHealth': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetRateHealth,
+                    request_deserializer=telemetry_dot_telemetry__pb2.SetRateHealthRequest.FromString,
+                    response_serializer=telemetry_dot_telemetry__pb2.SetRateHealthResponse.SerializeToString,
+            ),
             'GetGpsGlobalOrigin': grpc.unary_unary_rpc_method_handler(
                     servicer.GetGpsGlobalOrigin,
                     request_deserializer=telemetry_dot_telemetry__pb2.GetGpsGlobalOriginRequest.FromString,
@@ -1010,6 +1039,7 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
     generic_handler = grpc.method_handlers_generic_handler(
             'mavsdk.rpc.telemetry.TelemetryService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
+    server.add_registered_method_handlers('mavsdk.rpc.telemetry.TelemetryService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -1884,6 +1914,33 @@ class TelemetryService(object):
             _registered_method=True)
 
     @staticmethod
+    def SubscribeWind(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/mavsdk.rpc.telemetry.TelemetryService/SubscribeWind',
+            telemetry_dot_telemetry__pb2.SubscribeWindRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.WindResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
     def SetRatePosition(request,
             target,
             options=(),
@@ -2494,6 +2551,33 @@ class TelemetryService(object):
             '/mavsdk.rpc.telemetry.TelemetryService/SetRateAltitude',
             telemetry_dot_telemetry__pb2.SetRateAltitudeRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateAltitudeResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetRateHealth(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/mavsdk.rpc.telemetry.TelemetryService/SetRateHealth',
+            telemetry_dot_telemetry__pb2.SetRateHealthRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.SetRateHealthResponse.FromString,
             options,
             channel_credentials,
             insecure,

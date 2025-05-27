@@ -8,7 +8,7 @@ from enum import Enum
 
 class MetadataType(Enum):
     """
- 
+     The metadata type
 
      Values
      ------
@@ -134,28 +134,37 @@ class ComponentMetadataResult:
     
     class Result(Enum):
         """
-         Possible results returned for GetMetadata
+         Possible results returned
 
          Values
          ------
          SUCCESS
-             
+              Success
+
          NOT_AVAILABLE
-             
+              Not available
+
          CONNECTION_ERROR
-             
+              Connection error
+
          UNSUPPORTED
-             
+              Unsupported
+
          DENIED
-             
+              Denied
+
          FAILED
-             
+              Failed
+
          TIMEOUT
-             
+              Timeout
+
          NO_SYSTEM
-             
+              No system
+
          NOT_REQUESTED
-             
+              Not requested
+
          """
 
         
@@ -435,7 +444,8 @@ class ComponentMetadata(AsyncBase):
          Yields
          -------
          data : MetadataUpdate
-             
+              The metadata data
+
          
         """
 
@@ -467,7 +477,8 @@ class ComponentMetadata(AsyncBase):
          Returns
          -------
          response : MetadataData
-             
+              The response
+
          Raises
          ------
          ComponentMetadataError
