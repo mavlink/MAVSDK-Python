@@ -276,6 +276,96 @@ class SpeedBody:
         
 
 
+class SpeedNed:
+    """
+     Speed type, represented in NED (North East Down) coordinates.
+
+     Parameters
+     ----------
+     north_m_s : float
+          Velocity North in metres/second.
+
+     east_m_s : float
+          Velocity East in metres/second.
+
+     down_m_s : float
+          Velocity Down in metres/second.
+
+     """
+
+    
+
+    def __init__(
+            self,
+            north_m_s,
+            east_m_s,
+            down_m_s):
+        """ Initializes the SpeedNed object """
+        self.north_m_s = north_m_s
+        self.east_m_s = east_m_s
+        self.down_m_s = down_m_s
+
+    def __eq__(self, to_compare):
+        """ Checks if two SpeedNed are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # SpeedNed object
+            return \
+                (self.north_m_s == to_compare.north_m_s) and \
+                (self.east_m_s == to_compare.east_m_s) and \
+                (self.down_m_s == to_compare.down_m_s)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ SpeedNed in string representation """
+        struct_repr = ", ".join([
+                "north_m_s: " + str(self.north_m_s),
+                "east_m_s: " + str(self.east_m_s),
+                "down_m_s: " + str(self.down_m_s)
+                ])
+
+        return f"SpeedNed: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcSpeedNed):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return SpeedNed(
+                
+                rpcSpeedNed.north_m_s,
+                
+                
+                rpcSpeedNed.east_m_s,
+                
+                
+                rpcSpeedNed.down_m_s
+                )
+
+    def translate_to_rpc(self, rpcSpeedNed):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcSpeedNed.north_m_s = self.north_m_s
+            
+        
+        
+        
+            
+        rpcSpeedNed.east_m_s = self.east_m_s
+            
+        
+        
+        
+            
+        rpcSpeedNed.down_m_s = self.down_m_s
+            
+        
+        
+
+
 class AngularVelocityBody:
     """
      Angular velocity type
@@ -642,6 +732,96 @@ class VisionPositionEstimate:
         
             
         self.pose_covariance.translate_to_rpc(rpcVisionPositionEstimate.pose_covariance)
+            
+        
+        
+
+
+class VisionSpeedEstimate:
+    """
+     Global speed estimate from a vision source.
+
+     Parameters
+     ----------
+     time_usec : uint64_t
+          Timestamp UNIX Epoch time (0 to use Backend timestamp)
+
+     speed_ned : SpeedNed
+          Global speed (m/s)
+
+     speed_covariance : Covariance
+          Linear velocity cross-covariance matrix.
+
+     """
+
+    
+
+    def __init__(
+            self,
+            time_usec,
+            speed_ned,
+            speed_covariance):
+        """ Initializes the VisionSpeedEstimate object """
+        self.time_usec = time_usec
+        self.speed_ned = speed_ned
+        self.speed_covariance = speed_covariance
+
+    def __eq__(self, to_compare):
+        """ Checks if two VisionSpeedEstimate are the same """
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # VisionSpeedEstimate object
+            return \
+                (self.time_usec == to_compare.time_usec) and \
+                (self.speed_ned == to_compare.speed_ned) and \
+                (self.speed_covariance == to_compare.speed_covariance)
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ VisionSpeedEstimate in string representation """
+        struct_repr = ", ".join([
+                "time_usec: " + str(self.time_usec),
+                "speed_ned: " + str(self.speed_ned),
+                "speed_covariance: " + str(self.speed_covariance)
+                ])
+
+        return f"VisionSpeedEstimate: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcVisionSpeedEstimate):
+        """ Translates a gRPC struct to the SDK equivalent """
+        return VisionSpeedEstimate(
+                
+                rpcVisionSpeedEstimate.time_usec,
+                
+                
+                SpeedNed.translate_from_rpc(rpcVisionSpeedEstimate.speed_ned),
+                
+                
+                Covariance.translate_from_rpc(rpcVisionSpeedEstimate.speed_covariance)
+                )
+
+    def translate_to_rpc(self, rpcVisionSpeedEstimate):
+        """ Translates this SDK object into its gRPC equivalent """
+
+        
+        
+            
+        rpcVisionSpeedEstimate.time_usec = self.time_usec
+            
+        
+        
+        
+            
+        self.speed_ned.translate_to_rpc(rpcVisionSpeedEstimate.speed_ned)
+            
+        
+        
+        
+            
+        self.speed_covariance.translate_to_rpc(rpcVisionSpeedEstimate.speed_covariance)
             
         
         
@@ -1116,7 +1296,6 @@ class MocapError(Exception):
 
 class Mocap(AsyncBase):
     """
-     *
      Allows interfacing a vehicle with a motion capture system in
      order to allow navigation without global positioning sources available
      (e.g. indoors, or when flying under a bridge. etc.).
@@ -1164,6 +1343,35 @@ class Mocap(AsyncBase):
 
         if result.result != MocapResult.Result.SUCCESS:
             raise MocapError(result, "set_vision_position_estimate()", vision_position_estimate)
+        
+
+    async def set_vision_speed_estimate(self, vision_speed_estimate):
+        """
+         Send Global speed estimate from a vision source.
+
+         Parameters
+         ----------
+         vision_speed_estimate : VisionSpeedEstimate
+              The vision speed estimate
+
+         Raises
+         ------
+         MocapError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = mocap_pb2.SetVisionSpeedEstimateRequest()
+        
+        vision_speed_estimate.translate_to_rpc(request.vision_speed_estimate)
+                
+            
+        response = await self._stub.SetVisionSpeedEstimate(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != MocapResult.Result.SUCCESS:
+            raise MocapError(result, "set_vision_speed_estimate()", vision_speed_estimate)
         
 
     async def set_attitude_position_mocap(self, attitude_position_mocap):

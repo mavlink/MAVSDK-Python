@@ -8,7 +8,7 @@ from enum import Enum
 
 class ListDirectoryData:
     """
- 
+     The output of a directory list
 
      Parameters
      ----------

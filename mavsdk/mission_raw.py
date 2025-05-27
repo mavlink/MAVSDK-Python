@@ -1089,7 +1089,6 @@ class MissionRaw(AsyncBase):
 
     async def mission_changed(self):
         """
-         *
          Subscribes to mission changed.
 
          This notification can be used to be informed if a ground station has
