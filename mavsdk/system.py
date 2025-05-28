@@ -168,7 +168,7 @@ class System:
 
     @staticmethod
     def error_uninitialized(plugin_name: str) -> str:
-        return "{plugin_name} plugin has not been initialized! " \
+        return f"{plugin_name} plugin has not been initialized! " \
             "Did you run `System.connect()`?"
 
     @property
