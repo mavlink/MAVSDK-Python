@@ -422,7 +422,7 @@ class LogFiles(AsyncBase):
                     raise LogFilesError(result, "download_log_file()", entry, path)
 
                 if result.result == LogFilesResult.Result.SUCCESS:
-                    download_log_file_stream.cancel();
+                    download_log_file_stream.cancel()
                     return
                 
 
