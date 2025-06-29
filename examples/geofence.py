@@ -21,7 +21,7 @@ async def run():
 
     # Connect to the Simulation
     drone = System()
-    await drone.connect(system_address="udp://:14540")
+    await drone.connect(system_address="udpin://0.0.0.0:14540")
 
     # Wait for the drone to connect
     print("Waiting for drone to connect...")

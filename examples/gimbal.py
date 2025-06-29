@@ -33,7 +33,7 @@ async def get_gimbals(drone, timeout=10):
 async def run():
     # Init the drone
     drone = System()
-    await drone.connect(system_address="udp://:14540")
+    await drone.connect(system_address="udpin://0.0.0.0:14540")
 
     gimbals = await get_gimbals(drone)
 
