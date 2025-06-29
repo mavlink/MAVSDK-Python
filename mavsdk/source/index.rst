@@ -46,7 +46,7 @@ The package contains ``mavsdk_server`` already (previously called "backend"), wh
   from mavsdk import System
   ...
   drone = System()
-  await drone.connect(system_address="udp://:14540")
+  await drone.connect(system_address="udpin://0.0.0.0:14540")
 
 
 Note: ``System()`` takes two named parameters: ``mavsdk_server_address`` and ``port``. When left empty, they default to ``None`` and ``50051``, respectively, and ``mavsdk_server -p 50051`` is run by ``await drone.connect()``. If ``mavsdk_server_address`` is set (e.g. to "localhost"), then ``await drone.connect()`` will not start the embedded ``mavsdk_server`` and will try to connect to a server running at this address. This is useful for platforms where ``mavsdk_server`` does not come embedded, for debugging purposes, and for running ``mavsdk_server`` in a place different than where the MAVSDK-Python script is run.
@@ -76,7 +76,7 @@ For this case, let's assume the example was like this:
 .. code:: python
 
   drone = System()
-  await drone.connect(system_address="udp://:14540")
+  await drone.connect(system_address="udpin://0.0.0.0:14540")
 
 
 The mavsdk_server binary is installed using ``pip``. If installed with ``python -m pip install --upgrade mavsdk`` it is usually (at least for Linux) to be found in ``~/.local/lib/python3.10/site-packages/mavsdk/bin/`` (of course depending on the Python version used).
@@ -85,21 +85,21 @@ It can then be run in a separate console with the ``system_address`` as an argum
 
 .. code:: bash
 
-  ~/.local/lib/python3.10/site-packages/mavsdk/bin/mavsdk_server udp://:14540
+  ~/.local/lib/python3.10/site-packages/mavsdk/bin/mavsdk_server udpin://0.0.0.0:14540
 
 Without an autopilot connecting, the output will look something like:
 
 .. code:: bash
 
   [02:36:31|Info ] MAVSDK version: v1.4.16 (mavsdk_impl.cpp:28)
-  [02:36:31|Info ] Waiting to discover system on udp://:14540... (connection_initiator.h:20)
+  [02:36:31|Info ] Waiting to discover system on udpin://0.0.0.0:14540... (connection_initiator.h:20)
 
 Once an autopilot is discovered, something like this should be printed:
 
 .. code:: bash
 
   [02:38:12|Info ] MAVSDK version: v1.4.16 (mavsdk_impl.cpp:28)
-  [02:38:12|Info ] Waiting to discover system on udp://:14540... (connection_initiator.h:20)
+  [02:38:12|Info ] Waiting to discover system on udpin://0.0.0.0:14540... (connection_initiator.h:20)
   [02:39:01|Info ] New system on: 127.0.0.1:14580 (with sysid: 1) (udp_connection.cpp:194)
   [02:39:01|Debug] New: System ID: 1 Comp ID: 1 (mavsdk_impl.cpp:484)
   [02:39:01|Debug] Component Autopilot (1) added. (system_impl.cpp:355)

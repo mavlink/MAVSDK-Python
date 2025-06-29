@@ -96,11 +96,13 @@ class System:
         ----------
         system_address: str
             The address of the remote system. If None, it will
-            default to udp://:14540. Supported URL formats:
+            default to udpin://0.0.0.0:14540. Supported URL formats:
 
                 - Serial: serial:///path/to/serial/dev[:baudrate]
-                - UDP: udp://[bind_host][:bind_port]
-                - TCP: tcp://[server_host][:server_port]
+                - UDP in: udpin://bind_host:bind_port
+                - UDP out: udpout://dest_host:dest_port
+                - TCP in: tcpin://bind_host:bind_port
+                - TCP out: tcpout://dest_host:dest_port
 
         """
 
