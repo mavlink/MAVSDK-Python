@@ -15,15 +15,11 @@ jobs:
     name: Ubuntu 22.04 x86_64
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
-
-      - name: Get tags
-        run: |
-         git fetch --tags
-         echo $?
-         git tag --list
+          tags: true
+          fetch-depth: 0
 
       - name: Install pip
         run: sudo apt-get install -y python3-pip
@@ -91,15 +87,11 @@ jobs:
             pypi_arch: manylinux2014_aarch64
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
-
-      - name: Get tags
-        run: |
-         git fetch --tags
-         echo $?
-         git tag --list
+          tags: true
+          fetch-depth: 0
 
       - name: Install pip
         run: sudo apt-get install -y python3-pip
@@ -142,15 +134,11 @@ jobs:
             wheel_arch: 11_0_arm64
             runs_on: macos-14
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
-
-      - name: Get tags
-        run: |
-         git fetch --tags
-         echo $?
-         git tag --list
+          tags: true
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -197,15 +185,11 @@ jobs:
             wheel_arch: win_amd64
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
-
-      - name: Get tags
-        run: |
-         git fetch --tags
-         echo $?
-         git tag --list
+          tags: true
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
