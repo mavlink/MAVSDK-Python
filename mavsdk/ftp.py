@@ -432,7 +432,7 @@ class Ftp(AsyncBase):
                     raise FtpError(result, "download()", remote_file_path, local_dir, use_burst)
 
                 if result.result == FtpResult.Result.SUCCESS:
-                    download_stream.cancel();
+                    download_stream.cancel()
                     return
                 
 
@@ -482,7 +482,7 @@ class Ftp(AsyncBase):
                     raise FtpError(result, "upload()", local_file_path, remote_dir)
 
                 if result.result == FtpResult.Result.SUCCESS:
-                    upload_stream.cancel();
+                    upload_stream.cancel()
                     return
                 
 
