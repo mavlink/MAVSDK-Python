@@ -39,7 +39,7 @@ from mavsdk import System
 ...
 
 drone = System()
-await drone.connect(system_address="udp://:14540")
+await drone.connect(system_address="udpin://0.0.0.0:14540")
 ```
 
 Note: `System()` takes two named parameters: `mavsdk_server_address` and `port`. When left empty, they default to `None` and `50051`, respectively, and `mavsdk_server -p 50051` is run by `await drone.connect()`. If `mavsdk_server_address` is set (e.g. to "localhost"), then `await drone.connect()` will not start the embedded `mavsdk_server` and will try to connect to a server running at this address. This is useful for platforms where `mavsdk_server` does not come embedded, for debugging purposes, and for running `mavsdk_server` in a place different than where the MAVSDK-Python script is run.
