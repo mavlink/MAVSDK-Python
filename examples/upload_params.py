@@ -10,7 +10,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "connection",
-        help="Connection string (e.g. udp://:14540)")
+        help="Connection string (e.g. udpin://0.0.0.0:14540)")
     parser.add_argument(
         "param_file", help="Param file to be uploaded with .params format")
 

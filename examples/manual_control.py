@@ -34,7 +34,7 @@ async def manual_controls():
     """Main function to connect to the drone and input manual controls"""
     # Connect to the Simulation
     drone = System()
-    await drone.connect(system_address="udp://:14540")
+    await drone.connect(system_address="udpin://0.0.0.0:14540")
 
     # This waits till a mavlink based drone is connected
     print("Waiting for drone to connect...")

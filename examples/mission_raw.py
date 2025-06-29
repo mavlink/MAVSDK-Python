@@ -7,7 +7,7 @@ from mavsdk import mission_raw
 
 async def px4_connect_drone():
     drone = System()
-    await drone.connect(system_address="udp://:14540")
+    await drone.connect(system_address="udpin://0.0.0.0:14540")
 
     print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():

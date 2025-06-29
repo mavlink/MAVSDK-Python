@@ -7,7 +7,7 @@ from mavsdk import System
 async def run():
     # Connect to the drone
     drone = System()
-    await drone.connect(system_address="udp://:14540")
+    await drone.connect(system_address="udpin://0.0.0.0:14540")
 
     # Get the list of parameters
     all_params = await drone.param.get_all_params()
