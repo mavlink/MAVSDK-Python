@@ -11,6 +11,24 @@ on:
     - '*'
 
 jobs:
+  pytest:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]  # [macos-latest, ubuntu-latest, windows-latest]
+        python: ['3.9', '3.x']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install --upgrade pip
+      - run: pip install pytest-cov -r requirements.txt -r requirements-dev.txt
+      - run: pytest --cov=mavsdk
   ubuntu22:
     name: Ubuntu 22.04 x86_64
     runs-on: ubuntu-22.04
