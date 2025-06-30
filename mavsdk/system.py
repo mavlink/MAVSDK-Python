@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import asyncio
 import logging
 import threading
 
@@ -107,12 +108,13 @@ class System:
         """
 
         if self._server_process is not None:
-            # a mavsdk_server have already been launch by this instance:
+            # a mavsdk_server has already been launched by this instance:
             # --> clean all before trying to reconnect
             self._stop_mavsdk_server()
 
-            # add a delay to be sure recourses have been freed and restart mavsdk_server
-            import time; time.sleep(1)
+            # add a delay to be sure resources have been freed and restart mavsdk_server
+            await asyncio.sleep(1)
+            
 
         if self._mavsdk_server_address is None:
             self._mavsdk_server_address = 'localhost'
