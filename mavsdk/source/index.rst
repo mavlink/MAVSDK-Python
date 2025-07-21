@@ -69,6 +69,14 @@ The examples assume that the embedded ``mavsdk_server`` binary can be run. In so
 Debug connection issues
 -----------------------
 
+.. note::
+   By default mavsdk-python will not print any output from mavsdk-server. If you are experiencing connection issues, it can pay to enable forwarding of the mavsdk-server output into the python console. You can do so with this piece of code at the top of your file:
+
+  .. code:: python
+
+    import logging
+    logging.basicConfig(level=logging.DEBUG)
+
 In order to get more debugging information, it is possible to run the mavsdk_server binary separately.
 
 For this case, let's assume the example was like this:
