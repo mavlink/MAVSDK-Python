@@ -76,7 +76,7 @@ class custom_build(build):
         elif platform.system() == 'Windows' \
                 and (platform.processor().startswith('AMD64') or
                      platform.processor().startswith('Intel64')):
-            return 'win32.exe'
+            return 'win_x64.exe'
         else:
             raise NotImplementedError(
                 "Error: mavsdk_server is not distributed for platform "
