@@ -74,7 +74,8 @@ class custom_build(build):
             raise NotImplementedError(
                 f"Error: unknown macOS processor: {platform.processor()}")
         elif platform.system() == 'Windows' \
-                and platform.processor().startswith('AMD64'):
+                and (platform.processor().startswith('AMD64') or
+                     platform.processor().startswith('Intel64')):
             return 'win32.exe'
         else:
             raise NotImplementedError(
