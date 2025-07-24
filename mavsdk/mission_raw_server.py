@@ -658,7 +658,7 @@ class MissionRawServer(AsyncBase):
                     raise MissionRawServerError(result, "incoming_mission()")
 
                 if result.result == MissionRawServerResult.Result.SUCCESS:
-                    incoming_mission_stream.cancel()
+                    incoming_mission_stream.cancel();
                     return
                 
 

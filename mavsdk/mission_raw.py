@@ -520,6 +520,12 @@ class MissionRawResult:
          INT_MESSAGES_NOT_SUPPORTED
               The system does not support the MISSION_INT protocol
 
+         FAILED_TO_OPEN_MISSION_PLANNER_PLAN
+              Failed to open the Mission Planner plan
+
+         FAILED_TO_PARSE_MISSION_PLANNER_PLAN
+              Failed to parse the Mission Planner plan
+
          """
 
         
@@ -542,6 +548,8 @@ class MissionRawResult:
         CURRENT_INVALID = 16
         PROTOCOL_ERROR = 17
         INT_MESSAGES_NOT_SUPPORTED = 18
+        FAILED_TO_OPEN_MISSION_PLANNER_PLAN = 19
+        FAILED_TO_PARSE_MISSION_PLANNER_PLAN = 20
 
         def translate_to_rpc(self):
             if self == MissionRawResult.Result.UNKNOWN:
@@ -582,6 +590,10 @@ class MissionRawResult:
                 return mission_raw_pb2.MissionRawResult.RESULT_PROTOCOL_ERROR
             if self == MissionRawResult.Result.INT_MESSAGES_NOT_SUPPORTED:
                 return mission_raw_pb2.MissionRawResult.RESULT_INT_MESSAGES_NOT_SUPPORTED
+            if self == MissionRawResult.Result.FAILED_TO_OPEN_MISSION_PLANNER_PLAN:
+                return mission_raw_pb2.MissionRawResult.RESULT_FAILED_TO_OPEN_MISSION_PLANNER_PLAN
+            if self == MissionRawResult.Result.FAILED_TO_PARSE_MISSION_PLANNER_PLAN:
+                return mission_raw_pb2.MissionRawResult.RESULT_FAILED_TO_PARSE_MISSION_PLANNER_PLAN
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -624,6 +636,10 @@ class MissionRawResult:
                 return MissionRawResult.Result.PROTOCOL_ERROR
             if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_INT_MESSAGES_NOT_SUPPORTED:
                 return MissionRawResult.Result.INT_MESSAGES_NOT_SUPPORTED
+            if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_FAILED_TO_OPEN_MISSION_PLANNER_PLAN:
+                return MissionRawResult.Result.FAILED_TO_OPEN_MISSION_PLANNER_PLAN
+            if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_FAILED_TO_PARSE_MISSION_PLANNER_PLAN:
+                return MissionRawResult.Result.FAILED_TO_PARSE_MISSION_PLANNER_PLAN
 
         def __str__(self):
             return self.name
@@ -1201,3 +1217,115 @@ class MissionRaw(AsyncBase):
 
         return MissionImportData.translate_from_rpc(response.mission_import_data)
             
+
+    async def import_mission_planner_mission(self, mission_planner_path):
+        """
+         Import a Mission Planner mission in QGC WPL 110 format, from a file.
+
+         Supported:
+         - Waypoints
+         - ArduPilot home position handling
+
+         Parameters
+         ----------
+         mission_planner_path : std::string
+              File path of the Mission Planner mission file
+
+         Returns
+         -------
+         mission_import_data : MissionImportData
+              The imported mission data
+
+         Raises
+         ------
+         MissionRawError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = mission_raw_pb2.ImportMissionPlannerMissionRequest()
+        
+            
+        request.mission_planner_path = mission_planner_path
+            
+        response = await self._stub.ImportMissionPlannerMission(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != MissionRawResult.Result.SUCCESS:
+            raise MissionRawError(result, "import_mission_planner_mission()", mission_planner_path)
+        
+
+        return MissionImportData.translate_from_rpc(response.mission_import_data)
+            
+
+    async def import_mission_planner_mission_from_string(self, mission_planner_mission):
+        """
+         Import a Mission Planner mission in QGC WPL 110 format, from a string.
+
+         Supported:
+         - Waypoints
+         - ArduPilot home position handling
+
+         Parameters
+         ----------
+         mission_planner_mission : std::string
+              Mission Planner mission as string
+
+         Returns
+         -------
+         mission_import_data : MissionImportData
+              The imported mission data
+
+         Raises
+         ------
+         MissionRawError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = mission_raw_pb2.ImportMissionPlannerMissionFromStringRequest()
+        
+            
+        request.mission_planner_mission = mission_planner_mission
+            
+        response = await self._stub.ImportMissionPlannerMissionFromString(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != MissionRawResult.Result.SUCCESS:
+            raise MissionRawError(result, "import_mission_planner_mission_from_string()", mission_planner_mission)
+        
+
+        return MissionImportData.translate_from_rpc(response.mission_import_data)
+            
+
+    async def is_mission_finished(self):
+        """
+         Check if the mission is finished.
+
+         Returns true if the mission is finished, false otherwise.
+
+         Returns
+         -------
+         is_finished : bool
+              True if the mission is finished, false otherwise
+
+         Raises
+         ------
+         MissionRawError
+             If the request fails. The error contains the reason for the failure.
+        """
+
+        request = mission_raw_pb2.IsMissionFinishedRequest()
+        response = await self._stub.IsMissionFinished(request)
+
+        
+        result = self._extract_result(response)
+
+        if result.result != MissionRawResult.Result.SUCCESS:
+            raise MissionRawError(result, "is_mission_finished()")
+        
+
+        return response.is_finished
+        

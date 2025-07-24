@@ -1054,7 +1054,7 @@ class Mission(AsyncBase):
                     raise MissionError(result, "upload_mission_with_progress()", mission_plan)
 
                 if result.result == MissionResult.Result.SUCCESS:
-                    upload_mission_with_progress_stream.cancel()
+                    upload_mission_with_progress_stream.cancel();
                     return
                 
 
@@ -1148,7 +1148,7 @@ class Mission(AsyncBase):
                     raise MissionError(result, "download_mission_with_progress()")
 
                 if result.result == MissionResult.Result.SUCCESS:
-                    download_mission_with_progress_stream.cancel()
+                    download_mission_with_progress_stream.cancel();
                     return
                 
 

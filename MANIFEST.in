@@ -1,2 +1,3 @@
 include mavsdk/bin
 include mavsdk/bin/mavsdk_server
+include mavsdk/bin/mavsdk_server.exe

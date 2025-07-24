@@ -368,7 +368,7 @@ class Calibration(AsyncBase):
                     raise CalibrationError(result, "calibrate_gyro()")
 
                 if result.result == CalibrationResult.Result.SUCCESS:
-                    calibrate_gyro_stream.cancel()
+                    calibrate_gyro_stream.cancel();
                     return
                 
 
@@ -408,7 +408,7 @@ class Calibration(AsyncBase):
                     raise CalibrationError(result, "calibrate_accelerometer()")
 
                 if result.result == CalibrationResult.Result.SUCCESS:
-                    calibrate_accelerometer_stream.cancel()
+                    calibrate_accelerometer_stream.cancel();
                     return
                 
 
@@ -448,7 +448,7 @@ class Calibration(AsyncBase):
                     raise CalibrationError(result, "calibrate_magnetometer()")
 
                 if result.result == CalibrationResult.Result.SUCCESS:
-                    calibrate_magnetometer_stream.cancel()
+                    calibrate_magnetometer_stream.cancel();
                     return
                 
 
@@ -488,7 +488,7 @@ class Calibration(AsyncBase):
                     raise CalibrationError(result, "calibrate_level_horizon()")
 
                 if result.result == CalibrationResult.Result.SUCCESS:
-                    calibrate_level_horizon_stream.cancel()
+                    calibrate_level_horizon_stream.cancel();
                     return
                 
 
@@ -528,7 +528,7 @@ class Calibration(AsyncBase):
                     raise CalibrationError(result, "calibrate_gimbal_accelerometer()")
 
                 if result.result == CalibrationResult.Result.SUCCESS:
-                    calibrate_gimbal_accelerometer_stream.cancel()
+                    calibrate_gimbal_accelerometer_stream.cancel();
                     return
                 
 

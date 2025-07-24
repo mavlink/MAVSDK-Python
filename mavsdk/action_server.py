@@ -567,7 +567,7 @@ class ActionServer(AsyncBase):
                     raise ActionServerError(result, "arm_disarm()")
 
                 if result.result == ActionServerResult.Result.SUCCESS:
-                    arm_disarm_stream.cancel()
+                    arm_disarm_stream.cancel();
                     return
                 
 
@@ -606,7 +606,7 @@ class ActionServer(AsyncBase):
                     raise ActionServerError(result, "flight_mode_change()")
 
                 if result.result == ActionServerResult.Result.SUCCESS:
-                    flight_mode_change_stream.cancel()
+                    flight_mode_change_stream.cancel();
                     return
                 
 
@@ -645,7 +645,7 @@ class ActionServer(AsyncBase):
                     raise ActionServerError(result, "takeoff()")
 
                 if result.result == ActionServerResult.Result.SUCCESS:
-                    takeoff_stream.cancel()
+                    takeoff_stream.cancel();
                     return
                 
 
@@ -684,7 +684,7 @@ class ActionServer(AsyncBase):
                     raise ActionServerError(result, "land()")
 
                 if result.result == ActionServerResult.Result.SUCCESS:
-                    land_stream.cancel()
+                    land_stream.cancel();
                     return
                 
 
@@ -723,7 +723,7 @@ class ActionServer(AsyncBase):
                     raise ActionServerError(result, "reboot()")
 
                 if result.result == ActionServerResult.Result.SUCCESS:
-                    reboot_stream.cancel()
+                    reboot_stream.cancel();
                     return
                 
 
@@ -762,7 +762,7 @@ class ActionServer(AsyncBase):
                     raise ActionServerError(result, "shutdown()")
 
                 if result.result == ActionServerResult.Result.SUCCESS:
-                    shutdown_stream.cancel()
+                    shutdown_stream.cancel();
                     return
                 
 
@@ -801,7 +801,7 @@ class ActionServer(AsyncBase):
                     raise ActionServerError(result, "terminate()")
 
                 if result.result == ActionServerResult.Result.SUCCESS:
-                    terminate_stream.cancel()
+                    terminate_stream.cancel();
                     return
                 
 
