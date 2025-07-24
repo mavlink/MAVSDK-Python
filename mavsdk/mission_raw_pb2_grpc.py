@@ -115,6 +115,21 @@ class MissionRawServiceStub(object):
                 request_serializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionFromStringRequest.SerializeToString,
                 response_deserializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionFromStringResponse.FromString,
                 _registered_method=True)
+        self.ImportMissionPlannerMission = channel.unary_unary(
+                '/mavsdk.rpc.mission_raw.MissionRawService/ImportMissionPlannerMission',
+                request_serializer=mission__raw_dot_mission__raw__pb2.ImportMissionPlannerMissionRequest.SerializeToString,
+                response_deserializer=mission__raw_dot_mission__raw__pb2.ImportMissionPlannerMissionResponse.FromString,
+                _registered_method=True)
+        self.ImportMissionPlannerMissionFromString = channel.unary_unary(
+                '/mavsdk.rpc.mission_raw.MissionRawService/ImportMissionPlannerMissionFromString',
+                request_serializer=mission__raw_dot_mission__raw__pb2.ImportMissionPlannerMissionFromStringRequest.SerializeToString,
+                response_deserializer=mission__raw_dot_mission__raw__pb2.ImportMissionPlannerMissionFromStringResponse.FromString,
+                _registered_method=True)
+        self.IsMissionFinished = channel.unary_unary(
+                '/mavsdk.rpc.mission_raw.MissionRawService/IsMissionFinished',
+                request_serializer=mission__raw_dot_mission__raw__pb2.IsMissionFinishedRequest.SerializeToString,
+                response_deserializer=mission__raw_dot_mission__raw__pb2.IsMissionFinishedResponse.FromString,
+                _registered_method=True)
 
 
 class MissionRawServiceServicer(object):
@@ -279,6 +294,40 @@ class MissionRawServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ImportMissionPlannerMission(self, request, context):
+        """
+        Import a Mission Planner mission in QGC WPL 110 format, from a file.
+
+        Supported:
+        - Waypoints
+        - ArduPilot home position handling
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ImportMissionPlannerMissionFromString(self, request, context):
+        """
+        Import a Mission Planner mission in QGC WPL 110 format, from a string.
+
+        Supported:
+        - Waypoints
+        - ArduPilot home position handling
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def IsMissionFinished(self, request, context):
+        """
+        Check if the mission is finished.
+
+        Returns true if the mission is finished, false otherwise.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_MissionRawServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -361,6 +410,21 @@ def add_MissionRawServiceServicer_to_server(servicer, server):
                     servicer.ImportQgroundcontrolMissionFromString,
                     request_deserializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionFromStringRequest.FromString,
                     response_serializer=mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionFromStringResponse.SerializeToString,
+            ),
+            'ImportMissionPlannerMission': grpc.unary_unary_rpc_method_handler(
+                    servicer.ImportMissionPlannerMission,
+                    request_deserializer=mission__raw_dot_mission__raw__pb2.ImportMissionPlannerMissionRequest.FromString,
+                    response_serializer=mission__raw_dot_mission__raw__pb2.ImportMissionPlannerMissionResponse.SerializeToString,
+            ),
+            'ImportMissionPlannerMissionFromString': grpc.unary_unary_rpc_method_handler(
+                    servicer.ImportMissionPlannerMissionFromString,
+                    request_deserializer=mission__raw_dot_mission__raw__pb2.ImportMissionPlannerMissionFromStringRequest.FromString,
+                    response_serializer=mission__raw_dot_mission__raw__pb2.ImportMissionPlannerMissionFromStringResponse.SerializeToString,
+            ),
+            'IsMissionFinished': grpc.unary_unary_rpc_method_handler(
+                    servicer.IsMissionFinished,
+                    request_deserializer=mission__raw_dot_mission__raw__pb2.IsMissionFinishedRequest.FromString,
+                    response_serializer=mission__raw_dot_mission__raw__pb2.IsMissionFinishedResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -796,6 +860,87 @@ class MissionRawService(object):
             '/mavsdk.rpc.mission_raw.MissionRawService/ImportQgroundcontrolMissionFromString',
             mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionFromStringRequest.SerializeToString,
             mission__raw_dot_mission__raw__pb2.ImportQgroundcontrolMissionFromStringResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ImportMissionPlannerMission(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/mavsdk.rpc.mission_raw.MissionRawService/ImportMissionPlannerMission',
+            mission__raw_dot_mission__raw__pb2.ImportMissionPlannerMissionRequest.SerializeToString,
+            mission__raw_dot_mission__raw__pb2.ImportMissionPlannerMissionResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ImportMissionPlannerMissionFromString(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/mavsdk.rpc.mission_raw.MissionRawService/ImportMissionPlannerMissionFromString',
+            mission__raw_dot_mission__raw__pb2.ImportMissionPlannerMissionFromStringRequest.SerializeToString,
+            mission__raw_dot_mission__raw__pb2.ImportMissionPlannerMissionFromStringResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def IsMissionFinished(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/mavsdk.rpc.mission_raw.MissionRawService/IsMissionFinished',
+            mission__raw_dot_mission__raw__pb2.IsMissionFinishedRequest.SerializeToString,
+            mission__raw_dot_mission__raw__pb2.IsMissionFinishedResponse.FromString,
             options,
             channel_credentials,
             insecure,
