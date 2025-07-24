@@ -64,8 +64,10 @@ class custom_build(build):
                 raise NotImplementedError(
                     "Error: unknown MAVSDK_SERVER_ARCH: "
                     f"{os.environ['MAVSDK_SERVER_ARCH']}")
+
         elif platform.system() == 'Linux':
             return 'musl_x86_64'
+
         elif platform.system() == 'Darwin':
             if platform.processor() == 'i386':
                 return 'macos_x64'
@@ -73,9 +75,23 @@ class custom_build(build):
                 return 'macos_arm64'
             raise NotImplementedError(
                 f"Error: unknown macOS processor: {platform.processor()}")
+
+        elif platform.system() == 'Windows' and 'MAVSDK_SERVER_ARCH' in os.environ:
+            if os.environ['MAVSDK_SERVER_ARCH'] == "x86":
+                return 'win_x86'
+            elif os.environ['MAVSDK_SERVER_ARCH'] == "x64":
+                return 'win_x64'
+            elif os.environ['MAVSDK_SERVER_ARCH'] == "arm64":
+                return 'win_arm64'
+            else:
+                raise NotImplementedError(
+                    "Error: unknown MAVSDK_SERVER_ARCH: "
+                    f"{os.environ['MAVSDK_SERVER_ARCH']}")
+
         elif platform.system() == 'Windows' \
-                and (platform.processor().startswith('AMD64') or
-                     platform.processor().startswith('Intel64')):
+            and (platform.processor().startswith('AMD64') or
+                  platform.processor().startswith('Intel64')):
+            # Fallback
             return 'win_x64.exe'
         else:
             raise NotImplementedError(
