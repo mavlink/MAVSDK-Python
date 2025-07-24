@@ -206,7 +206,7 @@ jobs:
 
       - name: Create wheel
         run: |
-          export MAVSDK_SERVER_ARCH=${{ matrix.arch }}
+          set MAVSDK_SERVER_ARCH=${{ matrix.arch }}
           python3 setup.py bdist_wheel
           Dir "dist/" | rename-item -NewName {$_.name -replace '-any.whl','-${{ matrix.wheel_arch }}.whl'}
 
