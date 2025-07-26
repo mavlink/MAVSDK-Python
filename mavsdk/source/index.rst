@@ -69,13 +69,55 @@ The examples assume that the embedded ``mavsdk_server`` binary can be run. In so
 Debug connection issues
 -----------------------
 
-.. note::
-   By default mavsdk-python will not print any output from mavsdk-server. If you are experiencing connection issues, it can pay to enable forwarding of the mavsdk-server output into the python console. You can do so with this piece of code at the top of your file:
+MAVSDK-Python automatically captures and displays important messages from ``mavsdk_server``. Error and warning messages are shown by default, while informational messages can be enabled for more detailed debugging.
 
-  .. code:: python
+**For basic debugging (recommended):**
 
-    import logging
-    logging.basicConfig(level=logging.DEBUG)
+.. code:: python
+
+  import logging
+  logging.basicConfig(level=logging.INFO)
+
+This will show connection attempts, version information, and any errors or warnings from ``mavsdk_server``.
+
+**For detailed debugging:**
+
+.. code:: python
+
+  import logging
+  logging.basicConfig(level=logging.DEBUG)
+
+This shows all messages including internal debug information.
+
+**For server-only messages:**
+
+You can also control just the ``mavsdk_server`` output:
+
+.. code:: python
+
+  import logging
+  logging.basicConfig(level=logging.WARNING)  # Hide most messages
+  logging.getLogger('mavsdk_server').setLevel(logging.INFO)  # Show server info
+
+**To disable server messages completely:**
+
+.. code:: python
+
+  import logging
+  logging.getLogger('mavsdk_server').setLevel(logging.CRITICAL)  # Hide all server output
+
+**Common error messages:**
+
+If you see error messages like these, they indicate connection string issues:
+
+.. code:: bash
+
+  ERROR:mavsdk_server:Unknown protocol (cli_arg.cpp:62)
+  ERROR:mavsdk_server:Connection failed: Invalid connection URL
+
+Check that your connection string follows the correct format (e.g. ``udpin://0.0.0.0:14540``).
+
+**Running mavsdk_server separately:**
 
 In order to get more debugging information, it is possible to run the mavsdk_server binary separately.
 
