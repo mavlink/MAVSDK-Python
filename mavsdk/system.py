@@ -51,14 +51,64 @@ from . import bin
 
 
 class _LoggingThread(threading.Thread):
-    def __init__(self, pipe, log_fn):
+    def __init__(self, pipe, logger):
         super().__init__()
         self.pipe = pipe
-        self.log_fn = log_fn
+        self.logger = logger
 
     def run(self):
-        for line in self.pipe:
-            self.log_fn(line.decode("utf-8").replace("\n", ""))
+        try:
+            for line in self.pipe:
+                if not line:  # EOF reached
+                    break
+
+                try:
+                    message = line.decode("utf-8").replace("\n", "")
+
+                    # Skip empty lines
+                    if not message.strip():
+                        continue
+
+                    # Strip ANSI color codes used by MAVSDK
+                    # MAVSDK uses: \x1b[31m, \x1b[32m, \x1b[33m, \x1b[34m, \x1b[37m, \x1b[0m
+                    # Also handle \033[ variant (equivalent to \x1b[)
+                    for escape_seq in ['\x1b[', '\033[']:
+                        while escape_seq in message:
+                            start = message.find(escape_seq)
+                            if start == -1:
+                                break
+                            end = message.find('m', start)
+                            if end == -1:
+                                break
+                            message = message[:start] + message[end + 1:]
+
+                    # Parse mavsdk_server log level prefixes and map to Python logging levels
+                    # Format is: [timestamp|Level] message (filename:line)
+                    if "|Error] " in message:
+                        idx = message.find("|Error] ") + 8
+                        self.logger.error(message[idx:].strip())
+                    elif "|Warn ] " in message:
+                        idx = message.find("|Warn ] ") + 8
+                        self.logger.warning(message[idx:].strip())
+                    elif "|Info ] " in message:
+                        idx = message.find("|Info ] ") + 8
+                        self.logger.info(message[idx:].strip())
+                    elif "|Debug] " in message:
+                        idx = message.find("|Debug] ") + 8
+                        self.logger.debug(message[idx:].strip())
+                    else:
+                        # Default to debug for unprefixed messages
+                        self.logger.debug(message)
+                except UnicodeDecodeError:
+                    # Skip lines that can't be decoded
+                    continue
+        except (BrokenPipeError, OSError):
+            # Subprocess has terminated, exit gracefully
+            pass
+        finally:
+            # Ensure pipe is closed
+            if self.pipe and not self.pipe.closed:
+                self.pipe.close()
 
 class System:
     """
@@ -120,7 +170,7 @@ class System:
 
             # add a delay to be sure resources have been freed and restart mavsdk_server
             await asyncio.sleep(1)
-            
+
 
         if self._mavsdk_server_address is None:
             self._mavsdk_server_address = 'localhost'
@@ -456,13 +506,14 @@ class System:
                                      "--compid", str(compid)]
                 if system_address:
                     bin_path_and_args.append(system_address)
+
                 p = subprocess.Popen(bin_path_and_args,
                                      shell=False,
                                      stdout=subprocess.PIPE,
                                      stderr=subprocess.STDOUT)
 
-                logger = logging.getLogger(__name__)
-                log_thread = _LoggingThread(p.stdout, logger.debug)
+                logger = logging.getLogger('mavsdk_server')
+                log_thread = _LoggingThread(p.stdout, logger)
                 log_thread.start()
         except FileNotFoundError:
             print("""
