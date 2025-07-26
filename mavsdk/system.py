@@ -8,15 +8,20 @@ from .async_plugin_manager import AsyncPluginManager
 
 from . import action
 from . import action_server
+from . import arm_authorizer_server
 from . import calibration
 from . import camera
 from . import camera_server
 from . import component_information
 from . import component_information_server
+from . import component_metadata
+from . import component_metadata_server
 from . import core
+from . import events
 from . import failure
 from . import follow_me
 from . import ftp
+from . import ftp_server
 from . import geofence
 from . import gimbal
 from . import gripper
@@ -24,6 +29,7 @@ from . import info
 from . import log_files
 from . import log_streaming
 from . import manual_control
+from . import mavlink_direct
 from . import mission
 from . import mission_raw
 from . import mission_raw_server
@@ -137,15 +143,20 @@ class System:
         self._plugins = {}
         self._plugins["action"] = action.Action(plugin_manager)
         self._plugins["action_server"] = action_server.ActionServer(plugin_manager)
+        self._plugins["arm_authorizer_server"] = arm_authorizer_server.ArmAuthorizerServer(plugin_manager)
         self._plugins["calibration"] = calibration.Calibration(plugin_manager)
         self._plugins["camera"] = camera.Camera(plugin_manager)
         self._plugins["camera_server"] = camera_server.CameraServer(plugin_manager)
         self._plugins["component_information"] = component_information.ComponentInformation(plugin_manager)
         self._plugins["component_information_server"] = component_information_server.ComponentInformationServer(plugin_manager)
+        self._plugins["component_metadata"] = component_metadata.ComponentMetadata(plugin_manager)
+        self._plugins["component_metadata_server"] = component_metadata_server.ComponentMetadataServer(plugin_manager)
         self._plugins["core"] = core.Core(plugin_manager)
+        self._plugins["events"] = events.Events(plugin_manager)
         self._plugins["failure"] = failure.Failure(plugin_manager)
         self._plugins["follow_me"] = follow_me.FollowMe(plugin_manager)
         self._plugins["ftp"] = ftp.Ftp(plugin_manager)
+        self._plugins["ftp_server"] = ftp_server.FtpServer(plugin_manager)
         self._plugins["geofence"] = geofence.Geofence(plugin_manager)
         self._plugins["gimbal"] = gimbal.Gimbal(plugin_manager)
         self._plugins["gripper"] = gripper.Gripper(plugin_manager)
@@ -153,6 +164,7 @@ class System:
         self._plugins["log_files"] = log_files.LogFiles(plugin_manager)
         self._plugins["log_streaming"] = log_streaming.LogStreaming(plugin_manager)
         self._plugins["manual_control"] = manual_control.ManualControl(plugin_manager)
+        self._plugins["mavlink_direct"] = mavlink_direct.MavlinkDirect(plugin_manager)
         self._plugins["mission"] = mission.Mission(plugin_manager)
         self._plugins["mission_raw"] = mission_raw.MissionRaw(plugin_manager)
         self._plugins["mission_raw_server"] = mission_raw_server.MissionRawServer(plugin_manager)
@@ -188,6 +200,12 @@ class System:
         return self._plugins["action_server"]
 
     @property
+    def arm_authorizer_server(self) -> arm_authorizer_server.ArmAuthorizerServer:
+        if "arm_authorizer_server" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("ArmAuthorizerServer"))
+        return self._plugins["arm_authorizer_server"]
+
+    @property
     def calibration(self) -> calibration.Calibration:
         if "calibration" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Calibration"))
@@ -218,10 +236,28 @@ class System:
         return self._plugins["component_information_server"]
 
     @property
+    def component_metadata(self) -> component_metadata.ComponentMetadata:
+        if "component_metadata" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("ComponentMetadata"))
+        return self._plugins["component_metadata"]
+
+    @property
+    def component_metadata_server(self) -> component_metadata_server.ComponentMetadataServer:
+        if "component_metadata_server" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("ComponentMetadataServer"))
+        return self._plugins["component_metadata_server"]
+
+    @property
     def core(self) -> core.Core:
         if "core" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Core"))
         return self._plugins["core"]
+
+    @property
+    def events(self) -> events.Events:
+        if "events" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("Events"))
+        return self._plugins["events"]
 
     @property
     def failure(self) -> failure.Failure:
@@ -240,6 +276,12 @@ class System:
         if "ftp" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Ftp"))
         return self._plugins["ftp"]
+
+    @property
+    def ftp_server(self) -> ftp_server.FtpServer:
+        if "ftp_server" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("FtpServer"))
+        return self._plugins["ftp_server"]
 
     @property
     def geofence(self) -> geofence.Geofence:
@@ -282,6 +324,12 @@ class System:
         if "manual_control" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("ManualControl"))
         return self._plugins["manual_control"]
+
+    @property
+    def mavlink_direct(self) -> mavlink_direct.MavlinkDirect:
+        if "mavlink_direct" not in self._plugins:
+            raise RuntimeError(self.error_uninitialized("MavlinkDirect"))
+        return self._plugins["mavlink_direct"]
 
     @property
     def mission(self) -> mission.Mission:
@@ -375,7 +423,7 @@ class System:
 
     @property
     def winch(self) -> winch.Winch:
-        if "tune" not in self._plugins:
+        if "winch" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("Winch"))
         return self._plugins["winch"]
 
