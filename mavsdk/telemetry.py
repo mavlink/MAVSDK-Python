@@ -4739,7 +4739,7 @@ class Telemetry(AsyncBase):
 
     async def raw_imu(self):
         """
-         Subscribe to 'Raw IMU' updates.
+         Subscribe to 'Raw IMU' updates (note that units are are incorrect and "raw" as provided by the sensor)
 
          Yields
          -------

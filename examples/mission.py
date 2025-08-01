@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 
 import asyncio
+import logging
 
 from mavsdk import System
 from mavsdk.mission import (MissionItem, MissionPlan)
+
+# Enable INFO level logging by default so that INFO messages are shown
+logging.basicConfig(level=logging.INFO)
 
 
 async def run():

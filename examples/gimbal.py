@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 
 import asyncio
+import logging
 from mavsdk import System
 from mavsdk.gimbal import GimbalMode, ControlMode, SendMode
+
+# Enable INFO level logging by default so that INFO messages are shown
+logging.basicConfig(level=logging.INFO)
 
 
 async def get_gimbals(drone, timeout=10):
