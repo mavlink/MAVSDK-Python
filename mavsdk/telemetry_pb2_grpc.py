@@ -511,7 +511,7 @@ class TelemetryServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SubscribeRawImu(self, request, context):
-        """Subscribe to 'Raw IMU' updates.
+        """Subscribe to 'Raw IMU' updates (note that units are are incorrect and "raw" as provided by the sensor)
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
