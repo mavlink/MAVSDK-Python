@@ -29,6 +29,7 @@ class TelemetryServiceStub(object):
     """
     Allow users to get vehicle telemetry and state information
     (e.g. battery, GPS, RC connection, flight mode etc.) and set telemetry update rates.
+    Certain Telemetry Topics such as, Position or Velocity_Ned require GPS Fix before data gets published.
     """
 
     def __init__(self, channel):
@@ -333,6 +334,7 @@ class TelemetryServiceServicer(object):
     """
     Allow users to get vehicle telemetry and state information
     (e.g. battery, GPS, RC connection, flight mode etc.) and set telemetry update rates.
+    Certain Telemetry Topics such as, Position or Velocity_Ned require GPS Fix before data gets published.
     """
 
     def SubscribePosition(self, request, context):
@@ -1047,6 +1049,7 @@ class TelemetryService(object):
     """
     Allow users to get vehicle telemetry and state information
     (e.g. battery, GPS, RC connection, flight mode etc.) and set telemetry update rates.
+    Certain Telemetry Topics such as, Position or Velocity_Ned require GPS Fix before data gets published.
     """
 
     @staticmethod
