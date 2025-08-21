@@ -21,10 +21,10 @@ class MavlinkMessage:
      component_id : uint32_t
           Component ID of the sender (for received messages)
 
-     target_system : uint32_t
+     target_system_id : uint32_t
           Target system ID (for sending, 0 for broadcast)
 
-     target_component : uint32_t
+     target_component_id : uint32_t
           Target component ID (for sending, 0 for broadcast)
 
      fields_json : std::string
@@ -39,15 +39,15 @@ class MavlinkMessage:
             message_name,
             system_id,
             component_id,
-            target_system,
-            target_component,
+            target_system_id,
+            target_component_id,
             fields_json):
         """ Initializes the MavlinkMessage object """
         self.message_name = message_name
         self.system_id = system_id
         self.component_id = component_id
-        self.target_system = target_system
-        self.target_component = target_component
+        self.target_system_id = target_system_id
+        self.target_component_id = target_component_id
         self.fields_json = fields_json
 
     def __eq__(self, to_compare):
@@ -59,8 +59,8 @@ class MavlinkMessage:
                 (self.message_name == to_compare.message_name) and \
                 (self.system_id == to_compare.system_id) and \
                 (self.component_id == to_compare.component_id) and \
-                (self.target_system == to_compare.target_system) and \
-                (self.target_component == to_compare.target_component) and \
+                (self.target_system_id == to_compare.target_system_id) and \
+                (self.target_component_id == to_compare.target_component_id) and \
                 (self.fields_json == to_compare.fields_json)
 
         except AttributeError:
@@ -72,8 +72,8 @@ class MavlinkMessage:
                 "message_name: " + str(self.message_name),
                 "system_id: " + str(self.system_id),
                 "component_id: " + str(self.component_id),
-                "target_system: " + str(self.target_system),
-                "target_component: " + str(self.target_component),
+                "target_system_id: " + str(self.target_system_id),
+                "target_component_id: " + str(self.target_component_id),
                 "fields_json: " + str(self.fields_json)
                 ])
 
@@ -93,10 +93,10 @@ class MavlinkMessage:
                 rpcMavlinkMessage.component_id,
                 
                 
-                rpcMavlinkMessage.target_system,
+                rpcMavlinkMessage.target_system_id,
                 
                 
-                rpcMavlinkMessage.target_component,
+                rpcMavlinkMessage.target_component_id,
                 
                 
                 rpcMavlinkMessage.fields_json
@@ -126,13 +126,13 @@ class MavlinkMessage:
         
         
             
-        rpcMavlinkMessage.target_system = self.target_system
+        rpcMavlinkMessage.target_system_id = self.target_system_id
             
         
         
         
             
-        rpcMavlinkMessage.target_component = self.target_component
+        rpcMavlinkMessage.target_component_id = self.target_component_id
             
         
         
