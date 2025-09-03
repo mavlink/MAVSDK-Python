@@ -26,9 +26,10 @@ jobs:
 
       - name: Check style
         run: |
-          python3 -m pip install pycodestyle
+          python3 -m pip install pycodestyle ruff
           export PATH=$PATH:$HOME/.local/bin
           pycodestyle --max-line-length=100 examples/*
+          ruff --select=ASYNC,RUF006
 
       - name: Install prerequisites
         run: |
