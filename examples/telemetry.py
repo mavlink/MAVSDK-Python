@@ -15,10 +15,11 @@ async def run():
     await drone.connect(system_address="udpin://0.0.0.0:14540")
 
     # Start the tasks
-    asyncio.ensure_future(print_battery(drone))
-    asyncio.ensure_future(print_gps_info(drone))
-    asyncio.ensure_future(print_in_air(drone))
-    asyncio.ensure_future(print_position(drone))
+    tasks = []
+    tasks.append(asyncio.create_task(print_battery(drone)))
+    tasks.append(asyncio.create_task(print_gps_info(drone)))
+    tasks.append(asyncio.create_task(print_in_air(drone)))
+    tasks.append(asyncio.create_task(print_position(drone)))
 
     # Keep the program running indefinitely
     exit_event = asyncio.Event()
