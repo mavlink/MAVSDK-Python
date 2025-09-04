@@ -17,7 +17,7 @@ async def run():
     print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print(f"-- Connected to drone!")
+            print("-- Connected to drone!")
             break
 
     asyncio.get_event_loop().add_reader(sys.stdin, got_stdin_data, drone)
