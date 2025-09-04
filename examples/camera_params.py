@@ -24,10 +24,11 @@ async def run():
     drone = System()
     await drone.connect(system_address="udpin://0.0.0.0:14540")
 
-    tasks = []
-    tasks.append(asyncio.create_task(observe_current_settings(drone)))
-    tasks.append(asyncio.create_task(observe_camera_mode(drone)))
-    tasks.append(asyncio.create_task(observe_possible_setting_options(drone)))
+    tasks = [
+        asyncio.create_task(observe_current_settings(drone)),
+        asyncio.create_task(observe_camera_mode(drone)),
+        asyncio.create_task(observe_possible_setting_options(drone)),
+    ]
 
     while True:
         entered_input = await ainput(usage_str)
