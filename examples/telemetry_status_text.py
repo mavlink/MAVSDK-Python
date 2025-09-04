@@ -11,7 +11,7 @@ async def print_status_text():
     print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print(f"-- Connected to drone!")
+            print("-- Connected to drone!")
             break
 
     async for status_text in drone.telemetry.status_text():
