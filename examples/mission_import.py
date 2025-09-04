@@ -3,7 +3,6 @@
 import asyncio
 
 from mavsdk import System
-import mavsdk.mission_raw
 
 
 async def run():
