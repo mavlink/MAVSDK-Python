@@ -29,7 +29,7 @@ jobs:
           python3 -m pip install pycodestyle ruff
           export PATH=$PATH:$HOME/.local/bin
           pycodestyle --max-line-length=100 examples/*
-          ruff --select=ASYNC,RUF006
+          ruff check --select=ASYNC,RUF006
 
       - name: Install prerequisites
         run: |
