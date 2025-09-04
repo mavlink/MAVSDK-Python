@@ -145,24 +145,25 @@ async def run():
         await drone.action.disarm()
         return
 
-    waypoints = []
-
     # Read data from the CSV file
     async with await anyio.open_file("active.csv", "r", newline="") as csvfile:
         content = await csvfile.read()
-    reader = csv.DictReader(io.StringIO(content))
-    for row in reader:
-        waypoints.append((float(row["t"]),
-                          float(row["px"]),
-                          float(row["py"]),
-                          float(row["pz"]),
-                          float(row["vx"]),
-                          float(row["vy"]),
-                          float(row["vz"]),
-                          float(row["ax"]),
-                          float(row["ay"]),
-                          float(row["az"]),
-                          int(row["mode"])))
+    waypoints = [
+        (
+            float(row["t"]),
+            float(row["px"]),
+            float(row["py"]),
+            float(row["pz"]),
+            float(row["vx"]),
+            float(row["vy"]),
+            float(row["vz"]),
+            float(row["ax"]),
+            float(row["ay"]),
+            float(row["az"]),
+            int(row["mode"]),
+        )
+        for row in csv.DictReader(io.StringIO(content))
+    ]
 
     print("-- Performing trajectory")
     total_duration = waypoints[-1][0]

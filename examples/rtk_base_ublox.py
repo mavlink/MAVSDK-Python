@@ -97,9 +97,10 @@ async def run():
     await drone.connect()
 
     # Start the tasks
-    tasks = []
-    tasks.append(asyncio.create_task(print_gps_info(drone)))
-    tasks.append(asyncio.create_task(send_rtcm(drone)))
+    tasks = [
+        asyncio.create_task(print_gps_info(drone)),
+        asyncio.create_task(send_rtcm(drone)),
+    ]
 
     # Keep the program running indefinitely
     exit_event = asyncio.Event()
