@@ -49,11 +49,11 @@ async def set_params(args):
                 continue
 
             columns = line.strip().split("\t")
-            vehicle_id = columns[0]
-            component_id = columns[1]
+            _vehicle_id = columns[0]
+            _component_id = columns[1]
             name = columns[2]
             value = columns[3]
-            type = columns[4]
+            _type = columns[4]
             if name in int_param_names:
                 await drone.param.set_param_int(name, int(value))
             elif name in float_param_names:

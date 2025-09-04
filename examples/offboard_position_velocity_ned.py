@@ -44,7 +44,7 @@ async def run():
         async for odom in drone.telemetry.position_velocity_ned():
             print(f"{odom.velocity.north_m_s} {odom.velocity.down_m_s}")
 
-    tasks = {asyncio.create_task(print_z_velocity(drone))}
+    _tasks = {asyncio.create_task(print_z_velocity(drone))}
 
     print("-- Go 0m North, 0m East, -10m Down within local coordinate system")
     await drone.offboard.set_position_velocity_ned(

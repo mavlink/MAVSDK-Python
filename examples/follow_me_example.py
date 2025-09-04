@@ -4,7 +4,7 @@
 
 import asyncio
 from mavsdk import System
-from mavsdk.follow_me import Config, FollowMeError, TargetLocation
+from mavsdk.follow_me import Config, TargetLocation
 
 
 follow_height = 8.0  # in meters

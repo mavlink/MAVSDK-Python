@@ -82,7 +82,7 @@ import io
 import anyio
 from mavsdk import System
 from mavsdk.offboard import PositionNedYaw, VelocityNedYaw
-from mavsdk.offboard import AccelerationNed, OffboardError
+from mavsdk.offboard import OffboardError
 from mavsdk.telemetry import LandedState
 
 
@@ -178,7 +178,7 @@ async def run():
 
         position = current_waypoint[1:4]
         velocity = current_waypoint[4:7]
-        acceleration = current_waypoint[7:10]
+        _acceleration = current_waypoint[7:10]  # unused
         mode_code = current_waypoint[-1]
         if last_mode != mode_code:
             # Print the mode number and its description

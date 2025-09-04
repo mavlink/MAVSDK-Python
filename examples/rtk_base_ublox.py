@@ -97,7 +97,7 @@ async def run():
     await drone.connect()
 
     # Start the tasks
-    tasks = [
+    _tasks = [
         asyncio.create_task(print_gps_info(drone)),
         asyncio.create_task(send_rtcm(drone)),
     ]
@@ -170,7 +170,7 @@ async def send_rtcm(drone):
                 # It's recommended to disable NMEA messages, so this script
                 # does not have to differentiate between 3 kinds of messages
 
-                nmea = ublox.readline()
+                # nmea = ublox.readline()
                 # print(nmea)
                 pass
 

@@ -2,7 +2,7 @@
 
 import asyncio
 from mavsdk import System
-from mavsdk.tune import SongElement, TuneDescription, TuneError
+from mavsdk.tune import SongElement, TuneDescription
 
 
 async def run():

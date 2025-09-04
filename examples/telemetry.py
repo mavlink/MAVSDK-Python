@@ -15,7 +15,7 @@ async def run():
     await drone.connect(system_address="udpin://0.0.0.0:14540")
 
     # Start the tasks
-    tasks = [
+    _tasks = [
         asyncio.create_task(print_battery(drone)),
         asyncio.create_task(print_gps_info(drone)),
         asyncio.create_task(print_in_air(drone)),

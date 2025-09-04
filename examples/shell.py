@@ -12,7 +12,7 @@ async def run():
     drone = System()
     await drone.connect(system_address="udpin://0.0.0.0:14540")
 
-    tasks = {asyncio.create_task(observe_shell(drone))}
+    _tasks = {asyncio.create_task(observe_shell(drone))}
 
     print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
