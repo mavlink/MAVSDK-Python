@@ -85,7 +85,7 @@ class RTCMParser:
 async def run():
     # Init the drone.
     # Note that connecting directly to a drone is not very useful here.
-    # You probably want to set-up some MAVLink message routing inbetween
+    # You probably want to set-up some MAVLink message routing in-between
     # this script and the drone.
     # Good candidates for this are
     # 1. mavlink-router (https://github.com/mavlink-router/mavlink-router)
@@ -96,11 +96,14 @@ async def run():
     await drone.connect()
 
     # Start the tasks
-    asyncio.ensure_future(print_gps_info(drone))
-    asyncio.ensure_future(send_rtcm(drone))
+    _tasks = [
+        asyncio.create_task(print_gps_info(drone)),
+        asyncio.create_task(send_rtcm(drone)),
+    ]
 
-    while True:
-        await asyncio.sleep(1)
+    # Keep the program running indefinitely
+    exit_event = asyncio.Event()
+    await exit_event.wait()
 
 
 async def print_gps_info(drone):
@@ -167,7 +170,7 @@ async def send_rtcm(drone):
                 # It's recommended to disable NMEA messages, so this script
                 # does not have to differentiate between 3 kinds of messages
 
-                nmea = ublox.readline()
+                # nmea = ublox.readline()
                 # print(nmea)
                 pass
 

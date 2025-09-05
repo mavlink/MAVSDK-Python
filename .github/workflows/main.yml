@@ -22,13 +22,13 @@ jobs:
           fetch-depth: 0
 
       - name: Install pip
-        run: sudo apt-get install -y python3-pip
+        run: sudo apt-get install -y python3-pip pipx
 
       - name: Check style
         run: |
-          python3 -m pip install pycodestyle
-          export PATH=$PATH:$HOME/.local/bin
-          pycodestyle examples/*
+          pipx run pycodestyle examples
+          pipx run ruff check --select=ASYNC,RUF006,E,F examples
+          pipx run codespell .
 
       - name: Install prerequisites
         run: |

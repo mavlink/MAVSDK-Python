@@ -5,17 +5,19 @@ import sys
 
 from mavsdk import System
 
+send_tasks = set()
+
 
 async def run():
     drone = System()
     await drone.connect(system_address="udpin://0.0.0.0:14540")
 
-    asyncio.ensure_future(observe_shell(drone))
+    _tasks = {asyncio.create_task(observe_shell(drone))}
 
     print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print(f"-- Connected to drone!")
+            print("-- Connected to drone!")
             break
 
     asyncio.get_event_loop().add_reader(sys.stdin, got_stdin_data, drone)
@@ -28,7 +30,7 @@ async def observe_shell(drone):
 
 
 def got_stdin_data(drone):
-    asyncio.ensure_future(send(drone, sys.stdin.readline()))
+    send_tasks.add(asyncio.create_task(send(drone, sys.stdin.readline())))
 
 
 async def send(drone, command):
@@ -36,9 +38,7 @@ async def send(drone, command):
 
 
 if __name__ == "__main__":
-    asyncio.ensure_future(run())
-
     try:
-        asyncio.get_event_loop().run_forever()
+        asyncio.run(run())
     except KeyboardInterrupt:
         pass

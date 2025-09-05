@@ -23,7 +23,7 @@ async def get_imu_data():
     print("Fetching IMU data...")
     async for imu in telemetry.imu():
         # Print data in HIGHRES_IMU format
-        print(f"HIGHRES_IMU (105)")
+        print("HIGHRES_IMU (105)")
         print(f"Time (us): {imu.timestamp_us}")
         print(f"X Acceleration (m/s^2): {imu.acceleration_frd.forward_m_s2}")
         print(f"Y Acceleration (m/s^2): {imu.acceleration_frd.right_m_s2}")

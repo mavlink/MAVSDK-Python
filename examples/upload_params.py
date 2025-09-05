@@ -2,6 +2,7 @@
 
 import asyncio
 import argparse
+import anyio
 from mavsdk import System
 from tqdm import tqdm
 
@@ -38,18 +39,20 @@ async def set_params(args):
         else:
             break
 
-    with open(args.param_file, "r") as param_file:
+    async with await anyio.open_file(args.param_file, "r") as param_file:
         print("Uploading Parameters... Please do not arm the vehicle!")
-        for line in tqdm(param_file, unit='lines'):
+        contents = await param_file.read()
+        lines = contents.splitlines()
+        for line in tqdm(lines, unit='lines'):
             if line.startswith("#"):
                 continue
 
             columns = line.strip().split("\t")
-            vehicle_id = columns[0]
-            component_id = columns[1]
+            _vehicle_id = columns[0]
+            _component_id = columns[1]
             name = columns[2]
             value = columns[3]
-            type = columns[4]
+            _type = columns[4]
             if name in int_param_names:
                 await drone.param.set_param_int(name, int(value))
             elif name in float_param_names:
