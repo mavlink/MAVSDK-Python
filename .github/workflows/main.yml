@@ -11,6 +11,15 @@ on:
     - '*'
 
 jobs:
+  codespell_and_ruff:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v5
+    - uses: codespell-project/actions-codespell@v2
+      with:
+        ignore_words_list: ned,positionned
+    - uses: astral-sh/ruff-action@v3
+
   ubuntu22:
     name: Ubuntu 22.04 x86_64
     runs-on: ubuntu-22.04
@@ -69,8 +78,6 @@ jobs:
         run: |
           export PATH=$PATH:$HOME/.local/bin
           other/tools/upload_docs.sh
-
-
 
   ubuntu22-other:
     name: Ubuntu 22.04 ${{ matrix.arch }}
