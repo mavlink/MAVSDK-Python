@@ -241,7 +241,7 @@ class AdsbVehicle:
           ADSB altitude type.
 
      absolute_altitude_m : float
-          Altitude in metres according to altitude_type 
+          Altitude in metres according to altitude_type
 
      heading_deg : float
           Course over ground, in degrees

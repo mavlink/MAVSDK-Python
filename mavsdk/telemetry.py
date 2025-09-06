@@ -1351,7 +1351,7 @@ class Battery:
           Estimated battery remaining (range: 0 to 100)
 
      time_remaining_s : float
-          Estimated battery usage time remaining 
+          Estimated battery usage time remaining
 
      battery_function : BatteryFunction
           Function of the battery
@@ -3800,7 +3800,7 @@ class Wind:
           Altitude (MSL) that this measurement was taken at
 
      horizontal_wind_speed_accuracy_m_s : float
-          Horizontal speed 1-STD accuracy 
+          Horizontal speed 1-STD accuracy
 
      vertical_wind_speed_accuracy_m_s : float
           Vertical speed 1-STD accuracy

@@ -26,7 +26,7 @@ if _version_not_supported:
 
 
 class MissionRawServerServiceStub(object):
-    """Acts as a vehicle and receives incoming missions from GCS (in raw MAVLINK format). 
+    """Acts as a vehicle and receives incoming missions from GCS (in raw MAVLINK format).
     Provides current mission item state, so the server can progress through missions.
     """
 
@@ -59,7 +59,7 @@ class MissionRawServerServiceStub(object):
 
 
 class MissionRawServerServiceServicer(object):
-    """Acts as a vehicle and receives incoming missions from GCS (in raw MAVLINK format). 
+    """Acts as a vehicle and receives incoming missions from GCS (in raw MAVLINK format).
     Provides current mission item state, so the server can progress through missions.
     """
 
@@ -127,7 +127,7 @@ def add_MissionRawServerServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class MissionRawServerService(object):
-    """Acts as a vehicle and receives incoming missions from GCS (in raw MAVLINK format). 
+    """Acts as a vehicle and receives incoming missions from GCS (in raw MAVLINK format).
     Provides current mission item state, so the server can progress through missions.
     """
 
