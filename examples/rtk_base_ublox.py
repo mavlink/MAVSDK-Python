@@ -85,7 +85,7 @@ class RTCMParser:
 async def run():
     # Init the drone.
     # Note that connecting directly to a drone is not very useful here.
-    # You probably want to set-up some MAVLink message routing inbetween
+    # You probably want to set-up some MAVLink message routing in between
     # this script and the drone.
     # Good candidates for this are
     # 1. mavlink-router (https://github.com/mavlink-router/mavlink-router)

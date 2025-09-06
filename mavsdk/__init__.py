@@ -15,7 +15,7 @@ if not ((int(major) >= 3 and int(minor) >= 6) or (int(major) >= 4)):
 # Do asyncio specific initialization
 try:
     # Try to import uvloop, provides _MUCH_ better performance compared to the
-    # standart unix selector event loop
+    # standard unix selector event loop
     import uvloop
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 except ImportError:

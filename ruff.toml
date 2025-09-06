@@ -1,0 +1,28 @@
+fix = false
+# line-length = 30856  # ruff rule E501
+
+[lint]
+select = [
+  "C4",     # flake8 comprehensions
+  "C90",    # McCabe cyclomatic complexity
+  "E",      # pycodestyle errors
+  "F",      # pyflakes errors
+  "W",      # pycodestyle warnings
+  "YTT",    # flake8-2020
+]
+ignore = [
+  "C417",   # unnecessary-map
+  "E402",   # module-import-not-at-top-of-file
+  "E501",   # line-too-long
+  "E703",   # useless-semicolon
+  "F401",   # unused-import
+  "F541",   # f-string-missing-placeholders
+  "F841",   # unused-variable
+  "W29",    # whitespace-fixes
+]
+mccabe.max-complexity = 22
+
+# Ignore generated protobuf files for E712 true-false-comparison
+per-file-ignores."mavsdk/component_information_pb2.py" = [ "E712" ]
+per-file-ignores."mavsdk/component_information_server_pb2.py" = [ "E712" ]
+per-file-ignores."mavsdk/tracking_server_pb2.py" = [ "E712" ]
