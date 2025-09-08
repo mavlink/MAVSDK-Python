@@ -72,15 +72,15 @@ class _LoggingThread(threading.Thread):
                     # Strip ANSI color codes used by MAVSDK
                     # MAVSDK uses: \x1b[31m, \x1b[32m, \x1b[33m, \x1b[34m, \x1b[37m, \x1b[0m
                     # Also handle \033[ variant (equivalent to \x1b[)
-                    for escape_seq in ['\x1b[', '\033[']:
+                    for escape_seq in ["\x1b[", "\033["]:
                         while escape_seq in message:
                             start = message.find(escape_seq)
                             if start == -1:
                                 break
-                            end = message.find('m', start)
+                            end = message.find("m", start)
                             if end == -1:
                                 break
-                            message = message[:start] + message[end + 1:]
+                            message = message[:start] + message[end + 1 :]
 
                     # Parse mavsdk_server log level prefixes and map to Python logging levels
                     # Format is: [timestamp|Level] message (filename:line)
@@ -110,6 +110,7 @@ class _LoggingThread(threading.Thread):
             if self.pipe and not self.pipe.closed:
                 self.pipe.close()
 
+
 class System:
     """
     Instantiate a System object, that will serve as a proxy to
@@ -133,6 +134,7 @@ class System:
         MAVLink component ID of the mavsdk_server (1..255).
 
     """
+
     def __init__(self, mavsdk_server_address=None, port=50051, sysid=245, compid=190):
         self._mavsdk_server_address = mavsdk_server_address
         self._port = port
@@ -171,10 +173,11 @@ class System:
             # add a delay to be sure resources have been freed and restart mavsdk_server
             await asyncio.sleep(1)
 
-
         if self._mavsdk_server_address is None:
-            self._mavsdk_server_address = 'localhost'
-            self._server_process = self._start_mavsdk_server(system_address,self._port, self._sysid, self._compid)
+            self._mavsdk_server_address = "localhost"
+            self._server_process = self._start_mavsdk_server(
+                system_address, self._port, self._sysid, self._compid
+            )
 
         await self._init_plugins(self._mavsdk_server_address, self._port)
 
@@ -183,9 +186,10 @@ class System:
         kill the running mavsdk_server and clean the whole instance
         """
         import subprocess
-        if isinstance(self._server_process,subprocess.Popen):
+
+        if isinstance(self._server_process, subprocess.Popen):
             self._server_process.kill()
-            self.__init__(port = self._port)
+            self.__init__(port=self._port)
 
     async def _init_plugins(self, host, port):
         plugin_manager = await AsyncPluginManager.create(host=host, port=port)
@@ -193,14 +197,24 @@ class System:
         self._plugins = {}
         self._plugins["action"] = action.Action(plugin_manager)
         self._plugins["action_server"] = action_server.ActionServer(plugin_manager)
-        self._plugins["arm_authorizer_server"] = arm_authorizer_server.ArmAuthorizerServer(plugin_manager)
+        self._plugins["arm_authorizer_server"] = (
+            arm_authorizer_server.ArmAuthorizerServer(plugin_manager)
+        )
         self._plugins["calibration"] = calibration.Calibration(plugin_manager)
         self._plugins["camera"] = camera.Camera(plugin_manager)
         self._plugins["camera_server"] = camera_server.CameraServer(plugin_manager)
-        self._plugins["component_information"] = component_information.ComponentInformation(plugin_manager)
-        self._plugins["component_information_server"] = component_information_server.ComponentInformationServer(plugin_manager)
-        self._plugins["component_metadata"] = component_metadata.ComponentMetadata(plugin_manager)
-        self._plugins["component_metadata_server"] = component_metadata_server.ComponentMetadataServer(plugin_manager)
+        self._plugins["component_information"] = (
+            component_information.ComponentInformation(plugin_manager)
+        )
+        self._plugins["component_information_server"] = (
+            component_information_server.ComponentInformationServer(plugin_manager)
+        )
+        self._plugins["component_metadata"] = component_metadata.ComponentMetadata(
+            plugin_manager
+        )
+        self._plugins["component_metadata_server"] = (
+            component_metadata_server.ComponentMetadataServer(plugin_manager)
+        )
         self._plugins["core"] = core.Core(plugin_manager)
         self._plugins["events"] = events.Events(plugin_manager)
         self._plugins["failure"] = failure.Failure(plugin_manager)
@@ -217,7 +231,9 @@ class System:
         self._plugins["mavlink_direct"] = mavlink_direct.MavlinkDirect(plugin_manager)
         self._plugins["mission"] = mission.Mission(plugin_manager)
         self._plugins["mission_raw"] = mission_raw.MissionRaw(plugin_manager)
-        self._plugins["mission_raw_server"] = mission_raw_server.MissionRawServer(plugin_manager)
+        self._plugins["mission_raw_server"] = mission_raw_server.MissionRawServer(
+            plugin_manager
+        )
         self._plugins["mocap"] = mocap.Mocap(plugin_manager)
         self._plugins["offboard"] = offboard.Offboard(plugin_manager)
         self._plugins["param"] = param.Param(plugin_manager)
@@ -226,16 +242,22 @@ class System:
         self._plugins["server_utility"] = server_utility.ServerUtility(plugin_manager)
         self._plugins["shell"] = shell.Shell(plugin_manager)
         self._plugins["telemetry"] = telemetry.Telemetry(plugin_manager)
-        self._plugins["telemetry_server"] = telemetry_server.TelemetryServer(plugin_manager)
-        self._plugins["tracking_server"] = tracking_server.TrackingServer(plugin_manager)
+        self._plugins["telemetry_server"] = telemetry_server.TelemetryServer(
+            plugin_manager
+        )
+        self._plugins["tracking_server"] = tracking_server.TrackingServer(
+            plugin_manager
+        )
         self._plugins["transponder"] = transponder.Transponder(plugin_manager)
         self._plugins["tune"] = tune.Tune(plugin_manager)
         self._plugins["winch"] = winch.Winch(plugin_manager)
 
     @staticmethod
     def error_uninitialized(plugin_name: str) -> str:
-        return f"{plugin_name} plugin has not been initialized! " \
+        return (
+            f"{plugin_name} plugin has not been initialized! "
             "Did you run `System.connect()`?"
+        )
 
     @property
     def action(self) -> action.Action:
@@ -280,7 +302,9 @@ class System:
         return self._plugins["component_information"]
 
     @property
-    def component_information_server(self) -> component_information_server.ComponentInformationServer:
+    def component_information_server(
+        self,
+    ) -> component_information_server.ComponentInformationServer:
         if "component_information_server" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("ComponentInformationServer"))
         return self._plugins["component_information_server"]
@@ -292,7 +316,9 @@ class System:
         return self._plugins["component_metadata"]
 
     @property
-    def component_metadata_server(self) -> component_metadata_server.ComponentMetadataServer:
+    def component_metadata_server(
+        self,
+    ) -> component_metadata_server.ComponentMetadataServer:
         if "component_metadata_server" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("ComponentMetadataServer"))
         return self._plugins["component_metadata_server"]
@@ -494,25 +520,32 @@ class System:
             from importlib_resources import path
 
         try:
-            if sys.platform.startswith('win'):
+            if sys.platform.startswith("win"):
                 mavsdk_exec_name = "mavsdk_server.exe"
             else:
                 mavsdk_exec_name = "mavsdk_server"
 
             with path(bin, mavsdk_exec_name) as backend:
-                bin_path_and_args = [os.fspath(backend),
-                                     "-p", str(port),
-                                     "--sysid", str(sysid),
-                                     "--compid", str(compid)]
+                bin_path_and_args = [
+                    os.fspath(backend),
+                    "-p",
+                    str(port),
+                    "--sysid",
+                    str(sysid),
+                    "--compid",
+                    str(compid),
+                ]
                 if system_address:
                     bin_path_and_args.append(system_address)
 
-                p = subprocess.Popen(bin_path_and_args,
-                                     shell=False,
-                                     stdout=subprocess.PIPE,
-                                     stderr=subprocess.STDOUT)
+                p = subprocess.Popen(
+                    bin_path_and_args,
+                    shell=False,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                )
 
-                logger = logging.getLogger('mavsdk_server')
+                logger = logging.getLogger("mavsdk_server")
                 log_thread = _LoggingThread(p.stdout, logger)
                 log_thread.start()
         except FileNotFoundError:

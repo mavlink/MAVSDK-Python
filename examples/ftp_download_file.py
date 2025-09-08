@@ -5,7 +5,6 @@ from mavsdk import System
 
 
 async def run():
-
     drone = System(mavsdk_server_address="localhost", port=50051)
     await drone.connect(system_address="serial:///dev/ttyACM0:57600")
 

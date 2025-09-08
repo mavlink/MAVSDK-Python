@@ -8,22 +8,21 @@ from enum import Enum
 
 class GripperAction(Enum):
     """
-     Gripper Actions.
+    Gripper Actions.
 
-     Available gripper actions are defined in mavlink under
-     https://mavlink.io/en/messages/common.html#GRIPPER_ACTIONS
+    Available gripper actions are defined in mavlink under
+    https://mavlink.io/en/messages/common.html#GRIPPER_ACTIONS
 
-     Values
-     ------
-     RELEASE
-          Open the gripper to release the cargo
+    Values
+    ------
+    RELEASE
+         Open the gripper to release the cargo
 
-     GRAB
-          Close the gripper and grab onto cargo
+    GRAB
+         Close the gripper and grab onto cargo
 
-     """
+    """
 
-    
     RELEASE = 0
     GRAB = 1
 
@@ -35,7 +34,7 @@ class GripperAction(Enum):
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
-        """ Parses a gRPC response """
+        """Parses a gRPC response"""
         if rpc_enum_value == gripper_pb2.GRIPPER_ACTION_RELEASE:
             return GripperAction.RELEASE
         if rpc_enum_value == gripper_pb2.GRIPPER_ACTION_GRAB:
@@ -47,50 +46,47 @@ class GripperAction(Enum):
 
 class GripperResult:
     """
-     Result type.
+    Result type.
 
-     Parameters
-     ----------
-     result : Result
-          Result enum value
+    Parameters
+    ----------
+    result : Result
+         Result enum value
 
-     result_str : std::string
-          Human-readable English string describing the result
+    result_str : std::string
+         Human-readable English string describing the result
 
-     """
+    """
 
-    
-    
     class Result(Enum):
         """
-         Possible results returned for gripper action requests.
+        Possible results returned for gripper action requests.
 
-         Values
-         ------
-         UNKNOWN
-              Unknown result
+        Values
+        ------
+        UNKNOWN
+             Unknown result
 
-         SUCCESS
-              Request was successful
+        SUCCESS
+             Request was successful
 
-         NO_SYSTEM
-              No system is connected
+        NO_SYSTEM
+             No system is connected
 
-         BUSY
-              Temporarily rejected
+        BUSY
+             Temporarily rejected
 
-         TIMEOUT
-              Request timed out
+        TIMEOUT
+             Request timed out
 
-         UNSUPPORTED
-              Action not supported
+        UNSUPPORTED
+             Action not supported
 
-         FAILED
-              Action failed
+        FAILED
+             Action failed
 
-         """
+        """
 
-        
         UNKNOWN = 0
         SUCCESS = 1
         NO_SYSTEM = 2
@@ -117,7 +113,7 @@ class GripperResult:
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
-            """ Parses a gRPC response """
+            """Parses a gRPC response"""
             if rpc_enum_value == gripper_pb2.GripperResult.RESULT_UNKNOWN:
                 return GripperResult.Result.UNKNOWN
             if rpc_enum_value == gripper_pb2.GripperResult.RESULT_SUCCESS:
@@ -135,69 +131,50 @@ class GripperResult:
 
         def __str__(self):
             return self.name
-    
 
-    def __init__(
-            self,
-            result,
-            result_str):
-        """ Initializes the GripperResult object """
+    def __init__(self, result, result_str):
+        """Initializes the GripperResult object"""
         self.result = result
         self.result_str = result_str
 
     def __eq__(self, to_compare):
-        """ Checks if two GripperResult are the same """
+        """Checks if two GripperResult are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # GripperResult object
-            return \
-                (self.result == to_compare.result) and \
-                (self.result_str == to_compare.result_str)
+            return (self.result == to_compare.result) and (
+                self.result_str == to_compare.result_str
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ GripperResult in string representation """
-        struct_repr = ", ".join([
-                "result: " + str(self.result),
-                "result_str: " + str(self.result_str)
-                ])
+        """GripperResult in string representation"""
+        struct_repr = ", ".join(
+            ["result: " + str(self.result), "result_str: " + str(self.result_str)]
+        )
 
         return f"GripperResult: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcGripperResult):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return GripperResult(
-                
-                GripperResult.Result.translate_from_rpc(rpcGripperResult.result),
-                
-                
-                rpcGripperResult.result_str
-                )
+            GripperResult.Result.translate_from_rpc(rpcGripperResult.result),
+            rpcGripperResult.result_str,
+        )
 
     def translate_to_rpc(self, rpcGripperResult):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpcGripperResult.result = self.result.translate_to_rpc()
-            
-        
-        
-        
-            
-        rpcGripperResult.result_str = self.result_str
-            
-        
-        
 
+        rpcGripperResult.result_str = self.result_str
 
 
 class GripperError(Exception):
-    """ Raised when a GripperResult is a fail code """
+    """Raised when a GripperResult is a fail code"""
 
     def __init__(self, result, origin, *params):
         self._result = result
@@ -210,70 +187,64 @@ class GripperError(Exception):
 
 class Gripper(AsyncBase):
     """
-     Allows users to send gripper actions.
+    Allows users to send gripper actions.
 
-     Generated by dcsdkgen - MAVSDK Gripper API
+    Generated by dcsdkgen - MAVSDK Gripper API
     """
 
     # Plugin name
     name = "Gripper"
 
     def _setup_stub(self, channel):
-        """ Setups the api stub """
+        """Setups the api stub"""
         self._stub = gripper_pb2_grpc.GripperServiceStub(channel)
 
-    
     def _extract_result(self, response):
-        """ Returns the response status and description """
+        """Returns the response status and description"""
         return GripperResult.translate_from_rpc(response.gripper_result)
-    
 
     async def grab(self, instance):
         """
-         Gripper grab cargo.
+        Gripper grab cargo.
 
-         Parameters
-         ----------
-         instance : uint32_t
-             
-         Raises
-         ------
-         GripperError
-             If the request fails. The error contains the reason for the failure.
+        Parameters
+        ----------
+        instance : uint32_t
+
+        Raises
+        ------
+        GripperError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = gripper_pb2.GrabRequest()
         request.instance = instance
         response = await self._stub.Grab(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != GripperResult.Result.SUCCESS:
             raise GripperError(result, "grab()", instance)
-        
 
     async def release(self, instance):
         """
-         Gripper release cargo.
+        Gripper release cargo.
 
-         Parameters
-         ----------
-         instance : uint32_t
-             
-         Raises
-         ------
-         GripperError
-             If the request fails. The error contains the reason for the failure.
+        Parameters
+        ----------
+        instance : uint32_t
+
+        Raises
+        ------
+        GripperError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = gripper_pb2.ReleaseRequest()
         request.instance = instance
         response = await self._stub.Release(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != GripperResult.Result.SUCCESS:
             raise GripperError(result, "release()", instance)
-        

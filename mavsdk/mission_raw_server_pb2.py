@@ -4,18 +4,20 @@
 # source: mission_raw_server/mission_raw_server.proto
 # Protobuf Python Version: 5.29.0
 """Generated protocol buffer code."""
+
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
     _runtime_version.Domain.PUBLIC,
     5,
     29,
     0,
-    '',
-    'mission_raw_server/mission_raw_server.proto'
+    "",
+    "mission_raw_server/mission_raw_server.proto",
 )
 # @@protoc_insertion_point(imports)
 
@@ -25,48 +27,72 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n+mission_raw_server/mission_raw_server.proto\x12\x1dmavsdk.rpc.mission_raw_server\x1a\x14mavsdk_options.proto\"!\n\x1fSubscribeIncomingMissionRequest\"\xb5\x01\n\x17IncomingMissionResponse\x12X\n\x19mission_raw_server_result\x18\x01 \x01(\x0b\x32\x35.mavsdk.rpc.mission_raw_server.MissionRawServerResult\x12@\n\x0cmission_plan\x18\x02 \x01(\x0b\x32*.mavsdk.rpc.mission_raw_server.MissionPlan\"$\n\"SubscribeCurrentItemChangedRequest\"^\n\x1a\x43urrentItemChangedResponse\x12@\n\x0cmission_item\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.mission_raw_server.MissionItem\"\x1a\n\x18SubscribeClearAllRequest\"&\n\x10\x43learAllResponse\x12\x12\n\nclear_type\x18\x01 \x01(\r\"\x1f\n\x1dSetCurrentItemCompleteRequest\" \n\x1eSetCurrentItemCompleteResponse\"\xd8\x01\n\x0bMissionItem\x12\x0b\n\x03seq\x18\x01 \x01(\r\x12\r\n\x05\x66rame\x18\x02 \x01(\r\x12\x0f\n\x07\x63ommand\x18\x03 \x01(\r\x12\x0f\n\x07\x63urrent\x18\x04 \x01(\r\x12\x14\n\x0c\x61utocontinue\x18\x05 \x01(\r\x12\x0e\n\x06param1\x18\x06 \x01(\x02\x12\x0e\n\x06param2\x18\x07 \x01(\x02\x12\x0e\n\x06param3\x18\x08 \x01(\x02\x12\x0e\n\x06param4\x18\t \x01(\x02\x12\t\n\x01x\x18\n \x01(\x05\x12\t\n\x01y\x18\x0b \x01(\x05\x12\t\n\x01z\x18\x0c \x01(\x02\x12\x14\n\x0cmission_type\x18\r \x01(\r\"P\n\x0bMissionPlan\x12\x41\n\rmission_items\x18\x01 \x03(\x0b\x32*.mavsdk.rpc.mission_raw_server.MissionItem\"1\n\x0fMissionProgress\x12\x0f\n\x07\x63urrent\x18\x01 \x01(\x05\x12\r\n\x05total\x18\x02 \x01(\x05\"\xc7\x03\n\x16MissionRawServerResult\x12L\n\x06result\x18\x01 \x01(\x0e\x32<.mavsdk.rpc.mission_raw_server.MissionRawServerResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xca\x02\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x10\n\x0cRESULT_ERROR\x10\x02\x12!\n\x1dRESULT_TOO_MANY_MISSION_ITEMS\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x12\n\x0eRESULT_TIMEOUT\x10\x05\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x06\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x07\x12\x1f\n\x1bRESULT_NO_MISSION_AVAILABLE\x10\x08\x12\"\n\x1eRESULT_UNSUPPORTED_MISSION_CMD\x10\x0b\x12\x1d\n\x19RESULT_TRANSFER_CANCELLED\x10\x0c\x12\x14\n\x10RESULT_NO_SYSTEM\x10\r\x12\x0f\n\x0bRESULT_NEXT\x10\x0e\x32\x82\x05\n\x17MissionRawServerService\x12\x9a\x01\n\x18SubscribeIncomingMission\x12>.mavsdk.rpc.mission_raw_server.SubscribeIncomingMissionRequest\x1a\x36.mavsdk.rpc.mission_raw_server.IncomingMissionResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\xa3\x01\n\x1bSubscribeCurrentItemChanged\x12\x41.mavsdk.rpc.mission_raw_server.SubscribeCurrentItemChangedRequest\x1a\x39.mavsdk.rpc.mission_raw_server.CurrentItemChangedResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x9b\x01\n\x16SetCurrentItemComplete\x12<.mavsdk.rpc.mission_raw_server.SetCurrentItemCompleteRequest\x1a=.mavsdk.rpc.mission_raw_server.SetCurrentItemCompleteResponse\"\x04\x80\xb5\x18\x01\x12\x85\x01\n\x11SubscribeClearAll\x12\x37.mavsdk.rpc.mission_raw_server.SubscribeClearAllRequest\x1a/.mavsdk.rpc.mission_raw_server.ClearAllResponse\"\x04\x80\xb5\x18\x00\x30\x01\x42\x35\n\x1cio.mavsdk.mission_raw_serverB\x15MissionRawServerProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n+mission_raw_server/mission_raw_server.proto\x12\x1dmavsdk.rpc.mission_raw_server\x1a\x14mavsdk_options.proto"!\n\x1fSubscribeIncomingMissionRequest"\xb5\x01\n\x17IncomingMissionResponse\x12X\n\x19mission_raw_server_result\x18\x01 \x01(\x0b\x32\x35.mavsdk.rpc.mission_raw_server.MissionRawServerResult\x12@\n\x0cmission_plan\x18\x02 \x01(\x0b\x32*.mavsdk.rpc.mission_raw_server.MissionPlan"$\n"SubscribeCurrentItemChangedRequest"^\n\x1a\x43urrentItemChangedResponse\x12@\n\x0cmission_item\x18\x01 \x01(\x0b\x32*.mavsdk.rpc.mission_raw_server.MissionItem"\x1a\n\x18SubscribeClearAllRequest"&\n\x10\x43learAllResponse\x12\x12\n\nclear_type\x18\x01 \x01(\r"\x1f\n\x1dSetCurrentItemCompleteRequest" \n\x1eSetCurrentItemCompleteResponse"\xd8\x01\n\x0bMissionItem\x12\x0b\n\x03seq\x18\x01 \x01(\r\x12\r\n\x05\x66rame\x18\x02 \x01(\r\x12\x0f\n\x07\x63ommand\x18\x03 \x01(\r\x12\x0f\n\x07\x63urrent\x18\x04 \x01(\r\x12\x14\n\x0c\x61utocontinue\x18\x05 \x01(\r\x12\x0e\n\x06param1\x18\x06 \x01(\x02\x12\x0e\n\x06param2\x18\x07 \x01(\x02\x12\x0e\n\x06param3\x18\x08 \x01(\x02\x12\x0e\n\x06param4\x18\t \x01(\x02\x12\t\n\x01x\x18\n \x01(\x05\x12\t\n\x01y\x18\x0b \x01(\x05\x12\t\n\x01z\x18\x0c \x01(\x02\x12\x14\n\x0cmission_type\x18\r \x01(\r"P\n\x0bMissionPlan\x12\x41\n\rmission_items\x18\x01 \x03(\x0b\x32*.mavsdk.rpc.mission_raw_server.MissionItem"1\n\x0fMissionProgress\x12\x0f\n\x07\x63urrent\x18\x01 \x01(\x05\x12\r\n\x05total\x18\x02 \x01(\x05"\xc7\x03\n\x16MissionRawServerResult\x12L\n\x06result\x18\x01 \x01(\x0e\x32<.mavsdk.rpc.mission_raw_server.MissionRawServerResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t"\xca\x02\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x10\n\x0cRESULT_ERROR\x10\x02\x12!\n\x1dRESULT_TOO_MANY_MISSION_ITEMS\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x12\n\x0eRESULT_TIMEOUT\x10\x05\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x06\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x07\x12\x1f\n\x1bRESULT_NO_MISSION_AVAILABLE\x10\x08\x12"\n\x1eRESULT_UNSUPPORTED_MISSION_CMD\x10\x0b\x12\x1d\n\x19RESULT_TRANSFER_CANCELLED\x10\x0c\x12\x14\n\x10RESULT_NO_SYSTEM\x10\r\x12\x0f\n\x0bRESULT_NEXT\x10\x0e\x32\x82\x05\n\x17MissionRawServerService\x12\x9a\x01\n\x18SubscribeIncomingMission\x12>.mavsdk.rpc.mission_raw_server.SubscribeIncomingMissionRequest\x1a\x36.mavsdk.rpc.mission_raw_server.IncomingMissionResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\xa3\x01\n\x1bSubscribeCurrentItemChanged\x12\x41.mavsdk.rpc.mission_raw_server.SubscribeCurrentItemChangedRequest\x1a\x39.mavsdk.rpc.mission_raw_server.CurrentItemChangedResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\x9b\x01\n\x16SetCurrentItemComplete\x12<.mavsdk.rpc.mission_raw_server.SetCurrentItemCompleteRequest\x1a=.mavsdk.rpc.mission_raw_server.SetCurrentItemCompleteResponse"\x04\x80\xb5\x18\x01\x12\x85\x01\n\x11SubscribeClearAll\x12\x37.mavsdk.rpc.mission_raw_server.SubscribeClearAllRequest\x1a/.mavsdk.rpc.mission_raw_server.ClearAllResponse"\x04\x80\xb5\x18\x00\x30\x01\x42\x35\n\x1cio.mavsdk.mission_raw_serverB\x15MissionRawServerProtob\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'mission_raw_server.mission_raw_server_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(
+    DESCRIPTOR, "mission_raw_server.mission_raw_server_pb2", _globals
+)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n\034io.mavsdk.mission_raw_serverB\025MissionRawServerProto'
-  _globals['_MISSIONRAWSERVERSERVICE'].methods_by_name['SubscribeIncomingMission']._loaded_options = None
-  _globals['_MISSIONRAWSERVERSERVICE'].methods_by_name['SubscribeIncomingMission']._serialized_options = b'\200\265\030\000'
-  _globals['_MISSIONRAWSERVERSERVICE'].methods_by_name['SubscribeCurrentItemChanged']._loaded_options = None
-  _globals['_MISSIONRAWSERVERSERVICE'].methods_by_name['SubscribeCurrentItemChanged']._serialized_options = b'\200\265\030\000'
-  _globals['_MISSIONRAWSERVERSERVICE'].methods_by_name['SetCurrentItemComplete']._loaded_options = None
-  _globals['_MISSIONRAWSERVERSERVICE'].methods_by_name['SetCurrentItemComplete']._serialized_options = b'\200\265\030\001'
-  _globals['_MISSIONRAWSERVERSERVICE'].methods_by_name['SubscribeClearAll']._loaded_options = None
-  _globals['_MISSIONRAWSERVERSERVICE'].methods_by_name['SubscribeClearAll']._serialized_options = b'\200\265\030\000'
-  _globals['_SUBSCRIBEINCOMINGMISSIONREQUEST']._serialized_start=100
-  _globals['_SUBSCRIBEINCOMINGMISSIONREQUEST']._serialized_end=133
-  _globals['_INCOMINGMISSIONRESPONSE']._serialized_start=136
-  _globals['_INCOMINGMISSIONRESPONSE']._serialized_end=317
-  _globals['_SUBSCRIBECURRENTITEMCHANGEDREQUEST']._serialized_start=319
-  _globals['_SUBSCRIBECURRENTITEMCHANGEDREQUEST']._serialized_end=355
-  _globals['_CURRENTITEMCHANGEDRESPONSE']._serialized_start=357
-  _globals['_CURRENTITEMCHANGEDRESPONSE']._serialized_end=451
-  _globals['_SUBSCRIBECLEARALLREQUEST']._serialized_start=453
-  _globals['_SUBSCRIBECLEARALLREQUEST']._serialized_end=479
-  _globals['_CLEARALLRESPONSE']._serialized_start=481
-  _globals['_CLEARALLRESPONSE']._serialized_end=519
-  _globals['_SETCURRENTITEMCOMPLETEREQUEST']._serialized_start=521
-  _globals['_SETCURRENTITEMCOMPLETEREQUEST']._serialized_end=552
-  _globals['_SETCURRENTITEMCOMPLETERESPONSE']._serialized_start=554
-  _globals['_SETCURRENTITEMCOMPLETERESPONSE']._serialized_end=586
-  _globals['_MISSIONITEM']._serialized_start=589
-  _globals['_MISSIONITEM']._serialized_end=805
-  _globals['_MISSIONPLAN']._serialized_start=807
-  _globals['_MISSIONPLAN']._serialized_end=887
-  _globals['_MISSIONPROGRESS']._serialized_start=889
-  _globals['_MISSIONPROGRESS']._serialized_end=938
-  _globals['_MISSIONRAWSERVERRESULT']._serialized_start=941
-  _globals['_MISSIONRAWSERVERRESULT']._serialized_end=1396
-  _globals['_MISSIONRAWSERVERRESULT_RESULT']._serialized_start=1066
-  _globals['_MISSIONRAWSERVERRESULT_RESULT']._serialized_end=1396
-  _globals['_MISSIONRAWSERVERSERVICE']._serialized_start=1399
-  _globals['_MISSIONRAWSERVERSERVICE']._serialized_end=2041
+    _globals["DESCRIPTOR"]._loaded_options = None
+    _globals[
+        "DESCRIPTOR"
+    ]._serialized_options = (
+        b"\n\034io.mavsdk.mission_raw_serverB\025MissionRawServerProto"
+    )
+    _globals["_MISSIONRAWSERVERSERVICE"].methods_by_name[
+        "SubscribeIncomingMission"
+    ]._loaded_options = None
+    _globals["_MISSIONRAWSERVERSERVICE"].methods_by_name[
+        "SubscribeIncomingMission"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_MISSIONRAWSERVERSERVICE"].methods_by_name[
+        "SubscribeCurrentItemChanged"
+    ]._loaded_options = None
+    _globals["_MISSIONRAWSERVERSERVICE"].methods_by_name[
+        "SubscribeCurrentItemChanged"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_MISSIONRAWSERVERSERVICE"].methods_by_name[
+        "SetCurrentItemComplete"
+    ]._loaded_options = None
+    _globals["_MISSIONRAWSERVERSERVICE"].methods_by_name[
+        "SetCurrentItemComplete"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_MISSIONRAWSERVERSERVICE"].methods_by_name[
+        "SubscribeClearAll"
+    ]._loaded_options = None
+    _globals["_MISSIONRAWSERVERSERVICE"].methods_by_name[
+        "SubscribeClearAll"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_SUBSCRIBEINCOMINGMISSIONREQUEST"]._serialized_start = 100
+    _globals["_SUBSCRIBEINCOMINGMISSIONREQUEST"]._serialized_end = 133
+    _globals["_INCOMINGMISSIONRESPONSE"]._serialized_start = 136
+    _globals["_INCOMINGMISSIONRESPONSE"]._serialized_end = 317
+    _globals["_SUBSCRIBECURRENTITEMCHANGEDREQUEST"]._serialized_start = 319
+    _globals["_SUBSCRIBECURRENTITEMCHANGEDREQUEST"]._serialized_end = 355
+    _globals["_CURRENTITEMCHANGEDRESPONSE"]._serialized_start = 357
+    _globals["_CURRENTITEMCHANGEDRESPONSE"]._serialized_end = 451
+    _globals["_SUBSCRIBECLEARALLREQUEST"]._serialized_start = 453
+    _globals["_SUBSCRIBECLEARALLREQUEST"]._serialized_end = 479
+    _globals["_CLEARALLRESPONSE"]._serialized_start = 481
+    _globals["_CLEARALLRESPONSE"]._serialized_end = 519
+    _globals["_SETCURRENTITEMCOMPLETEREQUEST"]._serialized_start = 521
+    _globals["_SETCURRENTITEMCOMPLETEREQUEST"]._serialized_end = 552
+    _globals["_SETCURRENTITEMCOMPLETERESPONSE"]._serialized_start = 554
+    _globals["_SETCURRENTITEMCOMPLETERESPONSE"]._serialized_end = 586
+    _globals["_MISSIONITEM"]._serialized_start = 589
+    _globals["_MISSIONITEM"]._serialized_end = 805
+    _globals["_MISSIONPLAN"]._serialized_start = 807
+    _globals["_MISSIONPLAN"]._serialized_end = 887
+    _globals["_MISSIONPROGRESS"]._serialized_start = 889
+    _globals["_MISSIONPROGRESS"]._serialized_end = 938
+    _globals["_MISSIONRAWSERVERRESULT"]._serialized_start = 941
+    _globals["_MISSIONRAWSERVERRESULT"]._serialized_end = 1396
+    _globals["_MISSIONRAWSERVERRESULT_RESULT"]._serialized_start = 1066
+    _globals["_MISSIONRAWSERVERRESULT_RESULT"]._serialized_end = 1396
+    _globals["_MISSIONRAWSERVERSERVICE"]._serialized_start = 1399
+    _globals["_MISSIONRAWSERVERSERVICE"]._serialized_end = 2041
 # @@protoc_insertion_point(module_scope)

@@ -4,18 +4,20 @@
 # source: component_metadata/component_metadata.proto
 # Protobuf Python Version: 5.29.0
 """Generated protocol buffer code."""
+
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
     _runtime_version.Domain.PUBLIC,
     5,
     29,
     0,
-    '',
-    'component_metadata/component_metadata.proto'
+    "",
+    "component_metadata/component_metadata.proto",
 )
 # @@protoc_insertion_point(imports)
 
@@ -25,48 +27,72 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n+component_metadata/component_metadata.proto\x12\x1dmavsdk.rpc.component_metadata\x1a\x14mavsdk_options.proto\")\n\x17RequestComponentRequest\x12\x0e\n\x06\x63ompid\x18\x01 \x01(\r\"\x1a\n\x18RequestComponentResponse\"h\n\x12GetMetadataRequest\x12\x0e\n\x06\x63ompid\x18\x01 \x01(\r\x12\x42\n\rmetadata_type\x18\x02 \x01(\x0e\x32+.mavsdk.rpc.component_metadata.MetadataType\"\xaf\x01\n\x13GetMetadataResponse\x12Y\n\x19\x63omponent_metadata_result\x18\x01 \x01(\x0b\x32\x36.mavsdk.rpc.component_metadata.ComponentMetadataResult\x12=\n\x08response\x18\x02 \x01(\x0b\x32+.mavsdk.rpc.component_metadata.MetadataData\"%\n\x0cMetadataData\x12\x15\n\rjson_metadata\x18\x01 \x01(\t\"\xd4\x02\n\x17\x43omponentMetadataResult\x12M\n\x06result\x18\x01 \x01(\x0e\x32=.mavsdk.rpc.component_metadata.ComponentMetadataResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xd5\x01\n\x06Result\x12\x12\n\x0eRESULT_SUCCESS\x10\x00\x12\x18\n\x14RESULT_NOT_AVAILABLE\x10\x01\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x02\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x03\x12\x11\n\rRESULT_DENIED\x10\x04\x12\x11\n\rRESULT_FAILED\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x07\x12\x18\n\x14RESULT_NOT_REQUESTED\x10\x08\"\"\n RequestAutopilotComponentRequest\"#\n!RequestAutopilotComponentResponse\"#\n!SubscribeMetadataAvailableRequest\"X\n\x19MetadataAvailableResponse\x12;\n\x04\x64\x61ta\x18\x01 \x01(\x0b\x32-.mavsdk.rpc.component_metadata.MetadataUpdate\"r\n\x0eMetadataUpdate\x12\x0e\n\x06\x63ompid\x18\x01 \x01(\r\x12\x39\n\x04type\x18\x02 \x01(\x0e\x32+.mavsdk.rpc.component_metadata.MetadataType\x12\x15\n\rjson_metadata\x18\x03 \x01(\t*\x83\x01\n\x0cMetadataType\x12\x1f\n\x1bMETADATA_TYPE_ALL_COMPLETED\x10\x00\x12\x1b\n\x17METADATA_TYPE_PARAMETER\x10\x01\x12\x18\n\x14METADATA_TYPE_EVENTS\x10\x02\x12\x1b\n\x17METADATA_TYPE_ACTUATORS\x10\x03\x32\xec\x04\n\x18\x43omponentMetadataService\x12\x89\x01\n\x10RequestComponent\x12\x36.mavsdk.rpc.component_metadata.RequestComponentRequest\x1a\x37.mavsdk.rpc.component_metadata.RequestComponentResponse\"\x04\x80\xb5\x18\x01\x12\xa4\x01\n\x19RequestAutopilotComponent\x12?.mavsdk.rpc.component_metadata.RequestAutopilotComponentRequest\x1a@.mavsdk.rpc.component_metadata.RequestAutopilotComponentResponse\"\x04\x80\xb5\x18\x01\x12\xa0\x01\n\x1aSubscribeMetadataAvailable\x12@.mavsdk.rpc.component_metadata.SubscribeMetadataAvailableRequest\x1a\x38.mavsdk.rpc.component_metadata.MetadataAvailableResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12z\n\x0bGetMetadata\x12\x31.mavsdk.rpc.component_metadata.GetMetadataRequest\x1a\x32.mavsdk.rpc.component_metadata.GetMetadataResponse\"\x04\x80\xb5\x18\x01\x42\x36\n\x1cio.mavsdk.component_metadataB\x16\x43omponentMetadataProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n+component_metadata/component_metadata.proto\x12\x1dmavsdk.rpc.component_metadata\x1a\x14mavsdk_options.proto")\n\x17RequestComponentRequest\x12\x0e\n\x06\x63ompid\x18\x01 \x01(\r"\x1a\n\x18RequestComponentResponse"h\n\x12GetMetadataRequest\x12\x0e\n\x06\x63ompid\x18\x01 \x01(\r\x12\x42\n\rmetadata_type\x18\x02 \x01(\x0e\x32+.mavsdk.rpc.component_metadata.MetadataType"\xaf\x01\n\x13GetMetadataResponse\x12Y\n\x19\x63omponent_metadata_result\x18\x01 \x01(\x0b\x32\x36.mavsdk.rpc.component_metadata.ComponentMetadataResult\x12=\n\x08response\x18\x02 \x01(\x0b\x32+.mavsdk.rpc.component_metadata.MetadataData"%\n\x0cMetadataData\x12\x15\n\rjson_metadata\x18\x01 \x01(\t"\xd4\x02\n\x17\x43omponentMetadataResult\x12M\n\x06result\x18\x01 \x01(\x0e\x32=.mavsdk.rpc.component_metadata.ComponentMetadataResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t"\xd5\x01\n\x06Result\x12\x12\n\x0eRESULT_SUCCESS\x10\x00\x12\x18\n\x14RESULT_NOT_AVAILABLE\x10\x01\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x02\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x03\x12\x11\n\rRESULT_DENIED\x10\x04\x12\x11\n\rRESULT_FAILED\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x07\x12\x18\n\x14RESULT_NOT_REQUESTED\x10\x08""\n RequestAutopilotComponentRequest"#\n!RequestAutopilotComponentResponse"#\n!SubscribeMetadataAvailableRequest"X\n\x19MetadataAvailableResponse\x12;\n\x04\x64\x61ta\x18\x01 \x01(\x0b\x32-.mavsdk.rpc.component_metadata.MetadataUpdate"r\n\x0eMetadataUpdate\x12\x0e\n\x06\x63ompid\x18\x01 \x01(\r\x12\x39\n\x04type\x18\x02 \x01(\x0e\x32+.mavsdk.rpc.component_metadata.MetadataType\x12\x15\n\rjson_metadata\x18\x03 \x01(\t*\x83\x01\n\x0cMetadataType\x12\x1f\n\x1bMETADATA_TYPE_ALL_COMPLETED\x10\x00\x12\x1b\n\x17METADATA_TYPE_PARAMETER\x10\x01\x12\x18\n\x14METADATA_TYPE_EVENTS\x10\x02\x12\x1b\n\x17METADATA_TYPE_ACTUATORS\x10\x03\x32\xec\x04\n\x18\x43omponentMetadataService\x12\x89\x01\n\x10RequestComponent\x12\x36.mavsdk.rpc.component_metadata.RequestComponentRequest\x1a\x37.mavsdk.rpc.component_metadata.RequestComponentResponse"\x04\x80\xb5\x18\x01\x12\xa4\x01\n\x19RequestAutopilotComponent\x12?.mavsdk.rpc.component_metadata.RequestAutopilotComponentRequest\x1a@.mavsdk.rpc.component_metadata.RequestAutopilotComponentResponse"\x04\x80\xb5\x18\x01\x12\xa0\x01\n\x1aSubscribeMetadataAvailable\x12@.mavsdk.rpc.component_metadata.SubscribeMetadataAvailableRequest\x1a\x38.mavsdk.rpc.component_metadata.MetadataAvailableResponse"\x04\x80\xb5\x18\x00\x30\x01\x12z\n\x0bGetMetadata\x12\x31.mavsdk.rpc.component_metadata.GetMetadataRequest\x1a\x32.mavsdk.rpc.component_metadata.GetMetadataResponse"\x04\x80\xb5\x18\x01\x42\x36\n\x1cio.mavsdk.component_metadataB\x16\x43omponentMetadataProtob\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'component_metadata.component_metadata_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(
+    DESCRIPTOR, "component_metadata.component_metadata_pb2", _globals
+)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n\034io.mavsdk.component_metadataB\026ComponentMetadataProto'
-  _globals['_COMPONENTMETADATASERVICE'].methods_by_name['RequestComponent']._loaded_options = None
-  _globals['_COMPONENTMETADATASERVICE'].methods_by_name['RequestComponent']._serialized_options = b'\200\265\030\001'
-  _globals['_COMPONENTMETADATASERVICE'].methods_by_name['RequestAutopilotComponent']._loaded_options = None
-  _globals['_COMPONENTMETADATASERVICE'].methods_by_name['RequestAutopilotComponent']._serialized_options = b'\200\265\030\001'
-  _globals['_COMPONENTMETADATASERVICE'].methods_by_name['SubscribeMetadataAvailable']._loaded_options = None
-  _globals['_COMPONENTMETADATASERVICE'].methods_by_name['SubscribeMetadataAvailable']._serialized_options = b'\200\265\030\000'
-  _globals['_COMPONENTMETADATASERVICE'].methods_by_name['GetMetadata']._loaded_options = None
-  _globals['_COMPONENTMETADATASERVICE'].methods_by_name['GetMetadata']._serialized_options = b'\200\265\030\001'
-  _globals['_METADATATYPE']._serialized_start=1154
-  _globals['_METADATATYPE']._serialized_end=1285
-  _globals['_REQUESTCOMPONENTREQUEST']._serialized_start=100
-  _globals['_REQUESTCOMPONENTREQUEST']._serialized_end=141
-  _globals['_REQUESTCOMPONENTRESPONSE']._serialized_start=143
-  _globals['_REQUESTCOMPONENTRESPONSE']._serialized_end=169
-  _globals['_GETMETADATAREQUEST']._serialized_start=171
-  _globals['_GETMETADATAREQUEST']._serialized_end=275
-  _globals['_GETMETADATARESPONSE']._serialized_start=278
-  _globals['_GETMETADATARESPONSE']._serialized_end=453
-  _globals['_METADATADATA']._serialized_start=455
-  _globals['_METADATADATA']._serialized_end=492
-  _globals['_COMPONENTMETADATARESULT']._serialized_start=495
-  _globals['_COMPONENTMETADATARESULT']._serialized_end=835
-  _globals['_COMPONENTMETADATARESULT_RESULT']._serialized_start=622
-  _globals['_COMPONENTMETADATARESULT_RESULT']._serialized_end=835
-  _globals['_REQUESTAUTOPILOTCOMPONENTREQUEST']._serialized_start=837
-  _globals['_REQUESTAUTOPILOTCOMPONENTREQUEST']._serialized_end=871
-  _globals['_REQUESTAUTOPILOTCOMPONENTRESPONSE']._serialized_start=873
-  _globals['_REQUESTAUTOPILOTCOMPONENTRESPONSE']._serialized_end=908
-  _globals['_SUBSCRIBEMETADATAAVAILABLEREQUEST']._serialized_start=910
-  _globals['_SUBSCRIBEMETADATAAVAILABLEREQUEST']._serialized_end=945
-  _globals['_METADATAAVAILABLERESPONSE']._serialized_start=947
-  _globals['_METADATAAVAILABLERESPONSE']._serialized_end=1035
-  _globals['_METADATAUPDATE']._serialized_start=1037
-  _globals['_METADATAUPDATE']._serialized_end=1151
-  _globals['_COMPONENTMETADATASERVICE']._serialized_start=1288
-  _globals['_COMPONENTMETADATASERVICE']._serialized_end=1908
+    _globals["DESCRIPTOR"]._loaded_options = None
+    _globals[
+        "DESCRIPTOR"
+    ]._serialized_options = (
+        b"\n\034io.mavsdk.component_metadataB\026ComponentMetadataProto"
+    )
+    _globals["_COMPONENTMETADATASERVICE"].methods_by_name[
+        "RequestComponent"
+    ]._loaded_options = None
+    _globals["_COMPONENTMETADATASERVICE"].methods_by_name[
+        "RequestComponent"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_COMPONENTMETADATASERVICE"].methods_by_name[
+        "RequestAutopilotComponent"
+    ]._loaded_options = None
+    _globals["_COMPONENTMETADATASERVICE"].methods_by_name[
+        "RequestAutopilotComponent"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_COMPONENTMETADATASERVICE"].methods_by_name[
+        "SubscribeMetadataAvailable"
+    ]._loaded_options = None
+    _globals["_COMPONENTMETADATASERVICE"].methods_by_name[
+        "SubscribeMetadataAvailable"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_COMPONENTMETADATASERVICE"].methods_by_name[
+        "GetMetadata"
+    ]._loaded_options = None
+    _globals["_COMPONENTMETADATASERVICE"].methods_by_name[
+        "GetMetadata"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_METADATATYPE"]._serialized_start = 1154
+    _globals["_METADATATYPE"]._serialized_end = 1285
+    _globals["_REQUESTCOMPONENTREQUEST"]._serialized_start = 100
+    _globals["_REQUESTCOMPONENTREQUEST"]._serialized_end = 141
+    _globals["_REQUESTCOMPONENTRESPONSE"]._serialized_start = 143
+    _globals["_REQUESTCOMPONENTRESPONSE"]._serialized_end = 169
+    _globals["_GETMETADATAREQUEST"]._serialized_start = 171
+    _globals["_GETMETADATAREQUEST"]._serialized_end = 275
+    _globals["_GETMETADATARESPONSE"]._serialized_start = 278
+    _globals["_GETMETADATARESPONSE"]._serialized_end = 453
+    _globals["_METADATADATA"]._serialized_start = 455
+    _globals["_METADATADATA"]._serialized_end = 492
+    _globals["_COMPONENTMETADATARESULT"]._serialized_start = 495
+    _globals["_COMPONENTMETADATARESULT"]._serialized_end = 835
+    _globals["_COMPONENTMETADATARESULT_RESULT"]._serialized_start = 622
+    _globals["_COMPONENTMETADATARESULT_RESULT"]._serialized_end = 835
+    _globals["_REQUESTAUTOPILOTCOMPONENTREQUEST"]._serialized_start = 837
+    _globals["_REQUESTAUTOPILOTCOMPONENTREQUEST"]._serialized_end = 871
+    _globals["_REQUESTAUTOPILOTCOMPONENTRESPONSE"]._serialized_start = 873
+    _globals["_REQUESTAUTOPILOTCOMPONENTRESPONSE"]._serialized_end = 908
+    _globals["_SUBSCRIBEMETADATAAVAILABLEREQUEST"]._serialized_start = 910
+    _globals["_SUBSCRIBEMETADATAAVAILABLEREQUEST"]._serialized_end = 945
+    _globals["_METADATAAVAILABLERESPONSE"]._serialized_start = 947
+    _globals["_METADATAAVAILABLERESPONSE"]._serialized_end = 1035
+    _globals["_METADATAUPDATE"]._serialized_start = 1037
+    _globals["_METADATAUPDATE"]._serialized_end = 1151
+    _globals["_COMPONENTMETADATASERVICE"]._serialized_start = 1288
+    _globals["_COMPONENTMETADATASERVICE"]._serialized_end = 1908
 # @@protoc_insertion_point(module_scope)

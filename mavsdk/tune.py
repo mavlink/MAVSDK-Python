@@ -8,76 +8,75 @@ from enum import Enum
 
 class SongElement(Enum):
     """
-     An element of the tune
+    An element of the tune
 
-     Values
-     ------
-     STYLE_LEGATO
-          After this element, start playing legato
+    Values
+    ------
+    STYLE_LEGATO
+         After this element, start playing legato
 
-     STYLE_NORMAL
-          After this element, start playing normal
+    STYLE_NORMAL
+         After this element, start playing normal
 
-     STYLE_STACCATO
-          After this element, start playing staccato
+    STYLE_STACCATO
+         After this element, start playing staccato
 
-     DURATION_1
-          After this element, set the note duration to 1
+    DURATION_1
+         After this element, set the note duration to 1
 
-     DURATION_2
-          After this element, set the note duration to 2
+    DURATION_2
+         After this element, set the note duration to 2
 
-     DURATION_4
-          After this element, set the note duration to 4
+    DURATION_4
+         After this element, set the note duration to 4
 
-     DURATION_8
-          After this element, set the note duration to 8
+    DURATION_8
+         After this element, set the note duration to 8
 
-     DURATION_16
-          After this element, set the note duration to 16
+    DURATION_16
+         After this element, set the note duration to 16
 
-     DURATION_32
-          After this element, set the note duration to 32
+    DURATION_32
+         After this element, set the note duration to 32
 
-     NOTE_A
-          Play note A
+    NOTE_A
+         Play note A
 
-     NOTE_B
-          Play note B
+    NOTE_B
+         Play note B
 
-     NOTE_C
-          Play note C
+    NOTE_C
+         Play note C
 
-     NOTE_D
-          Play note D
+    NOTE_D
+         Play note D
 
-     NOTE_E
-          Play note E
+    NOTE_E
+         Play note E
 
-     NOTE_F
-          Play note F
+    NOTE_F
+         Play note F
 
-     NOTE_G
-          Play note G
+    NOTE_G
+         Play note G
 
-     NOTE_PAUSE
-          Play a rest
+    NOTE_PAUSE
+         Play a rest
 
-     SHARP
-          After this element, sharp the note (half a step up)
+    SHARP
+         After this element, sharp the note (half a step up)
 
-     FLAT
-          After this element, flat the note (half a step down)
+    FLAT
+         After this element, flat the note (half a step down)
 
-     OCTAVE_UP
-          After this element, shift the note 1 octave up
+    OCTAVE_UP
+         After this element, shift the note 1 octave up
 
-     OCTAVE_DOWN
-          After this element, shift the note 1 octave down
+    OCTAVE_DOWN
+         After this element, shift the note 1 octave down
 
-     """
+    """
 
-    
     STYLE_LEGATO = 0
     STYLE_NORMAL = 1
     STYLE_STACCATO = 2
@@ -146,7 +145,7 @@ class SongElement(Enum):
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
-        """ Parses a gRPC response """
+        """Parses a gRPC response"""
         if rpc_enum_value == tune_pb2.SONG_ELEMENT_STYLE_LEGATO:
             return SongElement.STYLE_LEGATO
         if rpc_enum_value == tune_pb2.SONG_ELEMENT_STYLE_NORMAL:
@@ -196,126 +195,108 @@ class SongElement(Enum):
 
 class TuneDescription:
     """
-     Tune description, containing song elements and tempo.
+    Tune description, containing song elements and tempo.
 
-     Parameters
-     ----------
-     song_elements : [SongElement]
-          The list of song elements (notes, pauses, ...) to be played
+    Parameters
+    ----------
+    song_elements : [SongElement]
+         The list of song elements (notes, pauses, ...) to be played
 
-     tempo : int32_t
-          The tempo of the song (range: 32 - 255)
+    tempo : int32_t
+         The tempo of the song (range: 32 - 255)
 
-     """
+    """
 
-    
-
-    def __init__(
-            self,
-            song_elements,
-            tempo):
-        """ Initializes the TuneDescription object """
+    def __init__(self, song_elements, tempo):
+        """Initializes the TuneDescription object"""
         self.song_elements = song_elements
         self.tempo = tempo
 
     def __eq__(self, to_compare):
-        """ Checks if two TuneDescription are the same """
+        """Checks if two TuneDescription are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # TuneDescription object
-            return \
-                (self.song_elements == to_compare.song_elements) and \
-                (self.tempo == to_compare.tempo)
+            return (self.song_elements == to_compare.song_elements) and (
+                self.tempo == to_compare.tempo
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ TuneDescription in string representation """
-        struct_repr = ", ".join([
-                "song_elements: " + str(self.song_elements),
-                "tempo: " + str(self.tempo)
-                ])
+        """TuneDescription in string representation"""
+        struct_repr = ", ".join(
+            ["song_elements: " + str(self.song_elements), "tempo: " + str(self.tempo)]
+        )
 
         return f"TuneDescription: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcTuneDescription):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return TuneDescription(
-                
-                list(map(lambda elem: SongElement.translate_from_rpc(elem), rpcTuneDescription.song_elements)),
-                
-                
-                rpcTuneDescription.tempo
+            list(
+                map(
+                    lambda elem: SongElement.translate_from_rpc(elem),
+                    rpcTuneDescription.song_elements,
                 )
+            ),
+            rpcTuneDescription.tempo,
+        )
 
     def translate_to_rpc(self, rpcTuneDescription):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpc_elems_list = []
         for elem in self.song_elements:
-                
             rpc_elems_list.append(elem.translate_to_rpc())
-                
+
         rpcTuneDescription.song_elements.extend(rpc_elems_list)
-            
-        
-        
-        
-            
+
         rpcTuneDescription.tempo = self.tempo
-            
-        
-        
 
 
 class TuneResult:
     """
- 
 
-     Parameters
-     ----------
-     result : Result
-          Result enum value
 
-     result_str : std::string
-          Human-readable English string describing the result
+    Parameters
+    ----------
+    result : Result
+         Result enum value
 
-     """
+    result_str : std::string
+         Human-readable English string describing the result
 
-    
-    
+    """
+
     class Result(Enum):
         """
-         Possible results returned for tune requests.
+        Possible results returned for tune requests.
 
-         Values
-         ------
-         UNKNOWN
-              Unknown result
+        Values
+        ------
+        UNKNOWN
+             Unknown result
 
-         SUCCESS
-              Request succeeded
+        SUCCESS
+             Request succeeded
 
-         INVALID_TEMPO
-              Invalid tempo (range: 32 - 255)
+        INVALID_TEMPO
+             Invalid tempo (range: 32 - 255)
 
-         TUNE_TOO_LONG
-              Invalid tune: encoded string must be at most 247 chars
+        TUNE_TOO_LONG
+             Invalid tune: encoded string must be at most 247 chars
 
-         ERROR
-              Failed to send the request
+        ERROR
+             Failed to send the request
 
-         NO_SYSTEM
-              No system connected
+        NO_SYSTEM
+             No system connected
 
-         """
+        """
 
-        
         UNKNOWN = 0
         SUCCESS = 1
         INVALID_TEMPO = 2
@@ -339,7 +320,7 @@ class TuneResult:
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
-            """ Parses a gRPC response """
+            """Parses a gRPC response"""
             if rpc_enum_value == tune_pb2.TuneResult.RESULT_UNKNOWN:
                 return TuneResult.Result.UNKNOWN
             if rpc_enum_value == tune_pb2.TuneResult.RESULT_SUCCESS:
@@ -355,69 +336,50 @@ class TuneResult:
 
         def __str__(self):
             return self.name
-    
 
-    def __init__(
-            self,
-            result,
-            result_str):
-        """ Initializes the TuneResult object """
+    def __init__(self, result, result_str):
+        """Initializes the TuneResult object"""
         self.result = result
         self.result_str = result_str
 
     def __eq__(self, to_compare):
-        """ Checks if two TuneResult are the same """
+        """Checks if two TuneResult are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # TuneResult object
-            return \
-                (self.result == to_compare.result) and \
-                (self.result_str == to_compare.result_str)
+            return (self.result == to_compare.result) and (
+                self.result_str == to_compare.result_str
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ TuneResult in string representation """
-        struct_repr = ", ".join([
-                "result: " + str(self.result),
-                "result_str: " + str(self.result_str)
-                ])
+        """TuneResult in string representation"""
+        struct_repr = ", ".join(
+            ["result: " + str(self.result), "result_str: " + str(self.result_str)]
+        )
 
         return f"TuneResult: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcTuneResult):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return TuneResult(
-                
-                TuneResult.Result.translate_from_rpc(rpcTuneResult.result),
-                
-                
-                rpcTuneResult.result_str
-                )
+            TuneResult.Result.translate_from_rpc(rpcTuneResult.result),
+            rpcTuneResult.result_str,
+        )
 
     def translate_to_rpc(self, rpcTuneResult):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpcTuneResult.result = self.result.translate_to_rpc()
-            
-        
-        
-        
-            
-        rpcTuneResult.result_str = self.result_str
-            
-        
-        
 
+        rpcTuneResult.result_str = self.result_str
 
 
 class TuneError(Exception):
-    """ Raised when a TuneResult is a fail code """
+    """Raised when a TuneResult is a fail code"""
 
     def __init__(self, result, origin, *params):
         self._result = result
@@ -430,49 +392,44 @@ class TuneError(Exception):
 
 class Tune(AsyncBase):
     """
-     Enable creating and sending a tune to be played on the system.
+    Enable creating and sending a tune to be played on the system.
 
-     Generated by dcsdkgen - MAVSDK Tune API
+    Generated by dcsdkgen - MAVSDK Tune API
     """
 
     # Plugin name
     name = "Tune"
 
     def _setup_stub(self, channel):
-        """ Setups the api stub """
+        """Setups the api stub"""
         self._stub = tune_pb2_grpc.TuneServiceStub(channel)
 
-    
     def _extract_result(self, response):
-        """ Returns the response status and description """
+        """Returns the response status and description"""
         return TuneResult.translate_from_rpc(response.tune_result)
-    
 
     async def play_tune(self, tune_description):
         """
-         Send a tune to be played by the system.
+        Send a tune to be played by the system.
 
-         Parameters
-         ----------
-         tune_description : TuneDescription
-              The tune to be played
+        Parameters
+        ----------
+        tune_description : TuneDescription
+             The tune to be played
 
-         Raises
-         ------
-         TuneError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        TuneError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = tune_pb2.PlayTuneRequest()
-        
+
         tune_description.translate_to_rpc(request.tune_description)
-                
-            
+
         response = await self._stub.PlayTune(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != TuneResult.Result.SUCCESS:
             raise TuneError(result, "play_tune()", tune_description)
-        

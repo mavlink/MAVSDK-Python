@@ -40,11 +40,7 @@ async def main():
             print("-- Connected to drone!")
             break
 
-    params_preflight = [
-        ("EKF2_HGT_REF", 0),
-        ("EKF2_EV_CTRL", 15),
-        ("EKF2_GPS_CTRL", 7)
-    ]
+    params_preflight = [("EKF2_HGT_REF", 0), ("EKF2_EV_CTRL", 15), ("EKF2_GPS_CTRL", 7)]
     await set_params(drone, params_preflight, "Setting preflight params...")
 
     params_gps_required = [
@@ -73,21 +69,21 @@ async def main():
                     await set_params(
                         drone,
                         params_ev_required,
-                        "Setting airborne (EV Required) parameters..."
+                        "Setting airborne (EV Required) parameters...",
                     )
                     break
                 elif mode.lower() == "gps":
                     await set_params(
                         drone,
                         params_gps_required,
-                        "Setting airborne (GPS Required) parameters..."
+                        "Setting airborne (GPS Required) parameters...",
                     )
                     break
                 elif mode.lower() == "multi-fusion":
                     await set_params(
                         drone,
                         params_preflight,
-                        "Setting airborne (Multi-fusion) parameters..."
+                        "Setting airborne (Multi-fusion) parameters...",
                     )
                     break
                 else:

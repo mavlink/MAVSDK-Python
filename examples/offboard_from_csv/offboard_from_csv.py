@@ -76,7 +76,6 @@ Note:
   If you need to input acceleration, you should build MAVSDK for yourself.
 """
 
-
 import asyncio
 import csv
 from mavsdk import System
@@ -103,7 +102,7 @@ async def run():
         70: "Maneuvering (trajectory)",
         80: "Holding at the end of the trajectory coordinate",
         90: "Returning to home coordinate",
-        100: "Landing"
+        100: "Landing",
     }
 
     # Connect to the drone
@@ -139,8 +138,7 @@ async def run():
     try:
         await drone.offboard.start()
     except OffboardError as error:
-        print(f"Starting offboard mode failed with error code:"
-              f" {error._result.result}")
+        print(f"Starting offboard mode failed with error code: {error._result.result}")
         print("-- Disarming")
         await drone.action.disarm()
         return
@@ -151,17 +149,21 @@ async def run():
     with open("active.csv", newline="") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            waypoints.append((float(row["t"]),
-                              float(row["px"]),
-                              float(row["py"]),
-                              float(row["pz"]),
-                              float(row["vx"]),
-                              float(row["vy"]),
-                              float(row["vz"]),
-                              float(row["ax"]),
-                              float(row["ay"]),
-                              float(row["az"]),
-                              int(row["mode"])))
+            waypoints.append(
+                (
+                    float(row["t"]),
+                    float(row["px"]),
+                    float(row["py"]),
+                    float(row["pz"]),
+                    float(row["vx"]),
+                    float(row["vy"]),
+                    float(row["vz"]),
+                    float(row["ax"]),
+                    float(row["ay"]),
+                    float(row["az"]),
+                    int(row["mode"]),
+                )
+            )
 
     print("-- Performing trajectory")
     total_duration = waypoints[-1][0]
@@ -180,8 +182,10 @@ async def run():
         mode_code = current_waypoint[-1]
         if last_mode != mode_code:
             # Print the mode number and its description
-            print(" Mode number: " + f"{mode_code}, "
-                  f"Description: {mode_descriptions[mode_code]}")
+            print(
+                " Mode number: " + f"{mode_code}, "
+                f"Description: {mode_descriptions[mode_code]}"
+            )
             last_mode = mode_code
         # set_position_velocity_acceleration_ned is not yet available
         # in the default build for MAVSDK-Python Installation with pip3
@@ -189,7 +193,7 @@ async def run():
         # you should build MAVSDK for yourself.
         await drone.offboard.set_position_velocity_ned(
             PositionNedYaw(*position, current_waypoint[10]),
-            VelocityNedYaw(*velocity, current_waypoint[10])
+            VelocityNedYaw(*velocity, current_waypoint[10]),
         )
         # await drone.offboard.set_position_velocity_acceleration_ned(
         #     PositionNedYaw(*position, current_waypoint[10]),
@@ -218,6 +222,7 @@ async def run():
 
     print("-- Disarming")
     await drone.action.disarm()
+
 
 if __name__ == "__main__":
     # Run the asyncio loop

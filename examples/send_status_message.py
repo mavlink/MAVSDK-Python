@@ -17,7 +17,6 @@ other messages in QGroundControll interface.
 
 
 async def run():
-
     drone = System(sysid=1)
     await drone.connect(system_address="udpin://0.0.0.0:14540")
 
@@ -26,8 +25,10 @@ async def run():
         if state.is_connected:
             print(f"-- Connected to drone!")
             await drone.server_utility.send_status_text(
-                StatusTextType.INFO, "Hello world!")
+                StatusTextType.INFO, "Hello world!"
+            )
             break
+
 
 if __name__ == "__main__":
     # Run the asyncio loop

@@ -88,8 +88,7 @@ async def manual_controls():
         # get current state of yaw axis (between -1 and 1)
         yaw = float(input_list[3])
 
-        await drone.manual_control.set_manual_control_input(
-            pitch, roll, throttle, yaw)
+        await drone.manual_control.set_manual_control_input(pitch, roll, throttle, yaw)
 
         await asyncio.sleep(0.1)
 

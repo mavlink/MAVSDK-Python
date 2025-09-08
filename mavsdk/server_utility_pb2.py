@@ -4,18 +4,15 @@
 # source: server_utility/server_utility.proto
 # Protobuf Python Version: 5.29.0
 """Generated protocol buffer code."""
+
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
-    _runtime_version.Domain.PUBLIC,
-    5,
-    29,
-    0,
-    '',
-    'server_utility/server_utility.proto'
+    _runtime_version.Domain.PUBLIC, 5, 29, 0, "", "server_utility/server_utility.proto"
 )
 # @@protoc_insertion_point(imports)
 
@@ -25,26 +22,36 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n#server_utility/server_utility.proto\x12\x19mavsdk.rpc.server_utility\x1a\x14mavsdk_options.proto\"^\n\x15SendStatusTextRequest\x12\x37\n\x04type\x18\x01 \x01(\x0e\x32).mavsdk.rpc.server_utility.StatusTextType\x12\x0c\n\x04text\x18\x02 \x01(\t\"g\n\x16SendStatusTextResponse\x12M\n\x15server_utility_result\x18\x01 \x01(\x0b\x32..mavsdk.rpc.server_utility.ServerUtilityResult\"\xf3\x01\n\x13ServerUtilityResult\x12\x45\n\x06result\x18\x01 \x01(\x0e\x32\x35.mavsdk.rpc.server_utility.ServerUtilityResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\x80\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x04*\xf9\x01\n\x0eStatusTextType\x12\x1a\n\x16STATUS_TEXT_TYPE_DEBUG\x10\x00\x12\x19\n\x15STATUS_TEXT_TYPE_INFO\x10\x01\x12\x1b\n\x17STATUS_TEXT_TYPE_NOTICE\x10\x02\x12\x1c\n\x18STATUS_TEXT_TYPE_WARNING\x10\x03\x12\x1a\n\x16STATUS_TEXT_TYPE_ERROR\x10\x04\x12\x1d\n\x19STATUS_TEXT_TYPE_CRITICAL\x10\x05\x12\x1a\n\x16STATUS_TEXT_TYPE_ALERT\x10\x06\x12\x1e\n\x1aSTATUS_TEXT_TYPE_EMERGENCY\x10\x07\x32\x93\x01\n\x14ServerUtilityService\x12{\n\x0eSendStatusText\x12\x30.mavsdk.rpc.server_utility.SendStatusTextRequest\x1a\x31.mavsdk.rpc.server_utility.SendStatusTextResponse\"\x04\x80\xb5\x18\x01\x42.\n\x18io.mavsdk.server_utilityB\x12ServerUtilityProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n#server_utility/server_utility.proto\x12\x19mavsdk.rpc.server_utility\x1a\x14mavsdk_options.proto"^\n\x15SendStatusTextRequest\x12\x37\n\x04type\x18\x01 \x01(\x0e\x32).mavsdk.rpc.server_utility.StatusTextType\x12\x0c\n\x04text\x18\x02 \x01(\t"g\n\x16SendStatusTextResponse\x12M\n\x15server_utility_result\x18\x01 \x01(\x0b\x32..mavsdk.rpc.server_utility.ServerUtilityResult"\xf3\x01\n\x13ServerUtilityResult\x12\x45\n\x06result\x18\x01 \x01(\x0e\x32\x35.mavsdk.rpc.server_utility.ServerUtilityResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t"\x80\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x04*\xf9\x01\n\x0eStatusTextType\x12\x1a\n\x16STATUS_TEXT_TYPE_DEBUG\x10\x00\x12\x19\n\x15STATUS_TEXT_TYPE_INFO\x10\x01\x12\x1b\n\x17STATUS_TEXT_TYPE_NOTICE\x10\x02\x12\x1c\n\x18STATUS_TEXT_TYPE_WARNING\x10\x03\x12\x1a\n\x16STATUS_TEXT_TYPE_ERROR\x10\x04\x12\x1d\n\x19STATUS_TEXT_TYPE_CRITICAL\x10\x05\x12\x1a\n\x16STATUS_TEXT_TYPE_ALERT\x10\x06\x12\x1e\n\x1aSTATUS_TEXT_TYPE_EMERGENCY\x10\x07\x32\x93\x01\n\x14ServerUtilityService\x12{\n\x0eSendStatusText\x12\x30.mavsdk.rpc.server_utility.SendStatusTextRequest\x1a\x31.mavsdk.rpc.server_utility.SendStatusTextResponse"\x04\x80\xb5\x18\x01\x42.\n\x18io.mavsdk.server_utilityB\x12ServerUtilityProtob\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'server_utility.server_utility_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(
+    DESCRIPTOR, "server_utility.server_utility_pb2", _globals
+)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n\030io.mavsdk.server_utilityB\022ServerUtilityProto'
-  _globals['_SERVERUTILITYSERVICE'].methods_by_name['SendStatusText']._loaded_options = None
-  _globals['_SERVERUTILITYSERVICE'].methods_by_name['SendStatusText']._serialized_options = b'\200\265\030\001'
-  _globals['_STATUSTEXTTYPE']._serialized_start=536
-  _globals['_STATUSTEXTTYPE']._serialized_end=785
-  _globals['_SENDSTATUSTEXTREQUEST']._serialized_start=88
-  _globals['_SENDSTATUSTEXTREQUEST']._serialized_end=182
-  _globals['_SENDSTATUSTEXTRESPONSE']._serialized_start=184
-  _globals['_SENDSTATUSTEXTRESPONSE']._serialized_end=287
-  _globals['_SERVERUTILITYRESULT']._serialized_start=290
-  _globals['_SERVERUTILITYRESULT']._serialized_end=533
-  _globals['_SERVERUTILITYRESULT_RESULT']._serialized_start=405
-  _globals['_SERVERUTILITYRESULT_RESULT']._serialized_end=533
-  _globals['_SERVERUTILITYSERVICE']._serialized_start=788
-  _globals['_SERVERUTILITYSERVICE']._serialized_end=935
+    _globals["DESCRIPTOR"]._loaded_options = None
+    _globals[
+        "DESCRIPTOR"
+    ]._serialized_options = b"\n\030io.mavsdk.server_utilityB\022ServerUtilityProto"
+    _globals["_SERVERUTILITYSERVICE"].methods_by_name[
+        "SendStatusText"
+    ]._loaded_options = None
+    _globals["_SERVERUTILITYSERVICE"].methods_by_name[
+        "SendStatusText"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_STATUSTEXTTYPE"]._serialized_start = 536
+    _globals["_STATUSTEXTTYPE"]._serialized_end = 785
+    _globals["_SENDSTATUSTEXTREQUEST"]._serialized_start = 88
+    _globals["_SENDSTATUSTEXTREQUEST"]._serialized_end = 182
+    _globals["_SENDSTATUSTEXTRESPONSE"]._serialized_start = 184
+    _globals["_SENDSTATUSTEXTRESPONSE"]._serialized_end = 287
+    _globals["_SERVERUTILITYRESULT"]._serialized_start = 290
+    _globals["_SERVERUTILITYRESULT"]._serialized_end = 533
+    _globals["_SERVERUTILITYRESULT_RESULT"]._serialized_start = 405
+    _globals["_SERVERUTILITYRESULT_RESULT"]._serialized_end = 533
+    _globals["_SERVERUTILITYSERVICE"]._serialized_start = 788
+    _globals["_SERVERUTILITYSERVICE"]._serialized_end = 935
 # @@protoc_insertion_point(module_scope)

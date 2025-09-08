@@ -19,5 +19,6 @@ async def run():
     for param in all_params.float_params:
         print(f"{param.name}: {param.value}")
 
+
 # Run the asyncio loop
 asyncio.run(run())

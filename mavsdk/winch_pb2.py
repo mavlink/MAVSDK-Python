@@ -4,18 +4,15 @@
 # source: winch/winch.proto
 # Protobuf Python Version: 5.29.0
 """Generated protocol buffer code."""
+
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
-    _runtime_version.Domain.PUBLIC,
-    5,
-    29,
-    0,
-    '',
-    'winch/winch.proto'
+    _runtime_version.Domain.PUBLIC, 5, 29, 0, "", "winch/winch.proto"
 )
 # @@protoc_insertion_point(imports)
 
@@ -25,70 +22,76 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11winch/winch.proto\x12\x10mavsdk.rpc.winch\x1a\x14mavsdk_options.proto\"\x18\n\x16SubscribeStatusRequest\":\n\x0eStatusResponse\x12(\n\x06status\x18\x01 \x01(\x0b\x32\x18.mavsdk.rpc.winch.Status\"\xa1\x02\n\x0bStatusFlags\x12\x0f\n\x07healthy\x18\x01 \x01(\x08\x12\x17\n\x0f\x66ully_retracted\x18\x02 \x01(\x08\x12\x0e\n\x06moving\x18\x03 \x01(\x08\x12\x16\n\x0e\x63lutch_engaged\x18\x04 \x01(\x08\x12\x0e\n\x06locked\x18\x05 \x01(\x08\x12\x10\n\x08\x64ropping\x18\x06 \x01(\x08\x12\x11\n\tarresting\x18\x07 \x01(\x08\x12\x14\n\x0cground_sense\x18\x08 \x01(\x08\x12\x12\n\nretracting\x18\t \x01(\x08\x12\x11\n\tredeliver\x18\n \x01(\x08\x12\x14\n\x0c\x61\x62\x61ndon_line\x18\x0b \x01(\x08\x12\x0f\n\x07locking\x18\x0c \x01(\x08\x12\x11\n\tload_line\x18\r \x01(\x08\x12\x14\n\x0cload_payload\x18\x0e \x01(\x08\"\xcb\x01\n\x06Status\x12\x11\n\ttime_usec\x18\x01 \x01(\x04\x12\x15\n\rline_length_m\x18\x02 \x01(\x02\x12\x11\n\tspeed_m_s\x18\x03 \x01(\x02\x12\x12\n\ntension_kg\x18\x04 \x01(\x02\x12\x11\n\tvoltage_v\x18\x05 \x01(\x02\x12\x11\n\tcurrent_a\x18\x06 \x01(\x02\x12\x15\n\rtemperature_c\x18\x07 \x01(\x05\x12\x33\n\x0cstatus_flags\x18\x08 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.StatusFlags\" \n\x0cRelaxRequest\x12\x10\n\x08instance\x18\x01 \x01(\r\"D\n\rRelaxResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult\"]\n\x1cRelativeLengthControlRequest\x12\x10\n\x08instance\x18\x01 \x01(\r\x12\x10\n\x08length_m\x18\x02 \x01(\x02\x12\x19\n\x08rate_m_s\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"T\n\x1dRelativeLengthControlResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult\"8\n\x12RateControlRequest\x12\x10\n\x08instance\x18\x01 \x01(\r\x12\x10\n\x08rate_m_s\x18\x02 \x01(\x02\"J\n\x13RateControlResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult\"\x1f\n\x0bLockRequest\x12\x10\n\x08instance\x18\x01 \x01(\r\"C\n\x0cLockResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult\"\"\n\x0e\x44\x65liverRequest\x12\x10\n\x08instance\x18\x01 \x01(\r\"F\n\x0f\x44\x65liverResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult\"\x1f\n\x0bHoldRequest\x12\x10\n\x08instance\x18\x01 \x01(\r\"C\n\x0cHoldResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult\"\"\n\x0eRetractRequest\x12\x10\n\x08instance\x18\x01 \x01(\r\"F\n\x0fRetractResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult\"#\n\x0fLoadLineRequest\x12\x10\n\x08instance\x18\x01 \x01(\r\"G\n\x10LoadLineResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult\"&\n\x12\x41\x62\x61ndonLineRequest\x12\x10\n\x08instance\x18\x01 \x01(\r\"J\n\x13\x41\x62\x61ndonLineResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult\"&\n\x12LoadPayloadRequest\x12\x10\n\x08instance\x18\x01 \x01(\r\"J\n\x13LoadPayloadResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult\"\xf0\x01\n\x0bWinchResult\x12\x34\n\x06result\x18\x01 \x01(\x0e\x32$.mavsdk.rpc.winch.WinchResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\x96\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x0f\n\x0bRESULT_BUSY\x10\x03\x12\x12\n\x0eRESULT_TIMEOUT\x10\x04\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x05\x12\x11\n\rRESULT_FAILED\x10\x06*\xac\x02\n\x0bWinchAction\x12\x18\n\x14WINCH_ACTION_RELAXED\x10\x00\x12(\n$WINCH_ACTION_RELATIVE_LENGTH_CONTROL\x10\x01\x12\x1d\n\x19WINCH_ACTION_RATE_CONTROL\x10\x02\x12\x15\n\x11WINCH_ACTION_LOCK\x10\x03\x12\x18\n\x14WINCH_ACTION_DELIVER\x10\x04\x12\x15\n\x11WINCH_ACTION_HOLD\x10\x05\x12\x18\n\x14WINCH_ACTION_RETRACT\x10\x06\x12\x1a\n\x16WINCH_ACTION_LOAD_LINE\x10\x07\x12\x1d\n\x19WINCH_ACTION_ABANDON_LINE\x10\x08\x12\x1d\n\x19WINCH_ACTION_LOAD_PAYLOAD\x10\t2\xde\x07\n\x0cWinchService\x12\x61\n\x0fSubscribeStatus\x12(.mavsdk.rpc.winch.SubscribeStatusRequest\x1a .mavsdk.rpc.winch.StatusResponse\"\x00\x30\x01\x12J\n\x05Relax\x12\x1e.mavsdk.rpc.winch.RelaxRequest\x1a\x1f.mavsdk.rpc.winch.RelaxResponse\"\x00\x12z\n\x15RelativeLengthControl\x12..mavsdk.rpc.winch.RelativeLengthControlRequest\x1a/.mavsdk.rpc.winch.RelativeLengthControlResponse\"\x00\x12\\\n\x0bRateControl\x12$.mavsdk.rpc.winch.RateControlRequest\x1a%.mavsdk.rpc.winch.RateControlResponse\"\x00\x12G\n\x04Lock\x12\x1d.mavsdk.rpc.winch.LockRequest\x1a\x1e.mavsdk.rpc.winch.LockResponse\"\x00\x12P\n\x07\x44\x65liver\x12 .mavsdk.rpc.winch.DeliverRequest\x1a!.mavsdk.rpc.winch.DeliverResponse\"\x00\x12G\n\x04Hold\x12\x1d.mavsdk.rpc.winch.HoldRequest\x1a\x1e.mavsdk.rpc.winch.HoldResponse\"\x00\x12P\n\x07Retract\x12 .mavsdk.rpc.winch.RetractRequest\x1a!.mavsdk.rpc.winch.RetractResponse\"\x00\x12S\n\x08LoadLine\x12!.mavsdk.rpc.winch.LoadLineRequest\x1a\".mavsdk.rpc.winch.LoadLineResponse\"\x00\x12\\\n\x0b\x41\x62\x61ndonLine\x12$.mavsdk.rpc.winch.AbandonLineRequest\x1a%.mavsdk.rpc.winch.AbandonLineResponse\"\x00\x12\\\n\x0bLoadPayload\x12$.mavsdk.rpc.winch.LoadPayloadRequest\x1a%.mavsdk.rpc.winch.LoadPayloadResponse\"\x00\x42\x1d\n\x0fio.mavsdk.winchB\nWinchProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n\x11winch/winch.proto\x12\x10mavsdk.rpc.winch\x1a\x14mavsdk_options.proto"\x18\n\x16SubscribeStatusRequest":\n\x0eStatusResponse\x12(\n\x06status\x18\x01 \x01(\x0b\x32\x18.mavsdk.rpc.winch.Status"\xa1\x02\n\x0bStatusFlags\x12\x0f\n\x07healthy\x18\x01 \x01(\x08\x12\x17\n\x0f\x66ully_retracted\x18\x02 \x01(\x08\x12\x0e\n\x06moving\x18\x03 \x01(\x08\x12\x16\n\x0e\x63lutch_engaged\x18\x04 \x01(\x08\x12\x0e\n\x06locked\x18\x05 \x01(\x08\x12\x10\n\x08\x64ropping\x18\x06 \x01(\x08\x12\x11\n\tarresting\x18\x07 \x01(\x08\x12\x14\n\x0cground_sense\x18\x08 \x01(\x08\x12\x12\n\nretracting\x18\t \x01(\x08\x12\x11\n\tredeliver\x18\n \x01(\x08\x12\x14\n\x0c\x61\x62\x61ndon_line\x18\x0b \x01(\x08\x12\x0f\n\x07locking\x18\x0c \x01(\x08\x12\x11\n\tload_line\x18\r \x01(\x08\x12\x14\n\x0cload_payload\x18\x0e \x01(\x08"\xcb\x01\n\x06Status\x12\x11\n\ttime_usec\x18\x01 \x01(\x04\x12\x15\n\rline_length_m\x18\x02 \x01(\x02\x12\x11\n\tspeed_m_s\x18\x03 \x01(\x02\x12\x12\n\ntension_kg\x18\x04 \x01(\x02\x12\x11\n\tvoltage_v\x18\x05 \x01(\x02\x12\x11\n\tcurrent_a\x18\x06 \x01(\x02\x12\x15\n\rtemperature_c\x18\x07 \x01(\x05\x12\x33\n\x0cstatus_flags\x18\x08 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.StatusFlags" \n\x0cRelaxRequest\x12\x10\n\x08instance\x18\x01 \x01(\r"D\n\rRelaxResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult"]\n\x1cRelativeLengthControlRequest\x12\x10\n\x08instance\x18\x01 \x01(\r\x12\x10\n\x08length_m\x18\x02 \x01(\x02\x12\x19\n\x08rate_m_s\x18\x03 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN"T\n\x1dRelativeLengthControlResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult"8\n\x12RateControlRequest\x12\x10\n\x08instance\x18\x01 \x01(\r\x12\x10\n\x08rate_m_s\x18\x02 \x01(\x02"J\n\x13RateControlResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult"\x1f\n\x0bLockRequest\x12\x10\n\x08instance\x18\x01 \x01(\r"C\n\x0cLockResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult""\n\x0e\x44\x65liverRequest\x12\x10\n\x08instance\x18\x01 \x01(\r"F\n\x0f\x44\x65liverResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult"\x1f\n\x0bHoldRequest\x12\x10\n\x08instance\x18\x01 \x01(\r"C\n\x0cHoldResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult""\n\x0eRetractRequest\x12\x10\n\x08instance\x18\x01 \x01(\r"F\n\x0fRetractResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult"#\n\x0fLoadLineRequest\x12\x10\n\x08instance\x18\x01 \x01(\r"G\n\x10LoadLineResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult"&\n\x12\x41\x62\x61ndonLineRequest\x12\x10\n\x08instance\x18\x01 \x01(\r"J\n\x13\x41\x62\x61ndonLineResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult"&\n\x12LoadPayloadRequest\x12\x10\n\x08instance\x18\x01 \x01(\r"J\n\x13LoadPayloadResponse\x12\x33\n\x0cwinch_result\x18\x01 \x01(\x0b\x32\x1d.mavsdk.rpc.winch.WinchResult"\xf0\x01\n\x0bWinchResult\x12\x34\n\x06result\x18\x01 \x01(\x0e\x32$.mavsdk.rpc.winch.WinchResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t"\x96\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x0f\n\x0bRESULT_BUSY\x10\x03\x12\x12\n\x0eRESULT_TIMEOUT\x10\x04\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x05\x12\x11\n\rRESULT_FAILED\x10\x06*\xac\x02\n\x0bWinchAction\x12\x18\n\x14WINCH_ACTION_RELAXED\x10\x00\x12(\n$WINCH_ACTION_RELATIVE_LENGTH_CONTROL\x10\x01\x12\x1d\n\x19WINCH_ACTION_RATE_CONTROL\x10\x02\x12\x15\n\x11WINCH_ACTION_LOCK\x10\x03\x12\x18\n\x14WINCH_ACTION_DELIVER\x10\x04\x12\x15\n\x11WINCH_ACTION_HOLD\x10\x05\x12\x18\n\x14WINCH_ACTION_RETRACT\x10\x06\x12\x1a\n\x16WINCH_ACTION_LOAD_LINE\x10\x07\x12\x1d\n\x19WINCH_ACTION_ABANDON_LINE\x10\x08\x12\x1d\n\x19WINCH_ACTION_LOAD_PAYLOAD\x10\t2\xde\x07\n\x0cWinchService\x12\x61\n\x0fSubscribeStatus\x12(.mavsdk.rpc.winch.SubscribeStatusRequest\x1a .mavsdk.rpc.winch.StatusResponse"\x00\x30\x01\x12J\n\x05Relax\x12\x1e.mavsdk.rpc.winch.RelaxRequest\x1a\x1f.mavsdk.rpc.winch.RelaxResponse"\x00\x12z\n\x15RelativeLengthControl\x12..mavsdk.rpc.winch.RelativeLengthControlRequest\x1a/.mavsdk.rpc.winch.RelativeLengthControlResponse"\x00\x12\\\n\x0bRateControl\x12$.mavsdk.rpc.winch.RateControlRequest\x1a%.mavsdk.rpc.winch.RateControlResponse"\x00\x12G\n\x04Lock\x12\x1d.mavsdk.rpc.winch.LockRequest\x1a\x1e.mavsdk.rpc.winch.LockResponse"\x00\x12P\n\x07\x44\x65liver\x12 .mavsdk.rpc.winch.DeliverRequest\x1a!.mavsdk.rpc.winch.DeliverResponse"\x00\x12G\n\x04Hold\x12\x1d.mavsdk.rpc.winch.HoldRequest\x1a\x1e.mavsdk.rpc.winch.HoldResponse"\x00\x12P\n\x07Retract\x12 .mavsdk.rpc.winch.RetractRequest\x1a!.mavsdk.rpc.winch.RetractResponse"\x00\x12S\n\x08LoadLine\x12!.mavsdk.rpc.winch.LoadLineRequest\x1a".mavsdk.rpc.winch.LoadLineResponse"\x00\x12\\\n\x0b\x41\x62\x61ndonLine\x12$.mavsdk.rpc.winch.AbandonLineRequest\x1a%.mavsdk.rpc.winch.AbandonLineResponse"\x00\x12\\\n\x0bLoadPayload\x12$.mavsdk.rpc.winch.LoadPayloadRequest\x1a%.mavsdk.rpc.winch.LoadPayloadResponse"\x00\x42\x1d\n\x0fio.mavsdk.winchB\nWinchProtob\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'winch.winch_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, "winch.winch_pb2", _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n\017io.mavsdk.winchB\nWinchProto'
-  _globals['_RELATIVELENGTHCONTROLREQUEST'].fields_by_name['rate_m_s']._loaded_options = None
-  _globals['_RELATIVELENGTHCONTROLREQUEST'].fields_by_name['rate_m_s']._serialized_options = b'\202\265\030\003NaN'
-  _globals['_WINCHACTION']._serialized_start=2070
-  _globals['_WINCHACTION']._serialized_end=2370
-  _globals['_SUBSCRIBESTATUSREQUEST']._serialized_start=61
-  _globals['_SUBSCRIBESTATUSREQUEST']._serialized_end=85
-  _globals['_STATUSRESPONSE']._serialized_start=87
-  _globals['_STATUSRESPONSE']._serialized_end=145
-  _globals['_STATUSFLAGS']._serialized_start=148
-  _globals['_STATUSFLAGS']._serialized_end=437
-  _globals['_STATUS']._serialized_start=440
-  _globals['_STATUS']._serialized_end=643
-  _globals['_RELAXREQUEST']._serialized_start=645
-  _globals['_RELAXREQUEST']._serialized_end=677
-  _globals['_RELAXRESPONSE']._serialized_start=679
-  _globals['_RELAXRESPONSE']._serialized_end=747
-  _globals['_RELATIVELENGTHCONTROLREQUEST']._serialized_start=749
-  _globals['_RELATIVELENGTHCONTROLREQUEST']._serialized_end=842
-  _globals['_RELATIVELENGTHCONTROLRESPONSE']._serialized_start=844
-  _globals['_RELATIVELENGTHCONTROLRESPONSE']._serialized_end=928
-  _globals['_RATECONTROLREQUEST']._serialized_start=930
-  _globals['_RATECONTROLREQUEST']._serialized_end=986
-  _globals['_RATECONTROLRESPONSE']._serialized_start=988
-  _globals['_RATECONTROLRESPONSE']._serialized_end=1062
-  _globals['_LOCKREQUEST']._serialized_start=1064
-  _globals['_LOCKREQUEST']._serialized_end=1095
-  _globals['_LOCKRESPONSE']._serialized_start=1097
-  _globals['_LOCKRESPONSE']._serialized_end=1164
-  _globals['_DELIVERREQUEST']._serialized_start=1166
-  _globals['_DELIVERREQUEST']._serialized_end=1200
-  _globals['_DELIVERRESPONSE']._serialized_start=1202
-  _globals['_DELIVERRESPONSE']._serialized_end=1272
-  _globals['_HOLDREQUEST']._serialized_start=1274
-  _globals['_HOLDREQUEST']._serialized_end=1305
-  _globals['_HOLDRESPONSE']._serialized_start=1307
-  _globals['_HOLDRESPONSE']._serialized_end=1374
-  _globals['_RETRACTREQUEST']._serialized_start=1376
-  _globals['_RETRACTREQUEST']._serialized_end=1410
-  _globals['_RETRACTRESPONSE']._serialized_start=1412
-  _globals['_RETRACTRESPONSE']._serialized_end=1482
-  _globals['_LOADLINEREQUEST']._serialized_start=1484
-  _globals['_LOADLINEREQUEST']._serialized_end=1519
-  _globals['_LOADLINERESPONSE']._serialized_start=1521
-  _globals['_LOADLINERESPONSE']._serialized_end=1592
-  _globals['_ABANDONLINEREQUEST']._serialized_start=1594
-  _globals['_ABANDONLINEREQUEST']._serialized_end=1632
-  _globals['_ABANDONLINERESPONSE']._serialized_start=1634
-  _globals['_ABANDONLINERESPONSE']._serialized_end=1708
-  _globals['_LOADPAYLOADREQUEST']._serialized_start=1710
-  _globals['_LOADPAYLOADREQUEST']._serialized_end=1748
-  _globals['_LOADPAYLOADRESPONSE']._serialized_start=1750
-  _globals['_LOADPAYLOADRESPONSE']._serialized_end=1824
-  _globals['_WINCHRESULT']._serialized_start=1827
-  _globals['_WINCHRESULT']._serialized_end=2067
-  _globals['_WINCHRESULT_RESULT']._serialized_start=1917
-  _globals['_WINCHRESULT_RESULT']._serialized_end=2067
-  _globals['_WINCHSERVICE']._serialized_start=2373
-  _globals['_WINCHSERVICE']._serialized_end=3363
+    _globals["DESCRIPTOR"]._loaded_options = None
+    _globals["DESCRIPTOR"]._serialized_options = b"\n\017io.mavsdk.winchB\nWinchProto"
+    _globals["_RELATIVELENGTHCONTROLREQUEST"].fields_by_name[
+        "rate_m_s"
+    ]._loaded_options = None
+    _globals["_RELATIVELENGTHCONTROLREQUEST"].fields_by_name[
+        "rate_m_s"
+    ]._serialized_options = b"\202\265\030\003NaN"
+    _globals["_WINCHACTION"]._serialized_start = 2070
+    _globals["_WINCHACTION"]._serialized_end = 2370
+    _globals["_SUBSCRIBESTATUSREQUEST"]._serialized_start = 61
+    _globals["_SUBSCRIBESTATUSREQUEST"]._serialized_end = 85
+    _globals["_STATUSRESPONSE"]._serialized_start = 87
+    _globals["_STATUSRESPONSE"]._serialized_end = 145
+    _globals["_STATUSFLAGS"]._serialized_start = 148
+    _globals["_STATUSFLAGS"]._serialized_end = 437
+    _globals["_STATUS"]._serialized_start = 440
+    _globals["_STATUS"]._serialized_end = 643
+    _globals["_RELAXREQUEST"]._serialized_start = 645
+    _globals["_RELAXREQUEST"]._serialized_end = 677
+    _globals["_RELAXRESPONSE"]._serialized_start = 679
+    _globals["_RELAXRESPONSE"]._serialized_end = 747
+    _globals["_RELATIVELENGTHCONTROLREQUEST"]._serialized_start = 749
+    _globals["_RELATIVELENGTHCONTROLREQUEST"]._serialized_end = 842
+    _globals["_RELATIVELENGTHCONTROLRESPONSE"]._serialized_start = 844
+    _globals["_RELATIVELENGTHCONTROLRESPONSE"]._serialized_end = 928
+    _globals["_RATECONTROLREQUEST"]._serialized_start = 930
+    _globals["_RATECONTROLREQUEST"]._serialized_end = 986
+    _globals["_RATECONTROLRESPONSE"]._serialized_start = 988
+    _globals["_RATECONTROLRESPONSE"]._serialized_end = 1062
+    _globals["_LOCKREQUEST"]._serialized_start = 1064
+    _globals["_LOCKREQUEST"]._serialized_end = 1095
+    _globals["_LOCKRESPONSE"]._serialized_start = 1097
+    _globals["_LOCKRESPONSE"]._serialized_end = 1164
+    _globals["_DELIVERREQUEST"]._serialized_start = 1166
+    _globals["_DELIVERREQUEST"]._serialized_end = 1200
+    _globals["_DELIVERRESPONSE"]._serialized_start = 1202
+    _globals["_DELIVERRESPONSE"]._serialized_end = 1272
+    _globals["_HOLDREQUEST"]._serialized_start = 1274
+    _globals["_HOLDREQUEST"]._serialized_end = 1305
+    _globals["_HOLDRESPONSE"]._serialized_start = 1307
+    _globals["_HOLDRESPONSE"]._serialized_end = 1374
+    _globals["_RETRACTREQUEST"]._serialized_start = 1376
+    _globals["_RETRACTREQUEST"]._serialized_end = 1410
+    _globals["_RETRACTRESPONSE"]._serialized_start = 1412
+    _globals["_RETRACTRESPONSE"]._serialized_end = 1482
+    _globals["_LOADLINEREQUEST"]._serialized_start = 1484
+    _globals["_LOADLINEREQUEST"]._serialized_end = 1519
+    _globals["_LOADLINERESPONSE"]._serialized_start = 1521
+    _globals["_LOADLINERESPONSE"]._serialized_end = 1592
+    _globals["_ABANDONLINEREQUEST"]._serialized_start = 1594
+    _globals["_ABANDONLINEREQUEST"]._serialized_end = 1632
+    _globals["_ABANDONLINERESPONSE"]._serialized_start = 1634
+    _globals["_ABANDONLINERESPONSE"]._serialized_end = 1708
+    _globals["_LOADPAYLOADREQUEST"]._serialized_start = 1710
+    _globals["_LOADPAYLOADREQUEST"]._serialized_end = 1748
+    _globals["_LOADPAYLOADRESPONSE"]._serialized_start = 1750
+    _globals["_LOADPAYLOADRESPONSE"]._serialized_end = 1824
+    _globals["_WINCHRESULT"]._serialized_start = 1827
+    _globals["_WINCHRESULT"]._serialized_end = 2067
+    _globals["_WINCHRESULT_RESULT"]._serialized_start = 1917
+    _globals["_WINCHRESULT_RESULT"]._serialized_end = 2067
+    _globals["_WINCHSERVICE"]._serialized_start = 2373
+    _globals["_WINCHSERVICE"]._serialized_end = 3363
 # @@protoc_insertion_point(module_scope)

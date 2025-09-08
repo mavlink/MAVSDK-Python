@@ -3,7 +3,7 @@
 import asyncio
 import logging
 
-from mavsdk.camera import (CameraError, Mode)
+from mavsdk.camera import CameraError, Mode
 from mavsdk import System
 
 # Enable INFO level logging by default so that INFO messages are shown

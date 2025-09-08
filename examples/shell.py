@@ -19,12 +19,12 @@ async def run():
             break
 
     asyncio.get_event_loop().add_reader(sys.stdin, got_stdin_data, drone)
-    print("nsh> ", end='', flush=True)
+    print("nsh> ", end="", flush=True)
 
 
 async def observe_shell(drone):
     async for output in drone.shell.receive():
-        print(f"\n{output} ", end='', flush=True)
+        print(f"\n{output} ", end="", flush=True)
 
 
 def got_stdin_data(drone):

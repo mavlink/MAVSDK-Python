@@ -37,6 +37,7 @@ async def get_imu_data():
         print(f"Temperature (°C): {imu.temperature_degc}")
         print("-----------------------------------------")
 
+
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.run_until_complete(get_imu_data())

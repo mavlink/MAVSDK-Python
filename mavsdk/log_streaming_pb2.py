@@ -4,18 +4,15 @@
 # source: log_streaming/log_streaming.proto
 # Protobuf Python Version: 5.29.0
 """Generated protocol buffer code."""
+
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
-    _runtime_version.Domain.PUBLIC,
-    5,
-    29,
-    0,
-    '',
-    'log_streaming/log_streaming.proto'
+    _runtime_version.Domain.PUBLIC, 5, 29, 0, "", "log_streaming/log_streaming.proto"
 )
 # @@protoc_insertion_point(imports)
 
@@ -25,34 +22,44 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n!log_streaming/log_streaming.proto\x12\x18mavsdk.rpc.log_streaming\x1a\x14mavsdk_options.proto\"\x1a\n\x18StartLogStreamingRequest\"g\n\x19StartLogStreamingResponse\x12J\n\x14log_streaming_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.log_streaming.LogStreamingResult\"\x19\n\x17StopLogStreamingRequest\"f\n\x18StopLogStreamingResponse\x12J\n\x14log_streaming_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.log_streaming.LogStreamingResult\"!\n\x1fSubscribeLogStreamingRawRequest\"Y\n\x17LogStreamingRawResponse\x12>\n\x0blogging_raw\x18\x01 \x01(\x0b\x32).mavsdk.rpc.log_streaming.LogStreamingRaw\"&\n\x0fLogStreamingRaw\x12\x13\n\x0b\x64\x61ta_base64\x18\x01 \x01(\t\"\xab\x02\n\x12LogStreamingResult\x12\x43\n\x06result\x18\x01 \x01(\x0e\x32\x33.mavsdk.rpc.log_streaming.LogStreamingResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xbb\x01\n\x06Result\x12\x12\n\x0eRESULT_SUCCESS\x10\x00\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x01\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x02\x12\x0f\n\x0bRESULT_BUSY\x10\x03\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x04\x12\x12\n\x0eRESULT_TIMEOUT\x10\x05\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x06\x12\x12\n\x0eRESULT_UNKNOWN\x10\x07\x32\xa5\x03\n\x13LogStreamingService\x12~\n\x11StartLogStreaming\x12\x32.mavsdk.rpc.log_streaming.StartLogStreamingRequest\x1a\x33.mavsdk.rpc.log_streaming.StartLogStreamingResponse\"\x00\x12{\n\x10StopLogStreaming\x12\x31.mavsdk.rpc.log_streaming.StopLogStreamingRequest\x1a\x32.mavsdk.rpc.log_streaming.StopLogStreamingResponse\"\x00\x12\x90\x01\n\x18SubscribeLogStreamingRaw\x12\x39.mavsdk.rpc.log_streaming.SubscribeLogStreamingRawRequest\x1a\x31.mavsdk.rpc.log_streaming.LogStreamingRawResponse\"\x04\x80\xb5\x18\x00\x30\x01\x42,\n\x17io.mavsdk.log_streamingB\x11LogStreamingProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n!log_streaming/log_streaming.proto\x12\x18mavsdk.rpc.log_streaming\x1a\x14mavsdk_options.proto"\x1a\n\x18StartLogStreamingRequest"g\n\x19StartLogStreamingResponse\x12J\n\x14log_streaming_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.log_streaming.LogStreamingResult"\x19\n\x17StopLogStreamingRequest"f\n\x18StopLogStreamingResponse\x12J\n\x14log_streaming_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.log_streaming.LogStreamingResult"!\n\x1fSubscribeLogStreamingRawRequest"Y\n\x17LogStreamingRawResponse\x12>\n\x0blogging_raw\x18\x01 \x01(\x0b\x32).mavsdk.rpc.log_streaming.LogStreamingRaw"&\n\x0fLogStreamingRaw\x12\x13\n\x0b\x64\x61ta_base64\x18\x01 \x01(\t"\xab\x02\n\x12LogStreamingResult\x12\x43\n\x06result\x18\x01 \x01(\x0e\x32\x33.mavsdk.rpc.log_streaming.LogStreamingResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t"\xbb\x01\n\x06Result\x12\x12\n\x0eRESULT_SUCCESS\x10\x00\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x01\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x02\x12\x0f\n\x0bRESULT_BUSY\x10\x03\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x04\x12\x12\n\x0eRESULT_TIMEOUT\x10\x05\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x06\x12\x12\n\x0eRESULT_UNKNOWN\x10\x07\x32\xa5\x03\n\x13LogStreamingService\x12~\n\x11StartLogStreaming\x12\x32.mavsdk.rpc.log_streaming.StartLogStreamingRequest\x1a\x33.mavsdk.rpc.log_streaming.StartLogStreamingResponse"\x00\x12{\n\x10StopLogStreaming\x12\x31.mavsdk.rpc.log_streaming.StopLogStreamingRequest\x1a\x32.mavsdk.rpc.log_streaming.StopLogStreamingResponse"\x00\x12\x90\x01\n\x18SubscribeLogStreamingRaw\x12\x39.mavsdk.rpc.log_streaming.SubscribeLogStreamingRawRequest\x1a\x31.mavsdk.rpc.log_streaming.LogStreamingRawResponse"\x04\x80\xb5\x18\x00\x30\x01\x42,\n\x17io.mavsdk.log_streamingB\x11LogStreamingProtob\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'log_streaming.log_streaming_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(
+    DESCRIPTOR, "log_streaming.log_streaming_pb2", _globals
+)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n\027io.mavsdk.log_streamingB\021LogStreamingProto'
-  _globals['_LOGSTREAMINGSERVICE'].methods_by_name['SubscribeLogStreamingRaw']._loaded_options = None
-  _globals['_LOGSTREAMINGSERVICE'].methods_by_name['SubscribeLogStreamingRaw']._serialized_options = b'\200\265\030\000'
-  _globals['_STARTLOGSTREAMINGREQUEST']._serialized_start=85
-  _globals['_STARTLOGSTREAMINGREQUEST']._serialized_end=111
-  _globals['_STARTLOGSTREAMINGRESPONSE']._serialized_start=113
-  _globals['_STARTLOGSTREAMINGRESPONSE']._serialized_end=216
-  _globals['_STOPLOGSTREAMINGREQUEST']._serialized_start=218
-  _globals['_STOPLOGSTREAMINGREQUEST']._serialized_end=243
-  _globals['_STOPLOGSTREAMINGRESPONSE']._serialized_start=245
-  _globals['_STOPLOGSTREAMINGRESPONSE']._serialized_end=347
-  _globals['_SUBSCRIBELOGSTREAMINGRAWREQUEST']._serialized_start=349
-  _globals['_SUBSCRIBELOGSTREAMINGRAWREQUEST']._serialized_end=382
-  _globals['_LOGSTREAMINGRAWRESPONSE']._serialized_start=384
-  _globals['_LOGSTREAMINGRAWRESPONSE']._serialized_end=473
-  _globals['_LOGSTREAMINGRAW']._serialized_start=475
-  _globals['_LOGSTREAMINGRAW']._serialized_end=513
-  _globals['_LOGSTREAMINGRESULT']._serialized_start=516
-  _globals['_LOGSTREAMINGRESULT']._serialized_end=815
-  _globals['_LOGSTREAMINGRESULT_RESULT']._serialized_start=628
-  _globals['_LOGSTREAMINGRESULT_RESULT']._serialized_end=815
-  _globals['_LOGSTREAMINGSERVICE']._serialized_start=818
-  _globals['_LOGSTREAMINGSERVICE']._serialized_end=1239
+    _globals["DESCRIPTOR"]._loaded_options = None
+    _globals[
+        "DESCRIPTOR"
+    ]._serialized_options = b"\n\027io.mavsdk.log_streamingB\021LogStreamingProto"
+    _globals["_LOGSTREAMINGSERVICE"].methods_by_name[
+        "SubscribeLogStreamingRaw"
+    ]._loaded_options = None
+    _globals["_LOGSTREAMINGSERVICE"].methods_by_name[
+        "SubscribeLogStreamingRaw"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_STARTLOGSTREAMINGREQUEST"]._serialized_start = 85
+    _globals["_STARTLOGSTREAMINGREQUEST"]._serialized_end = 111
+    _globals["_STARTLOGSTREAMINGRESPONSE"]._serialized_start = 113
+    _globals["_STARTLOGSTREAMINGRESPONSE"]._serialized_end = 216
+    _globals["_STOPLOGSTREAMINGREQUEST"]._serialized_start = 218
+    _globals["_STOPLOGSTREAMINGREQUEST"]._serialized_end = 243
+    _globals["_STOPLOGSTREAMINGRESPONSE"]._serialized_start = 245
+    _globals["_STOPLOGSTREAMINGRESPONSE"]._serialized_end = 347
+    _globals["_SUBSCRIBELOGSTREAMINGRAWREQUEST"]._serialized_start = 349
+    _globals["_SUBSCRIBELOGSTREAMINGRAWREQUEST"]._serialized_end = 382
+    _globals["_LOGSTREAMINGRAWRESPONSE"]._serialized_start = 384
+    _globals["_LOGSTREAMINGRAWRESPONSE"]._serialized_end = 473
+    _globals["_LOGSTREAMINGRAW"]._serialized_start = 475
+    _globals["_LOGSTREAMINGRAW"]._serialized_end = 513
+    _globals["_LOGSTREAMINGRESULT"]._serialized_start = 516
+    _globals["_LOGSTREAMINGRESULT"]._serialized_end = 815
+    _globals["_LOGSTREAMINGRESULT_RESULT"]._serialized_start = 628
+    _globals["_LOGSTREAMINGRESULT_RESULT"]._serialized_end = 815
+    _globals["_LOGSTREAMINGSERVICE"]._serialized_start = 818
+    _globals["_LOGSTREAMINGSERVICE"]._serialized_end = 1239
 # @@protoc_insertion_point(module_scope)

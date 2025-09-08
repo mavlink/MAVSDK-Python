@@ -17,6 +17,7 @@ try:
     # Try to import uvloop, provides _MUCH_ better performance compared to the
     # standart unix selector event loop
     import uvloop
+
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 except ImportError:
     # No uvloop installed on the system; the default eventloop works as well!

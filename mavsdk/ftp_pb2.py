@@ -4,18 +4,15 @@
 # source: ftp/ftp.proto
 # Protobuf Python Version: 5.29.0
 """Generated protocol buffer code."""
+
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
-    _runtime_version.Domain.PUBLIC,
-    5,
-    29,
-    0,
-    '',
-    'ftp/ftp.proto'
+    _runtime_version.Domain.PUBLIC, 5, 29, 0, "", "ftp/ftp.proto"
 )
 # @@protoc_insertion_point(imports)
 
@@ -25,64 +22,72 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rftp/ftp.proto\x12\x0emavsdk.rpc.ftp\x1a\x14mavsdk_options.proto\"Z\n\x18SubscribeDownloadRequest\x12\x18\n\x10remote_file_path\x18\x01 \x01(\t\x12\x11\n\tlocal_dir\x18\x02 \x01(\t\x12\x11\n\tuse_burst\x18\x03 \x01(\x08\"v\n\x10\x44ownloadResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\x12\x33\n\rprogress_data\x18\x02 \x01(\x0b\x32\x1c.mavsdk.rpc.ftp.ProgressData\"E\n\x16SubscribeUploadRequest\x12\x17\n\x0flocal_file_path\x18\x01 \x01(\t\x12\x12\n\nremote_dir\x18\x02 \x01(\t\"t\n\x0eUploadResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\x12\x33\n\rprogress_data\x18\x02 \x01(\x0b\x32\x1c.mavsdk.rpc.ftp.ProgressData\"*\n\x14ListDirectoryRequest\x12\x12\n\nremote_dir\x18\x01 \x01(\t\"0\n\x11ListDirectoryData\x12\x0c\n\x04\x64irs\x18\x01 \x03(\t\x12\r\n\x05\x66iles\x18\x02 \x03(\t\"w\n\x15ListDirectoryResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\x12/\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32!.mavsdk.rpc.ftp.ListDirectoryData\",\n\x16\x43reateDirectoryRequest\x12\x12\n\nremote_dir\x18\x01 \x01(\t\"H\n\x17\x43reateDirectoryResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\",\n\x16RemoveDirectoryRequest\x12\x12\n\nremote_dir\x18\x01 \x01(\t\"H\n\x17RemoveDirectoryResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\"-\n\x11RemoveFileRequest\x12\x18\n\x10remote_file_path\x18\x01 \x01(\t\"C\n\x12RemoveFileResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\"A\n\rRenameRequest\x12\x18\n\x10remote_from_path\x18\x01 \x01(\t\x12\x16\n\x0eremote_to_path\x18\x02 \x01(\t\"?\n\x0eRenameResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\"M\n\x18\x41reFilesIdenticalRequest\x12\x17\n\x0flocal_file_path\x18\x01 \x01(\t\x12\x18\n\x10remote_file_path\x18\x02 \x01(\t\"a\n\x19\x41reFilesIdenticalResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\x12\x15\n\rare_identical\x18\x02 \x01(\x08\"(\n\x16SetTargetCompidRequest\x12\x0e\n\x06\x63ompid\x18\x01 \x01(\r\"H\n\x17SetTargetCompidResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\">\n\x0cProgressData\x12\x19\n\x11\x62ytes_transferred\x18\x01 \x01(\r\x12\x13\n\x0btotal_bytes\x18\x02 \x01(\r\"\x8e\x03\n\tFtpResult\x12\x30\n\x06result\x18\x01 \x01(\x0e\x32 .mavsdk.rpc.ftp.FtpResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xba\x02\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x0f\n\x0bRESULT_NEXT\x10\x02\x12\x12\n\x0eRESULT_TIMEOUT\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x18\n\x14RESULT_FILE_IO_ERROR\x10\x05\x12\x16\n\x12RESULT_FILE_EXISTS\x10\x06\x12\x1e\n\x1aRESULT_FILE_DOES_NOT_EXIST\x10\x07\x12\x19\n\x15RESULT_FILE_PROTECTED\x10\x08\x12\x1c\n\x18RESULT_INVALID_PARAMETER\x10\t\x12\x16\n\x12RESULT_UNSUPPORTED\x10\n\x12\x19\n\x15RESULT_PROTOCOL_ERROR\x10\x0b\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x0c\x32\x84\x07\n\nFtpService\x12k\n\x11SubscribeDownload\x12(.mavsdk.rpc.ftp.SubscribeDownloadRequest\x1a .mavsdk.rpc.ftp.DownloadResponse\"\x08\x80\xb5\x18\x00\x88\xb5\x18\x01\x30\x01\x12\x65\n\x0fSubscribeUpload\x12&.mavsdk.rpc.ftp.SubscribeUploadRequest\x1a\x1e.mavsdk.rpc.ftp.UploadResponse\"\x08\x80\xb5\x18\x00\x88\xb5\x18\x01\x30\x01\x12^\n\rListDirectory\x12$.mavsdk.rpc.ftp.ListDirectoryRequest\x1a%.mavsdk.rpc.ftp.ListDirectoryResponse\"\x00\x12\x64\n\x0f\x43reateDirectory\x12&.mavsdk.rpc.ftp.CreateDirectoryRequest\x1a\'.mavsdk.rpc.ftp.CreateDirectoryResponse\"\x00\x12\x64\n\x0fRemoveDirectory\x12&.mavsdk.rpc.ftp.RemoveDirectoryRequest\x1a\'.mavsdk.rpc.ftp.RemoveDirectoryResponse\"\x00\x12U\n\nRemoveFile\x12!.mavsdk.rpc.ftp.RemoveFileRequest\x1a\".mavsdk.rpc.ftp.RemoveFileResponse\"\x00\x12I\n\x06Rename\x12\x1d.mavsdk.rpc.ftp.RenameRequest\x1a\x1e.mavsdk.rpc.ftp.RenameResponse\"\x00\x12j\n\x11\x41reFilesIdentical\x12(.mavsdk.rpc.ftp.AreFilesIdenticalRequest\x1a).mavsdk.rpc.ftp.AreFilesIdenticalResponse\"\x00\x12h\n\x0fSetTargetCompid\x12&.mavsdk.rpc.ftp.SetTargetCompidRequest\x1a\'.mavsdk.rpc.ftp.SetTargetCompidResponse\"\x04\x80\xb5\x18\x01\x42\x19\n\rio.mavsdk.ftpB\x08\x46tpProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n\rftp/ftp.proto\x12\x0emavsdk.rpc.ftp\x1a\x14mavsdk_options.proto"Z\n\x18SubscribeDownloadRequest\x12\x18\n\x10remote_file_path\x18\x01 \x01(\t\x12\x11\n\tlocal_dir\x18\x02 \x01(\t\x12\x11\n\tuse_burst\x18\x03 \x01(\x08"v\n\x10\x44ownloadResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\x12\x33\n\rprogress_data\x18\x02 \x01(\x0b\x32\x1c.mavsdk.rpc.ftp.ProgressData"E\n\x16SubscribeUploadRequest\x12\x17\n\x0flocal_file_path\x18\x01 \x01(\t\x12\x12\n\nremote_dir\x18\x02 \x01(\t"t\n\x0eUploadResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\x12\x33\n\rprogress_data\x18\x02 \x01(\x0b\x32\x1c.mavsdk.rpc.ftp.ProgressData"*\n\x14ListDirectoryRequest\x12\x12\n\nremote_dir\x18\x01 \x01(\t"0\n\x11ListDirectoryData\x12\x0c\n\x04\x64irs\x18\x01 \x03(\t\x12\r\n\x05\x66iles\x18\x02 \x03(\t"w\n\x15ListDirectoryResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\x12/\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32!.mavsdk.rpc.ftp.ListDirectoryData",\n\x16\x43reateDirectoryRequest\x12\x12\n\nremote_dir\x18\x01 \x01(\t"H\n\x17\x43reateDirectoryResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult",\n\x16RemoveDirectoryRequest\x12\x12\n\nremote_dir\x18\x01 \x01(\t"H\n\x17RemoveDirectoryResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult"-\n\x11RemoveFileRequest\x12\x18\n\x10remote_file_path\x18\x01 \x01(\t"C\n\x12RemoveFileResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult"A\n\rRenameRequest\x12\x18\n\x10remote_from_path\x18\x01 \x01(\t\x12\x16\n\x0eremote_to_path\x18\x02 \x01(\t"?\n\x0eRenameResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult"M\n\x18\x41reFilesIdenticalRequest\x12\x17\n\x0flocal_file_path\x18\x01 \x01(\t\x12\x18\n\x10remote_file_path\x18\x02 \x01(\t"a\n\x19\x41reFilesIdenticalResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult\x12\x15\n\rare_identical\x18\x02 \x01(\x08"(\n\x16SetTargetCompidRequest\x12\x0e\n\x06\x63ompid\x18\x01 \x01(\r"H\n\x17SetTargetCompidResponse\x12-\n\nftp_result\x18\x01 \x01(\x0b\x32\x19.mavsdk.rpc.ftp.FtpResult">\n\x0cProgressData\x12\x19\n\x11\x62ytes_transferred\x18\x01 \x01(\r\x12\x13\n\x0btotal_bytes\x18\x02 \x01(\r"\x8e\x03\n\tFtpResult\x12\x30\n\x06result\x18\x01 \x01(\x0e\x32 .mavsdk.rpc.ftp.FtpResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t"\xba\x02\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x0f\n\x0bRESULT_NEXT\x10\x02\x12\x12\n\x0eRESULT_TIMEOUT\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x18\n\x14RESULT_FILE_IO_ERROR\x10\x05\x12\x16\n\x12RESULT_FILE_EXISTS\x10\x06\x12\x1e\n\x1aRESULT_FILE_DOES_NOT_EXIST\x10\x07\x12\x19\n\x15RESULT_FILE_PROTECTED\x10\x08\x12\x1c\n\x18RESULT_INVALID_PARAMETER\x10\t\x12\x16\n\x12RESULT_UNSUPPORTED\x10\n\x12\x19\n\x15RESULT_PROTOCOL_ERROR\x10\x0b\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x0c\x32\x84\x07\n\nFtpService\x12k\n\x11SubscribeDownload\x12(.mavsdk.rpc.ftp.SubscribeDownloadRequest\x1a .mavsdk.rpc.ftp.DownloadResponse"\x08\x80\xb5\x18\x00\x88\xb5\x18\x01\x30\x01\x12\x65\n\x0fSubscribeUpload\x12&.mavsdk.rpc.ftp.SubscribeUploadRequest\x1a\x1e.mavsdk.rpc.ftp.UploadResponse"\x08\x80\xb5\x18\x00\x88\xb5\x18\x01\x30\x01\x12^\n\rListDirectory\x12$.mavsdk.rpc.ftp.ListDirectoryRequest\x1a%.mavsdk.rpc.ftp.ListDirectoryResponse"\x00\x12\x64\n\x0f\x43reateDirectory\x12&.mavsdk.rpc.ftp.CreateDirectoryRequest\x1a\'.mavsdk.rpc.ftp.CreateDirectoryResponse"\x00\x12\x64\n\x0fRemoveDirectory\x12&.mavsdk.rpc.ftp.RemoveDirectoryRequest\x1a\'.mavsdk.rpc.ftp.RemoveDirectoryResponse"\x00\x12U\n\nRemoveFile\x12!.mavsdk.rpc.ftp.RemoveFileRequest\x1a".mavsdk.rpc.ftp.RemoveFileResponse"\x00\x12I\n\x06Rename\x12\x1d.mavsdk.rpc.ftp.RenameRequest\x1a\x1e.mavsdk.rpc.ftp.RenameResponse"\x00\x12j\n\x11\x41reFilesIdentical\x12(.mavsdk.rpc.ftp.AreFilesIdenticalRequest\x1a).mavsdk.rpc.ftp.AreFilesIdenticalResponse"\x00\x12h\n\x0fSetTargetCompid\x12&.mavsdk.rpc.ftp.SetTargetCompidRequest\x1a\'.mavsdk.rpc.ftp.SetTargetCompidResponse"\x04\x80\xb5\x18\x01\x42\x19\n\rio.mavsdk.ftpB\x08\x46tpProtob\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'ftp.ftp_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, "ftp.ftp_pb2", _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n\rio.mavsdk.ftpB\010FtpProto'
-  _globals['_FTPSERVICE'].methods_by_name['SubscribeDownload']._loaded_options = None
-  _globals['_FTPSERVICE'].methods_by_name['SubscribeDownload']._serialized_options = b'\200\265\030\000\210\265\030\001'
-  _globals['_FTPSERVICE'].methods_by_name['SubscribeUpload']._loaded_options = None
-  _globals['_FTPSERVICE'].methods_by_name['SubscribeUpload']._serialized_options = b'\200\265\030\000\210\265\030\001'
-  _globals['_FTPSERVICE'].methods_by_name['SetTargetCompid']._loaded_options = None
-  _globals['_FTPSERVICE'].methods_by_name['SetTargetCompid']._serialized_options = b'\200\265\030\001'
-  _globals['_SUBSCRIBEDOWNLOADREQUEST']._serialized_start=55
-  _globals['_SUBSCRIBEDOWNLOADREQUEST']._serialized_end=145
-  _globals['_DOWNLOADRESPONSE']._serialized_start=147
-  _globals['_DOWNLOADRESPONSE']._serialized_end=265
-  _globals['_SUBSCRIBEUPLOADREQUEST']._serialized_start=267
-  _globals['_SUBSCRIBEUPLOADREQUEST']._serialized_end=336
-  _globals['_UPLOADRESPONSE']._serialized_start=338
-  _globals['_UPLOADRESPONSE']._serialized_end=454
-  _globals['_LISTDIRECTORYREQUEST']._serialized_start=456
-  _globals['_LISTDIRECTORYREQUEST']._serialized_end=498
-  _globals['_LISTDIRECTORYDATA']._serialized_start=500
-  _globals['_LISTDIRECTORYDATA']._serialized_end=548
-  _globals['_LISTDIRECTORYRESPONSE']._serialized_start=550
-  _globals['_LISTDIRECTORYRESPONSE']._serialized_end=669
-  _globals['_CREATEDIRECTORYREQUEST']._serialized_start=671
-  _globals['_CREATEDIRECTORYREQUEST']._serialized_end=715
-  _globals['_CREATEDIRECTORYRESPONSE']._serialized_start=717
-  _globals['_CREATEDIRECTORYRESPONSE']._serialized_end=789
-  _globals['_REMOVEDIRECTORYREQUEST']._serialized_start=791
-  _globals['_REMOVEDIRECTORYREQUEST']._serialized_end=835
-  _globals['_REMOVEDIRECTORYRESPONSE']._serialized_start=837
-  _globals['_REMOVEDIRECTORYRESPONSE']._serialized_end=909
-  _globals['_REMOVEFILEREQUEST']._serialized_start=911
-  _globals['_REMOVEFILEREQUEST']._serialized_end=956
-  _globals['_REMOVEFILERESPONSE']._serialized_start=958
-  _globals['_REMOVEFILERESPONSE']._serialized_end=1025
-  _globals['_RENAMEREQUEST']._serialized_start=1027
-  _globals['_RENAMEREQUEST']._serialized_end=1092
-  _globals['_RENAMERESPONSE']._serialized_start=1094
-  _globals['_RENAMERESPONSE']._serialized_end=1157
-  _globals['_AREFILESIDENTICALREQUEST']._serialized_start=1159
-  _globals['_AREFILESIDENTICALREQUEST']._serialized_end=1236
-  _globals['_AREFILESIDENTICALRESPONSE']._serialized_start=1238
-  _globals['_AREFILESIDENTICALRESPONSE']._serialized_end=1335
-  _globals['_SETTARGETCOMPIDREQUEST']._serialized_start=1337
-  _globals['_SETTARGETCOMPIDREQUEST']._serialized_end=1377
-  _globals['_SETTARGETCOMPIDRESPONSE']._serialized_start=1379
-  _globals['_SETTARGETCOMPIDRESPONSE']._serialized_end=1451
-  _globals['_PROGRESSDATA']._serialized_start=1453
-  _globals['_PROGRESSDATA']._serialized_end=1515
-  _globals['_FTPRESULT']._serialized_start=1518
-  _globals['_FTPRESULT']._serialized_end=1916
-  _globals['_FTPRESULT_RESULT']._serialized_start=1602
-  _globals['_FTPRESULT_RESULT']._serialized_end=1916
-  _globals['_FTPSERVICE']._serialized_start=1919
-  _globals['_FTPSERVICE']._serialized_end=2819
+    _globals["DESCRIPTOR"]._loaded_options = None
+    _globals["DESCRIPTOR"]._serialized_options = b"\n\rio.mavsdk.ftpB\010FtpProto"
+    _globals["_FTPSERVICE"].methods_by_name["SubscribeDownload"]._loaded_options = None
+    _globals["_FTPSERVICE"].methods_by_name[
+        "SubscribeDownload"
+    ]._serialized_options = b"\200\265\030\000\210\265\030\001"
+    _globals["_FTPSERVICE"].methods_by_name["SubscribeUpload"]._loaded_options = None
+    _globals["_FTPSERVICE"].methods_by_name[
+        "SubscribeUpload"
+    ]._serialized_options = b"\200\265\030\000\210\265\030\001"
+    _globals["_FTPSERVICE"].methods_by_name["SetTargetCompid"]._loaded_options = None
+    _globals["_FTPSERVICE"].methods_by_name[
+        "SetTargetCompid"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_SUBSCRIBEDOWNLOADREQUEST"]._serialized_start = 55
+    _globals["_SUBSCRIBEDOWNLOADREQUEST"]._serialized_end = 145
+    _globals["_DOWNLOADRESPONSE"]._serialized_start = 147
+    _globals["_DOWNLOADRESPONSE"]._serialized_end = 265
+    _globals["_SUBSCRIBEUPLOADREQUEST"]._serialized_start = 267
+    _globals["_SUBSCRIBEUPLOADREQUEST"]._serialized_end = 336
+    _globals["_UPLOADRESPONSE"]._serialized_start = 338
+    _globals["_UPLOADRESPONSE"]._serialized_end = 454
+    _globals["_LISTDIRECTORYREQUEST"]._serialized_start = 456
+    _globals["_LISTDIRECTORYREQUEST"]._serialized_end = 498
+    _globals["_LISTDIRECTORYDATA"]._serialized_start = 500
+    _globals["_LISTDIRECTORYDATA"]._serialized_end = 548
+    _globals["_LISTDIRECTORYRESPONSE"]._serialized_start = 550
+    _globals["_LISTDIRECTORYRESPONSE"]._serialized_end = 669
+    _globals["_CREATEDIRECTORYREQUEST"]._serialized_start = 671
+    _globals["_CREATEDIRECTORYREQUEST"]._serialized_end = 715
+    _globals["_CREATEDIRECTORYRESPONSE"]._serialized_start = 717
+    _globals["_CREATEDIRECTORYRESPONSE"]._serialized_end = 789
+    _globals["_REMOVEDIRECTORYREQUEST"]._serialized_start = 791
+    _globals["_REMOVEDIRECTORYREQUEST"]._serialized_end = 835
+    _globals["_REMOVEDIRECTORYRESPONSE"]._serialized_start = 837
+    _globals["_REMOVEDIRECTORYRESPONSE"]._serialized_end = 909
+    _globals["_REMOVEFILEREQUEST"]._serialized_start = 911
+    _globals["_REMOVEFILEREQUEST"]._serialized_end = 956
+    _globals["_REMOVEFILERESPONSE"]._serialized_start = 958
+    _globals["_REMOVEFILERESPONSE"]._serialized_end = 1025
+    _globals["_RENAMEREQUEST"]._serialized_start = 1027
+    _globals["_RENAMEREQUEST"]._serialized_end = 1092
+    _globals["_RENAMERESPONSE"]._serialized_start = 1094
+    _globals["_RENAMERESPONSE"]._serialized_end = 1157
+    _globals["_AREFILESIDENTICALREQUEST"]._serialized_start = 1159
+    _globals["_AREFILESIDENTICALREQUEST"]._serialized_end = 1236
+    _globals["_AREFILESIDENTICALRESPONSE"]._serialized_start = 1238
+    _globals["_AREFILESIDENTICALRESPONSE"]._serialized_end = 1335
+    _globals["_SETTARGETCOMPIDREQUEST"]._serialized_start = 1337
+    _globals["_SETTARGETCOMPIDREQUEST"]._serialized_end = 1377
+    _globals["_SETTARGETCOMPIDRESPONSE"]._serialized_start = 1379
+    _globals["_SETTARGETCOMPIDRESPONSE"]._serialized_end = 1451
+    _globals["_PROGRESSDATA"]._serialized_start = 1453
+    _globals["_PROGRESSDATA"]._serialized_end = 1515
+    _globals["_FTPRESULT"]._serialized_start = 1518
+    _globals["_FTPRESULT"]._serialized_end = 1916
+    _globals["_FTPRESULT_RESULT"]._serialized_start = 1602
+    _globals["_FTPRESULT_RESULT"]._serialized_end = 1916
+    _globals["_FTPSERVICE"]._serialized_start = 1919
+    _globals["_FTPSERVICE"]._serialized_end = 2819
 # @@protoc_insertion_point(module_scope)

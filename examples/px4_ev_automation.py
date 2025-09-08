@@ -60,11 +60,7 @@ async def main():
             print("-- Connected to drone!")
             break
 
-    params_preflight = [
-        ("EKF2_HGT_REF", 0),
-        ("EKF2_EV_CTRL", 15),
-        ("EKF2_GPS_CTRL", 7)
-    ]
+    params_preflight = [("EKF2_HGT_REF", 0), ("EKF2_EV_CTRL", 15), ("EKF2_GPS_CTRL", 7)]
     await set_params(drone, params_preflight, "Setting preflight params...")
 
     # Wait for 5 seconds
@@ -73,7 +69,7 @@ async def main():
     params_gps_required = [
         ("EKF2_HGT_REF", 1),
         ("EKF2_EV_CTRL", 0),
-        ("EKF2_GPS_CTRL", 7)
+        ("EKF2_GPS_CTRL", 7),
     ]
     await set_params(drone, params_gps_required, "Setting GPS params...")
 
@@ -83,7 +79,7 @@ async def main():
     params_ev_required = [
         ("EKF2_HGT_REF", 3),
         ("EKF2_EV_CTRL", 15),
-        ("EKF2_GPS_CTRL", 0)
+        ("EKF2_GPS_CTRL", 0),
     ]
     await set_params(drone, params_ev_required, "Setting EV params...")
 

@@ -26,7 +26,7 @@ async def download_log(drone, entry):
     print(f"Downloading: log {entry.id} from {entry.date} to {filename}")
     previous_progress = -1
     async for progress in drone.log_files.download_log_file(entry, filename):
-        new_progress = round(progress.progress*100)
+        new_progress = round(progress.progress * 100)
         if new_progress != previous_progress:
             sys.stdout.write(f"\r{new_progress} %")
             sys.stdout.flush()

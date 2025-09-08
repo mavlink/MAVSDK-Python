@@ -8,73 +8,72 @@ from enum import Enum
 
 class AdsbEmitterType(Enum):
     """
-     ADSB classification for the type of vehicle emitting the transponder signal.
+    ADSB classification for the type of vehicle emitting the transponder signal.
 
-     Values
-     ------
-     NO_INFO
-          No emitter info.
+    Values
+    ------
+    NO_INFO
+         No emitter info.
 
-     LIGHT
-          Light emitter.
+    LIGHT
+         Light emitter.
 
-     SMALL
-          Small emitter.
+    SMALL
+         Small emitter.
 
-     LARGE
-          Large emitter.
+    LARGE
+         Large emitter.
 
-     HIGH_VORTEX_LARGE
-          High vortex emitter.
+    HIGH_VORTEX_LARGE
+         High vortex emitter.
 
-     HEAVY
-          Heavy emitter.
+    HEAVY
+         Heavy emitter.
 
-     HIGHLY_MANUV
-          Highly maneuverable emitter.
+    HIGHLY_MANUV
+         Highly maneuverable emitter.
 
-     ROTOCRAFT
-          Rotorcraft emitter.
+    ROTOCRAFT
+         Rotorcraft emitter.
 
-     UNASSIGNED
-          Unassigned emitter.
+    UNASSIGNED
+         Unassigned emitter.
 
-     GLIDER
-          Glider emitter.
+    GLIDER
+         Glider emitter.
 
-     LIGHTER_AIR
-          Lighter air emitter.
+    LIGHTER_AIR
+         Lighter air emitter.
 
-     PARACHUTE
-          Parachute emitter.
+    PARACHUTE
+         Parachute emitter.
 
-     ULTRA_LIGHT
-          Ultra light emitter.
+    ULTRA_LIGHT
+         Ultra light emitter.
 
-     UNASSIGNED2
-          Unassigned2 emitter.
+    UNASSIGNED2
+         Unassigned2 emitter.
 
-     UAV
-          UAV emitter.
+    UAV
+         UAV emitter.
 
-     SPACE
-          Space emitter.
+    SPACE
+         Space emitter.
 
-     UNASSGINED3
-          Unassigned3 emitter.
+    UNASSGINED3
+         Unassigned3 emitter.
 
-     EMERGENCY_SURFACE
-          Emergency emitter.
+    EMERGENCY_SURFACE
+         Emergency emitter.
 
-     SERVICE_SURFACE
-          Service surface emitter.
+    SERVICE_SURFACE
+         Service surface emitter.
 
-     POINT_OBSTACLE
-          Point obstacle emitter.
+    POINT_OBSTACLE
+         Point obstacle emitter.
 
-     """
+    """
 
-    
     NO_INFO = 0
     LIGHT = 1
     SMALL = 2
@@ -140,7 +139,7 @@ class AdsbEmitterType(Enum):
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
-        """ Parses a gRPC response """
+        """Parses a gRPC response"""
         if rpc_enum_value == transponder_pb2.ADSB_EMITTER_TYPE_NO_INFO:
             return AdsbEmitterType.NO_INFO
         if rpc_enum_value == transponder_pb2.ADSB_EMITTER_TYPE_LIGHT:
@@ -188,19 +187,18 @@ class AdsbEmitterType(Enum):
 
 class AdsbAltitudeType(Enum):
     """
-     Altitude type used in AdsbVehicle message
+    Altitude type used in AdsbVehicle message
 
-     Values
-     ------
-     PRESSURE_QNH
-          Altitude reported from a Baro source using QNH reference
+    Values
+    ------
+    PRESSURE_QNH
+         Altitude reported from a Baro source using QNH reference
 
-     GEOMETRIC
-          Altitude reported from a GNSS source
+    GEOMETRIC
+         Altitude reported from a GNSS source
 
-     """
+    """
 
-    
     PRESSURE_QNH = 0
     GEOMETRIC = 1
 
@@ -212,7 +210,7 @@ class AdsbAltitudeType(Enum):
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
-        """ Parses a gRPC response """
+        """Parses a gRPC response"""
         if rpc_enum_value == transponder_pb2.ADSB_ALTITUDE_TYPE_PRESSURE_QNH:
             return AdsbAltitudeType.PRESSURE_QNH
         if rpc_enum_value == transponder_pb2.ADSB_ALTITUDE_TYPE_GEOMETRIC:
@@ -224,65 +222,64 @@ class AdsbAltitudeType(Enum):
 
 class AdsbVehicle:
     """
-     ADSB Vehicle type.
+    ADSB Vehicle type.
 
-     Parameters
-     ----------
-     icao_address : uint32_t
-          ICAO (International Civil Aviation Organization) unique worldwide identifier
+    Parameters
+    ----------
+    icao_address : uint32_t
+         ICAO (International Civil Aviation Organization) unique worldwide identifier
 
-     latitude_deg : double
-          Latitude in degrees (range: -90 to +90)
+    latitude_deg : double
+         Latitude in degrees (range: -90 to +90)
 
-     longitude_deg : double
-          Longitude in degrees (range: -180 to +180).
+    longitude_deg : double
+         Longitude in degrees (range: -180 to +180).
 
-     altitude_type : AdsbAltitudeType
-          ADSB altitude type.
+    altitude_type : AdsbAltitudeType
+         ADSB altitude type.
 
-     absolute_altitude_m : float
-          Altitude in metres according to altitude_type 
+    absolute_altitude_m : float
+         Altitude in metres according to altitude_type
 
-     heading_deg : float
-          Course over ground, in degrees
+    heading_deg : float
+         Course over ground, in degrees
 
-     horizontal_velocity_m_s : float
-          The horizontal velocity in metres/second
+    horizontal_velocity_m_s : float
+         The horizontal velocity in metres/second
 
-     vertical_velocity_m_s : float
-          The vertical velocity in metres/second. Positive is up.
+    vertical_velocity_m_s : float
+         The vertical velocity in metres/second. Positive is up.
 
-     callsign : std::string
-          The callsign
+    callsign : std::string
+         The callsign
 
-     emitter_type : AdsbEmitterType
-          ADSB emitter type.
+    emitter_type : AdsbEmitterType
+         ADSB emitter type.
 
-     squawk : uint32_t
-          Squawk code.
+    squawk : uint32_t
+         Squawk code.
 
-     tslc_s : uint32_t
-          Time Since Last Communication in seconds.
+    tslc_s : uint32_t
+         Time Since Last Communication in seconds.
 
-     """
-
-    
+    """
 
     def __init__(
-            self,
-            icao_address,
-            latitude_deg,
-            longitude_deg,
-            altitude_type,
-            absolute_altitude_m,
-            heading_deg,
-            horizontal_velocity_m_s,
-            vertical_velocity_m_s,
-            callsign,
-            emitter_type,
-            squawk,
-            tslc_s):
-        """ Initializes the AdsbVehicle object """
+        self,
+        icao_address,
+        latitude_deg,
+        longitude_deg,
+        altitude_type,
+        absolute_altitude_m,
+        heading_deg,
+        horizontal_velocity_m_s,
+        vertical_velocity_m_s,
+        callsign,
+        emitter_type,
+        squawk,
+        tslc_s,
+    ):
+        """Initializes the AdsbVehicle object"""
         self.icao_address = icao_address
         self.latitude_deg = latitude_deg
         self.longitude_deg = longitude_deg
@@ -297,30 +294,32 @@ class AdsbVehicle:
         self.tslc_s = tslc_s
 
     def __eq__(self, to_compare):
-        """ Checks if two AdsbVehicle are the same """
+        """Checks if two AdsbVehicle are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # AdsbVehicle object
-            return \
-                (self.icao_address == to_compare.icao_address) and \
-                (self.latitude_deg == to_compare.latitude_deg) and \
-                (self.longitude_deg == to_compare.longitude_deg) and \
-                (self.altitude_type == to_compare.altitude_type) and \
-                (self.absolute_altitude_m == to_compare.absolute_altitude_m) and \
-                (self.heading_deg == to_compare.heading_deg) and \
-                (self.horizontal_velocity_m_s == to_compare.horizontal_velocity_m_s) and \
-                (self.vertical_velocity_m_s == to_compare.vertical_velocity_m_s) and \
-                (self.callsign == to_compare.callsign) and \
-                (self.emitter_type == to_compare.emitter_type) and \
-                (self.squawk == to_compare.squawk) and \
-                (self.tslc_s == to_compare.tslc_s)
+            return (
+                (self.icao_address == to_compare.icao_address)
+                and (self.latitude_deg == to_compare.latitude_deg)
+                and (self.longitude_deg == to_compare.longitude_deg)
+                and (self.altitude_type == to_compare.altitude_type)
+                and (self.absolute_altitude_m == to_compare.absolute_altitude_m)
+                and (self.heading_deg == to_compare.heading_deg)
+                and (self.horizontal_velocity_m_s == to_compare.horizontal_velocity_m_s)
+                and (self.vertical_velocity_m_s == to_compare.vertical_velocity_m_s)
+                and (self.callsign == to_compare.callsign)
+                and (self.emitter_type == to_compare.emitter_type)
+                and (self.squawk == to_compare.squawk)
+                and (self.tslc_s == to_compare.tslc_s)
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ AdsbVehicle in string representation """
-        struct_repr = ", ".join([
+        """AdsbVehicle in string representation"""
+        struct_repr = ", ".join(
+            [
                 "icao_address: " + str(self.icao_address),
                 "latitude_deg: " + str(self.latitude_deg),
                 "longitude_deg: " + str(self.longitude_deg),
@@ -332,176 +331,101 @@ class AdsbVehicle:
                 "callsign: " + str(self.callsign),
                 "emitter_type: " + str(self.emitter_type),
                 "squawk: " + str(self.squawk),
-                "tslc_s: " + str(self.tslc_s)
-                ])
+                "tslc_s: " + str(self.tslc_s),
+            ]
+        )
 
         return f"AdsbVehicle: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcAdsbVehicle):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return AdsbVehicle(
-                
-                rpcAdsbVehicle.icao_address,
-                
-                
-                rpcAdsbVehicle.latitude_deg,
-                
-                
-                rpcAdsbVehicle.longitude_deg,
-                
-                
-                AdsbAltitudeType.translate_from_rpc(rpcAdsbVehicle.altitude_type),
-                
-                
-                rpcAdsbVehicle.absolute_altitude_m,
-                
-                
-                rpcAdsbVehicle.heading_deg,
-                
-                
-                rpcAdsbVehicle.horizontal_velocity_m_s,
-                
-                
-                rpcAdsbVehicle.vertical_velocity_m_s,
-                
-                
-                rpcAdsbVehicle.callsign,
-                
-                
-                AdsbEmitterType.translate_from_rpc(rpcAdsbVehicle.emitter_type),
-                
-                
-                rpcAdsbVehicle.squawk,
-                
-                
-                rpcAdsbVehicle.tslc_s
-                )
+            rpcAdsbVehicle.icao_address,
+            rpcAdsbVehicle.latitude_deg,
+            rpcAdsbVehicle.longitude_deg,
+            AdsbAltitudeType.translate_from_rpc(rpcAdsbVehicle.altitude_type),
+            rpcAdsbVehicle.absolute_altitude_m,
+            rpcAdsbVehicle.heading_deg,
+            rpcAdsbVehicle.horizontal_velocity_m_s,
+            rpcAdsbVehicle.vertical_velocity_m_s,
+            rpcAdsbVehicle.callsign,
+            AdsbEmitterType.translate_from_rpc(rpcAdsbVehicle.emitter_type),
+            rpcAdsbVehicle.squawk,
+            rpcAdsbVehicle.tslc_s,
+        )
 
     def translate_to_rpc(self, rpcAdsbVehicle):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpcAdsbVehicle.icao_address = self.icao_address
-            
-        
-        
-        
-            
+
         rpcAdsbVehicle.latitude_deg = self.latitude_deg
-            
-        
-        
-        
-            
+
         rpcAdsbVehicle.longitude_deg = self.longitude_deg
-            
-        
-        
-        
-            
+
         rpcAdsbVehicle.altitude_type = self.altitude_type.translate_to_rpc()
-            
-        
-        
-        
-            
+
         rpcAdsbVehicle.absolute_altitude_m = self.absolute_altitude_m
-            
-        
-        
-        
-            
+
         rpcAdsbVehicle.heading_deg = self.heading_deg
-            
-        
-        
-        
-            
+
         rpcAdsbVehicle.horizontal_velocity_m_s = self.horizontal_velocity_m_s
-            
-        
-        
-        
-            
+
         rpcAdsbVehicle.vertical_velocity_m_s = self.vertical_velocity_m_s
-            
-        
-        
-        
-            
+
         rpcAdsbVehicle.callsign = self.callsign
-            
-        
-        
-        
-            
+
         rpcAdsbVehicle.emitter_type = self.emitter_type.translate_to_rpc()
-            
-        
-        
-        
-            
+
         rpcAdsbVehicle.squawk = self.squawk
-            
-        
-        
-        
-            
+
         rpcAdsbVehicle.tslc_s = self.tslc_s
-            
-        
-        
 
 
 class TransponderResult:
     """
-     Result type.
+    Result type.
 
-     Parameters
-     ----------
-     result : Result
-          Result enum value
+    Parameters
+    ----------
+    result : Result
+         Result enum value
 
-     result_str : std::string
-          Human-readable English string describing the result
+    result_str : std::string
+         Human-readable English string describing the result
 
-     """
+    """
 
-    
-    
     class Result(Enum):
         """
-         Possible results returned for transponder requests.
+        Possible results returned for transponder requests.
 
-         Values
-         ------
-         UNKNOWN
-              Unknown result
+        Values
+        ------
+        UNKNOWN
+             Unknown result
 
-         SUCCESS
-              Success: the transponder command was accepted by the vehicle
+        SUCCESS
+             Success: the transponder command was accepted by the vehicle
 
-         NO_SYSTEM
-              No system connected
+        NO_SYSTEM
+             No system connected
 
-         CONNECTION_ERROR
-              Connection error
+        CONNECTION_ERROR
+             Connection error
 
-         BUSY
-              Vehicle is busy
+        BUSY
+             Vehicle is busy
 
-         COMMAND_DENIED
-              Command refused by vehicle
+        COMMAND_DENIED
+             Command refused by vehicle
 
-         TIMEOUT
-              Request timed out
+        TIMEOUT
+             Request timed out
 
-         """
+        """
 
-        
         UNKNOWN = 0
         SUCCESS = 1
         NO_SYSTEM = 2
@@ -528,87 +452,74 @@ class TransponderResult:
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
-            """ Parses a gRPC response """
+            """Parses a gRPC response"""
             if rpc_enum_value == transponder_pb2.TransponderResult.RESULT_UNKNOWN:
                 return TransponderResult.Result.UNKNOWN
             if rpc_enum_value == transponder_pb2.TransponderResult.RESULT_SUCCESS:
                 return TransponderResult.Result.SUCCESS
             if rpc_enum_value == transponder_pb2.TransponderResult.RESULT_NO_SYSTEM:
                 return TransponderResult.Result.NO_SYSTEM
-            if rpc_enum_value == transponder_pb2.TransponderResult.RESULT_CONNECTION_ERROR:
+            if (
+                rpc_enum_value
+                == transponder_pb2.TransponderResult.RESULT_CONNECTION_ERROR
+            ):
                 return TransponderResult.Result.CONNECTION_ERROR
             if rpc_enum_value == transponder_pb2.TransponderResult.RESULT_BUSY:
                 return TransponderResult.Result.BUSY
-            if rpc_enum_value == transponder_pb2.TransponderResult.RESULT_COMMAND_DENIED:
+            if (
+                rpc_enum_value
+                == transponder_pb2.TransponderResult.RESULT_COMMAND_DENIED
+            ):
                 return TransponderResult.Result.COMMAND_DENIED
             if rpc_enum_value == transponder_pb2.TransponderResult.RESULT_TIMEOUT:
                 return TransponderResult.Result.TIMEOUT
 
         def __str__(self):
             return self.name
-    
 
-    def __init__(
-            self,
-            result,
-            result_str):
-        """ Initializes the TransponderResult object """
+    def __init__(self, result, result_str):
+        """Initializes the TransponderResult object"""
         self.result = result
         self.result_str = result_str
 
     def __eq__(self, to_compare):
-        """ Checks if two TransponderResult are the same """
+        """Checks if two TransponderResult are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # TransponderResult object
-            return \
-                (self.result == to_compare.result) and \
-                (self.result_str == to_compare.result_str)
+            return (self.result == to_compare.result) and (
+                self.result_str == to_compare.result_str
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ TransponderResult in string representation """
-        struct_repr = ", ".join([
-                "result: " + str(self.result),
-                "result_str: " + str(self.result_str)
-                ])
+        """TransponderResult in string representation"""
+        struct_repr = ", ".join(
+            ["result: " + str(self.result), "result_str: " + str(self.result_str)]
+        )
 
         return f"TransponderResult: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcTransponderResult):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return TransponderResult(
-                
-                TransponderResult.Result.translate_from_rpc(rpcTransponderResult.result),
-                
-                
-                rpcTransponderResult.result_str
-                )
+            TransponderResult.Result.translate_from_rpc(rpcTransponderResult.result),
+            rpcTransponderResult.result_str,
+        )
 
     def translate_to_rpc(self, rpcTransponderResult):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpcTransponderResult.result = self.result.translate_to_rpc()
-            
-        
-        
-        
-            
-        rpcTransponderResult.result_str = self.result_str
-            
-        
-        
 
+        rpcTransponderResult.result_str = self.result_str
 
 
 class TransponderError(Exception):
-    """ Raised when a TransponderResult is a fail code """
+    """Raised when a TransponderResult is a fail code"""
 
     def __init__(self, result, origin, *params):
         self._result = result
@@ -621,35 +532,33 @@ class TransponderError(Exception):
 
 class Transponder(AsyncBase):
     """
-     Allow users to get ADS-B information
-     and set ADS-B update rates.
+    Allow users to get ADS-B information
+    and set ADS-B update rates.
 
-     Generated by dcsdkgen - MAVSDK Transponder API
+    Generated by dcsdkgen - MAVSDK Transponder API
     """
 
     # Plugin name
     name = "Transponder"
 
     def _setup_stub(self, channel):
-        """ Setups the api stub """
+        """Setups the api stub"""
         self._stub = transponder_pb2_grpc.TransponderServiceStub(channel)
 
-    
     def _extract_result(self, response):
-        """ Returns the response status and description """
+        """Returns the response status and description"""
         return TransponderResult.translate_from_rpc(response.transponder_result)
-    
 
     async def transponder(self):
         """
-         Subscribe to 'transponder' updates.
+        Subscribe to 'transponder' updates.
 
-         Yields
-         -------
-         transponder : AdsbVehicle
-              The next detection
+        Yields
+        -------
+        transponder : AdsbVehicle
+             The next detection
 
-         
+
         """
 
         request = transponder_pb2.SubscribeTransponderRequest()
@@ -657,35 +566,30 @@ class Transponder(AsyncBase):
 
         try:
             async for response in transponder_stream:
-                
-
-            
                 yield AdsbVehicle.translate_from_rpc(response.transponder)
         finally:
             transponder_stream.cancel()
 
     async def set_rate_transponder(self, rate_hz):
         """
-         Set rate to 'transponder' updates.
+        Set rate to 'transponder' updates.
 
-         Parameters
-         ----------
-         rate_hz : double
-              The requested rate (in Hertz)
+        Parameters
+        ----------
+        rate_hz : double
+             The requested rate (in Hertz)
 
-         Raises
-         ------
-         TransponderError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        TransponderError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = transponder_pb2.SetRateTransponderRequest()
         request.rate_hz = rate_hz
         response = await self._stub.SetRateTransponder(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != TransponderResult.Result.SUCCESS:
             raise TransponderError(result, "set_rate_transponder()", rate_hz)
-        

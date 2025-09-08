@@ -4,18 +4,15 @@
 # source: manual_control/manual_control.proto
 # Protobuf Python Version: 5.29.0
 """Generated protocol buffer code."""
+
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
-    _runtime_version.Domain.PUBLIC,
-    5,
-    29,
-    0,
-    '',
-    'manual_control/manual_control.proto'
+    _runtime_version.Domain.PUBLIC, 5, 29, 0, "", "manual_control/manual_control.proto"
 )
 # @@protoc_insertion_point(imports)
 
@@ -25,32 +22,42 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n#manual_control/manual_control.proto\x12\x19mavsdk.rpc.manual_control\x1a\x14mavsdk_options.proto\"\x1d\n\x1bStartPositionControlRequest\"m\n\x1cStartPositionControlResponse\x12M\n\x15manual_control_result\x18\x01 \x01(\x0b\x32..mavsdk.rpc.manual_control.ManualControlResult\"\x1d\n\x1bStartAltitudeControlRequest\"m\n\x1cStartAltitudeControlResponse\x12M\n\x15manual_control_result\x18\x01 \x01(\x0b\x32..mavsdk.rpc.manual_control.ManualControlResult\"J\n\x1cSetManualControlInputRequest\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\x12\t\n\x01z\x18\x03 \x01(\x02\x12\t\n\x01r\x18\x04 \x01(\x02\"n\n\x1dSetManualControlInputResponse\x12M\n\x15manual_control_result\x18\x01 \x01(\x0b\x32..mavsdk.rpc.manual_control.ManualControlResult\"\xcf\x02\n\x13ManualControlResult\x12\x45\n\x06result\x18\x01 \x01(\x0e\x32\x35.mavsdk.rpc.manual_control.ManualControlResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xdc\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x1d\n\x19RESULT_INPUT_OUT_OF_RANGE\x10\x07\x12\x18\n\x14RESULT_INPUT_NOT_SET\x10\x08\x32\xc1\x03\n\x14ManualControlService\x12\x89\x01\n\x14StartPositionControl\x12\x36.mavsdk.rpc.manual_control.StartPositionControlRequest\x1a\x37.mavsdk.rpc.manual_control.StartPositionControlResponse\"\x00\x12\x89\x01\n\x14StartAltitudeControl\x12\x36.mavsdk.rpc.manual_control.StartAltitudeControlRequest\x1a\x37.mavsdk.rpc.manual_control.StartAltitudeControlResponse\"\x00\x12\x90\x01\n\x15SetManualControlInput\x12\x37.mavsdk.rpc.manual_control.SetManualControlInputRequest\x1a\x38.mavsdk.rpc.manual_control.SetManualControlInputResponse\"\x04\x80\xb5\x18\x01\x42.\n\x18io.mavsdk.manual_controlB\x12ManualControlProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n#manual_control/manual_control.proto\x12\x19mavsdk.rpc.manual_control\x1a\x14mavsdk_options.proto"\x1d\n\x1bStartPositionControlRequest"m\n\x1cStartPositionControlResponse\x12M\n\x15manual_control_result\x18\x01 \x01(\x0b\x32..mavsdk.rpc.manual_control.ManualControlResult"\x1d\n\x1bStartAltitudeControlRequest"m\n\x1cStartAltitudeControlResponse\x12M\n\x15manual_control_result\x18\x01 \x01(\x0b\x32..mavsdk.rpc.manual_control.ManualControlResult"J\n\x1cSetManualControlInputRequest\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\x12\t\n\x01z\x18\x03 \x01(\x02\x12\t\n\x01r\x18\x04 \x01(\x02"n\n\x1dSetManualControlInputResponse\x12M\n\x15manual_control_result\x18\x01 \x01(\x0b\x32..mavsdk.rpc.manual_control.ManualControlResult"\xcf\x02\n\x13ManualControlResult\x12\x45\n\x06result\x18\x01 \x01(\x0e\x32\x35.mavsdk.rpc.manual_control.ManualControlResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t"\xdc\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x1d\n\x19RESULT_INPUT_OUT_OF_RANGE\x10\x07\x12\x18\n\x14RESULT_INPUT_NOT_SET\x10\x08\x32\xc1\x03\n\x14ManualControlService\x12\x89\x01\n\x14StartPositionControl\x12\x36.mavsdk.rpc.manual_control.StartPositionControlRequest\x1a\x37.mavsdk.rpc.manual_control.StartPositionControlResponse"\x00\x12\x89\x01\n\x14StartAltitudeControl\x12\x36.mavsdk.rpc.manual_control.StartAltitudeControlRequest\x1a\x37.mavsdk.rpc.manual_control.StartAltitudeControlResponse"\x00\x12\x90\x01\n\x15SetManualControlInput\x12\x37.mavsdk.rpc.manual_control.SetManualControlInputRequest\x1a\x38.mavsdk.rpc.manual_control.SetManualControlInputResponse"\x04\x80\xb5\x18\x01\x42.\n\x18io.mavsdk.manual_controlB\x12ManualControlProtob\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'manual_control.manual_control_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(
+    DESCRIPTOR, "manual_control.manual_control_pb2", _globals
+)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n\030io.mavsdk.manual_controlB\022ManualControlProto'
-  _globals['_MANUALCONTROLSERVICE'].methods_by_name['SetManualControlInput']._loaded_options = None
-  _globals['_MANUALCONTROLSERVICE'].methods_by_name['SetManualControlInput']._serialized_options = b'\200\265\030\001'
-  _globals['_STARTPOSITIONCONTROLREQUEST']._serialized_start=88
-  _globals['_STARTPOSITIONCONTROLREQUEST']._serialized_end=117
-  _globals['_STARTPOSITIONCONTROLRESPONSE']._serialized_start=119
-  _globals['_STARTPOSITIONCONTROLRESPONSE']._serialized_end=228
-  _globals['_STARTALTITUDECONTROLREQUEST']._serialized_start=230
-  _globals['_STARTALTITUDECONTROLREQUEST']._serialized_end=259
-  _globals['_STARTALTITUDECONTROLRESPONSE']._serialized_start=261
-  _globals['_STARTALTITUDECONTROLRESPONSE']._serialized_end=370
-  _globals['_SETMANUALCONTROLINPUTREQUEST']._serialized_start=372
-  _globals['_SETMANUALCONTROLINPUTREQUEST']._serialized_end=446
-  _globals['_SETMANUALCONTROLINPUTRESPONSE']._serialized_start=448
-  _globals['_SETMANUALCONTROLINPUTRESPONSE']._serialized_end=558
-  _globals['_MANUALCONTROLRESULT']._serialized_start=561
-  _globals['_MANUALCONTROLRESULT']._serialized_end=896
-  _globals['_MANUALCONTROLRESULT_RESULT']._serialized_start=676
-  _globals['_MANUALCONTROLRESULT_RESULT']._serialized_end=896
-  _globals['_MANUALCONTROLSERVICE']._serialized_start=899
-  _globals['_MANUALCONTROLSERVICE']._serialized_end=1348
+    _globals["DESCRIPTOR"]._loaded_options = None
+    _globals[
+        "DESCRIPTOR"
+    ]._serialized_options = b"\n\030io.mavsdk.manual_controlB\022ManualControlProto"
+    _globals["_MANUALCONTROLSERVICE"].methods_by_name[
+        "SetManualControlInput"
+    ]._loaded_options = None
+    _globals["_MANUALCONTROLSERVICE"].methods_by_name[
+        "SetManualControlInput"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_STARTPOSITIONCONTROLREQUEST"]._serialized_start = 88
+    _globals["_STARTPOSITIONCONTROLREQUEST"]._serialized_end = 117
+    _globals["_STARTPOSITIONCONTROLRESPONSE"]._serialized_start = 119
+    _globals["_STARTPOSITIONCONTROLRESPONSE"]._serialized_end = 228
+    _globals["_STARTALTITUDECONTROLREQUEST"]._serialized_start = 230
+    _globals["_STARTALTITUDECONTROLREQUEST"]._serialized_end = 259
+    _globals["_STARTALTITUDECONTROLRESPONSE"]._serialized_start = 261
+    _globals["_STARTALTITUDECONTROLRESPONSE"]._serialized_end = 370
+    _globals["_SETMANUALCONTROLINPUTREQUEST"]._serialized_start = 372
+    _globals["_SETMANUALCONTROLINPUTREQUEST"]._serialized_end = 446
+    _globals["_SETMANUALCONTROLINPUTRESPONSE"]._serialized_start = 448
+    _globals["_SETMANUALCONTROLINPUTRESPONSE"]._serialized_end = 558
+    _globals["_MANUALCONTROLRESULT"]._serialized_start = 561
+    _globals["_MANUALCONTROLRESULT"]._serialized_end = 896
+    _globals["_MANUALCONTROLRESULT_RESULT"]._serialized_start = 676
+    _globals["_MANUALCONTROLRESULT_RESULT"]._serialized_end = 896
+    _globals["_MANUALCONTROLSERVICE"]._serialized_start = 899
+    _globals["_MANUALCONTROLSERVICE"]._serialized_end = 1348
 # @@protoc_insertion_point(module_scope)

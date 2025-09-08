@@ -8,504 +8,388 @@ from enum import Enum
 
 class Attitude:
     """
-     Type for attitude body angles in NED reference frame (roll, pitch, yaw and thrust)
+    Type for attitude body angles in NED reference frame (roll, pitch, yaw and thrust)
 
-     Parameters
-     ----------
-     roll_deg : float
-          Roll angle (in degrees, positive is right side down)
+    Parameters
+    ----------
+    roll_deg : float
+         Roll angle (in degrees, positive is right side down)
 
-     pitch_deg : float
-          Pitch angle (in degrees, positive is nose up)
+    pitch_deg : float
+         Pitch angle (in degrees, positive is nose up)
 
-     yaw_deg : float
-          Yaw angle (in degrees, positive is move nose to the right)
+    yaw_deg : float
+         Yaw angle (in degrees, positive is move nose to the right)
 
-     thrust_value : float
-          Thrust (range: 0 to 1)
+    thrust_value : float
+         Thrust (range: 0 to 1)
 
-     """
+    """
 
-    
-
-    def __init__(
-            self,
-            roll_deg,
-            pitch_deg,
-            yaw_deg,
-            thrust_value):
-        """ Initializes the Attitude object """
+    def __init__(self, roll_deg, pitch_deg, yaw_deg, thrust_value):
+        """Initializes the Attitude object"""
         self.roll_deg = roll_deg
         self.pitch_deg = pitch_deg
         self.yaw_deg = yaw_deg
         self.thrust_value = thrust_value
 
     def __eq__(self, to_compare):
-        """ Checks if two Attitude are the same """
+        """Checks if two Attitude are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # Attitude object
-            return \
-                (self.roll_deg == to_compare.roll_deg) and \
-                (self.pitch_deg == to_compare.pitch_deg) and \
-                (self.yaw_deg == to_compare.yaw_deg) and \
-                (self.thrust_value == to_compare.thrust_value)
+            return (
+                (self.roll_deg == to_compare.roll_deg)
+                and (self.pitch_deg == to_compare.pitch_deg)
+                and (self.yaw_deg == to_compare.yaw_deg)
+                and (self.thrust_value == to_compare.thrust_value)
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ Attitude in string representation """
-        struct_repr = ", ".join([
+        """Attitude in string representation"""
+        struct_repr = ", ".join(
+            [
                 "roll_deg: " + str(self.roll_deg),
                 "pitch_deg: " + str(self.pitch_deg),
                 "yaw_deg: " + str(self.yaw_deg),
-                "thrust_value: " + str(self.thrust_value)
-                ])
+                "thrust_value: " + str(self.thrust_value),
+            ]
+        )
 
         return f"Attitude: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcAttitude):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return Attitude(
-                
-                rpcAttitude.roll_deg,
-                
-                
-                rpcAttitude.pitch_deg,
-                
-                
-                rpcAttitude.yaw_deg,
-                
-                
-                rpcAttitude.thrust_value
-                )
+            rpcAttitude.roll_deg,
+            rpcAttitude.pitch_deg,
+            rpcAttitude.yaw_deg,
+            rpcAttitude.thrust_value,
+        )
 
     def translate_to_rpc(self, rpcAttitude):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpcAttitude.roll_deg = self.roll_deg
-            
-        
-        
-        
-            
+
         rpcAttitude.pitch_deg = self.pitch_deg
-            
-        
-        
-        
-            
+
         rpcAttitude.yaw_deg = self.yaw_deg
-            
-        
-        
-        
-            
+
         rpcAttitude.thrust_value = self.thrust_value
-            
-        
-        
 
 
 class ActuatorControlGroup:
     """
-     Eight controls that will be given to the group. Each control is a normalized
-     (-1..+1) command value, which will be mapped and scaled through the mixer.
+    Eight controls that will be given to the group. Each control is a normalized
+    (-1..+1) command value, which will be mapped and scaled through the mixer.
 
-     Parameters
-     ----------
-     controls : [float]
-          Controls in the group
+    Parameters
+    ----------
+    controls : [float]
+         Controls in the group
 
-     """
+    """
 
-    
-
-    def __init__(
-            self,
-            controls):
-        """ Initializes the ActuatorControlGroup object """
+    def __init__(self, controls):
+        """Initializes the ActuatorControlGroup object"""
         self.controls = controls
 
     def __eq__(self, to_compare):
-        """ Checks if two ActuatorControlGroup are the same """
+        """Checks if two ActuatorControlGroup are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # ActuatorControlGroup object
-            return \
-                (self.controls == to_compare.controls)
+            return self.controls == to_compare.controls
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ ActuatorControlGroup in string representation """
-        struct_repr = ", ".join([
-                "controls: " + str(self.controls)
-                ])
+        """ActuatorControlGroup in string representation"""
+        struct_repr = ", ".join(["controls: " + str(self.controls)])
 
         return f"ActuatorControlGroup: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcActuatorControlGroup):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return ActuatorControlGroup(
-                
-                rpcActuatorControlGroup.controls
-                )
+        """Translates a gRPC struct to the SDK equivalent"""
+        return ActuatorControlGroup(rpcActuatorControlGroup.controls)
 
     def translate_to_rpc(self, rpcActuatorControlGroup):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         for elem in self.controls:
-          rpcActuatorControlGroup.controls.append(elem)
-            
-        
-        
+            rpcActuatorControlGroup.controls.append(elem)
 
 
 class ActuatorControl:
     """
-     Type for actuator control.
+    Type for actuator control.
 
-     Control members should be normed to -1..+1 where 0 is neutral position.
-     Throttle for single rotation direction motors is 0..1, negative range for reverse direction.
+    Control members should be normed to -1..+1 where 0 is neutral position.
+    Throttle for single rotation direction motors is 0..1, negative range for reverse direction.
 
-     One group support eight controls.
+    One group support eight controls.
 
-     Up to 16 actuator controls can be set. To ignore an output group, set all it controls to NaN.
-     If one or more controls in group is not NaN, then all NaN controls will sent as zero.
-     The first 8 actuator controls internally map to control group 0, the latter 8 actuator
-     controls map to control group 1. Depending on what controls are set (instead of NaN) 1 or 2
-     MAVLink messages are actually sent.
+    Up to 16 actuator controls can be set. To ignore an output group, set all it controls to NaN.
+    If one or more controls in group is not NaN, then all NaN controls will sent as zero.
+    The first 8 actuator controls internally map to control group 0, the latter 8 actuator
+    controls map to control group 1. Depending on what controls are set (instead of NaN) 1 or 2
+    MAVLink messages are actually sent.
 
-     In PX4 v1.9.0 Only first four Control Groups are supported
-     (https://github.com/PX4/Firmware/blob/v1.9.0/src/modules/mavlink/mavlink_receiver.cpp#L980).
+    In PX4 v1.9.0 Only first four Control Groups are supported
+    (https://github.com/PX4/Firmware/blob/v1.9.0/src/modules/mavlink/mavlink_receiver.cpp#L980).
 
-     Parameters
-     ----------
-     groups : [ActuatorControlGroup]
-          Control groups.
+    Parameters
+    ----------
+    groups : [ActuatorControlGroup]
+         Control groups.
 
-     """
+    """
 
-    
-
-    def __init__(
-            self,
-            groups):
-        """ Initializes the ActuatorControl object """
+    def __init__(self, groups):
+        """Initializes the ActuatorControl object"""
         self.groups = groups
 
     def __eq__(self, to_compare):
-        """ Checks if two ActuatorControl are the same """
+        """Checks if two ActuatorControl are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # ActuatorControl object
-            return \
-                (self.groups == to_compare.groups)
+            return self.groups == to_compare.groups
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ ActuatorControl in string representation """
-        struct_repr = ", ".join([
-                "groups: " + str(self.groups)
-                ])
+        """ActuatorControl in string representation"""
+        struct_repr = ", ".join(["groups: " + str(self.groups)])
 
         return f"ActuatorControl: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcActuatorControl):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return ActuatorControl(
-                
-                list(map(lambda elem: ActuatorControlGroup.translate_from_rpc(elem), rpcActuatorControl.groups))
+            list(
+                map(
+                    lambda elem: ActuatorControlGroup.translate_from_rpc(elem),
+                    rpcActuatorControl.groups,
                 )
+            )
+        )
 
     def translate_to_rpc(self, rpcActuatorControl):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpc_elems_list = []
         for elem in self.groups:
-                
             rpc_elem = offboard_pb2.ActuatorControlGroup()
             elem.translate_to_rpc(rpc_elem)
             rpc_elems_list.append(rpc_elem)
-                
+
         rpcActuatorControl.groups.extend(rpc_elems_list)
-            
-        
-        
 
 
 class AttitudeRate:
     """
-     Type for attitude rate commands in body coordinates (roll, pitch, yaw angular rate and thrust)
+    Type for attitude rate commands in body coordinates (roll, pitch, yaw angular rate and thrust)
 
-     Parameters
-     ----------
-     roll_deg_s : float
-          Roll angular rate (in degrees/second, positive for clock-wise looking from front)
+    Parameters
+    ----------
+    roll_deg_s : float
+         Roll angular rate (in degrees/second, positive for clock-wise looking from front)
 
-     pitch_deg_s : float
-          Pitch angular rate (in degrees/second, positive for head/front moving up)
+    pitch_deg_s : float
+         Pitch angular rate (in degrees/second, positive for head/front moving up)
 
-     yaw_deg_s : float
-          Yaw angular rate (in degrees/second, positive for clock-wise looking from above)
+    yaw_deg_s : float
+         Yaw angular rate (in degrees/second, positive for clock-wise looking from above)
 
-     thrust_value : float
-          Thrust (range: 0 to 1)
+    thrust_value : float
+         Thrust (range: 0 to 1)
 
-     """
+    """
 
-    
-
-    def __init__(
-            self,
-            roll_deg_s,
-            pitch_deg_s,
-            yaw_deg_s,
-            thrust_value):
-        """ Initializes the AttitudeRate object """
+    def __init__(self, roll_deg_s, pitch_deg_s, yaw_deg_s, thrust_value):
+        """Initializes the AttitudeRate object"""
         self.roll_deg_s = roll_deg_s
         self.pitch_deg_s = pitch_deg_s
         self.yaw_deg_s = yaw_deg_s
         self.thrust_value = thrust_value
 
     def __eq__(self, to_compare):
-        """ Checks if two AttitudeRate are the same """
+        """Checks if two AttitudeRate are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # AttitudeRate object
-            return \
-                (self.roll_deg_s == to_compare.roll_deg_s) and \
-                (self.pitch_deg_s == to_compare.pitch_deg_s) and \
-                (self.yaw_deg_s == to_compare.yaw_deg_s) and \
-                (self.thrust_value == to_compare.thrust_value)
+            return (
+                (self.roll_deg_s == to_compare.roll_deg_s)
+                and (self.pitch_deg_s == to_compare.pitch_deg_s)
+                and (self.yaw_deg_s == to_compare.yaw_deg_s)
+                and (self.thrust_value == to_compare.thrust_value)
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ AttitudeRate in string representation """
-        struct_repr = ", ".join([
+        """AttitudeRate in string representation"""
+        struct_repr = ", ".join(
+            [
                 "roll_deg_s: " + str(self.roll_deg_s),
                 "pitch_deg_s: " + str(self.pitch_deg_s),
                 "yaw_deg_s: " + str(self.yaw_deg_s),
-                "thrust_value: " + str(self.thrust_value)
-                ])
+                "thrust_value: " + str(self.thrust_value),
+            ]
+        )
 
         return f"AttitudeRate: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcAttitudeRate):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return AttitudeRate(
-                
-                rpcAttitudeRate.roll_deg_s,
-                
-                
-                rpcAttitudeRate.pitch_deg_s,
-                
-                
-                rpcAttitudeRate.yaw_deg_s,
-                
-                
-                rpcAttitudeRate.thrust_value
-                )
+            rpcAttitudeRate.roll_deg_s,
+            rpcAttitudeRate.pitch_deg_s,
+            rpcAttitudeRate.yaw_deg_s,
+            rpcAttitudeRate.thrust_value,
+        )
 
     def translate_to_rpc(self, rpcAttitudeRate):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpcAttitudeRate.roll_deg_s = self.roll_deg_s
-            
-        
-        
-        
-            
+
         rpcAttitudeRate.pitch_deg_s = self.pitch_deg_s
-            
-        
-        
-        
-            
+
         rpcAttitudeRate.yaw_deg_s = self.yaw_deg_s
-            
-        
-        
-        
-            
+
         rpcAttitudeRate.thrust_value = self.thrust_value
-            
-        
-        
 
 
 class PositionNedYaw:
     """
-     Type for position commands in NED (North East Down) coordinates and yaw.
+    Type for position commands in NED (North East Down) coordinates and yaw.
 
-     Parameters
-     ----------
-     north_m : float
-          Position North (in metres)
+    Parameters
+    ----------
+    north_m : float
+         Position North (in metres)
 
-     east_m : float
-          Position East (in metres)
+    east_m : float
+         Position East (in metres)
 
-     down_m : float
-          Position Down (in metres)
+    down_m : float
+         Position Down (in metres)
 
-     yaw_deg : float
-          Yaw in degrees (0 North, positive is clock-wise looking from above)
+    yaw_deg : float
+         Yaw in degrees (0 North, positive is clock-wise looking from above)
 
-     """
+    """
 
-    
-
-    def __init__(
-            self,
-            north_m,
-            east_m,
-            down_m,
-            yaw_deg):
-        """ Initializes the PositionNedYaw object """
+    def __init__(self, north_m, east_m, down_m, yaw_deg):
+        """Initializes the PositionNedYaw object"""
         self.north_m = north_m
         self.east_m = east_m
         self.down_m = down_m
         self.yaw_deg = yaw_deg
 
     def __eq__(self, to_compare):
-        """ Checks if two PositionNedYaw are the same """
+        """Checks if two PositionNedYaw are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # PositionNedYaw object
-            return \
-                (self.north_m == to_compare.north_m) and \
-                (self.east_m == to_compare.east_m) and \
-                (self.down_m == to_compare.down_m) and \
-                (self.yaw_deg == to_compare.yaw_deg)
+            return (
+                (self.north_m == to_compare.north_m)
+                and (self.east_m == to_compare.east_m)
+                and (self.down_m == to_compare.down_m)
+                and (self.yaw_deg == to_compare.yaw_deg)
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ PositionNedYaw in string representation """
-        struct_repr = ", ".join([
+        """PositionNedYaw in string representation"""
+        struct_repr = ", ".join(
+            [
                 "north_m: " + str(self.north_m),
                 "east_m: " + str(self.east_m),
                 "down_m: " + str(self.down_m),
-                "yaw_deg: " + str(self.yaw_deg)
-                ])
+                "yaw_deg: " + str(self.yaw_deg),
+            ]
+        )
 
         return f"PositionNedYaw: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcPositionNedYaw):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return PositionNedYaw(
-                
-                rpcPositionNedYaw.north_m,
-                
-                
-                rpcPositionNedYaw.east_m,
-                
-                
-                rpcPositionNedYaw.down_m,
-                
-                
-                rpcPositionNedYaw.yaw_deg
-                )
+            rpcPositionNedYaw.north_m,
+            rpcPositionNedYaw.east_m,
+            rpcPositionNedYaw.down_m,
+            rpcPositionNedYaw.yaw_deg,
+        )
 
     def translate_to_rpc(self, rpcPositionNedYaw):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpcPositionNedYaw.north_m = self.north_m
-            
-        
-        
-        
-            
+
         rpcPositionNedYaw.east_m = self.east_m
-            
-        
-        
-        
-            
+
         rpcPositionNedYaw.down_m = self.down_m
-            
-        
-        
-        
-            
+
         rpcPositionNedYaw.yaw_deg = self.yaw_deg
-            
-        
-        
 
 
 class PositionGlobalYaw:
     """
-     Type for position commands in Global (Latitude, Longitude, Altitude) coordinates and yaw.
+    Type for position commands in Global (Latitude, Longitude, Altitude) coordinates and yaw.
 
-     Parameters
-     ----------
-     lat_deg : double
-          Latitude (in degrees)
+    Parameters
+    ----------
+    lat_deg : double
+         Latitude (in degrees)
 
-     lon_deg : double
-          Longitude (in degrees)
+    lon_deg : double
+         Longitude (in degrees)
 
-     alt_m : float
-          altitude (in metres)
+    alt_m : float
+         altitude (in metres)
 
-     yaw_deg : float
-          Yaw in degrees (0 North, positive is clock-wise looking from above)
+    yaw_deg : float
+         Yaw in degrees (0 North, positive is clock-wise looking from above)
 
-     altitude_type : AltitudeType
-          altitude type for this position
+    altitude_type : AltitudeType
+         altitude type for this position
 
-     """
+    """
 
-    
-    
     class AltitudeType(Enum):
         """
-         Possible altitude options
+        Possible altitude options
 
-         Values
-         ------
-         REL_HOME
-              Altitude relative to the Home position
+        Values
+        ------
+        REL_HOME
+             Altitude relative to the Home position
 
-         AMSL
-              Altitude above mean sea level (AMSL)
+        AMSL
+             Altitude above mean sea level (AMSL)
 
-         AGL
-              Altitude above ground level (AGL)
+        AGL
+             Altitude above ground level (AGL)
 
-         """
+        """
 
-        
         REL_HOME = 0
         AMSL = 1
         AGL = 2
@@ -520,7 +404,7 @@ class PositionGlobalYaw:
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
-            """ Parses a gRPC response """
+            """Parses a gRPC response"""
             if rpc_enum_value == offboard_pb2.PositionGlobalYaw.ALTITUDE_TYPE_REL_HOME:
                 return PositionGlobalYaw.AltitudeType.REL_HOME
             if rpc_enum_value == offboard_pb2.PositionGlobalYaw.ALTITUDE_TYPE_AMSL:
@@ -530,16 +414,9 @@ class PositionGlobalYaw:
 
         def __str__(self):
             return self.name
-    
 
-    def __init__(
-            self,
-            lat_deg,
-            lon_deg,
-            alt_m,
-            yaw_deg,
-            altitude_type):
-        """ Initializes the PositionGlobalYaw object """
+    def __init__(self, lat_deg, lon_deg, alt_m, yaw_deg, altitude_type):
+        """Initializes the PositionGlobalYaw object"""
         self.lat_deg = lat_deg
         self.lon_deg = lon_deg
         self.alt_m = alt_m
@@ -547,442 +424,333 @@ class PositionGlobalYaw:
         self.altitude_type = altitude_type
 
     def __eq__(self, to_compare):
-        """ Checks if two PositionGlobalYaw are the same """
+        """Checks if two PositionGlobalYaw are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # PositionGlobalYaw object
-            return \
-                (self.lat_deg == to_compare.lat_deg) and \
-                (self.lon_deg == to_compare.lon_deg) and \
-                (self.alt_m == to_compare.alt_m) and \
-                (self.yaw_deg == to_compare.yaw_deg) and \
-                (self.altitude_type == to_compare.altitude_type)
+            return (
+                (self.lat_deg == to_compare.lat_deg)
+                and (self.lon_deg == to_compare.lon_deg)
+                and (self.alt_m == to_compare.alt_m)
+                and (self.yaw_deg == to_compare.yaw_deg)
+                and (self.altitude_type == to_compare.altitude_type)
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ PositionGlobalYaw in string representation """
-        struct_repr = ", ".join([
+        """PositionGlobalYaw in string representation"""
+        struct_repr = ", ".join(
+            [
                 "lat_deg: " + str(self.lat_deg),
                 "lon_deg: " + str(self.lon_deg),
                 "alt_m: " + str(self.alt_m),
                 "yaw_deg: " + str(self.yaw_deg),
-                "altitude_type: " + str(self.altitude_type)
-                ])
+                "altitude_type: " + str(self.altitude_type),
+            ]
+        )
 
         return f"PositionGlobalYaw: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcPositionGlobalYaw):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return PositionGlobalYaw(
-                
-                rpcPositionGlobalYaw.lat_deg,
-                
-                
-                rpcPositionGlobalYaw.lon_deg,
-                
-                
-                rpcPositionGlobalYaw.alt_m,
-                
-                
-                rpcPositionGlobalYaw.yaw_deg,
-                
-                
-                PositionGlobalYaw.AltitudeType.translate_from_rpc(rpcPositionGlobalYaw.altitude_type)
-                )
+            rpcPositionGlobalYaw.lat_deg,
+            rpcPositionGlobalYaw.lon_deg,
+            rpcPositionGlobalYaw.alt_m,
+            rpcPositionGlobalYaw.yaw_deg,
+            PositionGlobalYaw.AltitudeType.translate_from_rpc(
+                rpcPositionGlobalYaw.altitude_type
+            ),
+        )
 
     def translate_to_rpc(self, rpcPositionGlobalYaw):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpcPositionGlobalYaw.lat_deg = self.lat_deg
-            
-        
-        
-        
-            
+
         rpcPositionGlobalYaw.lon_deg = self.lon_deg
-            
-        
-        
-        
-            
+
         rpcPositionGlobalYaw.alt_m = self.alt_m
-            
-        
-        
-        
-            
+
         rpcPositionGlobalYaw.yaw_deg = self.yaw_deg
-            
-        
-        
-        
-            
+
         rpcPositionGlobalYaw.altitude_type = self.altitude_type.translate_to_rpc()
-            
-        
-        
 
 
 class VelocityBodyYawspeed:
     """
-     Type for velocity commands in body coordinates.
+    Type for velocity commands in body coordinates.
 
-     Parameters
-     ----------
-     forward_m_s : float
-          Velocity forward (in metres/second)
+    Parameters
+    ----------
+    forward_m_s : float
+         Velocity forward (in metres/second)
 
-     right_m_s : float
-          Velocity right (in metres/second)
+    right_m_s : float
+         Velocity right (in metres/second)
 
-     down_m_s : float
-          Velocity down (in metres/second)
+    down_m_s : float
+         Velocity down (in metres/second)
 
-     yawspeed_deg_s : float
-          Yaw angular rate (in degrees/second, positive for clock-wise looking from above)
+    yawspeed_deg_s : float
+         Yaw angular rate (in degrees/second, positive for clock-wise looking from above)
 
-     """
+    """
 
-    
-
-    def __init__(
-            self,
-            forward_m_s,
-            right_m_s,
-            down_m_s,
-            yawspeed_deg_s):
-        """ Initializes the VelocityBodyYawspeed object """
+    def __init__(self, forward_m_s, right_m_s, down_m_s, yawspeed_deg_s):
+        """Initializes the VelocityBodyYawspeed object"""
         self.forward_m_s = forward_m_s
         self.right_m_s = right_m_s
         self.down_m_s = down_m_s
         self.yawspeed_deg_s = yawspeed_deg_s
 
     def __eq__(self, to_compare):
-        """ Checks if two VelocityBodyYawspeed are the same """
+        """Checks if two VelocityBodyYawspeed are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # VelocityBodyYawspeed object
-            return \
-                (self.forward_m_s == to_compare.forward_m_s) and \
-                (self.right_m_s == to_compare.right_m_s) and \
-                (self.down_m_s == to_compare.down_m_s) and \
-                (self.yawspeed_deg_s == to_compare.yawspeed_deg_s)
+            return (
+                (self.forward_m_s == to_compare.forward_m_s)
+                and (self.right_m_s == to_compare.right_m_s)
+                and (self.down_m_s == to_compare.down_m_s)
+                and (self.yawspeed_deg_s == to_compare.yawspeed_deg_s)
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ VelocityBodyYawspeed in string representation """
-        struct_repr = ", ".join([
+        """VelocityBodyYawspeed in string representation"""
+        struct_repr = ", ".join(
+            [
                 "forward_m_s: " + str(self.forward_m_s),
                 "right_m_s: " + str(self.right_m_s),
                 "down_m_s: " + str(self.down_m_s),
-                "yawspeed_deg_s: " + str(self.yawspeed_deg_s)
-                ])
+                "yawspeed_deg_s: " + str(self.yawspeed_deg_s),
+            ]
+        )
 
         return f"VelocityBodyYawspeed: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcVelocityBodyYawspeed):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return VelocityBodyYawspeed(
-                
-                rpcVelocityBodyYawspeed.forward_m_s,
-                
-                
-                rpcVelocityBodyYawspeed.right_m_s,
-                
-                
-                rpcVelocityBodyYawspeed.down_m_s,
-                
-                
-                rpcVelocityBodyYawspeed.yawspeed_deg_s
-                )
+            rpcVelocityBodyYawspeed.forward_m_s,
+            rpcVelocityBodyYawspeed.right_m_s,
+            rpcVelocityBodyYawspeed.down_m_s,
+            rpcVelocityBodyYawspeed.yawspeed_deg_s,
+        )
 
     def translate_to_rpc(self, rpcVelocityBodyYawspeed):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpcVelocityBodyYawspeed.forward_m_s = self.forward_m_s
-            
-        
-        
-        
-            
+
         rpcVelocityBodyYawspeed.right_m_s = self.right_m_s
-            
-        
-        
-        
-            
+
         rpcVelocityBodyYawspeed.down_m_s = self.down_m_s
-            
-        
-        
-        
-            
+
         rpcVelocityBodyYawspeed.yawspeed_deg_s = self.yawspeed_deg_s
-            
-        
-        
 
 
 class VelocityNedYaw:
     """
-     Type for velocity commands in NED (North East Down) coordinates and yaw.
+    Type for velocity commands in NED (North East Down) coordinates and yaw.
 
-     Parameters
-     ----------
-     north_m_s : float
-          Velocity North (in metres/second)
+    Parameters
+    ----------
+    north_m_s : float
+         Velocity North (in metres/second)
 
-     east_m_s : float
-          Velocity East (in metres/second)
+    east_m_s : float
+         Velocity East (in metres/second)
 
-     down_m_s : float
-          Velocity Down (in metres/second)
+    down_m_s : float
+         Velocity Down (in metres/second)
 
-     yaw_deg : float
-          Yaw in degrees (0 North, positive is clock-wise looking from above)
+    yaw_deg : float
+         Yaw in degrees (0 North, positive is clock-wise looking from above)
 
-     """
+    """
 
-    
-
-    def __init__(
-            self,
-            north_m_s,
-            east_m_s,
-            down_m_s,
-            yaw_deg):
-        """ Initializes the VelocityNedYaw object """
+    def __init__(self, north_m_s, east_m_s, down_m_s, yaw_deg):
+        """Initializes the VelocityNedYaw object"""
         self.north_m_s = north_m_s
         self.east_m_s = east_m_s
         self.down_m_s = down_m_s
         self.yaw_deg = yaw_deg
 
     def __eq__(self, to_compare):
-        """ Checks if two VelocityNedYaw are the same """
+        """Checks if two VelocityNedYaw are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # VelocityNedYaw object
-            return \
-                (self.north_m_s == to_compare.north_m_s) and \
-                (self.east_m_s == to_compare.east_m_s) and \
-                (self.down_m_s == to_compare.down_m_s) and \
-                (self.yaw_deg == to_compare.yaw_deg)
+            return (
+                (self.north_m_s == to_compare.north_m_s)
+                and (self.east_m_s == to_compare.east_m_s)
+                and (self.down_m_s == to_compare.down_m_s)
+                and (self.yaw_deg == to_compare.yaw_deg)
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ VelocityNedYaw in string representation """
-        struct_repr = ", ".join([
+        """VelocityNedYaw in string representation"""
+        struct_repr = ", ".join(
+            [
                 "north_m_s: " + str(self.north_m_s),
                 "east_m_s: " + str(self.east_m_s),
                 "down_m_s: " + str(self.down_m_s),
-                "yaw_deg: " + str(self.yaw_deg)
-                ])
+                "yaw_deg: " + str(self.yaw_deg),
+            ]
+        )
 
         return f"VelocityNedYaw: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcVelocityNedYaw):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return VelocityNedYaw(
-                
-                rpcVelocityNedYaw.north_m_s,
-                
-                
-                rpcVelocityNedYaw.east_m_s,
-                
-                
-                rpcVelocityNedYaw.down_m_s,
-                
-                
-                rpcVelocityNedYaw.yaw_deg
-                )
+            rpcVelocityNedYaw.north_m_s,
+            rpcVelocityNedYaw.east_m_s,
+            rpcVelocityNedYaw.down_m_s,
+            rpcVelocityNedYaw.yaw_deg,
+        )
 
     def translate_to_rpc(self, rpcVelocityNedYaw):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpcVelocityNedYaw.north_m_s = self.north_m_s
-            
-        
-        
-        
-            
+
         rpcVelocityNedYaw.east_m_s = self.east_m_s
-            
-        
-        
-        
-            
+
         rpcVelocityNedYaw.down_m_s = self.down_m_s
-            
-        
-        
-        
-            
+
         rpcVelocityNedYaw.yaw_deg = self.yaw_deg
-            
-        
-        
 
 
 class AccelerationNed:
     """
-     Type for acceleration commands in NED (North East Down) coordinates.
+    Type for acceleration commands in NED (North East Down) coordinates.
 
-     Parameters
-     ----------
-     north_m_s2 : float
-          Acceleration North (in metres/second^2)
+    Parameters
+    ----------
+    north_m_s2 : float
+         Acceleration North (in metres/second^2)
 
-     east_m_s2 : float
-          Acceleration East (in metres/second^2)
+    east_m_s2 : float
+         Acceleration East (in metres/second^2)
 
-     down_m_s2 : float
-          Acceleration Down (in metres/second^2)
+    down_m_s2 : float
+         Acceleration Down (in metres/second^2)
 
-     """
+    """
 
-    
-
-    def __init__(
-            self,
-            north_m_s2,
-            east_m_s2,
-            down_m_s2):
-        """ Initializes the AccelerationNed object """
+    def __init__(self, north_m_s2, east_m_s2, down_m_s2):
+        """Initializes the AccelerationNed object"""
         self.north_m_s2 = north_m_s2
         self.east_m_s2 = east_m_s2
         self.down_m_s2 = down_m_s2
 
     def __eq__(self, to_compare):
-        """ Checks if two AccelerationNed are the same """
+        """Checks if two AccelerationNed are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # AccelerationNed object
-            return \
-                (self.north_m_s2 == to_compare.north_m_s2) and \
-                (self.east_m_s2 == to_compare.east_m_s2) and \
-                (self.down_m_s2 == to_compare.down_m_s2)
+            return (
+                (self.north_m_s2 == to_compare.north_m_s2)
+                and (self.east_m_s2 == to_compare.east_m_s2)
+                and (self.down_m_s2 == to_compare.down_m_s2)
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ AccelerationNed in string representation """
-        struct_repr = ", ".join([
+        """AccelerationNed in string representation"""
+        struct_repr = ", ".join(
+            [
                 "north_m_s2: " + str(self.north_m_s2),
                 "east_m_s2: " + str(self.east_m_s2),
-                "down_m_s2: " + str(self.down_m_s2)
-                ])
+                "down_m_s2: " + str(self.down_m_s2),
+            ]
+        )
 
         return f"AccelerationNed: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcAccelerationNed):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return AccelerationNed(
-                
-                rpcAccelerationNed.north_m_s2,
-                
-                
-                rpcAccelerationNed.east_m_s2,
-                
-                
-                rpcAccelerationNed.down_m_s2
-                )
+            rpcAccelerationNed.north_m_s2,
+            rpcAccelerationNed.east_m_s2,
+            rpcAccelerationNed.down_m_s2,
+        )
 
     def translate_to_rpc(self, rpcAccelerationNed):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpcAccelerationNed.north_m_s2 = self.north_m_s2
-            
-        
-        
-        
-            
+
         rpcAccelerationNed.east_m_s2 = self.east_m_s2
-            
-        
-        
-        
-            
+
         rpcAccelerationNed.down_m_s2 = self.down_m_s2
-            
-        
-        
 
 
 class OffboardResult:
     """
-     Result type.
+    Result type.
 
-     Parameters
-     ----------
-     result : Result
-          Result enum value
+    Parameters
+    ----------
+    result : Result
+         Result enum value
 
-     result_str : std::string
-          Human-readable English string describing the result
+    result_str : std::string
+         Human-readable English string describing the result
 
-     """
+    """
 
-    
-    
     class Result(Enum):
         """
-         Possible results returned for offboard requests
+        Possible results returned for offboard requests
 
-         Values
-         ------
-         UNKNOWN
-              Unknown result
+        Values
+        ------
+        UNKNOWN
+             Unknown result
 
-         SUCCESS
-              Request succeeded
+        SUCCESS
+             Request succeeded
 
-         NO_SYSTEM
-              No system is connected
+        NO_SYSTEM
+             No system is connected
 
-         CONNECTION_ERROR
-              Connection error
+        CONNECTION_ERROR
+             Connection error
 
-         BUSY
-              Vehicle is busy
+        BUSY
+             Vehicle is busy
 
-         COMMAND_DENIED
-              Command denied
+        COMMAND_DENIED
+             Command denied
 
-         TIMEOUT
-              Request timed out
+        TIMEOUT
+             Request timed out
 
-         NO_SETPOINT_SET
-              Cannot start without setpoint set
+        NO_SETPOINT_SET
+             Cannot start without setpoint set
 
-         FAILED
-              Request failed
+        FAILED
+             Request failed
 
-         """
+        """
 
-        
         UNKNOWN = 0
         SUCCESS = 1
         NO_SYSTEM = 2
@@ -1015,7 +783,7 @@ class OffboardResult:
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
-            """ Parses a gRPC response """
+            """Parses a gRPC response"""
             if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_UNKNOWN:
                 return OffboardResult.Result.UNKNOWN
             if rpc_enum_value == offboard_pb2.OffboardResult.RESULT_SUCCESS:
@@ -1037,69 +805,50 @@ class OffboardResult:
 
         def __str__(self):
             return self.name
-    
 
-    def __init__(
-            self,
-            result,
-            result_str):
-        """ Initializes the OffboardResult object """
+    def __init__(self, result, result_str):
+        """Initializes the OffboardResult object"""
         self.result = result
         self.result_str = result_str
 
     def __eq__(self, to_compare):
-        """ Checks if two OffboardResult are the same """
+        """Checks if two OffboardResult are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # OffboardResult object
-            return \
-                (self.result == to_compare.result) and \
-                (self.result_str == to_compare.result_str)
+            return (self.result == to_compare.result) and (
+                self.result_str == to_compare.result_str
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ OffboardResult in string representation """
-        struct_repr = ", ".join([
-                "result: " + str(self.result),
-                "result_str: " + str(self.result_str)
-                ])
+        """OffboardResult in string representation"""
+        struct_repr = ", ".join(
+            ["result: " + str(self.result), "result_str: " + str(self.result_str)]
+        )
 
         return f"OffboardResult: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcOffboardResult):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return OffboardResult(
-                
-                OffboardResult.Result.translate_from_rpc(rpcOffboardResult.result),
-                
-                
-                rpcOffboardResult.result_str
-                )
+            OffboardResult.Result.translate_from_rpc(rpcOffboardResult.result),
+            rpcOffboardResult.result_str,
+        )
 
     def translate_to_rpc(self, rpcOffboardResult):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpcOffboardResult.result = self.result.translate_to_rpc()
-            
-        
-        
-        
-            
-        rpcOffboardResult.result_str = self.result_str
-            
-        
-        
 
+        rpcOffboardResult.result_str = self.result_str
 
 
 class OffboardError(Exception):
-    """ Raised when a OffboardResult is a fail code """
+    """Raised when a OffboardResult is a fail code"""
 
     def __init__(self, result, origin, *params):
         self._result = result
@@ -1112,406 +861,374 @@ class OffboardError(Exception):
 
 class Offboard(AsyncBase):
     """
-     Control a drone with position, velocity, attitude or motor commands.
+    Control a drone with position, velocity, attitude or motor commands.
 
-     The module is called offboard because the commands can be sent from external sources
-     as opposed to onboard control right inside the autopilot "board".
+    The module is called offboard because the commands can be sent from external sources
+    as opposed to onboard control right inside the autopilot "board".
 
-     Client code must specify a setpoint before starting offboard mode.
-     Mavsdk automatically sends setpoints at 20Hz (PX4 Offboard mode requires that setpoints
-     are minimally sent at 2Hz).
+    Client code must specify a setpoint before starting offboard mode.
+    Mavsdk automatically sends setpoints at 20Hz (PX4 Offboard mode requires that setpoints
+    are minimally sent at 2Hz).
 
-     Generated by dcsdkgen - MAVSDK Offboard API
+    Generated by dcsdkgen - MAVSDK Offboard API
     """
 
     # Plugin name
     name = "Offboard"
 
     def _setup_stub(self, channel):
-        """ Setups the api stub """
+        """Setups the api stub"""
         self._stub = offboard_pb2_grpc.OffboardServiceStub(channel)
 
-    
     def _extract_result(self, response):
-        """ Returns the response status and description """
+        """Returns the response status and description"""
         return OffboardResult.translate_from_rpc(response.offboard_result)
-    
 
     async def start(self):
         """
-         Start offboard control.
+        Start offboard control.
 
-         Raises
-         ------
-         OffboardError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        OffboardError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.StartRequest()
         response = await self._stub.Start(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "start()")
-        
 
     async def stop(self):
         """
-         Stop offboard control.
+        Stop offboard control.
 
-         The vehicle will be put into Hold mode: https://docs.px4.io/en/flight_modes/hold.html
+        The vehicle will be put into Hold mode: https://docs.px4.io/en/flight_modes/hold.html
 
-         Raises
-         ------
-         OffboardError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        OffboardError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.StopRequest()
         response = await self._stub.Stop(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "stop()")
-        
 
     async def is_active(self):
         """
-         Check if offboard control is active.
+        Check if offboard control is active.
 
-         True means that the vehicle is in offboard mode and we are actively sending
-         setpoints.
+        True means that the vehicle is in offboard mode and we are actively sending
+        setpoints.
 
-         Returns
-         -------
-         is_active : bool
-              True if offboard is active
+        Returns
+        -------
+        is_active : bool
+             True if offboard is active
 
-         
+
         """
 
         request = offboard_pb2.IsActiveRequest()
         response = await self._stub.IsActive(request)
 
-        
-
         return response.is_active
-        
 
     async def set_attitude(self, attitude):
         """
-         Set the attitude in terms of roll, pitch and yaw in degrees with thrust.
+        Set the attitude in terms of roll, pitch and yaw in degrees with thrust.
 
-         Parameters
-         ----------
-         attitude : Attitude
-              Attitude roll, pitch and yaw along with thrust
+        Parameters
+        ----------
+        attitude : Attitude
+             Attitude roll, pitch and yaw along with thrust
 
-         Raises
-         ------
-         OffboardError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        OffboardError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetAttitudeRequest()
-        
+
         attitude.translate_to_rpc(request.attitude)
-                
-            
+
         response = await self._stub.SetAttitude(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_attitude()", attitude)
-        
 
     async def set_actuator_control(self, actuator_control):
         """
-         Set direct actuator control values to groups #0 and #1.
+        Set direct actuator control values to groups #0 and #1.
 
-         First 8 controls will go to control group 0, the following 8 controls to control group 1 (if
-         actuator_control.num_controls more than 8).
+        First 8 controls will go to control group 0, the following 8 controls to control group 1 (if
+        actuator_control.num_controls more than 8).
 
-         Parameters
-         ----------
-         actuator_control : ActuatorControl
-              Actuator control values
+        Parameters
+        ----------
+        actuator_control : ActuatorControl
+             Actuator control values
 
-         Raises
-         ------
-         OffboardError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        OffboardError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetActuatorControlRequest()
-        
+
         actuator_control.translate_to_rpc(request.actuator_control)
-                
-            
+
         response = await self._stub.SetActuatorControl(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_actuator_control()", actuator_control)
-        
 
     async def set_attitude_rate(self, attitude_rate):
         """
-         Set the attitude rate in terms of pitch, roll and yaw angular rate along with thrust.
+        Set the attitude rate in terms of pitch, roll and yaw angular rate along with thrust.
 
-         Parameters
-         ----------
-         attitude_rate : AttitudeRate
-              Attitude rate roll, pitch and yaw angular rate along with thrust
+        Parameters
+        ----------
+        attitude_rate : AttitudeRate
+             Attitude rate roll, pitch and yaw angular rate along with thrust
 
-         Raises
-         ------
-         OffboardError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        OffboardError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetAttitudeRateRequest()
-        
+
         attitude_rate.translate_to_rpc(request.attitude_rate)
-                
-            
+
         response = await self._stub.SetAttitudeRate(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_attitude_rate()", attitude_rate)
-        
 
     async def set_position_ned(self, position_ned_yaw):
         """
-         Set the position in NED coordinates and yaw.
+        Set the position in NED coordinates and yaw.
 
-         Parameters
-         ----------
-         position_ned_yaw : PositionNedYaw
-              Position and yaw
+        Parameters
+        ----------
+        position_ned_yaw : PositionNedYaw
+             Position and yaw
 
-         Raises
-         ------
-         OffboardError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        OffboardError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetPositionNedRequest()
-        
+
         position_ned_yaw.translate_to_rpc(request.position_ned_yaw)
-                
-            
+
         response = await self._stub.SetPositionNed(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_position_ned()", position_ned_yaw)
-        
 
     async def set_position_global(self, position_global_yaw):
         """
-         Set the position in Global coordinates (latitude, longitude, altitude) and yaw
+        Set the position in Global coordinates (latitude, longitude, altitude) and yaw
 
-         Parameters
-         ----------
-         position_global_yaw : PositionGlobalYaw
-              Position and yaw
+        Parameters
+        ----------
+        position_global_yaw : PositionGlobalYaw
+             Position and yaw
 
-         Raises
-         ------
-         OffboardError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        OffboardError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetPositionGlobalRequest()
-        
+
         position_global_yaw.translate_to_rpc(request.position_global_yaw)
-                
-            
+
         response = await self._stub.SetPositionGlobal(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_position_global()", position_global_yaw)
-        
 
     async def set_velocity_body(self, velocity_body_yawspeed):
         """
-         Set the velocity in body coordinates and yaw angular rate. Not available for fixed-wing aircraft.
+        Set the velocity in body coordinates and yaw angular rate. Not available for fixed-wing aircraft.
 
-         Parameters
-         ----------
-         velocity_body_yawspeed : VelocityBodyYawspeed
-              Velocity and yaw angular rate
+        Parameters
+        ----------
+        velocity_body_yawspeed : VelocityBodyYawspeed
+             Velocity and yaw angular rate
 
-         Raises
-         ------
-         OffboardError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        OffboardError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetVelocityBodyRequest()
-        
+
         velocity_body_yawspeed.translate_to_rpc(request.velocity_body_yawspeed)
-                
-            
+
         response = await self._stub.SetVelocityBody(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_velocity_body()", velocity_body_yawspeed)
-        
 
     async def set_velocity_ned(self, velocity_ned_yaw):
         """
-         Set the velocity in NED coordinates and yaw. Not available for fixed-wing aircraft.
+        Set the velocity in NED coordinates and yaw. Not available for fixed-wing aircraft.
 
-         Parameters
-         ----------
-         velocity_ned_yaw : VelocityNedYaw
-              Velocity and yaw
+        Parameters
+        ----------
+        velocity_ned_yaw : VelocityNedYaw
+             Velocity and yaw
 
-         Raises
-         ------
-         OffboardError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        OffboardError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetVelocityNedRequest()
-        
+
         velocity_ned_yaw.translate_to_rpc(request.velocity_ned_yaw)
-                
-            
+
         response = await self._stub.SetVelocityNed(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_velocity_ned()", velocity_ned_yaw)
-        
 
     async def set_position_velocity_ned(self, position_ned_yaw, velocity_ned_yaw):
         """
-         Set the position in NED coordinates, with the velocity to be used as feed-forward.
+        Set the position in NED coordinates, with the velocity to be used as feed-forward.
 
-         Parameters
-         ----------
-         position_ned_yaw : PositionNedYaw
-              Position and yaw
+        Parameters
+        ----------
+        position_ned_yaw : PositionNedYaw
+             Position and yaw
 
-         velocity_ned_yaw : VelocityNedYaw
-              Velocity and yaw
+        velocity_ned_yaw : VelocityNedYaw
+             Velocity and yaw
 
-         Raises
-         ------
-         OffboardError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        OffboardError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetPositionVelocityNedRequest()
-        
+
         position_ned_yaw.translate_to_rpc(request.position_ned_yaw)
-                
-            
-        
+
         velocity_ned_yaw.translate_to_rpc(request.velocity_ned_yaw)
-                
-            
+
         response = await self._stub.SetPositionVelocityNed(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != OffboardResult.Result.SUCCESS:
-            raise OffboardError(result, "set_position_velocity_ned()", position_ned_yaw, velocity_ned_yaw)
-        
+            raise OffboardError(
+                result,
+                "set_position_velocity_ned()",
+                position_ned_yaw,
+                velocity_ned_yaw,
+            )
 
-    async def set_position_velocity_acceleration_ned(self, position_ned_yaw, velocity_ned_yaw, acceleration_ned):
+    async def set_position_velocity_acceleration_ned(
+        self, position_ned_yaw, velocity_ned_yaw, acceleration_ned
+    ):
         """
-         Set the position, velocity and acceleration in NED coordinates, with velocity and acceleration used as feed-forward.
+        Set the position, velocity and acceleration in NED coordinates, with velocity and acceleration used as feed-forward.
 
-         Parameters
-         ----------
-         position_ned_yaw : PositionNedYaw
-              Position and yaw
+        Parameters
+        ----------
+        position_ned_yaw : PositionNedYaw
+             Position and yaw
 
-         velocity_ned_yaw : VelocityNedYaw
-              Velocity and yaw
+        velocity_ned_yaw : VelocityNedYaw
+             Velocity and yaw
 
-         acceleration_ned : AccelerationNed
-              Acceleration
+        acceleration_ned : AccelerationNed
+             Acceleration
 
-         Raises
-         ------
-         OffboardError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        OffboardError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetPositionVelocityAccelerationNedRequest()
-        
+
         position_ned_yaw.translate_to_rpc(request.position_ned_yaw)
-                
-            
-        
+
         velocity_ned_yaw.translate_to_rpc(request.velocity_ned_yaw)
-                
-            
-        
+
         acceleration_ned.translate_to_rpc(request.acceleration_ned)
-                
-            
+
         response = await self._stub.SetPositionVelocityAccelerationNed(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != OffboardResult.Result.SUCCESS:
-            raise OffboardError(result, "set_position_velocity_acceleration_ned()", position_ned_yaw, velocity_ned_yaw, acceleration_ned)
-        
+            raise OffboardError(
+                result,
+                "set_position_velocity_acceleration_ned()",
+                position_ned_yaw,
+                velocity_ned_yaw,
+                acceleration_ned,
+            )
 
     async def set_acceleration_ned(self, acceleration_ned):
         """
-         Set the acceleration in NED coordinates.
+        Set the acceleration in NED coordinates.
 
-         Parameters
-         ----------
-         acceleration_ned : AccelerationNed
-              Acceleration
+        Parameters
+        ----------
+        acceleration_ned : AccelerationNed
+             Acceleration
 
-         Raises
-         ------
-         OffboardError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        OffboardError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = offboard_pb2.SetAccelerationNedRequest()
-        
+
         acceleration_ned.translate_to_rpc(request.acceleration_ned)
-                
-            
+
         response = await self._stub.SetAccelerationNed(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "set_acceleration_ned()", acceleration_ned)
-        

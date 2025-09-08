@@ -10,7 +10,6 @@ logging.basicConfig(level=logging.INFO)
 
 
 async def run():
-
     drone = System()
     await drone.connect(system_address="udpin://0.0.0.0:14540")
 
