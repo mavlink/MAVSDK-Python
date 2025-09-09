@@ -96,6 +96,9 @@ function generate {
 
 echo "[+] Generating plugins from "
 generate
-python3 -m pip install --upgrade ruff
-ruff format
-echo "[+] Done"
+echo "[+] Generating plugins done"
+
+echo "[+] Formatting using ruff"
+python3 -m ruff format "${GENERATED_DIR}"
+echo "[+] Formatting done"
+
