@@ -27,7 +27,7 @@ jobs:
       - name: Check style
         run: |
           pipx run ruff format --check --line-length=100 examples
-          pipx run ruff check --select=ASYNC,RUF006,E,F examples
+          pipx run ruff check --select=ASYNC,RUF006,E,F --line-length=100 examples
           pipx run codespell .
 
       - name: Install prerequisites
