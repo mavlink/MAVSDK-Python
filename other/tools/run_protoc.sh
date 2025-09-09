@@ -96,4 +96,9 @@ function generate {
 
 echo "[+] Generating plugins from "
 generate
-echo "[+] Done"
+echo "[+] Generating plugins done"
+
+echo "[+] Formatting using ruff"
+python3 -m ruff format "${GENERATED_DIR}"
+echo "[+] Formatting done"
+

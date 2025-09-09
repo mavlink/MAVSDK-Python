@@ -4,18 +4,20 @@
 # source: arm_authorizer_server/arm_authorizer_server.proto
 # Protobuf Python Version: 5.29.0
 """Generated protocol buffer code."""
+
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
     _runtime_version.Domain.PUBLIC,
     5,
     29,
     0,
-    '',
-    'arm_authorizer_server/arm_authorizer_server.proto'
+    "",
+    "arm_authorizer_server/arm_authorizer_server.proto",
 )
 # @@protoc_insertion_point(imports)
 
@@ -25,38 +27,58 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n1arm_authorizer_server/arm_authorizer_server.proto\x12 mavsdk.rpc.arm_authorizer_server\x1a\x14mavsdk_options.proto\"\"\n SubscribeArmAuthorizationRequest\"-\n\x18\x41rmAuthorizationResponse\x12\x11\n\tsystem_id\x18\x01 \x01(\r\"5\n\x1d\x41\x63\x63\x65ptArmAuthorizationRequest\x12\x14\n\x0cvalid_time_s\x18\x01 \x01(\x05\"\x83\x01\n\x1e\x41\x63\x63\x65ptArmAuthorizationResponse\x12\x61\n\x1c\x61rm_authorizer_server_result\x18\x01 \x01(\x0b\x32;.mavsdk.rpc.arm_authorizer_server.ArmAuthorizerServerResult\"\x8b\x01\n\x1dRejectArmAuthorizationRequest\x12\x13\n\x0btemporarily\x18\x01 \x01(\x08\x12\x41\n\x06reason\x18\x02 \x01(\x0e\x32\x31.mavsdk.rpc.arm_authorizer_server.RejectionReason\x12\x12\n\nextra_info\x18\x03 \x01(\x05\"\x83\x01\n\x1eRejectArmAuthorizationResponse\x12\x61\n\x1c\x61rm_authorizer_server_result\x18\x01 \x01(\x0b\x32;.mavsdk.rpc.arm_authorizer_server.ArmAuthorizerServerResult\"\xc8\x01\n\x19\x41rmAuthorizerServerResult\x12R\n\x06result\x18\x01 \x01(\x0e\x32\x42.mavsdk.rpc.arm_authorizer_server.ArmAuthorizerServerResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"C\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x11\n\rRESULT_FAILED\x10\x02*\xd7\x01\n\x0fRejectionReason\x12\x1c\n\x18REJECTION_REASON_GENERIC\x10\x00\x12\x19\n\x15REJECTION_REASON_NONE\x10\x01\x12%\n!REJECTION_REASON_INVALID_WAYPOINT\x10\x02\x12\x1c\n\x18REJECTION_REASON_TIMEOUT\x10\x03\x12$\n REJECTION_REASON_AIRSPACE_IN_USE\x10\x04\x12 \n\x1cREJECTION_REASON_BAD_WEATHER\x10\x05\x32\x8a\x04\n\x1a\x41rmAuthorizerServerService\x12\xa3\x01\n\x19SubscribeArmAuthorization\x12\x42.mavsdk.rpc.arm_authorizer_server.SubscribeArmAuthorizationRequest\x1a:.mavsdk.rpc.arm_authorizer_server.ArmAuthorizationResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\xa1\x01\n\x16\x41\x63\x63\x65ptArmAuthorization\x12?.mavsdk.rpc.arm_authorizer_server.AcceptArmAuthorizationRequest\x1a@.mavsdk.rpc.arm_authorizer_server.AcceptArmAuthorizationResponse\"\x04\x80\xb5\x18\x01\x12\xa1\x01\n\x16RejectArmAuthorization\x12?.mavsdk.rpc.arm_authorizer_server.RejectArmAuthorizationRequest\x1a@.mavsdk.rpc.arm_authorizer_server.RejectArmAuthorizationResponse\"\x04\x80\xb5\x18\x01\x42\x34\n\x18io.mavsdk.arm_authorizerB\x18\x41rmAuthorizerServerProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n1arm_authorizer_server/arm_authorizer_server.proto\x12 mavsdk.rpc.arm_authorizer_server\x1a\x14mavsdk_options.proto""\n SubscribeArmAuthorizationRequest"-\n\x18\x41rmAuthorizationResponse\x12\x11\n\tsystem_id\x18\x01 \x01(\r"5\n\x1d\x41\x63\x63\x65ptArmAuthorizationRequest\x12\x14\n\x0cvalid_time_s\x18\x01 \x01(\x05"\x83\x01\n\x1e\x41\x63\x63\x65ptArmAuthorizationResponse\x12\x61\n\x1c\x61rm_authorizer_server_result\x18\x01 \x01(\x0b\x32;.mavsdk.rpc.arm_authorizer_server.ArmAuthorizerServerResult"\x8b\x01\n\x1dRejectArmAuthorizationRequest\x12\x13\n\x0btemporarily\x18\x01 \x01(\x08\x12\x41\n\x06reason\x18\x02 \x01(\x0e\x32\x31.mavsdk.rpc.arm_authorizer_server.RejectionReason\x12\x12\n\nextra_info\x18\x03 \x01(\x05"\x83\x01\n\x1eRejectArmAuthorizationResponse\x12\x61\n\x1c\x61rm_authorizer_server_result\x18\x01 \x01(\x0b\x32;.mavsdk.rpc.arm_authorizer_server.ArmAuthorizerServerResult"\xc8\x01\n\x19\x41rmAuthorizerServerResult\x12R\n\x06result\x18\x01 \x01(\x0e\x32\x42.mavsdk.rpc.arm_authorizer_server.ArmAuthorizerServerResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t"C\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x11\n\rRESULT_FAILED\x10\x02*\xd7\x01\n\x0fRejectionReason\x12\x1c\n\x18REJECTION_REASON_GENERIC\x10\x00\x12\x19\n\x15REJECTION_REASON_NONE\x10\x01\x12%\n!REJECTION_REASON_INVALID_WAYPOINT\x10\x02\x12\x1c\n\x18REJECTION_REASON_TIMEOUT\x10\x03\x12$\n REJECTION_REASON_AIRSPACE_IN_USE\x10\x04\x12 \n\x1cREJECTION_REASON_BAD_WEATHER\x10\x05\x32\x8a\x04\n\x1a\x41rmAuthorizerServerService\x12\xa3\x01\n\x19SubscribeArmAuthorization\x12\x42.mavsdk.rpc.arm_authorizer_server.SubscribeArmAuthorizationRequest\x1a:.mavsdk.rpc.arm_authorizer_server.ArmAuthorizationResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\xa1\x01\n\x16\x41\x63\x63\x65ptArmAuthorization\x12?.mavsdk.rpc.arm_authorizer_server.AcceptArmAuthorizationRequest\x1a@.mavsdk.rpc.arm_authorizer_server.AcceptArmAuthorizationResponse"\x04\x80\xb5\x18\x01\x12\xa1\x01\n\x16RejectArmAuthorization\x12?.mavsdk.rpc.arm_authorizer_server.RejectArmAuthorizationRequest\x1a@.mavsdk.rpc.arm_authorizer_server.RejectArmAuthorizationResponse"\x04\x80\xb5\x18\x01\x42\x34\n\x18io.mavsdk.arm_authorizerB\x18\x41rmAuthorizerServerProtob\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'arm_authorizer_server.arm_authorizer_server_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(
+    DESCRIPTOR, "arm_authorizer_server.arm_authorizer_server_pb2", _globals
+)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n\030io.mavsdk.arm_authorizerB\030ArmAuthorizerServerProto'
-  _globals['_ARMAUTHORIZERSERVERSERVICE'].methods_by_name['SubscribeArmAuthorization']._loaded_options = None
-  _globals['_ARMAUTHORIZERSERVERSERVICE'].methods_by_name['SubscribeArmAuthorization']._serialized_options = b'\200\265\030\000'
-  _globals['_ARMAUTHORIZERSERVERSERVICE'].methods_by_name['AcceptArmAuthorization']._loaded_options = None
-  _globals['_ARMAUTHORIZERSERVERSERVICE'].methods_by_name['AcceptArmAuthorization']._serialized_options = b'\200\265\030\001'
-  _globals['_ARMAUTHORIZERSERVERSERVICE'].methods_by_name['RejectArmAuthorization']._loaded_options = None
-  _globals['_ARMAUTHORIZERSERVERSERVICE'].methods_by_name['RejectArmAuthorization']._serialized_options = b'\200\265\030\001'
-  _globals['_REJECTIONREASON']._serialized_start=861
-  _globals['_REJECTIONREASON']._serialized_end=1076
-  _globals['_SUBSCRIBEARMAUTHORIZATIONREQUEST']._serialized_start=109
-  _globals['_SUBSCRIBEARMAUTHORIZATIONREQUEST']._serialized_end=143
-  _globals['_ARMAUTHORIZATIONRESPONSE']._serialized_start=145
-  _globals['_ARMAUTHORIZATIONRESPONSE']._serialized_end=190
-  _globals['_ACCEPTARMAUTHORIZATIONREQUEST']._serialized_start=192
-  _globals['_ACCEPTARMAUTHORIZATIONREQUEST']._serialized_end=245
-  _globals['_ACCEPTARMAUTHORIZATIONRESPONSE']._serialized_start=248
-  _globals['_ACCEPTARMAUTHORIZATIONRESPONSE']._serialized_end=379
-  _globals['_REJECTARMAUTHORIZATIONREQUEST']._serialized_start=382
-  _globals['_REJECTARMAUTHORIZATIONREQUEST']._serialized_end=521
-  _globals['_REJECTARMAUTHORIZATIONRESPONSE']._serialized_start=524
-  _globals['_REJECTARMAUTHORIZATIONRESPONSE']._serialized_end=655
-  _globals['_ARMAUTHORIZERSERVERRESULT']._serialized_start=658
-  _globals['_ARMAUTHORIZERSERVERRESULT']._serialized_end=858
-  _globals['_ARMAUTHORIZERSERVERRESULT_RESULT']._serialized_start=791
-  _globals['_ARMAUTHORIZERSERVERRESULT_RESULT']._serialized_end=858
-  _globals['_ARMAUTHORIZERSERVERSERVICE']._serialized_start=1079
-  _globals['_ARMAUTHORIZERSERVERSERVICE']._serialized_end=1601
+    _globals["DESCRIPTOR"]._loaded_options = None
+    _globals[
+        "DESCRIPTOR"
+    ]._serialized_options = (
+        b"\n\030io.mavsdk.arm_authorizerB\030ArmAuthorizerServerProto"
+    )
+    _globals["_ARMAUTHORIZERSERVERSERVICE"].methods_by_name[
+        "SubscribeArmAuthorization"
+    ]._loaded_options = None
+    _globals["_ARMAUTHORIZERSERVERSERVICE"].methods_by_name[
+        "SubscribeArmAuthorization"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_ARMAUTHORIZERSERVERSERVICE"].methods_by_name[
+        "AcceptArmAuthorization"
+    ]._loaded_options = None
+    _globals["_ARMAUTHORIZERSERVERSERVICE"].methods_by_name[
+        "AcceptArmAuthorization"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_ARMAUTHORIZERSERVERSERVICE"].methods_by_name[
+        "RejectArmAuthorization"
+    ]._loaded_options = None
+    _globals["_ARMAUTHORIZERSERVERSERVICE"].methods_by_name[
+        "RejectArmAuthorization"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_REJECTIONREASON"]._serialized_start = 861
+    _globals["_REJECTIONREASON"]._serialized_end = 1076
+    _globals["_SUBSCRIBEARMAUTHORIZATIONREQUEST"]._serialized_start = 109
+    _globals["_SUBSCRIBEARMAUTHORIZATIONREQUEST"]._serialized_end = 143
+    _globals["_ARMAUTHORIZATIONRESPONSE"]._serialized_start = 145
+    _globals["_ARMAUTHORIZATIONRESPONSE"]._serialized_end = 190
+    _globals["_ACCEPTARMAUTHORIZATIONREQUEST"]._serialized_start = 192
+    _globals["_ACCEPTARMAUTHORIZATIONREQUEST"]._serialized_end = 245
+    _globals["_ACCEPTARMAUTHORIZATIONRESPONSE"]._serialized_start = 248
+    _globals["_ACCEPTARMAUTHORIZATIONRESPONSE"]._serialized_end = 379
+    _globals["_REJECTARMAUTHORIZATIONREQUEST"]._serialized_start = 382
+    _globals["_REJECTARMAUTHORIZATIONREQUEST"]._serialized_end = 521
+    _globals["_REJECTARMAUTHORIZATIONRESPONSE"]._serialized_start = 524
+    _globals["_REJECTARMAUTHORIZATIONRESPONSE"]._serialized_end = 655
+    _globals["_ARMAUTHORIZERSERVERRESULT"]._serialized_start = 658
+    _globals["_ARMAUTHORIZERSERVERRESULT"]._serialized_end = 858
+    _globals["_ARMAUTHORIZERSERVERRESULT_RESULT"]._serialized_start = 791
+    _globals["_ARMAUTHORIZERSERVERRESULT_RESULT"]._serialized_end = 858
+    _globals["_ARMAUTHORIZERSERVERSERVICE"]._serialized_start = 1079
+    _globals["_ARMAUTHORIZERSERVERSERVICE"]._serialized_end = 1601
 # @@protoc_insertion_point(module_scope)

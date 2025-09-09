@@ -4,7 +4,7 @@ import asyncio
 
 from aioconsole import ainput
 from mavsdk import System
-from mavsdk.camera import (CameraError, Mode, Option, Setting)
+from mavsdk.camera import CameraError, Mode, Option, Setting
 
 
 usage_str = """
@@ -31,10 +31,10 @@ async def run():
     while True:
         entered_input = await ainput(usage_str)
 
-        if (entered_input == "p"):
+        if entered_input == "p":
             print(f"\n=== Current settings ===\n")
             print_current_settings()
-        elif (entered_input == "m"):
+        elif entered_input == "m":
             print(f"\n=== Possible modes ===\n")
             print(f"1. PHOTO")
             print(f"2. VIDEO")
@@ -45,7 +45,7 @@ async def run():
                 print("Invalid index")
                 continue
 
-            if (index_mode == 1):
+            if index_mode == 1:
                 chosen_mode = Mode.PHOTO
             else:
                 chosen_mode = Mode.VIDEO
@@ -57,13 +57,12 @@ async def run():
                 print(f" --> Succeeded")
             except CameraError as error:
                 print(f" --> Failed with code: {error._result.result_str}")
-        elif (entered_input == "s"):
+        elif entered_input == "s":
             print(f"\n=== Possible settings ===\n")
             print_possible_settings(possible_setting_options)
 
             try:
-                index_setting = await \
-                        make_user_choose_setting(possible_setting_options)
+                index_setting = await make_user_choose_setting(possible_setting_options)
             except ValueError:
                 print("Invalid index")
                 continue
@@ -73,36 +72,39 @@ async def run():
 
             print(f"\n=== Available options ===")
             print(f"Setting: {selected_setting.setting_id}")
-            if (not selected_setting.is_range):
+            if not selected_setting.is_range:
                 print(f"Options:")
                 try:
                     print_possible_options(possible_options)
-                    index_option = await \
-                        make_user_choose_option(possible_options)
+                    index_option = await make_user_choose_option(possible_options)
                     selected_option = possible_options[index_option - 1]
 
-                    print(f"Setting {selected_setting.setting_id} "
-                          f"to {selected_option.option_description}!")
+                    print(
+                        f"Setting {selected_setting.setting_id} "
+                        f"to {selected_option.option_description}!"
+                    )
                     setting = Setting(
-                            selected_setting.setting_id,
-                            "",
-                            selected_option,
-                            selected_setting.is_range)
+                        selected_setting.setting_id,
+                        "",
+                        selected_option,
+                        selected_setting.is_range,
+                    )
                 except ValueError:
                     print("Invalid index")
                     continue
             else:
                 try:
-                    selected_value = await \
-                            make_user_choose_option_range(possible_options)
+                    selected_value = await make_user_choose_option_range(
+                        possible_options
+                    )
 
-                    print(f"Setting {selected_setting.setting_id}"
-                          f" to {selected_value}!")
+                    print(f"Setting {selected_setting.setting_id} to {selected_value}!")
                     setting = Setting(
-                            selected_setting.setting_id,
-                            "",
-                            Option(selected_value, ""),
-                            selected_setting.is_range)
+                        selected_setting.setting_id,
+                        "",
+                        Option(selected_value, ""),
+                        selected_setting.is_range,
+                    )
                 except ValueError:
                     print("Invalid value")
                     continue
@@ -148,7 +150,7 @@ def print_current_settings():
 async def make_user_choose_camera_mode():
     index_mode_str = await ainput(f"\nWhich mode do you want? [1..2] >>> ")
     index_mode = int(index_mode_str)
-    if (index_mode < 1 or index_mode > 2):
+    if index_mode < 1 or index_mode > 2:
         raise ValueError()
 
     return index_mode
@@ -163,12 +165,12 @@ def print_possible_settings(possible_settings):
 
 async def make_user_choose_setting(possible_settings):
     n_settings = len(possible_settings)
-    index_setting_str = await \
-        ainput(f"\nWhich setting do you want to change?"
-               f" [1..{n_settings}] >>> ")
+    index_setting_str = await ainput(
+        f"\nWhich setting do you want to change? [1..{n_settings}] >>> "
+    )
 
     index_setting = int(index_setting_str)
-    if (index_setting < 1 or index_setting > n_settings):
+    if index_setting < 1 or index_setting > n_settings:
         raise ValueError()
 
     return index_setting
@@ -183,11 +185,12 @@ def print_possible_options(possible_options):
 
 async def make_user_choose_option(possible_options):
     n_options = len(possible_options)
-    index_option_str = await \
-        ainput(f"\nWhich option do you want? [1..{n_options}] >>> ")
+    index_option_str = await ainput(
+        f"\nWhich option do you want? [1..{n_options}] >>> "
+    )
 
     index_option = int(index_option_str)
-    if (index_option < 1 or index_option > n_options):
+    if index_option < 1 or index_option > n_options:
         raise ValueError()
 
     return index_option
@@ -202,12 +205,12 @@ async def make_user_choose_option_range(possible_options):
         interval_value = float(possible_options[2].option_id)
         interval_text = f"interval: {interval_value}"
 
-    value_str = await \
-        ainput(f"\nWhat value do you want?"
-               f" [{min_value}, {max_value}] {interval_text} >>> ")
+    value_str = await ainput(
+        f"\nWhat value do you want? [{min_value}, {max_value}] {interval_text} >>> "
+    )
 
     value = float(value_str)
-    if (value < min_value or value > max_value):
+    if value < min_value or value > max_value:
         raise ValueError()
 
     return str(value)

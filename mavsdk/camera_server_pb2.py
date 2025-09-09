@@ -4,18 +4,15 @@
 # source: camera_server/camera_server.proto
 # Protobuf Python Version: 5.29.0
 """Generated protocol buffer code."""
+
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
-    _runtime_version.Domain.PUBLIC,
-    5,
-    29,
-    0,
-    '',
-    'camera_server/camera_server.proto'
+    _runtime_version.Domain.PUBLIC, 5, 29, 0, "", "camera_server/camera_server.proto"
 )
 # @@protoc_insertion_point(imports)
 
@@ -25,286 +22,448 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n!camera_server/camera_server.proto\x12\x18mavsdk.rpc.camera_server\x1a\x14mavsdk_options.proto\"S\n\x15SetInformationRequest\x12:\n\x0binformation\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.camera_server.Information\"d\n\x16SetInformationResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"]\n\x18SetVideoStreamingRequest\x12\x41\n\x0fvideo_streaming\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.camera_server.VideoStreaming\"g\n\x19SetVideoStreamingResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"+\n\x14SetInProgressRequest\x12\x13\n\x0bin_progress\x18\x01 \x01(\x08\"c\n\x15SetInProgressResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1b\n\x19SubscribeTakePhotoRequest\"\"\n\x11TakePhotoResponse\x12\r\n\x05index\x18\x01 \x01(\x05\"\x9d\x01\n\x17RespondTakePhotoRequest\x12\x45\n\x13take_photo_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\x12;\n\x0c\x63\x61pture_info\x18\x02 \x01(\x0b\x32%.mavsdk.rpc.camera_server.CaptureInfo\"f\n\x18RespondTakePhotoResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1c\n\x1aSubscribeStartVideoRequest\"\'\n\x12StartVideoResponse\x12\x11\n\tstream_id\x18\x01 \x01(\x05\"b\n\x18RespondStartVideoRequest\x12\x46\n\x14start_video_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"g\n\x19RespondStartVideoResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1b\n\x19SubscribeStopVideoRequest\"&\n\x11StopVideoResponse\x12\x11\n\tstream_id\x18\x01 \x01(\x05\"`\n\x17RespondStopVideoRequest\x12\x45\n\x13stop_video_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"f\n\x18RespondStopVideoResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"%\n#SubscribeStartVideoStreamingRequest\"0\n\x1bStartVideoStreamingResponse\x12\x11\n\tstream_id\x18\x01 \x01(\x05\"u\n!RespondStartVideoStreamingRequest\x12P\n\x1estart_video_streaming_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"p\n\"RespondStartVideoStreamingResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"$\n\"SubscribeStopVideoStreamingRequest\"/\n\x1aStopVideoStreamingResponse\x12\x11\n\tstream_id\x18\x01 \x01(\x05\"s\n RespondStopVideoStreamingRequest\x12O\n\x1dstop_video_streaming_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"o\n!RespondStopVideoStreamingResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x19\n\x17SubscribeSetModeRequest\"?\n\x0fSetModeResponse\x12,\n\x04mode\x18\x01 \x01(\x0e\x32\x1e.mavsdk.rpc.camera_server.Mode\"\\\n\x15RespondSetModeRequest\x12\x43\n\x11set_mode_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"d\n\x16RespondSetModeResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"$\n\"SubscribeStorageInformationRequest\"0\n\x1aStorageInformationResponse\x12\x12\n\nstorage_id\x18\x01 \x01(\x05\"\xbd\x01\n RespondStorageInformationRequest\x12N\n\x1cstorage_information_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\x12I\n\x13storage_information\x18\x02 \x01(\x0b\x32,.mavsdk.rpc.camera_server.StorageInformation\"o\n!RespondStorageInformationResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1f\n\x1dSubscribeCaptureStatusRequest\")\n\x15\x43\x61ptureStatusResponse\x12\x10\n\x08reserved\x18\x01 \x01(\x05\"\xa9\x01\n\x1bRespondCaptureStatusRequest\x12I\n\x17\x63\x61pture_status_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\x12?\n\x0e\x63\x61pture_status\x18\x02 \x01(\x0b\x32\'.mavsdk.rpc.camera_server.CaptureStatus\"j\n\x1cRespondCaptureStatusResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1f\n\x1dSubscribeFormatStorageRequest\"+\n\x15\x46ormatStorageResponse\x12\x12\n\nstorage_id\x18\x01 \x01(\x05\"h\n\x1bRespondFormatStorageRequest\x12I\n\x17\x66ormat_storage_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"j\n\x1cRespondFormatStorageResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1f\n\x1dSubscribeResetSettingsRequest\")\n\x15ResetSettingsResponse\x12\x10\n\x08reserved\x18\x01 \x01(\x05\"h\n\x1bRespondResetSettingsRequest\x12I\n\x17reset_settings_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"j\n\x1cRespondResetSettingsResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1d\n\x1bSubscribeZoomInStartRequest\"\'\n\x13ZoomInStartResponse\x12\x10\n\x08reserved\x18\x01 \x01(\x05\"e\n\x19RespondZoomInStartRequest\x12H\n\x16zoom_in_start_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"h\n\x1aRespondZoomInStartResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1e\n\x1cSubscribeZoomOutStartRequest\"(\n\x14ZoomOutStartResponse\x12\x10\n\x08reserved\x18\x01 \x01(\x05\"g\n\x1aRespondZoomOutStartRequest\x12I\n\x17zoom_out_start_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"i\n\x1bRespondZoomOutStartResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1a\n\x18SubscribeZoomStopRequest\"$\n\x10ZoomStopResponse\x12\x10\n\x08reserved\x18\x01 \x01(\x05\"^\n\x16RespondZoomStopRequest\x12\x44\n\x12zoom_stop_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"e\n\x17RespondZoomStopResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x1b\n\x19SubscribeZoomRangeRequest\"#\n\x11ZoomRangeResponse\x12\x0e\n\x06\x66\x61\x63tor\x18\x01 \x01(\x02\"`\n\x17RespondZoomRangeRequest\x12\x45\n\x13zoom_range_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"f\n\x18RespondZoomRangeResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"\x8c\x03\n\x0bInformation\x12\x13\n\x0bvendor_name\x18\x01 \x01(\t\x12\x12\n\nmodel_name\x18\x02 \x01(\t\x12\x18\n\x10\x66irmware_version\x18\x03 \x01(\t\x12\x17\n\x0f\x66ocal_length_mm\x18\x04 \x01(\x02\x12!\n\x19horizontal_sensor_size_mm\x18\x05 \x01(\x02\x12\x1f\n\x17vertical_sensor_size_mm\x18\x06 \x01(\x02\x12 \n\x18horizontal_resolution_px\x18\x07 \x01(\r\x12\x1e\n\x16vertical_resolution_px\x18\x08 \x01(\r\x12\x0f\n\x07lens_id\x18\t \x01(\r\x12\x1f\n\x17\x64\x65\x66inition_file_version\x18\n \x01(\r\x12\x1b\n\x13\x64\x65\x66inition_file_uri\x18\x0b \x01(\t\x12%\n\x1dimage_in_video_mode_supported\x18\x0c \x01(\x08\x12%\n\x1dvideo_in_image_mode_supported\x18\r \x01(\x08\";\n\x0eVideoStreaming\x12\x17\n\x0fhas_rtsp_server\x18\x01 \x01(\x08\x12\x10\n\x08rtsp_uri\x18\x02 \x01(\t\"q\n\x08Position\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x12\x1b\n\x13relative_altitude_m\x18\x04 \x01(\x02\"8\n\nQuaternion\x12\t\n\x01w\x18\x01 \x01(\x02\x12\t\n\x01x\x18\x02 \x01(\x02\x12\t\n\x01y\x18\x03 \x01(\x02\x12\t\n\x01z\x18\x04 \x01(\x02\"\xd0\x01\n\x0b\x43\x61ptureInfo\x12\x34\n\x08position\x18\x01 \x01(\x0b\x32\".mavsdk.rpc.camera_server.Position\x12\x41\n\x13\x61ttitude_quaternion\x18\x02 \x01(\x0b\x32$.mavsdk.rpc.camera_server.Quaternion\x12\x13\n\x0btime_utc_us\x18\x03 \x01(\x04\x12\x12\n\nis_success\x18\x04 \x01(\x08\x12\r\n\x05index\x18\x05 \x01(\x05\x12\x10\n\x08\x66ile_url\x18\x06 \x01(\t\"\xb3\x02\n\x12\x43\x61meraServerResult\x12\x43\n\x06result\x18\x01 \x01(\x0e\x32\x33.mavsdk.rpc.camera_server.CameraServerResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xc3\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x16\n\x12RESULT_IN_PROGRESS\x10\x02\x12\x0f\n\x0bRESULT_BUSY\x10\x03\x12\x11\n\rRESULT_DENIED\x10\x04\x12\x10\n\x0cRESULT_ERROR\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x19\n\x15RESULT_WRONG_ARGUMENT\x10\x07\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x08\"\x8c\x05\n\x12StorageInformation\x12\x18\n\x10used_storage_mib\x18\x01 \x01(\x02\x12\x1d\n\x15\x61vailable_storage_mib\x18\x02 \x01(\x02\x12\x19\n\x11total_storage_mib\x18\x03 \x01(\x02\x12R\n\x0estorage_status\x18\x04 \x01(\x0e\x32:.mavsdk.rpc.camera_server.StorageInformation.StorageStatus\x12\x12\n\nstorage_id\x18\x05 \x01(\r\x12N\n\x0cstorage_type\x18\x06 \x01(\x0e\x32\x38.mavsdk.rpc.camera_server.StorageInformation.StorageType\x12\x18\n\x10read_speed_mib_s\x18\x07 \x01(\x02\x12\x19\n\x11write_speed_mib_s\x18\x08 \x01(\x02\"\x91\x01\n\rStorageStatus\x12 \n\x1cSTORAGE_STATUS_NOT_AVAILABLE\x10\x00\x12\x1e\n\x1aSTORAGE_STATUS_UNFORMATTED\x10\x01\x12\x1c\n\x18STORAGE_STATUS_FORMATTED\x10\x02\x12 \n\x1cSTORAGE_STATUS_NOT_SUPPORTED\x10\x03\"\xa0\x01\n\x0bStorageType\x12\x18\n\x14STORAGE_TYPE_UNKNOWN\x10\x00\x12\x1a\n\x16STORAGE_TYPE_USB_STICK\x10\x01\x12\x13\n\x0fSTORAGE_TYPE_SD\x10\x02\x12\x18\n\x14STORAGE_TYPE_MICROSD\x10\x03\x12\x13\n\x0fSTORAGE_TYPE_HD\x10\x07\x12\x17\n\x12STORAGE_TYPE_OTHER\x10\xfe\x01\"\xee\x03\n\rCaptureStatus\x12\x18\n\x10image_interval_s\x18\x01 \x01(\x02\x12\x18\n\x10recording_time_s\x18\x02 \x01(\x02\x12\x1e\n\x16\x61vailable_capacity_mib\x18\x03 \x01(\x02\x12I\n\x0cimage_status\x18\x04 \x01(\x0e\x32\x33.mavsdk.rpc.camera_server.CaptureStatus.ImageStatus\x12I\n\x0cvideo_status\x18\x05 \x01(\x0e\x32\x33.mavsdk.rpc.camera_server.CaptureStatus.VideoStatus\x12\x13\n\x0bimage_count\x18\x06 \x01(\x05\"\x91\x01\n\x0bImageStatus\x12\x15\n\x11IMAGE_STATUS_IDLE\x10\x00\x12$\n IMAGE_STATUS_CAPTURE_IN_PROGRESS\x10\x01\x12\x1e\n\x1aIMAGE_STATUS_INTERVAL_IDLE\x10\x02\x12%\n!IMAGE_STATUS_INTERVAL_IN_PROGRESS\x10\x03\"J\n\x0bVideoStatus\x12\x15\n\x11VIDEO_STATUS_IDLE\x10\x00\x12$\n VIDEO_STATUS_CAPTURE_IN_PROGRESS\x10\x01\"\\\n\x1dSetTrackingPointStatusRequest\x12;\n\rtracked_point\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.camera_server.TrackPoint\" \n\x1eSetTrackingPointStatusResponse\"h\n!SetTrackingRectangleStatusRequest\x12\x43\n\x11tracked_rectangle\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.camera_server.TrackRectangle\"$\n\"SetTrackingRectangleStatusResponse\"\x1d\n\x1bSetTrackingOffStatusRequest\"\x1e\n\x1cSetTrackingOffStatusResponse\"&\n$SubscribeTrackingPointCommandRequest\"Y\n\x1cTrackingPointCommandResponse\x12\x39\n\x0btrack_point\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.camera_server.TrackPoint\"*\n(SubscribeTrackingRectangleCommandRequest\"e\n TrackingRectangleCommandResponse\x12\x41\n\x0ftrack_rectangle\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.camera_server.TrackRectangle\"$\n\"SubscribeTrackingOffCommandRequest\"+\n\x1aTrackingOffCommandResponse\x12\r\n\x05\x64ummy\x18\x01 \x01(\x05\"k\n\"RespondTrackingPointCommandRequest\x12\x45\n\x13stop_video_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"q\n#RespondTrackingPointCommandResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"o\n&RespondTrackingRectangleCommandRequest\x12\x45\n\x13stop_video_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"u\n\'RespondTrackingRectangleCommandResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\"i\n RespondTrackingOffCommandRequest\x12\x45\n\x13stop_video_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\"o\n!RespondTrackingOffCommandResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult\">\n\nTrackPoint\x12\x0f\n\x07point_x\x18\x01 \x01(\x02\x12\x0f\n\x07point_y\x18\x02 \x01(\x02\x12\x0e\n\x06radius\x18\x03 \x01(\x02\"\x84\x01\n\x0eTrackRectangle\x12\x19\n\x11top_left_corner_x\x18\x01 \x01(\x02\x12\x19\n\x11top_left_corner_y\x18\x02 \x01(\x02\x12\x1d\n\x15\x62ottom_right_corner_x\x18\x03 \x01(\x02\x12\x1d\n\x15\x62ottom_right_corner_y\x18\x04 \x01(\x02*{\n\x0e\x43\x61meraFeedback\x12\x1b\n\x17\x43\x41MERA_FEEDBACK_UNKNOWN\x10\x00\x12\x16\n\x12\x43\x41MERA_FEEDBACK_OK\x10\x01\x12\x18\n\x14\x43\x41MERA_FEEDBACK_BUSY\x10\x02\x12\x1a\n\x16\x43\x41MERA_FEEDBACK_FAILED\x10\x03*8\n\x04Mode\x12\x10\n\x0cMODE_UNKNOWN\x10\x00\x12\x0e\n\nMODE_PHOTO\x10\x01\x12\x0e\n\nMODE_VIDEO\x10\x02\x32\xb8+\n\x13\x43\x61meraServerService\x12y\n\x0eSetInformation\x12/.mavsdk.rpc.camera_server.SetInformationRequest\x1a\x30.mavsdk.rpc.camera_server.SetInformationResponse\"\x04\x80\xb5\x18\x01\x12\x82\x01\n\x11SetVideoStreaming\x12\x32.mavsdk.rpc.camera_server.SetVideoStreamingRequest\x1a\x33.mavsdk.rpc.camera_server.SetVideoStreamingResponse\"\x04\x80\xb5\x18\x01\x12v\n\rSetInProgress\x12..mavsdk.rpc.camera_server.SetInProgressRequest\x1a/.mavsdk.rpc.camera_server.SetInProgressResponse\"\x04\x80\xb5\x18\x01\x12~\n\x12SubscribeTakePhoto\x12\x33.mavsdk.rpc.camera_server.SubscribeTakePhotoRequest\x1a+.mavsdk.rpc.camera_server.TakePhotoResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x7f\n\x10RespondTakePhoto\x12\x31.mavsdk.rpc.camera_server.RespondTakePhotoRequest\x1a\x32.mavsdk.rpc.camera_server.RespondTakePhotoResponse\"\x04\x80\xb5\x18\x01\x12\x81\x01\n\x13SubscribeStartVideo\x12\x34.mavsdk.rpc.camera_server.SubscribeStartVideoRequest\x1a,.mavsdk.rpc.camera_server.StartVideoResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x82\x01\n\x11RespondStartVideo\x12\x32.mavsdk.rpc.camera_server.RespondStartVideoRequest\x1a\x33.mavsdk.rpc.camera_server.RespondStartVideoResponse\"\x04\x80\xb5\x18\x01\x12~\n\x12SubscribeStopVideo\x12\x33.mavsdk.rpc.camera_server.SubscribeStopVideoRequest\x1a+.mavsdk.rpc.camera_server.StopVideoResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x7f\n\x10RespondStopVideo\x12\x31.mavsdk.rpc.camera_server.RespondStopVideoRequest\x1a\x32.mavsdk.rpc.camera_server.RespondStopVideoResponse\"\x04\x80\xb5\x18\x01\x12\x9c\x01\n\x1cSubscribeStartVideoStreaming\x12=.mavsdk.rpc.camera_server.SubscribeStartVideoStreamingRequest\x1a\x35.mavsdk.rpc.camera_server.StartVideoStreamingResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x9d\x01\n\x1aRespondStartVideoStreaming\x12;.mavsdk.rpc.camera_server.RespondStartVideoStreamingRequest\x1a<.mavsdk.rpc.camera_server.RespondStartVideoStreamingResponse\"\x04\x80\xb5\x18\x01\x12\x99\x01\n\x1bSubscribeStopVideoStreaming\x12<.mavsdk.rpc.camera_server.SubscribeStopVideoStreamingRequest\x1a\x34.mavsdk.rpc.camera_server.StopVideoStreamingResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x9a\x01\n\x19RespondStopVideoStreaming\x12:.mavsdk.rpc.camera_server.RespondStopVideoStreamingRequest\x1a;.mavsdk.rpc.camera_server.RespondStopVideoStreamingResponse\"\x04\x80\xb5\x18\x01\x12x\n\x10SubscribeSetMode\x12\x31.mavsdk.rpc.camera_server.SubscribeSetModeRequest\x1a).mavsdk.rpc.camera_server.SetModeResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12y\n\x0eRespondSetMode\x12/.mavsdk.rpc.camera_server.RespondSetModeRequest\x1a\x30.mavsdk.rpc.camera_server.RespondSetModeResponse\"\x04\x80\xb5\x18\x01\x12\x99\x01\n\x1bSubscribeStorageInformation\x12<.mavsdk.rpc.camera_server.SubscribeStorageInformationRequest\x1a\x34.mavsdk.rpc.camera_server.StorageInformationResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x9a\x01\n\x19RespondStorageInformation\x12:.mavsdk.rpc.camera_server.RespondStorageInformationRequest\x1a;.mavsdk.rpc.camera_server.RespondStorageInformationResponse\"\x04\x80\xb5\x18\x01\x12\x8a\x01\n\x16SubscribeCaptureStatus\x12\x37.mavsdk.rpc.camera_server.SubscribeCaptureStatusRequest\x1a/.mavsdk.rpc.camera_server.CaptureStatusResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x8b\x01\n\x14RespondCaptureStatus\x12\x35.mavsdk.rpc.camera_server.RespondCaptureStatusRequest\x1a\x36.mavsdk.rpc.camera_server.RespondCaptureStatusResponse\"\x04\x80\xb5\x18\x01\x12\x8a\x01\n\x16SubscribeFormatStorage\x12\x37.mavsdk.rpc.camera_server.SubscribeFormatStorageRequest\x1a/.mavsdk.rpc.camera_server.FormatStorageResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x8b\x01\n\x14RespondFormatStorage\x12\x35.mavsdk.rpc.camera_server.RespondFormatStorageRequest\x1a\x36.mavsdk.rpc.camera_server.RespondFormatStorageResponse\"\x04\x80\xb5\x18\x01\x12\x8a\x01\n\x16SubscribeResetSettings\x12\x37.mavsdk.rpc.camera_server.SubscribeResetSettingsRequest\x1a/.mavsdk.rpc.camera_server.ResetSettingsResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x8b\x01\n\x14RespondResetSettings\x12\x35.mavsdk.rpc.camera_server.RespondResetSettingsRequest\x1a\x36.mavsdk.rpc.camera_server.RespondResetSettingsResponse\"\x04\x80\xb5\x18\x01\x12\x84\x01\n\x14SubscribeZoomInStart\x12\x35.mavsdk.rpc.camera_server.SubscribeZoomInStartRequest\x1a-.mavsdk.rpc.camera_server.ZoomInStartResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x85\x01\n\x12RespondZoomInStart\x12\x33.mavsdk.rpc.camera_server.RespondZoomInStartRequest\x1a\x34.mavsdk.rpc.camera_server.RespondZoomInStartResponse\"\x04\x80\xb5\x18\x01\x12\x87\x01\n\x15SubscribeZoomOutStart\x12\x36.mavsdk.rpc.camera_server.SubscribeZoomOutStartRequest\x1a..mavsdk.rpc.camera_server.ZoomOutStartResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x88\x01\n\x13RespondZoomOutStart\x12\x34.mavsdk.rpc.camera_server.RespondZoomOutStartRequest\x1a\x35.mavsdk.rpc.camera_server.RespondZoomOutStartResponse\"\x04\x80\xb5\x18\x01\x12{\n\x11SubscribeZoomStop\x12\x32.mavsdk.rpc.camera_server.SubscribeZoomStopRequest\x1a*.mavsdk.rpc.camera_server.ZoomStopResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12|\n\x0fRespondZoomStop\x12\x30.mavsdk.rpc.camera_server.RespondZoomStopRequest\x1a\x31.mavsdk.rpc.camera_server.RespondZoomStopResponse\"\x04\x80\xb5\x18\x01\x12~\n\x12SubscribeZoomRange\x12\x33.mavsdk.rpc.camera_server.SubscribeZoomRangeRequest\x1a+.mavsdk.rpc.camera_server.ZoomRangeResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x7f\n\x10RespondZoomRange\x12\x31.mavsdk.rpc.camera_server.RespondZoomRangeRequest\x1a\x32.mavsdk.rpc.camera_server.RespondZoomRangeResponse\"\x04\x80\xb5\x18\x01\x12\x9d\x01\n\x1aSetTrackingRectangleStatus\x12;.mavsdk.rpc.camera_server.SetTrackingRectangleStatusRequest\x1a<.mavsdk.rpc.camera_server.SetTrackingRectangleStatusResponse\"\x04\x80\xb5\x18\x01\x12\x8b\x01\n\x14SetTrackingOffStatus\x12\x35.mavsdk.rpc.camera_server.SetTrackingOffStatusRequest\x1a\x36.mavsdk.rpc.camera_server.SetTrackingOffStatusResponse\"\x04\x80\xb5\x18\x01\x12\x9f\x01\n\x1dSubscribeTrackingPointCommand\x12>.mavsdk.rpc.camera_server.SubscribeTrackingPointCommandRequest\x1a\x36.mavsdk.rpc.camera_server.TrackingPointCommandResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\xab\x01\n!SubscribeTrackingRectangleCommand\x12\x42.mavsdk.rpc.camera_server.SubscribeTrackingRectangleCommandRequest\x1a:.mavsdk.rpc.camera_server.TrackingRectangleCommandResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\x99\x01\n\x1bSubscribeTrackingOffCommand\x12<.mavsdk.rpc.camera_server.SubscribeTrackingOffCommandRequest\x1a\x34.mavsdk.rpc.camera_server.TrackingOffCommandResponse\"\x04\x80\xb5\x18\x00\x30\x01\x12\xa0\x01\n\x1bRespondTrackingPointCommand\x12<.mavsdk.rpc.camera_server.RespondTrackingPointCommandRequest\x1a=.mavsdk.rpc.camera_server.RespondTrackingPointCommandResponse\"\x04\x80\xb5\x18\x01\x12\xac\x01\n\x1fRespondTrackingRectangleCommand\x12@.mavsdk.rpc.camera_server.RespondTrackingRectangleCommandRequest\x1a\x41.mavsdk.rpc.camera_server.RespondTrackingRectangleCommandResponse\"\x04\x80\xb5\x18\x01\x12\x9a\x01\n\x19RespondTrackingOffCommand\x12:.mavsdk.rpc.camera_server.RespondTrackingOffCommandRequest\x1a;.mavsdk.rpc.camera_server.RespondTrackingOffCommandResponse\"\x04\x80\xb5\x18\x01\x42,\n\x17io.mavsdk.camera_serverB\x11\x43\x61meraServerProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n!camera_server/camera_server.proto\x12\x18mavsdk.rpc.camera_server\x1a\x14mavsdk_options.proto"S\n\x15SetInformationRequest\x12:\n\x0binformation\x18\x01 \x01(\x0b\x32%.mavsdk.rpc.camera_server.Information"d\n\x16SetInformationResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"]\n\x18SetVideoStreamingRequest\x12\x41\n\x0fvideo_streaming\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.camera_server.VideoStreaming"g\n\x19SetVideoStreamingResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"+\n\x14SetInProgressRequest\x12\x13\n\x0bin_progress\x18\x01 \x01(\x08"c\n\x15SetInProgressResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"\x1b\n\x19SubscribeTakePhotoRequest""\n\x11TakePhotoResponse\x12\r\n\x05index\x18\x01 \x01(\x05"\x9d\x01\n\x17RespondTakePhotoRequest\x12\x45\n\x13take_photo_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\x12;\n\x0c\x63\x61pture_info\x18\x02 \x01(\x0b\x32%.mavsdk.rpc.camera_server.CaptureInfo"f\n\x18RespondTakePhotoResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"\x1c\n\x1aSubscribeStartVideoRequest"\'\n\x12StartVideoResponse\x12\x11\n\tstream_id\x18\x01 \x01(\x05"b\n\x18RespondStartVideoRequest\x12\x46\n\x14start_video_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback"g\n\x19RespondStartVideoResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"\x1b\n\x19SubscribeStopVideoRequest"&\n\x11StopVideoResponse\x12\x11\n\tstream_id\x18\x01 \x01(\x05"`\n\x17RespondStopVideoRequest\x12\x45\n\x13stop_video_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback"f\n\x18RespondStopVideoResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"%\n#SubscribeStartVideoStreamingRequest"0\n\x1bStartVideoStreamingResponse\x12\x11\n\tstream_id\x18\x01 \x01(\x05"u\n!RespondStartVideoStreamingRequest\x12P\n\x1estart_video_streaming_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback"p\n"RespondStartVideoStreamingResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"$\n"SubscribeStopVideoStreamingRequest"/\n\x1aStopVideoStreamingResponse\x12\x11\n\tstream_id\x18\x01 \x01(\x05"s\n RespondStopVideoStreamingRequest\x12O\n\x1dstop_video_streaming_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback"o\n!RespondStopVideoStreamingResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"\x19\n\x17SubscribeSetModeRequest"?\n\x0fSetModeResponse\x12,\n\x04mode\x18\x01 \x01(\x0e\x32\x1e.mavsdk.rpc.camera_server.Mode"\\\n\x15RespondSetModeRequest\x12\x43\n\x11set_mode_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback"d\n\x16RespondSetModeResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"$\n"SubscribeStorageInformationRequest"0\n\x1aStorageInformationResponse\x12\x12\n\nstorage_id\x18\x01 \x01(\x05"\xbd\x01\n RespondStorageInformationRequest\x12N\n\x1cstorage_information_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\x12I\n\x13storage_information\x18\x02 \x01(\x0b\x32,.mavsdk.rpc.camera_server.StorageInformation"o\n!RespondStorageInformationResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"\x1f\n\x1dSubscribeCaptureStatusRequest")\n\x15\x43\x61ptureStatusResponse\x12\x10\n\x08reserved\x18\x01 \x01(\x05"\xa9\x01\n\x1bRespondCaptureStatusRequest\x12I\n\x17\x63\x61pture_status_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback\x12?\n\x0e\x63\x61pture_status\x18\x02 \x01(\x0b\x32\'.mavsdk.rpc.camera_server.CaptureStatus"j\n\x1cRespondCaptureStatusResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"\x1f\n\x1dSubscribeFormatStorageRequest"+\n\x15\x46ormatStorageResponse\x12\x12\n\nstorage_id\x18\x01 \x01(\x05"h\n\x1bRespondFormatStorageRequest\x12I\n\x17\x66ormat_storage_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback"j\n\x1cRespondFormatStorageResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"\x1f\n\x1dSubscribeResetSettingsRequest")\n\x15ResetSettingsResponse\x12\x10\n\x08reserved\x18\x01 \x01(\x05"h\n\x1bRespondResetSettingsRequest\x12I\n\x17reset_settings_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback"j\n\x1cRespondResetSettingsResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"\x1d\n\x1bSubscribeZoomInStartRequest"\'\n\x13ZoomInStartResponse\x12\x10\n\x08reserved\x18\x01 \x01(\x05"e\n\x19RespondZoomInStartRequest\x12H\n\x16zoom_in_start_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback"h\n\x1aRespondZoomInStartResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"\x1e\n\x1cSubscribeZoomOutStartRequest"(\n\x14ZoomOutStartResponse\x12\x10\n\x08reserved\x18\x01 \x01(\x05"g\n\x1aRespondZoomOutStartRequest\x12I\n\x17zoom_out_start_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback"i\n\x1bRespondZoomOutStartResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"\x1a\n\x18SubscribeZoomStopRequest"$\n\x10ZoomStopResponse\x12\x10\n\x08reserved\x18\x01 \x01(\x05"^\n\x16RespondZoomStopRequest\x12\x44\n\x12zoom_stop_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback"e\n\x17RespondZoomStopResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"\x1b\n\x19SubscribeZoomRangeRequest"#\n\x11ZoomRangeResponse\x12\x0e\n\x06\x66\x61\x63tor\x18\x01 \x01(\x02"`\n\x17RespondZoomRangeRequest\x12\x45\n\x13zoom_range_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback"f\n\x18RespondZoomRangeResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"\x8c\x03\n\x0bInformation\x12\x13\n\x0bvendor_name\x18\x01 \x01(\t\x12\x12\n\nmodel_name\x18\x02 \x01(\t\x12\x18\n\x10\x66irmware_version\x18\x03 \x01(\t\x12\x17\n\x0f\x66ocal_length_mm\x18\x04 \x01(\x02\x12!\n\x19horizontal_sensor_size_mm\x18\x05 \x01(\x02\x12\x1f\n\x17vertical_sensor_size_mm\x18\x06 \x01(\x02\x12 \n\x18horizontal_resolution_px\x18\x07 \x01(\r\x12\x1e\n\x16vertical_resolution_px\x18\x08 \x01(\r\x12\x0f\n\x07lens_id\x18\t \x01(\r\x12\x1f\n\x17\x64\x65\x66inition_file_version\x18\n \x01(\r\x12\x1b\n\x13\x64\x65\x66inition_file_uri\x18\x0b \x01(\t\x12%\n\x1dimage_in_video_mode_supported\x18\x0c \x01(\x08\x12%\n\x1dvideo_in_image_mode_supported\x18\r \x01(\x08";\n\x0eVideoStreaming\x12\x17\n\x0fhas_rtsp_server\x18\x01 \x01(\x08\x12\x10\n\x08rtsp_uri\x18\x02 \x01(\t"q\n\x08Position\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x12\x1b\n\x13relative_altitude_m\x18\x04 \x01(\x02"8\n\nQuaternion\x12\t\n\x01w\x18\x01 \x01(\x02\x12\t\n\x01x\x18\x02 \x01(\x02\x12\t\n\x01y\x18\x03 \x01(\x02\x12\t\n\x01z\x18\x04 \x01(\x02"\xd0\x01\n\x0b\x43\x61ptureInfo\x12\x34\n\x08position\x18\x01 \x01(\x0b\x32".mavsdk.rpc.camera_server.Position\x12\x41\n\x13\x61ttitude_quaternion\x18\x02 \x01(\x0b\x32$.mavsdk.rpc.camera_server.Quaternion\x12\x13\n\x0btime_utc_us\x18\x03 \x01(\x04\x12\x12\n\nis_success\x18\x04 \x01(\x08\x12\r\n\x05index\x18\x05 \x01(\x05\x12\x10\n\x08\x66ile_url\x18\x06 \x01(\t"\xb3\x02\n\x12\x43\x61meraServerResult\x12\x43\n\x06result\x18\x01 \x01(\x0e\x32\x33.mavsdk.rpc.camera_server.CameraServerResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t"\xc3\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x16\n\x12RESULT_IN_PROGRESS\x10\x02\x12\x0f\n\x0bRESULT_BUSY\x10\x03\x12\x11\n\rRESULT_DENIED\x10\x04\x12\x10\n\x0cRESULT_ERROR\x10\x05\x12\x12\n\x0eRESULT_TIMEOUT\x10\x06\x12\x19\n\x15RESULT_WRONG_ARGUMENT\x10\x07\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x08"\x8c\x05\n\x12StorageInformation\x12\x18\n\x10used_storage_mib\x18\x01 \x01(\x02\x12\x1d\n\x15\x61vailable_storage_mib\x18\x02 \x01(\x02\x12\x19\n\x11total_storage_mib\x18\x03 \x01(\x02\x12R\n\x0estorage_status\x18\x04 \x01(\x0e\x32:.mavsdk.rpc.camera_server.StorageInformation.StorageStatus\x12\x12\n\nstorage_id\x18\x05 \x01(\r\x12N\n\x0cstorage_type\x18\x06 \x01(\x0e\x32\x38.mavsdk.rpc.camera_server.StorageInformation.StorageType\x12\x18\n\x10read_speed_mib_s\x18\x07 \x01(\x02\x12\x19\n\x11write_speed_mib_s\x18\x08 \x01(\x02"\x91\x01\n\rStorageStatus\x12 \n\x1cSTORAGE_STATUS_NOT_AVAILABLE\x10\x00\x12\x1e\n\x1aSTORAGE_STATUS_UNFORMATTED\x10\x01\x12\x1c\n\x18STORAGE_STATUS_FORMATTED\x10\x02\x12 \n\x1cSTORAGE_STATUS_NOT_SUPPORTED\x10\x03"\xa0\x01\n\x0bStorageType\x12\x18\n\x14STORAGE_TYPE_UNKNOWN\x10\x00\x12\x1a\n\x16STORAGE_TYPE_USB_STICK\x10\x01\x12\x13\n\x0fSTORAGE_TYPE_SD\x10\x02\x12\x18\n\x14STORAGE_TYPE_MICROSD\x10\x03\x12\x13\n\x0fSTORAGE_TYPE_HD\x10\x07\x12\x17\n\x12STORAGE_TYPE_OTHER\x10\xfe\x01"\xee\x03\n\rCaptureStatus\x12\x18\n\x10image_interval_s\x18\x01 \x01(\x02\x12\x18\n\x10recording_time_s\x18\x02 \x01(\x02\x12\x1e\n\x16\x61vailable_capacity_mib\x18\x03 \x01(\x02\x12I\n\x0cimage_status\x18\x04 \x01(\x0e\x32\x33.mavsdk.rpc.camera_server.CaptureStatus.ImageStatus\x12I\n\x0cvideo_status\x18\x05 \x01(\x0e\x32\x33.mavsdk.rpc.camera_server.CaptureStatus.VideoStatus\x12\x13\n\x0bimage_count\x18\x06 \x01(\x05"\x91\x01\n\x0bImageStatus\x12\x15\n\x11IMAGE_STATUS_IDLE\x10\x00\x12$\n IMAGE_STATUS_CAPTURE_IN_PROGRESS\x10\x01\x12\x1e\n\x1aIMAGE_STATUS_INTERVAL_IDLE\x10\x02\x12%\n!IMAGE_STATUS_INTERVAL_IN_PROGRESS\x10\x03"J\n\x0bVideoStatus\x12\x15\n\x11VIDEO_STATUS_IDLE\x10\x00\x12$\n VIDEO_STATUS_CAPTURE_IN_PROGRESS\x10\x01"\\\n\x1dSetTrackingPointStatusRequest\x12;\n\rtracked_point\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.camera_server.TrackPoint" \n\x1eSetTrackingPointStatusResponse"h\n!SetTrackingRectangleStatusRequest\x12\x43\n\x11tracked_rectangle\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.camera_server.TrackRectangle"$\n"SetTrackingRectangleStatusResponse"\x1d\n\x1bSetTrackingOffStatusRequest"\x1e\n\x1cSetTrackingOffStatusResponse"&\n$SubscribeTrackingPointCommandRequest"Y\n\x1cTrackingPointCommandResponse\x12\x39\n\x0btrack_point\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.camera_server.TrackPoint"*\n(SubscribeTrackingRectangleCommandRequest"e\n TrackingRectangleCommandResponse\x12\x41\n\x0ftrack_rectangle\x18\x01 \x01(\x0b\x32(.mavsdk.rpc.camera_server.TrackRectangle"$\n"SubscribeTrackingOffCommandRequest"+\n\x1aTrackingOffCommandResponse\x12\r\n\x05\x64ummy\x18\x01 \x01(\x05"k\n"RespondTrackingPointCommandRequest\x12\x45\n\x13stop_video_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback"q\n#RespondTrackingPointCommandResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"o\n&RespondTrackingRectangleCommandRequest\x12\x45\n\x13stop_video_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback"u\n\'RespondTrackingRectangleCommandResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult"i\n RespondTrackingOffCommandRequest\x12\x45\n\x13stop_video_feedback\x18\x01 \x01(\x0e\x32(.mavsdk.rpc.camera_server.CameraFeedback"o\n!RespondTrackingOffCommandResponse\x12J\n\x14\x63\x61mera_server_result\x18\x01 \x01(\x0b\x32,.mavsdk.rpc.camera_server.CameraServerResult">\n\nTrackPoint\x12\x0f\n\x07point_x\x18\x01 \x01(\x02\x12\x0f\n\x07point_y\x18\x02 \x01(\x02\x12\x0e\n\x06radius\x18\x03 \x01(\x02"\x84\x01\n\x0eTrackRectangle\x12\x19\n\x11top_left_corner_x\x18\x01 \x01(\x02\x12\x19\n\x11top_left_corner_y\x18\x02 \x01(\x02\x12\x1d\n\x15\x62ottom_right_corner_x\x18\x03 \x01(\x02\x12\x1d\n\x15\x62ottom_right_corner_y\x18\x04 \x01(\x02*{\n\x0e\x43\x61meraFeedback\x12\x1b\n\x17\x43\x41MERA_FEEDBACK_UNKNOWN\x10\x00\x12\x16\n\x12\x43\x41MERA_FEEDBACK_OK\x10\x01\x12\x18\n\x14\x43\x41MERA_FEEDBACK_BUSY\x10\x02\x12\x1a\n\x16\x43\x41MERA_FEEDBACK_FAILED\x10\x03*8\n\x04Mode\x12\x10\n\x0cMODE_UNKNOWN\x10\x00\x12\x0e\n\nMODE_PHOTO\x10\x01\x12\x0e\n\nMODE_VIDEO\x10\x02\x32\xb8+\n\x13\x43\x61meraServerService\x12y\n\x0eSetInformation\x12/.mavsdk.rpc.camera_server.SetInformationRequest\x1a\x30.mavsdk.rpc.camera_server.SetInformationResponse"\x04\x80\xb5\x18\x01\x12\x82\x01\n\x11SetVideoStreaming\x12\x32.mavsdk.rpc.camera_server.SetVideoStreamingRequest\x1a\x33.mavsdk.rpc.camera_server.SetVideoStreamingResponse"\x04\x80\xb5\x18\x01\x12v\n\rSetInProgress\x12..mavsdk.rpc.camera_server.SetInProgressRequest\x1a/.mavsdk.rpc.camera_server.SetInProgressResponse"\x04\x80\xb5\x18\x01\x12~\n\x12SubscribeTakePhoto\x12\x33.mavsdk.rpc.camera_server.SubscribeTakePhotoRequest\x1a+.mavsdk.rpc.camera_server.TakePhotoResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\x7f\n\x10RespondTakePhoto\x12\x31.mavsdk.rpc.camera_server.RespondTakePhotoRequest\x1a\x32.mavsdk.rpc.camera_server.RespondTakePhotoResponse"\x04\x80\xb5\x18\x01\x12\x81\x01\n\x13SubscribeStartVideo\x12\x34.mavsdk.rpc.camera_server.SubscribeStartVideoRequest\x1a,.mavsdk.rpc.camera_server.StartVideoResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\x82\x01\n\x11RespondStartVideo\x12\x32.mavsdk.rpc.camera_server.RespondStartVideoRequest\x1a\x33.mavsdk.rpc.camera_server.RespondStartVideoResponse"\x04\x80\xb5\x18\x01\x12~\n\x12SubscribeStopVideo\x12\x33.mavsdk.rpc.camera_server.SubscribeStopVideoRequest\x1a+.mavsdk.rpc.camera_server.StopVideoResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\x7f\n\x10RespondStopVideo\x12\x31.mavsdk.rpc.camera_server.RespondStopVideoRequest\x1a\x32.mavsdk.rpc.camera_server.RespondStopVideoResponse"\x04\x80\xb5\x18\x01\x12\x9c\x01\n\x1cSubscribeStartVideoStreaming\x12=.mavsdk.rpc.camera_server.SubscribeStartVideoStreamingRequest\x1a\x35.mavsdk.rpc.camera_server.StartVideoStreamingResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\x9d\x01\n\x1aRespondStartVideoStreaming\x12;.mavsdk.rpc.camera_server.RespondStartVideoStreamingRequest\x1a<.mavsdk.rpc.camera_server.RespondStartVideoStreamingResponse"\x04\x80\xb5\x18\x01\x12\x99\x01\n\x1bSubscribeStopVideoStreaming\x12<.mavsdk.rpc.camera_server.SubscribeStopVideoStreamingRequest\x1a\x34.mavsdk.rpc.camera_server.StopVideoStreamingResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\x9a\x01\n\x19RespondStopVideoStreaming\x12:.mavsdk.rpc.camera_server.RespondStopVideoStreamingRequest\x1a;.mavsdk.rpc.camera_server.RespondStopVideoStreamingResponse"\x04\x80\xb5\x18\x01\x12x\n\x10SubscribeSetMode\x12\x31.mavsdk.rpc.camera_server.SubscribeSetModeRequest\x1a).mavsdk.rpc.camera_server.SetModeResponse"\x04\x80\xb5\x18\x00\x30\x01\x12y\n\x0eRespondSetMode\x12/.mavsdk.rpc.camera_server.RespondSetModeRequest\x1a\x30.mavsdk.rpc.camera_server.RespondSetModeResponse"\x04\x80\xb5\x18\x01\x12\x99\x01\n\x1bSubscribeStorageInformation\x12<.mavsdk.rpc.camera_server.SubscribeStorageInformationRequest\x1a\x34.mavsdk.rpc.camera_server.StorageInformationResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\x9a\x01\n\x19RespondStorageInformation\x12:.mavsdk.rpc.camera_server.RespondStorageInformationRequest\x1a;.mavsdk.rpc.camera_server.RespondStorageInformationResponse"\x04\x80\xb5\x18\x01\x12\x8a\x01\n\x16SubscribeCaptureStatus\x12\x37.mavsdk.rpc.camera_server.SubscribeCaptureStatusRequest\x1a/.mavsdk.rpc.camera_server.CaptureStatusResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\x8b\x01\n\x14RespondCaptureStatus\x12\x35.mavsdk.rpc.camera_server.RespondCaptureStatusRequest\x1a\x36.mavsdk.rpc.camera_server.RespondCaptureStatusResponse"\x04\x80\xb5\x18\x01\x12\x8a\x01\n\x16SubscribeFormatStorage\x12\x37.mavsdk.rpc.camera_server.SubscribeFormatStorageRequest\x1a/.mavsdk.rpc.camera_server.FormatStorageResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\x8b\x01\n\x14RespondFormatStorage\x12\x35.mavsdk.rpc.camera_server.RespondFormatStorageRequest\x1a\x36.mavsdk.rpc.camera_server.RespondFormatStorageResponse"\x04\x80\xb5\x18\x01\x12\x8a\x01\n\x16SubscribeResetSettings\x12\x37.mavsdk.rpc.camera_server.SubscribeResetSettingsRequest\x1a/.mavsdk.rpc.camera_server.ResetSettingsResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\x8b\x01\n\x14RespondResetSettings\x12\x35.mavsdk.rpc.camera_server.RespondResetSettingsRequest\x1a\x36.mavsdk.rpc.camera_server.RespondResetSettingsResponse"\x04\x80\xb5\x18\x01\x12\x84\x01\n\x14SubscribeZoomInStart\x12\x35.mavsdk.rpc.camera_server.SubscribeZoomInStartRequest\x1a-.mavsdk.rpc.camera_server.ZoomInStartResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\x85\x01\n\x12RespondZoomInStart\x12\x33.mavsdk.rpc.camera_server.RespondZoomInStartRequest\x1a\x34.mavsdk.rpc.camera_server.RespondZoomInStartResponse"\x04\x80\xb5\x18\x01\x12\x87\x01\n\x15SubscribeZoomOutStart\x12\x36.mavsdk.rpc.camera_server.SubscribeZoomOutStartRequest\x1a..mavsdk.rpc.camera_server.ZoomOutStartResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\x88\x01\n\x13RespondZoomOutStart\x12\x34.mavsdk.rpc.camera_server.RespondZoomOutStartRequest\x1a\x35.mavsdk.rpc.camera_server.RespondZoomOutStartResponse"\x04\x80\xb5\x18\x01\x12{\n\x11SubscribeZoomStop\x12\x32.mavsdk.rpc.camera_server.SubscribeZoomStopRequest\x1a*.mavsdk.rpc.camera_server.ZoomStopResponse"\x04\x80\xb5\x18\x00\x30\x01\x12|\n\x0fRespondZoomStop\x12\x30.mavsdk.rpc.camera_server.RespondZoomStopRequest\x1a\x31.mavsdk.rpc.camera_server.RespondZoomStopResponse"\x04\x80\xb5\x18\x01\x12~\n\x12SubscribeZoomRange\x12\x33.mavsdk.rpc.camera_server.SubscribeZoomRangeRequest\x1a+.mavsdk.rpc.camera_server.ZoomRangeResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\x7f\n\x10RespondZoomRange\x12\x31.mavsdk.rpc.camera_server.RespondZoomRangeRequest\x1a\x32.mavsdk.rpc.camera_server.RespondZoomRangeResponse"\x04\x80\xb5\x18\x01\x12\x9d\x01\n\x1aSetTrackingRectangleStatus\x12;.mavsdk.rpc.camera_server.SetTrackingRectangleStatusRequest\x1a<.mavsdk.rpc.camera_server.SetTrackingRectangleStatusResponse"\x04\x80\xb5\x18\x01\x12\x8b\x01\n\x14SetTrackingOffStatus\x12\x35.mavsdk.rpc.camera_server.SetTrackingOffStatusRequest\x1a\x36.mavsdk.rpc.camera_server.SetTrackingOffStatusResponse"\x04\x80\xb5\x18\x01\x12\x9f\x01\n\x1dSubscribeTrackingPointCommand\x12>.mavsdk.rpc.camera_server.SubscribeTrackingPointCommandRequest\x1a\x36.mavsdk.rpc.camera_server.TrackingPointCommandResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\xab\x01\n!SubscribeTrackingRectangleCommand\x12\x42.mavsdk.rpc.camera_server.SubscribeTrackingRectangleCommandRequest\x1a:.mavsdk.rpc.camera_server.TrackingRectangleCommandResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\x99\x01\n\x1bSubscribeTrackingOffCommand\x12<.mavsdk.rpc.camera_server.SubscribeTrackingOffCommandRequest\x1a\x34.mavsdk.rpc.camera_server.TrackingOffCommandResponse"\x04\x80\xb5\x18\x00\x30\x01\x12\xa0\x01\n\x1bRespondTrackingPointCommand\x12<.mavsdk.rpc.camera_server.RespondTrackingPointCommandRequest\x1a=.mavsdk.rpc.camera_server.RespondTrackingPointCommandResponse"\x04\x80\xb5\x18\x01\x12\xac\x01\n\x1fRespondTrackingRectangleCommand\x12@.mavsdk.rpc.camera_server.RespondTrackingRectangleCommandRequest\x1a\x41.mavsdk.rpc.camera_server.RespondTrackingRectangleCommandResponse"\x04\x80\xb5\x18\x01\x12\x9a\x01\n\x19RespondTrackingOffCommand\x12:.mavsdk.rpc.camera_server.RespondTrackingOffCommandRequest\x1a;.mavsdk.rpc.camera_server.RespondTrackingOffCommandResponse"\x04\x80\xb5\x18\x01\x42,\n\x17io.mavsdk.camera_serverB\x11\x43\x61meraServerProtob\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'camera_server.camera_server_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(
+    DESCRIPTOR, "camera_server.camera_server_pb2", _globals
+)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n\027io.mavsdk.camera_serverB\021CameraServerProto'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SetInformation']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SetInformation']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SetVideoStreaming']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SetVideoStreaming']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SetInProgress']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SetInProgress']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeTakePhoto']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeTakePhoto']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondTakePhoto']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondTakePhoto']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeStartVideo']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeStartVideo']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondStartVideo']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondStartVideo']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeStopVideo']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeStopVideo']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondStopVideo']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondStopVideo']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeStartVideoStreaming']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeStartVideoStreaming']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondStartVideoStreaming']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondStartVideoStreaming']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeStopVideoStreaming']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeStopVideoStreaming']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondStopVideoStreaming']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondStopVideoStreaming']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeSetMode']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeSetMode']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondSetMode']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondSetMode']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeStorageInformation']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeStorageInformation']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondStorageInformation']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondStorageInformation']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeCaptureStatus']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeCaptureStatus']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondCaptureStatus']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondCaptureStatus']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeFormatStorage']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeFormatStorage']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondFormatStorage']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondFormatStorage']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeResetSettings']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeResetSettings']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondResetSettings']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondResetSettings']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeZoomInStart']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeZoomInStart']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondZoomInStart']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondZoomInStart']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeZoomOutStart']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeZoomOutStart']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondZoomOutStart']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondZoomOutStart']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeZoomStop']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeZoomStop']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondZoomStop']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondZoomStop']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeZoomRange']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeZoomRange']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondZoomRange']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondZoomRange']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SetTrackingRectangleStatus']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SetTrackingRectangleStatus']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SetTrackingOffStatus']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SetTrackingOffStatus']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeTrackingPointCommand']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeTrackingPointCommand']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeTrackingRectangleCommand']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeTrackingRectangleCommand']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeTrackingOffCommand']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['SubscribeTrackingOffCommand']._serialized_options = b'\200\265\030\000'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondTrackingPointCommand']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondTrackingPointCommand']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondTrackingRectangleCommand']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondTrackingRectangleCommand']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondTrackingOffCommand']._loaded_options = None
-  _globals['_CAMERASERVERSERVICE'].methods_by_name['RespondTrackingOffCommand']._serialized_options = b'\200\265\030\001'
-  _globals['_CAMERAFEEDBACK']._serialized_start=8729
-  _globals['_CAMERAFEEDBACK']._serialized_end=8852
-  _globals['_MODE']._serialized_start=8854
-  _globals['_MODE']._serialized_end=8910
-  _globals['_SETINFORMATIONREQUEST']._serialized_start=85
-  _globals['_SETINFORMATIONREQUEST']._serialized_end=168
-  _globals['_SETINFORMATIONRESPONSE']._serialized_start=170
-  _globals['_SETINFORMATIONRESPONSE']._serialized_end=270
-  _globals['_SETVIDEOSTREAMINGREQUEST']._serialized_start=272
-  _globals['_SETVIDEOSTREAMINGREQUEST']._serialized_end=365
-  _globals['_SETVIDEOSTREAMINGRESPONSE']._serialized_start=367
-  _globals['_SETVIDEOSTREAMINGRESPONSE']._serialized_end=470
-  _globals['_SETINPROGRESSREQUEST']._serialized_start=472
-  _globals['_SETINPROGRESSREQUEST']._serialized_end=515
-  _globals['_SETINPROGRESSRESPONSE']._serialized_start=517
-  _globals['_SETINPROGRESSRESPONSE']._serialized_end=616
-  _globals['_SUBSCRIBETAKEPHOTOREQUEST']._serialized_start=618
-  _globals['_SUBSCRIBETAKEPHOTOREQUEST']._serialized_end=645
-  _globals['_TAKEPHOTORESPONSE']._serialized_start=647
-  _globals['_TAKEPHOTORESPONSE']._serialized_end=681
-  _globals['_RESPONDTAKEPHOTOREQUEST']._serialized_start=684
-  _globals['_RESPONDTAKEPHOTOREQUEST']._serialized_end=841
-  _globals['_RESPONDTAKEPHOTORESPONSE']._serialized_start=843
-  _globals['_RESPONDTAKEPHOTORESPONSE']._serialized_end=945
-  _globals['_SUBSCRIBESTARTVIDEOREQUEST']._serialized_start=947
-  _globals['_SUBSCRIBESTARTVIDEOREQUEST']._serialized_end=975
-  _globals['_STARTVIDEORESPONSE']._serialized_start=977
-  _globals['_STARTVIDEORESPONSE']._serialized_end=1016
-  _globals['_RESPONDSTARTVIDEOREQUEST']._serialized_start=1018
-  _globals['_RESPONDSTARTVIDEOREQUEST']._serialized_end=1116
-  _globals['_RESPONDSTARTVIDEORESPONSE']._serialized_start=1118
-  _globals['_RESPONDSTARTVIDEORESPONSE']._serialized_end=1221
-  _globals['_SUBSCRIBESTOPVIDEOREQUEST']._serialized_start=1223
-  _globals['_SUBSCRIBESTOPVIDEOREQUEST']._serialized_end=1250
-  _globals['_STOPVIDEORESPONSE']._serialized_start=1252
-  _globals['_STOPVIDEORESPONSE']._serialized_end=1290
-  _globals['_RESPONDSTOPVIDEOREQUEST']._serialized_start=1292
-  _globals['_RESPONDSTOPVIDEOREQUEST']._serialized_end=1388
-  _globals['_RESPONDSTOPVIDEORESPONSE']._serialized_start=1390
-  _globals['_RESPONDSTOPVIDEORESPONSE']._serialized_end=1492
-  _globals['_SUBSCRIBESTARTVIDEOSTREAMINGREQUEST']._serialized_start=1494
-  _globals['_SUBSCRIBESTARTVIDEOSTREAMINGREQUEST']._serialized_end=1531
-  _globals['_STARTVIDEOSTREAMINGRESPONSE']._serialized_start=1533
-  _globals['_STARTVIDEOSTREAMINGRESPONSE']._serialized_end=1581
-  _globals['_RESPONDSTARTVIDEOSTREAMINGREQUEST']._serialized_start=1583
-  _globals['_RESPONDSTARTVIDEOSTREAMINGREQUEST']._serialized_end=1700
-  _globals['_RESPONDSTARTVIDEOSTREAMINGRESPONSE']._serialized_start=1702
-  _globals['_RESPONDSTARTVIDEOSTREAMINGRESPONSE']._serialized_end=1814
-  _globals['_SUBSCRIBESTOPVIDEOSTREAMINGREQUEST']._serialized_start=1816
-  _globals['_SUBSCRIBESTOPVIDEOSTREAMINGREQUEST']._serialized_end=1852
-  _globals['_STOPVIDEOSTREAMINGRESPONSE']._serialized_start=1854
-  _globals['_STOPVIDEOSTREAMINGRESPONSE']._serialized_end=1901
-  _globals['_RESPONDSTOPVIDEOSTREAMINGREQUEST']._serialized_start=1903
-  _globals['_RESPONDSTOPVIDEOSTREAMINGREQUEST']._serialized_end=2018
-  _globals['_RESPONDSTOPVIDEOSTREAMINGRESPONSE']._serialized_start=2020
-  _globals['_RESPONDSTOPVIDEOSTREAMINGRESPONSE']._serialized_end=2131
-  _globals['_SUBSCRIBESETMODEREQUEST']._serialized_start=2133
-  _globals['_SUBSCRIBESETMODEREQUEST']._serialized_end=2158
-  _globals['_SETMODERESPONSE']._serialized_start=2160
-  _globals['_SETMODERESPONSE']._serialized_end=2223
-  _globals['_RESPONDSETMODEREQUEST']._serialized_start=2225
-  _globals['_RESPONDSETMODEREQUEST']._serialized_end=2317
-  _globals['_RESPONDSETMODERESPONSE']._serialized_start=2319
-  _globals['_RESPONDSETMODERESPONSE']._serialized_end=2419
-  _globals['_SUBSCRIBESTORAGEINFORMATIONREQUEST']._serialized_start=2421
-  _globals['_SUBSCRIBESTORAGEINFORMATIONREQUEST']._serialized_end=2457
-  _globals['_STORAGEINFORMATIONRESPONSE']._serialized_start=2459
-  _globals['_STORAGEINFORMATIONRESPONSE']._serialized_end=2507
-  _globals['_RESPONDSTORAGEINFORMATIONREQUEST']._serialized_start=2510
-  _globals['_RESPONDSTORAGEINFORMATIONREQUEST']._serialized_end=2699
-  _globals['_RESPONDSTORAGEINFORMATIONRESPONSE']._serialized_start=2701
-  _globals['_RESPONDSTORAGEINFORMATIONRESPONSE']._serialized_end=2812
-  _globals['_SUBSCRIBECAPTURESTATUSREQUEST']._serialized_start=2814
-  _globals['_SUBSCRIBECAPTURESTATUSREQUEST']._serialized_end=2845
-  _globals['_CAPTURESTATUSRESPONSE']._serialized_start=2847
-  _globals['_CAPTURESTATUSRESPONSE']._serialized_end=2888
-  _globals['_RESPONDCAPTURESTATUSREQUEST']._serialized_start=2891
-  _globals['_RESPONDCAPTURESTATUSREQUEST']._serialized_end=3060
-  _globals['_RESPONDCAPTURESTATUSRESPONSE']._serialized_start=3062
-  _globals['_RESPONDCAPTURESTATUSRESPONSE']._serialized_end=3168
-  _globals['_SUBSCRIBEFORMATSTORAGEREQUEST']._serialized_start=3170
-  _globals['_SUBSCRIBEFORMATSTORAGEREQUEST']._serialized_end=3201
-  _globals['_FORMATSTORAGERESPONSE']._serialized_start=3203
-  _globals['_FORMATSTORAGERESPONSE']._serialized_end=3246
-  _globals['_RESPONDFORMATSTORAGEREQUEST']._serialized_start=3248
-  _globals['_RESPONDFORMATSTORAGEREQUEST']._serialized_end=3352
-  _globals['_RESPONDFORMATSTORAGERESPONSE']._serialized_start=3354
-  _globals['_RESPONDFORMATSTORAGERESPONSE']._serialized_end=3460
-  _globals['_SUBSCRIBERESETSETTINGSREQUEST']._serialized_start=3462
-  _globals['_SUBSCRIBERESETSETTINGSREQUEST']._serialized_end=3493
-  _globals['_RESETSETTINGSRESPONSE']._serialized_start=3495
-  _globals['_RESETSETTINGSRESPONSE']._serialized_end=3536
-  _globals['_RESPONDRESETSETTINGSREQUEST']._serialized_start=3538
-  _globals['_RESPONDRESETSETTINGSREQUEST']._serialized_end=3642
-  _globals['_RESPONDRESETSETTINGSRESPONSE']._serialized_start=3644
-  _globals['_RESPONDRESETSETTINGSRESPONSE']._serialized_end=3750
-  _globals['_SUBSCRIBEZOOMINSTARTREQUEST']._serialized_start=3752
-  _globals['_SUBSCRIBEZOOMINSTARTREQUEST']._serialized_end=3781
-  _globals['_ZOOMINSTARTRESPONSE']._serialized_start=3783
-  _globals['_ZOOMINSTARTRESPONSE']._serialized_end=3822
-  _globals['_RESPONDZOOMINSTARTREQUEST']._serialized_start=3824
-  _globals['_RESPONDZOOMINSTARTREQUEST']._serialized_end=3925
-  _globals['_RESPONDZOOMINSTARTRESPONSE']._serialized_start=3927
-  _globals['_RESPONDZOOMINSTARTRESPONSE']._serialized_end=4031
-  _globals['_SUBSCRIBEZOOMOUTSTARTREQUEST']._serialized_start=4033
-  _globals['_SUBSCRIBEZOOMOUTSTARTREQUEST']._serialized_end=4063
-  _globals['_ZOOMOUTSTARTRESPONSE']._serialized_start=4065
-  _globals['_ZOOMOUTSTARTRESPONSE']._serialized_end=4105
-  _globals['_RESPONDZOOMOUTSTARTREQUEST']._serialized_start=4107
-  _globals['_RESPONDZOOMOUTSTARTREQUEST']._serialized_end=4210
-  _globals['_RESPONDZOOMOUTSTARTRESPONSE']._serialized_start=4212
-  _globals['_RESPONDZOOMOUTSTARTRESPONSE']._serialized_end=4317
-  _globals['_SUBSCRIBEZOOMSTOPREQUEST']._serialized_start=4319
-  _globals['_SUBSCRIBEZOOMSTOPREQUEST']._serialized_end=4345
-  _globals['_ZOOMSTOPRESPONSE']._serialized_start=4347
-  _globals['_ZOOMSTOPRESPONSE']._serialized_end=4383
-  _globals['_RESPONDZOOMSTOPREQUEST']._serialized_start=4385
-  _globals['_RESPONDZOOMSTOPREQUEST']._serialized_end=4479
-  _globals['_RESPONDZOOMSTOPRESPONSE']._serialized_start=4481
-  _globals['_RESPONDZOOMSTOPRESPONSE']._serialized_end=4582
-  _globals['_SUBSCRIBEZOOMRANGEREQUEST']._serialized_start=4584
-  _globals['_SUBSCRIBEZOOMRANGEREQUEST']._serialized_end=4611
-  _globals['_ZOOMRANGERESPONSE']._serialized_start=4613
-  _globals['_ZOOMRANGERESPONSE']._serialized_end=4648
-  _globals['_RESPONDZOOMRANGEREQUEST']._serialized_start=4650
-  _globals['_RESPONDZOOMRANGEREQUEST']._serialized_end=4746
-  _globals['_RESPONDZOOMRANGERESPONSE']._serialized_start=4748
-  _globals['_RESPONDZOOMRANGERESPONSE']._serialized_end=4850
-  _globals['_INFORMATION']._serialized_start=4853
-  _globals['_INFORMATION']._serialized_end=5249
-  _globals['_VIDEOSTREAMING']._serialized_start=5251
-  _globals['_VIDEOSTREAMING']._serialized_end=5310
-  _globals['_POSITION']._serialized_start=5312
-  _globals['_POSITION']._serialized_end=5425
-  _globals['_QUATERNION']._serialized_start=5427
-  _globals['_QUATERNION']._serialized_end=5483
-  _globals['_CAPTUREINFO']._serialized_start=5486
-  _globals['_CAPTUREINFO']._serialized_end=5694
-  _globals['_CAMERASERVERRESULT']._serialized_start=5697
-  _globals['_CAMERASERVERRESULT']._serialized_end=6004
-  _globals['_CAMERASERVERRESULT_RESULT']._serialized_start=5809
-  _globals['_CAMERASERVERRESULT_RESULT']._serialized_end=6004
-  _globals['_STORAGEINFORMATION']._serialized_start=6007
-  _globals['_STORAGEINFORMATION']._serialized_end=6659
-  _globals['_STORAGEINFORMATION_STORAGESTATUS']._serialized_start=6351
-  _globals['_STORAGEINFORMATION_STORAGESTATUS']._serialized_end=6496
-  _globals['_STORAGEINFORMATION_STORAGETYPE']._serialized_start=6499
-  _globals['_STORAGEINFORMATION_STORAGETYPE']._serialized_end=6659
-  _globals['_CAPTURESTATUS']._serialized_start=6662
-  _globals['_CAPTURESTATUS']._serialized_end=7156
-  _globals['_CAPTURESTATUS_IMAGESTATUS']._serialized_start=6935
-  _globals['_CAPTURESTATUS_IMAGESTATUS']._serialized_end=7080
-  _globals['_CAPTURESTATUS_VIDEOSTATUS']._serialized_start=7082
-  _globals['_CAPTURESTATUS_VIDEOSTATUS']._serialized_end=7156
-  _globals['_SETTRACKINGPOINTSTATUSREQUEST']._serialized_start=7158
-  _globals['_SETTRACKINGPOINTSTATUSREQUEST']._serialized_end=7250
-  _globals['_SETTRACKINGPOINTSTATUSRESPONSE']._serialized_start=7252
-  _globals['_SETTRACKINGPOINTSTATUSRESPONSE']._serialized_end=7284
-  _globals['_SETTRACKINGRECTANGLESTATUSREQUEST']._serialized_start=7286
-  _globals['_SETTRACKINGRECTANGLESTATUSREQUEST']._serialized_end=7390
-  _globals['_SETTRACKINGRECTANGLESTATUSRESPONSE']._serialized_start=7392
-  _globals['_SETTRACKINGRECTANGLESTATUSRESPONSE']._serialized_end=7428
-  _globals['_SETTRACKINGOFFSTATUSREQUEST']._serialized_start=7430
-  _globals['_SETTRACKINGOFFSTATUSREQUEST']._serialized_end=7459
-  _globals['_SETTRACKINGOFFSTATUSRESPONSE']._serialized_start=7461
-  _globals['_SETTRACKINGOFFSTATUSRESPONSE']._serialized_end=7491
-  _globals['_SUBSCRIBETRACKINGPOINTCOMMANDREQUEST']._serialized_start=7493
-  _globals['_SUBSCRIBETRACKINGPOINTCOMMANDREQUEST']._serialized_end=7531
-  _globals['_TRACKINGPOINTCOMMANDRESPONSE']._serialized_start=7533
-  _globals['_TRACKINGPOINTCOMMANDRESPONSE']._serialized_end=7622
-  _globals['_SUBSCRIBETRACKINGRECTANGLECOMMANDREQUEST']._serialized_start=7624
-  _globals['_SUBSCRIBETRACKINGRECTANGLECOMMANDREQUEST']._serialized_end=7666
-  _globals['_TRACKINGRECTANGLECOMMANDRESPONSE']._serialized_start=7668
-  _globals['_TRACKINGRECTANGLECOMMANDRESPONSE']._serialized_end=7769
-  _globals['_SUBSCRIBETRACKINGOFFCOMMANDREQUEST']._serialized_start=7771
-  _globals['_SUBSCRIBETRACKINGOFFCOMMANDREQUEST']._serialized_end=7807
-  _globals['_TRACKINGOFFCOMMANDRESPONSE']._serialized_start=7809
-  _globals['_TRACKINGOFFCOMMANDRESPONSE']._serialized_end=7852
-  _globals['_RESPONDTRACKINGPOINTCOMMANDREQUEST']._serialized_start=7854
-  _globals['_RESPONDTRACKINGPOINTCOMMANDREQUEST']._serialized_end=7961
-  _globals['_RESPONDTRACKINGPOINTCOMMANDRESPONSE']._serialized_start=7963
-  _globals['_RESPONDTRACKINGPOINTCOMMANDRESPONSE']._serialized_end=8076
-  _globals['_RESPONDTRACKINGRECTANGLECOMMANDREQUEST']._serialized_start=8078
-  _globals['_RESPONDTRACKINGRECTANGLECOMMANDREQUEST']._serialized_end=8189
-  _globals['_RESPONDTRACKINGRECTANGLECOMMANDRESPONSE']._serialized_start=8191
-  _globals['_RESPONDTRACKINGRECTANGLECOMMANDRESPONSE']._serialized_end=8308
-  _globals['_RESPONDTRACKINGOFFCOMMANDREQUEST']._serialized_start=8310
-  _globals['_RESPONDTRACKINGOFFCOMMANDREQUEST']._serialized_end=8415
-  _globals['_RESPONDTRACKINGOFFCOMMANDRESPONSE']._serialized_start=8417
-  _globals['_RESPONDTRACKINGOFFCOMMANDRESPONSE']._serialized_end=8528
-  _globals['_TRACKPOINT']._serialized_start=8530
-  _globals['_TRACKPOINT']._serialized_end=8592
-  _globals['_TRACKRECTANGLE']._serialized_start=8595
-  _globals['_TRACKRECTANGLE']._serialized_end=8727
-  _globals['_CAMERASERVERSERVICE']._serialized_start=8913
-  _globals['_CAMERASERVERSERVICE']._serialized_end=14473
+    _globals["DESCRIPTOR"]._loaded_options = None
+    _globals[
+        "DESCRIPTOR"
+    ]._serialized_options = b"\n\027io.mavsdk.camera_serverB\021CameraServerProto"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SetInformation"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SetInformation"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SetVideoStreaming"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SetVideoStreaming"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SetInProgress"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SetInProgress"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeTakePhoto"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeTakePhoto"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondTakePhoto"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondTakePhoto"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeStartVideo"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeStartVideo"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondStartVideo"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondStartVideo"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeStopVideo"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeStopVideo"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondStopVideo"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondStopVideo"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeStartVideoStreaming"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeStartVideoStreaming"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondStartVideoStreaming"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondStartVideoStreaming"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeStopVideoStreaming"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeStopVideoStreaming"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondStopVideoStreaming"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondStopVideoStreaming"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeSetMode"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeSetMode"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondSetMode"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondSetMode"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeStorageInformation"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeStorageInformation"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondStorageInformation"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondStorageInformation"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeCaptureStatus"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeCaptureStatus"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondCaptureStatus"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondCaptureStatus"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeFormatStorage"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeFormatStorage"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondFormatStorage"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondFormatStorage"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeResetSettings"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeResetSettings"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondResetSettings"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondResetSettings"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeZoomInStart"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeZoomInStart"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondZoomInStart"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondZoomInStart"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeZoomOutStart"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeZoomOutStart"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondZoomOutStart"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondZoomOutStart"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeZoomStop"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeZoomStop"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondZoomStop"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondZoomStop"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeZoomRange"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeZoomRange"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondZoomRange"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondZoomRange"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SetTrackingRectangleStatus"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SetTrackingRectangleStatus"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SetTrackingOffStatus"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SetTrackingOffStatus"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeTrackingPointCommand"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeTrackingPointCommand"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeTrackingRectangleCommand"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeTrackingRectangleCommand"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeTrackingOffCommand"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "SubscribeTrackingOffCommand"
+    ]._serialized_options = b"\200\265\030\000"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondTrackingPointCommand"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondTrackingPointCommand"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondTrackingRectangleCommand"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondTrackingRectangleCommand"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondTrackingOffCommand"
+    ]._loaded_options = None
+    _globals["_CAMERASERVERSERVICE"].methods_by_name[
+        "RespondTrackingOffCommand"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_CAMERAFEEDBACK"]._serialized_start = 8729
+    _globals["_CAMERAFEEDBACK"]._serialized_end = 8852
+    _globals["_MODE"]._serialized_start = 8854
+    _globals["_MODE"]._serialized_end = 8910
+    _globals["_SETINFORMATIONREQUEST"]._serialized_start = 85
+    _globals["_SETINFORMATIONREQUEST"]._serialized_end = 168
+    _globals["_SETINFORMATIONRESPONSE"]._serialized_start = 170
+    _globals["_SETINFORMATIONRESPONSE"]._serialized_end = 270
+    _globals["_SETVIDEOSTREAMINGREQUEST"]._serialized_start = 272
+    _globals["_SETVIDEOSTREAMINGREQUEST"]._serialized_end = 365
+    _globals["_SETVIDEOSTREAMINGRESPONSE"]._serialized_start = 367
+    _globals["_SETVIDEOSTREAMINGRESPONSE"]._serialized_end = 470
+    _globals["_SETINPROGRESSREQUEST"]._serialized_start = 472
+    _globals["_SETINPROGRESSREQUEST"]._serialized_end = 515
+    _globals["_SETINPROGRESSRESPONSE"]._serialized_start = 517
+    _globals["_SETINPROGRESSRESPONSE"]._serialized_end = 616
+    _globals["_SUBSCRIBETAKEPHOTOREQUEST"]._serialized_start = 618
+    _globals["_SUBSCRIBETAKEPHOTOREQUEST"]._serialized_end = 645
+    _globals["_TAKEPHOTORESPONSE"]._serialized_start = 647
+    _globals["_TAKEPHOTORESPONSE"]._serialized_end = 681
+    _globals["_RESPONDTAKEPHOTOREQUEST"]._serialized_start = 684
+    _globals["_RESPONDTAKEPHOTOREQUEST"]._serialized_end = 841
+    _globals["_RESPONDTAKEPHOTORESPONSE"]._serialized_start = 843
+    _globals["_RESPONDTAKEPHOTORESPONSE"]._serialized_end = 945
+    _globals["_SUBSCRIBESTARTVIDEOREQUEST"]._serialized_start = 947
+    _globals["_SUBSCRIBESTARTVIDEOREQUEST"]._serialized_end = 975
+    _globals["_STARTVIDEORESPONSE"]._serialized_start = 977
+    _globals["_STARTVIDEORESPONSE"]._serialized_end = 1016
+    _globals["_RESPONDSTARTVIDEOREQUEST"]._serialized_start = 1018
+    _globals["_RESPONDSTARTVIDEOREQUEST"]._serialized_end = 1116
+    _globals["_RESPONDSTARTVIDEORESPONSE"]._serialized_start = 1118
+    _globals["_RESPONDSTARTVIDEORESPONSE"]._serialized_end = 1221
+    _globals["_SUBSCRIBESTOPVIDEOREQUEST"]._serialized_start = 1223
+    _globals["_SUBSCRIBESTOPVIDEOREQUEST"]._serialized_end = 1250
+    _globals["_STOPVIDEORESPONSE"]._serialized_start = 1252
+    _globals["_STOPVIDEORESPONSE"]._serialized_end = 1290
+    _globals["_RESPONDSTOPVIDEOREQUEST"]._serialized_start = 1292
+    _globals["_RESPONDSTOPVIDEOREQUEST"]._serialized_end = 1388
+    _globals["_RESPONDSTOPVIDEORESPONSE"]._serialized_start = 1390
+    _globals["_RESPONDSTOPVIDEORESPONSE"]._serialized_end = 1492
+    _globals["_SUBSCRIBESTARTVIDEOSTREAMINGREQUEST"]._serialized_start = 1494
+    _globals["_SUBSCRIBESTARTVIDEOSTREAMINGREQUEST"]._serialized_end = 1531
+    _globals["_STARTVIDEOSTREAMINGRESPONSE"]._serialized_start = 1533
+    _globals["_STARTVIDEOSTREAMINGRESPONSE"]._serialized_end = 1581
+    _globals["_RESPONDSTARTVIDEOSTREAMINGREQUEST"]._serialized_start = 1583
+    _globals["_RESPONDSTARTVIDEOSTREAMINGREQUEST"]._serialized_end = 1700
+    _globals["_RESPONDSTARTVIDEOSTREAMINGRESPONSE"]._serialized_start = 1702
+    _globals["_RESPONDSTARTVIDEOSTREAMINGRESPONSE"]._serialized_end = 1814
+    _globals["_SUBSCRIBESTOPVIDEOSTREAMINGREQUEST"]._serialized_start = 1816
+    _globals["_SUBSCRIBESTOPVIDEOSTREAMINGREQUEST"]._serialized_end = 1852
+    _globals["_STOPVIDEOSTREAMINGRESPONSE"]._serialized_start = 1854
+    _globals["_STOPVIDEOSTREAMINGRESPONSE"]._serialized_end = 1901
+    _globals["_RESPONDSTOPVIDEOSTREAMINGREQUEST"]._serialized_start = 1903
+    _globals["_RESPONDSTOPVIDEOSTREAMINGREQUEST"]._serialized_end = 2018
+    _globals["_RESPONDSTOPVIDEOSTREAMINGRESPONSE"]._serialized_start = 2020
+    _globals["_RESPONDSTOPVIDEOSTREAMINGRESPONSE"]._serialized_end = 2131
+    _globals["_SUBSCRIBESETMODEREQUEST"]._serialized_start = 2133
+    _globals["_SUBSCRIBESETMODEREQUEST"]._serialized_end = 2158
+    _globals["_SETMODERESPONSE"]._serialized_start = 2160
+    _globals["_SETMODERESPONSE"]._serialized_end = 2223
+    _globals["_RESPONDSETMODEREQUEST"]._serialized_start = 2225
+    _globals["_RESPONDSETMODEREQUEST"]._serialized_end = 2317
+    _globals["_RESPONDSETMODERESPONSE"]._serialized_start = 2319
+    _globals["_RESPONDSETMODERESPONSE"]._serialized_end = 2419
+    _globals["_SUBSCRIBESTORAGEINFORMATIONREQUEST"]._serialized_start = 2421
+    _globals["_SUBSCRIBESTORAGEINFORMATIONREQUEST"]._serialized_end = 2457
+    _globals["_STORAGEINFORMATIONRESPONSE"]._serialized_start = 2459
+    _globals["_STORAGEINFORMATIONRESPONSE"]._serialized_end = 2507
+    _globals["_RESPONDSTORAGEINFORMATIONREQUEST"]._serialized_start = 2510
+    _globals["_RESPONDSTORAGEINFORMATIONREQUEST"]._serialized_end = 2699
+    _globals["_RESPONDSTORAGEINFORMATIONRESPONSE"]._serialized_start = 2701
+    _globals["_RESPONDSTORAGEINFORMATIONRESPONSE"]._serialized_end = 2812
+    _globals["_SUBSCRIBECAPTURESTATUSREQUEST"]._serialized_start = 2814
+    _globals["_SUBSCRIBECAPTURESTATUSREQUEST"]._serialized_end = 2845
+    _globals["_CAPTURESTATUSRESPONSE"]._serialized_start = 2847
+    _globals["_CAPTURESTATUSRESPONSE"]._serialized_end = 2888
+    _globals["_RESPONDCAPTURESTATUSREQUEST"]._serialized_start = 2891
+    _globals["_RESPONDCAPTURESTATUSREQUEST"]._serialized_end = 3060
+    _globals["_RESPONDCAPTURESTATUSRESPONSE"]._serialized_start = 3062
+    _globals["_RESPONDCAPTURESTATUSRESPONSE"]._serialized_end = 3168
+    _globals["_SUBSCRIBEFORMATSTORAGEREQUEST"]._serialized_start = 3170
+    _globals["_SUBSCRIBEFORMATSTORAGEREQUEST"]._serialized_end = 3201
+    _globals["_FORMATSTORAGERESPONSE"]._serialized_start = 3203
+    _globals["_FORMATSTORAGERESPONSE"]._serialized_end = 3246
+    _globals["_RESPONDFORMATSTORAGEREQUEST"]._serialized_start = 3248
+    _globals["_RESPONDFORMATSTORAGEREQUEST"]._serialized_end = 3352
+    _globals["_RESPONDFORMATSTORAGERESPONSE"]._serialized_start = 3354
+    _globals["_RESPONDFORMATSTORAGERESPONSE"]._serialized_end = 3460
+    _globals["_SUBSCRIBERESETSETTINGSREQUEST"]._serialized_start = 3462
+    _globals["_SUBSCRIBERESETSETTINGSREQUEST"]._serialized_end = 3493
+    _globals["_RESETSETTINGSRESPONSE"]._serialized_start = 3495
+    _globals["_RESETSETTINGSRESPONSE"]._serialized_end = 3536
+    _globals["_RESPONDRESETSETTINGSREQUEST"]._serialized_start = 3538
+    _globals["_RESPONDRESETSETTINGSREQUEST"]._serialized_end = 3642
+    _globals["_RESPONDRESETSETTINGSRESPONSE"]._serialized_start = 3644
+    _globals["_RESPONDRESETSETTINGSRESPONSE"]._serialized_end = 3750
+    _globals["_SUBSCRIBEZOOMINSTARTREQUEST"]._serialized_start = 3752
+    _globals["_SUBSCRIBEZOOMINSTARTREQUEST"]._serialized_end = 3781
+    _globals["_ZOOMINSTARTRESPONSE"]._serialized_start = 3783
+    _globals["_ZOOMINSTARTRESPONSE"]._serialized_end = 3822
+    _globals["_RESPONDZOOMINSTARTREQUEST"]._serialized_start = 3824
+    _globals["_RESPONDZOOMINSTARTREQUEST"]._serialized_end = 3925
+    _globals["_RESPONDZOOMINSTARTRESPONSE"]._serialized_start = 3927
+    _globals["_RESPONDZOOMINSTARTRESPONSE"]._serialized_end = 4031
+    _globals["_SUBSCRIBEZOOMOUTSTARTREQUEST"]._serialized_start = 4033
+    _globals["_SUBSCRIBEZOOMOUTSTARTREQUEST"]._serialized_end = 4063
+    _globals["_ZOOMOUTSTARTRESPONSE"]._serialized_start = 4065
+    _globals["_ZOOMOUTSTARTRESPONSE"]._serialized_end = 4105
+    _globals["_RESPONDZOOMOUTSTARTREQUEST"]._serialized_start = 4107
+    _globals["_RESPONDZOOMOUTSTARTREQUEST"]._serialized_end = 4210
+    _globals["_RESPONDZOOMOUTSTARTRESPONSE"]._serialized_start = 4212
+    _globals["_RESPONDZOOMOUTSTARTRESPONSE"]._serialized_end = 4317
+    _globals["_SUBSCRIBEZOOMSTOPREQUEST"]._serialized_start = 4319
+    _globals["_SUBSCRIBEZOOMSTOPREQUEST"]._serialized_end = 4345
+    _globals["_ZOOMSTOPRESPONSE"]._serialized_start = 4347
+    _globals["_ZOOMSTOPRESPONSE"]._serialized_end = 4383
+    _globals["_RESPONDZOOMSTOPREQUEST"]._serialized_start = 4385
+    _globals["_RESPONDZOOMSTOPREQUEST"]._serialized_end = 4479
+    _globals["_RESPONDZOOMSTOPRESPONSE"]._serialized_start = 4481
+    _globals["_RESPONDZOOMSTOPRESPONSE"]._serialized_end = 4582
+    _globals["_SUBSCRIBEZOOMRANGEREQUEST"]._serialized_start = 4584
+    _globals["_SUBSCRIBEZOOMRANGEREQUEST"]._serialized_end = 4611
+    _globals["_ZOOMRANGERESPONSE"]._serialized_start = 4613
+    _globals["_ZOOMRANGERESPONSE"]._serialized_end = 4648
+    _globals["_RESPONDZOOMRANGEREQUEST"]._serialized_start = 4650
+    _globals["_RESPONDZOOMRANGEREQUEST"]._serialized_end = 4746
+    _globals["_RESPONDZOOMRANGERESPONSE"]._serialized_start = 4748
+    _globals["_RESPONDZOOMRANGERESPONSE"]._serialized_end = 4850
+    _globals["_INFORMATION"]._serialized_start = 4853
+    _globals["_INFORMATION"]._serialized_end = 5249
+    _globals["_VIDEOSTREAMING"]._serialized_start = 5251
+    _globals["_VIDEOSTREAMING"]._serialized_end = 5310
+    _globals["_POSITION"]._serialized_start = 5312
+    _globals["_POSITION"]._serialized_end = 5425
+    _globals["_QUATERNION"]._serialized_start = 5427
+    _globals["_QUATERNION"]._serialized_end = 5483
+    _globals["_CAPTUREINFO"]._serialized_start = 5486
+    _globals["_CAPTUREINFO"]._serialized_end = 5694
+    _globals["_CAMERASERVERRESULT"]._serialized_start = 5697
+    _globals["_CAMERASERVERRESULT"]._serialized_end = 6004
+    _globals["_CAMERASERVERRESULT_RESULT"]._serialized_start = 5809
+    _globals["_CAMERASERVERRESULT_RESULT"]._serialized_end = 6004
+    _globals["_STORAGEINFORMATION"]._serialized_start = 6007
+    _globals["_STORAGEINFORMATION"]._serialized_end = 6659
+    _globals["_STORAGEINFORMATION_STORAGESTATUS"]._serialized_start = 6351
+    _globals["_STORAGEINFORMATION_STORAGESTATUS"]._serialized_end = 6496
+    _globals["_STORAGEINFORMATION_STORAGETYPE"]._serialized_start = 6499
+    _globals["_STORAGEINFORMATION_STORAGETYPE"]._serialized_end = 6659
+    _globals["_CAPTURESTATUS"]._serialized_start = 6662
+    _globals["_CAPTURESTATUS"]._serialized_end = 7156
+    _globals["_CAPTURESTATUS_IMAGESTATUS"]._serialized_start = 6935
+    _globals["_CAPTURESTATUS_IMAGESTATUS"]._serialized_end = 7080
+    _globals["_CAPTURESTATUS_VIDEOSTATUS"]._serialized_start = 7082
+    _globals["_CAPTURESTATUS_VIDEOSTATUS"]._serialized_end = 7156
+    _globals["_SETTRACKINGPOINTSTATUSREQUEST"]._serialized_start = 7158
+    _globals["_SETTRACKINGPOINTSTATUSREQUEST"]._serialized_end = 7250
+    _globals["_SETTRACKINGPOINTSTATUSRESPONSE"]._serialized_start = 7252
+    _globals["_SETTRACKINGPOINTSTATUSRESPONSE"]._serialized_end = 7284
+    _globals["_SETTRACKINGRECTANGLESTATUSREQUEST"]._serialized_start = 7286
+    _globals["_SETTRACKINGRECTANGLESTATUSREQUEST"]._serialized_end = 7390
+    _globals["_SETTRACKINGRECTANGLESTATUSRESPONSE"]._serialized_start = 7392
+    _globals["_SETTRACKINGRECTANGLESTATUSRESPONSE"]._serialized_end = 7428
+    _globals["_SETTRACKINGOFFSTATUSREQUEST"]._serialized_start = 7430
+    _globals["_SETTRACKINGOFFSTATUSREQUEST"]._serialized_end = 7459
+    _globals["_SETTRACKINGOFFSTATUSRESPONSE"]._serialized_start = 7461
+    _globals["_SETTRACKINGOFFSTATUSRESPONSE"]._serialized_end = 7491
+    _globals["_SUBSCRIBETRACKINGPOINTCOMMANDREQUEST"]._serialized_start = 7493
+    _globals["_SUBSCRIBETRACKINGPOINTCOMMANDREQUEST"]._serialized_end = 7531
+    _globals["_TRACKINGPOINTCOMMANDRESPONSE"]._serialized_start = 7533
+    _globals["_TRACKINGPOINTCOMMANDRESPONSE"]._serialized_end = 7622
+    _globals["_SUBSCRIBETRACKINGRECTANGLECOMMANDREQUEST"]._serialized_start = 7624
+    _globals["_SUBSCRIBETRACKINGRECTANGLECOMMANDREQUEST"]._serialized_end = 7666
+    _globals["_TRACKINGRECTANGLECOMMANDRESPONSE"]._serialized_start = 7668
+    _globals["_TRACKINGRECTANGLECOMMANDRESPONSE"]._serialized_end = 7769
+    _globals["_SUBSCRIBETRACKINGOFFCOMMANDREQUEST"]._serialized_start = 7771
+    _globals["_SUBSCRIBETRACKINGOFFCOMMANDREQUEST"]._serialized_end = 7807
+    _globals["_TRACKINGOFFCOMMANDRESPONSE"]._serialized_start = 7809
+    _globals["_TRACKINGOFFCOMMANDRESPONSE"]._serialized_end = 7852
+    _globals["_RESPONDTRACKINGPOINTCOMMANDREQUEST"]._serialized_start = 7854
+    _globals["_RESPONDTRACKINGPOINTCOMMANDREQUEST"]._serialized_end = 7961
+    _globals["_RESPONDTRACKINGPOINTCOMMANDRESPONSE"]._serialized_start = 7963
+    _globals["_RESPONDTRACKINGPOINTCOMMANDRESPONSE"]._serialized_end = 8076
+    _globals["_RESPONDTRACKINGRECTANGLECOMMANDREQUEST"]._serialized_start = 8078
+    _globals["_RESPONDTRACKINGRECTANGLECOMMANDREQUEST"]._serialized_end = 8189
+    _globals["_RESPONDTRACKINGRECTANGLECOMMANDRESPONSE"]._serialized_start = 8191
+    _globals["_RESPONDTRACKINGRECTANGLECOMMANDRESPONSE"]._serialized_end = 8308
+    _globals["_RESPONDTRACKINGOFFCOMMANDREQUEST"]._serialized_start = 8310
+    _globals["_RESPONDTRACKINGOFFCOMMANDREQUEST"]._serialized_end = 8415
+    _globals["_RESPONDTRACKINGOFFCOMMANDRESPONSE"]._serialized_start = 8417
+    _globals["_RESPONDTRACKINGOFFCOMMANDRESPONSE"]._serialized_end = 8528
+    _globals["_TRACKPOINT"]._serialized_start = 8530
+    _globals["_TRACKPOINT"]._serialized_end = 8592
+    _globals["_TRACKRECTANGLE"]._serialized_start = 8595
+    _globals["_TRACKRECTANGLE"]._serialized_end = 8727
+    _globals["_CAMERASERVERSERVICE"]._serialized_start = 8913
+    _globals["_CAMERASERVERSERVICE"]._serialized_end = 14473
 # @@protoc_insertion_point(module_scope)

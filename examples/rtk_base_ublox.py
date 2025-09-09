@@ -32,9 +32,10 @@ class UBXParser:
         full_data += pkt + checksum
 
         if self.debug:
-            print("UBX class id {} and message id {}".format(
-                ord(ubx_class_id),
-                ord(ubx_message_id))
+            print(
+                "UBX class id {} and message id {}".format(
+                    ord(ubx_class_id), ord(ubx_message_id)
+                )
             )
 
         # The ubx message in full_data could be parsed with pyubx2.UBXReader
@@ -44,7 +45,7 @@ class UBXParser:
 class RTCMParser:
     def __init__(self):
         self.debug = True
-        self.crc_init = 0x01864cfb
+        self.crc_init = 0x01864CFB
         self._init_crc_table()
 
     def _init_crc_table(self):
@@ -109,7 +110,6 @@ async def print_gps_info(drone):
 
 
 async def send_rtcm(drone):
-
     # Connect to a ublox RTK base station via USB.
     # Make sure that the baudrate matches the setting on the UBlox chip.
     # If you use UART instead, you should set the correct serial device.
@@ -139,12 +139,12 @@ async def send_rtcm(drone):
                 # Convert the rtcm data to a base64,
                 # In MAVSDK v3 the rtcm data is expected
                 # to be base64 encoded string .
-                base64_rtcm_data = base64.b64encode(
-                    rtcm_correction_data).decode('utf-8')
+                base64_rtcm_data = base64.b64encode(rtcm_correction_data).decode(
+                    "utf-8"
+                )
 
                 # Send RTCM
-                await drone.rtk.send_rtcm_data(
-                    rtk.RtcmData(base64_rtcm_data))
+                await drone.rtk.send_rtcm_data(rtk.RtcmData(base64_rtcm_data))
 
             elif ord(preamble) == PREAMBLE_UBX:
                 ubx = ubx_parser.read_packet(ublox, preamble)
@@ -173,6 +173,7 @@ async def send_rtcm(drone):
 
         except Exception as e:
             print(f"Exception: {e}")
+
 
 if __name__ == "__main__":
     # Start the main function

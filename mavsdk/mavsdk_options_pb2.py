@@ -4,18 +4,15 @@
 # source: mavsdk_options.proto
 # Protobuf Python Version: 5.29.0
 """Generated protocol buffer code."""
+
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
-    _runtime_version.Domain.PUBLIC,
-    5,
-    29,
-    0,
-    '',
-    'mavsdk_options.proto'
+    _runtime_version.Domain.PUBLIC, 5, 29, 0, "", "mavsdk_options.proto"
 )
 # @@protoc_insertion_point(imports)
 
@@ -25,14 +22,16 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import descriptor_pb2 as google_dot_protobuf_dot_descriptor__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14mavsdk_options.proto\x12\x0emavsdk.options\x1a google/protobuf/descriptor.proto**\n\tAsyncType\x12\t\n\x05\x41SYNC\x10\x00\x12\x08\n\x04SYNC\x10\x01\x12\x08\n\x04\x42OTH\x10\x02:6\n\rdefault_value\x12\x1d.google.protobuf.FieldOptions\x18\xd0\x86\x03 \x01(\t:0\n\x07\x65psilon\x12\x1d.google.protobuf.FieldOptions\x18\xd1\x86\x03 \x01(\x01:O\n\nasync_type\x12\x1e.google.protobuf.MethodOptions\x18\xd0\x86\x03 \x01(\x0e\x32\x19.mavsdk.options.AsyncType:3\n\tis_finite\x12\x1e.google.protobuf.MethodOptions\x18\xd1\x86\x03 \x01(\x08\x42\x10\n\x0eoptions.mavsdkb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b"\n\x14mavsdk_options.proto\x12\x0emavsdk.options\x1a google/protobuf/descriptor.proto**\n\tAsyncType\x12\t\n\x05\x41SYNC\x10\x00\x12\x08\n\x04SYNC\x10\x01\x12\x08\n\x04\x42OTH\x10\x02:6\n\rdefault_value\x12\x1d.google.protobuf.FieldOptions\x18\xd0\x86\x03 \x01(\t:0\n\x07\x65psilon\x12\x1d.google.protobuf.FieldOptions\x18\xd1\x86\x03 \x01(\x01:O\n\nasync_type\x12\x1e.google.protobuf.MethodOptions\x18\xd0\x86\x03 \x01(\x0e\x32\x19.mavsdk.options.AsyncType:3\n\tis_finite\x12\x1e.google.protobuf.MethodOptions\x18\xd1\x86\x03 \x01(\x08\x42\x10\n\x0eoptions.mavsdkb\x06proto3"
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'mavsdk_options_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, "mavsdk_options_pb2", _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n\016options.mavsdk'
-  _globals['_ASYNCTYPE']._serialized_start=74
-  _globals['_ASYNCTYPE']._serialized_end=116
+    _globals["DESCRIPTOR"]._loaded_options = None
+    _globals["DESCRIPTOR"]._serialized_options = b"\n\016options.mavsdk"
+    _globals["_ASYNCTYPE"]._serialized_start = 74
+    _globals["_ASYNCTYPE"]._serialized_end = 116
 # @@protoc_insertion_point(module_scope)

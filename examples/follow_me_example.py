@@ -4,7 +4,7 @@
 
 import asyncio
 from mavsdk import System
-from mavsdk.follow_me import (Config, FollowMeError, TargetLocation)
+from mavsdk.follow_me import Config, FollowMeError, TargetLocation
 
 
 follow_height = 8.0  # in meters
@@ -18,9 +18,11 @@ follow_angle_deg = 0
 
 # This list contains fake location coordinates
 # (These coordinates are obtained from mission.py example)
-fake_location = [[47.398039859999997, 8.5455725400000002],
-                 [47.398036222362471, 8.5450146439425509],
-                 [47.397825620791885, 8.5450092830163271]]
+fake_location = [
+    [47.398039859999997, 8.5455725400000002],
+    [47.398036222362471, 8.5450146439425509],
+    [47.397825620791885, 8.5450092830163271],
+]
 
 
 async def run():
@@ -45,8 +47,14 @@ async def run():
 
     # Follow me Mode requires some configuration to be done before starting
     # the mode
-    conf = Config(follow_height, follow_distance, responsiveness,
-                  altitude_mode, max_follow_vel, follow_angle_deg)
+    conf = Config(
+        follow_height,
+        follow_distance,
+        responsiveness,
+        altitude_mode,
+        max_follow_vel,
+        follow_angle_deg,
+    )
     await drone.follow_me.set_config(conf)
 
     print("-- Taking Off")
@@ -78,6 +86,7 @@ async def run():
 
     print("-- Landing")
     await drone.action.land()
+
 
 if __name__ == "__main__":
     # Run the asyncio loop

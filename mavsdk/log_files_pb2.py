@@ -4,18 +4,15 @@
 # source: log_files/log_files.proto
 # Protobuf Python Version: 5.29.0
 """Generated protocol buffer code."""
+
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
-    _runtime_version.Domain.PUBLIC,
-    5,
-    29,
-    0,
-    '',
-    'log_files/log_files.proto'
+    _runtime_version.Domain.PUBLIC, 5, 29, 0, "", "log_files/log_files.proto"
 )
 # @@protoc_insertion_point(imports)
 
@@ -25,40 +22,54 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19log_files/log_files.proto\x12\x14mavsdk.rpc.log_files\x1a\x14mavsdk_options.proto\"\x13\n\x11GetEntriesRequest\"\x82\x01\n\x12GetEntriesResponse\x12>\n\x10log_files_result\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.log_files.LogFilesResult\x12,\n\x07\x65ntries\x18\x02 \x03(\x0b\x32\x1b.mavsdk.rpc.log_files.Entry\"[\n\x1fSubscribeDownloadLogFileRequest\x12*\n\x05\x65ntry\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.log_files.Entry\x12\x0c\n\x04path\x18\x02 \x01(\t\"\x8f\x01\n\x17\x44ownloadLogFileResponse\x12>\n\x10log_files_result\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.log_files.LogFilesResult\x12\x34\n\x08progress\x18\x02 \x01(\x0b\x32\".mavsdk.rpc.log_files.ProgressData\"\x19\n\x17\x45raseAllLogFilesRequest\"Z\n\x18\x45raseAllLogFilesResponse\x12>\n\x10log_files_result\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.log_files.LogFilesResult\")\n\x0cProgressData\x12\x19\n\x08progress\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\"5\n\x05\x45ntry\x12\n\n\x02id\x18\x01 \x01(\r\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12\x12\n\nsize_bytes\x18\x03 \x01(\r\"\xa1\x02\n\x0eLogFilesResult\x12;\n\x06result\x18\x01 \x01(\x0e\x32+.mavsdk.rpc.log_files.LogFilesResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xbd\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x0f\n\x0bRESULT_NEXT\x10\x02\x12\x16\n\x12RESULT_NO_LOGFILES\x10\x03\x12\x12\n\x0eRESULT_TIMEOUT\x10\x04\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x05\x12\x1b\n\x17RESULT_FILE_OPEN_FAILED\x10\x06\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x07\x32\xfc\x02\n\x0fLogFilesService\x12\x61\n\nGetEntries\x12\'.mavsdk.rpc.log_files.GetEntriesRequest\x1a(.mavsdk.rpc.log_files.GetEntriesResponse\"\x00\x12\x8c\x01\n\x18SubscribeDownloadLogFile\x12\x35.mavsdk.rpc.log_files.SubscribeDownloadLogFileRequest\x1a-.mavsdk.rpc.log_files.DownloadLogFileResponse\"\x08\x80\xb5\x18\x00\x88\xb5\x18\x01\x30\x01\x12w\n\x10\x45raseAllLogFiles\x12-.mavsdk.rpc.log_files.EraseAllLogFilesRequest\x1a..mavsdk.rpc.log_files.EraseAllLogFilesResponse\"\x04\x80\xb5\x18\x01\x42$\n\x13io.mavsdk.log_filesB\rLogFilesProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n\x19log_files/log_files.proto\x12\x14mavsdk.rpc.log_files\x1a\x14mavsdk_options.proto"\x13\n\x11GetEntriesRequest"\x82\x01\n\x12GetEntriesResponse\x12>\n\x10log_files_result\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.log_files.LogFilesResult\x12,\n\x07\x65ntries\x18\x02 \x03(\x0b\x32\x1b.mavsdk.rpc.log_files.Entry"[\n\x1fSubscribeDownloadLogFileRequest\x12*\n\x05\x65ntry\x18\x01 \x01(\x0b\x32\x1b.mavsdk.rpc.log_files.Entry\x12\x0c\n\x04path\x18\x02 \x01(\t"\x8f\x01\n\x17\x44ownloadLogFileResponse\x12>\n\x10log_files_result\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.log_files.LogFilesResult\x12\x34\n\x08progress\x18\x02 \x01(\x0b\x32".mavsdk.rpc.log_files.ProgressData"\x19\n\x17\x45raseAllLogFilesRequest"Z\n\x18\x45raseAllLogFilesResponse\x12>\n\x10log_files_result\x18\x01 \x01(\x0b\x32$.mavsdk.rpc.log_files.LogFilesResult")\n\x0cProgressData\x12\x19\n\x08progress\x18\x01 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN"5\n\x05\x45ntry\x12\n\n\x02id\x18\x01 \x01(\r\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12\x12\n\nsize_bytes\x18\x03 \x01(\r"\xa1\x02\n\x0eLogFilesResult\x12;\n\x06result\x18\x01 \x01(\x0e\x32+.mavsdk.rpc.log_files.LogFilesResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t"\xbd\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x0f\n\x0bRESULT_NEXT\x10\x02\x12\x16\n\x12RESULT_NO_LOGFILES\x10\x03\x12\x12\n\x0eRESULT_TIMEOUT\x10\x04\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x05\x12\x1b\n\x17RESULT_FILE_OPEN_FAILED\x10\x06\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x07\x32\xfc\x02\n\x0fLogFilesService\x12\x61\n\nGetEntries\x12\'.mavsdk.rpc.log_files.GetEntriesRequest\x1a(.mavsdk.rpc.log_files.GetEntriesResponse"\x00\x12\x8c\x01\n\x18SubscribeDownloadLogFile\x12\x35.mavsdk.rpc.log_files.SubscribeDownloadLogFileRequest\x1a-.mavsdk.rpc.log_files.DownloadLogFileResponse"\x08\x80\xb5\x18\x00\x88\xb5\x18\x01\x30\x01\x12w\n\x10\x45raseAllLogFiles\x12-.mavsdk.rpc.log_files.EraseAllLogFilesRequest\x1a..mavsdk.rpc.log_files.EraseAllLogFilesResponse"\x04\x80\xb5\x18\x01\x42$\n\x13io.mavsdk.log_filesB\rLogFilesProtob\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'log_files.log_files_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, "log_files.log_files_pb2", _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n\023io.mavsdk.log_filesB\rLogFilesProto'
-  _globals['_PROGRESSDATA'].fields_by_name['progress']._loaded_options = None
-  _globals['_PROGRESSDATA'].fields_by_name['progress']._serialized_options = b'\202\265\030\003NaN'
-  _globals['_LOGFILESSERVICE'].methods_by_name['SubscribeDownloadLogFile']._loaded_options = None
-  _globals['_LOGFILESSERVICE'].methods_by_name['SubscribeDownloadLogFile']._serialized_options = b'\200\265\030\000\210\265\030\001'
-  _globals['_LOGFILESSERVICE'].methods_by_name['EraseAllLogFiles']._loaded_options = None
-  _globals['_LOGFILESSERVICE'].methods_by_name['EraseAllLogFiles']._serialized_options = b'\200\265\030\001'
-  _globals['_GETENTRIESREQUEST']._serialized_start=73
-  _globals['_GETENTRIESREQUEST']._serialized_end=92
-  _globals['_GETENTRIESRESPONSE']._serialized_start=95
-  _globals['_GETENTRIESRESPONSE']._serialized_end=225
-  _globals['_SUBSCRIBEDOWNLOADLOGFILEREQUEST']._serialized_start=227
-  _globals['_SUBSCRIBEDOWNLOADLOGFILEREQUEST']._serialized_end=318
-  _globals['_DOWNLOADLOGFILERESPONSE']._serialized_start=321
-  _globals['_DOWNLOADLOGFILERESPONSE']._serialized_end=464
-  _globals['_ERASEALLLOGFILESREQUEST']._serialized_start=466
-  _globals['_ERASEALLLOGFILESREQUEST']._serialized_end=491
-  _globals['_ERASEALLLOGFILESRESPONSE']._serialized_start=493
-  _globals['_ERASEALLLOGFILESRESPONSE']._serialized_end=583
-  _globals['_PROGRESSDATA']._serialized_start=585
-  _globals['_PROGRESSDATA']._serialized_end=626
-  _globals['_ENTRY']._serialized_start=628
-  _globals['_ENTRY']._serialized_end=681
-  _globals['_LOGFILESRESULT']._serialized_start=684
-  _globals['_LOGFILESRESULT']._serialized_end=973
-  _globals['_LOGFILESRESULT_RESULT']._serialized_start=784
-  _globals['_LOGFILESRESULT_RESULT']._serialized_end=973
-  _globals['_LOGFILESSERVICE']._serialized_start=976
-  _globals['_LOGFILESSERVICE']._serialized_end=1356
+    _globals["DESCRIPTOR"]._loaded_options = None
+    _globals[
+        "DESCRIPTOR"
+    ]._serialized_options = b"\n\023io.mavsdk.log_filesB\rLogFilesProto"
+    _globals["_PROGRESSDATA"].fields_by_name["progress"]._loaded_options = None
+    _globals["_PROGRESSDATA"].fields_by_name[
+        "progress"
+    ]._serialized_options = b"\202\265\030\003NaN"
+    _globals["_LOGFILESSERVICE"].methods_by_name[
+        "SubscribeDownloadLogFile"
+    ]._loaded_options = None
+    _globals["_LOGFILESSERVICE"].methods_by_name[
+        "SubscribeDownloadLogFile"
+    ]._serialized_options = b"\200\265\030\000\210\265\030\001"
+    _globals["_LOGFILESSERVICE"].methods_by_name[
+        "EraseAllLogFiles"
+    ]._loaded_options = None
+    _globals["_LOGFILESSERVICE"].methods_by_name[
+        "EraseAllLogFiles"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_GETENTRIESREQUEST"]._serialized_start = 73
+    _globals["_GETENTRIESREQUEST"]._serialized_end = 92
+    _globals["_GETENTRIESRESPONSE"]._serialized_start = 95
+    _globals["_GETENTRIESRESPONSE"]._serialized_end = 225
+    _globals["_SUBSCRIBEDOWNLOADLOGFILEREQUEST"]._serialized_start = 227
+    _globals["_SUBSCRIBEDOWNLOADLOGFILEREQUEST"]._serialized_end = 318
+    _globals["_DOWNLOADLOGFILERESPONSE"]._serialized_start = 321
+    _globals["_DOWNLOADLOGFILERESPONSE"]._serialized_end = 464
+    _globals["_ERASEALLLOGFILESREQUEST"]._serialized_start = 466
+    _globals["_ERASEALLLOGFILESREQUEST"]._serialized_end = 491
+    _globals["_ERASEALLLOGFILESRESPONSE"]._serialized_start = 493
+    _globals["_ERASEALLLOGFILESRESPONSE"]._serialized_end = 583
+    _globals["_PROGRESSDATA"]._serialized_start = 585
+    _globals["_PROGRESSDATA"]._serialized_end = 626
+    _globals["_ENTRY"]._serialized_start = 628
+    _globals["_ENTRY"]._serialized_end = 681
+    _globals["_LOGFILESRESULT"]._serialized_start = 684
+    _globals["_LOGFILESRESULT"]._serialized_end = 973
+    _globals["_LOGFILESRESULT_RESULT"]._serialized_start = 784
+    _globals["_LOGFILESRESULT_RESULT"]._serialized_end = 973
+    _globals["_LOGFILESSERVICE"]._serialized_start = 976
+    _globals["_LOGFILESSERVICE"]._serialized_end = 1356
 # @@protoc_insertion_point(module_scope)

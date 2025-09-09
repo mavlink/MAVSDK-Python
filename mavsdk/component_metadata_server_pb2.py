@@ -4,18 +4,20 @@
 # source: component_metadata_server/component_metadata_server.proto
 # Protobuf Python Version: 5.29.0
 """Generated protocol buffer code."""
+
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
     _runtime_version.Domain.PUBLIC,
     5,
     29,
     0,
-    '',
-    'component_metadata_server/component_metadata_server.proto'
+    "",
+    "component_metadata_server/component_metadata_server.proto",
 )
 # @@protoc_insertion_point(imports)
 
@@ -25,24 +27,36 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n9component_metadata_server/component_metadata_server.proto\x12$mavsdk.rpc.component_metadata_server\x1a\x14mavsdk_options.proto\"V\n\x12SetMetadataRequest\x12@\n\x08metadata\x18\x01 \x03(\x0b\x32..mavsdk.rpc.component_metadata_server.Metadata\"\x15\n\x13SetMetadataResponse\"c\n\x08Metadata\x12@\n\x04type\x18\x01 \x01(\x0e\x32\x32.mavsdk.rpc.component_metadata_server.MetadataType\x12\x15\n\rjson_metadata\x18\x02 \x01(\t*b\n\x0cMetadataType\x12\x1b\n\x17METADATA_TYPE_PARAMETER\x10\x00\x12\x18\n\x14METADATA_TYPE_EVENTS\x10\x01\x12\x1b\n\x17METADATA_TYPE_ACTUATORS\x10\x02\x32\xab\x01\n\x1e\x43omponentMetadataServerService\x12\x88\x01\n\x0bSetMetadata\x12\x38.mavsdk.rpc.component_metadata_server.SetMetadataRequest\x1a\x39.mavsdk.rpc.component_metadata_server.SetMetadataResponse\"\x04\x80\xb5\x18\x01\x42\x43\n#io.mavsdk.component_metadata_serverB\x1c\x43omponentMetadataServerProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n9component_metadata_server/component_metadata_server.proto\x12$mavsdk.rpc.component_metadata_server\x1a\x14mavsdk_options.proto"V\n\x12SetMetadataRequest\x12@\n\x08metadata\x18\x01 \x03(\x0b\x32..mavsdk.rpc.component_metadata_server.Metadata"\x15\n\x13SetMetadataResponse"c\n\x08Metadata\x12@\n\x04type\x18\x01 \x01(\x0e\x32\x32.mavsdk.rpc.component_metadata_server.MetadataType\x12\x15\n\rjson_metadata\x18\x02 \x01(\t*b\n\x0cMetadataType\x12\x1b\n\x17METADATA_TYPE_PARAMETER\x10\x00\x12\x18\n\x14METADATA_TYPE_EVENTS\x10\x01\x12\x1b\n\x17METADATA_TYPE_ACTUATORS\x10\x02\x32\xab\x01\n\x1e\x43omponentMetadataServerService\x12\x88\x01\n\x0bSetMetadata\x12\x38.mavsdk.rpc.component_metadata_server.SetMetadataRequest\x1a\x39.mavsdk.rpc.component_metadata_server.SetMetadataResponse"\x04\x80\xb5\x18\x01\x42\x43\n#io.mavsdk.component_metadata_serverB\x1c\x43omponentMetadataServerProtob\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'component_metadata_server.component_metadata_server_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(
+    DESCRIPTOR, "component_metadata_server.component_metadata_server_pb2", _globals
+)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n#io.mavsdk.component_metadata_serverB\034ComponentMetadataServerProto'
-  _globals['_COMPONENTMETADATASERVERSERVICE'].methods_by_name['SetMetadata']._loaded_options = None
-  _globals['_COMPONENTMETADATASERVERSERVICE'].methods_by_name['SetMetadata']._serialized_options = b'\200\265\030\001'
-  _globals['_METADATATYPE']._serialized_start=333
-  _globals['_METADATATYPE']._serialized_end=431
-  _globals['_SETMETADATAREQUEST']._serialized_start=121
-  _globals['_SETMETADATAREQUEST']._serialized_end=207
-  _globals['_SETMETADATARESPONSE']._serialized_start=209
-  _globals['_SETMETADATARESPONSE']._serialized_end=230
-  _globals['_METADATA']._serialized_start=232
-  _globals['_METADATA']._serialized_end=331
-  _globals['_COMPONENTMETADATASERVERSERVICE']._serialized_start=434
-  _globals['_COMPONENTMETADATASERVERSERVICE']._serialized_end=605
+    _globals["DESCRIPTOR"]._loaded_options = None
+    _globals[
+        "DESCRIPTOR"
+    ]._serialized_options = (
+        b"\n#io.mavsdk.component_metadata_serverB\034ComponentMetadataServerProto"
+    )
+    _globals["_COMPONENTMETADATASERVERSERVICE"].methods_by_name[
+        "SetMetadata"
+    ]._loaded_options = None
+    _globals["_COMPONENTMETADATASERVERSERVICE"].methods_by_name[
+        "SetMetadata"
+    ]._serialized_options = b"\200\265\030\001"
+    _globals["_METADATATYPE"]._serialized_start = 333
+    _globals["_METADATATYPE"]._serialized_end = 431
+    _globals["_SETMETADATAREQUEST"]._serialized_start = 121
+    _globals["_SETMETADATAREQUEST"]._serialized_end = 207
+    _globals["_SETMETADATARESPONSE"]._serialized_start = 209
+    _globals["_SETMETADATARESPONSE"]._serialized_end = 230
+    _globals["_METADATA"]._serialized_start = 232
+    _globals["_METADATA"]._serialized_end = 331
+    _globals["_COMPONENTMETADATASERVERSERVICE"]._serialized_start = 434
+    _globals["_COMPONENTMETADATASERVERSERVICE"]._serialized_end = 605
 # @@protoc_insertion_point(module_scope)

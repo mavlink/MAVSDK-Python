@@ -42,7 +42,6 @@ async def run():
     gimbals = await get_gimbals(drone)
 
     for gimbal in gimbals:
-
         # Start printing gimbal position updates
         print_gimbal_position_task = asyncio.create_task(
             print_gimbal_attitude(gimbal.gimbal_id, drone)
@@ -107,9 +106,7 @@ async def run():
 
         # Set the gimbal to track a region of interest (lat, lon, altitude)
         # Units are degrees and meters MSL respectively
-        print(
-            "Look at a ROI (region of interest) with gimbal ID",
-            gimbal.gimbal_id)
+        print("Look at a ROI (region of interest) with gimbal ID", gimbal.gimbal_id)
         await drone.gimbal.set_roi_location(
             gimbal.gimbal_id, 47.39743832, 8.5463316, 488
         )
@@ -133,7 +130,8 @@ async def print_gimbal_attitude(gimbal_id, drone):
         print(
             f"Gimbal ID {gimbal_id} "
             f"pitch: {attitude.euler_angle_forward.pitch_deg}, "
-            f"yaw: {attitude.euler_angle_forward.yaw_deg}")
+            f"yaw: {attitude.euler_angle_forward.yaw_deg}"
+        )
         await asyncio.sleep(0.5)
 
 

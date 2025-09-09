@@ -8,218 +8,174 @@ from enum import Enum
 
 class ListDirectoryData:
     """
-     The output of a directory list
+    The output of a directory list
 
-     Parameters
-     ----------
-     dirs : [std::string]
-          The found directories.
+    Parameters
+    ----------
+    dirs : [std::string]
+         The found directories.
 
-     files : [std::string]
-          The found files.
+    files : [std::string]
+         The found files.
 
-     """
+    """
 
-    
-
-    def __init__(
-            self,
-            dirs,
-            files):
-        """ Initializes the ListDirectoryData object """
+    def __init__(self, dirs, files):
+        """Initializes the ListDirectoryData object"""
         self.dirs = dirs
         self.files = files
 
     def __eq__(self, to_compare):
-        """ Checks if two ListDirectoryData are the same """
+        """Checks if two ListDirectoryData are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # ListDirectoryData object
-            return \
-                (self.dirs == to_compare.dirs) and \
-                (self.files == to_compare.files)
+            return (self.dirs == to_compare.dirs) and (self.files == to_compare.files)
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ ListDirectoryData in string representation """
-        struct_repr = ", ".join([
-                "dirs: " + str(self.dirs),
-                "files: " + str(self.files)
-                ])
+        """ListDirectoryData in string representation"""
+        struct_repr = ", ".join(
+            ["dirs: " + str(self.dirs), "files: " + str(self.files)]
+        )
 
         return f"ListDirectoryData: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcListDirectoryData):
-        """ Translates a gRPC struct to the SDK equivalent """
-        return ListDirectoryData(
-                
-                rpcListDirectoryData.dirs,
-                
-                
-                rpcListDirectoryData.files
-                )
+        """Translates a gRPC struct to the SDK equivalent"""
+        return ListDirectoryData(rpcListDirectoryData.dirs, rpcListDirectoryData.files)
 
     def translate_to_rpc(self, rpcListDirectoryData):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         for elem in self.dirs:
-          rpcListDirectoryData.dirs.append(elem)
-            
-        
-        
-        
-            
+            rpcListDirectoryData.dirs.append(elem)
+
         for elem in self.files:
-          rpcListDirectoryData.files.append(elem)
-            
-        
-        
+            rpcListDirectoryData.files.append(elem)
 
 
 class ProgressData:
     """
-     Progress data type for file transfer.
+    Progress data type for file transfer.
 
-     Parameters
-     ----------
-     bytes_transferred : uint32_t
-          The number of bytes already transferred.
+    Parameters
+    ----------
+    bytes_transferred : uint32_t
+         The number of bytes already transferred.
 
-     total_bytes : uint32_t
-          The total bytes to transfer.
+    total_bytes : uint32_t
+         The total bytes to transfer.
 
-     """
+    """
 
-    
-
-    def __init__(
-            self,
-            bytes_transferred,
-            total_bytes):
-        """ Initializes the ProgressData object """
+    def __init__(self, bytes_transferred, total_bytes):
+        """Initializes the ProgressData object"""
         self.bytes_transferred = bytes_transferred
         self.total_bytes = total_bytes
 
     def __eq__(self, to_compare):
-        """ Checks if two ProgressData are the same """
+        """Checks if two ProgressData are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # ProgressData object
-            return \
-                (self.bytes_transferred == to_compare.bytes_transferred) and \
-                (self.total_bytes == to_compare.total_bytes)
+            return (self.bytes_transferred == to_compare.bytes_transferred) and (
+                self.total_bytes == to_compare.total_bytes
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ ProgressData in string representation """
-        struct_repr = ", ".join([
+        """ProgressData in string representation"""
+        struct_repr = ", ".join(
+            [
                 "bytes_transferred: " + str(self.bytes_transferred),
-                "total_bytes: " + str(self.total_bytes)
-                ])
+                "total_bytes: " + str(self.total_bytes),
+            ]
+        )
 
         return f"ProgressData: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcProgressData):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return ProgressData(
-                
-                rpcProgressData.bytes_transferred,
-                
-                
-                rpcProgressData.total_bytes
-                )
+            rpcProgressData.bytes_transferred, rpcProgressData.total_bytes
+        )
 
     def translate_to_rpc(self, rpcProgressData):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpcProgressData.bytes_transferred = self.bytes_transferred
-            
-        
-        
-        
-            
+
         rpcProgressData.total_bytes = self.total_bytes
-            
-        
-        
 
 
 class FtpResult:
     """
-     Result type.
+    Result type.
 
-     Parameters
-     ----------
-     result : Result
-          Result enum value
+    Parameters
+    ----------
+    result : Result
+         Result enum value
 
-     result_str : std::string
-          Human-readable English string describing the result
+    result_str : std::string
+         Human-readable English string describing the result
 
-     """
+    """
 
-    
-    
     class Result(Enum):
         """
-         Possible results returned for FTP commands
+        Possible results returned for FTP commands
 
-         Values
-         ------
-         UNKNOWN
-              Unknown result
+        Values
+        ------
+        UNKNOWN
+             Unknown result
 
-         SUCCESS
-              Success
+        SUCCESS
+             Success
 
-         NEXT
-              Intermediate message showing progress
+        NEXT
+             Intermediate message showing progress
 
-         TIMEOUT
-              Timeout
+        TIMEOUT
+             Timeout
 
-         BUSY
-              Operation is already in progress
+        BUSY
+             Operation is already in progress
 
-         FILE_IO_ERROR
-              File IO operation error
+        FILE_IO_ERROR
+             File IO operation error
 
-         FILE_EXISTS
-              File exists already
+        FILE_EXISTS
+             File exists already
 
-         FILE_DOES_NOT_EXIST
-              File does not exist
+        FILE_DOES_NOT_EXIST
+             File does not exist
 
-         FILE_PROTECTED
-              File is write protected
+        FILE_PROTECTED
+             File is write protected
 
-         INVALID_PARAMETER
-              Invalid parameter
+        INVALID_PARAMETER
+             Invalid parameter
 
-         UNSUPPORTED
-              Unsupported command
+        UNSUPPORTED
+             Unsupported command
 
-         PROTOCOL_ERROR
-              General protocol error
+        PROTOCOL_ERROR
+             General protocol error
 
-         NO_SYSTEM
-              No system connected
+        NO_SYSTEM
+             No system connected
 
-         """
+        """
 
-        
         UNKNOWN = 0
         SUCCESS = 1
         NEXT = 2
@@ -264,7 +220,7 @@ class FtpResult:
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
-            """ Parses a gRPC response """
+            """Parses a gRPC response"""
             if rpc_enum_value == ftp_pb2.FtpResult.RESULT_UNKNOWN:
                 return FtpResult.Result.UNKNOWN
             if rpc_enum_value == ftp_pb2.FtpResult.RESULT_SUCCESS:
@@ -294,69 +250,50 @@ class FtpResult:
 
         def __str__(self):
             return self.name
-    
 
-    def __init__(
-            self,
-            result,
-            result_str):
-        """ Initializes the FtpResult object """
+    def __init__(self, result, result_str):
+        """Initializes the FtpResult object"""
         self.result = result
         self.result_str = result_str
 
     def __eq__(self, to_compare):
-        """ Checks if two FtpResult are the same """
+        """Checks if two FtpResult are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # FtpResult object
-            return \
-                (self.result == to_compare.result) and \
-                (self.result_str == to_compare.result_str)
+            return (self.result == to_compare.result) and (
+                self.result_str == to_compare.result_str
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ FtpResult in string representation """
-        struct_repr = ", ".join([
-                "result: " + str(self.result),
-                "result_str: " + str(self.result_str)
-                ])
+        """FtpResult in string representation"""
+        struct_repr = ", ".join(
+            ["result: " + str(self.result), "result_str: " + str(self.result_str)]
+        )
 
         return f"FtpResult: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcFtpResult):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return FtpResult(
-                
-                FtpResult.Result.translate_from_rpc(rpcFtpResult.result),
-                
-                
-                rpcFtpResult.result_str
-                )
+            FtpResult.Result.translate_from_rpc(rpcFtpResult.result),
+            rpcFtpResult.result_str,
+        )
 
     def translate_to_rpc(self, rpcFtpResult):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpcFtpResult.result = self.result.translate_to_rpc()
-            
-        
-        
-        
-            
-        rpcFtpResult.result_str = self.result_str
-            
-        
-        
 
+        rpcFtpResult.result_str = self.result_str
 
 
 class FtpError(Exception):
-    """ Raised when a FtpResult is a fail code """
+    """Raised when a FtpResult is a fail code"""
 
     def __init__(self, result, origin, *params):
         self._result = result
@@ -369,48 +306,46 @@ class FtpError(Exception):
 
 class Ftp(AsyncBase):
     """
-     Implements file transfer functionality using MAVLink FTP.
+    Implements file transfer functionality using MAVLink FTP.
 
-     Generated by dcsdkgen - MAVSDK Ftp API
+    Generated by dcsdkgen - MAVSDK Ftp API
     """
 
     # Plugin name
     name = "Ftp"
 
     def _setup_stub(self, channel):
-        """ Setups the api stub """
+        """Setups the api stub"""
         self._stub = ftp_pb2_grpc.FtpServiceStub(channel)
 
-    
     def _extract_result(self, response):
-        """ Returns the response status and description """
+        """Returns the response status and description"""
         return FtpResult.translate_from_rpc(response.ftp_result)
-    
 
     async def download(self, remote_file_path, local_dir, use_burst):
         """
-         Downloads a file to local directory.
+        Downloads a file to local directory.
 
-         Parameters
-         ----------
-         remote_file_path : std::string
-              The path of the remote file to download.
+        Parameters
+        ----------
+        remote_file_path : std::string
+             The path of the remote file to download.
 
-         local_dir : std::string
-              The local directory to download to.
+        local_dir : std::string
+             The local directory to download to.
 
-         use_burst : bool
-              Use burst for faster downloading.
+        use_burst : bool
+             Use burst for faster downloading.
 
-         Yields
-         -------
-         progress_data : ProgressData
-              The progress data if result is next
+        Yields
+        -------
+        progress_data : ProgressData
+             The progress data if result is next
 
-         Raises
-         ------
-         FtpError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        FtpError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = ftp_pb2.SubscribeDownloadRequest()
@@ -421,47 +356,46 @@ class Ftp(AsyncBase):
 
         try:
             async for response in download_stream:
-                
                 result = self._extract_result(response)
 
                 success_codes = [FtpResult.Result.SUCCESS]
-                if 'NEXT' in [return_code.name for return_code in FtpResult.Result]:
+                if "NEXT" in [return_code.name for return_code in FtpResult.Result]:
                     success_codes.append(FtpResult.Result.NEXT)
 
                 if result.result not in success_codes:
-                    raise FtpError(result, "download()", remote_file_path, local_dir, use_burst)
+                    raise FtpError(
+                        result, "download()", remote_file_path, local_dir, use_burst
+                    )
 
                 if result.result == FtpResult.Result.SUCCESS:
-                    download_stream.cancel();
+                    download_stream.cancel()
                     return
-                
 
-            
                 yield ProgressData.translate_from_rpc(response.progress_data)
         finally:
             download_stream.cancel()
 
     async def upload(self, local_file_path, remote_dir):
         """
-         Uploads local file to remote directory.
+        Uploads local file to remote directory.
 
-         Parameters
-         ----------
-         local_file_path : std::string
-              The local file path to upload.
+        Parameters
+        ----------
+        local_file_path : std::string
+             The local file path to upload.
 
-         remote_dir : std::string
-              The remote directory to upload to.
+        remote_dir : std::string
+             The remote directory to upload to.
 
-         Yields
-         -------
-         progress_data : ProgressData
-              The progress data if result is next
+        Yields
+        -------
+        progress_data : ProgressData
+             The progress data if result is next
 
-         Raises
-         ------
-         FtpError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        FtpError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = ftp_pb2.SubscribeUploadRequest()
@@ -471,157 +405,144 @@ class Ftp(AsyncBase):
 
         try:
             async for response in upload_stream:
-                
                 result = self._extract_result(response)
 
                 success_codes = [FtpResult.Result.SUCCESS]
-                if 'NEXT' in [return_code.name for return_code in FtpResult.Result]:
+                if "NEXT" in [return_code.name for return_code in FtpResult.Result]:
                     success_codes.append(FtpResult.Result.NEXT)
 
                 if result.result not in success_codes:
                     raise FtpError(result, "upload()", local_file_path, remote_dir)
 
                 if result.result == FtpResult.Result.SUCCESS:
-                    upload_stream.cancel();
+                    upload_stream.cancel()
                     return
-                
 
-            
                 yield ProgressData.translate_from_rpc(response.progress_data)
         finally:
             upload_stream.cancel()
 
     async def list_directory(self, remote_dir):
         """
-         Lists items from a remote directory.
+        Lists items from a remote directory.
 
-         Parameters
-         ----------
-         remote_dir : std::string
-              The remote directory to list the contents for.
+        Parameters
+        ----------
+        remote_dir : std::string
+             The remote directory to list the contents for.
 
-         Returns
-         -------
-         data : ListDirectoryData
-              The found directories and files.
+        Returns
+        -------
+        data : ListDirectoryData
+             The found directories and files.
 
-         Raises
-         ------
-         FtpError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        FtpError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = ftp_pb2.ListDirectoryRequest()
-        
-            
+
         request.remote_dir = remote_dir
-            
+
         response = await self._stub.ListDirectory(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "list_directory()", remote_dir)
-        
 
         return ListDirectoryData.translate_from_rpc(response.data)
-            
 
     async def create_directory(self, remote_dir):
         """
-         Creates a remote directory.
+        Creates a remote directory.
 
-         Parameters
-         ----------
-         remote_dir : std::string
-              The remote directory to create.
+        Parameters
+        ----------
+        remote_dir : std::string
+             The remote directory to create.
 
-         Raises
-         ------
-         FtpError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        FtpError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = ftp_pb2.CreateDirectoryRequest()
         request.remote_dir = remote_dir
         response = await self._stub.CreateDirectory(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "create_directory()", remote_dir)
-        
 
     async def remove_directory(self, remote_dir):
         """
-         Removes a remote directory.
+        Removes a remote directory.
 
-         Parameters
-         ----------
-         remote_dir : std::string
-              The remote directory to remove.
+        Parameters
+        ----------
+        remote_dir : std::string
+             The remote directory to remove.
 
-         Raises
-         ------
-         FtpError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        FtpError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = ftp_pb2.RemoveDirectoryRequest()
         request.remote_dir = remote_dir
         response = await self._stub.RemoveDirectory(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "remove_directory()", remote_dir)
-        
 
     async def remove_file(self, remote_file_path):
         """
-         Removes a remote file.
+        Removes a remote file.
 
-         Parameters
-         ----------
-         remote_file_path : std::string
-              The path of the remote file to remove.
+        Parameters
+        ----------
+        remote_file_path : std::string
+             The path of the remote file to remove.
 
-         Raises
-         ------
-         FtpError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        FtpError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = ftp_pb2.RemoveFileRequest()
         request.remote_file_path = remote_file_path
         response = await self._stub.RemoveFile(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "remove_file()", remote_file_path)
-        
 
     async def rename(self, remote_from_path, remote_to_path):
         """
-         Renames a remote file or remote directory.
+        Renames a remote file or remote directory.
 
-         Parameters
-         ----------
-         remote_from_path : std::string
-              The remote source path.
+        Parameters
+        ----------
+        remote_from_path : std::string
+             The remote source path.
 
-         remote_to_path : std::string
-              The remote destination path.
+        remote_to_path : std::string
+             The remote destination path.
 
-         Raises
-         ------
-         FtpError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        FtpError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = ftp_pb2.RenameRequest()
@@ -629,79 +550,71 @@ class Ftp(AsyncBase):
         request.remote_to_path = remote_to_path
         response = await self._stub.Rename(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "rename()", remote_from_path, remote_to_path)
-        
 
     async def are_files_identical(self, local_file_path, remote_file_path):
         """
-         Compares a local file to a remote file using a CRC32 checksum.
+        Compares a local file to a remote file using a CRC32 checksum.
 
-         Parameters
-         ----------
-         local_file_path : std::string
-              The path of the local file.
+        Parameters
+        ----------
+        local_file_path : std::string
+             The path of the local file.
 
-         remote_file_path : std::string
-              The path of the remote file.
+        remote_file_path : std::string
+             The path of the remote file.
 
-         Returns
-         -------
-         are_identical : bool
-              Whether the files are identical.
+        Returns
+        -------
+        are_identical : bool
+             Whether the files are identical.
 
-         Raises
-         ------
-         FtpError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        FtpError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = ftp_pb2.AreFilesIdenticalRequest()
-        
-            
+
         request.local_file_path = local_file_path
-            
-        
-            
+
         request.remote_file_path = remote_file_path
-            
+
         response = await self._stub.AreFilesIdentical(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != FtpResult.Result.SUCCESS:
-            raise FtpError(result, "are_files_identical()", local_file_path, remote_file_path)
-        
+            raise FtpError(
+                result, "are_files_identical()", local_file_path, remote_file_path
+            )
 
         return response.are_identical
-        
 
     async def set_target_compid(self, compid):
         """
-         Set target component ID. By default it is the autopilot.
+        Set target component ID. By default it is the autopilot.
 
-         Parameters
-         ----------
-         compid : uint32_t
-              The component ID to set.
+        Parameters
+        ----------
+        compid : uint32_t
+             The component ID to set.
 
-         Raises
-         ------
-         FtpError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        FtpError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = ftp_pb2.SetTargetCompidRequest()
         request.compid = compid
         response = await self._stub.SetTargetCompid(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != FtpResult.Result.SUCCESS:
             raise FtpError(result, "set_target_compid()", compid)
-        

@@ -8,58 +8,57 @@ from enum import Enum
 
 class FailureUnit(Enum):
     """
-     A failure unit.
+    A failure unit.
 
-     Values
-     ------
-     SENSOR_GYRO
-          Gyro
+    Values
+    ------
+    SENSOR_GYRO
+         Gyro
 
-     SENSOR_ACCEL
-          Accelerometer
+    SENSOR_ACCEL
+         Accelerometer
 
-     SENSOR_MAG
-          Magnetometer
+    SENSOR_MAG
+         Magnetometer
 
-     SENSOR_BARO
-          Barometer
+    SENSOR_BARO
+         Barometer
 
-     SENSOR_GPS
-          GPS
+    SENSOR_GPS
+         GPS
 
-     SENSOR_OPTICAL_FLOW
-          Optical flow
+    SENSOR_OPTICAL_FLOW
+         Optical flow
 
-     SENSOR_VIO
-          Visual inertial odometry
+    SENSOR_VIO
+         Visual inertial odometry
 
-     SENSOR_DISTANCE_SENSOR
-          Distance sensor
+    SENSOR_DISTANCE_SENSOR
+         Distance sensor
 
-     SENSOR_AIRSPEED
-          Airspeed
+    SENSOR_AIRSPEED
+         Airspeed
 
-     SYSTEM_BATTERY
-          Battery
+    SYSTEM_BATTERY
+         Battery
 
-     SYSTEM_MOTOR
-          Motor
+    SYSTEM_MOTOR
+         Motor
 
-     SYSTEM_SERVO
-          Servo
+    SYSTEM_SERVO
+         Servo
 
-     SYSTEM_AVOIDANCE
-          Avoidance
+    SYSTEM_AVOIDANCE
+         Avoidance
 
-     SYSTEM_RC_SIGNAL
-          RC signal
+    SYSTEM_RC_SIGNAL
+         RC signal
 
-     SYSTEM_MAVLINK_SIGNAL
-          MAVLink signal
+    SYSTEM_MAVLINK_SIGNAL
+         MAVLink signal
 
-     """
+    """
 
-    
     SENSOR_GYRO = 0
     SENSOR_ACCEL = 1
     SENSOR_MAG = 2
@@ -110,7 +109,7 @@ class FailureUnit(Enum):
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
-        """ Parses a gRPC response """
+        """Parses a gRPC response"""
         if rpc_enum_value == failure_pb2.FAILURE_UNIT_SENSOR_GYRO:
             return FailureUnit.SENSOR_GYRO
         if rpc_enum_value == failure_pb2.FAILURE_UNIT_SENSOR_ACCEL:
@@ -148,37 +147,36 @@ class FailureUnit(Enum):
 
 class FailureType(Enum):
     """
-     A failure type
+    A failure type
 
-     Values
-     ------
-     OK
-          No failure injected, used to reset a previous failure
+    Values
+    ------
+    OK
+         No failure injected, used to reset a previous failure
 
-     OFF
-          Sets unit off, so completely non-responsive
+    OFF
+         Sets unit off, so completely non-responsive
 
-     STUCK
-          Unit is stuck e.g. keeps reporting the same value
+    STUCK
+         Unit is stuck e.g. keeps reporting the same value
 
-     GARBAGE
-          Unit is reporting complete garbage
+    GARBAGE
+         Unit is reporting complete garbage
 
-     WRONG
-          Unit is consistently wrong
+    WRONG
+         Unit is consistently wrong
 
-     SLOW
-          Unit is slow, so e.g. reporting at slower than expected rate
+    SLOW
+         Unit is slow, so e.g. reporting at slower than expected rate
 
-     DELAYED
-          Data of unit is delayed in time
+    DELAYED
+         Data of unit is delayed in time
 
-     INTERMITTENT
-          Unit is sometimes working, sometimes not
+    INTERMITTENT
+         Unit is sometimes working, sometimes not
 
-     """
+    """
 
-    
     OK = 0
     OFF = 1
     STUCK = 2
@@ -208,7 +206,7 @@ class FailureType(Enum):
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
-        """ Parses a gRPC response """
+        """Parses a gRPC response"""
         if rpc_enum_value == failure_pb2.FAILURE_TYPE_OK:
             return FailureType.OK
         if rpc_enum_value == failure_pb2.FAILURE_TYPE_OFF:
@@ -232,53 +230,50 @@ class FailureType(Enum):
 
 class FailureResult:
     """
- 
 
-     Parameters
-     ----------
-     result : Result
-          Result enum value
 
-     result_str : std::string
-          Human-readable English string describing the result
+    Parameters
+    ----------
+    result : Result
+         Result enum value
 
-     """
+    result_str : std::string
+         Human-readable English string describing the result
 
-    
-    
+    """
+
     class Result(Enum):
         """
-         Possible results returned for failure requests.
+        Possible results returned for failure requests.
 
-         Values
-         ------
-         UNKNOWN
-              Unknown result
+        Values
+        ------
+        UNKNOWN
+             Unknown result
 
-         SUCCESS
-              Request succeeded
+        SUCCESS
+             Request succeeded
 
-         NO_SYSTEM
-              No system is connected
+        NO_SYSTEM
+             No system is connected
 
-         CONNECTION_ERROR
-              Connection error
+        CONNECTION_ERROR
+             Connection error
 
-         UNSUPPORTED
-              Failure not supported
+        UNSUPPORTED
+             Failure not supported
 
-         DENIED
-              Failure injection denied
+        DENIED
+             Failure injection denied
 
-         DISABLED
-              Failure injection is disabled
+        DISABLED
+             Failure injection is disabled
 
-         TIMEOUT
-              Request timed out
+        TIMEOUT
+             Request timed out
 
-         """
+        """
 
-        
         UNKNOWN = 0
         SUCCESS = 1
         NO_SYSTEM = 2
@@ -308,7 +303,7 @@ class FailureResult:
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
-            """ Parses a gRPC response """
+            """Parses a gRPC response"""
             if rpc_enum_value == failure_pb2.FailureResult.RESULT_UNKNOWN:
                 return FailureResult.Result.UNKNOWN
             if rpc_enum_value == failure_pb2.FailureResult.RESULT_SUCCESS:
@@ -328,69 +323,50 @@ class FailureResult:
 
         def __str__(self):
             return self.name
-    
 
-    def __init__(
-            self,
-            result,
-            result_str):
-        """ Initializes the FailureResult object """
+    def __init__(self, result, result_str):
+        """Initializes the FailureResult object"""
         self.result = result
         self.result_str = result_str
 
     def __eq__(self, to_compare):
-        """ Checks if two FailureResult are the same """
+        """Checks if two FailureResult are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # FailureResult object
-            return \
-                (self.result == to_compare.result) and \
-                (self.result_str == to_compare.result_str)
+            return (self.result == to_compare.result) and (
+                self.result_str == to_compare.result_str
+            )
 
         except AttributeError:
             return False
 
     def __str__(self):
-        """ FailureResult in string representation """
-        struct_repr = ", ".join([
-                "result: " + str(self.result),
-                "result_str: " + str(self.result_str)
-                ])
+        """FailureResult in string representation"""
+        struct_repr = ", ".join(
+            ["result: " + str(self.result), "result_str: " + str(self.result_str)]
+        )
 
         return f"FailureResult: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcFailureResult):
-        """ Translates a gRPC struct to the SDK equivalent """
+        """Translates a gRPC struct to the SDK equivalent"""
         return FailureResult(
-                
-                FailureResult.Result.translate_from_rpc(rpcFailureResult.result),
-                
-                
-                rpcFailureResult.result_str
-                )
+            FailureResult.Result.translate_from_rpc(rpcFailureResult.result),
+            rpcFailureResult.result_str,
+        )
 
     def translate_to_rpc(self, rpcFailureResult):
-        """ Translates this SDK object into its gRPC equivalent """
+        """Translates this SDK object into its gRPC equivalent"""
 
-        
-        
-            
         rpcFailureResult.result = self.result.translate_to_rpc()
-            
-        
-        
-        
-            
-        rpcFailureResult.result_str = self.result_str
-            
-        
-        
 
+        rpcFailureResult.result_str = self.result_str
 
 
 class FailureError(Exception):
-    """ Raised when a FailureResult is a fail code """
+    """Raised when a FailureResult is a fail code"""
 
     def __init__(self, result, origin, *params):
         self._result = result
@@ -403,60 +379,53 @@ class FailureError(Exception):
 
 class Failure(AsyncBase):
     """
-     Inject failures into system to test failsafes.
+    Inject failures into system to test failsafes.
 
-     Generated by dcsdkgen - MAVSDK Failure API
+    Generated by dcsdkgen - MAVSDK Failure API
     """
 
     # Plugin name
     name = "Failure"
 
     def _setup_stub(self, channel):
-        """ Setups the api stub """
+        """Setups the api stub"""
         self._stub = failure_pb2_grpc.FailureServiceStub(channel)
 
-    
     def _extract_result(self, response):
-        """ Returns the response status and description """
+        """Returns the response status and description"""
         return FailureResult.translate_from_rpc(response.failure_result)
-    
 
     async def inject(self, failure_unit, failure_type, instance):
         """
-         Injects a failure.
+        Injects a failure.
 
-         Parameters
-         ----------
-         failure_unit : FailureUnit
-              The failure unit to send
+        Parameters
+        ----------
+        failure_unit : FailureUnit
+             The failure unit to send
 
-         failure_type : FailureType
-              The failure type to send
+        failure_type : FailureType
+             The failure type to send
 
-         instance : int32_t
-              Instance to affect (0 for all)
+        instance : int32_t
+             Instance to affect (0 for all)
 
-         Raises
-         ------
-         FailureError
-             If the request fails. The error contains the reason for the failure.
+        Raises
+        ------
+        FailureError
+            If the request fails. The error contains the reason for the failure.
         """
 
         request = failure_pb2.InjectRequest()
-        
+
         request.failure_unit = failure_unit.translate_to_rpc()
-                
-            
-        
+
         request.failure_type = failure_type.translate_to_rpc()
-                
-            
+
         request.instance = instance
         response = await self._stub.Inject(request)
 
-        
         result = self._extract_result(response)
 
         if result.result != FailureResult.Result.SUCCESS:
             raise FailureError(result, "inject()", failure_unit, failure_type, instance)
-        

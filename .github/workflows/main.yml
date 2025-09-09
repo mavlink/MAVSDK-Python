@@ -28,7 +28,7 @@ jobs:
         run: |
           python3 -m pip install pycodestyle
           export PATH=$PATH:$HOME/.local/bin
-          pycodestyle examples/*
+          pycodestyle --max-line-length=100 examples/*
 
       - name: Install prerequisites
         run: |

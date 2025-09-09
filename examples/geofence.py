@@ -18,7 +18,6 @@ FenceType:
 
 
 async def run():
-
     # Connect to the Simulation
     drone = System()
     await drone.connect(system_address="udpin://0.0.0.0:14540")

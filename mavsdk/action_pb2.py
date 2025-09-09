@@ -4,18 +4,15 @@
 # source: action/action.proto
 # Protobuf Python Version: 5.29.0
 """Generated protocol buffer code."""
+
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
-    _runtime_version.Domain.PUBLIC,
-    5,
-    29,
-    0,
-    '',
-    'action/action.proto'
+    _runtime_version.Domain.PUBLIC, 5, 29, 0, "", "action/action.proto"
 )
 # @@protoc_insertion_point(imports)
 
@@ -25,110 +22,122 @@ _sym_db = _symbol_database.Default()
 from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13\x61\x63tion/action.proto\x12\x11mavsdk.rpc.action\x1a\x14mavsdk_options.proto\"\x0c\n\nArmRequest\"E\n\x0b\x41rmResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x11\n\x0f\x41rmForceRequest\"J\n\x10\x41rmForceResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x0f\n\rDisarmRequest\"H\n\x0e\x44isarmResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x10\n\x0eTakeoffRequest\"I\n\x0fTakeoffResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\r\n\x0bLandRequest\"F\n\x0cLandResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x0f\n\rRebootRequest\"H\n\x0eRebootResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x11\n\x0fShutdownRequest\"J\n\x10ShutdownResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x12\n\x10TerminateRequest\"K\n\x11TerminateResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\r\n\x0bKillRequest\"F\n\x0cKillResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x17\n\x15ReturnToLaunchRequest\"P\n\x16ReturnToLaunchResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"p\n\x13GotoLocationRequest\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x04 \x01(\x02\"N\n\x14GotoLocationResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\xd7\x01\n\x0e\x44oOrbitRequest\x12\x10\n\x08radius_m\x18\x01 \x01(\x02\x12\x13\n\x0bvelocity_ms\x18\x02 \x01(\x02\x12\x39\n\x0cyaw_behavior\x18\x03 \x01(\x0e\x32#.mavsdk.rpc.action.OrbitYawBehavior\x12\x1d\n\x0clatitude_deg\x18\x05 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12\x1e\n\rlongitude_deg\x18\x06 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13\x61\x62solute_altitude_m\x18\x07 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\"I\n\x0f\x44oOrbitResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\r\n\x0bHoldRequest\"F\n\x0cHoldResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"2\n\x12SetActuatorRequest\x12\r\n\x05index\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x02\"M\n\x13SetActuatorResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x1e\n\x1cTransitionToFixedwingRequest\"W\n\x1dTransitionToFixedwingResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\" \n\x1eTransitionToMulticopterRequest\"Y\n\x1fTransitionToMulticopterResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x1b\n\x19GetTakeoffAltitudeRequest\"f\n\x1aGetTakeoffAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\x12\x10\n\x08\x61ltitude\x18\x02 \x01(\x02\"-\n\x19SetTakeoffAltitudeRequest\x12\x10\n\x08\x61ltitude\x18\x01 \x01(\x02\"T\n\x1aSetTakeoffAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\"\n GetReturnToLaunchAltitudeRequest\"x\n!GetReturnToLaunchAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\x12\x1b\n\x13relative_altitude_m\x18\x02 \x01(\x02\"?\n SetReturnToLaunchAltitudeRequest\x12\x1b\n\x13relative_altitude_m\x18\x01 \x01(\x02\"[\n!SetReturnToLaunchAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"+\n\x16SetCurrentSpeedRequest\x12\x11\n\tspeed_m_s\x18\x01 \x01(\x02\"Q\n\x17SetCurrentSpeedResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\"\x8d\x04\n\x0c\x41\x63tionResult\x12\x36\n\x06result\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.action.ActionResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t\"\xb0\x03\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x05\x12.\n*RESULT_COMMAND_DENIED_LANDED_STATE_UNKNOWN\x10\x06\x12$\n RESULT_COMMAND_DENIED_NOT_LANDED\x10\x07\x12\x12\n\x0eRESULT_TIMEOUT\x10\x08\x12*\n&RESULT_VTOL_TRANSITION_SUPPORT_UNKNOWN\x10\t\x12%\n!RESULT_NO_VTOL_TRANSITION_SUPPORT\x10\n\x12\x1a\n\x16RESULT_PARAMETER_ERROR\x10\x0b\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x0c\x12\x11\n\rRESULT_FAILED\x10\r\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x0e*\xf3\x01\n\x10OrbitYawBehavior\x12\x32\n.ORBIT_YAW_BEHAVIOR_HOLD_FRONT_TO_CIRCLE_CENTER\x10\x00\x12+\n\'ORBIT_YAW_BEHAVIOR_HOLD_INITIAL_HEADING\x10\x01\x12#\n\x1fORBIT_YAW_BEHAVIOR_UNCONTROLLED\x10\x02\x12\x33\n/ORBIT_YAW_BEHAVIOR_HOLD_FRONT_TANGENT_TO_CIRCLE\x10\x03\x12$\n ORBIT_YAW_BEHAVIOR_RC_CONTROLLED\x10\x04\x32\xa5\x10\n\rActionService\x12\x46\n\x03\x41rm\x12\x1d.mavsdk.rpc.action.ArmRequest\x1a\x1e.mavsdk.rpc.action.ArmResponse\"\x00\x12U\n\x08\x41rmForce\x12\".mavsdk.rpc.action.ArmForceRequest\x1a#.mavsdk.rpc.action.ArmForceResponse\"\x00\x12O\n\x06\x44isarm\x12 .mavsdk.rpc.action.DisarmRequest\x1a!.mavsdk.rpc.action.DisarmResponse\"\x00\x12R\n\x07Takeoff\x12!.mavsdk.rpc.action.TakeoffRequest\x1a\".mavsdk.rpc.action.TakeoffResponse\"\x00\x12I\n\x04Land\x12\x1e.mavsdk.rpc.action.LandRequest\x1a\x1f.mavsdk.rpc.action.LandResponse\"\x00\x12O\n\x06Reboot\x12 .mavsdk.rpc.action.RebootRequest\x1a!.mavsdk.rpc.action.RebootResponse\"\x00\x12U\n\x08Shutdown\x12\".mavsdk.rpc.action.ShutdownRequest\x1a#.mavsdk.rpc.action.ShutdownResponse\"\x00\x12X\n\tTerminate\x12#.mavsdk.rpc.action.TerminateRequest\x1a$.mavsdk.rpc.action.TerminateResponse\"\x00\x12I\n\x04Kill\x12\x1e.mavsdk.rpc.action.KillRequest\x1a\x1f.mavsdk.rpc.action.KillResponse\"\x00\x12g\n\x0eReturnToLaunch\x12(.mavsdk.rpc.action.ReturnToLaunchRequest\x1a).mavsdk.rpc.action.ReturnToLaunchResponse\"\x00\x12\x61\n\x0cGotoLocation\x12&.mavsdk.rpc.action.GotoLocationRequest\x1a\'.mavsdk.rpc.action.GotoLocationResponse\"\x00\x12R\n\x07\x44oOrbit\x12!.mavsdk.rpc.action.DoOrbitRequest\x1a\".mavsdk.rpc.action.DoOrbitResponse\"\x00\x12I\n\x04Hold\x12\x1e.mavsdk.rpc.action.HoldRequest\x1a\x1f.mavsdk.rpc.action.HoldResponse\"\x00\x12^\n\x0bSetActuator\x12%.mavsdk.rpc.action.SetActuatorRequest\x1a&.mavsdk.rpc.action.SetActuatorResponse\"\x00\x12|\n\x15TransitionToFixedwing\x12/.mavsdk.rpc.action.TransitionToFixedwingRequest\x1a\x30.mavsdk.rpc.action.TransitionToFixedwingResponse\"\x00\x12\x82\x01\n\x17TransitionToMulticopter\x12\x31.mavsdk.rpc.action.TransitionToMulticopterRequest\x1a\x32.mavsdk.rpc.action.TransitionToMulticopterResponse\"\x00\x12s\n\x12GetTakeoffAltitude\x12,.mavsdk.rpc.action.GetTakeoffAltitudeRequest\x1a-.mavsdk.rpc.action.GetTakeoffAltitudeResponse\"\x00\x12s\n\x12SetTakeoffAltitude\x12,.mavsdk.rpc.action.SetTakeoffAltitudeRequest\x1a-.mavsdk.rpc.action.SetTakeoffAltitudeResponse\"\x00\x12\x88\x01\n\x19GetReturnToLaunchAltitude\x12\x33.mavsdk.rpc.action.GetReturnToLaunchAltitudeRequest\x1a\x34.mavsdk.rpc.action.GetReturnToLaunchAltitudeResponse\"\x00\x12\x88\x01\n\x19SetReturnToLaunchAltitude\x12\x33.mavsdk.rpc.action.SetReturnToLaunchAltitudeRequest\x1a\x34.mavsdk.rpc.action.SetReturnToLaunchAltitudeResponse\"\x00\x12j\n\x0fSetCurrentSpeed\x12).mavsdk.rpc.action.SetCurrentSpeedRequest\x1a*.mavsdk.rpc.action.SetCurrentSpeedResponse\"\x00\x42\x1f\n\x10io.mavsdk.actionB\x0b\x41\x63tionProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n\x13\x61\x63tion/action.proto\x12\x11mavsdk.rpc.action\x1a\x14mavsdk_options.proto"\x0c\n\nArmRequest"E\n\x0b\x41rmResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"\x11\n\x0f\x41rmForceRequest"J\n\x10\x41rmForceResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"\x0f\n\rDisarmRequest"H\n\x0e\x44isarmResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"\x10\n\x0eTakeoffRequest"I\n\x0fTakeoffResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"\r\n\x0bLandRequest"F\n\x0cLandResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"\x0f\n\rRebootRequest"H\n\x0eRebootResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"\x11\n\x0fShutdownRequest"J\n\x10ShutdownResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"\x12\n\x10TerminateRequest"K\n\x11TerminateResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"\r\n\x0bKillRequest"F\n\x0cKillResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"\x17\n\x15ReturnToLaunchRequest"P\n\x16ReturnToLaunchResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"p\n\x13GotoLocationRequest\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01\x12\x1b\n\x13\x61\x62solute_altitude_m\x18\x03 \x01(\x02\x12\x0f\n\x07yaw_deg\x18\x04 \x01(\x02"N\n\x14GotoLocationResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"\xd7\x01\n\x0e\x44oOrbitRequest\x12\x10\n\x08radius_m\x18\x01 \x01(\x02\x12\x13\n\x0bvelocity_ms\x18\x02 \x01(\x02\x12\x39\n\x0cyaw_behavior\x18\x03 \x01(\x0e\x32#.mavsdk.rpc.action.OrbitYawBehavior\x12\x1d\n\x0clatitude_deg\x18\x05 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12\x1e\n\rlongitude_deg\x18\x06 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN\x12$\n\x13\x61\x62solute_altitude_m\x18\x07 \x01(\x01\x42\x07\x82\xb5\x18\x03NaN"I\n\x0f\x44oOrbitResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"\r\n\x0bHoldRequest"F\n\x0cHoldResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"2\n\x12SetActuatorRequest\x12\r\n\x05index\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x02"M\n\x13SetActuatorResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"\x1e\n\x1cTransitionToFixedwingRequest"W\n\x1dTransitionToFixedwingResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult" \n\x1eTransitionToMulticopterRequest"Y\n\x1fTransitionToMulticopterResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"\x1b\n\x19GetTakeoffAltitudeRequest"f\n\x1aGetTakeoffAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\x12\x10\n\x08\x61ltitude\x18\x02 \x01(\x02"-\n\x19SetTakeoffAltitudeRequest\x12\x10\n\x08\x61ltitude\x18\x01 \x01(\x02"T\n\x1aSetTakeoffAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult""\n GetReturnToLaunchAltitudeRequest"x\n!GetReturnToLaunchAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult\x12\x1b\n\x13relative_altitude_m\x18\x02 \x01(\x02"?\n SetReturnToLaunchAltitudeRequest\x12\x1b\n\x13relative_altitude_m\x18\x01 \x01(\x02"[\n!SetReturnToLaunchAltitudeResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"+\n\x16SetCurrentSpeedRequest\x12\x11\n\tspeed_m_s\x18\x01 \x01(\x02"Q\n\x17SetCurrentSpeedResponse\x12\x36\n\raction_result\x18\x01 \x01(\x0b\x32\x1f.mavsdk.rpc.action.ActionResult"\x8d\x04\n\x0c\x41\x63tionResult\x12\x36\n\x06result\x18\x01 \x01(\x0e\x32&.mavsdk.rpc.action.ActionResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t"\xb0\x03\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x02\x12\x1b\n\x17RESULT_CONNECTION_ERROR\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x19\n\x15RESULT_COMMAND_DENIED\x10\x05\x12.\n*RESULT_COMMAND_DENIED_LANDED_STATE_UNKNOWN\x10\x06\x12$\n RESULT_COMMAND_DENIED_NOT_LANDED\x10\x07\x12\x12\n\x0eRESULT_TIMEOUT\x10\x08\x12*\n&RESULT_VTOL_TRANSITION_SUPPORT_UNKNOWN\x10\t\x12%\n!RESULT_NO_VTOL_TRANSITION_SUPPORT\x10\n\x12\x1a\n\x16RESULT_PARAMETER_ERROR\x10\x0b\x12\x16\n\x12RESULT_UNSUPPORTED\x10\x0c\x12\x11\n\rRESULT_FAILED\x10\r\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x0e*\xf3\x01\n\x10OrbitYawBehavior\x12\x32\n.ORBIT_YAW_BEHAVIOR_HOLD_FRONT_TO_CIRCLE_CENTER\x10\x00\x12+\n\'ORBIT_YAW_BEHAVIOR_HOLD_INITIAL_HEADING\x10\x01\x12#\n\x1fORBIT_YAW_BEHAVIOR_UNCONTROLLED\x10\x02\x12\x33\n/ORBIT_YAW_BEHAVIOR_HOLD_FRONT_TANGENT_TO_CIRCLE\x10\x03\x12$\n ORBIT_YAW_BEHAVIOR_RC_CONTROLLED\x10\x04\x32\xa5\x10\n\rActionService\x12\x46\n\x03\x41rm\x12\x1d.mavsdk.rpc.action.ArmRequest\x1a\x1e.mavsdk.rpc.action.ArmResponse"\x00\x12U\n\x08\x41rmForce\x12".mavsdk.rpc.action.ArmForceRequest\x1a#.mavsdk.rpc.action.ArmForceResponse"\x00\x12O\n\x06\x44isarm\x12 .mavsdk.rpc.action.DisarmRequest\x1a!.mavsdk.rpc.action.DisarmResponse"\x00\x12R\n\x07Takeoff\x12!.mavsdk.rpc.action.TakeoffRequest\x1a".mavsdk.rpc.action.TakeoffResponse"\x00\x12I\n\x04Land\x12\x1e.mavsdk.rpc.action.LandRequest\x1a\x1f.mavsdk.rpc.action.LandResponse"\x00\x12O\n\x06Reboot\x12 .mavsdk.rpc.action.RebootRequest\x1a!.mavsdk.rpc.action.RebootResponse"\x00\x12U\n\x08Shutdown\x12".mavsdk.rpc.action.ShutdownRequest\x1a#.mavsdk.rpc.action.ShutdownResponse"\x00\x12X\n\tTerminate\x12#.mavsdk.rpc.action.TerminateRequest\x1a$.mavsdk.rpc.action.TerminateResponse"\x00\x12I\n\x04Kill\x12\x1e.mavsdk.rpc.action.KillRequest\x1a\x1f.mavsdk.rpc.action.KillResponse"\x00\x12g\n\x0eReturnToLaunch\x12(.mavsdk.rpc.action.ReturnToLaunchRequest\x1a).mavsdk.rpc.action.ReturnToLaunchResponse"\x00\x12\x61\n\x0cGotoLocation\x12&.mavsdk.rpc.action.GotoLocationRequest\x1a\'.mavsdk.rpc.action.GotoLocationResponse"\x00\x12R\n\x07\x44oOrbit\x12!.mavsdk.rpc.action.DoOrbitRequest\x1a".mavsdk.rpc.action.DoOrbitResponse"\x00\x12I\n\x04Hold\x12\x1e.mavsdk.rpc.action.HoldRequest\x1a\x1f.mavsdk.rpc.action.HoldResponse"\x00\x12^\n\x0bSetActuator\x12%.mavsdk.rpc.action.SetActuatorRequest\x1a&.mavsdk.rpc.action.SetActuatorResponse"\x00\x12|\n\x15TransitionToFixedwing\x12/.mavsdk.rpc.action.TransitionToFixedwingRequest\x1a\x30.mavsdk.rpc.action.TransitionToFixedwingResponse"\x00\x12\x82\x01\n\x17TransitionToMulticopter\x12\x31.mavsdk.rpc.action.TransitionToMulticopterRequest\x1a\x32.mavsdk.rpc.action.TransitionToMulticopterResponse"\x00\x12s\n\x12GetTakeoffAltitude\x12,.mavsdk.rpc.action.GetTakeoffAltitudeRequest\x1a-.mavsdk.rpc.action.GetTakeoffAltitudeResponse"\x00\x12s\n\x12SetTakeoffAltitude\x12,.mavsdk.rpc.action.SetTakeoffAltitudeRequest\x1a-.mavsdk.rpc.action.SetTakeoffAltitudeResponse"\x00\x12\x88\x01\n\x19GetReturnToLaunchAltitude\x12\x33.mavsdk.rpc.action.GetReturnToLaunchAltitudeRequest\x1a\x34.mavsdk.rpc.action.GetReturnToLaunchAltitudeResponse"\x00\x12\x88\x01\n\x19SetReturnToLaunchAltitude\x12\x33.mavsdk.rpc.action.SetReturnToLaunchAltitudeRequest\x1a\x34.mavsdk.rpc.action.SetReturnToLaunchAltitudeResponse"\x00\x12j\n\x0fSetCurrentSpeed\x12).mavsdk.rpc.action.SetCurrentSpeedRequest\x1a*.mavsdk.rpc.action.SetCurrentSpeedResponse"\x00\x42\x1f\n\x10io.mavsdk.actionB\x0b\x41\x63tionProtob\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'action.action_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, "action.action_pb2", _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n\020io.mavsdk.actionB\013ActionProto'
-  _globals['_DOORBITREQUEST'].fields_by_name['latitude_deg']._loaded_options = None
-  _globals['_DOORBITREQUEST'].fields_by_name['latitude_deg']._serialized_options = b'\202\265\030\003NaN'
-  _globals['_DOORBITREQUEST'].fields_by_name['longitude_deg']._loaded_options = None
-  _globals['_DOORBITREQUEST'].fields_by_name['longitude_deg']._serialized_options = b'\202\265\030\003NaN'
-  _globals['_DOORBITREQUEST'].fields_by_name['absolute_altitude_m']._loaded_options = None
-  _globals['_DOORBITREQUEST'].fields_by_name['absolute_altitude_m']._serialized_options = b'\202\265\030\003NaN'
-  _globals['_ORBITYAWBEHAVIOR']._serialized_start=3182
-  _globals['_ORBITYAWBEHAVIOR']._serialized_end=3425
-  _globals['_ARMREQUEST']._serialized_start=64
-  _globals['_ARMREQUEST']._serialized_end=76
-  _globals['_ARMRESPONSE']._serialized_start=78
-  _globals['_ARMRESPONSE']._serialized_end=147
-  _globals['_ARMFORCEREQUEST']._serialized_start=149
-  _globals['_ARMFORCEREQUEST']._serialized_end=166
-  _globals['_ARMFORCERESPONSE']._serialized_start=168
-  _globals['_ARMFORCERESPONSE']._serialized_end=242
-  _globals['_DISARMREQUEST']._serialized_start=244
-  _globals['_DISARMREQUEST']._serialized_end=259
-  _globals['_DISARMRESPONSE']._serialized_start=261
-  _globals['_DISARMRESPONSE']._serialized_end=333
-  _globals['_TAKEOFFREQUEST']._serialized_start=335
-  _globals['_TAKEOFFREQUEST']._serialized_end=351
-  _globals['_TAKEOFFRESPONSE']._serialized_start=353
-  _globals['_TAKEOFFRESPONSE']._serialized_end=426
-  _globals['_LANDREQUEST']._serialized_start=428
-  _globals['_LANDREQUEST']._serialized_end=441
-  _globals['_LANDRESPONSE']._serialized_start=443
-  _globals['_LANDRESPONSE']._serialized_end=513
-  _globals['_REBOOTREQUEST']._serialized_start=515
-  _globals['_REBOOTREQUEST']._serialized_end=530
-  _globals['_REBOOTRESPONSE']._serialized_start=532
-  _globals['_REBOOTRESPONSE']._serialized_end=604
-  _globals['_SHUTDOWNREQUEST']._serialized_start=606
-  _globals['_SHUTDOWNREQUEST']._serialized_end=623
-  _globals['_SHUTDOWNRESPONSE']._serialized_start=625
-  _globals['_SHUTDOWNRESPONSE']._serialized_end=699
-  _globals['_TERMINATEREQUEST']._serialized_start=701
-  _globals['_TERMINATEREQUEST']._serialized_end=719
-  _globals['_TERMINATERESPONSE']._serialized_start=721
-  _globals['_TERMINATERESPONSE']._serialized_end=796
-  _globals['_KILLREQUEST']._serialized_start=798
-  _globals['_KILLREQUEST']._serialized_end=811
-  _globals['_KILLRESPONSE']._serialized_start=813
-  _globals['_KILLRESPONSE']._serialized_end=883
-  _globals['_RETURNTOLAUNCHREQUEST']._serialized_start=885
-  _globals['_RETURNTOLAUNCHREQUEST']._serialized_end=908
-  _globals['_RETURNTOLAUNCHRESPONSE']._serialized_start=910
-  _globals['_RETURNTOLAUNCHRESPONSE']._serialized_end=990
-  _globals['_GOTOLOCATIONREQUEST']._serialized_start=992
-  _globals['_GOTOLOCATIONREQUEST']._serialized_end=1104
-  _globals['_GOTOLOCATIONRESPONSE']._serialized_start=1106
-  _globals['_GOTOLOCATIONRESPONSE']._serialized_end=1184
-  _globals['_DOORBITREQUEST']._serialized_start=1187
-  _globals['_DOORBITREQUEST']._serialized_end=1402
-  _globals['_DOORBITRESPONSE']._serialized_start=1404
-  _globals['_DOORBITRESPONSE']._serialized_end=1477
-  _globals['_HOLDREQUEST']._serialized_start=1479
-  _globals['_HOLDREQUEST']._serialized_end=1492
-  _globals['_HOLDRESPONSE']._serialized_start=1494
-  _globals['_HOLDRESPONSE']._serialized_end=1564
-  _globals['_SETACTUATORREQUEST']._serialized_start=1566
-  _globals['_SETACTUATORREQUEST']._serialized_end=1616
-  _globals['_SETACTUATORRESPONSE']._serialized_start=1618
-  _globals['_SETACTUATORRESPONSE']._serialized_end=1695
-  _globals['_TRANSITIONTOFIXEDWINGREQUEST']._serialized_start=1697
-  _globals['_TRANSITIONTOFIXEDWINGREQUEST']._serialized_end=1727
-  _globals['_TRANSITIONTOFIXEDWINGRESPONSE']._serialized_start=1729
-  _globals['_TRANSITIONTOFIXEDWINGRESPONSE']._serialized_end=1816
-  _globals['_TRANSITIONTOMULTICOPTERREQUEST']._serialized_start=1818
-  _globals['_TRANSITIONTOMULTICOPTERREQUEST']._serialized_end=1850
-  _globals['_TRANSITIONTOMULTICOPTERRESPONSE']._serialized_start=1852
-  _globals['_TRANSITIONTOMULTICOPTERRESPONSE']._serialized_end=1941
-  _globals['_GETTAKEOFFALTITUDEREQUEST']._serialized_start=1943
-  _globals['_GETTAKEOFFALTITUDEREQUEST']._serialized_end=1970
-  _globals['_GETTAKEOFFALTITUDERESPONSE']._serialized_start=1972
-  _globals['_GETTAKEOFFALTITUDERESPONSE']._serialized_end=2074
-  _globals['_SETTAKEOFFALTITUDEREQUEST']._serialized_start=2076
-  _globals['_SETTAKEOFFALTITUDEREQUEST']._serialized_end=2121
-  _globals['_SETTAKEOFFALTITUDERESPONSE']._serialized_start=2123
-  _globals['_SETTAKEOFFALTITUDERESPONSE']._serialized_end=2207
-  _globals['_GETRETURNTOLAUNCHALTITUDEREQUEST']._serialized_start=2209
-  _globals['_GETRETURNTOLAUNCHALTITUDEREQUEST']._serialized_end=2243
-  _globals['_GETRETURNTOLAUNCHALTITUDERESPONSE']._serialized_start=2245
-  _globals['_GETRETURNTOLAUNCHALTITUDERESPONSE']._serialized_end=2365
-  _globals['_SETRETURNTOLAUNCHALTITUDEREQUEST']._serialized_start=2367
-  _globals['_SETRETURNTOLAUNCHALTITUDEREQUEST']._serialized_end=2430
-  _globals['_SETRETURNTOLAUNCHALTITUDERESPONSE']._serialized_start=2432
-  _globals['_SETRETURNTOLAUNCHALTITUDERESPONSE']._serialized_end=2523
-  _globals['_SETCURRENTSPEEDREQUEST']._serialized_start=2525
-  _globals['_SETCURRENTSPEEDREQUEST']._serialized_end=2568
-  _globals['_SETCURRENTSPEEDRESPONSE']._serialized_start=2570
-  _globals['_SETCURRENTSPEEDRESPONSE']._serialized_end=2651
-  _globals['_ACTIONRESULT']._serialized_start=2654
-  _globals['_ACTIONRESULT']._serialized_end=3179
-  _globals['_ACTIONRESULT_RESULT']._serialized_start=2747
-  _globals['_ACTIONRESULT_RESULT']._serialized_end=3179
-  _globals['_ACTIONSERVICE']._serialized_start=3428
-  _globals['_ACTIONSERVICE']._serialized_end=5513
+    _globals["DESCRIPTOR"]._loaded_options = None
+    _globals[
+        "DESCRIPTOR"
+    ]._serialized_options = b"\n\020io.mavsdk.actionB\013ActionProto"
+    _globals["_DOORBITREQUEST"].fields_by_name["latitude_deg"]._loaded_options = None
+    _globals["_DOORBITREQUEST"].fields_by_name[
+        "latitude_deg"
+    ]._serialized_options = b"\202\265\030\003NaN"
+    _globals["_DOORBITREQUEST"].fields_by_name["longitude_deg"]._loaded_options = None
+    _globals["_DOORBITREQUEST"].fields_by_name[
+        "longitude_deg"
+    ]._serialized_options = b"\202\265\030\003NaN"
+    _globals["_DOORBITREQUEST"].fields_by_name[
+        "absolute_altitude_m"
+    ]._loaded_options = None
+    _globals["_DOORBITREQUEST"].fields_by_name[
+        "absolute_altitude_m"
+    ]._serialized_options = b"\202\265\030\003NaN"
+    _globals["_ORBITYAWBEHAVIOR"]._serialized_start = 3182
+    _globals["_ORBITYAWBEHAVIOR"]._serialized_end = 3425
+    _globals["_ARMREQUEST"]._serialized_start = 64
+    _globals["_ARMREQUEST"]._serialized_end = 76
+    _globals["_ARMRESPONSE"]._serialized_start = 78
+    _globals["_ARMRESPONSE"]._serialized_end = 147
+    _globals["_ARMFORCEREQUEST"]._serialized_start = 149
+    _globals["_ARMFORCEREQUEST"]._serialized_end = 166
+    _globals["_ARMFORCERESPONSE"]._serialized_start = 168
+    _globals["_ARMFORCERESPONSE"]._serialized_end = 242
+    _globals["_DISARMREQUEST"]._serialized_start = 244
+    _globals["_DISARMREQUEST"]._serialized_end = 259
+    _globals["_DISARMRESPONSE"]._serialized_start = 261
+    _globals["_DISARMRESPONSE"]._serialized_end = 333
+    _globals["_TAKEOFFREQUEST"]._serialized_start = 335
+    _globals["_TAKEOFFREQUEST"]._serialized_end = 351
+    _globals["_TAKEOFFRESPONSE"]._serialized_start = 353
+    _globals["_TAKEOFFRESPONSE"]._serialized_end = 426
+    _globals["_LANDREQUEST"]._serialized_start = 428
+    _globals["_LANDREQUEST"]._serialized_end = 441
+    _globals["_LANDRESPONSE"]._serialized_start = 443
+    _globals["_LANDRESPONSE"]._serialized_end = 513
+    _globals["_REBOOTREQUEST"]._serialized_start = 515
+    _globals["_REBOOTREQUEST"]._serialized_end = 530
+    _globals["_REBOOTRESPONSE"]._serialized_start = 532
+    _globals["_REBOOTRESPONSE"]._serialized_end = 604
+    _globals["_SHUTDOWNREQUEST"]._serialized_start = 606
+    _globals["_SHUTDOWNREQUEST"]._serialized_end = 623
+    _globals["_SHUTDOWNRESPONSE"]._serialized_start = 625
+    _globals["_SHUTDOWNRESPONSE"]._serialized_end = 699
+    _globals["_TERMINATEREQUEST"]._serialized_start = 701
+    _globals["_TERMINATEREQUEST"]._serialized_end = 719
+    _globals["_TERMINATERESPONSE"]._serialized_start = 721
+    _globals["_TERMINATERESPONSE"]._serialized_end = 796
+    _globals["_KILLREQUEST"]._serialized_start = 798
+    _globals["_KILLREQUEST"]._serialized_end = 811
+    _globals["_KILLRESPONSE"]._serialized_start = 813
+    _globals["_KILLRESPONSE"]._serialized_end = 883
+    _globals["_RETURNTOLAUNCHREQUEST"]._serialized_start = 885
+    _globals["_RETURNTOLAUNCHREQUEST"]._serialized_end = 908
+    _globals["_RETURNTOLAUNCHRESPONSE"]._serialized_start = 910
+    _globals["_RETURNTOLAUNCHRESPONSE"]._serialized_end = 990
+    _globals["_GOTOLOCATIONREQUEST"]._serialized_start = 992
+    _globals["_GOTOLOCATIONREQUEST"]._serialized_end = 1104
+    _globals["_GOTOLOCATIONRESPONSE"]._serialized_start = 1106
+    _globals["_GOTOLOCATIONRESPONSE"]._serialized_end = 1184
+    _globals["_DOORBITREQUEST"]._serialized_start = 1187
+    _globals["_DOORBITREQUEST"]._serialized_end = 1402
+    _globals["_DOORBITRESPONSE"]._serialized_start = 1404
+    _globals["_DOORBITRESPONSE"]._serialized_end = 1477
+    _globals["_HOLDREQUEST"]._serialized_start = 1479
+    _globals["_HOLDREQUEST"]._serialized_end = 1492
+    _globals["_HOLDRESPONSE"]._serialized_start = 1494
+    _globals["_HOLDRESPONSE"]._serialized_end = 1564
+    _globals["_SETACTUATORREQUEST"]._serialized_start = 1566
+    _globals["_SETACTUATORREQUEST"]._serialized_end = 1616
+    _globals["_SETACTUATORRESPONSE"]._serialized_start = 1618
+    _globals["_SETACTUATORRESPONSE"]._serialized_end = 1695
+    _globals["_TRANSITIONTOFIXEDWINGREQUEST"]._serialized_start = 1697
+    _globals["_TRANSITIONTOFIXEDWINGREQUEST"]._serialized_end = 1727
+    _globals["_TRANSITIONTOFIXEDWINGRESPONSE"]._serialized_start = 1729
+    _globals["_TRANSITIONTOFIXEDWINGRESPONSE"]._serialized_end = 1816
+    _globals["_TRANSITIONTOMULTICOPTERREQUEST"]._serialized_start = 1818
+    _globals["_TRANSITIONTOMULTICOPTERREQUEST"]._serialized_end = 1850
+    _globals["_TRANSITIONTOMULTICOPTERRESPONSE"]._serialized_start = 1852
+    _globals["_TRANSITIONTOMULTICOPTERRESPONSE"]._serialized_end = 1941
+    _globals["_GETTAKEOFFALTITUDEREQUEST"]._serialized_start = 1943
+    _globals["_GETTAKEOFFALTITUDEREQUEST"]._serialized_end = 1970
+    _globals["_GETTAKEOFFALTITUDERESPONSE"]._serialized_start = 1972
+    _globals["_GETTAKEOFFALTITUDERESPONSE"]._serialized_end = 2074
+    _globals["_SETTAKEOFFALTITUDEREQUEST"]._serialized_start = 2076
+    _globals["_SETTAKEOFFALTITUDEREQUEST"]._serialized_end = 2121
+    _globals["_SETTAKEOFFALTITUDERESPONSE"]._serialized_start = 2123
+    _globals["_SETTAKEOFFALTITUDERESPONSE"]._serialized_end = 2207
+    _globals["_GETRETURNTOLAUNCHALTITUDEREQUEST"]._serialized_start = 2209
+    _globals["_GETRETURNTOLAUNCHALTITUDEREQUEST"]._serialized_end = 2243
+    _globals["_GETRETURNTOLAUNCHALTITUDERESPONSE"]._serialized_start = 2245
+    _globals["_GETRETURNTOLAUNCHALTITUDERESPONSE"]._serialized_end = 2365
+    _globals["_SETRETURNTOLAUNCHALTITUDEREQUEST"]._serialized_start = 2367
+    _globals["_SETRETURNTOLAUNCHALTITUDEREQUEST"]._serialized_end = 2430
+    _globals["_SETRETURNTOLAUNCHALTITUDERESPONSE"]._serialized_start = 2432
+    _globals["_SETRETURNTOLAUNCHALTITUDERESPONSE"]._serialized_end = 2523
+    _globals["_SETCURRENTSPEEDREQUEST"]._serialized_start = 2525
+    _globals["_SETCURRENTSPEEDREQUEST"]._serialized_end = 2568
+    _globals["_SETCURRENTSPEEDRESPONSE"]._serialized_start = 2570
+    _globals["_SETCURRENTSPEEDRESPONSE"]._serialized_end = 2651
+    _globals["_ACTIONRESULT"]._serialized_start = 2654
+    _globals["_ACTIONRESULT"]._serialized_end = 3179
+    _globals["_ACTIONRESULT_RESULT"]._serialized_start = 2747
+    _globals["_ACTIONRESULT_RESULT"]._serialized_end = 3179
+    _globals["_ACTIONSERVICE"]._serialized_start = 3428
+    _globals["_ACTIONSERVICE"]._serialized_end = 5513
 # @@protoc_insertion_point(module_scope)

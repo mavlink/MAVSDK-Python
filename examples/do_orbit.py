@@ -20,7 +20,7 @@ async def run():
             break
 
     position = await drone.telemetry.position().__aiter__().__anext__()
-    orbit_height = position.absolute_altitude_m+10
+    orbit_height = position.absolute_altitude_m + 10
     yaw_behavior = OrbitYawBehavior.HOLD_FRONT_TO_CIRCLE_CENTER
 
     print("-- Arming")
@@ -30,17 +30,20 @@ async def run():
     await drone.action.takeoff()
     await asyncio.sleep(10)
 
-    print('Do orbit at 10m height from the ground')
-    await drone.action.do_orbit(radius_m=10,
-                                velocity_ms=2,
-                                yaw_behavior=yaw_behavior,
-                                latitude_deg=47.398036222362471,
-                                longitude_deg=8.5450146439425509,
-                                absolute_altitude_m=orbit_height)
+    print("Do orbit at 10m height from the ground")
+    await drone.action.do_orbit(
+        radius_m=10,
+        velocity_ms=2,
+        yaw_behavior=yaw_behavior,
+        latitude_deg=47.398036222362471,
+        longitude_deg=8.5450146439425509,
+        absolute_altitude_m=orbit_height,
+    )
     await asyncio.sleep(60)
 
     await drone.action.return_to_launch()
     print("--- Landing")
+
 
 if __name__ == "__main__":
     asyncio.run(run())
