@@ -9,12 +9,8 @@ from tqdm import tqdm
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "connection", help="Connection string (e.g. udpin://0.0.0.0:14540)"
-    )
-    parser.add_argument(
-        "param_file", help="Param file to be uploaded with .params format"
-    )
+    parser.add_argument("connection", help="Connection string (e.g. udpin://0.0.0.0:14540)")
+    parser.add_argument("param_file", help="Param file to be uploaded with .params format")
 
     args = parser.parse_args()
 
@@ -44,7 +40,7 @@ async def set_params(args):
         print("Uploading Parameters... Please do not arm the vehicle!")
         contents = await param_file.read()
         lines = contents.splitlines()
-        for line in tqdm(lines, unit='lines'):
+        for line in tqdm(lines, unit="lines"):
             if line.startswith("#"):
                 continue
 

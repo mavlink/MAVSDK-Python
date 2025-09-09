@@ -24,9 +24,7 @@ async def run():
     async for state in drone.core.connection_state():
         if state.is_connected:
             print("-- Connected to drone!")
-            await drone.server_utility.send_status_text(
-                StatusTextType.INFO, "Hello world!"
-            )
+            await drone.server_utility.send_status_text(StatusTextType.INFO, "Hello world!")
             break
 
 

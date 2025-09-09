@@ -33,9 +33,7 @@ class UBXParser:
 
         if self.debug:
             print(
-                "UBX class id {} and message id {}".format(
-                    ord(ubx_class_id), ord(ubx_message_id)
-                )
+                "UBX class id {} and message id {}".format(ord(ubx_class_id), ord(ubx_message_id))
             )
 
         # The ubx message in full_data could be parsed with pyubx2.UBXReader
@@ -142,9 +140,7 @@ async def send_rtcm(drone):
                 # Convert the rtcm data to a base64,
                 # In MAVSDK v3 the rtcm data is expected
                 # to be base64 encoded string .
-                base64_rtcm_data = base64.b64encode(rtcm_correction_data).decode(
-                    "utf-8"
-                )
+                base64_rtcm_data = base64.b64encode(rtcm_correction_data).decode("utf-8")
 
                 # Send RTCM
                 await drone.rtk.send_rtcm_data(rtk.RtcmData(base64_rtcm_data))

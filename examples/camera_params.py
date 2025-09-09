@@ -96,9 +96,7 @@ async def run():
                     continue
             else:
                 try:
-                    selected_value = await make_user_choose_option_range(
-                        possible_options
-                    )
+                    selected_value = await make_user_choose_option_range(possible_options)
 
                     print(f"Setting {selected_setting.setting_id} to {selected_value}!")
                     setting = Setting(
@@ -187,9 +185,7 @@ def print_possible_options(possible_options):
 
 async def make_user_choose_option(possible_options):
     n_options = len(possible_options)
-    index_option_str = await ainput(
-        f"\nWhich option do you want? [1..{n_options}] >>> "
-    )
+    index_option_str = await ainput(f"\nWhich option do you want? [1..{n_options}] >>> ")
 
     index_option = int(index_option_str)
     if index_option < 1 or index_option > n_options:

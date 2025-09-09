@@ -182,10 +182,7 @@ async def run():
         mode_code = current_waypoint[-1]
         if last_mode != mode_code:
             # Print the mode number and its description
-            print(
-                " Mode number: " + f"{mode_code}, "
-                f"Description: {mode_descriptions[mode_code]}"
-            )
+            print(" Mode number: " + f"{mode_code}, Description: {mode_descriptions[mode_code]}")
             last_mode = mode_code
         # set_position_velocity_acceleration_ned is not yet available
         # in the default build for MAVSDK-Python Installation with pip3
