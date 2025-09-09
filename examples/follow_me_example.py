@@ -4,7 +4,7 @@
 
 import asyncio
 from mavsdk import System
-from mavsdk.follow_me import Config, FollowMeError, TargetLocation
+from mavsdk.follow_me import Config, TargetLocation
 
 
 follow_height = 8.0  # in meters
@@ -32,7 +32,7 @@ async def run():
     print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print(f"-- Connected to drone!")
+            print("-- Connected to drone!")
             break
 
     print("Waiting for drone to have a global position estimate...")

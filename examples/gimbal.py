@@ -107,9 +107,7 @@ async def run():
         # Set the gimbal to track a region of interest (lat, lon, altitude)
         # Units are degrees and meters MSL respectively
         print("Look at a ROI (region of interest) with gimbal ID", gimbal.gimbal_id)
-        await drone.gimbal.set_roi_location(
-            gimbal.gimbal_id, 47.39743832, 8.5463316, 488
-        )
+        await drone.gimbal.set_roi_location(gimbal.gimbal_id, 47.39743832, 8.5463316, 488)
         await asyncio.sleep(4)
 
         print("Back to forward again with gimbal ID", gimbal.gimbal_id)

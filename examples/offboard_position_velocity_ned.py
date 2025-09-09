@@ -13,7 +13,7 @@ async def run():
     print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print(f"-- Connected to drone!")
+            print("-- Connected to drone!")
             break
 
     print("Waiting for drone to have a global position estimate...")
@@ -44,7 +44,7 @@ async def run():
         async for odom in drone.telemetry.position_velocity_ned():
             print(f"{odom.velocity.north_m_s} {odom.velocity.down_m_s}")
 
-    asyncio.ensure_future(print_z_velocity(drone))
+    _tasks = {asyncio.create_task(print_z_velocity(drone))}
 
     print("-- Go 0m North, 0m East, -10m Down within local coordinate system")
     await drone.offboard.set_position_velocity_ned(

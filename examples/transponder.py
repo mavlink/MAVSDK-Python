@@ -10,7 +10,7 @@ async def run():
     await drone.connect()
 
     # Start the tasks
-    asyncio.ensure_future(print_transponders(drone))
+    _tasks = {asyncio.create_task(print_transponders(drone))}
 
     # Runs the event loop until the program is canceled with e.g. CTRL-C
     while True:

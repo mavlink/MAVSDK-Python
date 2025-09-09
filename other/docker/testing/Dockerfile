@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-# Prefere local python binaries over the distributed ones
+# Prefer local python binaries over the distributed ones
 ENV PATH /usr/local/bin:$PATH
 
 # Needed for Python 3

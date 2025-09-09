@@ -78,9 +78,11 @@ Note:
 
 import asyncio
 import csv
+import io
+import anyio
 from mavsdk import System
 from mavsdk.offboard import PositionNedYaw, VelocityNedYaw
-from mavsdk.offboard import AccelerationNed, OffboardError
+from mavsdk.offboard import OffboardError
 from mavsdk.telemetry import LandedState
 
 
@@ -143,27 +145,25 @@ async def run():
         await drone.action.disarm()
         return
 
-    waypoints = []
-
     # Read data from the CSV file
-    with open("active.csv", newline="") as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            waypoints.append(
-                (
-                    float(row["t"]),
-                    float(row["px"]),
-                    float(row["py"]),
-                    float(row["pz"]),
-                    float(row["vx"]),
-                    float(row["vy"]),
-                    float(row["vz"]),
-                    float(row["ax"]),
-                    float(row["ay"]),
-                    float(row["az"]),
-                    int(row["mode"]),
-                )
-            )
+    async with await anyio.open_file("active.csv", "r", newline="") as csvfile:
+        content = await csvfile.read()
+    waypoints = [
+        (
+            float(row["t"]),
+            float(row["px"]),
+            float(row["py"]),
+            float(row["pz"]),
+            float(row["vx"]),
+            float(row["vy"]),
+            float(row["vz"]),
+            float(row["ax"]),
+            float(row["ay"]),
+            float(row["az"]),
+            int(row["mode"]),
+        )
+        for row in csv.DictReader(io.StringIO(content))
+    ]
 
     print("-- Performing trajectory")
     total_duration = waypoints[-1][0]
@@ -178,14 +178,11 @@ async def run():
 
         position = current_waypoint[1:4]
         velocity = current_waypoint[4:7]
-        acceleration = current_waypoint[7:10]
+        _acceleration = current_waypoint[7:10]  # unused
         mode_code = current_waypoint[-1]
         if last_mode != mode_code:
             # Print the mode number and its description
-            print(
-                " Mode number: " + f"{mode_code}, "
-                f"Description: {mode_descriptions[mode_code]}"
-            )
+            print(" Mode number: " + f"{mode_code}, Description: {mode_descriptions[mode_code]}")
             last_mode = mode_code
         # set_position_velocity_acceleration_ned is not yet available
         # in the default build for MAVSDK-Python Installation with pip3

@@ -24,20 +24,22 @@ async def run():
     drone = System()
     await drone.connect(system_address="udpin://0.0.0.0:14540")
 
-    asyncio.ensure_future(observe_current_settings(drone))
-    asyncio.ensure_future(observe_camera_mode(drone))
-    asyncio.ensure_future(observe_possible_setting_options(drone))
+    _tasks = [
+        asyncio.create_task(observe_current_settings(drone)),
+        asyncio.create_task(observe_camera_mode(drone)),
+        asyncio.create_task(observe_possible_setting_options(drone)),
+    ]
 
     while True:
         entered_input = await ainput(usage_str)
 
         if entered_input == "p":
-            print(f"\n=== Current settings ===\n")
+            print("\n=== Current settings ===\n")
             print_current_settings()
         elif entered_input == "m":
-            print(f"\n=== Possible modes ===\n")
-            print(f"1. PHOTO")
-            print(f"2. VIDEO")
+            print("\n=== Possible modes ===\n")
+            print("1. PHOTO")
+            print("2. VIDEO")
 
             try:
                 index_mode = await make_user_choose_camera_mode()
@@ -54,11 +56,11 @@ async def run():
 
             try:
                 await drone.camera.set_mode(chosen_mode)
-                print(f" --> Succeeded")
+                print(" --> Succeeded")
             except CameraError as error:
                 print(f" --> Failed with code: {error._result.result_str}")
         elif entered_input == "s":
-            print(f"\n=== Possible settings ===\n")
+            print("\n=== Possible settings ===\n")
             print_possible_settings(possible_setting_options)
 
             try:
@@ -70,10 +72,10 @@ async def run():
             selected_setting = possible_setting_options[index_setting - 1]
             possible_options = selected_setting.options
 
-            print(f"\n=== Available options ===")
+            print("\n=== Available options ===")
             print(f"Setting: {selected_setting.setting_id}")
             if not selected_setting.is_range:
-                print(f"Options:")
+                print("Options:")
                 try:
                     print_possible_options(possible_options)
                     index_option = await make_user_choose_option(possible_options)
@@ -94,9 +96,7 @@ async def run():
                     continue
             else:
                 try:
-                    selected_value = await make_user_choose_option_range(
-                        possible_options
-                    )
+                    selected_value = await make_user_choose_option_range(possible_options)
 
                     print(f"Setting {selected_setting.setting_id} to {selected_value}!")
                     setting = Setting(
@@ -111,7 +111,7 @@ async def run():
 
             try:
                 await drone.camera.set_setting(setting)
-                print(f" --> Succeeded")
+                print(" --> Succeeded")
             except CameraError as error:
                 print(f" --> Failed with code: {error._result.result_str}")
         else:
@@ -148,7 +148,7 @@ def print_current_settings():
 
 
 async def make_user_choose_camera_mode():
-    index_mode_str = await ainput(f"\nWhich mode do you want? [1..2] >>> ")
+    index_mode_str = await ainput("\nWhich mode do you want? [1..2] >>> ")
     index_mode = int(index_mode_str)
     if index_mode < 1 or index_mode > 2:
         raise ValueError()
@@ -185,9 +185,7 @@ def print_possible_options(possible_options):
 
 async def make_user_choose_option(possible_options):
     n_options = len(possible_options)
-    index_option_str = await ainput(
-        f"\nWhich option do you want? [1..{n_options}] >>> "
-    )
+    index_option_str = await ainput(f"\nWhich option do you want? [1..{n_options}] >>> ")
 
     index_option = int(index_option_str)
     if index_option < 1 or index_option > n_options:
