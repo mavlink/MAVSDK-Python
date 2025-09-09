@@ -26,7 +26,7 @@ jobs:
 
       - name: Check style
         run: |
-          pipx run pycodestyle --max-line-length=100 examples
+          pipx run ruff format --check --line-length=100 examples
           pipx run ruff check --select=ASYNC,RUF006,E,F examples
           pipx run codespell .
 
