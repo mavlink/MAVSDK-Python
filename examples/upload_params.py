@@ -2,6 +2,7 @@
 
 import asyncio
 import argparse
+import anyio
 from mavsdk import System
 from tqdm import tqdm
 
@@ -39,9 +40,11 @@ async def set_params(args):
         else:
             break
 
-    with open(args.param_file, "r") as param_file:
+    async with await anyio.open_file(args.param_file, "r") as param_file:
         print("Uploading Parameters... Please do not arm the vehicle!")
-        for line in tqdm(param_file, unit="lines"):
+        contents = await param_file.read()
+        lines = contents.splitlines()
+        for line in tqdm(lines, unit='lines'):
             if line.startswith("#"):
                 continue
 

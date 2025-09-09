@@ -78,6 +78,8 @@ Note:
 
 import asyncio
 import csv
+import io
+import anyio
 from mavsdk import System
 from mavsdk.offboard import PositionNedYaw, VelocityNedYaw
 from mavsdk.offboard import AccelerationNed, OffboardError
@@ -146,24 +148,21 @@ async def run():
     waypoints = []
 
     # Read data from the CSV file
-    with open("active.csv", newline="") as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            waypoints.append(
-                (
-                    float(row["t"]),
-                    float(row["px"]),
-                    float(row["py"]),
-                    float(row["pz"]),
-                    float(row["vx"]),
-                    float(row["vy"]),
-                    float(row["vz"]),
-                    float(row["ax"]),
-                    float(row["ay"]),
-                    float(row["az"]),
-                    int(row["mode"]),
-                )
-            )
+    async with await anyio.open_file("active.csv", "r", newline="") as csvfile:
+        content = await csvfile.read()
+    reader = csv.DictReader(io.StringIO(content))
+    for row in reader:
+        waypoints.append((float(row["t"]),
+                          float(row["px"]),
+                          float(row["py"]),
+                          float(row["pz"]),
+                          float(row["vx"]),
+                          float(row["vy"]),
+                          float(row["vz"]),
+                          float(row["ax"]),
+                          float(row["ay"]),
+                          float(row["az"]),
+                          int(row["mode"])))
 
     print("-- Performing trajectory")
     total_duration = waypoints[-1][0]

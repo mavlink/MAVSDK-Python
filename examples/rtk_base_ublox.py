@@ -100,8 +100,9 @@ async def run():
     asyncio.ensure_future(print_gps_info(drone))
     asyncio.ensure_future(send_rtcm(drone))
 
-    while True:
-        await asyncio.sleep(1)
+    # Keep the program running indefinitely
+    exit_event = asyncio.Event()
+    await exit_event.wait()
 
 
 async def print_gps_info(drone):
