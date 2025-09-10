@@ -209,24 +209,9 @@ class AllParams:
     def translate_from_rpc(rpcAllParams):
         """Translates a gRPC struct to the SDK equivalent"""
         return AllParams(
-            list(
-                map(
-                    lambda elem: IntParam.translate_from_rpc(elem),
-                    rpcAllParams.int_params,
-                )
-            ),
-            list(
-                map(
-                    lambda elem: FloatParam.translate_from_rpc(elem),
-                    rpcAllParams.float_params,
-                )
-            ),
-            list(
-                map(
-                    lambda elem: CustomParam.translate_from_rpc(elem),
-                    rpcAllParams.custom_params,
-                )
-            ),
+            [IntParam.translate_from_rpc(elem) for elem in rpcAllParams.int_params],
+            [FloatParam.translate_from_rpc(elem) for elem in rpcAllParams.float_params],
+            [CustomParam.translate_from_rpc(elem) for elem in rpcAllParams.custom_params],
         )
 
     def translate_to_rpc(self, rpcAllParams):

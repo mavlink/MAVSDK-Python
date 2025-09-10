@@ -214,12 +214,7 @@ class MissionPlan:
     def translate_from_rpc(rpcMissionPlan):
         """Translates a gRPC struct to the SDK equivalent"""
         return MissionPlan(
-            list(
-                map(
-                    lambda elem: MissionItem.translate_from_rpc(elem),
-                    rpcMissionPlan.mission_items,
-                )
-            )
+            [MissionItem.translate_from_rpc(elem) for elem in rpcMissionPlan.mission_items]
         )
 
     def translate_to_rpc(self, rpcMissionPlan):

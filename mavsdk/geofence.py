@@ -139,7 +139,7 @@ class Polygon:
     def translate_from_rpc(rpcPolygon):
         """Translates a gRPC struct to the SDK equivalent"""
         return Polygon(
-            list(map(lambda elem: Point.translate_from_rpc(elem), rpcPolygon.points)),
+            [Point.translate_from_rpc(elem) for elem in rpcPolygon.points],
             FenceType.translate_from_rpc(rpcPolygon.fence_type),
         )
 
@@ -268,18 +268,8 @@ class GeofenceData:
     def translate_from_rpc(rpcGeofenceData):
         """Translates a gRPC struct to the SDK equivalent"""
         return GeofenceData(
-            list(
-                map(
-                    lambda elem: Polygon.translate_from_rpc(elem),
-                    rpcGeofenceData.polygons,
-                )
-            ),
-            list(
-                map(
-                    lambda elem: Circle.translate_from_rpc(elem),
-                    rpcGeofenceData.circles,
-                )
-            ),
+            [Polygon.translate_from_rpc(elem) for elem in rpcGeofenceData.polygons],
+            [Circle.translate_from_rpc(elem) for elem in rpcGeofenceData.circles],
         )
 
     def translate_to_rpc(self, rpcGeofenceData):

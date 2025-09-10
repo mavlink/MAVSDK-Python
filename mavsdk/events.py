@@ -318,12 +318,7 @@ class HealthAndArmingCheckMode:
         return HealthAndArmingCheckMode(
             rpcHealthAndArmingCheckMode.mode_name,
             rpcHealthAndArmingCheckMode.can_arm_or_run,
-            list(
-                map(
-                    lambda elem: HealthAndArmingCheckProblem.translate_from_rpc(elem),
-                    rpcHealthAndArmingCheckMode.problems,
-                )
-            ),
+            [HealthAndArmingCheckProblem.translate_from_rpc(elem) for elem in rpcHealthAndArmingCheckMode.problems],
         )
 
     def translate_to_rpc(self, rpcHealthAndArmingCheckMode):
@@ -484,18 +479,8 @@ class HealthAndArmingCheckReport:
             HealthAndArmingCheckMode.translate_from_rpc(
                 rpcHealthAndArmingCheckReport.current_mode_intention
             ),
-            list(
-                map(
-                    lambda elem: HealthComponentReport.translate_from_rpc(elem),
-                    rpcHealthAndArmingCheckReport.health_components,
-                )
-            ),
-            list(
-                map(
-                    lambda elem: HealthAndArmingCheckProblem.translate_from_rpc(elem),
-                    rpcHealthAndArmingCheckReport.all_problems,
-                )
-            ),
+            [HealthComponentReport.translate_from_rpc(elem) for elem in rpcHealthAndArmingCheckReport.health_components],
+            [HealthAndArmingCheckProblem.translate_from_rpc(elem) for elem in rpcHealthAndArmingCheckReport.all_problems],
         )
 
     def translate_to_rpc(self, rpcHealthAndArmingCheckReport):

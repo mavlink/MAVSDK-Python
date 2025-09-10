@@ -284,24 +284,9 @@ class MissionImportData:
     def translate_from_rpc(rpcMissionImportData):
         """Translates a gRPC struct to the SDK equivalent"""
         return MissionImportData(
-            list(
-                map(
-                    lambda elem: MissionItem.translate_from_rpc(elem),
-                    rpcMissionImportData.mission_items,
-                )
-            ),
-            list(
-                map(
-                    lambda elem: MissionItem.translate_from_rpc(elem),
-                    rpcMissionImportData.geofence_items,
-                )
-            ),
-            list(
-                map(
-                    lambda elem: MissionItem.translate_from_rpc(elem),
-                    rpcMissionImportData.rally_items,
-                )
-            ),
+            [MissionItem.translate_from_rpc(elem) for elem in rpcMissionImportData.mission_items],
+            [MissionItem.translate_from_rpc(elem) for elem in rpcMissionImportData.geofence_items],
+            [MissionItem.translate_from_rpc(elem) for elem in rpcMissionImportData.rally_items],
         )
 
     def translate_to_rpc(self, rpcMissionImportData):

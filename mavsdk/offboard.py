@@ -176,12 +176,7 @@ class ActuatorControl:
     def translate_from_rpc(rpcActuatorControl):
         """Translates a gRPC struct to the SDK equivalent"""
         return ActuatorControl(
-            list(
-                map(
-                    lambda elem: ActuatorControlGroup.translate_from_rpc(elem),
-                    rpcActuatorControl.groups,
-                )
-            )
+            [ActuatorControlGroup.translate_from_rpc(elem) for elem in rpcActuatorControl.groups]
         )
 
     def translate_to_rpc(self, rpcActuatorControl):
