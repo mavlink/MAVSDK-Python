@@ -6,7 +6,7 @@ import warnings
 
 from . import camera_pb2 as camera_dot_camera__pb2
 
-GRPC_GENERATED_VERSION = "1.71.0"
+GRPC_GENERATED_VERSION = "1.74.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 

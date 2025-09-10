@@ -6,7 +6,7 @@ import warnings
 
 from . import follow_me_pb2 as follow__me_dot_follow__me__pb2
 
-GRPC_GENERATED_VERSION = "1.71.0"
+GRPC_GENERATED_VERSION = "1.74.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 

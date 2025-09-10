@@ -6,7 +6,7 @@ import warnings
 
 from . import mavlink_direct_pb2 as mavlink__direct_dot_mavlink__direct__pb2
 
-GRPC_GENERATED_VERSION = "1.71.0"
+GRPC_GENERATED_VERSION = "1.74.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 

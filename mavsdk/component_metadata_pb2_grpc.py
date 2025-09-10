@@ -6,7 +6,7 @@ import warnings
 
 from . import component_metadata_pb2 as component__metadata_dot_component__metadata__pb2
 
-GRPC_GENERATED_VERSION = "1.71.0"
+GRPC_GENERATED_VERSION = "1.74.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
