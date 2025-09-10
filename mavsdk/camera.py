@@ -2183,11 +2183,7 @@ class Camera(AsyncBase):
         if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "list_photos()", component_id, photos_range)
 
-        capture_infos = []
-        for capture_infos_rpc in response.capture_infos:
-            capture_infos.append(CaptureInfo.translate_from_rpc(capture_infos_rpc))
-
-        return capture_infos
+        return [CaptureInfo.translate_from_rpc(capture_infos_rpc) for capture_infos_rpc in response.capture_infos]
 
     async def camera_list(self):
         """
@@ -2448,11 +2444,7 @@ class Camera(AsyncBase):
         if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "get_current_settings()", component_id)
 
-        current_settings = []
-        for current_settings_rpc in response.current_settings:
-            current_settings.append(Setting.translate_from_rpc(current_settings_rpc))
-
-        return current_settings
+        return [Setting.translate_from_rpc(current_settings_rpc) for current_settings_rpc in response.current_settings]
 
     async def possible_setting_options(self):
         """
@@ -2508,13 +2500,7 @@ class Camera(AsyncBase):
         if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "get_possible_setting_options()", component_id)
 
-        setting_options = []
-        for setting_options_rpc in response.setting_options:
-            setting_options.append(
-                SettingOptions.translate_from_rpc(setting_options_rpc)
-            )
-
-        return setting_options
+        return [SettingOptions.translate_from_rpc(setting_options_rpc) for setting_options_rpc in response.setting_options]
 
     async def set_setting(self, component_id, setting):
         """

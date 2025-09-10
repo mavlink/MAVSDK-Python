@@ -358,11 +358,7 @@ class ComponentInformation(AsyncBase):
         if result.result != ComponentInformationResult.Result.SUCCESS:
             raise ComponentInformationError(result, "access_float_params()")
 
-        params = []
-        for params_rpc in response.params:
-            params.append(FloatParam.translate_from_rpc(params_rpc))
-
-        return params
+        return [FloatParam.translate_from_rpc(params_rpc) for params_rpc in response.params]
 
     async def float_param(self):
         """

@@ -248,9 +248,7 @@ class TuneDescription:
     def translate_to_rpc(self, rpcTuneDescription):
         """Translates this SDK object into its gRPC equivalent"""
 
-        rpc_elems_list = []
-        for elem in self.song_elements:
-            rpc_elems_list.append(elem.translate_to_rpc())
+        rpc_elems_list = [elem.translate_to_rpc() for elem in self.song_elements]
 
         rpcTuneDescription.song_elements.extend(rpc_elems_list)
 
