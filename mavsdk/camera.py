@@ -286,12 +286,7 @@ class SettingOptions:
             rpcSettingOptions.component_id,
             rpcSettingOptions.setting_id,
             rpcSettingOptions.setting_description,
-            list(
-                map(
-                    lambda elem: Option.translate_from_rpc(elem),
-                    rpcSettingOptions.options,
-                )
-            ),
+            [Option.translate_from_rpc(elem) for elem in rpcSettingOptions.options],
             rpcSettingOptions.is_range,
         )
 
@@ -1088,12 +1083,10 @@ class CurrentSettingsUpdate:
         """Translates a gRPC struct to the SDK equivalent"""
         return CurrentSettingsUpdate(
             rpcCurrentSettingsUpdate.component_id,
-            list(
-                map(
-                    lambda elem: Setting.translate_from_rpc(elem),
-                    rpcCurrentSettingsUpdate.current_settings,
-                )
-            ),
+            [
+                Setting.translate_from_rpc(elem)
+                for elem in rpcCurrentSettingsUpdate.current_settings
+            ],
         )
 
     def translate_to_rpc(self, rpcCurrentSettingsUpdate):
@@ -1157,12 +1150,10 @@ class PossibleSettingOptionsUpdate:
         """Translates a gRPC struct to the SDK equivalent"""
         return PossibleSettingOptionsUpdate(
             rpcPossibleSettingOptionsUpdate.component_id,
-            list(
-                map(
-                    lambda elem: SettingOptions.translate_from_rpc(elem),
-                    rpcPossibleSettingOptionsUpdate.setting_options,
-                )
-            ),
+            [
+                SettingOptions.translate_from_rpc(elem)
+                for elem in rpcPossibleSettingOptionsUpdate.setting_options
+            ],
         )
 
     def translate_to_rpc(self, rpcPossibleSettingOptionsUpdate):
@@ -1873,12 +1864,7 @@ class CameraList:
     def translate_from_rpc(rpcCameraList):
         """Translates a gRPC struct to the SDK equivalent"""
         return CameraList(
-            list(
-                map(
-                    lambda elem: Information.translate_from_rpc(elem),
-                    rpcCameraList.cameras,
-                )
-            )
+            [Information.translate_from_rpc(elem) for elem in rpcCameraList.cameras]
         )
 
     def translate_to_rpc(self, rpcCameraList):
@@ -2183,11 +2169,7 @@ class Camera(AsyncBase):
         if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "list_photos()", component_id, photos_range)
 
-        capture_infos = []
-        for capture_infos_rpc in response.capture_infos:
-            capture_infos.append(CaptureInfo.translate_from_rpc(capture_infos_rpc))
-
-        return capture_infos
+        return [CaptureInfo.translate_from_rpc(elem) for elem in response.capture_infos]
 
     async def camera_list(self):
         """
@@ -2448,11 +2430,7 @@ class Camera(AsyncBase):
         if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "get_current_settings()", component_id)
 
-        current_settings = []
-        for current_settings_rpc in response.current_settings:
-            current_settings.append(Setting.translate_from_rpc(current_settings_rpc))
-
-        return current_settings
+        return [Setting.translate_from_rpc(elem) for elem in response.current_settings]
 
     async def possible_setting_options(self):
         """
@@ -2508,13 +2486,9 @@ class Camera(AsyncBase):
         if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "get_possible_setting_options()", component_id)
 
-        setting_options = []
-        for setting_options_rpc in response.setting_options:
-            setting_options.append(
-                SettingOptions.translate_from_rpc(setting_options_rpc)
-            )
-
-        return setting_options
+        return [
+            SettingOptions.translate_from_rpc(elem) for elem in response.setting_options
+        ]
 
     async def set_setting(self, component_id, setting):
         """

@@ -594,12 +594,7 @@ class GimbalList:
     def translate_from_rpc(rpcGimbalList):
         """Translates a gRPC struct to the SDK equivalent"""
         return GimbalList(
-            list(
-                map(
-                    lambda elem: GimbalItem.translate_from_rpc(elem),
-                    rpcGimbalList.gimbals,
-                )
-            )
+            [GimbalItem.translate_from_rpc(elem) for elem in rpcGimbalList.gimbals]
         )
 
     def translate_to_rpc(self, rpcGimbalList):

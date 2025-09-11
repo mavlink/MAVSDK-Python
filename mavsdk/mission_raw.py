@@ -284,24 +284,18 @@ class MissionImportData:
     def translate_from_rpc(rpcMissionImportData):
         """Translates a gRPC struct to the SDK equivalent"""
         return MissionImportData(
-            list(
-                map(
-                    lambda elem: MissionItem.translate_from_rpc(elem),
-                    rpcMissionImportData.mission_items,
-                )
-            ),
-            list(
-                map(
-                    lambda elem: MissionItem.translate_from_rpc(elem),
-                    rpcMissionImportData.geofence_items,
-                )
-            ),
-            list(
-                map(
-                    lambda elem: MissionItem.translate_from_rpc(elem),
-                    rpcMissionImportData.rally_items,
-                )
-            ),
+            [
+                MissionItem.translate_from_rpc(elem)
+                for elem in rpcMissionImportData.mission_items
+            ],
+            [
+                MissionItem.translate_from_rpc(elem)
+                for elem in rpcMissionImportData.geofence_items
+            ],
+            [
+                MissionItem.translate_from_rpc(elem)
+                for elem in rpcMissionImportData.rally_items
+            ],
         )
 
     def translate_to_rpc(self, rpcMissionImportData):
@@ -783,11 +777,7 @@ class MissionRaw(AsyncBase):
         if result.result != MissionRawResult.Result.SUCCESS:
             raise MissionRawError(result, "download_mission()")
 
-        mission_items = []
-        for mission_items_rpc in response.mission_items:
-            mission_items.append(MissionItem.translate_from_rpc(mission_items_rpc))
-
-        return mission_items
+        return [MissionItem.translate_from_rpc(elem) for elem in response.mission_items]
 
     async def download_geofence(self):
         """
@@ -812,11 +802,9 @@ class MissionRaw(AsyncBase):
         if result.result != MissionRawResult.Result.SUCCESS:
             raise MissionRawError(result, "download_geofence()")
 
-        geofence_items = []
-        for geofence_items_rpc in response.geofence_items:
-            geofence_items.append(MissionItem.translate_from_rpc(geofence_items_rpc))
-
-        return geofence_items
+        return [
+            MissionItem.translate_from_rpc(elem) for elem in response.geofence_items
+        ]
 
     async def download_rallypoints(self):
         """
@@ -841,13 +829,9 @@ class MissionRaw(AsyncBase):
         if result.result != MissionRawResult.Result.SUCCESS:
             raise MissionRawError(result, "download_rallypoints()")
 
-        rallypoint_items = []
-        for rallypoint_items_rpc in response.rallypoint_items:
-            rallypoint_items.append(
-                MissionItem.translate_from_rpc(rallypoint_items_rpc)
-            )
-
-        return rallypoint_items
+        return [
+            MissionItem.translate_from_rpc(elem) for elem in response.rallypoint_items
+        ]
 
     async def cancel_mission_download(self):
         """

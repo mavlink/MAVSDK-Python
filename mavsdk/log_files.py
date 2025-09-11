@@ -303,11 +303,7 @@ class LogFiles(AsyncBase):
         if result.result != LogFilesResult.Result.SUCCESS:
             raise LogFilesError(result, "get_entries()")
 
-        entries = []
-        for entries_rpc in response.entries:
-            entries.append(Entry.translate_from_rpc(entries_rpc))
-
-        return entries
+        return [Entry.translate_from_rpc(elem) for elem in response.entries]
 
     async def download_log_file(self, entry, path):
         """

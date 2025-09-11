@@ -236,21 +236,17 @@ class TuneDescription:
     def translate_from_rpc(rpcTuneDescription):
         """Translates a gRPC struct to the SDK equivalent"""
         return TuneDescription(
-            list(
-                map(
-                    lambda elem: SongElement.translate_from_rpc(elem),
-                    rpcTuneDescription.song_elements,
-                )
-            ),
+            [
+                SongElement.translate_from_rpc(elem)
+                for elem in rpcTuneDescription.song_elements
+            ],
             rpcTuneDescription.tempo,
         )
 
     def translate_to_rpc(self, rpcTuneDescription):
         """Translates this SDK object into its gRPC equivalent"""
 
-        rpc_elems_list = []
-        for elem in self.song_elements:
-            rpc_elems_list.append(elem.translate_to_rpc())
+        rpc_elems_list = [elem.translate_to_rpc() for elem in self.song_elements]
 
         rpcTuneDescription.song_elements.extend(rpc_elems_list)
 
