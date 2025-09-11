@@ -10,8 +10,6 @@ Plugins
    calibration
    camera
    camera_server
-   component_information
-   component_information_server
    component_metadata
    component_metadata_server
    core
@@ -42,9 +40,5 @@ Plugins
    transponder
    tune
    winch
-   arm_authorizer_server
-   component_metadata
-   component_metadata_server
-   log_streaming
    events
    mavlink_direct

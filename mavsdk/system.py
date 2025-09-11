@@ -12,8 +12,6 @@ from . import arm_authorizer_server
 from . import calibration
 from . import camera
 from . import camera_server
-from . import component_information
-from . import component_information_server
 from . import component_metadata
 from . import component_metadata_server
 from . import core
@@ -203,12 +201,6 @@ class System:
         self._plugins["calibration"] = calibration.Calibration(plugin_manager)
         self._plugins["camera"] = camera.Camera(plugin_manager)
         self._plugins["camera_server"] = camera_server.CameraServer(plugin_manager)
-        self._plugins["component_information"] = (
-            component_information.ComponentInformation(plugin_manager)
-        )
-        self._plugins["component_information_server"] = (
-            component_information_server.ComponentInformationServer(plugin_manager)
-        )
         self._plugins["component_metadata"] = component_metadata.ComponentMetadata(
             plugin_manager
         )
@@ -294,20 +286,6 @@ class System:
         if "camera_server" not in self._plugins:
             raise RuntimeError(self.error_uninitialized("CameraServer"))
         return self._plugins["camera_server"]
-
-    @property
-    def component_information(self) -> component_information.ComponentInformation:
-        if "component_information" not in self._plugins:
-            raise RuntimeError(self.error_uninitialized("ComponentInformation"))
-        return self._plugins["component_information"]
-
-    @property
-    def component_information_server(
-        self,
-    ) -> component_information_server.ComponentInformationServer:
-        if "component_information_server" not in self._plugins:
-            raise RuntimeError(self.error_uninitialized("ComponentInformationServer"))
-        return self._plugins["component_information_server"]
 
     @property
     def component_metadata(self) -> component_metadata.ComponentMetadata:
