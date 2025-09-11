@@ -21,7 +21,7 @@ jobs:
           tags: true
           fetch-depth: 0
 
-      - name: Install pip
+      - name: Install pip and pipx
         run: sudo apt-get install -y python3-pip pipx
 
       - name: Check style

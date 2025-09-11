@@ -129,6 +129,15 @@ pip3 install -r requirements-docs.txt
 make -C mavsdk html
 ```
 
+### Formatting checks before committing
+
+We use the following checks in [CI](.github/workflows/main.yml):
+
+```
+pipx run ruff format --check --line-length=100 examples
+pipx run ruff check --select=ASYNC,RUF006,E,F --line-length=100 examples
+pipx run codespell .
+```
 
 ### Release steps
 
