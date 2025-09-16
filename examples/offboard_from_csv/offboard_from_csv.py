@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Script: offboard_from_csv.py
 Author: Alireza Ghaderi
