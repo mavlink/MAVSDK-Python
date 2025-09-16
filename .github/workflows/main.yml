@@ -11,9 +11,9 @@ on:
     - '*'
 
 jobs:
-  ubuntu22:
-    name: Ubuntu 22.04 x86_64
-    runs-on: ubuntu-22.04
+  ubuntu24:
+    name: Ubuntu 24.04 x86_64
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
         with:
@@ -73,9 +73,9 @@ jobs:
 
 
 
-  ubuntu22-other:
-    name: Ubuntu 22.04 ${{ matrix.arch }}
-    runs-on: ubuntu-22.04
+  ubuntu24-other:
+    name: Ubuntu 24.04 ${{ matrix.arch }}
+    runs-on: ubuntu-24.04
 
     strategy:
       matrix:
