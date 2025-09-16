@@ -6,7 +6,7 @@ import warnings
 
 from . import server_utility_pb2 as server__utility_dot_server__utility__pb2
 
-GRPC_GENERATED_VERSION = "1.71.0"
+GRPC_GENERATED_VERSION = "1.75.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
