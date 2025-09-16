@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 This example can be used to switch between External Vision or MOCAP (EV)
