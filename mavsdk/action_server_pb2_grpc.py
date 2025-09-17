@@ -6,7 +6,7 @@ import warnings
 
 from . import action_server_pb2 as action__server_dot_action__server__pb2
 
-GRPC_GENERATED_VERSION = "1.71.0"
+GRPC_GENERATED_VERSION = "1.75.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 

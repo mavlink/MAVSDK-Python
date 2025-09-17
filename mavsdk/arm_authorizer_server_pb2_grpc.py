@@ -8,7 +8,7 @@ from . import (
     arm_authorizer_server_pb2 as arm__authorizer__server_dot_arm__authorizer__server__pb2,
 )
 
-GRPC_GENERATED_VERSION = "1.71.0"
+GRPC_GENERATED_VERSION = "1.75.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
