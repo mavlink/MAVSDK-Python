@@ -129,11 +129,11 @@ jobs:
       matrix:
         include:
           - arch: x64
-            wheel_arch: 10_9_x86_64
-            runs_on: macos-13
+            wheel_arch: 13_0_x86_64
+            runs_on: macos-15-intel
           - arch: arm64
-            wheel_arch: 11_0_arm64
-            runs_on: macos-14
+            wheel_arch: 14_0_arm64
+            runs_on: macos-15
     steps:
       - uses: actions/checkout@v6
         with:
