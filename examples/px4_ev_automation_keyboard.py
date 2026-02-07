@@ -64,7 +64,10 @@ async def main():
                 if not in_air:
                     break
 
-                mode = input("Enter mode ('EV', 'GPS', or 'Multi-fusion'): ")
+                loop = asyncio.get_event_loop()
+                mode = await loop.run_in_executor(
+                    None, input, "Enter mode ('EV', 'GPS', or 'Multi-fusion'): "
+                )
                 if mode.lower() == "ev":
                     await set_params(
                         drone,
