@@ -7,14 +7,14 @@ async def {{ name.lower_snake_case }}(self{% for param in params %}, {{ param.na
      Parameters
      ----------
      {% for param in params -%}
-     {{ param.name.lower_snake_case }} : {{ param.type_info.name }}
+     {{ param.name.lower_snake_case }} : {% if param.type_info.is_primitive %}{% if param.type_info.is_repeated %}[{{ param.type_info.name }}]{% else %}{{ param.type_info.name }}{% endif %}{% else %}{% if param.type_info.is_repeated %}[{{ param.type_info.inner_name.upper_camel_case }}]{% else %}{{ param.type_info.name.upper_camel_case }}{% endif %}{% endif %}
          {{ param.description }}
      {% endfor -%}
      {% endif -%}
 
      Returns
      -------
-     {{ return_name.lower_snake_case }} : {{ return_type.name }}
+     {{ return_name.lower_snake_case }} : {% if return_type.is_primitive %}{% if return_type.is_repeated %}[{{ return_type.name }}]{% else %}{{ return_type.name }}{% endif %}{% else %}{% if return_type.is_repeated %}[{{ return_type.inner_name.upper_camel_case }}]{% else %}{{ return_type.name.upper_camel_case }}{% endif %}{% endif %}
          {{ return_description }}
      {% if has_result -%}
      Raises
@@ -31,11 +31,11 @@ async def {{ name.lower_snake_case }}(self{% for param in params %}, {{ param.na
         {% else %}
             {% if param.type_info.is_repeated %}
                 {% if param.type_info.is_enum %}
-    rpc_elems_list = [elem.translate_to_rpc() for elem in {{ param.name.lower_snake_case }}]
+    rpc_elems_list = [elem.translate_to_rpc() for elem in {{ param.inner_name.lower_snake_case }}]
                 {% else %}
     rpc_elems_list = []
     for elem in {{ param.name.lower_snake_case }}:
-        rpc_elem = {{ plugin_name.lower_snake_case }}_pb2.{{ param.type_info.inner_name }}()
+        rpc_elem = {{ plugin_name.lower_snake_case }}_pb2.{{ param.type_info.inner_name.upper_camel_case }}()
         elem.translate_to_rpc(rpc_elem)
         rpc_elems_list.append(rpc_elem)
                 {% endif %}
@@ -60,8 +60,8 @@ async def {{ name.lower_snake_case }}(self{% for param in params %}, {{ param.na
     return response.{{ return_name.lower_snake_case }}
     {% else -%}
         {% if return_type.is_repeated -%}
-    return [{{ return_type.inner_name }}.translate_from_rpc(elem) for elem in response.{{ return_name.lower_snake_case }}]
+    return [{{ return_type.inner_name.upper_camel_case }}.translate_from_rpc(elem) for elem in response.{{ return_name.lower_snake_case }}]
         {% else -%}
-    return {{ return_type.inner_name }}.translate_from_rpc(response.{{ return_name.lower_snake_case }})
+    return {{ return_type.inner_name.upper_camel_case }}.translate_from_rpc(response.{{ return_name.lower_snake_case }})
         {% endif -%}
     {% endif %}

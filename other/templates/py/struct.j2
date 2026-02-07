@@ -5,7 +5,7 @@ class {{ name.upper_camel_case }}:
      Parameters
      ----------
      {% for field in fields -%}
-     {{ field.name.lower_snake_case }} : {{ field.type_info.name }}
+     {{ field.name.lower_snake_case }} : {% if field.type_info.is_primitive %}{{ field.type_info.name }}{% else %}{% if field.type_info.is_repeated %}[{{ field.type_info.inner_name.upper_camel_case }}]{% else %}{{ field.type_info.inner_name.upper_camel_case }}{% endif %}{% endif %}
          {{ field.description }}
      {% endfor -%}
    """
@@ -56,9 +56,9 @@ class {{ name.upper_camel_case }}:
                 rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }}{{ "," if not loop.last }}
                 {% else %}
                     {%- if field.type_info.is_repeated %}
-                [{{ field.type_info.inner_name }}.translate_from_rpc(elem) for elem in rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }}]{{ "," if not loop.last }}
+                [{{ field.type_info.inner_name.upper_camel_case }}.translate_from_rpc(elem) for elem in rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }}]{{ "," if not loop.last }}
                     {%- else %}
-                {% if field.type_info.parent_type is not none %}{{ field.type_info.parent_type }}.{% endif %}{{ field.type_info.inner_name }}.translate_from_rpc(rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }}){{ "," if not loop.last }}
+                {% if field.type_info.parent_type is not none %}{{ field.type_info.parent_type.upper_camel_case }}.{% endif %}{{ field.type_info.inner_name.upper_camel_case }}.translate_from_rpc(rpc{{ name.upper_camel_case }}.{{ field.name.lower_snake_case }}){{ "," if not loop.last }}
                     {%- endif %}
                 {% endif %}
                 {%- endfor %})
@@ -77,7 +77,7 @@ class {{ name.upper_camel_case }}:
                 {% else %}
         rpc_elems_list = []
         for elem in self.{{ field.name.lower_snake_case }}:
-            rpc_elem = {{ plugin_name.lower_snake_case }}_pb2.{{ field.type_info.inner_name }}()
+            rpc_elem = {{ plugin_name.lower_snake_case }}_pb2.{{ field.type_info.inner_name.upper_camel_case }}()
             elem.translate_to_rpc(rpc_elem)
             rpc_elems_list.append(rpc_elem)
                 {% endif %}
