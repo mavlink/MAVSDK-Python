@@ -327,6 +327,30 @@ class ParamResult:
         FAILED
              Operation failed.
 
+        DOES_NOT_EXIST
+             Parameter does not exist
+
+        VALUE_OUT_OF_RANGE
+             Parameter value does not fit within accepted range
+
+        PERMISSION_DENIED
+             Caller is not permitted to set the value of this parameter
+
+        COMPONENT_NOT_FOUND
+             Unknown component specified
+
+        READ_ONLY
+             Parameter is read-only
+
+        TYPE_UNSUPPORTED
+             Parameter data type is not supported by flight stack
+
+        TYPE_MISMATCH
+             Parameter type does not match expected type
+
+        READ_FAIL
+             Parameter exists but reading failed
+
         """
 
         UNKNOWN = 0
@@ -338,6 +362,14 @@ class ParamResult:
         NO_SYSTEM = 6
         PARAM_VALUE_TOO_LONG = 7
         FAILED = 8
+        DOES_NOT_EXIST = 9
+        VALUE_OUT_OF_RANGE = 10
+        PERMISSION_DENIED = 11
+        COMPONENT_NOT_FOUND = 12
+        READ_ONLY = 13
+        TYPE_UNSUPPORTED = 14
+        TYPE_MISMATCH = 15
+        READ_FAIL = 16
 
         def translate_to_rpc(self):
             if self == ParamResult.Result.UNKNOWN:
@@ -358,6 +390,22 @@ class ParamResult:
                 return param_pb2.ParamResult.RESULT_PARAM_VALUE_TOO_LONG
             if self == ParamResult.Result.FAILED:
                 return param_pb2.ParamResult.RESULT_FAILED
+            if self == ParamResult.Result.DOES_NOT_EXIST:
+                return param_pb2.ParamResult.RESULT_DOES_NOT_EXIST
+            if self == ParamResult.Result.VALUE_OUT_OF_RANGE:
+                return param_pb2.ParamResult.RESULT_VALUE_OUT_OF_RANGE
+            if self == ParamResult.Result.PERMISSION_DENIED:
+                return param_pb2.ParamResult.RESULT_PERMISSION_DENIED
+            if self == ParamResult.Result.COMPONENT_NOT_FOUND:
+                return param_pb2.ParamResult.RESULT_COMPONENT_NOT_FOUND
+            if self == ParamResult.Result.READ_ONLY:
+                return param_pb2.ParamResult.RESULT_READ_ONLY
+            if self == ParamResult.Result.TYPE_UNSUPPORTED:
+                return param_pb2.ParamResult.RESULT_TYPE_UNSUPPORTED
+            if self == ParamResult.Result.TYPE_MISMATCH:
+                return param_pb2.ParamResult.RESULT_TYPE_MISMATCH
+            if self == ParamResult.Result.READ_FAIL:
+                return param_pb2.ParamResult.RESULT_READ_FAIL
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -380,6 +428,22 @@ class ParamResult:
                 return ParamResult.Result.PARAM_VALUE_TOO_LONG
             if rpc_enum_value == param_pb2.ParamResult.RESULT_FAILED:
                 return ParamResult.Result.FAILED
+            if rpc_enum_value == param_pb2.ParamResult.RESULT_DOES_NOT_EXIST:
+                return ParamResult.Result.DOES_NOT_EXIST
+            if rpc_enum_value == param_pb2.ParamResult.RESULT_VALUE_OUT_OF_RANGE:
+                return ParamResult.Result.VALUE_OUT_OF_RANGE
+            if rpc_enum_value == param_pb2.ParamResult.RESULT_PERMISSION_DENIED:
+                return ParamResult.Result.PERMISSION_DENIED
+            if rpc_enum_value == param_pb2.ParamResult.RESULT_COMPONENT_NOT_FOUND:
+                return ParamResult.Result.COMPONENT_NOT_FOUND
+            if rpc_enum_value == param_pb2.ParamResult.RESULT_READ_ONLY:
+                return ParamResult.Result.READ_ONLY
+            if rpc_enum_value == param_pb2.ParamResult.RESULT_TYPE_UNSUPPORTED:
+                return ParamResult.Result.TYPE_UNSUPPORTED
+            if rpc_enum_value == param_pb2.ParamResult.RESULT_TYPE_MISMATCH:
+                return ParamResult.Result.TYPE_MISMATCH
+            if rpc_enum_value == param_pb2.ParamResult.RESULT_READ_FAIL:
+                return ParamResult.Result.READ_FAIL
 
         def __str__(self):
             return self.name

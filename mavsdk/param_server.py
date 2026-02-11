@@ -286,6 +286,9 @@ class ParamServerResult:
         PARAM_VALUE_TOO_LONG
              Parameter name too long (> 128)
 
+        PARAM_PROVIDED_TOO_LATE
+             All parameters have to be provided upfront
+
         """
 
         UNKNOWN = 0
@@ -295,6 +298,7 @@ class ParamServerResult:
         PARAM_NAME_TOO_LONG = 4
         NO_SYSTEM = 5
         PARAM_VALUE_TOO_LONG = 6
+        PARAM_PROVIDED_TOO_LATE = 7
 
         def translate_to_rpc(self):
             if self == ParamServerResult.Result.UNKNOWN:
@@ -311,6 +315,8 @@ class ParamServerResult:
                 return param_server_pb2.ParamServerResult.RESULT_NO_SYSTEM
             if self == ParamServerResult.Result.PARAM_VALUE_TOO_LONG:
                 return param_server_pb2.ParamServerResult.RESULT_PARAM_VALUE_TOO_LONG
+            if self == ParamServerResult.Result.PARAM_PROVIDED_TOO_LATE:
+                return param_server_pb2.ParamServerResult.RESULT_PARAM_PROVIDED_TOO_LATE
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -335,6 +341,11 @@ class ParamServerResult:
                 == param_server_pb2.ParamServerResult.RESULT_PARAM_VALUE_TOO_LONG
             ):
                 return ParamServerResult.Result.PARAM_VALUE_TOO_LONG
+            if (
+                rpc_enum_value
+                == param_server_pb2.ParamServerResult.RESULT_PARAM_PROVIDED_TOO_LATE
+            ):
+                return ParamServerResult.Result.PARAM_PROVIDED_TOO_LATE
 
         def __str__(self):
             return self.name
@@ -479,6 +490,10 @@ class ParamServer(AsyncBase):
 
         If the type is wrong, the result will be `WRONG_TYPE`.
 
+        Note that all params need to be provided upfront. Once a client has
+        requested a param list, the indices are locked and no more params
+        can be added.
+
         Parameters
         ----------
         name : std::string
@@ -508,6 +523,10 @@ class ParamServer(AsyncBase):
         Retrieve a float parameter.
 
         If the type is wrong, the result will be `WRONG_TYPE`.
+
+        Note that all params need to be provided upfront. Once a client has
+        requested a param list, the indices are locked and no more params
+        can be added.
 
         Parameters
         ----------
@@ -573,6 +592,10 @@ class ParamServer(AsyncBase):
         Retrieve a custom parameter.
 
         If the type is wrong, the result will be `WRONG_TYPE`.
+
+        Note that all params need to be provided upfront. Once a client has
+        requested a param list, the indices are locked and no more params
+        can be added.
 
         Parameters
         ----------

@@ -65,6 +65,41 @@ class OrbitYawBehavior(Enum):
         return self.name
 
 
+class RelayCommand(Enum):
+    """
+    Commanded values for relays
+
+    Values
+    ------
+    ON
+         Turn the relay off
+
+    OFF
+         Turn the relay on.
+
+    """
+
+    ON = 0
+    OFF = 1
+
+    def translate_to_rpc(self):
+        if self == RelayCommand.ON:
+            return action_pb2.RELAY_COMMAND_ON
+        if self == RelayCommand.OFF:
+            return action_pb2.RELAY_COMMAND_OFF
+
+    @staticmethod
+    def translate_from_rpc(rpc_enum_value):
+        """Parses a gRPC response"""
+        if rpc_enum_value == action_pb2.RELAY_COMMAND_ON:
+            return RelayCommand.ON
+        if rpc_enum_value == action_pb2.RELAY_COMMAND_OFF:
+            return RelayCommand.OFF
+
+    def __str__(self):
+        return self.name
+
+
 class ActionResult:
     """
     Result type.
@@ -684,6 +719,39 @@ class Action(AsyncBase):
         if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "set_actuator()", index, value)
 
+    async def set_relay(self, index, setting):
+        """
+        Send command to set the value of a relay.
+
+        The index of the relay starts at 0.
+        For the relay value, 1=on, 0=off, others possible depending on system hardware
+
+        Parameters
+        ----------
+        index : int32_t
+             Index of relay (starting with 0)
+
+        setting : RelayCommand
+             Value to set the relay to
+
+        Raises
+        ------
+        ActionError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = action_pb2.SetRelayRequest()
+        request.index = index
+
+        request.setting = setting.translate_to_rpc()
+
+        response = await self._stub.SetRelay(request)
+
+        result = self._extract_result(response)
+
+        if result.result != ActionResult.Result.SUCCESS:
+            raise ActionError(result, "set_relay()", index, setting)
+
     async def transition_to_fixedwing(self):
         """
         Send command to transition the drone to fixedwing.
@@ -854,3 +922,45 @@ class Action(AsyncBase):
 
         if result.result != ActionResult.Result.SUCCESS:
             raise ActionError(result, "set_current_speed()", speed_m_s)
+
+    async def set_gps_global_origin(
+        self, latitude_deg, longitude_deg, absolute_altitude_m
+    ):
+        """
+        Set GPS Global Origin.
+
+        Sets the GPS coordinates of the vehicle local origin (0,0,0) position.
+
+        Parameters
+        ----------
+        latitude_deg : double
+             Latitude (in degrees)
+
+        longitude_deg : double
+             Longitude (in degrees)
+
+        absolute_altitude_m : float
+             Altitude AMSL (in meters)
+
+        Raises
+        ------
+        ActionError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = action_pb2.SetGpsGlobalOriginRequest()
+        request.latitude_deg = latitude_deg
+        request.longitude_deg = longitude_deg
+        request.absolute_altitude_m = absolute_altitude_m
+        response = await self._stub.SetGpsGlobalOrigin(request)
+
+        result = self._extract_result(response)
+
+        if result.result != ActionResult.Result.SUCCESS:
+            raise ActionError(
+                result,
+                "set_gps_global_origin()",
+                latitude_deg,
+                longitude_deg,
+                absolute_altitude_m,
+            )

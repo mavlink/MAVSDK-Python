@@ -122,6 +122,12 @@ class ActionServiceStub(object):
             response_deserializer=action_dot_action__pb2.SetActuatorResponse.FromString,
             _registered_method=True,
         )
+        self.SetRelay = channel.unary_unary(
+            "/mavsdk.rpc.action.ActionService/SetRelay",
+            request_serializer=action_dot_action__pb2.SetRelayRequest.SerializeToString,
+            response_deserializer=action_dot_action__pb2.SetRelayResponse.FromString,
+            _registered_method=True,
+        )
         self.TransitionToFixedwing = channel.unary_unary(
             "/mavsdk.rpc.action.ActionService/TransitionToFixedwing",
             request_serializer=action_dot_action__pb2.TransitionToFixedwingRequest.SerializeToString,
@@ -162,6 +168,12 @@ class ActionServiceStub(object):
             "/mavsdk.rpc.action.ActionService/SetCurrentSpeed",
             request_serializer=action_dot_action__pb2.SetCurrentSpeedRequest.SerializeToString,
             response_deserializer=action_dot_action__pb2.SetCurrentSpeedResponse.FromString,
+            _registered_method=True,
+        )
+        self.SetGpsGlobalOrigin = channel.unary_unary(
+            "/mavsdk.rpc.action.ActionService/SetGpsGlobalOrigin",
+            request_serializer=action_dot_action__pb2.SetGpsGlobalOriginRequest.SerializeToString,
+            response_deserializer=action_dot_action__pb2.SetGpsGlobalOriginResponse.FromString,
             _registered_method=True,
         )
 
@@ -329,6 +341,17 @@ class ActionServiceServicer(object):
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
+    def SetRelay(self, request, context):
+        """
+        Send command to set the value of a relay.
+
+        The index of the relay starts at 0.
+        For the relay value, 1=on, 0=off, others possible depending on system hardware
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
     def TransitionToFixedwing(self, request, context):
         """
         Send command to transition the drone to fixedwing.
@@ -391,6 +414,16 @@ class ActionServiceServicer(object):
 
         This will set the speed during a mission, reposition, and similar.
         It is ephemeral, so not stored on the drone and does not survive a reboot.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
+    def SetGpsGlobalOrigin(self, request, context):
+        """
+        Set GPS Global Origin.
+
+        Sets the GPS coordinates of the vehicle local origin (0,0,0) position.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
@@ -469,6 +502,11 @@ def add_ActionServiceServicer_to_server(servicer, server):
             request_deserializer=action_dot_action__pb2.SetActuatorRequest.FromString,
             response_serializer=action_dot_action__pb2.SetActuatorResponse.SerializeToString,
         ),
+        "SetRelay": grpc.unary_unary_rpc_method_handler(
+            servicer.SetRelay,
+            request_deserializer=action_dot_action__pb2.SetRelayRequest.FromString,
+            response_serializer=action_dot_action__pb2.SetRelayResponse.SerializeToString,
+        ),
         "TransitionToFixedwing": grpc.unary_unary_rpc_method_handler(
             servicer.TransitionToFixedwing,
             request_deserializer=action_dot_action__pb2.TransitionToFixedwingRequest.FromString,
@@ -503,6 +541,11 @@ def add_ActionServiceServicer_to_server(servicer, server):
             servicer.SetCurrentSpeed,
             request_deserializer=action_dot_action__pb2.SetCurrentSpeedRequest.FromString,
             response_serializer=action_dot_action__pb2.SetCurrentSpeedResponse.SerializeToString,
+        ),
+        "SetGpsGlobalOrigin": grpc.unary_unary_rpc_method_handler(
+            servicer.SetGpsGlobalOrigin,
+            request_deserializer=action_dot_action__pb2.SetGpsGlobalOriginRequest.FromString,
+            response_serializer=action_dot_action__pb2.SetGpsGlobalOriginResponse.SerializeToString,
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -939,6 +982,36 @@ class ActionService(object):
         )
 
     @staticmethod
+    def SetRelay(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.action.ActionService/SetRelay",
+            action_dot_action__pb2.SetRelayRequest.SerializeToString,
+            action_dot_action__pb2.SetRelayResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
     def TransitionToFixedwing(
         request,
         target,
@@ -1137,6 +1210,36 @@ class ActionService(object):
             "/mavsdk.rpc.action.ActionService/SetCurrentSpeed",
             action_dot_action__pb2.SetCurrentSpeedRequest.SerializeToString,
             action_dot_action__pb2.SetCurrentSpeedResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def SetGpsGlobalOrigin(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.action.ActionService/SetGpsGlobalOrigin",
+            action_dot_action__pb2.SetGpsGlobalOriginRequest.SerializeToString,
+            action_dot_action__pb2.SetGpsGlobalOriginResponse.FromString,
             options,
             channel_credentials,
             insecure,
