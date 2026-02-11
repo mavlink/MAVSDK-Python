@@ -34,7 +34,7 @@ jobs:
       - name: Install prerequisites
         run: |
           python3 -m pip install -r requirements.txt -r requirements-dev.txt -r requirements-docs.txt
-          python3 -m pip install auditwheel "twine<6"
+          python3 -m pip install "setuptools<77" auditwheel twine
 
       - name: Create wheel
         run: |
@@ -100,7 +100,7 @@ jobs:
       - name: Install prerequisites
         run: |
           python3 -m pip install -r requirements.txt -r requirements-dev.txt
-          python3 -m pip install "twine<6"
+          python3 -m pip install "setuptools<77" twine
 
       - name: Create wheel
         run: |
@@ -149,7 +149,7 @@ jobs:
       - name: Install prerequisites
         run: |
           python -m pip install -r requirements.txt
-          python -m pip install setuptools "twine<6" wheel
+          python -m pip install "setuptools<77" twine wheel
           python -m pip install --user delocate
 
       - name: Create wheel
@@ -206,7 +206,7 @@ jobs:
       - name: Install prerequisites
         run: |
           python3 -m pip install -r requirements.txt -r requirements-dev.txt
-          python3 -m pip install "twine<6" wheel
+          python3 -m pip install "setuptools<77" twine wheel
 
       - name: Create wheel
         run: |
