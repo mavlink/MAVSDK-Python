@@ -156,13 +156,38 @@ class AllowableFlightModes:
     can_stabilize_mode : bool
          Stabilize mode
 
+    can_auto_rtl_mode : bool
+         Auto RTL mode
+
+    can_auto_takeoff_mode : bool
+         Auto takeoff mode
+
+    can_auto_land_mode : bool
+         Auto land mode
+
+    can_auto_loiter_mode : bool
+         Auto hold/loiter mode
+
     """
 
-    def __init__(self, can_auto_mode, can_guided_mode, can_stabilize_mode):
+    def __init__(
+        self,
+        can_auto_mode,
+        can_guided_mode,
+        can_stabilize_mode,
+        can_auto_rtl_mode,
+        can_auto_takeoff_mode,
+        can_auto_land_mode,
+        can_auto_loiter_mode,
+    ):
         """Initializes the AllowableFlightModes object"""
         self.can_auto_mode = can_auto_mode
         self.can_guided_mode = can_guided_mode
         self.can_stabilize_mode = can_stabilize_mode
+        self.can_auto_rtl_mode = can_auto_rtl_mode
+        self.can_auto_takeoff_mode = can_auto_takeoff_mode
+        self.can_auto_land_mode = can_auto_land_mode
+        self.can_auto_loiter_mode = can_auto_loiter_mode
 
     def __eq__(self, to_compare):
         """Checks if two AllowableFlightModes are the same"""
@@ -173,6 +198,10 @@ class AllowableFlightModes:
                 (self.can_auto_mode == to_compare.can_auto_mode)
                 and (self.can_guided_mode == to_compare.can_guided_mode)
                 and (self.can_stabilize_mode == to_compare.can_stabilize_mode)
+                and (self.can_auto_rtl_mode == to_compare.can_auto_rtl_mode)
+                and (self.can_auto_takeoff_mode == to_compare.can_auto_takeoff_mode)
+                and (self.can_auto_land_mode == to_compare.can_auto_land_mode)
+                and (self.can_auto_loiter_mode == to_compare.can_auto_loiter_mode)
             )
 
         except AttributeError:
@@ -185,6 +214,10 @@ class AllowableFlightModes:
                 "can_auto_mode: " + str(self.can_auto_mode),
                 "can_guided_mode: " + str(self.can_guided_mode),
                 "can_stabilize_mode: " + str(self.can_stabilize_mode),
+                "can_auto_rtl_mode: " + str(self.can_auto_rtl_mode),
+                "can_auto_takeoff_mode: " + str(self.can_auto_takeoff_mode),
+                "can_auto_land_mode: " + str(self.can_auto_land_mode),
+                "can_auto_loiter_mode: " + str(self.can_auto_loiter_mode),
             ]
         )
 
@@ -197,6 +230,10 @@ class AllowableFlightModes:
             rpcAllowableFlightModes.can_auto_mode,
             rpcAllowableFlightModes.can_guided_mode,
             rpcAllowableFlightModes.can_stabilize_mode,
+            rpcAllowableFlightModes.can_auto_rtl_mode,
+            rpcAllowableFlightModes.can_auto_takeoff_mode,
+            rpcAllowableFlightModes.can_auto_land_mode,
+            rpcAllowableFlightModes.can_auto_loiter_mode,
         )
 
     def translate_to_rpc(self, rpcAllowableFlightModes):
@@ -207,6 +244,14 @@ class AllowableFlightModes:
         rpcAllowableFlightModes.can_guided_mode = self.can_guided_mode
 
         rpcAllowableFlightModes.can_stabilize_mode = self.can_stabilize_mode
+
+        rpcAllowableFlightModes.can_auto_rtl_mode = self.can_auto_rtl_mode
+
+        rpcAllowableFlightModes.can_auto_takeoff_mode = self.can_auto_takeoff_mode
+
+        rpcAllowableFlightModes.can_auto_land_mode = self.can_auto_land_mode
+
+        rpcAllowableFlightModes.can_auto_loiter_mode = self.can_auto_loiter_mode
 
 
 class ArmDisarm:
@@ -925,3 +970,29 @@ class ActionServer(AsyncBase):
 
         if result.result != ActionServerResult.Result.SUCCESS:
             raise ActionServerError(result, "set_flight_mode()", flight_mode)
+
+    async def set_flight_mode_internal(self, flight_mode):
+        """
+        Set/override the flight mode of the vehicle directly, and *do not* notify subscribers
+
+        Parameters
+        ----------
+        flight_mode : FlightMode
+             Current vehicle flight mode, e.g. Takeoff/Mission/Land/etc.
+
+        Raises
+        ------
+        ActionServerError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = action_server_pb2.SetFlightModeInternalRequest()
+
+        request.flight_mode = flight_mode.translate_to_rpc()
+
+        response = await self._stub.SetFlightModeInternal(request)
+
+        result = self._extract_result(response)
+
+        if result.result != ActionServerResult.Result.SUCCESS:
+            raise ActionServerError(result, "set_flight_mode_internal()", flight_mode)
