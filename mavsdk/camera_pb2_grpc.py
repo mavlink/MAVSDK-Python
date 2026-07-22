@@ -32,7 +32,7 @@ if _version_not_supported:
 class CameraServiceStub(object):
     """
     Can be used to manage cameras that implement the MAVLink
-    Camera Protocol: https://mavlink.io/en/protocol/camera.html.
+    Camera Protocol: https://mavlink.io/en/services/camera.html.
 
     Currently only a single camera is supported.
     When multiple cameras are supported the plugin will need to be
@@ -267,7 +267,7 @@ class CameraServiceStub(object):
 class CameraServiceServicer(object):
     """
     Can be used to manage cameras that implement the MAVLink
-    Camera Protocol: https://mavlink.io/en/protocol/camera.html.
+    Camera Protocol: https://mavlink.io/en/services/camera.html.
 
     Currently only a single camera is supported.
     When multiple cameras are supported the plugin will need to be
@@ -775,7 +775,7 @@ def add_CameraServiceServicer_to_server(servicer, server):
 class CameraService(object):
     """
     Can be used to manage cameras that implement the MAVLink
-    Camera Protocol: https://mavlink.io/en/protocol/camera.html.
+    Camera Protocol: https://mavlink.io/en/services/camera.html.
 
     Currently only a single camera is supported.
     When multiple cameras are supported the plugin will need to be

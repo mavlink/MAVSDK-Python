@@ -30,7 +30,10 @@ if _version_not_supported:
 
 
 class GimbalServiceStub(object):
-    """Provide control over a gimbal."""
+    """
+    Provide control over a gimbal within the MAVLink
+    Gimbal Protocol: https://mavlink.io/en/services/gimbal_v2.html
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -101,7 +104,10 @@ class GimbalServiceStub(object):
 
 
 class GimbalServiceServicer(object):
-    """Provide control over a gimbal."""
+    """
+    Provide control over a gimbal within the MAVLink
+    Gimbal Protocol: https://mavlink.io/en/services/gimbal_v2.html
+    """
 
     def SetAngles(self, request, context):
         """
@@ -285,7 +291,10 @@ def add_GimbalServiceServicer_to_server(servicer, server):
 
 # This class is part of an EXPERIMENTAL API.
 class GimbalService(object):
-    """Provide control over a gimbal."""
+    """
+    Provide control over a gimbal within the MAVLink
+    Gimbal Protocol: https://mavlink.io/en/services/gimbal_v2.html
+    """
 
     @staticmethod
     def SetAngles(

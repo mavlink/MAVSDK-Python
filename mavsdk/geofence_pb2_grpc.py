@@ -44,6 +44,12 @@ class GeofenceServiceStub(object):
             response_deserializer=geofence_dot_geofence__pb2.UploadGeofenceResponse.FromString,
             _registered_method=True,
         )
+        self.DownloadGeofence = channel.unary_unary(
+            "/mavsdk.rpc.geofence.GeofenceService/DownloadGeofence",
+            request_serializer=geofence_dot_geofence__pb2.DownloadGeofenceRequest.SerializeToString,
+            response_deserializer=geofence_dot_geofence__pb2.DownloadGeofenceResponse.FromString,
+            _registered_method=True,
+        )
         self.ClearGeofence = channel.unary_unary(
             "/mavsdk.rpc.geofence.GeofenceService/ClearGeofence",
             request_serializer=geofence_dot_geofence__pb2.ClearGeofenceRequest.SerializeToString,
@@ -66,6 +72,16 @@ class GeofenceServiceServicer(object):
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
+    def DownloadGeofence(self, request, context):
+        """
+        Download geofences from the vehicle.
+
+        Downloads polygon and circular geofences from the vehicle.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
     def ClearGeofence(self, request, context):
         """
         Clear all geofences saved on the vehicle.
@@ -81,6 +97,11 @@ def add_GeofenceServiceServicer_to_server(servicer, server):
             servicer.UploadGeofence,
             request_deserializer=geofence_dot_geofence__pb2.UploadGeofenceRequest.FromString,
             response_serializer=geofence_dot_geofence__pb2.UploadGeofenceResponse.SerializeToString,
+        ),
+        "DownloadGeofence": grpc.unary_unary_rpc_method_handler(
+            servicer.DownloadGeofence,
+            request_deserializer=geofence_dot_geofence__pb2.DownloadGeofenceRequest.FromString,
+            response_serializer=geofence_dot_geofence__pb2.DownloadGeofenceResponse.SerializeToString,
         ),
         "ClearGeofence": grpc.unary_unary_rpc_method_handler(
             servicer.ClearGeofence,
@@ -120,6 +141,36 @@ class GeofenceService(object):
             "/mavsdk.rpc.geofence.GeofenceService/UploadGeofence",
             geofence_dot_geofence__pb2.UploadGeofenceRequest.SerializeToString,
             geofence_dot_geofence__pb2.UploadGeofenceResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def DownloadGeofence(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.geofence.GeofenceService/DownloadGeofence",
+            geofence_dot_geofence__pb2.DownloadGeofenceRequest.SerializeToString,
+            geofence_dot_geofence__pb2.DownloadGeofenceResponse.FromString,
             options,
             channel_credentials,
             insecure,
