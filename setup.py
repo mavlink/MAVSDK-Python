@@ -79,12 +79,14 @@ class custom_build(build):
             )
 
         elif platform.system() == "Windows" and "MAVSDK_SERVER_ARCH" in os.environ:
+            # The released Windows assets are named with a .exe suffix, e.g.
+            # mavsdk_server_win_x86.exe -- without it the download 404s.
             if os.environ["MAVSDK_SERVER_ARCH"] == "x86":
-                return "win_x86"
+                return "win_x86.exe"
             elif os.environ["MAVSDK_SERVER_ARCH"] == "x64":
-                return "win_x64"
+                return "win_x64.exe"
             elif os.environ["MAVSDK_SERVER_ARCH"] == "arm64":
-                return "win_arm64"
+                return "win_arm64.exe"
             else:
                 raise NotImplementedError(
                     "Error: unknown MAVSDK_SERVER_ARCH: "
