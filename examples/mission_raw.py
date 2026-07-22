@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import asyncio
-from mavsdk import System
-from mavsdk import mission_raw
+from mavsdk_grpc import System
+from mavsdk_grpc import mission_raw
 
 
 async def px4_connect_drone():

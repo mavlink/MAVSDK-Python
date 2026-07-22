@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import asyncio
-from mavsdk import System
-from mavsdk.server_utility import StatusTextType
+from mavsdk_grpc import System
+from mavsdk_grpc.server_utility import StatusTextType
 
 """
 This example shows how to use server_utility plugin to send status messages.

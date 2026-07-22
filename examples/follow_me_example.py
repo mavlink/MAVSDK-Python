@@ -3,8 +3,8 @@
 # This example shows how to use the follow me plugin
 
 import asyncio
-from mavsdk import System
-from mavsdk.follow_me import Config, TargetLocation
+from mavsdk_grpc import System
+from mavsdk_grpc.follow_me import Config, TargetLocation
 
 
 follow_height = 8.0  # in meters

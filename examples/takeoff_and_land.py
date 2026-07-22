@@ -3,7 +3,7 @@
 import asyncio
 import logging
 
-from mavsdk import System
+from mavsdk_grpc import System
 
 # Enable INFO level logging by default so that INFO messages are shown
 logging.basicConfig(level=logging.INFO)

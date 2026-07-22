@@ -2,8 +2,8 @@
 
 import asyncio
 import base64
-from mavsdk import System
-from mavsdk.rtk import RtcmData
+from mavsdk_grpc import System
+from mavsdk_grpc.rtk import RtcmData
 
 
 async def send_data(data):
