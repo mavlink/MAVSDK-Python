@@ -11,8 +11,8 @@ non-gps environment.
 import asyncio
 import logging
 
-from mavsdk import System
-from mavsdk.offboard import OffboardError, PositionNedYaw
+from mavsdk_grpc import System
+from mavsdk_grpc.offboard import OffboardError, PositionNedYaw
 
 # Enable INFO level logging by default so that INFO messages are shown
 logging.basicConfig(level=logging.INFO)

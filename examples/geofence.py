@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import asyncio
-from mavsdk import System
-from mavsdk.geofence import Point, Polygon, FenceType, GeofenceData, Circle
+from mavsdk_grpc import System
+from mavsdk_grpc.geofence import Point, Polygon, FenceType, GeofenceData, Circle
 
 """
 This example shows how to use the geofence plugin.

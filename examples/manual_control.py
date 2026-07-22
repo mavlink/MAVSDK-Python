@@ -14,7 +14,7 @@ Takeoff is used in this example to decrease complexity
 
 import asyncio
 import random
-from mavsdk import System
+from mavsdk_grpc import System
 
 # Test set of manual inputs. Format: [roll, pitch, throttle, yaw]
 manual_inputs = [
