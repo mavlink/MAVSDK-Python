@@ -34,7 +34,7 @@ if _dist_name == "mavsdk":
         "under a separate import name so it cannot collide with the native "
         "binding.\n"
         "  To freeze instead, pin 'mavsdk<4' (no further updates).\n"
-        "  To migrate, see https://mavsdk.mavlink.io/main/en/python/",
+        "  To migrate, see https://mavsdk.mavlink.io/main/en/python/migration.html",
         FutureWarning,
         stacklevel=2,
     )

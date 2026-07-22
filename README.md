@@ -11,7 +11,7 @@ The Python wrapper is based on a gRPC client communicating with the gRPC server 
 >
 > This wrapper used to be published as `mavsdk`. That name on PyPI now refers to
 > the native MAVSDK binding, which has a **different API** and no gRPC
-> dependency — see [its documentation](https://mavsdk.mavlink.io/main/en/python/).
+> dependency — see the [migration guide](https://mavsdk.mavlink.io/main/en/python/migration.html).
 >
 > This project carries on under the `mavsdk-grpc` name, including releases
 > tracking MAVSDK v4. If you were using `mavsdk`:

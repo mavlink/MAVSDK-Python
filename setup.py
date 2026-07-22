@@ -88,7 +88,7 @@ def remapped_packages():
     ]
 
 
-MIGRATION_URL = "https://mavsdk.mavlink.io/main/en/python/"
+MIGRATION_URL = "https://mavsdk.mavlink.io/main/en/python/migration.html"
 
 LEGACY_NOTICE = f"""\
 > ## ⚠️ This package has been renamed to `mavsdk-grpc`
