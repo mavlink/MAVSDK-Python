@@ -477,14 +477,20 @@ class VisionPositionEstimate:
     pose_covariance : Covariance
          Pose cross-covariance matrix.
 
+    reset_counter : uint32_t
+         Estimate reset counter. Increment when the estimate resets or jumps.
+
     """
 
-    def __init__(self, time_usec, position_body, angle_body, pose_covariance):
+    def __init__(
+        self, time_usec, position_body, angle_body, pose_covariance, reset_counter
+    ):
         """Initializes the VisionPositionEstimate object"""
         self.time_usec = time_usec
         self.position_body = position_body
         self.angle_body = angle_body
         self.pose_covariance = pose_covariance
+        self.reset_counter = reset_counter
 
     def __eq__(self, to_compare):
         """Checks if two VisionPositionEstimate are the same"""
@@ -496,6 +502,7 @@ class VisionPositionEstimate:
                 and (self.position_body == to_compare.position_body)
                 and (self.angle_body == to_compare.angle_body)
                 and (self.pose_covariance == to_compare.pose_covariance)
+                and (self.reset_counter == to_compare.reset_counter)
             )
 
         except AttributeError:
@@ -509,6 +516,7 @@ class VisionPositionEstimate:
                 "position_body: " + str(self.position_body),
                 "angle_body: " + str(self.angle_body),
                 "pose_covariance: " + str(self.pose_covariance),
+                "reset_counter: " + str(self.reset_counter),
             ]
         )
 
@@ -522,6 +530,7 @@ class VisionPositionEstimate:
             PositionBody.translate_from_rpc(rpcVisionPositionEstimate.position_body),
             AngleBody.translate_from_rpc(rpcVisionPositionEstimate.angle_body),
             Covariance.translate_from_rpc(rpcVisionPositionEstimate.pose_covariance),
+            rpcVisionPositionEstimate.reset_counter,
         )
 
     def translate_to_rpc(self, rpcVisionPositionEstimate):
@@ -534,6 +543,8 @@ class VisionPositionEstimate:
         self.angle_body.translate_to_rpc(rpcVisionPositionEstimate.angle_body)
 
         self.pose_covariance.translate_to_rpc(rpcVisionPositionEstimate.pose_covariance)
+
+        rpcVisionPositionEstimate.reset_counter = self.reset_counter
 
 
 class VisionSpeedEstimate:
@@ -551,13 +562,17 @@ class VisionSpeedEstimate:
     speed_covariance : Covariance
          Linear velocity cross-covariance matrix.
 
+    reset_counter : uint32_t
+         Estimate reset counter. Increment when the estimate resets or jumps.
+
     """
 
-    def __init__(self, time_usec, speed_ned, speed_covariance):
+    def __init__(self, time_usec, speed_ned, speed_covariance, reset_counter):
         """Initializes the VisionSpeedEstimate object"""
         self.time_usec = time_usec
         self.speed_ned = speed_ned
         self.speed_covariance = speed_covariance
+        self.reset_counter = reset_counter
 
     def __eq__(self, to_compare):
         """Checks if two VisionSpeedEstimate are the same"""
@@ -568,6 +583,7 @@ class VisionSpeedEstimate:
                 (self.time_usec == to_compare.time_usec)
                 and (self.speed_ned == to_compare.speed_ned)
                 and (self.speed_covariance == to_compare.speed_covariance)
+                and (self.reset_counter == to_compare.reset_counter)
             )
 
         except AttributeError:
@@ -580,6 +596,7 @@ class VisionSpeedEstimate:
                 "time_usec: " + str(self.time_usec),
                 "speed_ned: " + str(self.speed_ned),
                 "speed_covariance: " + str(self.speed_covariance),
+                "reset_counter: " + str(self.reset_counter),
             ]
         )
 
@@ -592,6 +609,7 @@ class VisionSpeedEstimate:
             rpcVisionSpeedEstimate.time_usec,
             SpeedNed.translate_from_rpc(rpcVisionSpeedEstimate.speed_ned),
             Covariance.translate_from_rpc(rpcVisionSpeedEstimate.speed_covariance),
+            rpcVisionSpeedEstimate.reset_counter,
         )
 
     def translate_to_rpc(self, rpcVisionSpeedEstimate):
@@ -602,6 +620,8 @@ class VisionSpeedEstimate:
         self.speed_ned.translate_to_rpc(rpcVisionSpeedEstimate.speed_ned)
 
         self.speed_covariance.translate_to_rpc(rpcVisionSpeedEstimate.speed_covariance)
+
+        rpcVisionSpeedEstimate.reset_counter = self.reset_counter
 
 
 class AttitudePositionMocap:
@@ -711,6 +731,15 @@ class Odometry:
     velocity_covariance : Covariance
          Velocity cross-covariance matrix.
 
+    reset_counter : uint32_t
+         Estimate reset counter. Increment when the estimate resets or jumps.
+
+    estimator_type : MavEstimatorType
+         Type of estimator that is providing the odometry.
+
+    quality_percent : int32_t
+         Optional odometry quality in percent. -1 = failed, 0 = unknown/unset, 1 = worst, 100 = best.
+
     """
 
     class MavFrame(Enum):
@@ -720,10 +749,10 @@ class Odometry:
         Values
         ------
         MOCAP_NED
-             MAVLink number: 14. Odometry local coordinate frame of data given by a motion capture system, Z-down (x: north, y: east, z: down).
+             Legacy mocap NED frame. Deprecated in MAVLink and replaced by MAV_FRAME_LOCAL_FRD.
 
         LOCAL_FRD
-             MAVLink number: 20. Forward, Right, Down coordinate frame. This is a local frame with Z-down and arbitrary F/R alignment (i.e. not aligned with NED/earth frame). Replacement for MAV_FRAME_MOCAP_NED, MAV_FRAME_VISION_NED, MAV_FRAME_ESTIM_NED.
+             Local FRD frame (x: forward, y: right, z: down).
 
         """
 
@@ -747,6 +776,96 @@ class Odometry:
         def __str__(self):
             return self.name
 
+    class MavEstimatorType(Enum):
+        """
+        Estimator type, matching MAVLink MAV_ESTIMATOR_TYPE.
+
+        Values
+        ------
+        UNKNOWN
+             Unknown estimator type.
+
+        NAIVE
+             Naive estimator.
+
+        VISION
+             Computer vision-based estimate.
+
+        VIO
+             Visual-inertial estimate.
+
+        GPS
+             Plain GPS estimate.
+
+        GPS_INS
+             GPS and inertial navigation estimate.
+
+        MOCAP
+             Motion capture estimate.
+
+        LIDAR
+             Lidar estimate.
+
+        AUTOPILOT
+             Autopilot estimate.
+
+        """
+
+        UNKNOWN = 0
+        NAIVE = 1
+        VISION = 2
+        VIO = 3
+        GPS = 4
+        GPS_INS = 5
+        MOCAP = 6
+        LIDAR = 7
+        AUTOPILOT = 8
+
+        def translate_to_rpc(self):
+            if self == Odometry.MavEstimatorType.UNKNOWN:
+                return mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_UNKNOWN
+            if self == Odometry.MavEstimatorType.NAIVE:
+                return mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_NAIVE
+            if self == Odometry.MavEstimatorType.VISION:
+                return mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_VISION
+            if self == Odometry.MavEstimatorType.VIO:
+                return mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_VIO
+            if self == Odometry.MavEstimatorType.GPS:
+                return mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_GPS
+            if self == Odometry.MavEstimatorType.GPS_INS:
+                return mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_GPS_INS
+            if self == Odometry.MavEstimatorType.MOCAP:
+                return mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_MOCAP
+            if self == Odometry.MavEstimatorType.LIDAR:
+                return mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_LIDAR
+            if self == Odometry.MavEstimatorType.AUTOPILOT:
+                return mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_AUTOPILOT
+
+        @staticmethod
+        def translate_from_rpc(rpc_enum_value):
+            """Parses a gRPC response"""
+            if rpc_enum_value == mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_UNKNOWN:
+                return Odometry.MavEstimatorType.UNKNOWN
+            if rpc_enum_value == mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_NAIVE:
+                return Odometry.MavEstimatorType.NAIVE
+            if rpc_enum_value == mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_VISION:
+                return Odometry.MavEstimatorType.VISION
+            if rpc_enum_value == mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_VIO:
+                return Odometry.MavEstimatorType.VIO
+            if rpc_enum_value == mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_GPS:
+                return Odometry.MavEstimatorType.GPS
+            if rpc_enum_value == mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_GPS_INS:
+                return Odometry.MavEstimatorType.GPS_INS
+            if rpc_enum_value == mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_MOCAP:
+                return Odometry.MavEstimatorType.MOCAP
+            if rpc_enum_value == mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_LIDAR:
+                return Odometry.MavEstimatorType.LIDAR
+            if rpc_enum_value == mocap_pb2.Odometry.MAV_ESTIMATOR_TYPE_AUTOPILOT:
+                return Odometry.MavEstimatorType.AUTOPILOT
+
+        def __str__(self):
+            return self.name
+
     def __init__(
         self,
         time_usec,
@@ -757,6 +876,9 @@ class Odometry:
         angular_velocity_body,
         pose_covariance,
         velocity_covariance,
+        reset_counter,
+        estimator_type,
+        quality_percent,
     ):
         """Initializes the Odometry object"""
         self.time_usec = time_usec
@@ -767,6 +889,9 @@ class Odometry:
         self.angular_velocity_body = angular_velocity_body
         self.pose_covariance = pose_covariance
         self.velocity_covariance = velocity_covariance
+        self.reset_counter = reset_counter
+        self.estimator_type = estimator_type
+        self.quality_percent = quality_percent
 
     def __eq__(self, to_compare):
         """Checks if two Odometry are the same"""
@@ -782,6 +907,9 @@ class Odometry:
                 and (self.angular_velocity_body == to_compare.angular_velocity_body)
                 and (self.pose_covariance == to_compare.pose_covariance)
                 and (self.velocity_covariance == to_compare.velocity_covariance)
+                and (self.reset_counter == to_compare.reset_counter)
+                and (self.estimator_type == to_compare.estimator_type)
+                and (self.quality_percent == to_compare.quality_percent)
             )
 
         except AttributeError:
@@ -799,6 +927,9 @@ class Odometry:
                 "angular_velocity_body: " + str(self.angular_velocity_body),
                 "pose_covariance: " + str(self.pose_covariance),
                 "velocity_covariance: " + str(self.velocity_covariance),
+                "reset_counter: " + str(self.reset_counter),
+                "estimator_type: " + str(self.estimator_type),
+                "quality_percent: " + str(self.quality_percent),
             ]
         )
 
@@ -816,6 +947,9 @@ class Odometry:
             AngularVelocityBody.translate_from_rpc(rpcOdometry.angular_velocity_body),
             Covariance.translate_from_rpc(rpcOdometry.pose_covariance),
             Covariance.translate_from_rpc(rpcOdometry.velocity_covariance),
+            rpcOdometry.reset_counter,
+            Odometry.MavEstimatorType.translate_from_rpc(rpcOdometry.estimator_type),
+            rpcOdometry.quality_percent,
         )
 
     def translate_to_rpc(self, rpcOdometry):
@@ -836,6 +970,12 @@ class Odometry:
         self.pose_covariance.translate_to_rpc(rpcOdometry.pose_covariance)
 
         self.velocity_covariance.translate_to_rpc(rpcOdometry.velocity_covariance)
+
+        rpcOdometry.reset_counter = self.reset_counter
+
+        rpcOdometry.estimator_type = self.estimator_type.translate_to_rpc()
+
+        rpcOdometry.quality_percent = self.quality_percent
 
 
 class MocapResult:

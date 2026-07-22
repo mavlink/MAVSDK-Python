@@ -2312,13 +2312,17 @@ class GroundTruth:
     absolute_altitude_m : float
          Altitude AMSL (above mean sea level) in metres
 
+    timestamp_us : uint64_t
+         Timestamp in microseconds (since system boot)
+
     """
 
-    def __init__(self, latitude_deg, longitude_deg, absolute_altitude_m):
+    def __init__(self, latitude_deg, longitude_deg, absolute_altitude_m, timestamp_us):
         """Initializes the GroundTruth object"""
         self.latitude_deg = latitude_deg
         self.longitude_deg = longitude_deg
         self.absolute_altitude_m = absolute_altitude_m
+        self.timestamp_us = timestamp_us
 
     def __eq__(self, to_compare):
         """Checks if two GroundTruth are the same"""
@@ -2329,6 +2333,7 @@ class GroundTruth:
                 (self.latitude_deg == to_compare.latitude_deg)
                 and (self.longitude_deg == to_compare.longitude_deg)
                 and (self.absolute_altitude_m == to_compare.absolute_altitude_m)
+                and (self.timestamp_us == to_compare.timestamp_us)
             )
 
         except AttributeError:
@@ -2341,6 +2346,7 @@ class GroundTruth:
                 "latitude_deg: " + str(self.latitude_deg),
                 "longitude_deg: " + str(self.longitude_deg),
                 "absolute_altitude_m: " + str(self.absolute_altitude_m),
+                "timestamp_us: " + str(self.timestamp_us),
             ]
         )
 
@@ -2353,6 +2359,7 @@ class GroundTruth:
             rpcGroundTruth.latitude_deg,
             rpcGroundTruth.longitude_deg,
             rpcGroundTruth.absolute_altitude_m,
+            rpcGroundTruth.timestamp_us,
         )
 
     def translate_to_rpc(self, rpcGroundTruth):
@@ -2363,6 +2370,8 @@ class GroundTruth:
         rpcGroundTruth.longitude_deg = self.longitude_deg
 
         rpcGroundTruth.absolute_altitude_m = self.absolute_altitude_m
+
+        rpcGroundTruth.timestamp_us = self.timestamp_us
 
 
 class FixedwingMetrics:
@@ -2857,6 +2866,9 @@ class Altitude:
     bottom_clearance_m : float
          This is not the altitude, but the clear space below the system according to the fused clearance estimate in meters.
 
+    timestamp_us : uint64_t
+         Timestamp in microseconds (since system boot)
+
     """
 
     def __init__(
@@ -2867,6 +2879,7 @@ class Altitude:
         altitude_relative_m,
         altitude_terrain_m,
         bottom_clearance_m,
+        timestamp_us,
     ):
         """Initializes the Altitude object"""
         self.altitude_monotonic_m = altitude_monotonic_m
@@ -2875,6 +2888,7 @@ class Altitude:
         self.altitude_relative_m = altitude_relative_m
         self.altitude_terrain_m = altitude_terrain_m
         self.bottom_clearance_m = bottom_clearance_m
+        self.timestamp_us = timestamp_us
 
     def __eq__(self, to_compare):
         """Checks if two Altitude are the same"""
@@ -2888,6 +2902,7 @@ class Altitude:
                 and (self.altitude_relative_m == to_compare.altitude_relative_m)
                 and (self.altitude_terrain_m == to_compare.altitude_terrain_m)
                 and (self.bottom_clearance_m == to_compare.bottom_clearance_m)
+                and (self.timestamp_us == to_compare.timestamp_us)
             )
 
         except AttributeError:
@@ -2903,6 +2918,7 @@ class Altitude:
                 "altitude_relative_m: " + str(self.altitude_relative_m),
                 "altitude_terrain_m: " + str(self.altitude_terrain_m),
                 "bottom_clearance_m: " + str(self.bottom_clearance_m),
+                "timestamp_us: " + str(self.timestamp_us),
             ]
         )
 
@@ -2918,6 +2934,7 @@ class Altitude:
             rpcAltitude.altitude_relative_m,
             rpcAltitude.altitude_terrain_m,
             rpcAltitude.bottom_clearance_m,
+            rpcAltitude.timestamp_us,
         )
 
     def translate_to_rpc(self, rpcAltitude):
@@ -2934,6 +2951,8 @@ class Altitude:
         rpcAltitude.altitude_terrain_m = self.altitude_terrain_m
 
         rpcAltitude.bottom_clearance_m = self.bottom_clearance_m
+
+        rpcAltitude.timestamp_us = self.timestamp_us
 
 
 class Wind:
@@ -4171,6 +4190,30 @@ class Telemetry(AsyncBase):
 
         if result.result != TelemetryResult.Result.SUCCESS:
             raise TelemetryError(result, "set_rate_gps_info()", rate_hz)
+
+    async def set_rate_raw_gps(self, rate_hz):
+        """
+        Set rate to 'Raw GPS' updates.
+
+        Parameters
+        ----------
+        rate_hz : double
+             The requested rate (in Hertz)
+
+        Raises
+        ------
+        TelemetryError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = telemetry_pb2.SetRateRawGpsRequest()
+        request.rate_hz = rate_hz
+        response = await self._stub.SetRateRawGps(request)
+
+        result = self._extract_result(response)
+
+        if result.result != TelemetryResult.Result.SUCCESS:
+            raise TelemetryError(result, "set_rate_raw_gps()", rate_hz)
 
     async def set_rate_battery(self, rate_hz):
         """

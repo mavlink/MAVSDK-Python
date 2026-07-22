@@ -23,7 +23,7 @@ from . import mavsdk_options_pb2 as mavsdk__options__pb2
 
 
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
-    b'\n\x17geofence/geofence.proto\x12\x13mavsdk.rpc.geofence\x1a\x14mavsdk_options.proto"4\n\x05Point\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01"i\n\x07Polygon\x12*\n\x06points\x18\x01 \x03(\x0b\x32\x1a.mavsdk.rpc.geofence.Point\x12\x32\n\nfence_type\x18\x02 \x01(\x0e\x32\x1e.mavsdk.rpc.geofence.FenceType"\x80\x01\n\x06\x43ircle\x12)\n\x05point\x18\x01 \x01(\x0b\x32\x1a.mavsdk.rpc.geofence.Point\x12\x17\n\x06radius\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x32\n\nfence_type\x18\x03 \x01(\x0e\x32\x1e.mavsdk.rpc.geofence.FenceType"l\n\x0cGeofenceData\x12.\n\x08polygons\x18\x01 \x03(\x0b\x32\x1c.mavsdk.rpc.geofence.Polygon\x12,\n\x07\x63ircles\x18\x02 \x03(\x0b\x32\x1b.mavsdk.rpc.geofence.Circle"Q\n\x15UploadGeofenceRequest\x12\x38\n\rgeofence_data\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.geofence.GeofenceData"V\n\x16UploadGeofenceResponse\x12<\n\x0fgeofence_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.geofence.GeofenceResult"\x16\n\x14\x43learGeofenceRequest"U\n\x15\x43learGeofenceResponse\x12<\n\x0fgeofence_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.geofence.GeofenceResult"\xa1\x02\n\x0eGeofenceResult\x12:\n\x06result\x18\x01 \x01(\x0e\x32*.mavsdk.rpc.geofence.GeofenceResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t"\xbe\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x10\n\x0cRESULT_ERROR\x10\x02\x12"\n\x1eRESULT_TOO_MANY_GEOFENCE_ITEMS\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x12\n\x0eRESULT_TIMEOUT\x10\x05\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x06\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x07*?\n\tFenceType\x12\x18\n\x14\x46\x45NCE_TYPE_INCLUSION\x10\x00\x12\x18\n\x14\x46\x45NCE_TYPE_EXCLUSION\x10\x01\x32\xe8\x01\n\x0fGeofenceService\x12k\n\x0eUploadGeofence\x12*.mavsdk.rpc.geofence.UploadGeofenceRequest\x1a+.mavsdk.rpc.geofence.UploadGeofenceResponse"\x00\x12h\n\rClearGeofence\x12).mavsdk.rpc.geofence.ClearGeofenceRequest\x1a*.mavsdk.rpc.geofence.ClearGeofenceResponse"\x00\x42#\n\x12io.mavsdk.geofenceB\rGeofenceProtob\x06proto3'
+    b'\n\x17geofence/geofence.proto\x12\x13mavsdk.rpc.geofence\x1a\x14mavsdk_options.proto"4\n\x05Point\x12\x14\n\x0clatitude_deg\x18\x01 \x01(\x01\x12\x15\n\rlongitude_deg\x18\x02 \x01(\x01"i\n\x07Polygon\x12*\n\x06points\x18\x01 \x03(\x0b\x32\x1a.mavsdk.rpc.geofence.Point\x12\x32\n\nfence_type\x18\x02 \x01(\x0e\x32\x1e.mavsdk.rpc.geofence.FenceType"\x80\x01\n\x06\x43ircle\x12)\n\x05point\x18\x01 \x01(\x0b\x32\x1a.mavsdk.rpc.geofence.Point\x12\x17\n\x06radius\x18\x02 \x01(\x02\x42\x07\x82\xb5\x18\x03NaN\x12\x32\n\nfence_type\x18\x03 \x01(\x0e\x32\x1e.mavsdk.rpc.geofence.FenceType"l\n\x0cGeofenceData\x12.\n\x08polygons\x18\x01 \x03(\x0b\x32\x1c.mavsdk.rpc.geofence.Polygon\x12,\n\x07\x63ircles\x18\x02 \x03(\x0b\x32\x1b.mavsdk.rpc.geofence.Circle"Q\n\x15UploadGeofenceRequest\x12\x38\n\rgeofence_data\x18\x01 \x01(\x0b\x32!.mavsdk.rpc.geofence.GeofenceData"V\n\x16UploadGeofenceResponse\x12<\n\x0fgeofence_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.geofence.GeofenceResult"\x19\n\x17\x44ownloadGeofenceRequest"\x92\x01\n\x18\x44ownloadGeofenceResponse\x12<\n\x0fgeofence_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.geofence.GeofenceResult\x12\x38\n\rgeofence_data\x18\x02 \x01(\x0b\x32!.mavsdk.rpc.geofence.GeofenceData"\x16\n\x14\x43learGeofenceRequest"U\n\x15\x43learGeofenceResponse\x12<\n\x0fgeofence_result\x18\x01 \x01(\x0b\x32#.mavsdk.rpc.geofence.GeofenceResult"\xa1\x02\n\x0eGeofenceResult\x12:\n\x06result\x18\x01 \x01(\x0e\x32*.mavsdk.rpc.geofence.GeofenceResult.Result\x12\x12\n\nresult_str\x18\x02 \x01(\t"\xbe\x01\n\x06Result\x12\x12\n\x0eRESULT_UNKNOWN\x10\x00\x12\x12\n\x0eRESULT_SUCCESS\x10\x01\x12\x10\n\x0cRESULT_ERROR\x10\x02\x12"\n\x1eRESULT_TOO_MANY_GEOFENCE_ITEMS\x10\x03\x12\x0f\n\x0bRESULT_BUSY\x10\x04\x12\x12\n\x0eRESULT_TIMEOUT\x10\x05\x12\x1b\n\x17RESULT_INVALID_ARGUMENT\x10\x06\x12\x14\n\x10RESULT_NO_SYSTEM\x10\x07*?\n\tFenceType\x12\x18\n\x14\x46\x45NCE_TYPE_INCLUSION\x10\x00\x12\x18\n\x14\x46\x45NCE_TYPE_EXCLUSION\x10\x01\x32\xdb\x02\n\x0fGeofenceService\x12k\n\x0eUploadGeofence\x12*.mavsdk.rpc.geofence.UploadGeofenceRequest\x1a+.mavsdk.rpc.geofence.UploadGeofenceResponse"\x00\x12q\n\x10\x44ownloadGeofence\x12,.mavsdk.rpc.geofence.DownloadGeofenceRequest\x1a-.mavsdk.rpc.geofence.DownloadGeofenceResponse"\x00\x12h\n\rClearGeofence\x12).mavsdk.rpc.geofence.ClearGeofenceRequest\x1a*.mavsdk.rpc.geofence.ClearGeofenceResponse"\x00\x42#\n\x12io.mavsdk.geofenceB\rGeofenceProtob\x06proto3'
 )
 
 _globals = globals()
@@ -38,8 +38,8 @@ if not _descriptor._USE_C_DESCRIPTORS:
     _globals["_CIRCLE"].fields_by_name[
         "radius"
     ]._serialized_options = b"\202\265\030\003NaN"
-    _globals["_FENCETYPE"]._serialized_start = 1046
-    _globals["_FENCETYPE"]._serialized_end = 1109
+    _globals["_FENCETYPE"]._serialized_start = 1222
+    _globals["_FENCETYPE"]._serialized_end = 1285
     _globals["_POINT"]._serialized_start = 70
     _globals["_POINT"]._serialized_end = 122
     _globals["_POLYGON"]._serialized_start = 124
@@ -52,14 +52,18 @@ if not _descriptor._USE_C_DESCRIPTORS:
     _globals["_UPLOADGEOFENCEREQUEST"]._serialized_end = 553
     _globals["_UPLOADGEOFENCERESPONSE"]._serialized_start = 555
     _globals["_UPLOADGEOFENCERESPONSE"]._serialized_end = 641
-    _globals["_CLEARGEOFENCEREQUEST"]._serialized_start = 643
-    _globals["_CLEARGEOFENCEREQUEST"]._serialized_end = 665
-    _globals["_CLEARGEOFENCERESPONSE"]._serialized_start = 667
-    _globals["_CLEARGEOFENCERESPONSE"]._serialized_end = 752
-    _globals["_GEOFENCERESULT"]._serialized_start = 755
-    _globals["_GEOFENCERESULT"]._serialized_end = 1044
-    _globals["_GEOFENCERESULT_RESULT"]._serialized_start = 854
-    _globals["_GEOFENCERESULT_RESULT"]._serialized_end = 1044
-    _globals["_GEOFENCESERVICE"]._serialized_start = 1112
-    _globals["_GEOFENCESERVICE"]._serialized_end = 1344
+    _globals["_DOWNLOADGEOFENCEREQUEST"]._serialized_start = 643
+    _globals["_DOWNLOADGEOFENCEREQUEST"]._serialized_end = 668
+    _globals["_DOWNLOADGEOFENCERESPONSE"]._serialized_start = 671
+    _globals["_DOWNLOADGEOFENCERESPONSE"]._serialized_end = 817
+    _globals["_CLEARGEOFENCEREQUEST"]._serialized_start = 819
+    _globals["_CLEARGEOFENCEREQUEST"]._serialized_end = 841
+    _globals["_CLEARGEOFENCERESPONSE"]._serialized_start = 843
+    _globals["_CLEARGEOFENCERESPONSE"]._serialized_end = 928
+    _globals["_GEOFENCERESULT"]._serialized_start = 931
+    _globals["_GEOFENCERESULT"]._serialized_end = 1220
+    _globals["_GEOFENCERESULT_RESULT"]._serialized_start = 1030
+    _globals["_GEOFENCERESULT_RESULT"]._serialized_end = 1220
+    _globals["_GEOFENCESERVICE"]._serialized_start = 1288
+    _globals["_GEOFENCESERVICE"]._serialized_end = 1635
 # @@protoc_insertion_point(module_scope)

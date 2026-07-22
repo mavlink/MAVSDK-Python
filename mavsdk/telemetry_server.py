@@ -1908,13 +1908,17 @@ class GroundTruth:
     absolute_altitude_m : float
          Altitude AMSL (above mean sea level) in metres
 
+    timestamp_us : uint64_t
+         Timestamp in microseconds (since system boot)
+
     """
 
-    def __init__(self, latitude_deg, longitude_deg, absolute_altitude_m):
+    def __init__(self, latitude_deg, longitude_deg, absolute_altitude_m, timestamp_us):
         """Initializes the GroundTruth object"""
         self.latitude_deg = latitude_deg
         self.longitude_deg = longitude_deg
         self.absolute_altitude_m = absolute_altitude_m
+        self.timestamp_us = timestamp_us
 
     def __eq__(self, to_compare):
         """Checks if two GroundTruth are the same"""
@@ -1925,6 +1929,7 @@ class GroundTruth:
                 (self.latitude_deg == to_compare.latitude_deg)
                 and (self.longitude_deg == to_compare.longitude_deg)
                 and (self.absolute_altitude_m == to_compare.absolute_altitude_m)
+                and (self.timestamp_us == to_compare.timestamp_us)
             )
 
         except AttributeError:
@@ -1937,6 +1942,7 @@ class GroundTruth:
                 "latitude_deg: " + str(self.latitude_deg),
                 "longitude_deg: " + str(self.longitude_deg),
                 "absolute_altitude_m: " + str(self.absolute_altitude_m),
+                "timestamp_us: " + str(self.timestamp_us),
             ]
         )
 
@@ -1949,6 +1955,7 @@ class GroundTruth:
             rpcGroundTruth.latitude_deg,
             rpcGroundTruth.longitude_deg,
             rpcGroundTruth.absolute_altitude_m,
+            rpcGroundTruth.timestamp_us,
         )
 
     def translate_to_rpc(self, rpcGroundTruth):
@@ -1959,6 +1966,8 @@ class GroundTruth:
         rpcGroundTruth.longitude_deg = self.longitude_deg
 
         rpcGroundTruth.absolute_altitude_m = self.absolute_altitude_m
+
+        rpcGroundTruth.timestamp_us = self.timestamp_us
 
 
 class FixedwingMetrics:

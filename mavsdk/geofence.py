@@ -491,6 +491,33 @@ class Geofence(AsyncBase):
         if result.result != GeofenceResult.Result.SUCCESS:
             raise GeofenceError(result, "upload_geofence()", geofence_data)
 
+    async def download_geofence(self):
+        """
+        Download geofences from the vehicle.
+
+        Downloads polygon and circular geofences from the vehicle.
+
+        Returns
+        -------
+        geofence_data : GeofenceData
+             Downloaded geofence data
+
+        Raises
+        ------
+        GeofenceError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = geofence_pb2.DownloadGeofenceRequest()
+        response = await self._stub.DownloadGeofence(request)
+
+        result = self._extract_result(response)
+
+        if result.result != GeofenceResult.Result.SUCCESS:
+            raise GeofenceError(result, "download_geofence()")
+
+        return GeofenceData.translate_from_rpc(response.geofence_data)
+
     async def clear_geofence(self):
         """
         Clear all geofences saved on the vehicle.

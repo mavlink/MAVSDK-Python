@@ -294,6 +294,12 @@ class TelemetryServiceStub(object):
             response_deserializer=telemetry_dot_telemetry__pb2.SetRateGpsInfoResponse.FromString,
             _registered_method=True,
         )
+        self.SetRateRawGps = channel.unary_unary(
+            "/mavsdk.rpc.telemetry.TelemetryService/SetRateRawGps",
+            request_serializer=telemetry_dot_telemetry__pb2.SetRateRawGpsRequest.SerializeToString,
+            response_deserializer=telemetry_dot_telemetry__pb2.SetRateRawGpsResponse.FromString,
+            _registered_method=True,
+        )
         self.SetRateBattery = channel.unary_unary(
             "/mavsdk.rpc.telemetry.TelemetryService/SetRateBattery",
             request_serializer=telemetry_dot_telemetry__pb2.SetRateBatteryRequest.SerializeToString,
@@ -653,6 +659,12 @@ class TelemetryServiceServicer(object):
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
+    def SetRateRawGps(self, request, context):
+        """Set rate to 'Raw GPS' updates."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
     def SetRateBattery(self, request, context):
         """Set rate to 'battery' updates."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -961,6 +973,11 @@ def add_TelemetryServiceServicer_to_server(servicer, server):
             servicer.SetRateGpsInfo,
             request_deserializer=telemetry_dot_telemetry__pb2.SetRateGpsInfoRequest.FromString,
             response_serializer=telemetry_dot_telemetry__pb2.SetRateGpsInfoResponse.SerializeToString,
+        ),
+        "SetRateRawGps": grpc.unary_unary_rpc_method_handler(
+            servicer.SetRateRawGps,
+            request_deserializer=telemetry_dot_telemetry__pb2.SetRateRawGpsRequest.FromString,
+            response_serializer=telemetry_dot_telemetry__pb2.SetRateRawGpsResponse.SerializeToString,
         ),
         "SetRateBattery": grpc.unary_unary_rpc_method_handler(
             servicer.SetRateBattery,
@@ -2309,6 +2326,36 @@ class TelemetryService(object):
             "/mavsdk.rpc.telemetry.TelemetryService/SetRateGpsInfo",
             telemetry_dot_telemetry__pb2.SetRateGpsInfoRequest.SerializeToString,
             telemetry_dot_telemetry__pb2.SetRateGpsInfoResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def SetRateRawGps(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.telemetry.TelemetryService/SetRateRawGps",
+            telemetry_dot_telemetry__pb2.SetRateRawGpsRequest.SerializeToString,
+            telemetry_dot_telemetry__pb2.SetRateRawGpsResponse.FromString,
             options,
             channel_credentials,
             insecure,
