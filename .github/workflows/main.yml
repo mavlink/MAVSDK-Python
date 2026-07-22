@@ -1,5 +1,13 @@
 name: Check and PyPi Upload
 
+# Tagged builds publish this project under two names: "mavsdk-grpc" (the
+# going-forward name) and "mavsdk" (the legacy name, one last time, carrying a
+# rename warning). See setup.py for how the two builds differ.
+#
+# NOTE: the token in TWINE_PASSWORD must be account-scoped for the release that
+# first creates "mavsdk-grpc" on PyPI -- a project-scoped token cannot create a
+# new project. It can be swapped back to project-scoped tokens afterwards.
+
 on:
   push:
     branches:
@@ -35,9 +43,13 @@ jobs:
           python3 -m pip install -r requirements.txt -r requirements-dev.txt -r requirements-docs.txt
           python3 -m pip install "setuptools<77" auditwheel twine
 
+      # Built twice: once as "mavsdk-grpc" (the going-forward name) and once as
+      # "mavsdk" (the legacy name, carrying a rename warning). See setup.py.
       - name: Create wheel
         run: |
-          python3 setup.py bdist_wheel
+          MAVSDK_DIST_NAME=mavsdk-grpc python3 setup.py bdist_wheel
+          rm -rf build mavsdk.egg-info
+          MAVSDK_DIST_NAME=mavsdk python3 setup.py bdist_wheel
           mkdir wheelhouse
           export PATH=$PATH:$HOME/.local/bin
           auditwheel repair --plat manylinux2014_x86_64 dist/*.whl
@@ -64,7 +76,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           export PATH=$PATH:$HOME/.local/bin
-          twine upload wheelhouse/*.whl
+          twine upload --skip-existing wheelhouse/*.whl
 
       - name: Upload docs
         env:
@@ -108,7 +120,9 @@ jobs:
       - name: Create wheel
         run: |
           export MAVSDK_SERVER_ARCH=${{ matrix.arch }}
-          python3 setup.py bdist_wheel
+          MAVSDK_DIST_NAME=mavsdk-grpc python3 setup.py bdist_wheel
+          rm -rf build mavsdk.egg-info
+          MAVSDK_DIST_NAME=mavsdk python3 setup.py bdist_wheel
           ls dist/*any.whl | sed -e 'p;s/any/${{ matrix.pypi_arch }}/' | xargs -n2 mv
 
       - name: Check the artifacts
@@ -128,7 +142,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           export PATH=$PATH:$HOME/.local/bin
-          twine upload dist/*.whl
+          twine upload --skip-existing dist/*.whl
 
   macOS:
     name: macOS ${{ matrix.arch }}
@@ -161,7 +175,9 @@ jobs:
 
       - name: Create wheel
         run: |
-          python setup.py bdist_wheel
+          MAVSDK_DIST_NAME=mavsdk-grpc python setup.py bdist_wheel
+          rm -rf build mavsdk.egg-info
+          MAVSDK_DIST_NAME=mavsdk python setup.py bdist_wheel
           export PATH="$(python -m site --user-base)/bin:$PATH"
           delocate-wheel -w wheelhouse -v dist/*.whl
           ls wheelhouse/*any.whl | sed -e 'p;s/any/macosx_${{ matrix.wheel_arch }}/' | xargs -n2 mv
@@ -183,7 +199,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           export PATH=$PATH:$HOME/.local/bin
-          twine upload wheelhouse/*.whl
+          twine upload --skip-existing wheelhouse/*.whl
 
   Windows:
     name: Windows (${{ matrix.arch }})
@@ -222,6 +238,10 @@ jobs:
       - name: Create wheel
         run: |
           $env:MAVSDK_SERVER_ARCH = "${{ matrix.arch }}"
+          $env:MAVSDK_DIST_NAME = "mavsdk-grpc"
+          python3 setup.py bdist_wheel
+          Remove-Item -Recurse -Force build, mavsdk.egg-info -ErrorAction SilentlyContinue
+          $env:MAVSDK_DIST_NAME = "mavsdk"
           python3 setup.py bdist_wheel
           Dir "dist/" | rename-item -NewName {$_.name -replace '-any.whl','-${{ matrix.wheel_arch }}.whl'}
 
@@ -240,4 +260,4 @@ jobs:
           TWINE_NON_INTERACTIVE: 1
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          twine upload dist/*.whl
+          twine upload --skip-existing dist/*.whl
