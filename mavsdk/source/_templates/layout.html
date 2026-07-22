@@ -1,0 +1,28 @@
+{% extends "!layout.html" %}
+
+{#
+  Site-wide banner pointing at the new native MAVSDK binding.
+
+  This overrides `document` rather than `body`: Sphinx's own page.html also
+  overrides `body`, and being the more derived template it would win, so a
+  banner placed there would never render.
+#}
+{%- block document %}
+<div class="admonition note">
+  <p class="first admonition-title">This documents <tt class="docutils literal">mavsdk-grpc</tt></p>
+  <p class="last">
+    You are reading the reference for the gRPC-based Python wrapper, which was
+    previously published on PyPI as <tt class="docutils literal">mavsdk</tt> and
+    is now published as
+    <a class="reference external" href="https://pypi.org/project/mavsdk-grpc/">mavsdk-grpc</a>,
+    imported as <tt class="docutils literal">mavsdk_grpc</tt>. Development
+    continues here, including releases tracking MAVSDK v4.
+    <br />
+    The <tt class="docutils literal">mavsdk</tt> package now refers to the native
+    MAVSDK binding, which has a different API and no gRPC dependency. Its
+    documentation lives at
+    <a class="reference external" href="https://mavsdk.mavlink.io/main/en/python/">mavsdk.mavlink.io</a>.
+  </p>
+</div>
+{{ super() }}
+{%- endblock %}

@@ -9,8 +9,8 @@
    :alt: MAVSDK logo
    :scale: 30%
 
-MAVSDK-Python API reference
-===========================
+mavsdk-grpc API reference
+=========================
 
 
 .. toctree::
@@ -26,7 +26,7 @@ Important Notes
 
 - Python 3.7+ is required.
 - You may need to run ``pip3`` instead of ``pip`` and ``python3`` instead of ``python``, depending of your system defaults.
-- Auterion has a _Getting started with MAVSDK-Python: https://auterion.com/getting-started-with-mavsdk-python/ guide if you're a beginner and not sure where to start.
+- Auterion used to have a _Getting started with MAVSDK-Python: https://auterion.com/getting-started-with-mavsdk-python/ guide if you're a beginner and not sure where to start.
 
 Install using pip from PyPi
 ---------------------------
@@ -35,7 +35,7 @@ To install simply run:
 
 .. code:: bash
 
-  python -m pip install --upgrade mavsdk
+  python -m pip install --upgrade mavsdk-grpc
 
 
 The package contains ``mavsdk_server`` already (previously called "backend"), which is started automatically when connecting (e.g. ``await drone.connect()``). Have a look at the examples to see it used in practice. It will be something like:
@@ -43,13 +43,13 @@ The package contains ``mavsdk_server`` already (previously called "backend"), wh
 .. code:: python
 
   python
-  from mavsdk import System
+  from mavsdk_grpc import System
   ...
   drone = System()
   await drone.connect(system_address="udpin://0.0.0.0:14540")
 
 
-Note: ``System()`` takes two named parameters: ``mavsdk_server_address`` and ``port``. When left empty, they default to ``None`` and ``50051``, respectively, and ``mavsdk_server -p 50051`` is run by ``await drone.connect()``. If ``mavsdk_server_address`` is set (e.g. to "localhost"), then ``await drone.connect()`` will not start the embedded ``mavsdk_server`` and will try to connect to a server running at this address. This is useful for platforms where ``mavsdk_server`` does not come embedded, for debugging purposes, and for running ``mavsdk_server`` in a place different than where the MAVSDK-Python script is run.
+Note: ``System()`` takes two named parameters: ``mavsdk_server_address`` and ``port``. When left empty, they default to ``None`` and ``50051``, respectively, and ``mavsdk_server -p 50051`` is run by ``await drone.connect()``. If ``mavsdk_server_address`` is set (e.g. to "localhost"), then ``await drone.connect()`` will not start the embedded ``mavsdk_server`` and will try to connect to a server running at this address. This is useful for platforms where ``mavsdk_server`` does not come embedded, for debugging purposes, and for running ``mavsdk_server`` in a place different than where the Python script is run.
 
 For specific platforms, check the detailed install instructions:
 
@@ -69,7 +69,7 @@ The examples assume that the embedded ``mavsdk_server`` binary can be run. In so
 Debug connection issues
 -----------------------
 
-MAVSDK-Python automatically captures and displays important messages from ``mavsdk_server``. Error and warning messages are shown by default, while informational messages can be enabled for more detailed debugging.
+This wrapper automatically captures and displays important messages from ``mavsdk_server``. Error and warning messages are shown by default, while informational messages can be enabled for more detailed debugging.
 
 **For basic debugging (recommended):**
 
@@ -129,13 +129,13 @@ For this case, let's assume the example was like this:
   await drone.connect(system_address="udpin://0.0.0.0:14540")
 
 
-The mavsdk_server binary is installed using ``pip``. If installed with ``python -m pip install --upgrade mavsdk`` it is usually (at least for Linux) to be found in ``~/.local/lib/python3.10/site-packages/mavsdk/bin/`` (of course depending on the Python version used).
+The mavsdk_server binary is installed using ``pip``. If installed with ``python -m pip install --upgrade mavsdk-grpc`` it is usually (at least for Linux) to be found in ``~/.local/lib/python3.10/site-packages/mavsdk_grpc/bin/`` (of course depending on the Python version used).
 
 It can then be run in a separate console with the ``system_address`` as an argument:
 
 .. code:: bash
 
-  ~/.local/lib/python3.10/site-packages/mavsdk/bin/mavsdk_server udpin://0.0.0.0:14540
+  ~/.local/lib/python3.10/site-packages/mavsdk_grpc/bin/mavsdk_server udpin://0.0.0.0:14540
 
 Without an autopilot connecting, the output will look something like:
 

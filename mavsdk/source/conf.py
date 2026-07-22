@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath("../.."))
 
 # -- Project information -----------------------------------------------------
 
-project = "MAVSDK-Python"
+project = "mavsdk-grpc"
 copyright = "2020, Jonas Vautherin, Julian Oes"
 author = "Jonas Vautherin, Julian Oes"
 

@@ -2,9 +2,25 @@
 
 [![GitHub Actions Status](https://github.com/mavlink/MAVSDK-Python/workflows/Check%20and%20PyPi%20Upload/badge.svg?branch=main)](https://github.com/mavlink/MAVSDK-Python/actions/workflows/main.yml?query=branch%3Amain)
 
-This is the Python wrapper for MAVSDK.
+This is the gRPC-based Python wrapper for MAVSDK, published on PyPI as
+[`mavsdk-grpc`](https://pypi.org/project/mavsdk-grpc/) and imported as `mavsdk_grpc`.
 
 The Python wrapper is based on a gRPC client communicating with the gRPC server written in C++. To use the Python wrapper the gRPC server called "backend" needs to be running on the same system. The wrapper is essentially auto-generated from the message definitions ([proto files](https://github.com/mavlink/MAVSDK-Proto)).
+
+> ### ⚠️ Renamed from `mavsdk` to `mavsdk-grpc`
+>
+> This wrapper used to be published as `mavsdk`. That name on PyPI now refers to
+> the native MAVSDK binding, which has a **different API** and no gRPC
+> dependency — see [its documentation](https://mavsdk.mavlink.io/main/en/python/).
+>
+> This project carries on under the `mavsdk-grpc` name, including releases
+> tracking MAVSDK v4. If you were using `mavsdk`:
+>
+> * Install `mavsdk-grpc` and use `import mavsdk_grpc as mavsdk` — the code is
+>   identical. The separate import name is deliberate, so that the two packages
+>   can never overwrite each other's files.
+> * Or pin `mavsdk<4` to freeze on the last release under the old name, which
+>   will not receive further updates.
 
 
 ## Important Notes
@@ -21,20 +37,20 @@ The Python wrapper is based on a gRPC client communicating with the gRPC server 
 
 **Note for Raspberry Pi 1/2 and Zero:**
 
-> MAVSDK-Python requires grpcio. However, there are no binary packets of grpcio for armv6 available via pip (also see [files on pypi.org](https://pypi.org/project/grpcio/#files)).
+> This wrapper requires grpcio. However, there are no binary packets of grpcio for armv6 available via pip (also see [files on pypi.org](https://pypi.org/project/grpcio/#files)).
 > In this case, install grpcio via the package manager, e.g. `sudo apt-get install python3-grpcio`.
 
 
-To install mavsdk-python, simply run:
+To install it, simply run:
 
 ```sh
-pip3 install mavsdk
+pip3 install mavsdk-grpc
 ```
 
 The package contains `mavsdk_server` already (previously called "backend"), which is started automatically when connecting (e.g. `await drone.connect()`). Have a look at the examples to see it used in practice. It will be something like:
 
 ```python
-from mavsdk import System
+from mavsdk_grpc import System
 
 ...
 
