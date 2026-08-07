@@ -6,7 +6,7 @@ import warnings
 
 from . import mission_raw_pb2 as mission__raw_dot_mission__raw__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.83.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in mission_raw/mission_raw_pb2_grpc.py depends on"
+        + " but the generated code in mission_raw/mission_raw_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class MissionRawServiceStub(object):
+class MissionRawServiceStub:
     """Enable raw missions as exposed by MAVLink."""
 
     def __init__(self, channel):
@@ -154,7 +154,7 @@ class MissionRawServiceStub(object):
         )
 
 
-class MissionRawServiceServicer(object):
+class MissionRawServiceServicer:
     """Enable raw missions as exposed by MAVLink."""
 
     def UploadMission(self, request, context):
@@ -458,7 +458,7 @@ def add_MissionRawServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class MissionRawService(object):
+class MissionRawService:
     """Enable raw missions as exposed by MAVLink."""
 
     @staticmethod

@@ -6,7 +6,7 @@ import warnings
 
 from . import gripper_pb2 as gripper_dot_gripper__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.83.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in gripper/gripper_pb2_grpc.py depends on"
+        + " but the generated code in gripper/gripper_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class GripperServiceStub(object):
+class GripperServiceStub:
     """
     Allows users to send gripper actions.
     """
@@ -54,7 +54,7 @@ class GripperServiceStub(object):
         )
 
 
-class GripperServiceServicer(object):
+class GripperServiceServicer:
     """
     Allows users to send gripper actions.
     """
@@ -99,7 +99,7 @@ def add_GripperServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class GripperService(object):
+class GripperService:
     """
     Allows users to send gripper actions.
     """

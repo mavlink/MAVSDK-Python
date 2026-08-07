@@ -6,7 +6,7 @@ import warnings
 
 from . import camera_pb2 as camera_dot_camera__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.83.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in camera/camera_pb2_grpc.py depends on"
+        + " but the generated code in camera/camera_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class CameraServiceStub(object):
+class CameraServiceStub:
     """
     Can be used to manage cameras that implement the MAVLink
     Camera Protocol: https://mavlink.io/en/services/camera.html.
@@ -264,7 +264,7 @@ class CameraServiceStub(object):
         )
 
 
-class CameraServiceServicer(object):
+class CameraServiceServicer:
     """
     Can be used to manage cameras that implement the MAVLink
     Camera Protocol: https://mavlink.io/en/services/camera.html.
@@ -772,7 +772,7 @@ def add_CameraServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class CameraService(object):
+class CameraService:
     """
     Can be used to manage cameras that implement the MAVLink
     Camera Protocol: https://mavlink.io/en/services/camera.html.

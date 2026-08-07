@@ -6,7 +6,7 @@ import warnings
 
 from . import rtk_pb2 as rtk_dot_rtk__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.83.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in rtk/rtk_pb2_grpc.py depends on"
+        + " but the generated code in rtk/rtk_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class RtkServiceStub(object):
+class RtkServiceStub:
     """Service to send RTK corrections to the vehicle."""
 
     def __init__(self, channel):
@@ -46,7 +46,7 @@ class RtkServiceStub(object):
         )
 
 
-class RtkServiceServicer(object):
+class RtkServiceServicer:
     """Service to send RTK corrections to the vehicle."""
 
     def SendRtcmData(self, request, context):
@@ -74,7 +74,7 @@ def add_RtkServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class RtkService(object):
+class RtkService:
     """Service to send RTK corrections to the vehicle."""
 
     @staticmethod

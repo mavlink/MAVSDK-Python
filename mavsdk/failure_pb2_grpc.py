@@ -6,7 +6,7 @@ import warnings
 
 from . import failure_pb2 as failure_dot_failure__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.83.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in failure/failure_pb2_grpc.py depends on"
+        + " but the generated code in failure/failure_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class FailureServiceStub(object):
+class FailureServiceStub:
     """Inject failures into system to test failsafes."""
 
     def __init__(self, channel):
@@ -46,7 +46,7 @@ class FailureServiceStub(object):
         )
 
 
-class FailureServiceServicer(object):
+class FailureServiceServicer:
     """Inject failures into system to test failsafes."""
 
     def Inject(self, request, context):
@@ -74,7 +74,7 @@ def add_FailureServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class FailureService(object):
+class FailureService:
     """Inject failures into system to test failsafes."""
 
     @staticmethod

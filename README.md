@@ -1,5 +1,43 @@
 # MAVSDK-Python
 
+## Trusk changes
+
+> This is a fork with local changes to support a **custom ArduPilot flight-mode number for offboard control**.
+
+By default, starting offboard control forces ArduPilot into `GUIDED` mode. In this fork you can pass a custom
+mode number instead. It is wired through the `StartRequest` proto message as a new `mode` field.
+
+### What changed
+
+- `offboard.proto`: `StartRequest` gained a `uint32 mode` field (`0` keeps the default `GUIDED` behaviour).
+- `offboard.py` (generated): `Offboard` accepts a `mode_number` constructor argument (default `4` = `GUIDED`)
+  and `Offboard.start()` accepts an optional `mode`:
+  ```python
+  offboard = drone.offboard(mode_number=3)   # 3 = AUTO on ArduPilot
+  await offboard.start()
+  # or, per call:
+  await offboard.start(mode=3)
+  ```
+
+### Why it isn't lost on regeneration
+
+The Python-side constructor/`start()` customisations are baked into the code-generation template
+`other/templates/py/file.j2`, so running `hatch run generate` reproduces them. The gRPC `mode` field is
+defined in `proto/protos/offboard/offboard.proto`.
+
+### How to build both projects
+
+1. **C++ (mavsdk_server)** – see the `Trusk changes` section of the `../trusk-mavsdk-cpp` README. The
+   version rebuilds `mavsdk_server` with the new proto field and offboard `mode` handling.
+2. **Python** – point the server-downloader at your local C++ build and regenerate the bindings:
+   ```sh
+   export MAVSDK_CPP_PROJECT_ROOT=../trusk-mavsdk-cpp   # optional; this is the default
+   hatch run install-plugin        # install protoc-gen-mavsdk from proto/
+   hatch run download-server       # copy the locally-built mavsdk_server into mavsdk/bin/
+   hatch run generate              # rebuild mavsdk/offboard.py (and friends) from the proto + template
+   ```
+   The `mode` behaviour then works end-to-end: Python client → gRPC → `mavsdk_server` → `MAV_CMD_DO_SET_MODE`.
+
 [![GitHub Actions Status](https://github.com/mavlink/MAVSDK-Python/workflows/Check%20and%20PyPi%20Upload/badge.svg?branch=main)](https://github.com/mavlink/MAVSDK-Python/actions/workflows/main.yml?query=branch%3Amain)
 
 This is the Python wrapper for MAVSDK.

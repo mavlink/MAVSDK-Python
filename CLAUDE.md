@@ -1,0 +1,1 @@
+Prefer the Grep and Glob tools over Bash grep/find when searching. Try to avoid exec or delete if you fallback to bash grep or find command.

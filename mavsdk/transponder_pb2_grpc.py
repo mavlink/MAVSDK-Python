@@ -6,7 +6,7 @@ import warnings
 
 from . import transponder_pb2 as transponder_dot_transponder__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.83.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in transponder/transponder_pb2_grpc.py depends on"
+        + " but the generated code in transponder/transponder_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class TransponderServiceStub(object):
+class TransponderServiceStub:
     """
     Allow users to get ADS-B information
     and set ADS-B update rates.
@@ -55,7 +55,7 @@ class TransponderServiceStub(object):
         )
 
 
-class TransponderServiceServicer(object):
+class TransponderServiceServicer:
     """
     Allow users to get ADS-B information
     and set ADS-B update rates.
@@ -97,7 +97,7 @@ def add_TransponderServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class TransponderService(object):
+class TransponderService:
     """
     Allow users to get ADS-B information
     and set ADS-B update rates.

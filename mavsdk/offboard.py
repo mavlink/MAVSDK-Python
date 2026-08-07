@@ -4,6 +4,7 @@
 from ._base import AsyncBase
 from . import offboard_pb2, offboard_pb2_grpc
 from enum import Enum
+from typing import Optional
 
 
 class Attitude:
@@ -874,6 +875,10 @@ class Offboard(AsyncBase):
     # Plugin name
     name = "Offboard"
 
+    def __init__(self, async_plugin_manager, mode_number: int = 4):
+        super().__init__(async_plugin_manager)
+        self._mode_number = mode_number
+
     def _setup_stub(self, channel):
         """Setups the api stub"""
         self._stub = offboard_pb2_grpc.OffboardServiceStub(channel)
@@ -882,21 +887,29 @@ class Offboard(AsyncBase):
         """Returns the response status and description"""
         return OffboardResult.translate_from_rpc(response.offboard_result)
 
-    async def start(self):
+    async def start(self, mode: Optional[int] = None):
         """
         Start offboard control.
+
+        Parameters
+        ----------
+        mode : Optional[int]
+            Custom ArduPilot flight mode to set before starting offboard control.
+            If None, uses the mode configured in the constructor
+            (defaults to GUIDED, i.e. mode number 4).
 
         Raises
         ------
         OffboardError
             If the request fails. The error contains the reason for the failure.
         """
+        mode = self._mode_number if mode is None else mode
 
         request = offboard_pb2.StartRequest()
+        request.mode = mode
         response = await self._stub.Start(request)
 
         result = self._extract_result(response)
-
         if result.result != OffboardResult.Result.SUCCESS:
             raise OffboardError(result, "start()")
 

@@ -6,7 +6,7 @@ import warnings
 
 from . import param_pb2 as param_dot_param__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.83.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in param/param_pb2_grpc.py depends on"
+        + " but the generated code in param/param_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class ParamServiceStub(object):
+class ParamServiceStub:
     """Provide raw access to get and set parameters."""
 
     def __init__(self, channel):
@@ -88,7 +88,7 @@ class ParamServiceStub(object):
         )
 
 
-class ParamServiceServicer(object):
+class ParamServiceServicer:
     """Provide raw access to get and set parameters."""
 
     def GetParamInt(self, request, context):
@@ -223,7 +223,7 @@ def add_ParamServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class ParamService(object):
+class ParamService:
     """Provide raw access to get and set parameters."""
 
     @staticmethod

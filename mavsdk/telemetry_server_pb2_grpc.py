@@ -6,7 +6,7 @@ import warnings
 
 from . import telemetry_server_pb2 as telemetry__server_dot_telemetry__server__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.83.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in telemetry_server/telemetry_server_pb2_grpc.py depends on"
+        + " but the generated code in telemetry_server/telemetry_server_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class TelemetryServerServiceStub(object):
+class TelemetryServerServiceStub:
     """
     Allow users to provide vehicle telemetry and state information
     (e.g. battery, GPS, RC connection, flight mode etc.) and set telemetry update rates.
@@ -145,7 +145,7 @@ class TelemetryServerServiceStub(object):
         )
 
 
-class TelemetryServerServiceServicer(object):
+class TelemetryServerServiceServicer:
     """
     Allow users to provide vehicle telemetry and state information
     (e.g. battery, GPS, RC connection, flight mode etc.) and set telemetry update rates.
@@ -352,7 +352,7 @@ def add_TelemetryServerServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class TelemetryServerService(object):
+class TelemetryServerService:
     """
     Allow users to provide vehicle telemetry and state information
     (e.g. battery, GPS, RC connection, flight mode etc.) and set telemetry update rates.
