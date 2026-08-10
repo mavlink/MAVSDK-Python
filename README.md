@@ -27,16 +27,71 @@ defined in `proto/protos/offboard/offboard.proto`.
 
 ### How to build both projects
 
-1. **C++ (mavsdk_server)** – see the `Trusk changes` section of the `../trusk-mavsdk-cpp` README. The
-   version rebuilds `mavsdk_server` with the new proto field and offboard `mode` handling.
-2. **Python** – point the server-downloader at your local C++ build and regenerate the bindings:
-   ```sh
-   export MAVSDK_CPP_PROJECT_ROOT=../trusk-mavsdk-cpp   # optional; this is the default
-   hatch run install-plugin        # install protoc-gen-mavsdk from proto/
-   hatch run download-server       # copy the locally-built mavsdk_server into mavsdk/bin/
-   hatch run generate              # rebuild mavsdk/offboard.py (and friends) from the proto + template
-   ```
-   The `mode` behaviour then works end-to-end: Python client → gRPC → `mavsdk_server` → `MAV_CMD_DO_SET_MODE`.
+The commands below assume that `trusk-mavsdk-cpp` and `trusk-mavsdk` are sibling directories. First build the
+patched `mavsdk_server` by following the `Trusk changes` section of `../trusk-mavsdk-cpp/README.md`. Then, from this
+Python repository root:
+
+```sh
+git submodule update --init --recursive
+python3 -m pip install hatch
+
+# Use the exact C++ build directory so another stale or cross-compiled server cannot be selected.
+export MAVSDK_CPP_PROJECT_ROOT="$(realpath ../trusk-mavsdk-cpp/cpp/build/default)"
+# On x86-64 Linux, this also makes an accidental release fallback use the host architecture.
+export MAVSDK_SERVER_ARCH=x86_64
+
+hatch run build
+```
+
+`hatch run build` installs the generator from the local proto submodule, regenerates the Python bindings, copies
+`mavsdk_server` into `mavsdk/bin/`, and builds the wheel and source distribution. Confirm that it prints
+`Found local mavsdk_server`. If it reports that no local server was found, it falls back to the upstream release
+in `MAVSDK_SERVER_VERSION`, which does not contain this fork's local C++ changes.
+
+For individual development steps, use:
+
+```sh
+hatch run generate          # regenerate mavsdk/*.py and protobuf stubs
+hatch run download-server   # copy the local server into mavsdk/bin/
+hatch run install-local     # install this checkout in editable mode
+```
+
+`MAVSDK_CPP_PROJECT_ROOT` is searched recursively and the newest executable is selected, so point it at the
+intended build directory rather than the entire C++ checkout. Setting `MAVSDK_BUILD_PURE` skips the embedded
+server entirely and is only appropriate when the server will be managed separately.
+
+The default C++ build uses shared libraries from its build tree. Keep that tree available and verify the copied
+server with `ldd mavsdk/bin/mavsdk_server`; copying the executable alone does not make the wheel portable.
+
+The `mode` behaviour then works end-to-end: Python client → gRPC → `mavsdk_server` → `MAV_CMD_DO_SET_MODE`.
+
+### NVIDIA Jetson Orin Nano (ARM64/aarch64)
+
+Build both projects natively on the Jetson. This is preferred because the C++ repository does not provide a
+JetPack/glibc-sysroot-specific cross-compilation recipe. After building the C++ server in the dedicated
+`cpp/build/jetson-aarch64` directory described in the sibling README, run:
+
+```sh
+# In trusk-mavsdk on the Jetson
+uname -m  # expected: aarch64
+git submodule update --init --recursive
+python3 -m pip install hatch
+
+export MAVSDK_CPP_PROJECT_ROOT="$(realpath ../trusk-mavsdk-cpp/cpp/build/jetson-aarch64)"
+export MAVSDK_SERVER_ARCH=aarch64
+
+hatch run build
+hatch run install-local  # optional editable development installation
+
+file mavsdk/bin/mavsdk_server
+ldd mavsdk/bin/mavsdk_server
+```
+
+Confirm that the downloader prints `Found local mavsdk_server`, `file` identifies an ARM/AArch64 ELF executable,
+and `ldd` has no `not found` entries. `MAVSDK_SERVER_ARCH=aarch64` affects only a release-download fallback; it
+does not compile the C++ server or choose among local binaries. The default shared build and a wheel containing
+it remain tied to the matching C++ build tree and are not automatically portable to other ARM64 or JetPack/glibc
+systems.
 
 [![GitHub Actions Status](https://github.com/mavlink/MAVSDK-Python/workflows/Check%20and%20PyPi%20Upload/badge.svg?branch=main)](https://github.com/mavlink/MAVSDK-Python/actions/workflows/main.yml?query=branch%3Amain)
 
@@ -96,41 +151,34 @@ The examples assume that the embedded `mavsdk_server` binary can be run. In some
 
 Note: this is more involved and targeted at contributors.
 
-Most of the code is auto-generated from the [proto definitions](https://github.com/mavlink/mavsdk-proto), using our [templates](./other/templates). The generated files can be found in the [generated](./mavsdk/generated) folder. As a result, contributions are generally made in the templates or on the build system. Regularly, there is a need to update MAVSDK-Python to include the latest features defined in the proto definitions. This is described [below](#generate-the-code).
+Most of the code is auto-generated from the [proto definitions](https://github.com/mavlink/mavsdk-proto), using our [templates](./other/templates). The generated plugin modules and protobuf stubs are written directly under [`mavsdk/`](./mavsdk). As a result, contributions are generally made in the templates or on the build system. Regularly, there is a need to update MAVSDK-Python to include the latest features defined in the proto definitions. This is described [below](#generate-the-code).
 
 ### Clone the repo
 
-Clone this repo and recursively update submodules:
+Clone this fork and initialize its submodules:
 
-```
-git clone https://github.com/mavlink/MAVSDK-Python --recursive
-cd MAVSDK-Python
+```sh
+git clone --recursive https://github.com/trusk-technology/MAVSDK-Python.git trusk-mavsdk
+cd trusk-mavsdk
 ```
 
 ### Install prerequisites
 
-First install the protoc plugin (`protoc-gen-mavsdk`):
+Install [Hatch](https://hatch.pypa.io/latest/install/), which creates the development environment from
+`pyproject.toml`:
 
-```
-cd proto/pb_plugins
-pip3 install -r requirements.txt
-```
-
-You can check that the plugin was installed with `$ which protoc-gen-mavsdk`, as it should now be in the PATH.
-
-Then go back to the root of the repo and install the dependencies of the SDK:
-
-```
-cd ../..
-pip3 install -r requirements.txt -r requirements-dev.txt
+```sh
+python3 -m pip install hatch
+git submodule update --init --recursive
 ```
 
 ### Generate the code
 
-Run the following helper script. It will generate the Python wrappers for each plugin.
+Use the Hatch script to install `protoc-gen-mavsdk` from `proto/pb_plugins` and generate the Python wrappers for
+each plugin:
 
-```
-./other/tools/run_protoc.sh
+```sh
+hatch run generate
 ```
 
 ### Adding support for new plugins
@@ -139,23 +187,36 @@ In case you updated the `./proto` submodule to include a new plugin, you will al
 
 ### Update `mavsdk_server` version
 
-[MAVSDK_SERVER_VERSION](./MAVSDK_SERVER_VERSION) contains exactly the tag name of the `mavsdk_server` release corresponding to the version of MAVSDK-Python. When the [proto](./proto) submodule is updated here, chances are that `mavsdk_server` should be updated, too. Just edit this file, and the corresponding binary will be downloaded by the `setup.py` script (see below).
+[MAVSDK_SERVER_VERSION](./MAVSDK_SERVER_VERSION) contains the tag of the upstream `mavsdk_server` release used
+as a fallback. `hatch run download-server` first searches below `MAVSDK_CPP_PROJECT_ROOT` for a local executable.
+Only when none is found does it download the release identified by this file. When the [proto](./proto) submodule
+is updated, both the local C++ server and this fallback version may need to be updated.
 
 ### Build and install the package locally
 
-After generating the wrapper and only in ARM architectures with linux, defines a variable `MAVSDK_SERVER_ARCH`:
-```
-export MAVSDK_SERVER_ARCH=<ARM embedded architecture>
-```
-Supported architectures: `armv6l`, `armv7l` and `aarch64`. For example for Raspberry Pi it is `armv7l`, or `aarch64` (if a 64 bit distribution is used).
+To generate the wrappers, copy the locally built server, and install this checkout in editable mode, use:
 
-Then you can install a development version of the package, which links the package to the generated code in this local directory. To do so, use:
-```
-python3 setup.py build
-pip3 install -e .
+```sh
+hatch run generate
+hatch run download-server
+hatch run install-local
 ```
 
-Note: MAVDSK-Python runs `mavsdk/bin/mavsdk_server` when `await drone.connect()` is called. This binary comes from [MAVSDK](https://github.com/mavlink/MAVSDK/releases) and is downloaded during the `setup.py` step above.
+To build wheel and source-distribution artifacts instead, use the complete workflow:
+
+```sh
+hatch run build
+```
+
+On Linux ARM release-download fallbacks, `MAVSDK_SERVER_ARCH` can be set to `armv6l`, `armv7l`, `aarch64`, or
+an accepted x86 alias. On Windows, the downloader accepts `x86`, `x64`, and `arm64`. This variable does not
+select or validate a locally built executable; use a narrow `MAVSDK_CPP_PROJECT_ROOT` and verify the copied
+binary with `file` when architecture matters.
+
+MAVSDK-Python starts `mavsdk/bin/mavsdk_server` when `await drone.connect()` is called without an external server
+address. That binary may have been copied from the local C++ build or downloaded from the upstream release
+fallback. Do not run the legacy `python3 setup.py build` after copying the patched server: that path uses its own
+release downloader and can replace the local executable.
 
 
 ### Generate the API documentation
@@ -174,6 +235,7 @@ We use the following checks in [CI](.github/workflows/main.yml):
 ```
 pipx run ruff format --check --line-length=100 examples
 pipx run ruff check --select=ASYNC,RUF006,E,F --line-length=100 examples
+pipx run ruff check --select=PERF --line-length=100 .
 pipx run codespell .
 ```
 
