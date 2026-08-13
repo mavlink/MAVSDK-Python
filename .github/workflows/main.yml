@@ -1,14 +1,9 @@
 name: Check and PyPi Upload
 
+# Disabled: this fork has no git tags, so `setup.py` (`git describe --tags`)
+# fails on every job. Restore the push/pull_request triggers to re-enable.
 on:
-  push:
-    branches:
-    - 'main'
-    tags:
-    - '*'
-  pull_request:
-    branches:
-    - '*'
+  workflow_dispatch:
 
 jobs:
   ubuntu24:
