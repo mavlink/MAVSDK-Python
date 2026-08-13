@@ -6,7 +6,7 @@ import warnings
 
 from . import calibration_pb2 as calibration_dot_calibration__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.83.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in calibration/calibration_pb2_grpc.py depends on"
+        + " but the generated code in calibration/calibration_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class CalibrationServiceStub(object):
+class CalibrationServiceStub:
     """Enable to calibrate sensors of a drone such as gyro, accelerometer, and magnetometer."""
 
     def __init__(self, channel):
@@ -76,7 +76,7 @@ class CalibrationServiceStub(object):
         )
 
 
-class CalibrationServiceServicer(object):
+class CalibrationServiceServicer:
     """Enable to calibrate sensors of a drone such as gyro, accelerometer, and magnetometer."""
 
     def SubscribeCalibrateGyro(self, request, context):
@@ -159,7 +159,7 @@ def add_CalibrationServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class CalibrationService(object):
+class CalibrationService:
     """Enable to calibrate sensors of a drone such as gyro, accelerometer, and magnetometer."""
 
     @staticmethod

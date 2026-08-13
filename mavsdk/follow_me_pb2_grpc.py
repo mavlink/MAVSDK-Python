@@ -6,7 +6,7 @@ import warnings
 
 from . import follow_me_pb2 as follow__me_dot_follow__me__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.83.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in follow_me/follow_me_pb2_grpc.py depends on"
+        + " but the generated code in follow_me/follow_me_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class FollowMeServiceStub(object):
+class FollowMeServiceStub:
     """
     Allow users to command the vehicle to follow a specific target.
     The target is provided as a GPS coordinate and altitude.
@@ -85,7 +85,7 @@ class FollowMeServiceStub(object):
         )
 
 
-class FollowMeServiceServicer(object):
+class FollowMeServiceServicer:
     """
     Allow users to command the vehicle to follow a specific target.
     The target is provided as a GPS coordinate and altitude.
@@ -182,7 +182,7 @@ def add_FollowMeServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class FollowMeService(object):
+class FollowMeService:
     """
     Allow users to command the vehicle to follow a specific target.
     The target is provided as a GPS coordinate and altitude.

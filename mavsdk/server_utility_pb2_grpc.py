@@ -6,7 +6,7 @@ import warnings
 
 from . import server_utility_pb2 as server__utility_dot_server__utility__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.83.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in server_utility/server_utility_pb2_grpc.py depends on"
+        + " but the generated code in server_utility/server_utility_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class ServerUtilityServiceStub(object):
+class ServerUtilityServiceStub:
     """
     Utility for onboard MAVSDK instances for common "server" tasks.
     """
@@ -48,7 +48,7 @@ class ServerUtilityServiceStub(object):
         )
 
 
-class ServerUtilityServiceServicer(object):
+class ServerUtilityServiceServicer:
     """
     Utility for onboard MAVSDK instances for common "server" tasks.
     """
@@ -78,7 +78,7 @@ def add_ServerUtilityServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class ServerUtilityService(object):
+class ServerUtilityService:
     """
     Utility for onboard MAVSDK instances for common "server" tasks.
     """

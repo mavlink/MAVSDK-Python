@@ -6,7 +6,7 @@ import warnings
 
 from . import log_streaming_pb2 as log__streaming_dot_log__streaming__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.83.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in log_streaming/log_streaming_pb2_grpc.py depends on"
+        + " but the generated code in log_streaming/log_streaming_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class LogStreamingServiceStub(object):
+class LogStreamingServiceStub:
     """Provide log streaming data."""
 
     def __init__(self, channel):
@@ -58,7 +58,7 @@ class LogStreamingServiceStub(object):
         )
 
 
-class LogStreamingServiceServicer(object):
+class LogStreamingServiceServicer:
     """Provide log streaming data."""
 
     def StartLogStreaming(self, request, context):
@@ -108,7 +108,7 @@ def add_LogStreamingServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class LogStreamingService(object):
+class LogStreamingService:
     """Provide log streaming data."""
 
     @staticmethod

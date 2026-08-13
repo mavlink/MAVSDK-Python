@@ -8,7 +8,7 @@ from . import (
     mission_raw_server_pb2 as mission__raw__server_dot_mission__raw__server__pb2,
 )
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.83.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -24,14 +24,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in mission_raw_server/mission_raw_server_pb2_grpc.py depends on"
+        + " but the generated code in mission_raw_server/mission_raw_server_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class MissionRawServerServiceStub(object):
+class MissionRawServerServiceStub:
     """Acts as a vehicle and receives incoming missions from GCS (in raw MAVLINK format).
     Provides current mission item state, so the server can progress through missions.
     """
@@ -68,7 +68,7 @@ class MissionRawServerServiceStub(object):
         )
 
 
-class MissionRawServerServiceServicer(object):
+class MissionRawServerServiceServicer:
     """Acts as a vehicle and receives incoming missions from GCS (in raw MAVLINK format).
     Provides current mission item state, so the server can progress through missions.
     """
@@ -139,7 +139,7 @@ def add_MissionRawServerServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class MissionRawServerService(object):
+class MissionRawServerService:
     """Acts as a vehicle and receives incoming missions from GCS (in raw MAVLINK format).
     Provides current mission item state, so the server can progress through missions.
     """

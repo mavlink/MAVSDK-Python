@@ -4,6 +4,9 @@
 from ._base import AsyncBase
 from . import {{ plugin_name.lower_snake_case }}_pb2, {{ plugin_name.lower_snake_case }}_pb2_grpc
 from enum import Enum
+{%- if plugin_name.upper_camel_case == 'Offboard' %}
+from typing import Optional
+{%- endif %}
 
 {%- for enum in enums %}
 
@@ -42,6 +45,12 @@ class {{ plugin_name.upper_camel_case }}(AsyncBase):
     # Plugin name
     name = "{{ plugin_name.upper_camel_case }}"
 
+    {% if plugin_name.upper_camel_case == 'Offboard' %}
+    def __init__(self, async_plugin_manager, mode_number: int = 4):
+        super().__init__(async_plugin_manager)
+        self._mode_number = mode_number
+
+    {% endif %}
     def _setup_stub(self, channel):
         """ Setups the api stub """
         self._stub = {{ plugin_name.lower_snake_case }}_pb2_grpc.{{ plugin_name.upper_camel_case }}ServiceStub(channel)
@@ -53,6 +62,34 @@ class {{ plugin_name.upper_camel_case }}(AsyncBase):
     {% endif %}
 
     {%- for method in methods -%}
+    {%- if plugin_name.upper_camel_case == 'Offboard' and method.name.lower_snake_case == 'start' %}
+    async def start(self, mode: Optional[int] = None):
+        """
+        Start offboard control.
+
+        Parameters
+        ----------
+        mode : Optional[int]
+            Custom ArduPilot flight mode to set before starting offboard control.
+            If None, uses the mode configured in the constructor
+            (defaults to GUIDED, i.e. mode number 4).
+
+        Raises
+        ------
+        OffboardError
+            If the request fails. The error contains the reason for the failure.
+        """
+        mode = self._mode_number if mode is None else mode
+
+        request = offboard_pb2.StartRequest()
+        request.mode = mode
+        response = await self._stub.Start(request)
+
+        result = self._extract_result(response)
+        if result.result != OffboardResult.Result.SUCCESS:
+            raise OffboardError(result, "start()")
+    {%- else %}
     {{ '\n' + indent(method, 1) }}
+    {%- endif %}
 
     {%- endfor %}

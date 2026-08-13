@@ -6,7 +6,7 @@ import warnings
 
 from . import log_files_pb2 as log__files_dot_log__files__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.83.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in log_files/log_files_pb2_grpc.py depends on"
+        + " but the generated code in log_files/log_files_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class LogFilesServiceStub(object):
+class LogFilesServiceStub:
     """Allow to download log files from the vehicle after a flight is complete.
     For log streaming during flight check the logging plugin.
     """
@@ -60,7 +60,7 @@ class LogFilesServiceStub(object):
         )
 
 
-class LogFilesServiceServicer(object):
+class LogFilesServiceServicer:
     """Allow to download log files from the vehicle after a flight is complete.
     For log streaming during flight check the logging plugin.
     """
@@ -112,7 +112,7 @@ def add_LogFilesServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class LogFilesService(object):
+class LogFilesService:
     """Allow to download log files from the vehicle after a flight is complete.
     For log streaming during flight check the logging plugin.
     """

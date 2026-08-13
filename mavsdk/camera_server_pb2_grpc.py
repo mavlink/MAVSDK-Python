@@ -6,7 +6,7 @@ import warnings
 
 from . import camera_server_pb2 as camera__server_dot_camera__server__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.83.0"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in camera_server/camera_server_pb2_grpc.py depends on"
+        + " but the generated code in camera_server/camera_server_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class CameraServerServiceStub(object):
+class CameraServerServiceStub:
     """Provides handling of camera interface"""
 
     def __init__(self, channel):
@@ -274,7 +274,7 @@ class CameraServerServiceStub(object):
         )
 
 
-class CameraServerServiceServicer(object):
+class CameraServerServiceServicer:
     """Provides handling of camera interface"""
 
     def SetInformation(self, request, context):
@@ -720,7 +720,7 @@ def add_CameraServerServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class CameraServerService(object):
+class CameraServerService:
     """Provides handling of camera interface"""
 
     @staticmethod

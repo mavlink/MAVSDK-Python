@@ -1,0 +1,114 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mavsdk"
+dynamic = ["version"]
+description = "Python wrapper for MAVSDK"
+readme = "README.md"
+license = { file = "LICENSE.txt" }
+requires-python = ">=3.7"
+maintainers = [
+    { name = "Jonas Vautherin", email = "jonas@auterion.com" },
+    { name = "Julian Oes", email = "julian.oes@auterion.com" },
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3.7",
+]
+# Runtime dependencies, from requirements.txt
+dependencies = [
+    "grpcio>=1.64.1",
+    "protobuf>=6.32.1",
+]
+
+[project.urls]
+"Bug Reports" = "https://github.com/mavlink/MAVSDK-Python/issues"
+"Source" = "https://github.com/mavlink/MAVSDK-Python/"
+
+# Dev dependencies, from requirements-dev.txt, requirements-test.txt and
+# proto/pb_plugins/requirements.txt.
+# protoc-gen-mavsdk is installed from the proto submodule (see the
+# `install-plugin` script) rather than from PyPI.
+[project.optional-dependencies]
+dev = [
+    "clang-format==17.0.6",
+    "codespell",
+    "grpcio-tools>=1.40.0",
+    "jinja2>=3.1.4",
+    "pymavlink>=2.4.41",
+    "pytest>=3.5.0",
+    "ruff>=0.12.12",
+]
+docs = [
+    "numpydoc>=1.1.0",
+    "s3cmd>=2.1.0",
+    "sphinx>=3.3.0",
+]
+
+# The version is read from MAVSDK_SERVER_VERSION (e.g. "v3.17.2"), which is the
+# canonical version source in this repo. The repo has no git tags, so the
+# git-describe based versioning used by setup.py cannot build here.
+[tool.hatch.version]
+path = "MAVSDK_SERVER_VERSION"
+pattern = "v(?P<version>.+)"
+
+[tool.hatch.envs.default]
+features = ["dev"]
+
+[tool.hatch.envs.default.scripts]
+# Install the protoc plugin from the proto submodule (README "Install prerequisites")
+install-plugin = "pip install -e {root:uri}/proto/pb_plugins"
+
+# Generate the Python wrappers from the proto definitions (README "Generate the code")
+generate = [
+    "install-plugin",
+    "bash other/tools/run_protoc.sh",
+]
+
+# Download the mavsdk_server binary. MAVSDK_SERVER_ARCH defaults to aarch64 when
+# not set (see other/tools/download_server.py).
+download-server = "python other/tools/download_server.py"
+
+# Build the package: generate code, fetch mavsdk_server, then build the wheel
+# and sdist (README "Build and install the package locally")
+build = [
+    "generate",
+    "download-server",
+    "hatch build",
+]
+
+# Install a development version of the package (README "Build and install the package locally")
+install-local = "pip install -e ."
+
+# Format the generated code (also run by other/tools/run_protoc.sh)
+format = "ruff format --line-length=100 mavsdk"
+
+# Formatting checks before committing (README "Formatting checks before committing")
+check = [
+    "ruff format --check --line-length=100 examples",
+    "ruff check --select=ASYNC,RUF006,E,F --line-length=100 examples",
+    "codespell .",
+]
+
+test = "pytest"
+
+[tool.hatch.envs.docs]
+features = ["docs"]
+
+[tool.hatch.envs.docs.scripts]
+# Generate the API documentation (README "Generate the API documentation")
+build-docs = "make -C mavsdk html"
+
+[tool.hatch.build.targets.wheel]
+packages = ["mavsdk"]
+# mavsdk_server is downloaded at build time and git-ignored, so it must be
+# listed as a build artifact to end up in the wheel. The pattern for the
+# binary that does not exist on the current platform is simply skipped.
+artifacts = [
+    "mavsdk/bin/mavsdk_server",
+    "mavsdk/bin/mavsdk_server.exe",
+]
