@@ -3,8 +3,8 @@
 import asyncio
 import logging
 
-from mavsdk import System
-from mavsdk.mission import MissionItem, MissionPlan
+from mavsdk_grpc import System
+from mavsdk_grpc.mission import MissionItem, MissionPlan
 
 # Enable INFO level logging by default so that INFO messages are shown
 logging.basicConfig(level=logging.INFO)

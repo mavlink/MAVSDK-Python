@@ -2,7 +2,7 @@
 
 import asyncio
 import serial
-from mavsdk import System, rtk
+from mavsdk_grpc import System, rtk
 import base64
 
 PREAMBLE_RTCM = 0xD3

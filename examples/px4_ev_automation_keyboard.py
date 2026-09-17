@@ -15,7 +15,7 @@ More information:
 """
 
 import asyncio
-from mavsdk import System
+from mavsdk_grpc import System
 
 
 async def set_params(system, params, announcement):

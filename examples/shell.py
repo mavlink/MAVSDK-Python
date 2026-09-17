@@ -3,7 +3,7 @@
 import asyncio
 import sys
 
-from mavsdk import System
+from mavsdk_grpc import System
 
 send_tasks = set()
 

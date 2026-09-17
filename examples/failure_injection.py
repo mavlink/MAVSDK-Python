@@ -2,8 +2,8 @@
 
 import asyncio
 
-from mavsdk import System
-from mavsdk.failure import FailureType, FailureUnit
+from mavsdk_grpc import System
+from mavsdk_grpc.failure import FailureType, FailureUnit
 
 
 async def run():

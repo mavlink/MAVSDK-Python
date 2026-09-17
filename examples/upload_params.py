@@ -3,7 +3,7 @@
 import asyncio
 import argparse
 import anyio
-from mavsdk import System
+from mavsdk_grpc import System
 from tqdm import tqdm
 
 

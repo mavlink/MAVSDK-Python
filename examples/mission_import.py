@@ -2,7 +2,7 @@
 
 import asyncio
 
-from mavsdk import System
+from mavsdk_grpc import System
 
 
 async def run():

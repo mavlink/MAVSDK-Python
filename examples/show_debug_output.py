@@ -5,7 +5,7 @@ Test to see all output including debug messages
 
 import asyncio
 import logging
-from mavsdk import System
+from mavsdk_grpc import System
 
 # Setup logging to see EVERYTHING
 logging.basicConfig(

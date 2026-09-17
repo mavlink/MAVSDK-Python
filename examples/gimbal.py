@@ -2,8 +2,8 @@
 
 import asyncio
 import logging
-from mavsdk import System
-from mavsdk.gimbal import GimbalMode, ControlMode, SendMode
+from mavsdk_grpc import System
+from mavsdk_grpc.gimbal import GimbalMode, ControlMode, SendMode
 
 # Enable INFO level logging by default so that INFO messages are shown
 logging.basicConfig(level=logging.INFO)

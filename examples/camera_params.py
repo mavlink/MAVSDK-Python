@@ -3,8 +3,8 @@
 import asyncio
 
 from aioconsole import ainput
-from mavsdk import System
-from mavsdk.camera import CameraError, Mode, Option, Setting
+from mavsdk_grpc import System
+from mavsdk_grpc.camera import CameraError, Mode, Option, Setting
 
 
 usage_str = """

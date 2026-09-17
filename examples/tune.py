@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import asyncio
-from mavsdk import System
-from mavsdk.tune import SongElement, TuneDescription
+from mavsdk_grpc import System
+from mavsdk_grpc.tune import SongElement, TuneDescription
 
 
 async def run():

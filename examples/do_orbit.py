@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import asyncio
-from mavsdk import System
-from mavsdk.action import OrbitYawBehavior
+from mavsdk_grpc import System
+from mavsdk_grpc.action import OrbitYawBehavior
 
 
 async def run():

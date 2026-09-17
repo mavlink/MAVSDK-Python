@@ -82,10 +82,10 @@ import asyncio
 import csv
 import io
 import anyio
-from mavsdk import System
-from mavsdk.offboard import PositionNedYaw, VelocityNedYaw
-from mavsdk.offboard import OffboardError
-from mavsdk.telemetry import LandedState
+from mavsdk_grpc import System
+from mavsdk_grpc.offboard import PositionNedYaw, VelocityNedYaw
+from mavsdk_grpc.offboard import OffboardError
+from mavsdk_grpc.telemetry import LandedState
 
 
 # Find the current waypoint based on time

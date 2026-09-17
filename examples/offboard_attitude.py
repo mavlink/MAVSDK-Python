@@ -7,8 +7,8 @@
 
 import asyncio
 
-from mavsdk import System
-from mavsdk.offboard import Attitude, OffboardError
+from mavsdk_grpc import System
+from mavsdk_grpc.offboard import Attitude, OffboardError
 
 
 async def run():

@@ -12,3 +12,4 @@ build/
 .tox/
 mavsdk/bin/mavsdk_server
 mavsdk/bin/mavsdk_server.exe
+mavsdk/_dist.py

@@ -3,8 +3,8 @@
 
 import asyncio
 
-from mavsdk import System
-from mavsdk.offboard import OffboardError, VelocityBodyYawspeed
+from mavsdk_grpc import System
+from mavsdk_grpc.offboard import OffboardError, VelocityBodyYawspeed
 
 
 async def run():
