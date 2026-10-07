@@ -42,3 +42,4 @@ Plugins
    winch
    events
    mavlink_direct
+   mavlink_direct_server

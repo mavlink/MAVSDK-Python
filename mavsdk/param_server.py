@@ -287,7 +287,7 @@ class ParamServerResult:
              Parameter name too long (> 128)
 
         PARAM_PROVIDED_TOO_LATE
-             All parameters have to be provided upfront
+             New params have to be provided before the param set is locked down
 
         """
 
@@ -490,9 +490,10 @@ class ParamServer(AsyncBase):
 
         If the type is wrong, the result will be `WRONG_TYPE`.
 
-        Note that all params need to be provided upfront. Once a client has
-        requested a param list, the indices are locked and no more params
-        can be added.
+        Note that new params have to be provided upfront. Once a client has
+        requested the param list, the indices are locked and no new params can
+        be added. Providing an already-existing param still updates its value
+        and announces the change to connected clients.
 
         Parameters
         ----------
@@ -523,10 +524,6 @@ class ParamServer(AsyncBase):
         Retrieve a float parameter.
 
         If the type is wrong, the result will be `WRONG_TYPE`.
-
-        Note that all params need to be provided upfront. Once a client has
-        requested a param list, the indices are locked and no more params
-        can be added.
 
         Parameters
         ----------
@@ -563,6 +560,11 @@ class ParamServer(AsyncBase):
 
         If the type is wrong, the result will be `WRONG_TYPE`.
 
+        Note that new params have to be provided upfront. Once a client has
+        requested the param list, the indices are locked and no new params can
+        be added. Providing an already-existing param still updates its value
+        and announces the change to connected clients.
+
         Parameters
         ----------
         name : std::string
@@ -592,10 +594,6 @@ class ParamServer(AsyncBase):
         Retrieve a custom parameter.
 
         If the type is wrong, the result will be `WRONG_TYPE`.
-
-        Note that all params need to be provided upfront. Once a client has
-        requested a param list, the indices are locked and no more params
-        can be added.
 
         Parameters
         ----------
@@ -631,6 +629,11 @@ class ParamServer(AsyncBase):
         Provide a custom parameter.
 
         If the type is wrong, the result will be `WRONG_TYPE`.
+
+        Note that new params have to be provided upfront. Once a client has
+        requested the param list, the indices are locked and no new params can
+        be added. Providing an already-existing param still updates its value
+        and announces the change to connected clients.
 
         Parameters
         ----------

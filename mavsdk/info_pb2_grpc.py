@@ -38,12 +38,6 @@ class InfoServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.GetFlightInformation = channel.unary_unary(
-            "/mavsdk.rpc.info.InfoService/GetFlightInformation",
-            request_serializer=info_dot_info__pb2.GetFlightInformationRequest.SerializeToString,
-            response_deserializer=info_dot_info__pb2.GetFlightInformationResponse.FromString,
-            _registered_method=True,
-        )
         self.GetIdentification = channel.unary_unary(
             "/mavsdk.rpc.info.InfoService/GetIdentification",
             request_serializer=info_dot_info__pb2.GetIdentificationRequest.SerializeToString,
@@ -79,12 +73,6 @@ class InfoServiceStub(object):
 class InfoServiceServicer(object):
     """Provide information about the hardware and/or software of a system."""
 
-    def GetFlightInformation(self, request, context):
-        """Get flight information of the system."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
-
     def GetIdentification(self, request, context):
         """Get the identification of the system."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -118,11 +106,6 @@ class InfoServiceServicer(object):
 
 def add_InfoServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-        "GetFlightInformation": grpc.unary_unary_rpc_method_handler(
-            servicer.GetFlightInformation,
-            request_deserializer=info_dot_info__pb2.GetFlightInformationRequest.FromString,
-            response_serializer=info_dot_info__pb2.GetFlightInformationResponse.SerializeToString,
-        ),
         "GetIdentification": grpc.unary_unary_rpc_method_handler(
             servicer.GetIdentification,
             request_deserializer=info_dot_info__pb2.GetIdentificationRequest.FromString,
@@ -161,36 +144,6 @@ def add_InfoServiceServicer_to_server(servicer, server):
 # This class is part of an EXPERIMENTAL API.
 class InfoService(object):
     """Provide information about the hardware and/or software of a system."""
-
-    @staticmethod
-    def GetFlightInformation(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            "/mavsdk.rpc.info.InfoService/GetFlightInformation",
-            info_dot_info__pb2.GetFlightInformationRequest.SerializeToString,
-            info_dot_info__pb2.GetFlightInformationResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True,
-        )
 
     @staticmethod
     def GetIdentification(

@@ -104,6 +104,12 @@ class ActionServiceStub(object):
             response_deserializer=action_dot_action__pb2.GotoLocationResponse.FromString,
             _registered_method=True,
         )
+        self.GotoLocationFixedwing = channel.unary_unary(
+            "/mavsdk.rpc.action.ActionService/GotoLocationFixedwing",
+            request_serializer=action_dot_action__pb2.GotoLocationFixedwingRequest.SerializeToString,
+            response_deserializer=action_dot_action__pb2.GotoLocationFixedwingResponse.FromString,
+            _registered_method=True,
+        )
         self.DoOrbit = channel.unary_unary(
             "/mavsdk.rpc.action.ActionService/DoOrbit",
             request_serializer=action_dot_action__pb2.DoOrbitRequest.SerializeToString,
@@ -174,6 +180,12 @@ class ActionServiceStub(object):
             "/mavsdk.rpc.action.ActionService/SetGpsGlobalOrigin",
             request_serializer=action_dot_action__pb2.SetGpsGlobalOriginRequest.SerializeToString,
             response_deserializer=action_dot_action__pb2.SetGpsGlobalOriginResponse.FromString,
+            _registered_method=True,
+        )
+        self.SetHome = channel.unary_unary(
+            "/mavsdk.rpc.action.ActionService/SetHome",
+            request_serializer=action_dot_action__pb2.SetHomeRequest.SerializeToString,
+            response_deserializer=action_dot_action__pb2.SetHomeResponse.FromString,
             _registered_method=True,
         )
 
@@ -286,7 +298,7 @@ class ActionServiceServicer(object):
         """
         Send command to return to the launch (takeoff) position and land.
 
-        This switches the drone into [Return mode](https://docs.px4.io/master/en/flight_modes/return.html) which
+        This switches the drone into [Return mode](https://docs.px4.io/main/en/flight_modes_mc/return.html) which
         generally means it will rise up to a certain altitude to clear any obstacles before heading
         back to the launch (takeoff) position and land there.
         """
@@ -302,6 +314,23 @@ class ActionServiceServicer(object):
         in meters AMSL (above mean sea level).
 
         The yaw angle is in degrees (frame is NED, 0 is North, positive is clockwise).
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
+    def GotoLocationFixedwing(self, request, context):
+        """
+        Send command to the drone to fly to a location for fixed-wing aircraft.
+
+        This sends a MAV_CMD_DO_REPOSITION command with a loiter radius.
+
+        The latitude and longitude are given in degrees (WGS84 frame) and the altitude
+        in meters AMSL (above mean sea level).
+
+        The loiter radius defines the radius of the loiter circle in meters, and its sign
+        controls the direction: positive is clockwise, negative is counter-clockwise.
+        A value of 0 is ignored by the autopilot.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
@@ -429,6 +458,16 @@ class ActionServiceServicer(object):
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
+    def SetHome(self, request, context):
+        """
+        Set home.
+
+        Sets the home position.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
 
 def add_ActionServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -486,6 +525,11 @@ def add_ActionServiceServicer_to_server(servicer, server):
             servicer.GotoLocation,
             request_deserializer=action_dot_action__pb2.GotoLocationRequest.FromString,
             response_serializer=action_dot_action__pb2.GotoLocationResponse.SerializeToString,
+        ),
+        "GotoLocationFixedwing": grpc.unary_unary_rpc_method_handler(
+            servicer.GotoLocationFixedwing,
+            request_deserializer=action_dot_action__pb2.GotoLocationFixedwingRequest.FromString,
+            response_serializer=action_dot_action__pb2.GotoLocationFixedwingResponse.SerializeToString,
         ),
         "DoOrbit": grpc.unary_unary_rpc_method_handler(
             servicer.DoOrbit,
@@ -546,6 +590,11 @@ def add_ActionServiceServicer_to_server(servicer, server):
             servicer.SetGpsGlobalOrigin,
             request_deserializer=action_dot_action__pb2.SetGpsGlobalOriginRequest.FromString,
             response_serializer=action_dot_action__pb2.SetGpsGlobalOriginResponse.SerializeToString,
+        ),
+        "SetHome": grpc.unary_unary_rpc_method_handler(
+            servicer.SetHome,
+            request_deserializer=action_dot_action__pb2.SetHomeRequest.FromString,
+            response_serializer=action_dot_action__pb2.SetHomeResponse.SerializeToString,
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -880,6 +929,36 @@ class ActionService(object):
             "/mavsdk.rpc.action.ActionService/GotoLocation",
             action_dot_action__pb2.GotoLocationRequest.SerializeToString,
             action_dot_action__pb2.GotoLocationResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def GotoLocationFixedwing(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.action.ActionService/GotoLocationFixedwing",
+            action_dot_action__pb2.GotoLocationFixedwingRequest.SerializeToString,
+            action_dot_action__pb2.GotoLocationFixedwingResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -1240,6 +1319,36 @@ class ActionService(object):
             "/mavsdk.rpc.action.ActionService/SetGpsGlobalOrigin",
             action_dot_action__pb2.SetGpsGlobalOriginRequest.SerializeToString,
             action_dot_action__pb2.SetGpsGlobalOriginResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def SetHome(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.action.ActionService/SetHome",
+            action_dot_action__pb2.SetHomeRequest.SerializeToString,
+            action_dot_action__pb2.SetHomeResponse.FromString,
             options,
             channel_credentials,
             insecure,

@@ -532,7 +532,7 @@ class Action(AsyncBase):
         """
         Send command to return to the launch (takeoff) position and land.
 
-        This switches the drone into [Return mode](https://docs.px4.io/master/en/flight_modes/return.html) which
+        This switches the drone into [Return mode](https://docs.px4.io/main/en/flight_modes_mc/return.html) which
         generally means it will rise up to a certain altitude to clear any obstacles before heading
         back to the launch (takeoff) position and land there.
 
@@ -598,6 +598,60 @@ class Action(AsyncBase):
                 longitude_deg,
                 absolute_altitude_m,
                 yaw_deg,
+            )
+
+    async def goto_location_fixedwing(
+        self, latitude_deg, longitude_deg, absolute_altitude_m, loiter_radius_m
+    ):
+        """
+        Send command to the drone to fly to a location for fixed-wing aircraft.
+
+        This sends a MAV_CMD_DO_REPOSITION command with a loiter radius.
+
+        The latitude and longitude are given in degrees (WGS84 frame) and the altitude
+        in meters AMSL (above mean sea level).
+
+        The loiter radius defines the radius of the loiter circle in meters, and its sign
+        controls the direction: positive is clockwise, negative is counter-clockwise.
+        A value of 0 is ignored by the autopilot.
+
+        Parameters
+        ----------
+        latitude_deg : double
+             Latitude (in degrees)
+
+        longitude_deg : double
+             Longitude (in degrees)
+
+        absolute_altitude_m : float
+             Altitude AMSL (in meters)
+
+        loiter_radius_m : float
+             Loiter radius (in meters). Positive: clockwise, negative: counter-clockwise, 0: ignored.
+
+        Raises
+        ------
+        ActionError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = action_pb2.GotoLocationFixedwingRequest()
+        request.latitude_deg = latitude_deg
+        request.longitude_deg = longitude_deg
+        request.absolute_altitude_m = absolute_altitude_m
+        request.loiter_radius_m = loiter_radius_m
+        response = await self._stub.GotoLocationFixedwing(request)
+
+        result = self._extract_result(response)
+
+        if result.result != ActionResult.Result.SUCCESS:
+            raise ActionError(
+                result,
+                "goto_location_fixedwing()",
+                latitude_deg,
+                longitude_deg,
+                absolute_altitude_m,
+                loiter_radius_m,
             )
 
     async def do_orbit(
@@ -960,6 +1014,53 @@ class Action(AsyncBase):
             raise ActionError(
                 result,
                 "set_gps_global_origin()",
+                latitude_deg,
+                longitude_deg,
+                absolute_altitude_m,
+            )
+
+    async def set_home(
+        self, use_current_location, latitude_deg, longitude_deg, absolute_altitude_m
+    ):
+        """
+        Set home.
+
+        Sets the home position.
+
+        Parameters
+        ----------
+        use_current_location : bool
+             Use current location
+
+        latitude_deg : double
+             Latitude (in degrees)
+
+        longitude_deg : double
+             Longitude (in degrees)
+
+        absolute_altitude_m : float
+             Altitude AMSL (in meters)
+
+        Raises
+        ------
+        ActionError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = action_pb2.SetHomeRequest()
+        request.use_current_location = use_current_location
+        request.latitude_deg = latitude_deg
+        request.longitude_deg = longitude_deg
+        request.absolute_altitude_m = absolute_altitude_m
+        response = await self._stub.SetHome(request)
+
+        result = self._extract_result(response)
+
+        if result.result != ActionResult.Result.SUCCESS:
+            raise ActionError(
+                result,
+                "set_home()",
+                use_current_location,
                 latitude_deg,
                 longitude_deg,
                 absolute_altitude_m,

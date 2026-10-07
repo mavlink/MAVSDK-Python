@@ -103,3 +103,61 @@ class Core(AsyncBase):
         request = core_pb2.SetMavlinkTimeoutRequest()
         request.timeout_s = timeout_s
         response = await self._stub.SetMavlinkTimeout(request)
+
+    async def feed_heartbeat_watchdog(self):
+        """
+        Feed the heartbeat watchdog.
+
+        MAVSDK can be configured with a heartbeat watchdog (deadman timer).
+        While configured, the periodic heartbeats sent by MAVSDK are only sent
+        as long as this keeps being called within the timeout period. If the
+        watchdog times out, heartbeats stop until it is fed again.
+
+        Call this at least twice per timeout period. Heartbeats are sent at 1 Hz
+        and the deadline is only checked when one is due, so feeding exactly once
+        per period leaves no margin and a single late feed already drops a
+        heartbeat.
+
+        This allows MAVSDK's heartbeats to reflect the liveness of the client:
+        if the client hangs or dies, heartbeats stop.
+
+        Has no effect if no watchdog is configured (e.g. with the
+        --heartbeat-watchdog-timeout option of mavsdk_server, or
+        SetHeartbeatWatchdogTimeout).
+
+
+        """
+
+        request = core_pb2.FeedHeartbeatWatchdogRequest()
+        response = await self._stub.FeedHeartbeatWatchdog(request)
+
+    async def set_heartbeat_watchdog_timeout(self, timeout_s):
+        """
+        Set the heartbeat watchdog timeout.
+
+        When timeout_s is greater than 0, the periodic heartbeats sent by MAVSDK
+        are only sent as long as FeedHeartbeatWatchdog is called at least once
+        per timeout period. If the watchdog times out, heartbeats stop until it
+        is fed again.
+
+        When timeout_s is 0, the watchdog is disabled and heartbeats follow the
+        usual policy (always_send_heartbeats or a connected system).
+
+        Values greater than 0 and less than 2 are rejected: heartbeats are sent
+        at 1 Hz, so a timeout shorter than two heartbeat periods cannot be met
+        reliably.
+
+        This is an alternative to configuring the watchdog at mavsdk_server
+        startup with the --heartbeat-watchdog-timeout option.
+
+        Parameters
+        ----------
+        timeout_s : double
+             Timeout in seconds. 0 disables the watchdog. Minimum 2 when enabled.
+
+
+        """
+
+        request = core_pb2.SetHeartbeatWatchdogTimeoutRequest()
+        request.timeout_s = timeout_s
+        response = await self._stub.SetHeartbeatWatchdogTimeout(request)

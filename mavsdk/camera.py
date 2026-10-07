@@ -2830,6 +2830,54 @@ class Camera(AsyncBase):
         if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "track_stop()", component_id)
 
+    async def focus_in_step(self, component_id):
+        """
+        Step focus in.
+
+        Parameters
+        ----------
+        component_id : int32_t
+             Component ID
+
+        Raises
+        ------
+        CameraError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.FocusInStepRequest()
+        request.component_id = component_id
+        response = await self._stub.FocusInStep(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "focus_in_step()", component_id)
+
+    async def focus_out_step(self, component_id):
+        """
+        Step focus out.
+
+        Parameters
+        ----------
+        component_id : int32_t
+             Component ID
+
+        Raises
+        ------
+        CameraError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.FocusOutStepRequest()
+        request.component_id = component_id
+        response = await self._stub.FocusOutStep(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "focus_out_step()", component_id)
+
     async def focus_in_start(self, component_id):
         """
         Start focusing in.
@@ -2929,3 +2977,106 @@ class Camera(AsyncBase):
 
         if result.result != CameraResult.Result.SUCCESS:
             raise CameraError(result, "focus_range()", component_id, range)
+
+    async def focus_meters(self, component_id, distance_m):
+        """
+        Focus at a distance in meters.
+
+        Note that there is no message to get the valid focus range of the camera,
+        so this can only be used for cameras where the range is known.
+
+        Parameters
+        ----------
+        component_id : int32_t
+             Component ID
+
+        distance_m : float
+             Focus distance in meters
+
+        Raises
+        ------
+        CameraError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.FocusMetersRequest()
+        request.component_id = component_id
+        request.distance_m = distance_m
+        response = await self._stub.FocusMeters(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "focus_meters()", component_id, distance_m)
+
+    async def focus_auto(self, component_id):
+        """
+        Focus automatically.
+
+        Parameters
+        ----------
+        component_id : int32_t
+             Component ID
+
+        Raises
+        ------
+        CameraError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.FocusAutoRequest()
+        request.component_id = component_id
+        response = await self._stub.FocusAuto(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "focus_auto()", component_id)
+
+    async def focus_auto_single(self, component_id):
+        """
+        Single auto focus. Mainly used for still pictures. Usually abbreviated as AF-S.
+
+        Parameters
+        ----------
+        component_id : int32_t
+             Component ID
+
+        Raises
+        ------
+        CameraError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.FocusAutoSingleRequest()
+        request.component_id = component_id
+        response = await self._stub.FocusAutoSingle(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "focus_auto_single()", component_id)
+
+    async def focus_auto_continuous(self, component_id):
+        """
+        Continuous auto focus. Mainly used for dynamic scenes. Abbreviated as AF-C.
+
+        Parameters
+        ----------
+        component_id : int32_t
+             Component ID
+
+        Raises
+        ------
+        CameraError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_pb2.FocusAutoContinuousRequest()
+        request.component_id = component_id
+        response = await self._stub.FocusAutoContinuous(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraResult.Result.SUCCESS:
+            raise CameraError(result, "focus_auto_continuous()", component_id)

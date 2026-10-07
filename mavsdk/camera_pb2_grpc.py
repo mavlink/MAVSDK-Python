@@ -238,6 +238,18 @@ class CameraServiceStub(object):
             response_deserializer=camera_dot_camera__pb2.TrackStopResponse.FromString,
             _registered_method=True,
         )
+        self.FocusInStep = channel.unary_unary(
+            "/mavsdk.rpc.camera.CameraService/FocusInStep",
+            request_serializer=camera_dot_camera__pb2.FocusInStepRequest.SerializeToString,
+            response_deserializer=camera_dot_camera__pb2.FocusInStepResponse.FromString,
+            _registered_method=True,
+        )
+        self.FocusOutStep = channel.unary_unary(
+            "/mavsdk.rpc.camera.CameraService/FocusOutStep",
+            request_serializer=camera_dot_camera__pb2.FocusOutStepRequest.SerializeToString,
+            response_deserializer=camera_dot_camera__pb2.FocusOutStepResponse.FromString,
+            _registered_method=True,
+        )
         self.FocusInStart = channel.unary_unary(
             "/mavsdk.rpc.camera.CameraService/FocusInStart",
             request_serializer=camera_dot_camera__pb2.FocusInStartRequest.SerializeToString,
@@ -260,6 +272,30 @@ class CameraServiceStub(object):
             "/mavsdk.rpc.camera.CameraService/FocusRange",
             request_serializer=camera_dot_camera__pb2.FocusRangeRequest.SerializeToString,
             response_deserializer=camera_dot_camera__pb2.FocusRangeResponse.FromString,
+            _registered_method=True,
+        )
+        self.FocusMeters = channel.unary_unary(
+            "/mavsdk.rpc.camera.CameraService/FocusMeters",
+            request_serializer=camera_dot_camera__pb2.FocusMetersRequest.SerializeToString,
+            response_deserializer=camera_dot_camera__pb2.FocusMetersResponse.FromString,
+            _registered_method=True,
+        )
+        self.FocusAuto = channel.unary_unary(
+            "/mavsdk.rpc.camera.CameraService/FocusAuto",
+            request_serializer=camera_dot_camera__pb2.FocusAutoRequest.SerializeToString,
+            response_deserializer=camera_dot_camera__pb2.FocusAutoResponse.FromString,
+            _registered_method=True,
+        )
+        self.FocusAutoSingle = channel.unary_unary(
+            "/mavsdk.rpc.camera.CameraService/FocusAutoSingle",
+            request_serializer=camera_dot_camera__pb2.FocusAutoSingleRequest.SerializeToString,
+            response_deserializer=camera_dot_camera__pb2.FocusAutoSingleResponse.FromString,
+            _registered_method=True,
+        )
+        self.FocusAutoContinuous = channel.unary_unary(
+            "/mavsdk.rpc.camera.CameraService/FocusAutoContinuous",
+            request_serializer=camera_dot_camera__pb2.FocusAutoContinuousRequest.SerializeToString,
+            response_deserializer=camera_dot_camera__pb2.FocusAutoContinuousResponse.FromString,
             _registered_method=True,
         )
 
@@ -546,6 +582,22 @@ class CameraServiceServicer(object):
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
+    def FocusInStep(self, request, context):
+        """
+        Step focus in.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
+    def FocusOutStep(self, request, context):
+        """
+        Step focus out.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
     def FocusInStart(self, request, context):
         """
         Start focusing in.
@@ -573,6 +625,41 @@ class CameraServiceServicer(object):
     def FocusRange(self, request, context):
         """
         Focus with range value of full range (value between 0.0 and 100.0).
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
+    def FocusMeters(self, request, context):
+        """
+        Focus at a distance in meters.
+
+        Note that there is no message to get the valid focus range of the camera,
+        so this can only be used for cameras where the range is known.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
+    def FocusAuto(self, request, context):
+        """
+        Focus automatically.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
+    def FocusAutoSingle(self, request, context):
+        """
+        Single auto focus. Mainly used for still pictures. Usually abbreviated as AF-S.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
+    def FocusAutoContinuous(self, request, context):
+        """
+        Continuous auto focus. Mainly used for dynamic scenes. Abbreviated as AF-C.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
@@ -741,6 +828,16 @@ def add_CameraServiceServicer_to_server(servicer, server):
             request_deserializer=camera_dot_camera__pb2.TrackStopRequest.FromString,
             response_serializer=camera_dot_camera__pb2.TrackStopResponse.SerializeToString,
         ),
+        "FocusInStep": grpc.unary_unary_rpc_method_handler(
+            servicer.FocusInStep,
+            request_deserializer=camera_dot_camera__pb2.FocusInStepRequest.FromString,
+            response_serializer=camera_dot_camera__pb2.FocusInStepResponse.SerializeToString,
+        ),
+        "FocusOutStep": grpc.unary_unary_rpc_method_handler(
+            servicer.FocusOutStep,
+            request_deserializer=camera_dot_camera__pb2.FocusOutStepRequest.FromString,
+            response_serializer=camera_dot_camera__pb2.FocusOutStepResponse.SerializeToString,
+        ),
         "FocusInStart": grpc.unary_unary_rpc_method_handler(
             servicer.FocusInStart,
             request_deserializer=camera_dot_camera__pb2.FocusInStartRequest.FromString,
@@ -760,6 +857,26 @@ def add_CameraServiceServicer_to_server(servicer, server):
             servicer.FocusRange,
             request_deserializer=camera_dot_camera__pb2.FocusRangeRequest.FromString,
             response_serializer=camera_dot_camera__pb2.FocusRangeResponse.SerializeToString,
+        ),
+        "FocusMeters": grpc.unary_unary_rpc_method_handler(
+            servicer.FocusMeters,
+            request_deserializer=camera_dot_camera__pb2.FocusMetersRequest.FromString,
+            response_serializer=camera_dot_camera__pb2.FocusMetersResponse.SerializeToString,
+        ),
+        "FocusAuto": grpc.unary_unary_rpc_method_handler(
+            servicer.FocusAuto,
+            request_deserializer=camera_dot_camera__pb2.FocusAutoRequest.FromString,
+            response_serializer=camera_dot_camera__pb2.FocusAutoResponse.SerializeToString,
+        ),
+        "FocusAutoSingle": grpc.unary_unary_rpc_method_handler(
+            servicer.FocusAutoSingle,
+            request_deserializer=camera_dot_camera__pb2.FocusAutoSingleRequest.FromString,
+            response_serializer=camera_dot_camera__pb2.FocusAutoSingleResponse.SerializeToString,
+        ),
+        "FocusAutoContinuous": grpc.unary_unary_rpc_method_handler(
+            servicer.FocusAutoContinuous,
+            request_deserializer=camera_dot_camera__pb2.FocusAutoContinuousRequest.FromString,
+            response_serializer=camera_dot_camera__pb2.FocusAutoContinuousResponse.SerializeToString,
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1744,6 +1861,66 @@ class CameraService(object):
         )
 
     @staticmethod
+    def FocusInStep(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.camera.CameraService/FocusInStep",
+            camera_dot_camera__pb2.FocusInStepRequest.SerializeToString,
+            camera_dot_camera__pb2.FocusInStepResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def FocusOutStep(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.camera.CameraService/FocusOutStep",
+            camera_dot_camera__pb2.FocusOutStepRequest.SerializeToString,
+            camera_dot_camera__pb2.FocusOutStepResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
     def FocusInStart(
         request,
         target,
@@ -1852,6 +2029,126 @@ class CameraService(object):
             "/mavsdk.rpc.camera.CameraService/FocusRange",
             camera_dot_camera__pb2.FocusRangeRequest.SerializeToString,
             camera_dot_camera__pb2.FocusRangeResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def FocusMeters(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.camera.CameraService/FocusMeters",
+            camera_dot_camera__pb2.FocusMetersRequest.SerializeToString,
+            camera_dot_camera__pb2.FocusMetersResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def FocusAuto(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.camera.CameraService/FocusAuto",
+            camera_dot_camera__pb2.FocusAutoRequest.SerializeToString,
+            camera_dot_camera__pb2.FocusAutoResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def FocusAutoSingle(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.camera.CameraService/FocusAutoSingle",
+            camera_dot_camera__pb2.FocusAutoSingleRequest.SerializeToString,
+            camera_dot_camera__pb2.FocusAutoSingleResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def FocusAutoContinuous(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.camera.CameraService/FocusAutoContinuous",
+            camera_dot_camera__pb2.FocusAutoContinuousRequest.SerializeToString,
+            camera_dot_camera__pb2.FocusAutoContinuousResponse.FromString,
             options,
             channel_credentials,
             insecure,

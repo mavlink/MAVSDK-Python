@@ -44,6 +44,12 @@ class MissionRawServiceStub(object):
             response_deserializer=mission__raw_dot_mission__raw__pb2.UploadMissionResponse.FromString,
             _registered_method=True,
         )
+        self.SubscribeUploadMissionWithProgress = channel.unary_stream(
+            "/mavsdk.rpc.mission_raw.MissionRawService/SubscribeUploadMissionWithProgress",
+            request_serializer=mission__raw_dot_mission__raw__pb2.SubscribeUploadMissionWithProgressRequest.SerializeToString,
+            response_deserializer=mission__raw_dot_mission__raw__pb2.UploadMissionWithProgressResponse.FromString,
+            _registered_method=True,
+        )
         self.UploadGeofence = channel.unary_unary(
             "/mavsdk.rpc.mission_raw.MissionRawService/UploadGeofence",
             request_serializer=mission__raw_dot_mission__raw__pb2.UploadGeofenceRequest.SerializeToString,
@@ -168,6 +174,14 @@ class MissionRawServiceServicer(object):
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
+    def SubscribeUploadMissionWithProgress(self, request, context):
+        """
+        Upload a list of raw mission items and report upload progress.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
     def UploadGeofence(self, request, context):
         """
         Upload a list of geofence items to the system.
@@ -239,7 +253,7 @@ class MissionRawServiceServicer(object):
         Pause the mission.
 
         Pausing the mission puts the vehicle into
-        [HOLD mode](https://docs.px4.io/en/flight_modes/hold.html).
+        [HOLD mode](https://docs.px4.io/main/en/flight_modes_mc/hold.html).
         A multicopter should just hover at the spot while a fixedwing vehicle should loiter
         around the location where it paused.
         """
@@ -356,6 +370,11 @@ def add_MissionRawServiceServicer_to_server(servicer, server):
             servicer.UploadMission,
             request_deserializer=mission__raw_dot_mission__raw__pb2.UploadMissionRequest.FromString,
             response_serializer=mission__raw_dot_mission__raw__pb2.UploadMissionResponse.SerializeToString,
+        ),
+        "SubscribeUploadMissionWithProgress": grpc.unary_stream_rpc_method_handler(
+            servicer.SubscribeUploadMissionWithProgress,
+            request_deserializer=mission__raw_dot_mission__raw__pb2.SubscribeUploadMissionWithProgressRequest.FromString,
+            response_serializer=mission__raw_dot_mission__raw__pb2.UploadMissionWithProgressResponse.SerializeToString,
         ),
         "UploadGeofence": grpc.unary_unary_rpc_method_handler(
             servicer.UploadGeofence,
@@ -480,6 +499,36 @@ class MissionRawService(object):
             "/mavsdk.rpc.mission_raw.MissionRawService/UploadMission",
             mission__raw_dot_mission__raw__pb2.UploadMissionRequest.SerializeToString,
             mission__raw_dot_mission__raw__pb2.UploadMissionResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def SubscribeUploadMissionWithProgress(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            "/mavsdk.rpc.mission_raw.MissionRawService/SubscribeUploadMissionWithProgress",
+            mission__raw_dot_mission__raw__pb2.SubscribeUploadMissionWithProgressRequest.SerializeToString,
+            mission__raw_dot_mission__raw__pb2.UploadMissionWithProgressResponse.FromString,
             options,
             channel_credentials,
             insecure,
