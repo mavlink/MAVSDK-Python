@@ -45,10 +45,10 @@ def parse_long_description():
 # This project is published under two names during the transition to MAVSDK v4:
 #
 #   - "mavsdk-grpc" is the going-forward name of this gRPC-based wrapper.
-#   - "mavsdk" is the legacy name. It is being handed over to the new native
-#     binding that lives in the main MAVSDK repository, and is published from
-#     here one last time (carrying a warning) so that users get a heads-up
-#     before `pip install mavsdk` starts resolving to a different API.
+#   - "mavsdk" is the legacy name. It has been handed over to the new native
+#     binding that lives in the main MAVSDK repository. Its last release from
+#     here was 3.17.4 (carrying a warning). Do not publish it from here again:
+#     PyPI would add the wheels to the native binding's releases.
 #
 # The legacy name is the one that needs opting into, so that a plain build
 # produces the going-forward package.
