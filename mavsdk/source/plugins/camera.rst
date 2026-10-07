@@ -1,5 +1,5 @@
 Camera
-====
+======
 
 .. automodule:: mavsdk.camera
     :members:

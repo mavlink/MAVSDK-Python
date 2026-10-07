@@ -1,5 +1,5 @@
 LogStreaming
-====
+============
 
 .. automodule:: mavsdk.log_streaming
     :members:

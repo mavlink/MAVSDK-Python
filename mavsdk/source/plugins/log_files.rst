@@ -1,5 +1,5 @@
 LogFiles
-====
+========
 
 .. automodule:: mavsdk.log_files
     :members:

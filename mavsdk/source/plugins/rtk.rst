@@ -1,5 +1,5 @@
 Rtk
-====
+===
 
 .. automodule:: mavsdk.rtk
     :members:

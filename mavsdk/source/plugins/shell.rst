@@ -1,5 +1,5 @@
 Shell
-====
+=====
 
 .. automodule:: mavsdk.shell
     :members:

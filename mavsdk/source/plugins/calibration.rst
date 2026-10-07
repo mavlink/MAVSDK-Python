@@ -1,5 +1,5 @@
 Calibration
-====
+===========
 
 .. automodule:: mavsdk.calibration
     :members:

@@ -1,5 +1,5 @@
 MavlinkDirect
-====
+=============
 
 .. automodule:: mavsdk.mavlink_direct
     :members:

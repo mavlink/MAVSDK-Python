@@ -1,5 +1,5 @@
 FtpServer
-====
+=========
 
 .. automodule:: mavsdk.ftp_server
     :members:

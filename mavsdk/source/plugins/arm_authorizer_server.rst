@@ -1,5 +1,5 @@
 ArmAuthorizerServer
-====
+===================
 
 .. automodule:: mavsdk.arm_authorizer_server
     :members:

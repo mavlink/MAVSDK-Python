@@ -1,5 +1,5 @@
 Events
-====
+======
 
 .. automodule:: mavsdk.events
     :members:

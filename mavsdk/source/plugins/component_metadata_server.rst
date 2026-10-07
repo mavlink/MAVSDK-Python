@@ -1,5 +1,5 @@
 ComponentMetadataServer
-====
+=======================
 
 .. automodule:: mavsdk.component_metadata_server
     :members:

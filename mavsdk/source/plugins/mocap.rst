@@ -1,5 +1,5 @@
 Mocap
-====
+=====
 
 .. automodule:: mavsdk.mocap
     :members:

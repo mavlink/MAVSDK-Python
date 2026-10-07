@@ -1,5 +1,5 @@
 TelemetryServer
-====
+===============
 
 .. automodule:: mavsdk.telemetry_server
     :members:

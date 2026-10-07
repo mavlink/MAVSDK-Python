@@ -1,5 +1,5 @@
 TrackingServer
-====
+==============
 
 .. automodule:: mavsdk.tracking_server
     :members:

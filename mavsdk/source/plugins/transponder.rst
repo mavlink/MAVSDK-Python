@@ -1,5 +1,5 @@
 Transponder
-====
+===========
 
 .. automodule:: mavsdk.transponder
     :members:

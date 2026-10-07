@@ -1,5 +1,5 @@
 ManualControl
-====
+=============
 
 .. automodule:: mavsdk.manual_control
     :members:

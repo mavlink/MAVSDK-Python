@@ -1,5 +1,5 @@
 CameraServer
-====
+============
 
 .. automodule:: mavsdk.camera_server
     :members:

@@ -1,5 +1,5 @@
 Gimbal
-====
+======
 
 .. automodule:: mavsdk.gimbal
     :members:

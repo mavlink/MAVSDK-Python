@@ -1,5 +1,5 @@
 Failure
-====
+=======
 
 .. automodule:: mavsdk.failure
     :members:

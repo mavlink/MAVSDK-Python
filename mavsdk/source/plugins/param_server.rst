@@ -1,5 +1,5 @@
 ParamServer
-====
+===========
 
 .. automodule:: mavsdk.param_server
     :members:

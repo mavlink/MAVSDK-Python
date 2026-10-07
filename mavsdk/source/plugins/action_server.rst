@@ -1,5 +1,5 @@
 ActionServer
-====
+============
 
 .. automodule:: mavsdk.action_server
     :members:
