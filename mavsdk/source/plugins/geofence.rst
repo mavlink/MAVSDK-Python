@@ -1,5 +1,5 @@
 Geofence
-====
+========
 
 .. automodule:: mavsdk.geofence
     :members:

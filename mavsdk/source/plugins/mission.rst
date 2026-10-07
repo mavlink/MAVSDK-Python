@@ -1,5 +1,5 @@
 Mission
-====
+=======
 
 .. automodule:: mavsdk.mission
     :members:

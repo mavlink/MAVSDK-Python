@@ -1,5 +1,5 @@
 Offboard
-====
+========
 
 .. automodule:: mavsdk.offboard
     :members:

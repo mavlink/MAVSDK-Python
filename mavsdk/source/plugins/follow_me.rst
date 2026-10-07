@@ -1,5 +1,5 @@
 FollowMe
-====
+========
 
 .. automodule:: mavsdk.follow_me
     :members:

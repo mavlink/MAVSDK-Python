@@ -1,5 +1,5 @@
 Telemetry
-====
+=========
 
 .. automodule:: mavsdk.telemetry
     :members:

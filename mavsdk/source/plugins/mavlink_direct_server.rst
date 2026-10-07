@@ -1,5 +1,5 @@
 MavlinkDirectServer
-====
+===================
 
 .. automodule:: mavsdk.mavlink_direct_server
     :members:

@@ -1,5 +1,5 @@
 Action
-====
+======
 
 .. automodule:: mavsdk.action
     :members:

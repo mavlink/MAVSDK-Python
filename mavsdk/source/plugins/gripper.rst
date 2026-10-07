@@ -1,5 +1,5 @@
 Gripper
-====
+=======
 
 .. automodule:: mavsdk.gripper
     :members:

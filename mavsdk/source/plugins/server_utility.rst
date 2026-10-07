@@ -1,5 +1,5 @@
 ServerUtility
-====
+=============
 
 .. automodule:: mavsdk.server_utility
     :members:

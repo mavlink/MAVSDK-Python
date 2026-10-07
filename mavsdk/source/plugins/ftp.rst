@@ -1,5 +1,5 @@
 Ftp
-====
+===
 
 .. automodule:: mavsdk.ftp
     :members:

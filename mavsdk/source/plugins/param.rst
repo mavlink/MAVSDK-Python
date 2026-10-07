@@ -1,5 +1,5 @@
 Param
-====
+=====
 
 .. automodule:: mavsdk.param
     :members:
