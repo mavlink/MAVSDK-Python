@@ -6,58 +6,6 @@ from . import mission_raw_pb2, mission_raw_pb2_grpc
 from enum import Enum
 
 
-class MissionProgress:
-    """
-    Mission progress type.
-
-    Parameters
-    ----------
-    current : int32_t
-         Current mission item index (0-based), if equal to total, the mission is finished
-
-    total : int32_t
-         Total number of mission items
-
-    """
-
-    def __init__(self, current, total):
-        """Initializes the MissionProgress object"""
-        self.current = current
-        self.total = total
-
-    def __eq__(self, to_compare):
-        """Checks if two MissionProgress are the same"""
-        try:
-            # Try to compare - this likely fails when it is compared to a non
-            # MissionProgress object
-            return (self.current == to_compare.current) and (
-                self.total == to_compare.total
-            )
-
-        except AttributeError:
-            return False
-
-    def __str__(self):
-        """MissionProgress in string representation"""
-        struct_repr = ", ".join(
-            ["current: " + str(self.current), "total: " + str(self.total)]
-        )
-
-        return f"MissionProgress: [{struct_repr}]"
-
-    @staticmethod
-    def translate_from_rpc(rpcMissionProgress):
-        """Translates a gRPC struct to the SDK equivalent"""
-        return MissionProgress(rpcMissionProgress.current, rpcMissionProgress.total)
-
-    def translate_to_rpc(self, rpcMissionProgress):
-        """Translates this SDK object into its gRPC equivalent"""
-
-        rpcMissionProgress.current = self.current
-
-        rpcMissionProgress.total = self.total
-
-
 class MissionItem:
     """
     Mission item exactly identical to MAVLink MISSION_ITEM_INT.
@@ -229,6 +177,111 @@ class MissionItem:
         rpcMissionItem.z = self.z
 
         rpcMissionItem.mission_type = self.mission_type
+
+
+class MissionPlan:
+    """
+    Mission plan type
+
+    Parameters
+    ----------
+    mission_items : [MissionItem]
+         The mission items
+
+    """
+
+    def __init__(self, mission_items):
+        """Initializes the MissionPlan object"""
+        self.mission_items = mission_items
+
+    def __eq__(self, to_compare):
+        """Checks if two MissionPlan are the same"""
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # MissionPlan object
+            return self.mission_items == to_compare.mission_items
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """MissionPlan in string representation"""
+        struct_repr = ", ".join(["mission_items: " + str(self.mission_items)])
+
+        return f"MissionPlan: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcMissionPlan):
+        """Translates a gRPC struct to the SDK equivalent"""
+        return MissionPlan(
+            [
+                MissionItem.translate_from_rpc(elem)
+                for elem in rpcMissionPlan.mission_items
+            ]
+        )
+
+    def translate_to_rpc(self, rpcMissionPlan):
+        """Translates this SDK object into its gRPC equivalent"""
+
+        rpc_elems_list = []
+        for elem in self.mission_items:
+            rpc_elem = mission_raw_pb2.MissionItem()
+            elem.translate_to_rpc(rpc_elem)
+            rpc_elems_list.append(rpc_elem)
+
+        rpcMissionPlan.mission_items.extend(rpc_elems_list)
+
+
+class MissionProgress:
+    """
+    Mission progress type.
+
+    Parameters
+    ----------
+    current : int32_t
+         Current mission item index (0-based), if equal to total, the mission is finished
+
+    total : int32_t
+         Total number of mission items
+
+    """
+
+    def __init__(self, current, total):
+        """Initializes the MissionProgress object"""
+        self.current = current
+        self.total = total
+
+    def __eq__(self, to_compare):
+        """Checks if two MissionProgress are the same"""
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # MissionProgress object
+            return (self.current == to_compare.current) and (
+                self.total == to_compare.total
+            )
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """MissionProgress in string representation"""
+        struct_repr = ", ".join(
+            ["current: " + str(self.current), "total: " + str(self.total)]
+        )
+
+        return f"MissionProgress: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcMissionProgress):
+        """Translates a gRPC struct to the SDK equivalent"""
+        return MissionProgress(rpcMissionProgress.current, rpcMissionProgress.total)
+
+    def translate_to_rpc(self, rpcMissionProgress):
+        """Translates this SDK object into its gRPC equivalent"""
+
+        rpcMissionProgress.current = self.current
+
+        rpcMissionProgress.total = self.total
 
 
 class MissionImportData:
@@ -409,6 +462,9 @@ class MissionRawResult:
         FAILED_TO_PARSE_MISSION_PLANNER_PLAN
              Failed to parse the Mission Planner plan
 
+        NEXT
+             Intermediate message showing progress
+
         """
 
         UNKNOWN = 0
@@ -432,6 +488,7 @@ class MissionRawResult:
         INT_MESSAGES_NOT_SUPPORTED = 18
         FAILED_TO_OPEN_MISSION_PLANNER_PLAN = 19
         FAILED_TO_PARSE_MISSION_PLANNER_PLAN = 20
+        NEXT = 21
 
         def translate_to_rpc(self):
             if self == MissionRawResult.Result.UNKNOWN:
@@ -480,6 +537,8 @@ class MissionRawResult:
                 return mission_raw_pb2.MissionRawResult.RESULT_FAILED_TO_OPEN_MISSION_PLANNER_PLAN
             if self == MissionRawResult.Result.FAILED_TO_PARSE_MISSION_PLANNER_PLAN:
                 return mission_raw_pb2.MissionRawResult.RESULT_FAILED_TO_PARSE_MISSION_PLANNER_PLAN
+            if self == MissionRawResult.Result.NEXT:
+                return mission_raw_pb2.MissionRawResult.RESULT_NEXT
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -562,6 +621,8 @@ class MissionRawResult:
                 == mission_raw_pb2.MissionRawResult.RESULT_FAILED_TO_PARSE_MISSION_PLANNER_PLAN
             ):
                 return MissionRawResult.Result.FAILED_TO_PARSE_MISSION_PLANNER_PLAN
+            if rpc_enum_value == mission_raw_pb2.MissionRawResult.RESULT_NEXT:
+                return MissionRawResult.Result.NEXT
 
         def __str__(self):
             return self.name
@@ -605,6 +666,48 @@ class MissionRawResult:
         rpcMissionRawResult.result = self.result.translate_to_rpc()
 
         rpcMissionRawResult.result_str = self.result_str
+
+
+class ProgressData:
+    """
+    Progress data coming from mission upload.
+
+    Parameters
+    ----------
+    progress : float
+         Progress (0..1.0)
+
+    """
+
+    def __init__(self, progress):
+        """Initializes the ProgressData object"""
+        self.progress = progress
+
+    def __eq__(self, to_compare):
+        """Checks if two ProgressData are the same"""
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # ProgressData object
+            return self.progress == to_compare.progress
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """ProgressData in string representation"""
+        struct_repr = ", ".join(["progress: " + str(self.progress)])
+
+        return f"ProgressData: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcProgressData):
+        """Translates a gRPC struct to the SDK equivalent"""
+        return ProgressData(rpcProgressData.progress)
+
+    def translate_to_rpc(self, rpcProgressData):
+        """Translates this SDK object into its gRPC equivalent"""
+
+        rpcProgressData.progress = self.progress
 
 
 class MissionRawError(Exception):
@@ -671,6 +774,57 @@ class MissionRaw(AsyncBase):
 
         if result.result != MissionRawResult.Result.SUCCESS:
             raise MissionRawError(result, "upload_mission()", mission_items)
+
+    async def upload_mission_with_progress(self, mission_plan):
+        """
+        Upload a list of raw mission items and report upload progress.
+
+        Parameters
+        ----------
+        mission_plan : MissionPlan
+             The mission plan
+
+        Yields
+        -------
+        progress_data : ProgressData
+             The progress data
+
+        Raises
+        ------
+        MissionRawError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = mission_raw_pb2.SubscribeUploadMissionWithProgressRequest()
+
+        mission_plan.translate_to_rpc(request.mission_plan)
+
+        upload_mission_with_progress_stream = (
+            self._stub.SubscribeUploadMissionWithProgress(request)
+        )
+
+        try:
+            async for response in upload_mission_with_progress_stream:
+                result = self._extract_result(response)
+
+                success_codes = [MissionRawResult.Result.SUCCESS]
+                if "NEXT" in [
+                    return_code.name for return_code in MissionRawResult.Result
+                ]:
+                    success_codes.append(MissionRawResult.Result.NEXT)
+
+                if result.result not in success_codes:
+                    raise MissionRawError(
+                        result, "upload_mission_with_progress()", mission_plan
+                    )
+
+                if result.result == MissionRawResult.Result.SUCCESS:
+                    upload_mission_with_progress_stream.cancel()
+                    return
+
+                yield ProgressData.translate_from_rpc(response.progress_data)
+        finally:
+            upload_mission_with_progress_stream.cancel()
 
     async def upload_geofence(self, mission_items):
         """
@@ -876,7 +1030,7 @@ class MissionRaw(AsyncBase):
         Pause the mission.
 
         Pausing the mission puts the vehicle into
-        [HOLD mode](https://docs.px4.io/en/flight_modes/hold.html).
+        [HOLD mode](https://docs.px4.io/main/en/flight_modes_mc/hold.html).
         A multicopter should just hover at the spot while a fixedwing vehicle should loiter
         around the location where it paused.
 

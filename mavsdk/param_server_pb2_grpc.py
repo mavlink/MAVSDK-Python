@@ -137,10 +137,10 @@ class ParamServerServiceServicer(object):
 
         If the type is wrong, the result will be `WRONG_TYPE`.
 
-        Note that all params need to be provided upfront. Once a client has
-        requested a param list, the indices are locked and no more params
-        can be added.
-
+        Note that new params have to be provided upfront. Once a client has
+        requested the param list, the indices are locked and no new params can
+        be added. Providing an already-existing param still updates its value
+        and announces the change to connected clients.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
@@ -151,10 +151,6 @@ class ParamServerServiceServicer(object):
         Retrieve a float parameter.
 
         If the type is wrong, the result will be `WRONG_TYPE`.
-
-        Note that all params need to be provided upfront. Once a client has
-        requested a param list, the indices are locked and no more params
-        can be added.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
@@ -165,6 +161,11 @@ class ParamServerServiceServicer(object):
         Provide a float parameter.
 
         If the type is wrong, the result will be `WRONG_TYPE`.
+
+        Note that new params have to be provided upfront. Once a client has
+        requested the param list, the indices are locked and no new params can
+        be added. Providing an already-existing param still updates its value
+        and announces the change to connected clients.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
@@ -175,10 +176,6 @@ class ParamServerServiceServicer(object):
         Retrieve a custom parameter.
 
         If the type is wrong, the result will be `WRONG_TYPE`.
-
-        Note that all params need to be provided upfront. Once a client has
-        requested a param list, the indices are locked and no more params
-        can be added.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
@@ -189,6 +186,11 @@ class ParamServerServiceServicer(object):
         Provide a custom parameter.
 
         If the type is wrong, the result will be `WRONG_TYPE`.
+
+        Note that new params have to be provided upfront. Once a client has
+        requested the param list, the indices are locked and no new params can
+        be added. Providing an already-existing param still updates its value
+        and announces the change to connected clients.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")

@@ -2182,6 +2182,498 @@ class CameraServer(AsyncBase):
         if result.result != CameraServerResult.Result.SUCCESS:
             raise CameraServerError(result, "respond_zoom_range()", zoom_range_feedback)
 
+    async def focus_in_step(self):
+        """
+        Subscribe to focus in step command.
+
+        Yields
+        -------
+        reserved : int32_t
+             reserved, just make protoc-gen-mavsdk working
+
+
+        """
+
+        request = camera_server_pb2.SubscribeFocusInStepRequest()
+        focus_in_step_stream = self._stub.SubscribeFocusInStep(request)
+
+        try:
+            async for response in focus_in_step_stream:
+                yield response.reserved
+        finally:
+            focus_in_step_stream.cancel()
+
+    async def respond_focus_in_step(self, focus_in_step_feedback):
+        """
+        Respond to focus in step.
+
+        Parameters
+        ----------
+        focus_in_step_feedback : CameraFeedback
+             the feedback
+
+        Raises
+        ------
+        CameraServerError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondFocusInStepRequest()
+
+        request.focus_in_step_feedback = focus_in_step_feedback.translate_to_rpc()
+
+        response = await self._stub.RespondFocusInStep(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(
+                result, "respond_focus_in_step()", focus_in_step_feedback
+            )
+
+    async def focus_out_step(self):
+        """
+        Subscribe to focus out step command.
+
+        Yields
+        -------
+        reserved : int32_t
+             reserved, just make protoc-gen-mavsdk working
+
+
+        """
+
+        request = camera_server_pb2.SubscribeFocusOutStepRequest()
+        focus_out_step_stream = self._stub.SubscribeFocusOutStep(request)
+
+        try:
+            async for response in focus_out_step_stream:
+                yield response.reserved
+        finally:
+            focus_out_step_stream.cancel()
+
+    async def respond_focus_out_step(self, focus_out_step_feedback):
+        """
+        Respond to focus out step.
+
+        Parameters
+        ----------
+        focus_out_step_feedback : CameraFeedback
+             the feedback
+
+        Raises
+        ------
+        CameraServerError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondFocusOutStepRequest()
+
+        request.focus_out_step_feedback = focus_out_step_feedback.translate_to_rpc()
+
+        response = await self._stub.RespondFocusOutStep(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(
+                result, "respond_focus_out_step()", focus_out_step_feedback
+            )
+
+    async def focus_in_start(self):
+        """
+        Subscribe to focus in start command.
+
+        Yields
+        -------
+        reserved : int32_t
+             reserved, just make protoc-gen-mavsdk working
+
+
+        """
+
+        request = camera_server_pb2.SubscribeFocusInStartRequest()
+        focus_in_start_stream = self._stub.SubscribeFocusInStart(request)
+
+        try:
+            async for response in focus_in_start_stream:
+                yield response.reserved
+        finally:
+            focus_in_start_stream.cancel()
+
+    async def respond_focus_in_start(self, focus_in_start_feedback):
+        """
+        Respond to focus in start.
+
+        Parameters
+        ----------
+        focus_in_start_feedback : CameraFeedback
+             the feedback
+
+        Raises
+        ------
+        CameraServerError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondFocusInStartRequest()
+
+        request.focus_in_start_feedback = focus_in_start_feedback.translate_to_rpc()
+
+        response = await self._stub.RespondFocusInStart(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(
+                result, "respond_focus_in_start()", focus_in_start_feedback
+            )
+
+    async def focus_out_start(self):
+        """
+        Subscribe to focus out start command.
+
+        Yields
+        -------
+        reserved : int32_t
+             reserved, just make protoc-gen-mavsdk working
+
+
+        """
+
+        request = camera_server_pb2.SubscribeFocusOutStartRequest()
+        focus_out_start_stream = self._stub.SubscribeFocusOutStart(request)
+
+        try:
+            async for response in focus_out_start_stream:
+                yield response.reserved
+        finally:
+            focus_out_start_stream.cancel()
+
+    async def respond_focus_out_start(self, focus_out_start_feedback):
+        """
+        Respond to focus out start.
+
+        Parameters
+        ----------
+        focus_out_start_feedback : CameraFeedback
+             the feedback
+
+        Raises
+        ------
+        CameraServerError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondFocusOutStartRequest()
+
+        request.focus_out_start_feedback = focus_out_start_feedback.translate_to_rpc()
+
+        response = await self._stub.RespondFocusOutStart(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(
+                result, "respond_focus_out_start()", focus_out_start_feedback
+            )
+
+    async def focus_stop(self):
+        """
+        Subscribe to focus stop command.
+
+        Yields
+        -------
+        reserved : int32_t
+             reserved, just make protoc-gen-mavsdk working
+
+
+        """
+
+        request = camera_server_pb2.SubscribeFocusStopRequest()
+        focus_stop_stream = self._stub.SubscribeFocusStop(request)
+
+        try:
+            async for response in focus_stop_stream:
+                yield response.reserved
+        finally:
+            focus_stop_stream.cancel()
+
+    async def respond_focus_stop(self, focus_stop_feedback):
+        """
+        Respond to focus stop.
+
+        Parameters
+        ----------
+        focus_stop_feedback : CameraFeedback
+             the feedback
+
+        Raises
+        ------
+        CameraServerError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondFocusStopRequest()
+
+        request.focus_stop_feedback = focus_stop_feedback.translate_to_rpc()
+
+        response = await self._stub.RespondFocusStop(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_focus_stop()", focus_stop_feedback)
+
+    async def focus_range(self):
+        """
+        Subscribe to focus range command.
+
+        Yields
+        -------
+        focus_distance_m : float
+             The focus distance in meters.
+
+
+        """
+
+        request = camera_server_pb2.SubscribeFocusRangeRequest()
+        focus_range_stream = self._stub.SubscribeFocusRange(request)
+
+        try:
+            async for response in focus_range_stream:
+                yield response.focus_distance_m
+        finally:
+            focus_range_stream.cancel()
+
+    async def respond_focus_range(self, focus_range_feedback):
+        """
+        Respond to focus range.
+
+        Parameters
+        ----------
+        focus_range_feedback : CameraFeedback
+             the feedback
+
+        Raises
+        ------
+        CameraServerError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondFocusRangeRequest()
+
+        request.focus_range_feedback = focus_range_feedback.translate_to_rpc()
+
+        response = await self._stub.RespondFocusRange(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(
+                result, "respond_focus_range()", focus_range_feedback
+            )
+
+    async def focus_meters(self):
+        """
+        Subscribe to focus meters command.
+
+        Yields
+        -------
+        focus_distance_m : float
+             The focus distance in meters.
+
+
+        """
+
+        request = camera_server_pb2.SubscribeFocusMetersRequest()
+        focus_meters_stream = self._stub.SubscribeFocusMeters(request)
+
+        try:
+            async for response in focus_meters_stream:
+                yield response.focus_distance_m
+        finally:
+            focus_meters_stream.cancel()
+
+    async def respond_focus_meters(self, focus_meters_feedback):
+        """
+        Respond to focus meters.
+
+        Parameters
+        ----------
+        focus_meters_feedback : CameraFeedback
+             the feedback
+
+        Raises
+        ------
+        CameraServerError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondFocusMetersRequest()
+
+        request.focus_meters_feedback = focus_meters_feedback.translate_to_rpc()
+
+        response = await self._stub.RespondFocusMeters(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(
+                result, "respond_focus_meters()", focus_meters_feedback
+            )
+
+    async def focus_auto(self):
+        """
+        Subscribe to focus auto command.
+
+        Yields
+        -------
+        reserved : int32_t
+             reserved, just make protoc-gen-mavsdk working
+
+
+        """
+
+        request = camera_server_pb2.SubscribeFocusAutoRequest()
+        focus_auto_stream = self._stub.SubscribeFocusAuto(request)
+
+        try:
+            async for response in focus_auto_stream:
+                yield response.reserved
+        finally:
+            focus_auto_stream.cancel()
+
+    async def respond_focus_auto(self, focus_auto_feedback):
+        """
+        Respond to focus auto.
+
+        Parameters
+        ----------
+        focus_auto_feedback : CameraFeedback
+             the feedback
+
+        Raises
+        ------
+        CameraServerError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondFocusAutoRequest()
+
+        request.focus_auto_feedback = focus_auto_feedback.translate_to_rpc()
+
+        response = await self._stub.RespondFocusAuto(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "respond_focus_auto()", focus_auto_feedback)
+
+    async def focus_auto_single(self):
+        """
+        Subscribe to focus auto single command.
+
+        Yields
+        -------
+        reserved : int32_t
+             reserved, just make protoc-gen-mavsdk working
+
+
+        """
+
+        request = camera_server_pb2.SubscribeFocusAutoSingleRequest()
+        focus_auto_single_stream = self._stub.SubscribeFocusAutoSingle(request)
+
+        try:
+            async for response in focus_auto_single_stream:
+                yield response.reserved
+        finally:
+            focus_auto_single_stream.cancel()
+
+    async def respond_focus_auto_single(self, focus_auto_single_feedback):
+        """
+        Respond to focus auto single.
+
+        Parameters
+        ----------
+        focus_auto_single_feedback : CameraFeedback
+             the feedback
+
+        Raises
+        ------
+        CameraServerError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondFocusAutoSingleRequest()
+
+        request.focus_auto_single_feedback = (
+            focus_auto_single_feedback.translate_to_rpc()
+        )
+
+        response = await self._stub.RespondFocusAutoSingle(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(
+                result, "respond_focus_auto_single()", focus_auto_single_feedback
+            )
+
+    async def focus_auto_continuous(self):
+        """
+        Subscribe to focus auto continuous command.
+
+        Yields
+        -------
+        reserved : int32_t
+             reserved, just make protoc-gen-mavsdk working
+
+
+        """
+
+        request = camera_server_pb2.SubscribeFocusAutoContinuousRequest()
+        focus_auto_continuous_stream = self._stub.SubscribeFocusAutoContinuous(request)
+
+        try:
+            async for response in focus_auto_continuous_stream:
+                yield response.reserved
+        finally:
+            focus_auto_continuous_stream.cancel()
+
+    async def respond_focus_auto_continuous(self, focus_auto_continuous_feedback):
+        """
+        Respond to focus auto continuous.
+
+        Parameters
+        ----------
+        focus_auto_continuous_feedback : CameraFeedback
+             the feedback
+
+        Raises
+        ------
+        CameraServerError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.RespondFocusAutoContinuousRequest()
+
+        request.focus_auto_continuous_feedback = (
+            focus_auto_continuous_feedback.translate_to_rpc()
+        )
+
+        response = await self._stub.RespondFocusAutoContinuous(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(
+                result,
+                "respond_focus_auto_continuous()",
+                focus_auto_continuous_feedback,
+            )
+
     async def set_tracking_rectangle_status(self, tracked_rectangle):
         """
         Set/update the current rectangle tracking status.
@@ -2359,4 +2851,112 @@ class CameraServer(AsyncBase):
         if result.result != CameraServerResult.Result.SUCCESS:
             raise CameraServerError(
                 result, "respond_tracking_off_command()", stop_video_feedback
+            )
+
+    async def set_position(self, position):
+        """
+        Set the camera's GPS position.
+
+        Parameters
+        ----------
+        position : Position
+             The camera's current GPS position
+
+        Raises
+        ------
+        CameraServerError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.SetPositionRequest()
+
+        position.translate_to_rpc(request.position)
+
+        response = await self._stub.SetPosition(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "set_position()", position)
+
+    async def set_attitude_quaternion(self, attitude_quaternion):
+        """
+        Set the camera's attitude quaternion.
+
+        Parameters
+        ----------
+        attitude_quaternion : Quaternion
+             The camera's current attitude
+
+        Raises
+        ------
+        CameraServerError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.SetAttitudeQuaternionRequest()
+
+        attitude_quaternion.translate_to_rpc(request.attitude_quaternion)
+
+        response = await self._stub.SetAttitudeQuaternion(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(
+                result, "set_attitude_quaternion()", attitude_quaternion
+            )
+
+    async def set_zoom_factor(self, zoom_factor):
+        """
+        Set the camera's zoom factor for CAMERA_FOV_STATUS reporting.
+
+        Parameters
+        ----------
+        zoom_factor : float
+             The camera's current zoom factor, starting at 1x.
+
+        Raises
+        ------
+        CameraServerError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.SetZoomFactorRequest()
+        request.zoom_factor = zoom_factor
+        response = await self._stub.SetZoomFactor(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(result, "set_zoom_factor()", zoom_factor)
+
+    async def set_field_of_view(self, horizontal_fov_deg, vertical_fov_deg):
+        """
+        Set the field of view explicitly, for cameras that do not report a zoom factor.
+
+        Parameters
+        ----------
+        horizontal_fov_deg : float
+             The camera's current horizontal field of view in degrees
+
+        vertical_fov_deg : float
+             The camera's current vertical field of view in degrees
+
+        Raises
+        ------
+        CameraServerError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = camera_server_pb2.SetFieldOfViewRequest()
+        request.horizontal_fov_deg = horizontal_fov_deg
+        request.vertical_fov_deg = vertical_fov_deg
+        response = await self._stub.SetFieldOfView(request)
+
+        result = self._extract_result(response)
+
+        if result.result != CameraServerResult.Result.SUCCESS:
+            raise CameraServerError(
+                result, "set_field_of_view()", horizontal_fov_deg, vertical_fov_deg
             )

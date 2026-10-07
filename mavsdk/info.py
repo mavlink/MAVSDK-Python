@@ -599,31 +599,6 @@ class Info(AsyncBase):
         """Returns the response status and description"""
         return InfoResult.translate_from_rpc(response.info_result)
 
-    async def get_flight_information(self):
-        """
-        Get flight information of the system.
-
-        Returns
-        -------
-        flight_info : FlightInfo
-             Flight information of the system
-
-        Raises
-        ------
-        InfoError
-            If the request fails. The error contains the reason for the failure.
-        """
-
-        request = info_pb2.GetFlightInformationRequest()
-        response = await self._stub.GetFlightInformation(request)
-
-        result = self._extract_result(response)
-
-        if result.result != InfoResult.Result.SUCCESS:
-            raise InfoError(result, "get_flight_information()")
-
-        return FlightInfo.translate_from_rpc(response.flight_info)
-
     async def get_identification(self):
         """
         Get the identification of the system.

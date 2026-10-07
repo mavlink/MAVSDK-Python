@@ -6,56 +6,176 @@ from . import ftp_pb2, ftp_pb2_grpc
 from enum import Enum
 
 
+class FilesystemEntry:
+    """
+    A file system entry (file or directory) with metadata.
+
+    Parameters
+    ----------
+    name : std::string
+         The name of the file or directory.
+
+    entry_type : EntryType
+         Whether the entry is a file or a directory.
+
+    size_bytes : uint64_t
+         The size of the file in bytes (0 for directories).
+
+    modification_time_s : uint64_t
+         Last modification time in seconds since UNIX epoch (UTC), 0 if unknown.
+
+    """
+
+    class EntryType(Enum):
+        """
+        The type of a file system entry.
+
+        Values
+        ------
+        UNKNOWN
+             Unknown entry type
+
+        FILE
+             A regular file
+
+        DIRECTORY
+             A directory
+
+        """
+
+        UNKNOWN = 0
+        FILE = 1
+        DIRECTORY = 2
+
+        def translate_to_rpc(self):
+            if self == FilesystemEntry.EntryType.UNKNOWN:
+                return ftp_pb2.FilesystemEntry.ENTRY_TYPE_UNKNOWN
+            if self == FilesystemEntry.EntryType.FILE:
+                return ftp_pb2.FilesystemEntry.ENTRY_TYPE_FILE
+            if self == FilesystemEntry.EntryType.DIRECTORY:
+                return ftp_pb2.FilesystemEntry.ENTRY_TYPE_DIRECTORY
+
+        @staticmethod
+        def translate_from_rpc(rpc_enum_value):
+            """Parses a gRPC response"""
+            if rpc_enum_value == ftp_pb2.FilesystemEntry.ENTRY_TYPE_UNKNOWN:
+                return FilesystemEntry.EntryType.UNKNOWN
+            if rpc_enum_value == ftp_pb2.FilesystemEntry.ENTRY_TYPE_FILE:
+                return FilesystemEntry.EntryType.FILE
+            if rpc_enum_value == ftp_pb2.FilesystemEntry.ENTRY_TYPE_DIRECTORY:
+                return FilesystemEntry.EntryType.DIRECTORY
+
+        def __str__(self):
+            return self.name
+
+    def __init__(self, name, entry_type, size_bytes, modification_time_s):
+        """Initializes the FilesystemEntry object"""
+        self.name = name
+        self.entry_type = entry_type
+        self.size_bytes = size_bytes
+        self.modification_time_s = modification_time_s
+
+    def __eq__(self, to_compare):
+        """Checks if two FilesystemEntry are the same"""
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # FilesystemEntry object
+            return (
+                (self.name == to_compare.name)
+                and (self.entry_type == to_compare.entry_type)
+                and (self.size_bytes == to_compare.size_bytes)
+                and (self.modification_time_s == to_compare.modification_time_s)
+            )
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """FilesystemEntry in string representation"""
+        struct_repr = ", ".join(
+            [
+                "name: " + str(self.name),
+                "entry_type: " + str(self.entry_type),
+                "size_bytes: " + str(self.size_bytes),
+                "modification_time_s: " + str(self.modification_time_s),
+            ]
+        )
+
+        return f"FilesystemEntry: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcFilesystemEntry):
+        """Translates a gRPC struct to the SDK equivalent"""
+        return FilesystemEntry(
+            rpcFilesystemEntry.name,
+            FilesystemEntry.EntryType.translate_from_rpc(rpcFilesystemEntry.entry_type),
+            rpcFilesystemEntry.size_bytes,
+            rpcFilesystemEntry.modification_time_s,
+        )
+
+    def translate_to_rpc(self, rpcFilesystemEntry):
+        """Translates this SDK object into its gRPC equivalent"""
+
+        rpcFilesystemEntry.name = self.name
+
+        rpcFilesystemEntry.entry_type = self.entry_type.translate_to_rpc()
+
+        rpcFilesystemEntry.size_bytes = self.size_bytes
+
+        rpcFilesystemEntry.modification_time_s = self.modification_time_s
+
+
 class ListDirectoryData:
     """
     The output of a directory list
 
     Parameters
     ----------
-    dirs : [std::string]
-         The found directories.
-
-    files : [std::string]
-         The found files.
+    entries : [FilesystemEntry]
+         The directory entries (files and directories) with their metadata.
 
     """
 
-    def __init__(self, dirs, files):
+    def __init__(self, entries):
         """Initializes the ListDirectoryData object"""
-        self.dirs = dirs
-        self.files = files
+        self.entries = entries
 
     def __eq__(self, to_compare):
         """Checks if two ListDirectoryData are the same"""
         try:
             # Try to compare - this likely fails when it is compared to a non
             # ListDirectoryData object
-            return (self.dirs == to_compare.dirs) and (self.files == to_compare.files)
+            return self.entries == to_compare.entries
 
         except AttributeError:
             return False
 
     def __str__(self):
         """ListDirectoryData in string representation"""
-        struct_repr = ", ".join(
-            ["dirs: " + str(self.dirs), "files: " + str(self.files)]
-        )
+        struct_repr = ", ".join(["entries: " + str(self.entries)])
 
         return f"ListDirectoryData: [{struct_repr}]"
 
     @staticmethod
     def translate_from_rpc(rpcListDirectoryData):
         """Translates a gRPC struct to the SDK equivalent"""
-        return ListDirectoryData(rpcListDirectoryData.dirs, rpcListDirectoryData.files)
+        return ListDirectoryData(
+            [
+                FilesystemEntry.translate_from_rpc(elem)
+                for elem in rpcListDirectoryData.entries
+            ]
+        )
 
     def translate_to_rpc(self, rpcListDirectoryData):
         """Translates this SDK object into its gRPC equivalent"""
 
-        for elem in self.dirs:
-            rpcListDirectoryData.dirs.append(elem)
+        rpc_elems_list = []
+        for elem in self.entries:
+            rpc_elem = ftp_pb2.FilesystemEntry()
+            elem.translate_to_rpc(rpc_elem)
+            rpc_elems_list.append(rpc_elem)
 
-        for elem in self.files:
-            rpcListDirectoryData.files.append(elem)
+        rpcListDirectoryData.entries.extend(rpc_elems_list)
 
 
 class ProgressData:

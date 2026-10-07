@@ -150,6 +150,10 @@ class FtpServer(AsyncBase):
         The permissions are the same as the file permission for the user running the server.
         The root directory can't be changed while an FTP process is in progress.
 
+        The contents of the root directory are trusted: symbolic links inside it are
+        followed even when they point outside of the root directory. Only place symlinks
+        there if exposing their targets to a client is intended.
+
         Parameters
         ----------
         path : std::string

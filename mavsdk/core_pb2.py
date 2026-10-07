@@ -20,7 +20,7 @@ _sym_db = _symbol_database.Default()
 
 
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
-    b'\n\x0f\x63ore/core.proto\x12\x0fmavsdk.rpc.core"!\n\x1fSubscribeConnectionStateRequest"U\n\x17\x43onnectionStateResponse\x12:\n\x10\x63onnection_state\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.core.ConnectionState"-\n\x18SetMavlinkTimeoutRequest\x12\x11\n\ttimeout_s\x18\x01 \x01(\x01"\x1b\n\x19SetMavlinkTimeoutResponse"\'\n\x0f\x43onnectionState\x12\x14\n\x0cis_connected\x18\x02 \x01(\x08\x32\xf7\x01\n\x0b\x43oreService\x12z\n\x18SubscribeConnectionState\x12\x30.mavsdk.rpc.core.SubscribeConnectionStateRequest\x1a(.mavsdk.rpc.core.ConnectionStateResponse"\x00\x30\x01\x12l\n\x11SetMavlinkTimeout\x12).mavsdk.rpc.core.SetMavlinkTimeoutRequest\x1a*.mavsdk.rpc.core.SetMavlinkTimeoutResponse"\x00\x42\x1b\n\x0eio.mavsdk.coreB\tCoreProtob\x06proto3'
+    b'\n\x0f\x63ore/core.proto\x12\x0fmavsdk.rpc.core"!\n\x1fSubscribeConnectionStateRequest"U\n\x17\x43onnectionStateResponse\x12:\n\x10\x63onnection_state\x18\x01 \x01(\x0b\x32 .mavsdk.rpc.core.ConnectionState"-\n\x18SetMavlinkTimeoutRequest\x12\x11\n\ttimeout_s\x18\x01 \x01(\x01"\x1b\n\x19SetMavlinkTimeoutResponse"\x1e\n\x1c\x46\x65\x65\x64HeartbeatWatchdogRequest"\x1f\n\x1d\x46\x65\x65\x64HeartbeatWatchdogResponse"7\n"SetHeartbeatWatchdogTimeoutRequest\x12\x11\n\ttimeout_s\x18\x01 \x01(\x01"%\n#SetHeartbeatWatchdogTimeoutResponse"\'\n\x0f\x43onnectionState\x12\x14\n\x0cis_connected\x18\x02 \x01(\x08\x32\xfe\x03\n\x0b\x43oreService\x12z\n\x18SubscribeConnectionState\x12\x30.mavsdk.rpc.core.SubscribeConnectionStateRequest\x1a(.mavsdk.rpc.core.ConnectionStateResponse"\x00\x30\x01\x12l\n\x11SetMavlinkTimeout\x12).mavsdk.rpc.core.SetMavlinkTimeoutRequest\x1a*.mavsdk.rpc.core.SetMavlinkTimeoutResponse"\x00\x12x\n\x15\x46\x65\x65\x64HeartbeatWatchdog\x12-.mavsdk.rpc.core.FeedHeartbeatWatchdogRequest\x1a..mavsdk.rpc.core.FeedHeartbeatWatchdogResponse"\x00\x12\x8a\x01\n\x1bSetHeartbeatWatchdogTimeout\x12\x33.mavsdk.rpc.core.SetHeartbeatWatchdogTimeoutRequest\x1a\x34.mavsdk.rpc.core.SetHeartbeatWatchdogTimeoutResponse"\x00\x42\x1b\n\x0eio.mavsdk.coreB\tCoreProtob\x06proto3'
 )
 
 _globals = globals()
@@ -37,8 +37,16 @@ if not _descriptor._USE_C_DESCRIPTORS:
     _globals["_SETMAVLINKTIMEOUTREQUEST"]._serialized_end = 203
     _globals["_SETMAVLINKTIMEOUTRESPONSE"]._serialized_start = 205
     _globals["_SETMAVLINKTIMEOUTRESPONSE"]._serialized_end = 232
-    _globals["_CONNECTIONSTATE"]._serialized_start = 234
-    _globals["_CONNECTIONSTATE"]._serialized_end = 273
-    _globals["_CORESERVICE"]._serialized_start = 276
-    _globals["_CORESERVICE"]._serialized_end = 523
+    _globals["_FEEDHEARTBEATWATCHDOGREQUEST"]._serialized_start = 234
+    _globals["_FEEDHEARTBEATWATCHDOGREQUEST"]._serialized_end = 264
+    _globals["_FEEDHEARTBEATWATCHDOGRESPONSE"]._serialized_start = 266
+    _globals["_FEEDHEARTBEATWATCHDOGRESPONSE"]._serialized_end = 297
+    _globals["_SETHEARTBEATWATCHDOGTIMEOUTREQUEST"]._serialized_start = 299
+    _globals["_SETHEARTBEATWATCHDOGTIMEOUTREQUEST"]._serialized_end = 354
+    _globals["_SETHEARTBEATWATCHDOGTIMEOUTRESPONSE"]._serialized_start = 356
+    _globals["_SETHEARTBEATWATCHDOGTIMEOUTRESPONSE"]._serialized_end = 393
+    _globals["_CONNECTIONSTATE"]._serialized_start = 395
+    _globals["_CONNECTIONSTATE"]._serialized_end = 434
+    _globals["_CORESERVICE"]._serialized_start = 437
+    _globals["_CORESERVICE"]._serialized_end = 947
 # @@protoc_insertion_point(module_scope)

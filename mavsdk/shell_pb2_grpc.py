@@ -32,6 +32,11 @@ if _version_not_supported:
 class ShellServiceStub(object):
     """
     Allow to communicate with the vehicle's system shell.
+
+    Under the hood this uses MAVLink SERIAL_CONTROL. The default device is
+    SERIAL_CONTROL_DEV_SHELL. Callers can pass another SERIAL_CONTROL_DEV on
+    Send (and observe the device on Receive) when the same framing is used for
+    non-nsh serial bridges (for example TELEM2).
     """
 
     def __init__(self, channel):
@@ -57,6 +62,11 @@ class ShellServiceStub(object):
 class ShellServiceServicer(object):
     """
     Allow to communicate with the vehicle's system shell.
+
+    Under the hood this uses MAVLink SERIAL_CONTROL. The default device is
+    SERIAL_CONTROL_DEV_SHELL. Callers can pass another SERIAL_CONTROL_DEV on
+    Send (and observe the device on Receive) when the same framing is used for
+    non-nsh serial bridges (for example TELEM2).
     """
 
     def Send(self, request, context):
@@ -104,6 +114,11 @@ def add_ShellServiceServicer_to_server(servicer, server):
 class ShellService(object):
     """
     Allow to communicate with the vehicle's system shell.
+
+    Under the hood this uses MAVLink SERIAL_CONTROL. The default device is
+    SERIAL_CONTROL_DEV_SHELL. Callers can pass another SERIAL_CONTROL_DEV on
+    Send (and observe the device on Receive) when the same framing is used for
+    non-nsh serial bridges (for example TELEM2).
     """
 
     @staticmethod

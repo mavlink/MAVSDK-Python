@@ -145,7 +145,7 @@ class FlightMode(Enum):
     Flight modes.
 
     For more information about flight modes, check out
-    https://docs.px4.io/master/en/config/flight_mode.html.
+    https://docs.px4.io/main/en/config/flight_mode.html.
 
     Values
     ------
@@ -695,6 +695,172 @@ class Quaternion:
         rpcQuaternion.z = self.z
 
         rpcQuaternion.timestamp_us = self.timestamp_us
+
+
+class HomePosition:
+    """
+    Home position type.
+
+    Includes the global GPS position, local NED position, surface quaternion,
+    and approach vector from the MAVLink HOME_POSITION message.
+
+    Parameters
+    ----------
+    timestamp_us : uint64_t
+         Timestamp (UNIX Epoch or since system boot) in microseconds
+
+    latitude_deg : double
+         Latitude in degrees (range: -90 to +90)
+
+    longitude_deg : double
+         Longitude in degrees (range: -180 to +180)
+
+    absolute_altitude_m : float
+         Altitude AMSL (above mean sea level) in metres
+
+    relative_altitude_m : float
+         Altitude relative to takeoff altitude in metres
+
+    local_north_m : float
+         Local North position in NED frame (m)
+
+    local_east_m : float
+         Local East position in NED frame (m)
+
+    local_down_m : float
+         Local Down position in NED frame (m, positive down)
+
+    q : Quaternion
+         Surface quaternion (world-to-surface-normal and heading)
+
+    approach_north_m : float
+         Local North position of the approach vector end in NED frame (m)
+
+    approach_east_m : float
+         Local East position of the approach vector end in NED frame (m)
+
+    approach_down_m : float
+         Local Down position of the approach vector end in NED frame (m)
+
+    """
+
+    def __init__(
+        self,
+        timestamp_us,
+        latitude_deg,
+        longitude_deg,
+        absolute_altitude_m,
+        relative_altitude_m,
+        local_north_m,
+        local_east_m,
+        local_down_m,
+        q,
+        approach_north_m,
+        approach_east_m,
+        approach_down_m,
+    ):
+        """Initializes the HomePosition object"""
+        self.timestamp_us = timestamp_us
+        self.latitude_deg = latitude_deg
+        self.longitude_deg = longitude_deg
+        self.absolute_altitude_m = absolute_altitude_m
+        self.relative_altitude_m = relative_altitude_m
+        self.local_north_m = local_north_m
+        self.local_east_m = local_east_m
+        self.local_down_m = local_down_m
+        self.q = q
+        self.approach_north_m = approach_north_m
+        self.approach_east_m = approach_east_m
+        self.approach_down_m = approach_down_m
+
+    def __eq__(self, to_compare):
+        """Checks if two HomePosition are the same"""
+        try:
+            # Try to compare - this likely fails when it is compared to a non
+            # HomePosition object
+            return (
+                (self.timestamp_us == to_compare.timestamp_us)
+                and (self.latitude_deg == to_compare.latitude_deg)
+                and (self.longitude_deg == to_compare.longitude_deg)
+                and (self.absolute_altitude_m == to_compare.absolute_altitude_m)
+                and (self.relative_altitude_m == to_compare.relative_altitude_m)
+                and (self.local_north_m == to_compare.local_north_m)
+                and (self.local_east_m == to_compare.local_east_m)
+                and (self.local_down_m == to_compare.local_down_m)
+                and (self.q == to_compare.q)
+                and (self.approach_north_m == to_compare.approach_north_m)
+                and (self.approach_east_m == to_compare.approach_east_m)
+                and (self.approach_down_m == to_compare.approach_down_m)
+            )
+
+        except AttributeError:
+            return False
+
+    def __str__(self):
+        """HomePosition in string representation"""
+        struct_repr = ", ".join(
+            [
+                "timestamp_us: " + str(self.timestamp_us),
+                "latitude_deg: " + str(self.latitude_deg),
+                "longitude_deg: " + str(self.longitude_deg),
+                "absolute_altitude_m: " + str(self.absolute_altitude_m),
+                "relative_altitude_m: " + str(self.relative_altitude_m),
+                "local_north_m: " + str(self.local_north_m),
+                "local_east_m: " + str(self.local_east_m),
+                "local_down_m: " + str(self.local_down_m),
+                "q: " + str(self.q),
+                "approach_north_m: " + str(self.approach_north_m),
+                "approach_east_m: " + str(self.approach_east_m),
+                "approach_down_m: " + str(self.approach_down_m),
+            ]
+        )
+
+        return f"HomePosition: [{struct_repr}]"
+
+    @staticmethod
+    def translate_from_rpc(rpcHomePosition):
+        """Translates a gRPC struct to the SDK equivalent"""
+        return HomePosition(
+            rpcHomePosition.timestamp_us,
+            rpcHomePosition.latitude_deg,
+            rpcHomePosition.longitude_deg,
+            rpcHomePosition.absolute_altitude_m,
+            rpcHomePosition.relative_altitude_m,
+            rpcHomePosition.local_north_m,
+            rpcHomePosition.local_east_m,
+            rpcHomePosition.local_down_m,
+            Quaternion.translate_from_rpc(rpcHomePosition.q),
+            rpcHomePosition.approach_north_m,
+            rpcHomePosition.approach_east_m,
+            rpcHomePosition.approach_down_m,
+        )
+
+    def translate_to_rpc(self, rpcHomePosition):
+        """Translates this SDK object into its gRPC equivalent"""
+
+        rpcHomePosition.timestamp_us = self.timestamp_us
+
+        rpcHomePosition.latitude_deg = self.latitude_deg
+
+        rpcHomePosition.longitude_deg = self.longitude_deg
+
+        rpcHomePosition.absolute_altitude_m = self.absolute_altitude_m
+
+        rpcHomePosition.relative_altitude_m = self.relative_altitude_m
+
+        rpcHomePosition.local_north_m = self.local_north_m
+
+        rpcHomePosition.local_east_m = self.local_east_m
+
+        rpcHomePosition.local_down_m = self.local_down_m
+
+        self.q.translate_to_rpc(rpcHomePosition.q)
+
+        rpcHomePosition.approach_north_m = self.approach_north_m
+
+        rpcHomePosition.approach_east_m = self.approach_east_m
+
+        rpcHomePosition.approach_down_m = self.approach_down_m
 
 
 class EulerAngle:
@@ -3294,7 +3460,7 @@ class Telemetry(AsyncBase):
 
         Yields
         -------
-        home : Position
+        home : HomePosition
              The next home position
 
 
@@ -3305,7 +3471,7 @@ class Telemetry(AsyncBase):
 
         try:
             async for response in home_stream:
-                yield Position.translate_from_rpc(response.home)
+                yield HomePosition.translate_from_rpc(response.home)
         finally:
             home_stream.cancel()
 

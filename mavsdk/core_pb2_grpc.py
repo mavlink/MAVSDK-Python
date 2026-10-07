@@ -50,6 +50,18 @@ class CoreServiceStub(object):
             response_deserializer=core_dot_core__pb2.SetMavlinkTimeoutResponse.FromString,
             _registered_method=True,
         )
+        self.FeedHeartbeatWatchdog = channel.unary_unary(
+            "/mavsdk.rpc.core.CoreService/FeedHeartbeatWatchdog",
+            request_serializer=core_dot_core__pb2.FeedHeartbeatWatchdogRequest.SerializeToString,
+            response_deserializer=core_dot_core__pb2.FeedHeartbeatWatchdogResponse.FromString,
+            _registered_method=True,
+        )
+        self.SetHeartbeatWatchdogTimeout = channel.unary_unary(
+            "/mavsdk.rpc.core.CoreService/SetHeartbeatWatchdogTimeout",
+            request_serializer=core_dot_core__pb2.SetHeartbeatWatchdogTimeoutRequest.SerializeToString,
+            response_deserializer=core_dot_core__pb2.SetHeartbeatWatchdogTimeoutResponse.FromString,
+            _registered_method=True,
+        )
 
 
 class CoreServiceServicer(object):
@@ -76,6 +88,54 @@ class CoreServiceServicer(object):
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
+    def FeedHeartbeatWatchdog(self, request, context):
+        """
+        Feed the heartbeat watchdog.
+
+        MAVSDK can be configured with a heartbeat watchdog (deadman timer).
+        While configured, the periodic heartbeats sent by MAVSDK are only sent
+        as long as this keeps being called within the timeout period. If the
+        watchdog times out, heartbeats stop until it is fed again.
+
+        Call this at least twice per timeout period. Heartbeats are sent at 1 Hz
+        and the deadline is only checked when one is due, so feeding exactly once
+        per period leaves no margin and a single late feed already drops a
+        heartbeat.
+
+        This allows MAVSDK's heartbeats to reflect the liveness of the client:
+        if the client hangs or dies, heartbeats stop.
+
+        Has no effect if no watchdog is configured (e.g. with the
+        --heartbeat-watchdog-timeout option of mavsdk_server, or
+        SetHeartbeatWatchdogTimeout).
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
+    def SetHeartbeatWatchdogTimeout(self, request, context):
+        """
+        Set the heartbeat watchdog timeout.
+
+        When timeout_s is greater than 0, the periodic heartbeats sent by MAVSDK
+        are only sent as long as FeedHeartbeatWatchdog is called at least once
+        per timeout period. If the watchdog times out, heartbeats stop until it
+        is fed again.
+
+        When timeout_s is 0, the watchdog is disabled and heartbeats follow the
+        usual policy (always_send_heartbeats or a connected system).
+
+        Values greater than 0 and less than 2 are rejected: heartbeats are sent
+        at 1 Hz, so a timeout shorter than two heartbeat periods cannot be met
+        reliably.
+
+        This is an alternative to configuring the watchdog at mavsdk_server
+        startup with the --heartbeat-watchdog-timeout option.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
 
 def add_CoreServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -88,6 +148,16 @@ def add_CoreServiceServicer_to_server(servicer, server):
             servicer.SetMavlinkTimeout,
             request_deserializer=core_dot_core__pb2.SetMavlinkTimeoutRequest.FromString,
             response_serializer=core_dot_core__pb2.SetMavlinkTimeoutResponse.SerializeToString,
+        ),
+        "FeedHeartbeatWatchdog": grpc.unary_unary_rpc_method_handler(
+            servicer.FeedHeartbeatWatchdog,
+            request_deserializer=core_dot_core__pb2.FeedHeartbeatWatchdogRequest.FromString,
+            response_serializer=core_dot_core__pb2.FeedHeartbeatWatchdogResponse.SerializeToString,
+        ),
+        "SetHeartbeatWatchdogTimeout": grpc.unary_unary_rpc_method_handler(
+            servicer.SetHeartbeatWatchdogTimeout,
+            request_deserializer=core_dot_core__pb2.SetHeartbeatWatchdogTimeoutRequest.FromString,
+            response_serializer=core_dot_core__pb2.SetHeartbeatWatchdogTimeoutResponse.SerializeToString,
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -152,6 +222,66 @@ class CoreService(object):
             "/mavsdk.rpc.core.CoreService/SetMavlinkTimeout",
             core_dot_core__pb2.SetMavlinkTimeoutRequest.SerializeToString,
             core_dot_core__pb2.SetMavlinkTimeoutResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def FeedHeartbeatWatchdog(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.core.CoreService/FeedHeartbeatWatchdog",
+            core_dot_core__pb2.FeedHeartbeatWatchdogRequest.SerializeToString,
+            core_dot_core__pb2.FeedHeartbeatWatchdogResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def SetHeartbeatWatchdogTimeout(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.core.CoreService/SetHeartbeatWatchdogTimeout",
+            core_dot_core__pb2.SetHeartbeatWatchdogTimeoutRequest.SerializeToString,
+            core_dot_core__pb2.SetHeartbeatWatchdogTimeoutResponse.FromString,
             options,
             channel_credentials,
             insecure,
