@@ -91,8 +91,6 @@ async def main():
     # Wait for the tasks to complete
     await asyncio.gather(*running_tasks)
 
-    await drone.close()
-
 
 if __name__ == "__main__":
     asyncio.run(main())
