@@ -4,6 +4,7 @@ import asyncio
 import sys
 
 from mavsdk_grpc import System
+from mavsdk_grpc.shell import Device
 
 send_tasks = set()
 
@@ -23,6 +24,10 @@ async def run():
     asyncio.get_event_loop().add_reader(sys.stdin, got_stdin_data, drone)
     print("nsh> ", end="", flush=True)
 
+    # Keep the program running indefinitely
+    exit_event = asyncio.Event()
+    await exit_event.wait()
+
 
 async def observe_shell(drone):
     async for output in drone.shell.receive():
@@ -34,7 +39,7 @@ def got_stdin_data(drone):
 
 
 async def send(drone, command):
-    await drone.shell.send(command)
+    await drone.shell.send(command, Device.SHELL)
 
 
 if __name__ == "__main__":

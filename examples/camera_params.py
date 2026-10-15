@@ -24,10 +24,18 @@ async def run():
     drone = System()
     await drone.connect(system_address="udpin://0.0.0.0:14540")
 
+    print("Waiting for a camera...")
+    async for camera_list in drone.camera.camera_list():
+        if camera_list.cameras:
+            camera = camera_list.cameras[0]
+            break
+    component_id = camera.component_id
+    print(f"-- Found camera {camera.vendor_name} {camera.model_name} (component ID {component_id})")
+
     _tasks = [
-        asyncio.create_task(observe_current_settings(drone)),
-        asyncio.create_task(observe_camera_mode(drone)),
-        asyncio.create_task(observe_possible_setting_options(drone)),
+        asyncio.create_task(observe_current_settings(drone, component_id)),
+        asyncio.create_task(observe_camera_mode(drone, component_id)),
+        asyncio.create_task(observe_possible_setting_options(drone, component_id)),
     ]
 
     while True:
@@ -55,7 +63,7 @@ async def run():
             print(f"Setting camera mode to {chosen_mode}!")
 
             try:
-                await drone.camera.set_mode(chosen_mode)
+                await drone.camera.set_mode(component_id, chosen_mode)
                 print(" --> Succeeded")
             except CameraError as error:
                 print(f" --> Failed with code: {error._result.result_str}")
@@ -110,7 +118,7 @@ async def run():
                     continue
 
             try:
-                await drone.camera.set_setting(setting)
+                await drone.camera.set_setting(component_id, setting)
                 print(" --> Succeeded")
             except CameraError as error:
                 print(f" --> Failed with code: {error._result.result_str}")
@@ -119,22 +127,25 @@ async def run():
             continue
 
 
-async def observe_camera_mode(drone):
+async def observe_camera_mode(drone, component_id):
     global camera_mode
-    async for mode in drone.camera.mode():
-        camera_mode = mode
+    async for update in drone.camera.mode():
+        if update.component_id == component_id:
+            camera_mode = update.mode
 
 
-async def observe_current_settings(drone):
+async def observe_current_settings(drone, component_id):
     global current_settings
-    async for settings in drone.camera.current_settings():
-        current_settings = settings
+    async for update in drone.camera.current_settings():
+        if update.component_id == component_id:
+            current_settings = update.current_settings
 
 
-async def observe_possible_setting_options(drone):
+async def observe_possible_setting_options(drone, component_id):
     global possible_setting_options
-    async for settings in drone.camera.possible_setting_options():
-        possible_setting_options = settings
+    async for update in drone.camera.possible_setting_options():
+        if update.component_id == component_id:
+            possible_setting_options = update.setting_options
 
 
 def print_current_settings():

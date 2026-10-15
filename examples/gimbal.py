@@ -9,7 +9,7 @@ from mavsdk_grpc.gimbal import GimbalMode, ControlMode, SendMode
 logging.basicConfig(level=logging.INFO)
 
 
-async def get_gimbals(drone, timeout=10):
+async def get_gimbals(drone, wait_s=10):
     gimbals_found = []  # List to store all gimbals found
 
     async def fetch_gimbals():
@@ -24,14 +24,16 @@ async def get_gimbals(drone, timeout=10):
                     f"Device ID={gimbal.gimbal_device_id}"
                 )
                 gimbals_found.append(gimbal)
-        return
+            # The subscription never ends, so stop at the first list with gimbals
+            if gimbals_found:
+                return
 
     try:
         # Apply timeout to async loop
-        await asyncio.wait_for(fetch_gimbals(), timeout=timeout)
-        return gimbals_found
+        await asyncio.wait_for(fetch_gimbals(), timeout=wait_s)
     except asyncio.TimeoutError:
         print("Timeout: No gimbals found.")
+    return gimbals_found
 
 
 async def run():

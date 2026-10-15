@@ -92,8 +92,6 @@ async def main():
                 else:
                     print("Invalid mode: 'ev', 'gps', or 'multi-fusion'.")
 
-    await drone.telemetry.close()
-
 
 if __name__ == "__main__":
     asyncio.run(main())
