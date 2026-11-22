@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# This example targets PX4. For ArduPilot, see mission_ardupilot.py.
+
 import asyncio
 import logging
 
