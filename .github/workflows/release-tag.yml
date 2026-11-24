@@ -1,7 +1,8 @@
-name: Tag release
+name: Tag and release
 
-# When MAVSDK_SERVER_VERSION changes on main, create the matching tag
-# (v4.2.1 -> 4.2.1), which triggers the PyPI upload in main.yml.
+# When MAVSDK_SERVER_VERSION changes on main, create the matching tag and
+# GitHub release with generated notes (v4.2.1 -> 4.2.1). The tag triggers the
+# PyPI upload in main.yml.
 #
 # Runs as the "MAVSDK-Python Release Bot" GitHub App, because tags pushed with
 # the default GITHUB_TOKEN don't trigger workflows.
@@ -33,7 +34,9 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           fetch-depth: 0
 
-      - name: Create and push tag
+      - name: Create tag and release
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           version=$(cat MAVSDK_SERVER_VERSION)
           tag="${version#v}"
@@ -45,3 +48,7 @@ jobs:
 
           echo "Tagging ${GITHUB_SHA} as ${tag}"
           git push origin "${GITHUB_SHA}:refs/tags/${tag}"
+
+          # The generated "What's Changed" notes are appended to --notes.
+          gh release create "${tag}" --verify-tag --title "${tag}" --generate-notes \
+            --notes "Uses [MAVSDK ${version}](https://github.com/mavlink/MAVSDK/releases/tag/${version})."
