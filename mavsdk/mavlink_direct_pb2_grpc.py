@@ -6,7 +6,7 @@ import warnings
 
 from . import mavlink_direct_pb2 as mavlink__direct_dot_mavlink__direct__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.85.3"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in mavlink_direct/mavlink_direct_pb2_grpc.py depends on"
+        + " but the generated code in mavlink_direct/mavlink_direct_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class MavlinkDirectServiceStub(object):
+class MavlinkDirectServiceStub:
     """Enable direct MAVLink communication using libmav."""
 
     def __init__(self, channel):
@@ -56,9 +56,15 @@ class MavlinkDirectServiceStub(object):
             response_deserializer=mavlink__direct_dot_mavlink__direct__pb2.LoadCustomXmlResponse.FromString,
             _registered_method=True,
         )
+        self.SendCommand = channel.unary_unary(
+            "/mavsdk.rpc.mavlink_direct.MavlinkDirectService/SendCommand",
+            request_serializer=mavlink__direct_dot_mavlink__direct__pb2.SendCommandRequest.SerializeToString,
+            response_deserializer=mavlink__direct_dot_mavlink__direct__pb2.SendCommandResponse.FromString,
+            _registered_method=True,
+        )
 
 
-class MavlinkDirectServiceServicer(object):
+class MavlinkDirectServiceServicer:
     """Enable direct MAVLink communication using libmav."""
 
     def SendMessage(self, request, context):
@@ -94,6 +100,27 @@ class MavlinkDirectServiceServicer(object):
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
+    def SendCommand(self, request, context):
+        """
+        Send a command and wait for its final COMMAND_ACK.
+
+        The command is a COMMAND_LONG or COMMAND_INT message with its fields as JSON,
+        e.g. message_name "COMMAND_LONG" and fields_json
+        {"target_system":1,"target_component":1,"command":400,"param1":1,...}.
+
+        The command is retransmitted if no ack arrives. MAV_RESULT_IN_PROGRESS acks
+        are handled internally: the command is not retransmitted after one, and the
+        call keeps waiting for the final ack.
+
+        RESULT_SUCCESS only means that a final COMMAND_ACK was received. Whether the
+        command was accepted is in the "result" field of the returned ack (MAV_RESULT,
+        e.g. 0 for MAV_RESULT_ACCEPTED, 2 for MAV_RESULT_DENIED). Any other result means
+        no final ack was received and the returned ack is empty.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
 
 def add_MavlinkDirectServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -112,6 +139,11 @@ def add_MavlinkDirectServiceServicer_to_server(servicer, server):
             request_deserializer=mavlink__direct_dot_mavlink__direct__pb2.LoadCustomXmlRequest.FromString,
             response_serializer=mavlink__direct_dot_mavlink__direct__pb2.LoadCustomXmlResponse.SerializeToString,
         ),
+        "SendCommand": grpc.unary_unary_rpc_method_handler(
+            servicer.SendCommand,
+            request_deserializer=mavlink__direct_dot_mavlink__direct__pb2.SendCommandRequest.FromString,
+            response_serializer=mavlink__direct_dot_mavlink__direct__pb2.SendCommandResponse.SerializeToString,
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
         "mavsdk.rpc.mavlink_direct.MavlinkDirectService", rpc_method_handlers
@@ -123,7 +155,7 @@ def add_MavlinkDirectServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class MavlinkDirectService(object):
+class MavlinkDirectService:
     """Enable direct MAVLink communication using libmav."""
 
     @staticmethod
@@ -205,6 +237,36 @@ class MavlinkDirectService(object):
             "/mavsdk.rpc.mavlink_direct.MavlinkDirectService/LoadCustomXml",
             mavlink__direct_dot_mavlink__direct__pb2.LoadCustomXmlRequest.SerializeToString,
             mavlink__direct_dot_mavlink__direct__pb2.LoadCustomXmlResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def SendCommand(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.mavlink_direct.MavlinkDirectService/SendCommand",
+            mavlink__direct_dot_mavlink__direct__pb2.SendCommandRequest.SerializeToString,
+            mavlink__direct_dot_mavlink__direct__pb2.SendCommandResponse.FromString,
             options,
             channel_credentials,
             insecure,

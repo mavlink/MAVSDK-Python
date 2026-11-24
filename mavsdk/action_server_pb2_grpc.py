@@ -6,7 +6,7 @@ import warnings
 
 from . import action_server_pb2 as action__server_dot_action__server__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.85.3"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,15 +22,19 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in action_server/action_server_pb2_grpc.py depends on"
+        + " but the generated code in action_server/action_server_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class ActionServerServiceStub(object):
-    """Provide vehicle actions (as a server) such as arming, taking off, and landing."""
+class ActionServerServiceStub:
+    """Provide vehicle actions (as a server) such as arming, taking off, and landing.
+
+    The flight mode API is deprecated, use the ModesServer plugin instead. Once
+    ModesServer has modes set, mode change requests are left to it.
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -130,8 +134,12 @@ class ActionServerServiceStub(object):
         )
 
 
-class ActionServerServiceServicer(object):
-    """Provide vehicle actions (as a server) such as arming, taking off, and landing."""
+class ActionServerServiceServicer:
+    """Provide vehicle actions (as a server) such as arming, taking off, and landing.
+
+    The flight mode API is deprecated, use the ModesServer plugin instead. Once
+    ModesServer has modes set, mode change requests are left to it.
+    """
 
     def SubscribeArmDisarm(self, request, context):
         """Subscribe to ARM/DISARM commands"""
@@ -140,7 +148,7 @@ class ActionServerServiceServicer(object):
         raise NotImplementedError("Method not implemented!")
 
     def SubscribeFlightModeChange(self, request, context):
-        """Subscribe to DO_SET_MODE"""
+        """Subscribe to DO_SET_MODE (deprecated, use the ModesServer plugin instead)"""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
@@ -194,13 +202,13 @@ class ActionServerServiceServicer(object):
         raise NotImplementedError("Method not implemented!")
 
     def SetAllowableFlightModes(self, request, context):
-        """Set which modes the vehicle can transition to (Manual always allowed)"""
+        """Set which modes the vehicle can transition to (Manual always allowed) (deprecated, use the ModesServer plugin instead)"""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
     def GetAllowableFlightModes(self, request, context):
-        """Get which modes the vehicle can transition to (Manual always allowed)"""
+        """Get which modes the vehicle can transition to (Manual always allowed) (deprecated, use the ModesServer plugin instead)"""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
@@ -212,13 +220,13 @@ class ActionServerServiceServicer(object):
         raise NotImplementedError("Method not implemented!")
 
     def SetFlightMode(self, request, context):
-        """Set/override the flight mode of the vehicle directly, and notify subscribers"""
+        """Set/override the flight mode of the vehicle directly, and notify subscribers (deprecated, use the ModesServer plugin instead)"""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
     def SetFlightModeInternal(self, request, context):
-        """Set/override the flight mode of the vehicle directly, and *do not* notify subscribers"""
+        """Set/override the flight mode of the vehicle directly, and *do not* notify subscribers (deprecated, use the ModesServer plugin instead)"""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
@@ -312,8 +320,12 @@ def add_ActionServerServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class ActionServerService(object):
-    """Provide vehicle actions (as a server) such as arming, taking off, and landing."""
+class ActionServerService:
+    """Provide vehicle actions (as a server) such as arming, taking off, and landing.
+
+    The flight mode API is deprecated, use the ModesServer plugin instead. Once
+    ModesServer has modes set, mode change requests are left to it.
+    """
 
     @staticmethod
     def SubscribeArmDisarm(

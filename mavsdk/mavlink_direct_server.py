@@ -406,3 +406,44 @@ class MavlinkDirectServer(AsyncBase):
 
         if result.result != MavlinkDirectServerResult.Result.SUCCESS:
             raise MavlinkDirectServerError(result, "load_custom_xml()", xml_content)
+
+    async def command(self, command):
+        """
+        Subscribe to incoming commands with a given command ID.
+
+        Delivers COMMAND_LONG and COMMAND_INT messages with this command ID that are
+        addressed to this server component; check message_name to see which one it is.
+
+        While subscribed, MAVSDK does not ack the command itself, so every command
+        received must be answered by sending a COMMAND_ACK with SendMessage, addressed
+        to the sender (system_id/component_id of the received command) and with
+        "command" set to the command ID. For a command that takes a while, send acks
+        with MAV_RESULT_IN_PROGRESS and "progress" in percent (255 if unknown) about
+        once per second while it runs, so the sender knows it is still going, then
+        the final result.
+
+        The sender may retransmit the command if the ack is lost, so the same command
+        can arrive more than once.
+
+        Parameters
+        ----------
+        command : uint32_t
+             MAV_CMD to subscribe to
+
+        Yields
+        -------
+        command : MavlinkMessage
+             The received COMMAND_LONG or COMMAND_INT
+
+
+        """
+
+        request = mavlink_direct_server_pb2.SubscribeCommandRequest()
+        request.command = command
+        command_stream = self._stub.SubscribeCommand(request)
+
+        try:
+            async for response in command_stream:
+                yield MavlinkMessage.translate_from_rpc(response.command)
+        finally:
+            command_stream.cancel()

@@ -375,3 +375,49 @@ class MavlinkDirect(AsyncBase):
 
         if result.result != MavlinkDirectResult.Result.SUCCESS:
             raise MavlinkDirectError(result, "load_custom_xml()", xml_content)
+
+    async def send_command(self, command):
+        """
+        Send a command and wait for its final COMMAND_ACK.
+
+        The command is a COMMAND_LONG or COMMAND_INT message with its fields as JSON,
+        e.g. message_name "COMMAND_LONG" and fields_json
+        {"target_system":1,"target_component":1,"command":400,"param1":1,...}.
+
+        The command is retransmitted if no ack arrives. MAV_RESULT_IN_PROGRESS acks
+        are handled internally: the command is not retransmitted after one, and the
+        call keeps waiting for the final ack.
+
+        RESULT_SUCCESS only means that a final COMMAND_ACK was received. Whether the
+        command was accepted is in the "result" field of the returned ack (MAV_RESULT,
+        e.g. 0 for MAV_RESULT_ACCEPTED, 2 for MAV_RESULT_DENIED). Any other result means
+        no final ack was received and the returned ack is empty.
+
+        Parameters
+        ----------
+        command : MavlinkMessage
+             COMMAND_LONG or COMMAND_INT message to send
+
+        Returns
+        -------
+        ack : MavlinkMessage
+             The final COMMAND_ACK, check its "result" field (MAV_RESULT); only set on RESULT_SUCCESS
+
+        Raises
+        ------
+        MavlinkDirectError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = mavlink_direct_pb2.SendCommandRequest()
+
+        command.translate_to_rpc(request.command)
+
+        response = await self._stub.SendCommand(request)
+
+        result = self._extract_result(response)
+
+        if result.result != MavlinkDirectResult.Result.SUCCESS:
+            raise MavlinkDirectError(result, "send_command()", command)
+
+        return MavlinkMessage.translate_from_rpc(response.ack)

@@ -6,7 +6,7 @@ import warnings
 
 from . import log_files_pb2 as log__files_dot_log__files__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.85.3"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in log_files/log_files_pb2_grpc.py depends on"
+        + " but the generated code in log_files/log_files_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class LogFilesServiceStub(object):
+class LogFilesServiceStub:
     """Allow to download log files from the vehicle after a flight is complete.
     For log streaming during flight check the logging plugin.
     """
@@ -52,6 +52,12 @@ class LogFilesServiceStub(object):
             response_deserializer=log__files_dot_log__files__pb2.DownloadLogFileResponse.FromString,
             _registered_method=True,
         )
+        self.CancelDownloadLogFile = channel.unary_unary(
+            "/mavsdk.rpc.log_files.LogFilesService/CancelDownloadLogFile",
+            request_serializer=log__files_dot_log__files__pb2.CancelDownloadLogFileRequest.SerializeToString,
+            response_deserializer=log__files_dot_log__files__pb2.CancelDownloadLogFileResponse.FromString,
+            _registered_method=True,
+        )
         self.EraseAllLogFiles = channel.unary_unary(
             "/mavsdk.rpc.log_files.LogFilesService/EraseAllLogFiles",
             request_serializer=log__files_dot_log__files__pb2.EraseAllLogFilesRequest.SerializeToString,
@@ -60,7 +66,7 @@ class LogFilesServiceStub(object):
         )
 
 
-class LogFilesServiceServicer(object):
+class LogFilesServiceServicer:
     """Allow to download log files from the vehicle after a flight is complete.
     For log streaming during flight check the logging plugin.
     """
@@ -73,6 +79,18 @@ class LogFilesServiceServicer(object):
 
     def SubscribeDownloadLogFile(self, request, context):
         """Download log file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
+    def CancelDownloadLogFile(self, request, context):
+        """
+        Cancel an ongoing log file download.
+
+        Returns Success, also if no download is in progress (a warning is logged).
+        The callback of the ongoing download is called once with Cancelled,
+        the vehicle is told to stop sending, and the partially downloaded file is deleted.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
@@ -96,6 +114,11 @@ def add_LogFilesServiceServicer_to_server(servicer, server):
             request_deserializer=log__files_dot_log__files__pb2.SubscribeDownloadLogFileRequest.FromString,
             response_serializer=log__files_dot_log__files__pb2.DownloadLogFileResponse.SerializeToString,
         ),
+        "CancelDownloadLogFile": grpc.unary_unary_rpc_method_handler(
+            servicer.CancelDownloadLogFile,
+            request_deserializer=log__files_dot_log__files__pb2.CancelDownloadLogFileRequest.FromString,
+            response_serializer=log__files_dot_log__files__pb2.CancelDownloadLogFileResponse.SerializeToString,
+        ),
         "EraseAllLogFiles": grpc.unary_unary_rpc_method_handler(
             servicer.EraseAllLogFiles,
             request_deserializer=log__files_dot_log__files__pb2.EraseAllLogFilesRequest.FromString,
@@ -112,7 +135,7 @@ def add_LogFilesServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class LogFilesService(object):
+class LogFilesService:
     """Allow to download log files from the vehicle after a flight is complete.
     For log streaming during flight check the logging plugin.
     """
@@ -166,6 +189,36 @@ class LogFilesService(object):
             "/mavsdk.rpc.log_files.LogFilesService/SubscribeDownloadLogFile",
             log__files_dot_log__files__pb2.SubscribeDownloadLogFileRequest.SerializeToString,
             log__files_dot_log__files__pb2.DownloadLogFileResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def CancelDownloadLogFile(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.log_files.LogFilesService/CancelDownloadLogFile",
+            log__files_dot_log__files__pb2.CancelDownloadLogFileRequest.SerializeToString,
+            log__files_dot_log__files__pb2.CancelDownloadLogFileResponse.FromString,
             options,
             channel_credentials,
             insecure,

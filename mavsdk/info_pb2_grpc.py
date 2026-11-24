@@ -6,7 +6,7 @@ import warnings
 
 from . import info_pb2 as info_dot_info__pb2
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.85.3"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -22,14 +22,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in info/info_pb2_grpc.py depends on"
+        + " but the generated code in info/info_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class InfoServiceStub(object):
+class InfoServiceStub:
     """Provide information about the hardware and/or software of a system."""
 
     def __init__(self, channel):
@@ -70,7 +70,7 @@ class InfoServiceStub(object):
         )
 
 
-class InfoServiceServicer(object):
+class InfoServiceServicer:
     """Provide information about the hardware and/or software of a system."""
 
     def GetIdentification(self, request, context):
@@ -142,7 +142,7 @@ def add_InfoServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class InfoService(object):
+class InfoService:
     """Provide information about the hardware and/or software of a system."""
 
     @staticmethod

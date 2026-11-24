@@ -8,7 +8,7 @@ from . import (
     mavlink_direct_server_pb2 as mavlink__direct__server_dot_mavlink__direct__server__pb2,
 )
 
-GRPC_GENERATED_VERSION = "1.75.0"
+GRPC_GENERATED_VERSION = "1.85.3"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -24,14 +24,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f"The grpc package installed is at version {GRPC_VERSION},"
-        + f" but the generated code in mavlink_direct_server/mavlink_direct_server_pb2_grpc.py depends on"
+        + " but the generated code in mavlink_direct_server/mavlink_direct_server_pb2_grpc.py depends on"
         + f" grpcio>={GRPC_GENERATED_VERSION}."
         + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
         + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
-class MavlinkDirectServerServiceStub(object):
+class MavlinkDirectServerServiceStub:
     """Enable direct MAVLink communication using libmav from a server component.
 
     Unlike MavlinkDirect, this does not require a discovered system: it sends from
@@ -63,9 +63,15 @@ class MavlinkDirectServerServiceStub(object):
             response_deserializer=mavlink__direct__server_dot_mavlink__direct__server__pb2.LoadCustomXmlResponse.FromString,
             _registered_method=True,
         )
+        self.SubscribeCommand = channel.unary_stream(
+            "/mavsdk.rpc.mavlink_direct_server.MavlinkDirectServerService/SubscribeCommand",
+            request_serializer=mavlink__direct__server_dot_mavlink__direct__server__pb2.SubscribeCommandRequest.SerializeToString,
+            response_deserializer=mavlink__direct__server_dot_mavlink__direct__server__pb2.CommandResponse.FromString,
+            _registered_method=True,
+        )
 
 
-class MavlinkDirectServerServiceServicer(object):
+class MavlinkDirectServerServiceServicer:
     """Enable direct MAVLink communication using libmav from a server component.
 
     Unlike MavlinkDirect, this does not require a discovered system: it sends from
@@ -109,6 +115,28 @@ class MavlinkDirectServerServiceServicer(object):
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
+    def SubscribeCommand(self, request, context):
+        """
+        Subscribe to incoming commands with a given command ID.
+
+        Delivers COMMAND_LONG and COMMAND_INT messages with this command ID that are
+        addressed to this server component; check message_name to see which one it is.
+
+        While subscribed, MAVSDK does not ack the command itself, so every command
+        received must be answered by sending a COMMAND_ACK with SendMessage, addressed
+        to the sender (system_id/component_id of the received command) and with
+        "command" set to the command ID. For a command that takes a while, send acks
+        with MAV_RESULT_IN_PROGRESS and "progress" in percent (255 if unknown) about
+        once per second while it runs, so the sender knows it is still going, then
+        the final result.
+
+        The sender may retransmit the command if the ack is lost, so the same command
+        can arrive more than once.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
 
 def add_MavlinkDirectServerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -127,6 +155,11 @@ def add_MavlinkDirectServerServiceServicer_to_server(servicer, server):
             request_deserializer=mavlink__direct__server_dot_mavlink__direct__server__pb2.LoadCustomXmlRequest.FromString,
             response_serializer=mavlink__direct__server_dot_mavlink__direct__server__pb2.LoadCustomXmlResponse.SerializeToString,
         ),
+        "SubscribeCommand": grpc.unary_stream_rpc_method_handler(
+            servicer.SubscribeCommand,
+            request_deserializer=mavlink__direct__server_dot_mavlink__direct__server__pb2.SubscribeCommandRequest.FromString,
+            response_serializer=mavlink__direct__server_dot_mavlink__direct__server__pb2.CommandResponse.SerializeToString,
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
         "mavsdk.rpc.mavlink_direct_server.MavlinkDirectServerService",
@@ -140,7 +173,7 @@ def add_MavlinkDirectServerServiceServicer_to_server(servicer, server):
 
 
 # This class is part of an EXPERIMENTAL API.
-class MavlinkDirectServerService(object):
+class MavlinkDirectServerService:
     """Enable direct MAVLink communication using libmav from a server component.
 
     Unlike MavlinkDirect, this does not require a discovered system: it sends from
@@ -227,6 +260,36 @@ class MavlinkDirectServerService(object):
             "/mavsdk.rpc.mavlink_direct_server.MavlinkDirectServerService/LoadCustomXml",
             mavlink__direct__server_dot_mavlink__direct__server__pb2.LoadCustomXmlRequest.SerializeToString,
             mavlink__direct__server_dot_mavlink__direct__server__pb2.LoadCustomXmlResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def SubscribeCommand(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            "/mavsdk.rpc.mavlink_direct_server.MavlinkDirectServerService/SubscribeCommand",
+            mavlink__direct__server_dot_mavlink__direct__server__pb2.SubscribeCommandRequest.SerializeToString,
+            mavlink__direct__server_dot_mavlink__direct__server__pb2.CommandResponse.FromString,
             options,
             channel_credentials,
             insecure,
