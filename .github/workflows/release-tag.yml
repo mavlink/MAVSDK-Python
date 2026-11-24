@@ -1,0 +1,47 @@
+name: Tag release
+
+# When MAVSDK_SERVER_VERSION changes on main, create the matching tag
+# (v4.2.1 -> 4.2.1), which triggers the PyPI upload in main.yml.
+#
+# Runs as the "MAVSDK-Python Release Bot" GitHub App, because tags pushed with
+# the default GITHUB_TOKEN don't trigger workflows.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - MAVSDK_SERVER_VERSION
+
+concurrency:
+  group: release-tag
+  cancel-in-progress: false
+
+jobs:
+  tag:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Get bot token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.RELEASE_BOT_APP_ID }}
+          private-key: ${{ secrets.RELEASE_BOT_PRIVATE_KEY }}
+
+      - uses: actions/checkout@v7
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          fetch-depth: 0
+
+      - name: Create and push tag
+        run: |
+          version=$(cat MAVSDK_SERVER_VERSION)
+          tag="${version#v}"
+
+          if git ls-remote --exit-code --tags origin "refs/tags/${tag}" > /dev/null; then
+            echo "Tag ${tag} already exists, nothing to do."
+            exit 0
+          fi
+
+          echo "Tagging ${GITHUB_SHA} as ${tag}"
+          git push origin "${GITHUB_SHA}:refs/tags/${tag}"

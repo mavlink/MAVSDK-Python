@@ -1,0 +1,148 @@
+name: Update to latest MAVSDK release
+
+# Checks for a new MAVSDK (C++) release and opens a PR that bumps
+# MAVSDK_SERVER_VERSION, moves the proto submodule to the commit MAVSDK pins
+# for that release, and regenerates the bindings.
+#
+# Runs as the "MAVSDK-Python Release Bot" GitHub App, because PRs opened with
+# the default GITHUB_TOKEN don't trigger CI.
+#
+# Needs:
+#   vars.RELEASE_BOT_APP_ID         - the App ID
+#   secrets.RELEASE_BOT_PRIVATE_KEY - a private key of the app
+
+on:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'MAVSDK tag to update to, e.g. v4.2.1 (default: latest release)'
+        required: false
+
+concurrency:
+  group: mavsdk-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Get bot token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.RELEASE_BOT_APP_ID }}
+          private-key: ${{ secrets.RELEASE_BOT_PRIVATE_KEY }}
+
+      - uses: actions/checkout@v7
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Check for new release
+        id: check
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          current=$(cat MAVSDK_SERVER_VERSION)
+          if [ -n "$INPUT_VERSION" ]; then
+            latest="$INPUT_VERSION"
+          else
+            # releases/latest skips drafts and prereleases.
+            latest=$(gh api repos/mavlink/MAVSDK/releases/latest --jq .tag_name)
+          fi
+          echo "current: $current, latest: $latest"
+
+          if [ "$current" = "$latest" ]; then
+            echo "Already up to date."
+            echo "update=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          branch="auto/mavsdk-${latest}"
+          if git ls-remote --exit-code --heads origin "$branch" > /dev/null; then
+            echo "Branch $branch already exists, PR presumably open."
+            echo "update=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          proto_sha=$(gh api "repos/mavlink/MAVSDK/contents/proto?ref=${latest}" --jq .sha)
+          echo "proto submodule at ${latest}: $proto_sha"
+
+          major_current=$(echo "${current#v}" | cut -d. -f1)
+          major_latest=$(echo "${latest#v}" | cut -d. -f1)
+
+          {
+            echo "update=true"
+            echo "current=$current"
+            echo "latest=$latest"
+            echo "branch=$branch"
+            echo "proto_sha=$proto_sha"
+            echo "major_bump=$([ "$major_current" != "$major_latest" ] && echo true || echo false)"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        if: steps.check.outputs.update == 'true'
+        uses: actions/setup-python@v7
+        with:
+          python-version: 3.x
+
+      - name: Update and regenerate
+        if: steps.check.outputs.update == 'true'
+        env:
+          LATEST: ${{ steps.check.outputs.latest }}
+          PROTO_SHA: ${{ steps.check.outputs.proto_sha }}
+        run: |
+          echo "$LATEST" > MAVSDK_SERVER_VERSION
+
+          git -C proto fetch origin "$PROTO_SHA"
+          git -C proto checkout "$PROTO_SHA"
+
+          python -m pip install -r requirements.txt -r requirements-dev.txt
+          other/tools/run_protoc.sh
+
+          git status --short
+
+      - name: Commit and open PR
+        if: steps.check.outputs.update == 'true'
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
+          CURRENT: ${{ steps.check.outputs.current }}
+          LATEST: ${{ steps.check.outputs.latest }}
+          BRANCH: ${{ steps.check.outputs.branch }}
+          PROTO_SHA: ${{ steps.check.outputs.proto_sha }}
+          MAJOR_BUMP: ${{ steps.check.outputs.major_bump }}
+        run: |
+          bot_id=$(gh api "/users/${APP_SLUG}[bot]" --jq .id)
+          git config user.name "${APP_SLUG}[bot]"
+          git config user.email "${bot_id}+${APP_SLUG}[bot]@users.noreply.github.com"
+
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "Go to version ${LATEST}"
+          git push origin "$BRANCH"
+
+          body="Automated update from ${CURRENT} to [MAVSDK ${LATEST}](https://github.com/mavlink/MAVSDK/releases/tag/${LATEST}).
+
+          - \`MAVSDK_SERVER_VERSION\` set to \`${LATEST}\`
+          - \`proto\` submodule moved to \`${PROTO_SHA}\` (as pinned by MAVSDK ${LATEST})
+          - bindings regenerated with \`other/tools/run_protoc.sh\`
+
+          Once this is merged, the tag \`${LATEST#v}\` is created automatically, which triggers the PyPI upload."
+
+          if [ "$MAJOR_BUMP" = "true" ]; then
+            body="${body}
+
+          :warning: **Major version bump.** Check whether the templates in \`other/templates\` or the examples need changes."
+          fi
+
+          gh pr create --base main --head "$BRANCH" \
+            --title "Go to version ${LATEST}" --body "$body"
+
+          # Merges once approved and checks pass. Needs "Allow auto-merge"
+          # enabled in the repo settings.
+          gh pr merge "$BRANCH" --auto --merge || echo "Could not enable auto-merge"
