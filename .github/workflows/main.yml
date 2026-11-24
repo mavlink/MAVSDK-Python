@@ -223,7 +223,7 @@ jobs:
 
       - name: Install prerequisites
         run: |
-          python3 -m pip install -r requirements.txt -r requirements-dev.txt
+          python3 -m pip install -r requirements.txt
           python3 -m pip install "setuptools<77" twine wheel
 
       - name: Create wheel

@@ -88,7 +88,8 @@ jobs:
         if: steps.check.outputs.update == 'true'
         uses: actions/setup-python@v7
         with:
-          python-version: 3.x
+          # The pinned grpcio-tools in requirements-dev.txt has no wheels for newer Python.
+          python-version: '3.13'
 
       - name: Update and regenerate
         if: steps.check.outputs.update == 'true'
