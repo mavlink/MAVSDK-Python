@@ -1,3 +1,11 @@
-grpcio-tools>=1.40.0
-protoc-gen-mavsdk~=2.0
-ruff>=0.12.12
+# Versions used to generate the bindings in mavsdk/. They are pinned so that
+# regenerating (manually or by the mavsdk-update workflow) doesn't produce
+# unrelated churn.
+#
+# grpcio-tools 1.75.0 generates code for protobuf 6.31.1 and grpcio 1.75.0,
+# which then works with any newer protobuf/grpcio at runtime. Upgrading it
+# raises the minimum runtime versions, so bump requirements.txt accordingly.
+# It has wheels up to Python 3.13.
+grpcio-tools==1.75.0
+protoc-gen-mavsdk==2.1.0
+ruff==0.17.6
