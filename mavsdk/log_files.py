@@ -156,6 +156,9 @@ class LogFilesResult:
         NO_SYSTEM
              No system is connected
 
+        CANCELLED
+             Download was cancelled
+
         """
 
         UNKNOWN = 0
@@ -166,6 +169,7 @@ class LogFilesResult:
         INVALID_ARGUMENT = 5
         FILE_OPEN_FAILED = 6
         NO_SYSTEM = 7
+        CANCELLED = 8
 
         def translate_to_rpc(self):
             if self == LogFilesResult.Result.UNKNOWN:
@@ -184,6 +188,8 @@ class LogFilesResult:
                 return log_files_pb2.LogFilesResult.RESULT_FILE_OPEN_FAILED
             if self == LogFilesResult.Result.NO_SYSTEM:
                 return log_files_pb2.LogFilesResult.RESULT_NO_SYSTEM
+            if self == LogFilesResult.Result.CANCELLED:
+                return log_files_pb2.LogFilesResult.RESULT_CANCELLED
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -204,6 +210,8 @@ class LogFilesResult:
                 return LogFilesResult.Result.FILE_OPEN_FAILED
             if rpc_enum_value == log_files_pb2.LogFilesResult.RESULT_NO_SYSTEM:
                 return LogFilesResult.Result.NO_SYSTEM
+            if rpc_enum_value == log_files_pb2.LogFilesResult.RESULT_CANCELLED:
+                return LogFilesResult.Result.CANCELLED
 
         def __str__(self):
             return self.name
@@ -355,6 +363,28 @@ class LogFiles(AsyncBase):
                 yield ProgressData.translate_from_rpc(response.progress)
         finally:
             download_log_file_stream.cancel()
+
+    async def cancel_download_log_file(self):
+        """
+        Cancel an ongoing log file download.
+
+        Returns Success, also if no download is in progress (a warning is logged).
+        The callback of the ongoing download is called once with Cancelled,
+        the vehicle is told to stop sending, and the partially downloaded file is deleted.
+
+        Raises
+        ------
+        LogFilesError
+            If the request fails. The error contains the reason for the failure.
+        """
+
+        request = log_files_pb2.CancelDownloadLogFileRequest()
+        response = await self._stub.CancelDownloadLogFile(request)
+
+        result = self._extract_result(response)
+
+        if result.result != LogFilesResult.Result.SUCCESS:
+            raise LogFilesError(result, "cancel_download_log_file()")
 
     async def erase_all_log_files(self):
         """

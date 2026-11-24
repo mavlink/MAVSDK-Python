@@ -56,6 +56,12 @@ class MavlinkDirectServiceStub(object):
             response_deserializer=mavlink__direct_dot_mavlink__direct__pb2.LoadCustomXmlResponse.FromString,
             _registered_method=True,
         )
+        self.SendCommand = channel.unary_unary(
+            "/mavsdk.rpc.mavlink_direct.MavlinkDirectService/SendCommand",
+            request_serializer=mavlink__direct_dot_mavlink__direct__pb2.SendCommandRequest.SerializeToString,
+            response_deserializer=mavlink__direct_dot_mavlink__direct__pb2.SendCommandResponse.FromString,
+            _registered_method=True,
+        )
 
 
 class MavlinkDirectServiceServicer(object):
@@ -94,6 +100,27 @@ class MavlinkDirectServiceServicer(object):
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
+    def SendCommand(self, request, context):
+        """
+        Send a command and wait for its final COMMAND_ACK.
+
+        The command is a COMMAND_LONG or COMMAND_INT message with its fields as JSON,
+        e.g. message_name "COMMAND_LONG" and fields_json
+        {"target_system":1,"target_component":1,"command":400,"param1":1,...}.
+
+        The command is retransmitted if no ack arrives. MAV_RESULT_IN_PROGRESS acks
+        are handled internally: the command is not retransmitted after one, and the
+        call keeps waiting for the final ack.
+
+        RESULT_SUCCESS only means that a final COMMAND_ACK was received. Whether the
+        command was accepted is in the "result" field of the returned ack (MAV_RESULT,
+        e.g. 0 for MAV_RESULT_ACCEPTED, 2 for MAV_RESULT_DENIED). Any other result means
+        no final ack was received and the returned ack is empty.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
 
 def add_MavlinkDirectServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -111,6 +138,11 @@ def add_MavlinkDirectServiceServicer_to_server(servicer, server):
             servicer.LoadCustomXml,
             request_deserializer=mavlink__direct_dot_mavlink__direct__pb2.LoadCustomXmlRequest.FromString,
             response_serializer=mavlink__direct_dot_mavlink__direct__pb2.LoadCustomXmlResponse.SerializeToString,
+        ),
+        "SendCommand": grpc.unary_unary_rpc_method_handler(
+            servicer.SendCommand,
+            request_deserializer=mavlink__direct_dot_mavlink__direct__pb2.SendCommandRequest.FromString,
+            response_serializer=mavlink__direct_dot_mavlink__direct__pb2.SendCommandResponse.SerializeToString,
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -205,6 +237,36 @@ class MavlinkDirectService(object):
             "/mavsdk.rpc.mavlink_direct.MavlinkDirectService/LoadCustomXml",
             mavlink__direct_dot_mavlink__direct__pb2.LoadCustomXmlRequest.SerializeToString,
             mavlink__direct_dot_mavlink__direct__pb2.LoadCustomXmlResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True,
+        )
+
+    @staticmethod
+    def SendCommand(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/mavsdk.rpc.mavlink_direct.MavlinkDirectService/SendCommand",
+            mavlink__direct_dot_mavlink__direct__pb2.SendCommandRequest.SerializeToString,
+            mavlink__direct_dot_mavlink__direct__pb2.SendCommandResponse.FromString,
             options,
             channel_credentials,
             insecure,

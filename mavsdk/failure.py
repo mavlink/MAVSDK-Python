@@ -57,6 +57,27 @@ class FailureUnit(Enum):
     SYSTEM_MAVLINK_SIGNAL
          MAVLink signal
 
+    SYSTEM_ESC
+         ESC telemetry
+
+    SYSTEM_TRAFFIC_AVOIDANCE
+         Traffic avoidance system like ADS-B or FLARM
+
+    DATALINK_LTE
+         Data link over a cellular (LTE) connection
+
+    DATALINK_WIFI
+         Data link over a Wi-Fi connection
+
+    DATALINK_TELEM_RADIO
+         Data link over a telemetry radio, e.g. a SiK radio
+
+    BUS_CAN
+         CAN bus, instance is the bus number, e.g. 1 for CAN1
+
+    BUS_I2C
+         I2C bus, instance is the bus number, e.g. 1 for I2C1
+
     """
 
     SENSOR_GYRO = 0
@@ -74,6 +95,13 @@ class FailureUnit(Enum):
     SYSTEM_AVOIDANCE = 12
     SYSTEM_RC_SIGNAL = 13
     SYSTEM_MAVLINK_SIGNAL = 14
+    SYSTEM_ESC = 15
+    SYSTEM_TRAFFIC_AVOIDANCE = 16
+    DATALINK_LTE = 17
+    DATALINK_WIFI = 18
+    DATALINK_TELEM_RADIO = 19
+    BUS_CAN = 20
+    BUS_I2C = 21
 
     def translate_to_rpc(self):
         if self == FailureUnit.SENSOR_GYRO:
@@ -106,6 +134,20 @@ class FailureUnit(Enum):
             return failure_pb2.FAILURE_UNIT_SYSTEM_RC_SIGNAL
         if self == FailureUnit.SYSTEM_MAVLINK_SIGNAL:
             return failure_pb2.FAILURE_UNIT_SYSTEM_MAVLINK_SIGNAL
+        if self == FailureUnit.SYSTEM_ESC:
+            return failure_pb2.FAILURE_UNIT_SYSTEM_ESC
+        if self == FailureUnit.SYSTEM_TRAFFIC_AVOIDANCE:
+            return failure_pb2.FAILURE_UNIT_SYSTEM_TRAFFIC_AVOIDANCE
+        if self == FailureUnit.DATALINK_LTE:
+            return failure_pb2.FAILURE_UNIT_DATALINK_LTE
+        if self == FailureUnit.DATALINK_WIFI:
+            return failure_pb2.FAILURE_UNIT_DATALINK_WIFI
+        if self == FailureUnit.DATALINK_TELEM_RADIO:
+            return failure_pb2.FAILURE_UNIT_DATALINK_TELEM_RADIO
+        if self == FailureUnit.BUS_CAN:
+            return failure_pb2.FAILURE_UNIT_BUS_CAN
+        if self == FailureUnit.BUS_I2C:
+            return failure_pb2.FAILURE_UNIT_BUS_I2C
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
@@ -140,6 +182,20 @@ class FailureUnit(Enum):
             return FailureUnit.SYSTEM_RC_SIGNAL
         if rpc_enum_value == failure_pb2.FAILURE_UNIT_SYSTEM_MAVLINK_SIGNAL:
             return FailureUnit.SYSTEM_MAVLINK_SIGNAL
+        if rpc_enum_value == failure_pb2.FAILURE_UNIT_SYSTEM_ESC:
+            return FailureUnit.SYSTEM_ESC
+        if rpc_enum_value == failure_pb2.FAILURE_UNIT_SYSTEM_TRAFFIC_AVOIDANCE:
+            return FailureUnit.SYSTEM_TRAFFIC_AVOIDANCE
+        if rpc_enum_value == failure_pb2.FAILURE_UNIT_DATALINK_LTE:
+            return FailureUnit.DATALINK_LTE
+        if rpc_enum_value == failure_pb2.FAILURE_UNIT_DATALINK_WIFI:
+            return FailureUnit.DATALINK_WIFI
+        if rpc_enum_value == failure_pb2.FAILURE_UNIT_DATALINK_TELEM_RADIO:
+            return FailureUnit.DATALINK_TELEM_RADIO
+        if rpc_enum_value == failure_pb2.FAILURE_UNIT_BUS_CAN:
+            return FailureUnit.BUS_CAN
+        if rpc_enum_value == failure_pb2.FAILURE_UNIT_BUS_I2C:
+            return FailureUnit.BUS_I2C
 
     def __str__(self):
         return self.name
@@ -175,6 +231,9 @@ class FailureType(Enum):
     INTERMITTENT
          Unit is sometimes working, sometimes not
 
+    DRIFT
+         Unit is publishing plausible values but drifting away from true values
+
     """
 
     OK = 0
@@ -185,6 +244,7 @@ class FailureType(Enum):
     SLOW = 5
     DELAYED = 6
     INTERMITTENT = 7
+    DRIFT = 8
 
     def translate_to_rpc(self):
         if self == FailureType.OK:
@@ -203,6 +263,8 @@ class FailureType(Enum):
             return failure_pb2.FAILURE_TYPE_DELAYED
         if self == FailureType.INTERMITTENT:
             return failure_pb2.FAILURE_TYPE_INTERMITTENT
+        if self == FailureType.DRIFT:
+            return failure_pb2.FAILURE_TYPE_DRIFT
 
     @staticmethod
     def translate_from_rpc(rpc_enum_value):
@@ -223,6 +285,8 @@ class FailureType(Enum):
             return FailureType.DELAYED
         if rpc_enum_value == failure_pb2.FAILURE_TYPE_INTERMITTENT:
             return FailureType.INTERMITTENT
+        if rpc_enum_value == failure_pb2.FAILURE_TYPE_DRIFT:
+            return FailureType.DRIFT
 
     def __str__(self):
         return self.name
