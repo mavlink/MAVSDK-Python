@@ -294,6 +294,9 @@ class FtpResult:
         NO_SYSTEM
              No system connected
 
+        DIRECTORY_NOT_EMPTY
+             Directory is not empty
+
         """
 
         UNKNOWN = 0
@@ -309,6 +312,7 @@ class FtpResult:
         UNSUPPORTED = 10
         PROTOCOL_ERROR = 11
         NO_SYSTEM = 12
+        DIRECTORY_NOT_EMPTY = 13
 
         def translate_to_rpc(self):
             if self == FtpResult.Result.UNKNOWN:
@@ -337,6 +341,8 @@ class FtpResult:
                 return ftp_pb2.FtpResult.RESULT_PROTOCOL_ERROR
             if self == FtpResult.Result.NO_SYSTEM:
                 return ftp_pb2.FtpResult.RESULT_NO_SYSTEM
+            if self == FtpResult.Result.DIRECTORY_NOT_EMPTY:
+                return ftp_pb2.FtpResult.RESULT_DIRECTORY_NOT_EMPTY
 
         @staticmethod
         def translate_from_rpc(rpc_enum_value):
@@ -367,6 +373,8 @@ class FtpResult:
                 return FtpResult.Result.PROTOCOL_ERROR
             if rpc_enum_value == ftp_pb2.FtpResult.RESULT_NO_SYSTEM:
                 return FtpResult.Result.NO_SYSTEM
+            if rpc_enum_value == ftp_pb2.FtpResult.RESULT_DIRECTORY_NOT_EMPTY:
+                return FtpResult.Result.DIRECTORY_NOT_EMPTY
 
         def __str__(self):
             return self.name
