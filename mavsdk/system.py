@@ -491,11 +491,7 @@ class System:
         import os
         import subprocess
         import sys
-
-        if sys.version_info >= (3, 7):
-            from importlib.resources import path
-        else:
-            from importlib_resources import path
+        from importlib.resources import path
 
         try:
             if sys.platform.startswith("win"):
