@@ -181,13 +181,18 @@ class System:
 
     def _stop_mavsdk_server(self):
         """
-        kill the running mavsdk_server and clean the whole instance
+        kill the running mavsdk_server and reset the connection state,
+        keeping the configuration passed to the constructor (port, sysid, compid)
         """
         import subprocess
 
         if isinstance(self._server_process, subprocess.Popen):
             self._server_process.kill()
-            self.__init__(port=self._port)
+            self._server_process = None
+            self._plugins = {}
+            # connect() set this to "localhost" when it started the server;
+            # clear it so the next connect() starts a new one.
+            self._mavsdk_server_address = None
 
     async def _init_plugins(self, host, port):
         plugin_manager = await AsyncPluginManager.create(host=host, port=port)
